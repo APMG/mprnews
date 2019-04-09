@@ -27,10 +27,15 @@
     "webpack-node-externals": "^1.6.0"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.4.3",
+    "apm-titan": "^0.2.5",
+    "apollo-boost": "^0.3.1",
     "cors": "^2.8.4",
     "express": "^4.16.2",
     "isomorphic-fetch": "^2.2.1",
+    "node-fetch": "^2.3.0",
     "react": "^16.3.0",
+    "react-apollo": "^2.5.4",
     "react-dom": "^16.3.0",
     "react-router-dom": "^4.2.2",
     "serialize-javascript": "^1.4.0"
