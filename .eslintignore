@@ -1,0 +1,7 @@
+webpack.configs.js
+node_modules/**
+dist/**
+build/**
+lib/**
+coverage/**
+build/**
