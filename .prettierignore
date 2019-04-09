@@ -1,0 +1,7 @@
+# Location of CSS:
+src/shared/styles/**/*
+# Location of built files:
+dist/**/*
+build/**/*
+server.js
+src/shared/config/index.js
