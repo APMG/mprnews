@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 
 class PhotoGalleryWithData extends React.Component {
   render() {
-    // const episodeSlug = this.props['*'];
     let WrappedComponent = '';
     return (
       <>

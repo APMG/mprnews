@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Loading } from 'apm-titan';
-// import { Image } from 'apm-mimas';
 import { Body } from 'amat-react';
 
 class PhotoGallery extends React.Component {
