@@ -4,21 +4,14 @@ import PhotoGallery from './PhotoGallery';
 import { photogalleryQuery } from './PhotoGalleryQuery';
 import PropTypes from 'prop-types';
 
-class PhotoGalleryWithData extends React.Component {
-  render() {
-    let WrappedComponent = '';
-    return (
-      <>
-        {
-          (WrappedComponent = graphql(
-            photogalleryQuery('live-from-here', '2019/04/12/test')
-          )(PhotoGallery))
-        }
-        <WrappedComponent />
-      </>
-    );
-  }
-}
+const PhotoGalleryWithData = () => {
+  const WrappedComponent = graphql(photogalleryQuery())(PhotoGallery);
+  return (
+    <>
+      <WrappedComponent />
+    </>
+  );
+};
 
 PhotoGallery.propTypes = {
   '*': PropTypes.string

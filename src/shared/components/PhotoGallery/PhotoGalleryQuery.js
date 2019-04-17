@@ -12,6 +12,7 @@ export function photogalleryQuery() {
         canonicalSlug
         publishDate
         body
+        embeddedAssetJson
         primaryVisuals {
           thumbnail {
             aspectRatios {
