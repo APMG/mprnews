@@ -1,0 +1,42 @@
+//----------------------------------------------
+// Figure
+//
+// Image/video with caption
+//----------------------------------------------
+
+.figure {
+  @include figure();
+}
+
+.figure.half,
+.figure-half {
+  @include figure-half();
+}
+
+.figure.quarter,
+.figure-quarter {
+  @include figure-quarter();
+}
+
+.figure-right,
+.figure.align-right {
+  @include figure-right();
+}
+
+.figure-left,
+.figure.align-left {
+  @include figure-left();
+}
+
+* + .figure_caption,
+.figure_caption + * {
+  @include figure_caption();
+}
+
+.figure_credit {
+  @include figure_credit();
+}
+
+.figure_text {
+  @include figure_text();
+}

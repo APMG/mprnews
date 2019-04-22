@@ -1,0 +1,42 @@
+// Colors
+$color-red: #b4111a;
+$color-green: #84c446;
+$color-transparent: rgba(255, 255, 255, 0);
+$color-white: #ffffff;
+$color-black: #000000;
+
+$color-grey-90: hsl(0, 0%, 90%);
+$color-grey-80: hsl(0, 0%, 80%);
+$color-grey-70: hsl(0, 0%, 70%);
+$color-grey-60: hsl(0, 0%, 60%);
+$color-grey-50: hsl(0, 0%, 50%);
+$color-grey-40: hsl(0, 0%, 40%);
+$color-grey-30: hsl(0, 0%, 30%);
+$color-grey-20: hsl(0, 0%, 20%);
+$color-grey-10: hsl(0, 0%, 10%);
+
+// Sitewide colors
+$color-bg: $color-white;
+$color-content-bg: rgba($color-black, .75);
+$color-default: $color-grey-20;
+
+$color-disabled: $color-grey-90;
+$color-disabled-bg: #fafafa;
+
+$color-selection: $color-grey-70;
+
+$color-success: $color-green;
+$color-warning: $color-red;
+
+// Components
+$color-header: $color-default;
+$color-header-bg: $color-white;
+$color-text: $color-default;
+$color-text-light: $color-grey-50;
+$color-text-dark: $color-grey-20;
+$color-link: $color-red;
+$color-link-hover: darken($color-link, 20%);
+$color-screen: rgba($color-black, .7);
+
+// Temp podcast theme color
+$color-theme: $color-white;

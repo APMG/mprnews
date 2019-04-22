@@ -1,0 +1,30 @@
+// Collection Pages
+
+.collection_header {
+  margin-bottom: 120px;
+
+  &::after {
+    content: '';
+    display: block;
+    margin: 0 auto;
+    width: 50%;
+    height: 1px;
+    position: relative;
+    top: 60px;
+    background: $color-grey-50;
+  }
+}
+
+.collection_list {
+  @include col();
+  @include col-page();
+
+  > * {
+    display: block;
+    margin-bottom: 40px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
