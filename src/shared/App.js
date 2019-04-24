@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Routes from './routes';
 import PropTypes from 'prop-types';
 import SiteConfigContext from './SiteConfigContext';
+import '../shared/styles/index.scss';
 
 class App extends Component {
   render() {
