@@ -1,4 +1,3 @@
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
@@ -29,7 +28,7 @@ export default class Weather extends React.Component {
       ]
     };
 
-    this.handleOnBlur = this.handleOnBlur.bind(this);
+    this.handleOnChange = this.handleOnChange.bind(this);
   }
 
   componentDidMount() {
