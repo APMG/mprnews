@@ -1,14 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-
-// while searching for bemidji api using lat & long c47.47,-94.88/forecast will return with wfo and gridpoints https://api.weather.gov/gridpoints/FGF/161,83/forecast
 export default class Weather extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      selectedCity: {},
+      selectedCity: {
+        id: 'MSP',
+        name: 'MSP Airport',
+        lat: '44.8848',
+        long: '-93.2223'
+      },
       error: null,
       isLoaded: false,
       response: [],
@@ -25,25 +28,17 @@ export default class Weather extends React.Component {
       ]
     };
 
-    this.mapMatch = this.mapMatch.bind(this);
-  }
-  formatAMPM(date) {
-    var hours = date.getHours();
-    var minutes = date.getMinutes();
-    var ampm = hours >= 12 ? 'pm' : 'am';
-    hours = hours % 12;
-    hours = hours ? hours : 12; // the hour '0' should be '12'
-    minutes = minutes < 10 ? '0' + minutes : minutes;
-    var strTime = hours + ':' + minutes + ' ' + ampm;
-    return strTime;
+    this.handleOnBlur = this.handleOnBlur.bind(this);
   }
 
   componentDidMount() {
-    this.fetchData();
+    this.fetchWeatherData();
   }
 
-  fetchData() {
-    const url = `https://api.weather.gov/points/44.8848,-93.2223/forecast`;
+  fetchWeatherData() {
+    const url = `https://api.weather.gov/points/${
+      this.state.selectedCity.lat
+    },${this.state.selectedCity.long}/forecast`;
     axios
       .get(url)
       .then((res) => {
@@ -51,114 +46,91 @@ export default class Weather extends React.Component {
       })
       .catch((error) => {
         this.setState({ isLoaded: true, error });
-        console.log(error);
       });
   }
 
-  mapMatch(event) {
-    let eventValue = event.target.value;
+  handleOnBlur(event) {
     this.state.locations.map((city) => {
-      if (city.name === eventValue) {
+      if (city.name === event.target.value) {
         return this.setState({
           selectedCity: {
-            city: eventValue,
+            id: city.id,
+            name: event.target.value,
             lat: city.lat,
             long: city.long
           }
         });
       }
     });
+    this.fetchWeatherData();
   }
 
   render() {
     const { error, isLoaded, response } = this.state;
 
     if (error) {
-      return <div className="col">Error: {error.message}</div>;
+      return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
-      return <div className="col">Loading...</div>;
+      return <div>Loading...</div>;
     } else {
       return (
         <div>
           <h1>{this.props.path} page</h1>
-          FORECAST:
+          Generated at:
+          {response.properties.generatedAt}
           <br />
-          <br />
-          Generated at:{' '}
-          {this.formatAMPM(new Date(response.properties.generatedAt))}
-          <br />
-          Updated at:{' '}
-          {this.formatAMPM(new Date(response.properties.updateTime))}
-          <div className="currentWeather">
-            <br />
-            <br />
+          Updated at:
+          {response.properties.updateTime}
+          <div>
             <h2>Current Conditions</h2>
-            <select
-              value={this.state.selectedCity.city}
-              onChange={this.mapMatch}
-            >
+            <select onBlur={this.handleOnBlur}>
               {this.state.locations.map((area) => (
                 <option key={area.id} id={area.id} value={area.name}>
                   {area.name}
                 </option>
               ))}
             </select>
-            {console.log(this.state)}
-
-            <hr />
-
             <div>
               {response.properties.periods[0].number === 1 &&
                 response.properties.periods.splice(0, 1).map((data) => (
                   <div key={2}>
-                    <div className="temperature">{data.temperature}°</div>
+                    <div>{data.temperature}°</div>
                     <p>
                       {data.name} : {data.shortForecast}
                     </p>
                     <p>WindSpeed : {data.windSpeed}</p>
                     <p>WindDirection :{data.windDirection}</p>
-                    Start: {this.formatAMPM(new Date(data.startTime))} End:{' '}
-                    {this.formatAMPM(new Date(data.endTime))}
+                    Start: {data.startTime} End:
+                    {data.endTime}
                     <p>{data.detailedForecast}</p>
                   </div>
                 ))}
             </div>
-            <br />
-            <br />
-            <br />
-            <hr />
           </div>
-          <ul>
-            {console.log(response)}
-            <div className="cards location">
-              {response.properties.periods.map((data) => (
-                <div className="card body" key={data.number}>
-                  <li>
-                    <img src={data.icon} alt={data.name} />
-                  </li>
-                  <li>{data.number}</li>
-                  <li>
-                    {data.name} : {data.shortForecast}
-                  </li>
-                  <li>
-                    Temperature : {data.temperature}
-                    {data.temperatureUnit}
-                  </li>
-                  <li>WindSpeed : {data.windSpeed}</li>
-                  <li>
-                    WindDirection:
-                    {data.windDirection}
-                  </li>
-                  <li>Start: {this.formatAMPM(new Date(data.startTime))}</li>
-                  <li>End: {this.formatAMPM(new Date(data.endTime))}</li>
-
-                  <li />
-                </div>
-              ))}
-            </div>
-          </ul>
-          <br />
           <hr />
+          <h2>Conditions Periods</h2>
+          <ul>
+            {response.properties.periods.map((data) => (
+              <div key={data.number}>
+                <li>
+                  <img src={data.icon} alt={data.name} />
+                </li>
+                <li>{data.number}</li>
+                <li>
+                  {data.name} : {data.shortForecast}
+                </li>
+                <li>
+                  Temperature : {data.temperature}
+                  {data.temperatureUnit}
+                </li>
+                <li>WindSpeed : {data.windSpeed}</li>
+                <li>WindDirection: {data.windDirection}</li>
+                <li>Start: {data.startTime}</li>
+                <li>End: {data.endTime}</li>
+                <li />
+              </div>
+            ))}
+          </ul>
         </div>
       );
     }
