@@ -1,18 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { graphql } from 'react-apollo';
+import Story from './Story';
+import { storyQuery } from './StoryQuery';
 
-class Story extends React.Component {
-  render() {
-    return (
-      <div>
-        <h1>{this.props.path} page</h1>
-      </div>
-    );
-  }
-}
-
-Story.propTypes = {
-  path: PropTypes.string
+const StoryWithData = () => {
+  const WrappedComponent = graphql(storyQuery('mpr', '2012/03/12/lisaradzak'))(
+    Story
+  );
+  return <WrappedComponent />;
 };
 
-export default Story;
+export default StoryWithData;

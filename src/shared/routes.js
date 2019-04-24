@@ -1,7 +1,7 @@
 import React from 'react';
 import { Router } from 'apm-titan';
 import Home from './components/Home';
-import Story from './components/Story';
+import StoryWithData from './components/Story';
 import Weather from './components/Weather';
 import Event from './components/Event';
 import NotFound from './components/Errors/NotFound';
@@ -10,7 +10,7 @@ const Routes = () => {
   return (
     <Router>
       <Home path="/" />
-      <Story path="/story" />
+      <StoryWithData path="/story/*" />
       <Weather path="/weather" />
       <Event path="/event" />
       <NotFound default />
