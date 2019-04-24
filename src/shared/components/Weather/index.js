@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-onchange */
 import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
@@ -49,7 +50,7 @@ export default class Weather extends React.Component {
       });
   }
 
-  handleOnBlur(event) {
+  handleOnChange(event) {
     this.state.locations.map((city) => {
       if (city.name === event.target.value) {
         return this.setState({
@@ -83,7 +84,8 @@ export default class Weather extends React.Component {
           {response.properties.updateTime}
           <div>
             <h2>Current Conditions</h2>
-            <select onBlur={this.handleOnBlur}>
+
+            <select onChange={this.handleOnChange}>
               {this.state.locations.map((area) => (
                 <option key={area.id} id={area.id} value={area.name}>
                   {area.name}

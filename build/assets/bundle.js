@@ -45091,6 +45091,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var _jsxFileName = "/Users/jphan/Code/v2-mpr-news/src/shared/components/Weather/index.js";
 
+/* eslint-disable jsx-a11y/no-onchange */
+
 
 
 
@@ -45190,8 +45192,8 @@ function (_React$Component) {
       });
     }
   }, {
-    key: "handleOnBlur",
-    value: function handleOnBlur(event) {
+    key: "handleOnChange",
+    value: function handleOnChange(event) {
       var _this3 = this;
 
       this.state.locations.map(function (city) {
@@ -45220,7 +45222,7 @@ function (_React$Component) {
         return react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("div", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 72
+            lineNumber: 73
           },
           __self: this
         }, "Error: ", error.message);
@@ -45228,7 +45230,7 @@ function (_React$Component) {
         return react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("div", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 74
+            lineNumber: 75
           },
           __self: this
         }, "Loading...");
@@ -45236,38 +45238,38 @@ function (_React$Component) {
         return react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("div", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 77
+            lineNumber: 78
           },
           __self: this
         }, react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("h1", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 78
+            lineNumber: 79
           },
           __self: this
         }, this.props.path, " page"), "Generated at:", response.properties.generatedAt, react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("br", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 81
+            lineNumber: 82
           },
           __self: this
         }), "Updated at:", response.properties.updateTime, react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("div", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 84
+            lineNumber: 85
           },
           __self: this
         }, react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("h2", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 85
+            lineNumber: 86
           },
           __self: this
         }, "Current Conditions"), react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("select", {
-          onBlur: this.handleOnBlur,
+          onChange: this.handleOnChange,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 86
+            lineNumber: 88
           },
           __self: this
         }, this.state.locations.map(function (area) {
@@ -45277,14 +45279,14 @@ function (_React$Component) {
             value: area.name,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 88
+              lineNumber: 90
             },
             __self: this
           }, area.name);
         })), react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("div", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 93
+            lineNumber: 95
           },
           __self: this
         }, response.properties.periods[0].number === 1 && response.properties.periods.splice(0, 1).map(function (data) {
@@ -45292,56 +45294,56 @@ function (_React$Component) {
             key: 2,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 96
+              lineNumber: 98
             },
             __self: this
           }, react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("div", {
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 97
+              lineNumber: 99
             },
             __self: this
           }, data.temperature, "\xB0"), react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("p", {
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 98
+              lineNumber: 100
             },
             __self: this
           }, data.name, " : ", data.shortForecast), react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("p", {
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 101
+              lineNumber: 103
             },
             __self: this
           }, "WindSpeed : ", data.windSpeed), react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("p", {
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 102
+              lineNumber: 104
             },
             __self: this
           }, "WindDirection :", data.windDirection), "Start: ", data.startTime, " End:", data.endTime, react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("p", {
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 105
+              lineNumber: 107
             },
             __self: this
           }, data.detailedForecast));
         }))), react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("hr", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 110
+            lineNumber: 112
           },
           __self: this
         }), react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("h2", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 111
+            lineNumber: 113
           },
           __self: this
         }, "Conditions Periods"), react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("ul", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 112
+            lineNumber: 114
           },
           __self: this
         }, response.properties.periods.map(function (data) {
@@ -45349,13 +45351,13 @@ function (_React$Component) {
             key: data.number,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 114
+              lineNumber: 116
             },
             __self: this
           }, react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("li", {
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 115
+              lineNumber: 117
             },
             __self: this
           }, react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("img", {
@@ -45363,55 +45365,55 @@ function (_React$Component) {
             alt: data.name,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 116
+              lineNumber: 118
             },
             __self: this
           })), react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("li", {
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 118
+              lineNumber: 120
             },
             __self: this
           }, data.number), react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("li", {
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 119
+              lineNumber: 121
             },
             __self: this
           }, data.name, " : ", data.shortForecast), react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("li", {
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 122
+              lineNumber: 124
             },
             __self: this
           }, "Temperature : ", data.temperature, data.temperatureUnit), react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("li", {
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 126
+              lineNumber: 128
             },
             __self: this
           }, "WindSpeed : ", data.windSpeed), react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("li", {
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 127
+              lineNumber: 129
             },
             __self: this
           }, "WindDirection: ", data.windDirection), react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("li", {
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 128
+              lineNumber: 130
             },
             __self: this
           }, "Start: ", data.startTime), react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("li", {
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 129
+              lineNumber: 131
             },
             __self: this
           }, "End: ", data.endTime), react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("li", {
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 130
+              lineNumber: 132
             },
             __self: this
           }));
