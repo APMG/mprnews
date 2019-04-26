@@ -2,6 +2,7 @@ import React from 'react';
 import { graphql } from 'react-apollo';
 import Stories from './Stories';
 import { StoriesQuery } from './StoriesQuery';
+// import SiteConfigContext from '../../SiteConfigContext';
 
 import PropTypes from 'prop-types';
 

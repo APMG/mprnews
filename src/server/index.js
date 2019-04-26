@@ -24,6 +24,7 @@ server.use('/assets', express.static(`${filepath}/assets`)).use((req, res) => {
   // eslint-disable-next-line
   const context = {};
   let template = fs.readFileSync(`${filepath}/index.html`).toString();
+
   const component = (
     <ApolloProvider client={client}>
       <HelmetProvider context={helmetContext}>

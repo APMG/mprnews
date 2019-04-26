@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Routes from './routes';
+import Routes from '../shared/routes/routes';
 import PropTypes from 'prop-types';
 import SiteConfigContext from './SiteConfigContext';
 import '../shared/styles/index.scss';
