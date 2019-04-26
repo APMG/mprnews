@@ -7,7 +7,7 @@ import { Body } from 'amat-react';
 const Page = (props) => {
   const { page } = props.data;
 
-  if (props.data.loading) return <Loading />;
+  if (!props.data || props.data.loading) return <Loading />;
   if (props.data.error) return <div>Error</div>;
   return (
     <>
@@ -16,7 +16,7 @@ const Page = (props) => {
           <div className="content_date">
             {format(page.publishDate, 'MMMM D, YYYY')}
           </div>
-          <Heading level={1} elementClass="hdg-podcast">
+          <Heading level={1} elementClass="hdg-page">
             {page.title}
           </Heading>
           <div className="content_body">
