@@ -83,7 +83,7 @@ export default class Weather extends React.Component {
           {response.properties.updateTime}
           <div>
             <h2>Current Conditions</h2>
-
+            {/* change select function to href links */}
             <select onChange={this.handleOnChange}>
               {this.state.locations.map((area) => (
                 <option key={area.id} id={area.id} value={area.name}>
