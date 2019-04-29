@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import { navigate } from '@reach/router';
+
 export default class Weather extends React.Component {
   constructor(props) {
     super(props);
@@ -12,6 +14,7 @@ export default class Weather extends React.Component {
         lat: '44.8848',
         long: '-93.2223'
       },
+      href: null,
       error: null,
       isLoaded: false,
       response: [],
@@ -37,8 +40,10 @@ export default class Weather extends React.Component {
 
   fetchWeatherData() {
     const url = `https://api.weather.gov/points/${
-      this.state.selectedCity.lat
-    },${this.state.selectedCity.long}/forecast`;
+      this.props['*'] && this.state.href == null
+        ? this.props['*']
+        : this.state.href
+    }/forecast`;
     axios
       .get(url)
       .then((res) => {
@@ -50,19 +55,12 @@ export default class Weather extends React.Component {
   }
 
   handleOnChange(event) {
-    this.state.locations.map((city) => {
-      if (city.name === event.target.value) {
-        return this.setState({
-          selectedCity: {
-            id: city.id,
-            name: event.target.value,
-            lat: city.lat,
-            long: city.long
-          }
-        });
-      }
+    const newLink = event.target.value;
+    this.setState({
+      href: `/${newLink}`
     });
-    this.fetchWeatherData();
+    navigate(`/weather/${newLink}`);
+    return this.fetchWeatherData();
   }
 
   render() {
@@ -85,12 +83,13 @@ export default class Weather extends React.Component {
             <h2>Current Conditions</h2>
             {/* change select function to href links */}
             <select onChange={this.handleOnChange}>
-              {this.state.locations.map((area) => (
-                <option key={area.id} id={area.id} value={area.name}>
-                  {area.name}
+              {this.state.locations.map((event) => (
+                <option key={event.id} value={`${event.lat},${event.long}`}>
+                  {event.name}
                 </option>
               ))}
             </select>
+
             <div>
               {response.properties.periods[0].number === 1 &&
                 response.properties.periods.splice(0, 1).map((data) => (
@@ -139,5 +138,6 @@ export default class Weather extends React.Component {
 }
 
 Weather.propTypes = {
-  path: PropTypes.string
+  path: PropTypes.string,
+  '*': PropTypes.string
 };

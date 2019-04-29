@@ -12,16 +12,16 @@ export default function RestApiHooksComponent() {
 
   return data.properties ? (
     <div>
-      {console.log(data)}
       <a
-        href={`/weather/${data.geometry.geometries[0].coordinates[0]},${
-          data.geometry.geometries[0].coordinates[1]
+        href={`/weather/${data.geometry.geometries[0].coordinates[1]},${
+          data.geometry.geometries[0].coordinates[0]
         }`}
       >
         <h1>{data.properties.periods[0].temperature}°</h1>
+        {data.properties.periods[0].shortForecast}
       </a>
     </div>
   ) : (
-    <div>Loading......</div>
+    <div>Loading...</div>
   );
 }
