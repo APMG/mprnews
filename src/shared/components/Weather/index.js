@@ -38,12 +38,16 @@ export default class Weather extends React.Component {
     this.fetchWeatherData();
   }
 
+  checksPropsToStateToDefault() {
+    if (this.props['*'] && this.state.href == null) {
+      return this.props['*'];
+    } else if (!this.state.href == null) {
+      return this.state.href;
+    }
+  }
+
   fetchWeatherData() {
-    const url = `https://api.weather.gov/points/${
-      this.props['*'] && this.state.href == null
-        ? this.props['*']
-        : this.state.href
-    }/forecast`;
+    const url = `https://api.weather.gov/points/${this.checksPropsToStateToDefault()}/forecast`;
     axios
       .get(url)
       .then((res) => {
@@ -81,7 +85,7 @@ export default class Weather extends React.Component {
           {response.properties.updateTime}
           <div>
             <h2>Current Conditions</h2>
-            {/* change select function to href links */}
+
             <select onChange={this.handleOnChange}>
               {this.state.locations.map((event) => (
                 <option key={event.id} value={`${event.lat},${event.long}`}>
@@ -91,6 +95,7 @@ export default class Weather extends React.Component {
             </select>
 
             <div>
+              {/* TODO: the logic in this function is bit off when rerendering to a different city and back*/}
               {response.properties.periods[0].number === 1 &&
                 response.properties.periods.splice(0, 1).map((data) => (
                   <div key={2}>
