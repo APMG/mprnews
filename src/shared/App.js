@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
-<<<<<<< HEAD
 import Routes from '../shared/routes/routes';
-=======
-import Routes from '../shared/routes';
->>>>>>> master
-import PropTypes from 'prop-types';
 import '../shared/styles/index.scss';
 
 class App extends Component {
@@ -17,11 +12,5 @@ class App extends Component {
     );
   }
 }
-
-App.propTypes = {
-  headers: PropTypes.shape({
-    host: PropTypes.string
-  })
-};
 
 export default App;
