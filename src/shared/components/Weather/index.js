@@ -32,8 +32,6 @@ export default class Weather extends React.Component {
     this.fetchWeatherData();
   }
 
-  matchGeo;
-
   fetchWeatherData() {
     const url = `https://api.weather.gov/points/${this.windowLocationHref()}/forecast`;
     axios
