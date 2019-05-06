@@ -1,17 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import { navigate } from '@reach/router';
+
 export default class Weather extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      selectedCity: {
-        id: 'MSP',
-        name: 'MSP Airport',
-        lat: '44.8848',
-        long: '-93.2223'
-      },
+      href: null,
       error: null,
       isLoaded: false,
       response: [],
@@ -36,9 +33,7 @@ export default class Weather extends React.Component {
   }
 
   fetchWeatherData() {
-    const url = `https://api.weather.gov/points/${
-      this.state.selectedCity.lat
-    },${this.state.selectedCity.long}/forecast`;
+    const url = `https://api.weather.gov/points/${this.windowLocationHref()}/forecast`;
     axios
       .get(url)
       .then((res) => {
@@ -49,20 +44,24 @@ export default class Weather extends React.Component {
       });
   }
 
+  windowLocationHref() {
+    if (this.props['*'] && this.state.href == null) {
+      this.setState({
+        href: `/${this.props['*']}`
+      });
+      return `/${this.props['*']}`;
+    } else if (this.state.href !== null) {
+      return this.state.href;
+    }
+  }
+
   handleOnChange(event) {
-    this.state.locations.map((city) => {
-      if (city.name === event.target.value) {
-        return this.setState({
-          selectedCity: {
-            id: city.id,
-            name: event.target.value,
-            lat: city.lat,
-            long: city.long
-          }
-        });
-      }
+    this.setState({
+      href: `/${event.target.value}`,
+      selectedName: event.target.name
     });
-    this.fetchWeatherData();
+    navigate(`/weather/${event.target.value}`);
+    return this.fetchWeatherData();
   }
 
   render() {
@@ -85,17 +84,24 @@ export default class Weather extends React.Component {
             <h2>Current Conditions</h2>
 
             <select onChange={this.handleOnChange}>
-              {this.state.locations.map((area) => (
-                <option key={area.id} id={area.id} value={area.name}>
-                  {area.name}
+              <option defaultValue="selected">More locations</option>
+              {this.state.locations.map((event) => (
+                <option
+                  key={event.id}
+                  name={event.name}
+                  value={`${event.lat},${event.long}`}
+                >
+                  {event.name}
                 </option>
               ))}
             </select>
+
             <div>
               {response.properties.periods[0].number === 1 &&
                 response.properties.periods.splice(0, 1).map((data) => (
-                  <div key={2}>
+                  <div key={data.number}>
                     <div>{data.temperature}°</div>
+                    {data.number}
                     <p>
                       {data.name} : {data.shortForecast}
                     </p>
@@ -139,5 +145,6 @@ export default class Weather extends React.Component {
 }
 
 Weather.propTypes = {
-  path: PropTypes.string
+  path: PropTypes.string,
+  '*': PropTypes.string
 };

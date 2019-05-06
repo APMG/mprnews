@@ -15,7 +15,7 @@ const Routes = () => {
       <PageWithData path="/page/*" />
       <StoryWithData path="/story/*" />
       <StoriesWithData path="/stories" />
-      <Weather path="/weather" />
+      <Weather path="/weather/*" />
       <Event path="/event" />
       <NotFound default />
     </Router>
