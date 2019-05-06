@@ -1,17 +1,15 @@
 import React from 'react';
-import PhotoGalleryWithData from '../PhotoGallery/';
-import Sections from '../sections/sections';
+import { graphql } from 'react-apollo';
+import Home from './Home';
+import { homeQuery } from './HomeQuery';
 
-class Home extends React.Component {
+class HomeWithData extends React.Component {
   render() {
-    return (
-      <div>
-        <h1>Home page</h1>
-        <Sections />
-        <PhotoGalleryWithData />
-      </div>
-    );
+    const homeSlug = 'homepage';
+    const WrappedComponent = graphql(homeQuery('mpr', homeSlug))(Home);
+
+    return <WrappedComponent />;
   }
 }
 
-export default Home;
+export default HomeWithData;

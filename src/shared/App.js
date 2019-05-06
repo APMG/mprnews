@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import Routes from './routes';
+import Routes from '../shared/routes';
 import PropTypes from 'prop-types';
-import SiteConfigContext from './SiteConfigContext';
 import '../shared/styles/index.scss';
 import { Link } from 'apm-titan';
 
@@ -15,10 +14,7 @@ class App extends Component {
             alt=""
           />
         </Link>
-
-        <SiteConfigContext.Provider>
-          <Routes />
-        </SiteConfigContext.Provider>
+        <Routes />
       </div>
     );
   }
