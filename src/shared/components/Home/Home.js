@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Loading } from 'apm-titan';
 import Sections from '../sections/sections';
-import PhotoGalleryWithData from '../PhotoGallery';
+// import PhotoGalleryWithData from '../PhotoGallery';
 
 const Home = (props) => {
   const { data } = props;
@@ -13,7 +13,7 @@ const Home = (props) => {
   return (
     <>
       <Sections />
-      <PhotoGalleryWithData />
+      {/* <PhotoGalleryWithData /> */}
     </>
   );
 };
