@@ -2,13 +2,12 @@ import React from 'react';
 import { graphql } from 'react-apollo';
 import Stories from './Stories';
 import { StoriesQuery } from './StoriesQuery';
-
 import PropTypes from 'prop-types';
 
 const StoriesWithData = (props) => {
   const pageNum = props.id ? props.id : 1;
   // slug: news-taxonomy-test, currently only has a collections of section titles, but no data to fetch yet.
-  // temparly fetching data from mpr: /press/mpr-news instead.
+  // temporarily fetching data from mpr: /press/mpr-news instead.
   const WrappedComponent = graphql(StoriesQuery('mpr', pageNum), {
     options: () => ({
       variables: {
