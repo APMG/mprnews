@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import Routes from '../shared/routes/routes';
-import PropTypes from 'prop-types';
-import SiteConfigContext from './SiteConfigContext';
 import '../shared/styles/index.scss';
 import RestApiHooksComponent from './components/Weather/WeatherHeader';
 
@@ -11,18 +9,10 @@ class App extends Component {
       <div>
         <img src="//mpr.apmcdn.org/news/1550179261168/img/mprnews.svg" alt="" />
         <RestApiHooksComponent />
-        <SiteConfigContext.Provider>
-          <Routes />
-        </SiteConfigContext.Provider>
+        <Routes />
       </div>
     );
   }
 }
-
-App.propTypes = {
-  headers: PropTypes.shape({
-    host: PropTypes.string
-  })
-};
 
 export default App;
