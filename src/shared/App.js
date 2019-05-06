@@ -3,12 +3,19 @@ import Routes from './routes';
 import PropTypes from 'prop-types';
 import SiteConfigContext from './SiteConfigContext';
 import '../shared/styles/index.scss';
+import { Link } from 'apm-titan';
 
 class App extends Component {
   render() {
     return (
       <div>
-        <img src="//mpr.apmcdn.org/news/1550179261168/img/mprnews.svg" alt="" />
+        <Link to="/">
+          <img
+            src="//mpr.apmcdn.org/news/1550179261168/img/mprnews.svg"
+            alt=""
+          />
+        </Link>
+
         <SiteConfigContext.Provider>
           <Routes />
         </SiteConfigContext.Provider>
