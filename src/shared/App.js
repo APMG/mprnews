@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Routes from '../shared/routes';
-import PropTypes from 'prop-types';
+import Routes from '../shared/routes/routes';
 import '../shared/styles/index.scss';
 import { Link } from 'apm-titan';
+import RestApiHooksComponent from './components/Weather/WeatherHeader';
 
 class App extends Component {
   render() {
@@ -14,16 +14,12 @@ class App extends Component {
             alt=""
           />
         </Link>
+        <img src="//mpr.apmcdn.org/news/1550179261168/img/mprnews.svg" alt="" />
+        <RestApiHooksComponent />
         <Routes />
       </div>
     );
   }
 }
-
-App.propTypes = {
-  headers: PropTypes.shape({
-    host: PropTypes.string
-  })
-};
 
 export default App;
