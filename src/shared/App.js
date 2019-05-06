@@ -14,7 +14,6 @@ class App extends Component {
             alt=""
           />
         </Link>
-        <img src="//mpr.apmcdn.org/news/1550179261168/img/mprnews.svg" alt="" />
         <RestApiHooksComponent />
         <Routes />
       </div>
