@@ -52,6 +52,7 @@ server.use('/assets', express.static(`${filepath}/assets`)).use((req, res) => {
     res.status(200);
   });
 });
+server.set('trust proxy', true);
 
 const httpServer = http.createServer(server).listen(APP_PORT, (error) => {
   if (error) {
