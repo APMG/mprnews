@@ -8,12 +8,6 @@ export default class Weather extends React.Component {
     super(props);
 
     this.state = {
-      selectedCity: {
-        id: 'MSP',
-        name: 'MSP Airport',
-        lat: '44.8848',
-        long: '-93.2223'
-      },
       href: null,
       error: null,
       isLoaded: false,
@@ -38,16 +32,10 @@ export default class Weather extends React.Component {
     this.fetchWeatherData();
   }
 
-  checksPropsToStateToDefault() {
-    if (this.props['*'] && this.state.href == null) {
-      return this.props['*'];
-    } else if (!this.state.href == null) {
-      return this.state.href;
-    }
-  }
+  matchGeo;
 
   fetchWeatherData() {
-    const url = `https://api.weather.gov/points/${this.checksPropsToStateToDefault()}/forecast`;
+    const url = `https://api.weather.gov/points/${this.windowLocationHref()}/forecast`;
     axios
       .get(url)
       .then((res) => {
@@ -58,12 +46,23 @@ export default class Weather extends React.Component {
       });
   }
 
+  windowLocationHref() {
+    if (this.props['*'] && this.state.href == null) {
+      this.setState({
+        href: `/${this.props['*']}`
+      });
+      return `/${this.props['*']}`;
+    } else if (this.state.href !== null) {
+      return this.state.href;
+    }
+  }
+
   handleOnChange(event) {
-    const newLink = event.target.value;
     this.setState({
-      href: `/${newLink}`
+      href: `/${event.target.value}`,
+      selectedName: event.target.name
     });
-    navigate(`/weather/${newLink}`);
+    navigate(`/weather/${event.target.value}`);
     return this.fetchWeatherData();
   }
 
@@ -87,19 +86,24 @@ export default class Weather extends React.Component {
             <h2>Current Conditions</h2>
 
             <select onChange={this.handleOnChange}>
+              <option defaultValue="selected">More locations</option>
               {this.state.locations.map((event) => (
-                <option key={event.id} value={`${event.lat},${event.long}`}>
+                <option
+                  key={event.id}
+                  name={event.name}
+                  value={`${event.lat},${event.long}`}
+                >
                   {event.name}
                 </option>
               ))}
             </select>
 
             <div>
-              {/* TODO: the logic in this function is bit off when rerendering to a different city and back*/}
               {response.properties.periods[0].number === 1 &&
                 response.properties.periods.splice(0, 1).map((data) => (
-                  <div key={2}>
+                  <div key={data.number}>
                     <div>{data.temperature}°</div>
+                    {data.number}
                     <p>
                       {data.name} : {data.shortForecast}
                     </p>
