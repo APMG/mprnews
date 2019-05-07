@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Loading } from 'apm-titan';
 import PhotoGalleryWithData from '../PhotoGallery';
+import CollectionLinks from '../Collection/CollectionLink';
 
 const Home = (props) => {
   const { data } = props;
@@ -11,6 +12,7 @@ const Home = (props) => {
 
   return (
     <>
+      <CollectionLinks />
       <PhotoGalleryWithData />
     </>
   );
