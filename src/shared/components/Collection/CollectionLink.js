@@ -5,7 +5,6 @@ import { collectionConfig } from '../../config/index';
 const CollectionLinks = () => {
   return (
     <div>
-      <h2>Collection from config</h2>
       <h3>MPR News Coverage</h3>
       {collectionConfig.newsCoverage.map((link) => {
         return (
@@ -14,7 +13,6 @@ const CollectionLinks = () => {
           </Link>
         );
       })}
-      <hr />
       <h3>MPR News Programs</h3>
       {collectionConfig.newsPrograms.map((link) => {
         return (
@@ -23,7 +21,6 @@ const CollectionLinks = () => {
           </Link>
         );
       })}
-      <hr />
       <h3>MPR News Resources</h3>
       {collectionConfig.newsResources.map((link) => {
         return (
@@ -32,7 +29,6 @@ const CollectionLinks = () => {
           </Link>
         );
       })}
-      <hr />
     </div>
   );
 };
