@@ -3,7 +3,7 @@ import React from 'react';
 import { hydrate } from 'react-dom';
 import { ApolloProvider } from 'react-apollo';
 import { HelmetProvider } from 'react-helmet-async';
-import { client } from '../shared/graphqlClient';
+import { client } from '../shared/graphql/graphqlClient';
 
 const Wrapped = () => {
   const helmetContext = {};

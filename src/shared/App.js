@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Routes from '../shared/routes/routes';
 import '../shared/styles/index.scss';
 import { Link } from 'apm-titan';
-import RestApiHooksComponent from './components/Weather/WeatherHeader';
+import WeatherHeader from './components/Weather/WeatherHeader';
 
 class App extends Component {
   render() {
@@ -14,7 +14,7 @@ class App extends Component {
             alt=""
           />
         </Link>
-        <RestApiHooksComponent />
+        <WeatherHeader />
         <Routes />
       </div>
     );

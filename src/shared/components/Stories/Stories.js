@@ -13,7 +13,7 @@ const Stories = (props) => {
   if (data.error) return <div>Error</div>;
   return (
     <div>
-      <h1>Stories</h1>
+      <h1>Collection of Stories</h1>
       {data.storiesList.results.items.map((story) => {
         return (
           <Teaser

@@ -8,7 +8,7 @@ import { ApolloProvider, renderToStringWithData } from 'react-apollo';
 import { HelmetProvider } from 'react-helmet-async';
 import etag from 'etag';
 import fresh from 'fresh';
-import { client } from '../shared/graphqlClient';
+import { client } from '../shared/graphql/graphqlClient';
 import App from '../shared/App';
 
 const Graceful = require('node-graceful');
