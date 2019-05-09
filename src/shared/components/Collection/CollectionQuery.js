@@ -41,11 +41,11 @@ export function collectionQuery(contextSlug, pageNum, topicSlug) {
             primaryVisuals {
               thumbnail {
                 aspect_ratios: aspectRatios {
-                  widescreen {
+                  uncropped {
                     instances {
+                      url
                       width
                       height
-                      url
                     }
                   }
                 }
