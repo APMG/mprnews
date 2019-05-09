@@ -10,6 +10,7 @@ export function homeQuery(siteSlug, homeSlug) {
           items {
             id
             title
+            canonicalSlug
             resourceType
             publishDate
             description
@@ -33,7 +34,6 @@ export function homeQuery(siteSlug, homeSlug) {
                 xid
               }
             }
-            canonicalSlug
             audio {
               title
               durationHms

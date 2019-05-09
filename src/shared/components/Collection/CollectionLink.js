@@ -13,22 +13,6 @@ const CollectionLinks = () => {
           </Link>
         );
       })}
-      <h3>MPR News Programs</h3>
-      {collectionConfig.newsPrograms.map((link) => {
-        return (
-          <Link key={link.name} to={link.path}>
-            {link.name} {''}
-          </Link>
-        );
-      })}
-      <h3>MPR News Resources</h3>
-      {collectionConfig.newsResources.map((link) => {
-        return (
-          <Link key={link.name} to={link.path}>
-            {link.name} {''}
-          </Link>
-        );
-      })}
     </div>
   );
 };
