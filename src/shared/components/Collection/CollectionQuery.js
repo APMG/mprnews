@@ -39,7 +39,7 @@ export function collectionQuery(contextSlug, pageNum, topicSlug) {
             description
             canonicalSlug
             primaryVisuals {
-              thumbnail {
+              lead {
                 aspect_ratios: aspectRatios {
                   uncropped {
                     instances {

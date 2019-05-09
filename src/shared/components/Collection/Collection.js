@@ -28,12 +28,12 @@ const Collection = (props) => {
               nodeData={truncateAmat(JSON.parse(collection.description))}
             />
             image={
-              collection.primaryVisuals?.thumbnail ? (
+              collection.primaryVisuals?.lead ? (
                 <Image
-                  image={collection.primaryVisuals.thumbnail}
-                  aspectRatio="widescreen"
+                  image={collection.primaryVisuals.lead}
+                  aspectRatio="uncropped"
                   sizes="(max-width: 590px) 95vw, (max-width: 890px) 45vw, 300px"
-                  alt={collection.primaryVisuals.thumbnail.longCaption}
+                  alt={collection.primaryVisuals.lead.longCaption}
                 />
               ) : (
                 <Image fallbackSrc={fallback} alt="" />
