@@ -3,6 +3,7 @@ import Routes from '../shared/routes/routes';
 import '../shared/styles/index.scss';
 import { Link } from 'apm-titan';
 import WeatherHeader from './components/Weather/WeatherHeader';
+import CollectionLink from './components/Collection/CollectionLink';
 
 class App extends Component {
   render() {
@@ -15,6 +16,7 @@ class App extends Component {
           />
         </Link>
         <WeatherHeader />
+        <CollectionLink />
         <Routes />
       </div>
     );

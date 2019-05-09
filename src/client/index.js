@@ -5,11 +5,15 @@ import { ApolloProvider } from 'react-apollo';
 import { HelmetProvider } from 'react-helmet-async';
 import { client } from '../shared/graphql/graphqlClient';
 
+const graphqlEnv = window.location.href.match(/local|dev/) ? '-dev' : '';
+
+const graphqlClient = client(graphqlEnv);
+
 const Wrapped = () => {
   const helmetContext = {};
   return (
     <HelmetProvider context={helmetContext}>
-      <ApolloProvider client={client}>
+      <ApolloProvider client={graphqlClient}>
         <App />
       </ApolloProvider>
     </HelmetProvider>

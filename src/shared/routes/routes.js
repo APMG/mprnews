@@ -13,7 +13,7 @@ const Routes = () => {
   return (
     <Router>
       <Home path="/" />
-      <CollectionWithData path="/collection" />
+      <CollectionWithData path="/topic/*" />
       <PageWithData path="/page/*" />
       <StoryWithData path="/story/*" />
       <StoriesWithData path="/stories" />
