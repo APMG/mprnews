@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 // import axios from 'axios';
 // import { navigate } from '@reach/router';
 // const WeatherContext = React.createContext();
+import { weatherConfig } from '../../config/index';
 
 export default class Weather extends React.Component {
   constructor(props) {
@@ -85,6 +86,8 @@ export default class Weather extends React.Component {
     //     forecastOffice: 'FGF'
     //   }
     // ]
+
+    // this.handleOnChange = this.handleOnChange.bind(this);
   }
   // msp airport: https://api.weather.gov/gridpoints/mpx/109,67/stations
   // st.paul: https://api.weather.gov/gridpoints/MPX/113,70/stations
@@ -96,11 +99,6 @@ export default class Weather extends React.Component {
   // eau claire: https://api.weather.gov/gridpoints/MPX/166,64/stations
   // grand forks: https://api.weather.gov/gridpoints/FGF/92,106/stations
 
-  // this.handleOnChange = this.handleOnChange.bind(this);
-  // }
-
-  // componentDidMount() {
-  //   this.fetchWeatherData();
   // }
 
   // fetchWeatherData() {
@@ -156,20 +154,14 @@ export default class Weather extends React.Component {
   //   }
   // }
 
-  // handleOnChange(event) {
-  //   navigate(`${event.target.value}`);
-  //   this.setState({
-  //     selectedStation: `${event.target.value}`
-  //   });
-
-  //   console.log(this.state);
-  //   return this.getNameFromApi();
-  // }
-
   render() {
+    console.log('WEATHER', this);
+    this.props.windowLocationHref;
+    // console.log('🥊🥊🥊🥊🥊🥊', this);
     // console.log('this.props:', this.props);
     // console.log('this 🥊:', this);
     // const { error, isLoaded, response } = this.props;
+
     const { isLoaded, response, error } = this.props.weather;
     // const { isloaded, response } = weather;
     if (error) {
@@ -180,8 +172,7 @@ export default class Weather extends React.Component {
       return (
         // <WeatherContext.Provider value={this.state}>
         <div>
-          {console.log('🥊', isLoaded && response)}
-          {console.log('🎱', isLoaded && response.properties.generatedAt)}
+          {/* {console.log('🥊', isLoaded && response)} */}
           <h1>hi</h1>
           {/* {console.log(this.props.properties.elevation.value)} */}
           {/* <select onChange={this.handleOnChange}>
@@ -222,9 +213,9 @@ export default class Weather extends React.Component {
           <div>
             <h2>Current Conditions</h2>
 
-            {/* <select onChange={this.handleOnChange}>
+            <select onChange={isLoaded && this.props.handleOnChange}>
               <option defaultValue="selected">More locations</option>
-              {this.state.locations.map((event) => (
+              {weatherConfig.map((event) => (
                 <option
                   key={event.id}
                   name={event.name}
@@ -233,7 +224,7 @@ export default class Weather extends React.Component {
                   {event.name}
                 </option>
               ))}
-            </select> */}
+            </select>
 
             <ul>
               {response.properties.periods[0].number === 1 &&
@@ -261,35 +252,28 @@ export default class Weather extends React.Component {
                 <tr>
                   <th>{data.name}</th>
                 </tr>
-                <tr>
+                <tbody>
                   <tr>
                     <td>Number: {data.number}</td>
-                  </tr>
-                  <tr>
+
                     <td>
                       <img src={data.icon} alt={data.name} />
                     </td>
-                  </tr>
-                  <tr>
+
                     <td>
                       {data.temperature}
                       {data.temperatureUnit}
                     </td>
-                  </tr>
-                  <tr>
+
                     <td>WindSpeed: {data.windSpeed}</td>
-                  </tr>
-                  <tr>
+
                     <td>WindDirection: {data.windDirection}</td>
-                  </tr>
-                  <tr>
+
                     <td>Start: {data.startTime}</td>
-                  </tr>
-                  <tr>
+
                     <td>End: {data.endTime}</td>
                   </tr>
-                  <tr />
-                </tr>
+                </tbody>
               </table>
             ))}
           </div>
@@ -300,9 +284,11 @@ export default class Weather extends React.Component {
 }
 
 Weather.propTypes = {
-  // '*': PropTypes.string,
+  '*': PropTypes.string,
+  windowLocationHref: PropTypes.func,
+  handleOnChange: PropTypes.func,
   weather: PropTypes.object,
-  error: PropTypes.string,
+  error: PropTypes.object,
   isLoaded: PropTypes.bool,
   response: PropTypes.object
 };

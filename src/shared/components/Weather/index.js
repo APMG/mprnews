@@ -1,20 +1,24 @@
 import React, { useContext } from 'react';
 import WeatherContext from '../../context/WeatherContext';
 import Weather from './Weather';
+import PropTypes from 'prop-types';
 
 const WeatherWrapper = () => {
   const context = useContext(WeatherContext);
 
   return (
     <Weather
-      // selectedStation={context.selectedStation}
-      error={context.error}
-      isLoaded={context.isLoaded}
+      href={context.href}
       weather={context.weather}
-      // currentLocation={context.currentLocation}
       default={context.defaultCity}
+      handleOnChange={context.handleOnChange}
+      windowLocationHref={context.windowLocationHref}
+      getNameFromApi={context.getNameFromApi}
     />
   );
 };
 
+WeatherWrapper.propTypes = {
+  '*': PropTypes.string
+};
 export default WeatherWrapper;
