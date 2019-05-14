@@ -168,7 +168,6 @@ export default class Weather extends React.Component {
         // <WeatherContext.Provider value={this.state}>
         <div>
           {/* {console.log('🥊', isLoaded && response)} */}
-          <h1>hi</h1>
           {/* {console.log(this.props.properties.elevation.value)} */}
           {/* <select onChange={this.handleOnChange}>
               {response.features.map((city) => {
@@ -209,7 +208,7 @@ export default class Weather extends React.Component {
             <h2>Current Conditions</h2>
 
             <select onChange={isLoaded && this.props.handleOnChange}>
-              <option defaultValue="selected">More locations</option>
+              <option defaultValue="selected">{event.name}</option>
               {weatherConfig.map((event) => (
                 <option
                   key={event.id}
@@ -241,37 +240,25 @@ export default class Weather extends React.Component {
           </div>
           <hr />
           <h2>Conditions Periods</h2>
-          <div>
+          <ul>
             {response.properties.periods.map((data) => (
-              <table key={data.number}>
-                <tr>
-                  <th>{data.name}</th>
-                </tr>
-                <tbody>
-                  <tr>
-                    <td>Number: {data.number}</td>
-
-                    <td>
-                      <img src={data.icon} alt={data.name} />
-                    </td>
-
-                    <td>
-                      {data.temperature}
-                      {data.temperatureUnit}
-                    </td>
-
-                    <td>WindSpeed: {data.windSpeed}</td>
-
-                    <td>WindDirection: {data.windDirection}</td>
-
-                    <td>Start: {data.startTime}</td>
-
-                    <td>End: {data.endTime}</td>
-                  </tr>
-                </tbody>
-              </table>
+              <div key={data.number}>
+                <li>{data.name}</li>
+                <li>Number: {data.number}</li>
+                <li>
+                  <img src={data.icon} alt={data.name} />
+                </li>
+                <li>
+                  {data.temperature}
+                  {data.temperatureUnit}
+                </li>
+                <li>WindSpeed: {data.windSpeed}</li>
+                <li>WindDirection: {data.windDirection}</li>
+                <li>Start: {data.startTime}</li>
+                <li>End: {data.endTime}</li>
+              </div>
             ))}
-          </div>
+          </ul>
         </div>
       );
     }

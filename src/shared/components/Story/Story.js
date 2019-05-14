@@ -11,7 +11,7 @@ const Story = (props) => {
   if (data.error) return <div>Error</div>;
   return (
     <div>
-      <h2>{story.title}</h2>
+      {/* <h2>{story.title}</h2> */}
       <Body
         nodeData={JSON.parse(story.body)}
         embedded={JSON.parse(story.embeddedAssetJson)}

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Routes from '../shared/routes/routes';
 import '../shared/styles/index.scss';
 import { Link } from 'apm-titan';
-// import WeatherHeader from './components/Weather/WeatherHeader';
+import WeatherHeader from './components/Weather/WeatherHeader';
 import CollectionLink from './components/Collection/CollectionLink';
 import WeatherContext from './context/WeatherContext';
 import axios from 'axios';
@@ -17,32 +17,19 @@ class App extends Component {
     this.state = {
       href: null,
       weather: { response: {}, isLoaded: false, error: null },
-      defaultCity: {
-        forecastOffice: 'MPX',
-        station: 'KMSP',
-        gridpoints: { lat: '109', long: '67' }
-      },
-      handleOnChange: this.handleOnChange.bind(this),
-      windowLocationHref: this.windowLocationHref.bind(this)
-      // getNameFromApi: this.getNameFromApi.bind(this)
+      handleOnChange: this.handleOnChange.bind(this)
     };
-    console.log('props from server:', props.url);
-    // console.log(`props ${props.url.match(/\/([^\/]+)\/?$/)[1]}`);
   }
 
   componentDidMount() {
-    console.log(
-      'window.location',
-      window.location.pathname.match(/\/([^\/]+)\/?$/)[1]
-    );
-
-    this.fetchWeatherData();
+    const weatherPath = window.location?.pathname.match(/weather/g);
+    console.log(weatherPath);
+    if ((weatherPath.length > 1) | (weatherPath[0] == 'weather')) {
+      this.fetchWeatherData();
+    }
   }
 
   fetchWeatherData() {
-    // const latitude = this.state.defaultCity.gridpoints.lat;
-    // const longitude = this.state.defaultCity.gridpoints.long;
-    // const office = this.state.defaultCity.forecastOffice;
     const url = `https://api.weather.gov/points/${this.windowLocationHref()}/forecast`;
 
     axios
@@ -51,8 +38,6 @@ class App extends Component {
         this.setState({
           weather: { response: res.data, isLoaded: true }
         });
-        // console.log('props', this.props.url);
-        // console.log('console.log: fetchWeatherData: this.state:', this.state);
       })
       .catch((error) => {
         this.setState({ isLoaded: true, error });
@@ -61,7 +46,8 @@ class App extends Component {
 
   windowLocationHref() {
     let pathname = window.location.pathname.match(/\/([^\/]+)\/?$/)[1];
-    if (this.state.href == null) {
+    const weatherPath = window.location.pathname.match(/weather/g)[0];
+    if (weatherPath === 'weather' && this.state.href == null) {
       this.setState({
         href: pathname
       });
@@ -71,20 +57,6 @@ class App extends Component {
       return this.state.href;
     }
   }
-
-  // getNameFromApi() {
-  //   const url = `https://api.weather.gov/points/${this.windowLocationHref()}/forecast`;
-
-  //   axios
-  //     .get(url)
-  //     .then((res) => {
-  //       this.setState({ weather: { response: res.data, isLoaded: true } });
-  //       console.log('console.log: getNameFromApi: this.state:', this.state);
-  //     })
-  //     .catch((error) => {
-  //       this.setState({ isLoaded: true, error });
-  //     });
-  // }
 
   handleOnChange(event) {
     {
@@ -102,6 +74,7 @@ class App extends Component {
     console.log('console.log: rendering 🏓', this.state);
     return (
       <div>
+        <WeatherHeader />
         <WeatherContext.Provider value={this.state}>
           <Link to="/">
             <img
@@ -112,17 +85,11 @@ class App extends Component {
 
           <CollectionLink />
           <Routes />
-          {/* <WeatherHeader /> */}
         </WeatherContext.Provider>
         ;
       </div>
     );
   }
 }
-
-App.propTypes = {
-  '*': PropTypes.string,
-  url: PropTypes.string
-};
 
 export default App;
