@@ -6,17 +6,9 @@ import { Link } from 'apm-titan';
 import CollectionLink from './components/Collection/CollectionLink';
 import WeatherContext from './context/WeatherContext';
 import axios from 'axios';
-import {
-  navigate,
-  createMemorySource,
-  createHistory,
-  LocationProvider
-} from '@reach/router';
-import PropTypes from 'prop-types';
+import { navigate } from '@reach/router';
 
-// for some types of tests you want a memory source
-let source = createMemorySource('/');
-let history = createHistory(source);
+import PropTypes from 'prop-types';
 
 class App extends Component {
   constructor(props) {
@@ -93,32 +85,26 @@ class App extends Component {
       href: `${event.target.value}`
     });
     navigate(`${event.target.value}`);
-    console.log('console.log: handleOnChange: this.state:🏓', this.state);
 
-    return this.windowLocationHref();
+    return this.getNameFromApi();
   }
   render() {
     // console.log('console.log: rendering 🏓', this.state);
     return (
       <div>
-        <LocationProvider history={history}>
-          {(context) => {
-            console.log(context.location);
+        <WeatherContext.Provider value={this.state}>
+          <Link to="/">
+            <img
+              src="//mpr.apmcdn.org/news/1550179261168/img/mprnews.svg"
+              alt=""
+            />
+          </Link>
 
-            <WeatherContext.Provider value={this.state}>
-              <Link to="/">
-                <img
-                  src="//mpr.apmcdn.org/news/1550179261168/img/mprnews.svg"
-                  alt=""
-                />
-              </Link>
-
-              <CollectionLink />
-              <Routes />
-              {/* <WeatherHeader /> */}
-            </WeatherContext.Provider>;
-          }}
-        </LocationProvider>
+          <CollectionLink />
+          <Routes />
+          {/* <WeatherHeader /> */}
+        </WeatherContext.Provider>
+        ;
       </div>
     );
   }

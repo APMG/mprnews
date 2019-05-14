@@ -155,12 +155,8 @@ export default class Weather extends React.Component {
   // }
 
   render() {
-    console.log('WEATHER', this);
+    // console.log('WEATHER', this);
     this.props.windowLocationHref;
-    // console.log('🥊🥊🥊🥊🥊🥊', this);
-    // console.log('this.props:', this.props);
-    // console.log('this 🥊:', this);
-    // const { error, isLoaded, response } = this.props;
 
     const { isLoaded, response, error } = this.props.weather;
     // const { isloaded, response } = weather;
