@@ -156,7 +156,6 @@ export default class Weather extends React.Component {
 
   render() {
     // console.log('WEATHER', this);
-    this.props.windowLocationHref;
 
     const { isLoaded, response, error } = this.props.weather;
     // const { isloaded, response } = weather;
@@ -281,7 +280,6 @@ export default class Weather extends React.Component {
 
 Weather.propTypes = {
   '*': PropTypes.string,
-  windowLocationHref: PropTypes.func,
   handleOnChange: PropTypes.func,
   weather: PropTypes.object,
   error: PropTypes.object,

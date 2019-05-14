@@ -7,7 +7,6 @@ import { client } from '../shared/graphql/graphqlClient';
 import App from '../shared/App';
 import fs from 'fs';
 import os from 'os';
-import axios from 'axios';
 import {
   globalHostFunc,
   replaceTemplateStrings,
@@ -24,32 +23,17 @@ export default function ReactAppSsr(app) {
     const forwarded = globalHostFunc(req).split(':')[0];
     const hostname = os.hostname();
     const context = {};
-    let weatherData = {};
+
     let graphqlEnv = hostname.match(/dev/) ? '-dev' : '';
     graphqlEnv = process.env.NODE_ENV === 'development' ? '-dev' : graphqlEnv;
     const graphqlClient = client(graphqlEnv);
 
-    const officeSlug = 'mpx';
-
-    const url = `https://api.weather.gov/gridpoints/${officeSlug}/109,67/forecast`;
-
-    axios
-      .get(url)
-      .then((res) => {
-        // console.log('server HTTP Request:', res.data);
-        weatherData = res.data;
-        console.log('server HTTP Request:', weatherData);
-      })
-      .catch((error) => {
-        res.send(error);
-      });
-
     let template = fs.readFileSync(`${filepath}/index.html`).toString();
     const component = (
-      <ApolloProvider client={graphqlClient} weather={weatherData}>
+      <ApolloProvider client={graphqlClient}>
         <HelmetProvider context={helmetContext}>
           <ServerLocation url={req.url} context={context}>
-            <App forward={forwarded} />
+            <App forward={forwarded} url={req.url.match(/\/([^\/]+)\/?$/)[1]} />
           </ServerLocation>
         </HelmetProvider>
       </ApolloProvider>

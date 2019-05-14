@@ -12,8 +12,8 @@ const WeatherWrapper = () => {
       weather={context.weather}
       default={context.defaultCity}
       handleOnChange={context.handleOnChange}
-      windowLocationHref={context.windowLocationHref}
-      getNameFromApi={context.getNameFromApi}
+      // windowLocationHref={context.windowLocationHref}
+      // getNameFromApi={context.getNameFromApi}
     />
   );
 };

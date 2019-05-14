@@ -13,6 +13,7 @@ import PropTypes from 'prop-types';
 class App extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       href: null,
       weather: { response: {}, isLoaded: false, error: null },
@@ -22,20 +23,27 @@ class App extends Component {
         gridpoints: { lat: '109', long: '67' }
       },
       handleOnChange: this.handleOnChange.bind(this),
-      windowLocationHref: this.windowLocationHref.bind(this),
-      getNameFromApi: this.getNameFromApi.bind(this)
+      windowLocationHref: this.windowLocationHref.bind(this)
+      // getNameFromApi: this.getNameFromApi.bind(this)
     };
+    console.log('props from server:', props.url);
+    // console.log(`props ${props.url.match(/\/([^\/]+)\/?$/)[1]}`);
   }
 
   componentDidMount() {
+    console.log(
+      'window.location',
+      window.location.pathname.match(/\/([^\/]+)\/?$/)[1]
+    );
+
     this.fetchWeatherData();
   }
 
   fetchWeatherData() {
-    const latitude = this.state.defaultCity.gridpoints.lat;
-    const longitude = this.state.defaultCity.gridpoints.long;
-    const office = this.state.defaultCity.forecastOffice;
-    const url = `https://api.weather.gov/gridpoints/${office}/${latitude},${longitude}/forecast`;
+    // const latitude = this.state.defaultCity.gridpoints.lat;
+    // const longitude = this.state.defaultCity.gridpoints.long;
+    // const office = this.state.defaultCity.forecastOffice;
+    const url = `https://api.weather.gov/points/${this.windowLocationHref()}/forecast`;
 
     axios
       .get(url)
@@ -43,6 +51,7 @@ class App extends Component {
         this.setState({
           weather: { response: res.data, isLoaded: true }
         });
+        // console.log('props', this.props.url);
         // console.log('console.log: fetchWeatherData: this.state:', this.state);
       })
       .catch((error) => {
@@ -51,30 +60,31 @@ class App extends Component {
   }
 
   windowLocationHref() {
-    if (this.props['*'] && this.state.href == null) {
+    let pathname = window.location.pathname.match(/\/([^\/]+)\/?$/)[1];
+    if (this.state.href == null) {
       this.setState({
-        href: `${this.props['*']}`
+        href: pathname
       });
-      console.log(this.props['*']);
-      return `${this.props['*']}`;
+
+      return pathname;
     } else if (this.state.href !== null) {
       return this.state.href;
     }
   }
 
-  getNameFromApi() {
-    const url = `https://api.weather.gov/points/${this.windowLocationHref()}/forecast`;
+  // getNameFromApi() {
+  //   const url = `https://api.weather.gov/points/${this.windowLocationHref()}/forecast`;
 
-    axios
-      .get(url)
-      .then((res) => {
-        this.setState({ weather: { response: res.data, isLoaded: true } });
-        console.log('console.log: getNameFromApi: this.state:', this.state);
-      })
-      .catch((error) => {
-        this.setState({ isLoaded: true, error });
-      });
-  }
+  //   axios
+  //     .get(url)
+  //     .then((res) => {
+  //       this.setState({ weather: { response: res.data, isLoaded: true } });
+  //       console.log('console.log: getNameFromApi: this.state:', this.state);
+  //     })
+  //     .catch((error) => {
+  //       this.setState({ isLoaded: true, error });
+  //     });
+  // }
 
   handleOnChange(event) {
     {
@@ -84,12 +94,12 @@ class App extends Component {
     this.setState({
       href: `${event.target.value}`
     });
-    navigate(`${event.target.value}`);
+    navigate(`/weather/${event.target.value}`);
 
-    return this.getNameFromApi();
+    return this.fetchWeatherData();
   }
   render() {
-    // console.log('console.log: rendering 🏓', this.state);
+    console.log('console.log: rendering 🏓', this.state);
     return (
       <div>
         <WeatherContext.Provider value={this.state}>
@@ -111,7 +121,8 @@ class App extends Component {
 }
 
 App.propTypes = {
-  '*': PropTypes.string
+  '*': PropTypes.string,
+  url: PropTypes.string
 };
 
 export default App;
