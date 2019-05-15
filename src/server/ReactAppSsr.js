@@ -27,13 +27,13 @@ export default function ReactAppSsr(app) {
     let graphqlEnv = hostname.match(/dev/) ? '-dev' : '';
     graphqlEnv = process.env.NODE_ENV === 'development' ? '-dev' : graphqlEnv;
     const graphqlClient = client(graphqlEnv);
-
+    // url={req.url.match(/\/([^\/]+)\/?$/)[1]}
     let template = fs.readFileSync(`${filepath}/index.html`).toString();
     const component = (
       <ApolloProvider client={graphqlClient}>
         <HelmetProvider context={helmetContext}>
           <ServerLocation url={req.url} context={context}>
-            <App forward={forwarded} url={req.url.match(/\/([^\/]+)\/?$/)[1]} />
+            <App forward={forwarded} />
           </ServerLocation>
         </HelmetProvider>
       </ApolloProvider>

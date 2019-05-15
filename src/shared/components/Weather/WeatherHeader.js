@@ -1,38 +1,48 @@
-// import React, { useEffect, useState } from 'react';
-// import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { getCurrentPosition } from './utils';
 
-// export default function RestApiHooksComponent() {
-//   const [data, setData] = useState([]);
+export default function RestApiHooksComponent() {
+  const [data, setData] = useState([]);
 
-//   useEffect(() => {
-//     axios
-//       .get(`https://api.weather.gov/points/44.8848,-93.2223/forecast`)
-//       .then((result) => setData(result.data));
-//   }, []);
+  useEffect(() => {
+    let url = `47.9032,-91.8671`;
 
-//   return data.properties ? (
-//     <div>
-//       <a
-//         href={`/weather/${data.geometry.geometries[0].coordinates[1]},${
-//           data.geometry.geometries[0].coordinates[0]
-//         }`}
-//       >
-//         <h1>{data.properties.periods[0].temperature}°</h1>
-//         {data.properties.periods[0].shortForecast}
-//       </a>
-//     </div>
-//   ) : (
-//     <div>Loading...</div>
-//   );
-// }
+    axios
+      .get(`https://api.weather.gov/points/${url}/forecast`)
+      .then((result) => setData(result.data));
+  }, []);
 
-import React from 'react';
+  const fetchCoordinates = async () => {
+    try {
+      const { coords } = await getCurrentPosition();
+      const { latitude, longitude } = coords;
+      axios
+        .get(`https://api.weather.gov/points/${latitude},${longitude}/forecast`)
+        .then((result) => setData(result.data));
 
-export default class WeatherHeader extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return <>hi</>;
-  }
+      // Handle coordinates
+    } catch (error) {
+      error;
+    }
+  };
+
+  return data.properties ? (
+    <div>
+      <a
+        href={`/weather/${data.geometry.geometries[0].coordinates[1]},${
+          data.geometry.geometries[0].coordinates[0]
+        }`}
+      >
+        <h1>{data.properties.periods[0].temperature}°</h1>
+        {data.properties.periods[0].shortForecast}
+      </a>
+      <br />
+      <button type="button" onClick={fetchCoordinates}>
+        Get Geolocation
+      </button>
+    </div>
+  ) : (
+    <div>Loading...</div>
+  );
 }
