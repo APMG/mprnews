@@ -1,61 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
-import { navigate } from '@reach/router';
 import { weatherConfig } from '../../config/index';
 
 export default class Weather extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      href: null,
-      error: null,
-      isLoaded: false,
-      response: []
-    };
-
-    this.handleOnChange = this.handleOnChange.bind(this);
-  }
-
-  componentDidMount() {
-    this.getNameFromApi();
-  }
-
-  getNameFromApi() {
-    const url = `https://api.weather.gov/points/${this.windowLocationHref()}/forecast`;
-    axios
-      .get(url)
-      .then((res) => {
-        this.setState({ isLoaded: true, response: res.data });
-      })
-      .catch((error) => {
-        this.setState({ isLoaded: true, error });
-      });
-  }
-
-  windowLocationHref() {
-    if (this.props['*'] && this.state.href == null) {
-      this.setState({
-        href: `${this.props['*']}`
-      });
-      return `${this.props['*']}`;
-    } else if (this.state.href !== null) {
-      return this.state.href;
-    }
-  }
-
-  handleOnChange(event) {
-    this.setState({
-      href: `${event.target.value}`
-    });
-    navigate(`/weather/${event.target.value}`);
-
-    return this.getNameFromApi();
   }
 
   render() {
-    const { isLoaded, response, error } = this.state;
+    const { isLoaded, response, error } = this.props.weather;
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
@@ -71,7 +24,7 @@ export default class Weather extends React.Component {
           <div>
             <h2>Current Conditions</h2>
 
-            <select onChange={isLoaded && this.handleOnChange}>
+            <select onChange={isLoaded && this.props.handleOnChange}>
               <option defaultValue="selected">locations</option>
               {weatherConfig.map((event) => (
                 <option
@@ -90,7 +43,7 @@ export default class Weather extends React.Component {
                   <div key={data.number}>
                     <li>{data.temperature}°</li>
                     <li>Number : {data.number}</li>
-                    <li>Elevation: {response.properties.elevation.value} M </li>
+                    {/* <li>Elevation: {response.properties.elevation.value} M </li> */}
                     <li>
                       {data.name} : {data.shortForecast}
                     </li>
@@ -130,5 +83,9 @@ export default class Weather extends React.Component {
 }
 
 Weather.propTypes = {
-  '*': PropTypes.string
+  handleOnChange: PropTypes.func,
+  weather: PropTypes.object,
+  error: PropTypes.object,
+  isLoaded: PropTypes.bool,
+  response: PropTypes.object
 };

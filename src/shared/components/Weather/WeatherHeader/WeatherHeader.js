@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { getCurrentPosition } from './utils';
+import { getCurrentPosition } from '../utils';
 
-export default function RestApiHooksComponent() {
+export default function weatherHeaderRequest() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
     let url = `47.9032,-91.8671`;
-
     axios
       .get(`https://api.weather.gov/points/${url}/forecast`)
       .then((result) => setData(result.data));
@@ -20,8 +19,6 @@ export default function RestApiHooksComponent() {
       axios
         .get(`https://api.weather.gov/points/${latitude},${longitude}/forecast`)
         .then((result) => setData(result.data));
-
-      // Handle coordinates
     } catch (error) {
       error;
     }

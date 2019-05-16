@@ -2,90 +2,68 @@ import React, { Component } from 'react';
 import Routes from '../shared/routes/routes';
 import '../shared/styles/index.scss';
 import { Link } from 'apm-titan';
-import WeatherHeader from './components/Weather/WeatherHeader';
+import WeatherHeader from './components/Weather/WeatherHeader/index';
 import CollectionLink from './components/Collection/CollectionLink';
-// import GeoLocation from '../shared/components/Weather/GeoLocation';
-// import WeatherContext from './context/WeatherContext';
-// import axios from 'axios';
-// import { navigate } from '@reach/router';
-
-// import PropTypes from 'prop-types';
+import WeatherContext from './context/WeatherContext';
+import axios from 'axios';
+import { navigate } from '@reach/router';
 
 class App extends Component {
   constructor(props) {
     super(props);
 
-    // this.state = {
-    //   href: null,
-    //   weather: { response: {}, isLoaded: false, error: null },
-    //   handleOnChange: this.handleOnChange.bind(this)
-    // };
+    this.state = {
+      selectLocation: null,
+      weather: { response: {}, isLoaded: false, error: null },
+      handleOnChange: this.handleOnChange.bind(this)
+    };
+  }
+  componentDidMount() {
+    this.fetchWeatherData();
   }
 
-  // componentDidMount() {
-  //   const weatherPath = window.location?.pathname.match(/weather/g);
-  //   console.log(weatherPath);
-  //   if ((weatherPath.length > 1) | (weatherPath[0] == 'weather')) {
-  //     this.fetchWeatherData();
-  //   }
-  // }
+  fetchWeatherData() {
+    const pathname = window.location.pathname.split('/');
+    const geoLocation = pathname[pathname.length - 1];
+    const coordinates = geoLocation.match(/-?\d+(\.\d+)?,\s*(-?\d+(\.\d+)?)/g)
+      ? geoLocation
+      : `44.9434,-93.0965`;
 
-  // fetchWeatherData() {
-  //   const url = `https://api.weather.gov/points/${this.windowLocationHref()}/forecast`;
+    let url = `https://api.weather.gov/points/${coordinates}/forecast`;
+    axios
+      .get(url)
+      .then((res) => {
+        this.setState({
+          weather: { response: res.data, isLoaded: true }
+        });
+      })
+      .catch((error) => {
+        this.setState({ weather: { isLoaded: true, error: error } });
+      });
+  }
 
-  //   axios
-  //     .get(url)
-  //     .then((res) => {
-  //       this.setState({
-  //         weather: { response: res.data, isLoaded: true }
-  //       });
-  //     })
-  //     .catch((error) => {
-  //       this.setState({ isLoaded: true, error });
-  //     });
-  // }
+  handleOnChange(event) {
+    this.setState({
+      selectLocation: `${event.target.value}`
+    });
+    navigate(`/weather/${event.target.value}`);
 
-  // windowLocationHref() {
-  //   let pathname = window.location.pathname.match(/\/([^\/]+)\/?$/)[1];
-  //   const weatherPath = window.location.pathname.match(/weather/g)[0];
-  //   if (weatherPath === 'weather' && this.state.href == null) {
-  //     this.setState({
-  //       href: pathname
-  //     });
-
-  //     return pathname;
-  //   } else if (this.state.href !== null) {
-  //     return this.state.href;
-  //   }
-  // }
-
-  // handleOnChange(event) {
-  //   {
-  //     console.log('select target: 🎽', event.target.value);
-  //   }
-
-  //   this.setState({
-  //     href: `${event.target.value}`
-  //   });
-  //   navigate(`/weather/${event.target.value}`);
-
-  //   return this.fetchWeatherData();
-  // }
+    return this.fetchWeatherData();
+  }
   render() {
     return (
       <div>
-        {/* <WeatherContext.Provider value={this.state}> */}
-        <Link to="/">
-          <img
-            src="//mpr.apmcdn.org/news/1550179261168/img/mprnews.svg"
-            alt=""
-          />
-        </Link>
-        {/* <GeoLocation /> */}
-        <WeatherHeader />
-        <CollectionLink />
-        <Routes />
-        {/* </WeatherContext.Provider> */};
+        <WeatherContext.Provider value={this.state}>
+          <Link to="/">
+            <img
+              src="//mpr.apmcdn.org/news/1550179261168/img/mprnews.svg"
+              alt=""
+            />
+          </Link>
+          <WeatherHeader />
+          <CollectionLink />
+          <Routes />
+        </WeatherContext.Provider>
       </div>
     );
   }
