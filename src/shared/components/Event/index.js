@@ -1,15 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Heading } from 'apm-titan';
 
-class Event extends React.Component {
-  render() {
-    return (
-      <div>
-        <h1>{this.props.path} page</h1>
-      </div>
-    );
-  }
-}
+const Event = (props) => {
+  return (
+    <section className="event section">
+      <Heading level={2}>{`${props.path} page`}</Heading>
+    </section>
+  );
+};
 
 Event.propTypes = {
   path: PropTypes.string

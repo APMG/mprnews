@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Loading } from 'apm-titan';
+import { Loading, Heading } from 'apm-titan';
 import { Body } from 'amat-react';
 
 const Story = (props) => {
@@ -10,16 +10,18 @@ const Story = (props) => {
   if (!data || data.loading) return <Loading />;
   if (data.error) return <div>Error</div>;
   return (
-    <div>
-      {/* <h2>{story.title}</h2> */}
+    <article className="story">
+      <Heading level={2}>{story.title}</Heading>
       <Body
         nodeData={JSON.parse(story.body)}
         embedded={JSON.parse(story.embeddedAssetJson)}
       />
-    </div>
+    </article>
   );
 };
+
 Story.propTypes = {
   data: PropTypes.object
 };
+
 export default Story;

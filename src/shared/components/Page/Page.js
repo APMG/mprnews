@@ -16,7 +16,7 @@ const Page = (props) => {
           <div className="content_date">
             {format(page.publishDate, 'MMMM D, YYYY')}
           </div>
-          <Heading level={1} elementClass="hdg-page">
+          <Heading level={2} elementClass="hdg-page">
             {page.title}
           </Heading>
           <div className="content_body">

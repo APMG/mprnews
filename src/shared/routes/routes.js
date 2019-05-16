@@ -18,7 +18,7 @@ const Routes = () => {
       <StoryWithData path="/story/*" />
       <StoriesWithData path="/stories" />
       <Weather path="/weather/*" />
-      <Event path="/event" />
+      <Event path="/event/*" />
       <NotFound default />
     </Router>
   );

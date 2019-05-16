@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Loading, Teaser } from 'apm-titan';
+import { Loading, Teaser, Heading } from 'apm-titan';
 import { truncateAmat } from '../../utils/utils';
 import { Body } from 'amat-react';
 import fallback from '../../assets/fallback.png';
@@ -12,8 +12,8 @@ const Collection = (props) => {
   if (!data || data.loading) return <Loading />;
   if (data.error) return <div>Error</div>;
   return (
-    <div>
-      <h1>{data.collection.title}</h1>
+    <section className="collection section">
+      <Heading level={2}>{data.collection.title}</Heading>
 
       {data.collection.results.items.map((collection) => {
         return (
@@ -24,9 +24,6 @@ const Collection = (props) => {
             href={`/story/${collection.canonicalSlug}`}
             publishDate={collection.publishDate}
             headingLevel={2}
-            description=<Body
-              nodeData={truncateAmat(JSON.parse(collection.description))}
-            />
             image={
               collection.primaryVisuals?.lead ? (
                 <Image
@@ -39,13 +36,18 @@ const Collection = (props) => {
                 <Image fallbackSrc={fallback} alt="" />
               )
             }
+            description=<Body
+              nodeData={truncateAmat(JSON.parse(collection.description))}
+            />
           />
         );
       })}
-    </div>
+    </section>
   );
 };
+
 Collection.propTypes = {
   data: PropTypes.object
 };
+
 export default Collection;

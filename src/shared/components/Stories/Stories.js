@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Loading, Teaser } from 'apm-titan';
+import { Loading, Teaser, Heading } from 'apm-titan';
 import { Image } from 'apm-mimas';
 import { Body } from 'amat-react';
 import { truncateAmat } from '../../utils/utils';
@@ -12,8 +12,8 @@ const Stories = (props) => {
   if (!data || data.loading) return <Loading />;
   if (data.error) return <div>Error</div>;
   return (
-    <div>
-      <h1>Collection of Stories</h1>
+    <section className="stories section">
+      <Heading level={2}>Collection of Stories</Heading>
       {data.storiesList.results.items.map((story) => {
         return (
           <Teaser
@@ -22,10 +22,7 @@ const Stories = (props) => {
             title={story.title}
             href={`/story/${story.canonicalSlug}`}
             publishDate={story.publishDate}
-            headingLevel={2}
-            description=<Body
-              nodeData={truncateAmat(JSON.parse(story.description))}
-            />
+            headingLevel={3}
             image={
               story.primaryVisuals?.thumbnail ? (
                 <Image
@@ -35,16 +32,21 @@ const Stories = (props) => {
                   alt={story.primaryVisuals.thumbnail.longCaption}
                 />
               ) : (
-                <Image fallbackSrc={fallback} alt="" />
+                <Image fallbackSrc={fallback} alt="Fallback image" />
               )
             }
+            description=<Body
+              nodeData={truncateAmat(JSON.parse(story.description))}
+            />
           />
         );
       })}
-    </div>
+    </section>
   );
 };
+
 Stories.propTypes = {
   data: PropTypes.object
 };
+
 export default Stories;

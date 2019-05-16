@@ -13,18 +13,14 @@ const PhotoGallery = (props) => {
   const body = JSON.parse(episode.body);
 
   return (
-    <div className="photogallery">
-      Photo Gallery
-      <p>
-        <Body
-          nodeData={body}
-          embedded={JSON.parse(episode.embeddedAssetJson)}
-        />
-      </p>
-    </div>
+    <section className="photoGallery section">
+      <Body nodeData={body} embedded={JSON.parse(episode.embeddedAssetJson)} />
+    </section>
   );
 };
+
 PhotoGallery.propTypes = {
   data: PropTypes.object
 };
+
 export default PhotoGallery;
