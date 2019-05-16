@@ -14,10 +14,7 @@ const PhotoGallery = (props) => {
 
   return (
     <section className="photoGallery section">
-      <Body
-        nodeData={body}
-        embedded={JSON.parse(episode.embeddedAssetJson)}
-      />
+      <Body nodeData={body} embedded={JSON.parse(episode.embeddedAssetJson)} />
     </section>
   );
 };

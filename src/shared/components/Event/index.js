@@ -7,8 +7,8 @@ const Event = (props) => {
     <section className="event section">
       <Heading level={2}>{`${props.path} page`}</Heading>
     </section>
-  )
-}
+  );
+};
 
 Event.propTypes = {
   path: PropTypes.string

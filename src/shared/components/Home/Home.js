@@ -58,6 +58,7 @@ const Home = (props) => {
     </>
   );
 };
+
 Home.propTypes = {
   data: PropTypes.object
 };

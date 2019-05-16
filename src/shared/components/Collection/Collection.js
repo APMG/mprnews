@@ -18,27 +18,27 @@ const Collection = (props) => {
       {data.collection.results.items.map((collection) => {
         return (
           <Teaser
-          key={collection.id}
-          id={collection.id}
-          title={collection.title}
-          href={`/story/${collection.canonicalSlug}`}
-          publishDate={collection.publishDate}
-          headingLevel={2}
-          image={
-            collection.primaryVisuals?.lead ? (
-              <Image
-                image={collection.primaryVisuals.lead}
-                aspectRatio="uncropped"
-                sizes="(max-width: 590px) 95vw, (max-width: 890px) 45vw, 300px"
-                alt={collection.primaryVisuals.lead.longCaption}
-              />
-            ) : (
-              <Image fallbackSrc={fallback} alt="" />
-            )
-          }
-          description=<Body
-            nodeData={truncateAmat(JSON.parse(collection.description))}
-          />
+            key={collection.id}
+            id={collection.id}
+            title={collection.title}
+            href={`/story/${collection.canonicalSlug}`}
+            publishDate={collection.publishDate}
+            headingLevel={2}
+            image={
+              collection.primaryVisuals?.lead ? (
+                <Image
+                  image={collection.primaryVisuals.lead}
+                  aspectRatio="uncropped"
+                  sizes="(max-width: 590px) 95vw, (max-width: 890px) 45vw, 300px"
+                  alt={collection.primaryVisuals.lead.longCaption}
+                />
+              ) : (
+                <Image fallbackSrc={fallback} alt="" />
+              )
+            }
+            description=<Body
+              nodeData={truncateAmat(JSON.parse(collection.description))}
+            />
           />
         );
       })}
