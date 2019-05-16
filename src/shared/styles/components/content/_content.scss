@@ -17,7 +17,7 @@
     padding: 1em 1em 1em 0;
   }
 
-  .figure_text{
+  .figure_text {
     display: inline;
     font-size: 1.2em;
     font-family: $font-family-copy;
@@ -42,7 +42,7 @@
   }
 
   .apm-slide {
-    .figure_caption:before {
+    .figure_caption::before {
       @include hdg-2();
       content: counter(slideCounter);
       counter-increment: slideCounter;

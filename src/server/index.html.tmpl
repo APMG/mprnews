@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        __title__
-	__meta__
-	__link__
-	<link href="https://fonts.googleapis.com/css?family=Montserrat:500,700;subset=latin-ext" rel="stylesheet" />
-	<% for (let i = 0; i < htmlWebpackPlugin.files.css.length; ++i) { %> <link href="/<%=htmlWebpackPlugin.files.css[i]%>" type="text/css" rel="stylesheet" /><% } %>
-   </head>
-    <body>
-        <div id="root">__content__</div>
-	<% for (let i = 0; i < htmlWebpackPlugin.files.js.length; ++i) { %> <script src="/<%=htmlWebpackPlugin.files.js[i]%>" type="text/javascript"></script><% } %>
-    </body>
+  <head>
+    __title__
+    __meta__
+    __link__
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:500,700;subset=latin-ext" rel="stylesheet" />
+    <% for (let i = 0; i < htmlWebpackPlugin.files.css.length; ++i) { %> <link href="/<%=htmlWebpackPlugin.files.css[i]%>" type="text/css" rel="stylesheet" /><% } %>
+  </head>
+  <body>
+    <div id="root">__content__</div>
+    <% for (let i = 0; i < htmlWebpackPlugin.files.js.length; ++i) { %> <script src="/<%=htmlWebpackPlugin.files.js[i]%>" type="text/javascript"></script><% } %>
+  </body>
 </html>
