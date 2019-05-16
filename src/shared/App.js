@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Routes from '../shared/routes/routes';
 import '../shared/styles/index.scss';
 import { Link } from 'apm-titan';
-import WeatherHeader from './components/Weather/WeatherHeader/index';
+import WeatherHeader from './components/WeatherHeader/index';
 import CollectionLink from './components/Collection/CollectionLink';
 import WeatherContext from './context/WeatherContext';
 import axios from 'axios';

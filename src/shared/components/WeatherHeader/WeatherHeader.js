@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { getCurrentPosition } from '../utils';
+import { getCurrentPosition } from './utils';
 
 export default function weatherHeaderRequest() {
   const [data, setData] = useState([]);

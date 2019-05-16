@@ -22,10 +22,8 @@ export default class Weather extends React.Component {
           Updated at:
           {response.properties.updateTime}
           <div>
-            <h2>Current Conditions</h2>
-
             <select onChange={isLoaded && this.props.handleOnChange}>
-              <option defaultValue="selected">locations</option>
+              <option defaultValue="selected">Other locations</option>
               {weatherConfig.map((event) => (
                 <option
                   key={event.id}
@@ -36,14 +34,13 @@ export default class Weather extends React.Component {
                 </option>
               ))}
             </select>
-
             <ul>
               {response.properties.periods[0].number === 1 &&
                 response.properties.periods.splice(0, 1).map((data) => (
                   <div key={data.number}>
                     <li>{data.temperature}°</li>
                     <li>Number : {data.number}</li>
-                    {/* <li>Elevation: {response.properties.elevation.value} M </li> */}
+                    <li>Elevation: {response.properties.elevation.value} M </li>
                     <li>
                       {data.name} : {data.shortForecast}
                     </li>
@@ -55,8 +52,6 @@ export default class Weather extends React.Component {
                 ))}
             </ul>
           </div>
-          <hr />
-          <h2>Conditions Periods</h2>
           <ul>
             {response.properties.periods.map((data) => (
               <div key={data.number}>
