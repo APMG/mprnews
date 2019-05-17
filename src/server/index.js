@@ -2,9 +2,9 @@ import express from 'express';
 import http from 'http';
 import Graceful from 'node-graceful';
 import ReactAppSsr from './ReactAppSsr';
+
 const server = express();
 const APP_PORT = process.env.APP_PORT || 4000;
-
 const filepath =
   process.env.APP_PATH === 'relative' ? 'build' : 'current/mprnews/build';
 

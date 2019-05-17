@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
 import WeatherContext from '../../context/WeatherContext';
-import Weather from './Weather';
+import WeatherHeader from './WeatherHeader';
 import PropTypes from 'prop-types';
 
-const WeatherWrapper = (props) => {
+const WeatherHeaderWrapper = (props) => {
   const context = useContext(WeatherContext);
   const pathSlug = props['*'];
   return (
-    <Weather
+    <WeatherHeader
       pathSlug={pathSlug}
       selectLocation={context.href}
       isLoaded={context.isLoaded}
@@ -17,8 +17,8 @@ const WeatherWrapper = (props) => {
     />
   );
 };
-WeatherWrapper.propTypes = {
+WeatherHeaderWrapper.propTypes = {
   '*': PropTypes.string
 };
 
-export default WeatherWrapper;
+export default WeatherHeaderWrapper;
