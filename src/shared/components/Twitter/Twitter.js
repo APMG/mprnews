@@ -10,7 +10,6 @@ const Twitter = (props) => {
   if (data.error) return <div>Error</div>;
   return (
     <div className="twitter">
-      {console.log(twitter)}
       <Heading level={2}>LISTEN: {twitter.title}</Heading>
     </div>
   );
