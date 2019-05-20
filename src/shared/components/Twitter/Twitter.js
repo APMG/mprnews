@@ -9,9 +9,10 @@ const Twitter = (props) => {
   if (!data || data.loading) return <Loading />;
   if (data.error) return <div>Error</div>;
   return (
-    <article className="twitter">
+    <div className="twitter">
+      {console.log(twitter)}
       <Heading level={2}>LISTEN: {twitter.title}</Heading>
-    </article>
+    </div>
   );
 };
 
