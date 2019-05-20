@@ -8,6 +8,7 @@ import StoriesWithData from '../components/Stories/';
 import PageWithData from '../components/Page';
 import NotFound from '../components/Errors/NotFound';
 import CollectionWithData from '../components/Collection';
+import TwitterWithData from '../components/Twitter';
 
 const Routes = () => {
   return (
@@ -19,6 +20,7 @@ const Routes = () => {
       <StoriesWithData path="/stories" />
       <Weather path="/weather/*" />
       <Event path="/event/*" />
+      <TwitterWithData path="/story/card/*" />
       <NotFound default />
     </Router>
   );
