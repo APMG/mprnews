@@ -1,7 +1,9 @@
 import express from 'express';
 import http from 'http';
 import Graceful from 'node-graceful';
+import Sitemap from './Sitemap';
 import ReactAppSsr from './ReactAppSsr';
+import UrlSet from './UrlSet';
 
 const server = express();
 const APP_PORT = process.env.APP_PORT || 4000;
@@ -11,6 +13,8 @@ const filepath =
 server.use('/assets', express.static(`${filepath}/assets`));
 server.set('trust proxy', true);
 
+Sitemap(server);
+UrlSet(server);
 ReactAppSsr(server);
 
 const httpServer = http.createServer(server).listen(APP_PORT, (error) => {

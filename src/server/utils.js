@@ -1,9 +1,34 @@
+import axios from 'axios';
 import etag from 'etag';
 import fresh from 'fresh';
 import fs from 'fs';
 
+export async function sitemapFetchById(slug, id) {
+  let data;
+  await axios
+    .get(
+      `https://cmsapi-dev.publicradio.org/v1/content-areas/${slug}/sitemap?page=${id}`
+    )
+    .then((response) => {
+      data = response.data;
+    })
+    .catch((err) => console.log(err)); // eslint-disable-line
+  return data;
+}
+
+export async function sitemapFetch(id) {
+  let data;
+  await axios
+    .get(`https://cmsapi-dev.publicradio.org/v1/content-areas/${id}/sitemap`)
+    .then((response) => {
+      data = response.data;
+    })
+    .catch((err) => console.log(err)); // eslint-disable-line
+  return data;
+}
+
 export function globalHostFunc(req) {
-  return req.headers['x-apm-podcasthost']
+  return req.headers['x-apm-mprNews-host']
     ? (global.host = req.headers['x-apm-podcasthost'])
     : (global.host = req.headers.host);
 }
