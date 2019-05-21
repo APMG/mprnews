@@ -28,8 +28,8 @@ export async function sitemapFetch(id) {
 }
 
 export function globalHostFunc(req) {
-  return req.headers['x-apm-mprNews-host']
-    ? (global.host = req.headers['x-apm-podcasthost'])
+  return req.headers['mprnews']
+    ? (global.host = req.headers['mprnews'])
     : (global.host = req.headers.host);
 }
 

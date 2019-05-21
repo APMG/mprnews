@@ -13,8 +13,8 @@ const filepath =
 server.use('/assets', express.static(`${filepath}/assets`));
 server.set('trust proxy', true);
 
-Sitemap(server);
 UrlSet(server);
+Sitemap(server);
 ReactAppSsr(server);
 
 const httpServer = http.createServer(server).listen(APP_PORT, (error) => {
