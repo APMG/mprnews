@@ -1,4 +1,34 @@
 
+export const site = {
+  slug: 'mpr',
+  name: 'Minnesota Public Radio',
+  domains: [
+    'mprnews.org',
+    'www-dev.mprnews.org',
+    'www-stage.mprnews.org',
+    'www.mprnews.org',
+    'origin-www.mprnews.org'
+  ],
+  prodDomain: 'https://www.mprnews.org',
+  rssUrl:
+    'https://feeds.publicradio.org/public_feeds/mprnews/rss/rss',
+  donateLink:
+    'https://contribute.publicradio.org/contribute.php?refId=default&WT.mc_id=news_web_nav_button&WT.mc_ev=click&utm_campaign=membership_contribution&utm_medium=web_nav_button&utm_source=news&utm_content=&utm_term',
+  shopLink:
+    'https://www.publicmediamarket.org/collections/mpr-news',
+  contactLink: 'https://www.mpr.org/contact',
+  socialLinks: [
+    { site: 'instagram', href: 'https://www.instagram.com/ttfapodcast' },
+    { site: 'google', href: 'https://plus.google.com/115839926764856834229'},
+    { site: 'twitter', href: 'https://twitter.com/mpr' },
+    { site: 'facebook', href: 'https://www.facebook.com/MinnesotaPublicRadio' }
+  ],
+  theme: {
+    colorMain: '#f6e600',
+    colorMainText: '#000000'
+  },
+}
+
 export const collectionConfig = {
   newsCoverage: [
     {name: 'Arts', path: "/topic/arts-and-culture"}, 
