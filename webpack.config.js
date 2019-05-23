@@ -2,9 +2,11 @@ const globImporter = require('node-sass-glob-importer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const nodeExternals = require('webpack-node-externals');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 require('ignore-loader');
 
 module.exports = (env, argv) => {
+  const nodeEnv = process.env.NODE_ENV ? process.env.NODE_ENV : 'production';
   const devMode =
     argv && argv.mode && argv.mode !== 'production' ? true : false;
   const clientConfig = {
@@ -67,6 +69,9 @@ module.exports = (env, argv) => {
         template: 'src/server/index.html.tmpl',
         inject: false,
         filename: 'build/index.html'
+      }),
+      new webpack.DefinePlugin({
+        'process.env.NODE_ENV': JSON.stringify(nodeEnv)
       })
     ]
   };

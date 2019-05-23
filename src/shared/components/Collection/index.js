@@ -1,22 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { graphql } from 'react-apollo';
 import Collection from './Collection';
 import { collectionQuery } from './CollectionQuery';
+import SiteConfigContext from '../../context/SiteConfigContext';
 
 import PropTypes from 'prop-types';
 
 const CollectionWithData = (props) => {
+  const context = useContext(SiteConfigContext);
+
   const pageNum = props.id ? props.id : 1;
   const topicSlug = props['*'];
-  const collectionSlug = 'mpr';
 
   const WrappedComponent = graphql(
-    collectionQuery(collectionSlug, pageNum, topicSlug),
+    collectionQuery(context.slug, pageNum, topicSlug),
     {
       options: () => ({
         variables: {
           page: pageNum,
-          slug: collectionSlug
+          slug: context.slug
         }
       })
     }

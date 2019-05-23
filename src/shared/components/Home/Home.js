@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Loading, Teaser } from 'apm-titan';
 import { Image } from 'apm-mimas';
+import SiteConfigContext from '../../context/SiteConfigContext';
 import PhotoGalleryWithData from '../PhotoGallery';
 import CollectionLinks from '../Collection/CollectionLink';
 import { truncateAmat } from '../../utils/utils';
@@ -9,6 +10,7 @@ import { Body } from 'amat-react';
 import fallback from '../../assets/fallback.png';
 
 const Home = (props) => {
+  const context = useContext(SiteConfigContext);
   const { data } = props;
 
   if (data.loading) return <Loading />;
@@ -16,6 +18,7 @@ const Home = (props) => {
 
   return (
     <>
+      {context.name}
       {data.homeList.results.items.map((home) => {
         const link =
           data.resourceType === 'link'

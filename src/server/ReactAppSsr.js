@@ -22,12 +22,12 @@ export default function ReactAppSsr(app) {
 
     const forwarded = globalHostFunc(req).split(':')[0];
     const hostname = os.hostname();
-
     const context = {};
 
     let graphqlEnv = hostname.match(/dev/) ? '-dev' : '';
     graphqlEnv = process.env.NODE_ENV === 'development' ? '-dev' : graphqlEnv;
     const graphqlClient = client(graphqlEnv);
+
     let template = fs.readFileSync(`${filepath}/index.html`).toString();
     const component = (
       <ApolloProvider client={graphqlClient}>

@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { graphql } from 'react-apollo';
 import Home from './Home';
 import { homeQuery } from './HomeQuery';
+import SiteConfigContext from '../../context/SiteConfigContext';
 
-class HomeWithData extends React.Component {
-  render() {
-    const homeSlug = 'homepage';
-    const WrappedComponent = graphql(homeQuery('mpr', homeSlug))(Home);
+const HomeWithData = () => {
+  const context = useContext(SiteConfigContext);
 
-    return <WrappedComponent />;
-  }
-}
+  const WrappedComponent = graphql(
+    homeQuery(context.slug, {
+      options: {
+        fetchPolicy: 'network-only'
+      }
+    })
+  )(Home);
+
+  return <WrappedComponent />;
+};
 
 export default HomeWithData;

@@ -1,9 +1,10 @@
 import gql from 'graphql-tag';
 
-export function homeQuery(siteSlug, homeSlug) {
+export function homeQuery(siteSlug) {
   return gql`
     {
-      homeList: collection(contentAreaSlug: "${siteSlug}", slug: "${homeSlug}") {
+      homeList: collection(contentAreaSlug: "${siteSlug}", slug: "homepage") {
+        id
         title
         description
         results(page: 1, pageSize: 4) {
