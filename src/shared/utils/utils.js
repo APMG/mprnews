@@ -36,3 +36,21 @@ export function capitalizeFirstLetter(string) {
   if (typeof string !== 'string') return '';
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
+
+// Correctly adds deploy time hash to file if applicable
+export function hashFileName(s) {
+  let HASH = null;
+  try {
+    HASH = require('../../../HASH.json');
+  } catch (err) {
+    HASH = null;
+  }
+
+  if (HASH) {
+    let fileName = s.substring(0, s.lastIndexOf('.'));
+    let ext = s.substring(s.lastIndexOf('.'));
+    return fileName + `.${HASH}` + ext;
+  } else {
+    return s;
+  }
+}

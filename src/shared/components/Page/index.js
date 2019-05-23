@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { graphql } from 'react-apollo';
 import Page from './Page';
 import { PageQuery } from './PageQuery';
+import SiteConfigContext from '../../context/SiteConfigContext';
 import PropTypes from 'prop-types';
 
 const PageWithData = (props) => {
+  const context = useContext(SiteConfigContext);
   let pageSlug;
   if (props['*']) {
     // /pages/:slug  urls
@@ -16,7 +18,7 @@ const PageWithData = (props) => {
     pageSlug = arr[arr.length - 1];
   }
 
-  const WrappedComponent = graphql(PageQuery('mpr', pageSlug))(Page);
+  const WrappedComponent = graphql(PageQuery(context.slug, pageSlug))(Page);
 
   return <WrappedComponent />;
 };
