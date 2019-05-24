@@ -2,7 +2,7 @@ import axios from 'axios';
 import etag from 'etag';
 import fresh from 'fresh';
 import fs from 'fs';
-// https://cmsapi-dev.publicradio.org/v1/content-areas
+
 export async function sitemapFetchById(slug, id) {
   let data;
   await axios
