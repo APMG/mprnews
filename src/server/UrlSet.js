@@ -1,11 +1,11 @@
 import { sitemapFetchById, globalHostFunc } from './utils';
-import { site } from '../shared/config/index';
+import mprNewsConfig from '../shared/config/config';
 
 export default function UrlSet(app) {
   app.use('/sitemap/urlset/:id', function(req, res) {
     globalHostFunc(req).split(':')[0];
 
-    sitemapFetchById(site.slug, req.params.id).then(function(data) {
+    sitemapFetchById(mprNewsConfig.slug, req.params.id).then(function(data) {
       res.header('Content-Type', 'text/xml');
 
       let resourceConfig = ['profile', 'story', 'page'];

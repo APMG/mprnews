@@ -4,6 +4,7 @@ export function StoriesQuery(contextSlug, pageNum) {
   return gql`
     {
       storiesList: collection(contentAreaSlug: "${contextSlug}", slug: "press/mpr-news" ) {
+        id
         title
         results(page: ${pageNum}, pageSize: 18) {
           nextPage
