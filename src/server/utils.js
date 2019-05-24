@@ -3,11 +3,11 @@ import etag from 'etag';
 import fresh from 'fresh';
 import fs from 'fs';
 
-export async function sitemapFetchById(slug, id) {
+export async function sitemapFetchById(environment, slug, id) {
   let data;
   await axios
     .get(
-      `https://cmsapi-dev.publicradio.org/v1/content-areas/${slug}/sitemap?page=${id}`
+      `https://cmsapi${environment}.publicradio.org/v1/content-areas/${slug}/sitemap?page=${id}`
     )
     .then((response) => {
       data = response.data;
@@ -16,10 +16,12 @@ export async function sitemapFetchById(slug, id) {
   return data;
 }
 
-export async function sitemapFetch(id) {
+export async function sitemapFetch(environment, id) {
   let data;
   await axios
-    .get(`https://cmsapi-dev.publicradio.org/v1/content-areas/${id}/sitemap`)
+    .get(
+      `https://cmsapi${environment}.publicradio.org/v1/content-areas/${id}/sitemap`
+    )
     .then((response) => {
       data = response.data;
     })

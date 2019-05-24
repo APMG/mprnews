@@ -2,9 +2,11 @@ import { globalHostFunc, sitemapFetch } from './utils';
 import mprNewsConfig from '../shared/config/config';
 export default function Sitemap(app) {
   app.use('/sitemap/?$', (req, res) => {
+    const environment = process.env.NODE_ENV === 'development' ? '-dev' : '';
+
     globalHostFunc(req).split(':')[0];
 
-    sitemapFetch(mprNewsConfig.slug).then(function(data) {
+    sitemapFetch(environment, mprNewsConfig.slug).then(function(data) {
       res.header('Content-Type', 'text/xml');
 
       let xmlString = `<?xml version="1.0" encoding="UTF-8"?>
