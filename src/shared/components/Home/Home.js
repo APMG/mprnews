@@ -4,6 +4,8 @@ import { Loading, Teaser } from 'apm-titan';
 import { Image } from 'apm-mimas';
 import PhotoGalleryWithData from '../PhotoGallery';
 import CollectionLinks from '../Collection/CollectionLink';
+import AdTop from '../Ads/AdTop';
+import AdBottom from '../Ads/AdBottom';
 import { truncateAmat } from '../../utils/utils';
 import { Body } from 'amat-react';
 import fallback from '../../assets/fallback.png';
@@ -55,6 +57,8 @@ const Home = (props) => {
       })}
       <CollectionLinks />
       <PhotoGalleryWithData />
+      <AdTop />
+      <AdBottom />
     </>
   );
 };
