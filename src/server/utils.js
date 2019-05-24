@@ -6,9 +6,7 @@ import fs from 'fs';
 export async function sitemapFetchById(slug, id) {
   let data;
   await axios
-    .get(
-      `https://cmsapi-dev.publicradio.org/v1/content-areas/${slug}/sitemap?page=${id}`
-    )
+    .get(`${process.env.URL_ENV}/${slug}/sitemap?page=${id}`)
     .then((response) => {
       data = response.data;
     })
@@ -16,10 +14,10 @@ export async function sitemapFetchById(slug, id) {
   return data;
 }
 
-export async function sitemapFetch(id) {
+export async function sitemapFetch(slug) {
   let data;
   await axios
-    .get(`https://cmsapi-dev.publicradio.org/v1/content-areas/${id}/sitemap`)
+    .get(`${process.env.URL_ENV}/${slug}/sitemap`)
     .then((response) => {
       data = response.data;
     })

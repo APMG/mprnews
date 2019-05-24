@@ -3,10 +3,14 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const nodeExternals = require('webpack-node-externals');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
+
 require('ignore-loader');
 
 module.exports = (env, argv) => {
-  const nodeEnv = process.env.NODE_ENV ? process.env.NODE_ENV : 'production';
+  const devCmsEndpoint = `https://cmsapi-dev.publicradio.org/v1/content-areas`;
+  const prodCmsEndpoint = `https://cmsapi.publicradio.org/v1/content-areas`;
+  const nodeEnv =
+    process.env.NODE_ENV === 'development' ? devCmsEndpoint : prodCmsEndpoint;
   const devMode =
     argv && argv.mode && argv.mode !== 'production' ? true : false;
   const clientConfig = {
@@ -71,7 +75,7 @@ module.exports = (env, argv) => {
         filename: 'build/index.html'
       }),
       new webpack.DefinePlugin({
-        'process.env.NODE_ENV': JSON.stringify(nodeEnv)
+        'process.env.URL_ENV': JSON.stringify(nodeEnv)
       })
     ]
   };
@@ -99,7 +103,12 @@ module.exports = (env, argv) => {
           query: { presets: ['react-app'] }
         }
       ]
-    }
+    },
+    plugins: [
+      new webpack.DefinePlugin({
+        'process.env.URL_ENV': JSON.stringify(nodeEnv)
+      })
+    ]
   };
   return [clientConfig, serverConfig];
 };
