@@ -13,7 +13,7 @@ export function episodeQuery(siteSlug, episodeSlug) {
         primaryVisuals {
           lead {
             aspect_ratios: aspectRatios {
-              square {
+              widescreen {
                 instances {
                   url
                   width
