@@ -9,6 +9,7 @@ import PageWithData from '../components/Page';
 import NotFound from '../components/Errors/NotFound';
 import CollectionWithData from '../components/Collection';
 import TwitterWithData from '../components/Twitter';
+import EpisodeWithData from '../components/Episode';
 
 const Routes = () => {
   return (
@@ -16,6 +17,7 @@ const Routes = () => {
       <Home path="/" />
       <CollectionWithData path="/topic/*" />
       <PageWithData path="/page/*" />
+      <EpisodeWithData path="/episode/*" />
       <StoryWithData path="/story/*" />
       <StoriesWithData path="/stories" />
       <Weather path="/weather/*" />
