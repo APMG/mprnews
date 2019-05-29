@@ -70,7 +70,7 @@ module.exports = (env, argv) => {
           : 'build/assets/[id].[hash].css'
       }),
       new HtmlWebpackPlugin({
-        template: 'src/server/index.html.tmpl',
+        template: 'src/server/index.tmpl.html',
         inject: false,
         filename: 'build/index.html'
       }),

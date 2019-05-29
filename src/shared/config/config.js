@@ -14,11 +14,7 @@ const mprNewsConfig = {
   socialLinks: [
     { site: 'twitter', href: 'https://twitter.com/mprnews' },
     { site: 'facebook', href: 'https://www.facebook.com/mprnews' }
-  ],
-  theme: {
-    colorMain: '#f6e600',
-    colorMainText: '#000000'
-  }
+  ]
 };
 
 export { mprNewsConfig as default };

@@ -12,10 +12,6 @@ const SiteConfigContext = React.createContext({
   donateLink: '',
   contactLink: '',
   socialLinks: [],
-  theme: {
-    colorMain: '',
-    colorMainText: ''
-  },
   sponsorLink: ''
 });
 
