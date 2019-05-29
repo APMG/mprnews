@@ -11,7 +11,9 @@ const Story = (props) => {
   if (data.error) return <div>Error</div>;
   return (
     <article className="story">
-      <Heading level={2}>{story.title}</Heading>
+      <Heading level={1} className="hdg hdg-1">
+        {story.title}
+      </Heading>
       <Body
         nodeData={JSON.parse(story.body)}
         embedded={JSON.parse(story.embeddedAssetJson)}
