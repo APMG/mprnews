@@ -8,9 +8,14 @@ export default class Weather extends React.Component {
   constructor(props) {
     super(props);
   }
+  componentDidMount() {
+    this.props.fetchProps(this.props.pathSlug);
+  }
 
   render() {
     const { isLoaded, response, error } = this.props.weather;
+    console.log('this', this);
+
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
@@ -83,6 +88,8 @@ export default class Weather extends React.Component {
 
 Weather.propTypes = {
   handleOnChange: PropTypes.func,
+  pathSlug: PropTypes.string,
+  fetchProps: PropTypes.func,
   selectedId: PropTypes.string,
   weather: PropTypes.object,
   error: PropTypes.object,

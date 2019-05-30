@@ -18,6 +18,7 @@ class App extends Component {
     this.state = {
       selectedCoordinates: null,
       selectedId: null,
+      coordinates: null,
       defaultWeather: {
         id: 'minneapolis',
         name: 'MSP Airport',
@@ -26,28 +27,25 @@ class App extends Component {
         forecastOffice: 'MPX'
       },
       weather: { isLoaded: false, error: null },
-      handleOnChange: this.handleOnChange.bind(this)
+      handleOnChange: this.handleOnChange.bind(this),
+      fetchProps: this.fetchProps.bind(this)
     };
   }
 
-  fetchCoordinates() {
-    const pathname = window.location.pathname.split('/');
-    const coordinates = pathname[pathname.length - 1];
-    let newCoordinates = this.fetchWeatherData();
-
-    console.log('coordinates', coordinates);
-
-    weatherConfig.find((el) => {
-      if (coordinates === el.id) {
-        console.log(`${el.lat},${el.long}`);
-        return `${el.lat},${el.long}`;
-      } else return console.log('hi');
-    });
+  fetchProps(slug) {
+    const coordinates = weatherConfig.find(
+      (weather) => weather.id.indexOf(slug) > -1
+    );
+    if (coordinates === this.state.coordinates) return;
+    this.setState(
+      {
+        coordinates: `${coordinates.lat},${coordinates.long}`
+      },
+      this.fetchWeatherData(`${coordinates.lat},${coordinates.long}`)
+    );
   }
 
   componentDidMount() {
-    this.fetchCoordinates();
-
     console.log('componentdidMount', this.state);
   }
 

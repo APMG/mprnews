@@ -13,6 +13,7 @@ const WeatherWrapper = (props) => {
       selectedCoordinates={context.selectedCoordinates}
       weather={context.weather}
       handleOnChange={context.handleOnChange}
+      fetchProps={context.fetchProps}
     />
   );
 };
