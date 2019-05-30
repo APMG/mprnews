@@ -9,9 +9,8 @@ const WeatherWrapper = (props) => {
   return (
     <Weather
       pathSlug={pathSlug}
-      selectLocation={context.href}
-      isLoaded={context.isLoaded}
-      error={context.error}
+      selectedId={context.selectedId}
+      selectedCoordinates={context.selectedCoordinates}
       weather={context.weather}
       handleOnChange={context.handleOnChange}
     />

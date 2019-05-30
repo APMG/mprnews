@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Heading } from 'apm-titan';
+
 import { weatherConfig } from '../../config/index';
 
 export default class Weather extends React.Component {
@@ -16,6 +18,7 @@ export default class Weather extends React.Component {
     } else {
       return (
         <div>
+          <Heading level={2}>{this.props.selectedId}</Heading>
           Generated at:
           {response.properties.generatedAt}
           <br />
@@ -23,11 +26,12 @@ export default class Weather extends React.Component {
           {response.properties.updateTime}
           <div>
             <select onChange={isLoaded && this.props.handleOnChange}>
-              <option defaultValue="selected">Other locations</option>
+              <option defaultValue="selected">More locations</option>
               {weatherConfig.map((event) => (
                 <option
-                  key={event.id}
+                  id={event.id}
                   name={event.name}
+                  key={event.id}
                   value={`${event.lat},${event.long}`}
                 >
                   {event.name}
@@ -79,6 +83,7 @@ export default class Weather extends React.Component {
 
 Weather.propTypes = {
   handleOnChange: PropTypes.func,
+  selectedId: PropTypes.string,
   weather: PropTypes.object,
   error: PropTypes.object,
   isLoaded: PropTypes.bool,

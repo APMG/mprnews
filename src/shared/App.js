@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Routes from '../shared/routes/routes';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import { Link, navigate } from 'apm-titan';
 import SiteConfigContext from './context/SiteConfigContext';
 import mprNewsConfig from './config/config';
@@ -8,33 +9,56 @@ import WeatherHeader from './components/WeatherHeader/index';
 import CollectionLink from './components/Collection/CollectionLink';
 import WeatherContext from './context/WeatherContext';
 import '../shared/styles/index.scss';
+import { weatherConfig } from './config';
 
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      selectLocation: null,
-      weather: { response: {}, isLoaded: false, error: null },
+      selectedCoordinates: null,
+      selectedId: null,
+      defaultWeather: {
+        id: 'minneapolis',
+        name: 'MSP Airport',
+        lat: '44.8848',
+        long: '-93.2223',
+        forecastOffice: 'MPX'
+      },
+      weather: { isLoaded: false, error: null },
       handleOnChange: this.handleOnChange.bind(this)
     };
   }
-  componentDidMount() {
-    this.fetchWeatherData();
+
+  fetchCoordinates() {
+    const pathname = window.location.pathname.split('/');
+    const coordinates = pathname[pathname.length - 1];
+    let newCoordinates = this.fetchWeatherData();
+
+    console.log('coordinates', coordinates);
+
+    weatherConfig.find((el) => {
+      if (coordinates === el.id) {
+        console.log(`${el.lat},${el.long}`);
+        return `${el.lat},${el.long}`;
+      } else return console.log('hi');
+    });
   }
 
-  fetchWeatherData() {
-    const pathname = window.location.pathname.split('/');
-    const geoLocation = pathname[pathname.length - 1];
-    const coordinates = geoLocation.match(/-?\d+(\.\d+)?,\s*(-?\d+(\.\d+)?)/g)
-      ? geoLocation
-      : `44.9434,-93.0965`;
+  componentDidMount() {
+    this.fetchCoordinates();
 
+    console.log('componentdidMount', this.state);
+  }
+
+  fetchWeatherData(coordinates) {
     let url = `https://api.weather.gov/points/${coordinates}/forecast`;
+
+    console.log('🇨🇱', url);
     axios
       .get(url)
       .then((res) => {
-        this.setState({
+        return this.setState({
           weather: { response: res.data, isLoaded: true }
         });
       })
@@ -44,14 +68,19 @@ class App extends Component {
   }
 
   handleOnChange(event) {
-    this.setState({
-      selectLocation: `${event.target.value}`
-    });
-    navigate(`/weather/${event.target.value}`);
+    this.setState(
+      {
+        ...this.state,
+        selectedCoordinates: event.target.value,
+        selectedId: event.target[event.target.selectedIndex].id
+      },
 
-    return this.fetchWeatherData();
+      this.fetchWeatherData(event.target.value)
+    );
+    navigate(`/weather/${event.target[event.target.selectedIndex].id}`);
   }
   render() {
+    console.log(this);
     return (
       <div>
         <SiteConfigContext.Provider value={mprNewsConfig}>
@@ -71,5 +100,8 @@ class App extends Component {
     );
   }
 }
+App.propTypes = {
+  history: PropTypes.string
+};
 
 export default App;
