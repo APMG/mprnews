@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Routes from '../shared/routes/routes';
 import axios from 'axios';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { Link, navigate } from 'apm-titan';
 import SiteConfigContext from './context/SiteConfigContext';
 import mprNewsConfig from './config/config';
@@ -98,8 +98,8 @@ class App extends Component {
     );
   }
 }
-App.propTypes = {
-  history: PropTypes.string
-};
+// App.propTypes = {
+//   history: PropTypes.string
+// };
 
 export default App;

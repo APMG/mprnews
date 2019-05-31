@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Heading } from 'apm-titan';
+import Dropdown from './utils/DropDown';
 
 import { weatherConfig } from '../../config/index';
 
@@ -24,6 +25,7 @@ export default class Weather extends React.Component {
       return (
         <div>
           <Heading level={2}>{this.props.selectedId}</Heading>
+          <Dropdown response={this} />
           Generated at:
           {response.properties.generatedAt}
           <br />
