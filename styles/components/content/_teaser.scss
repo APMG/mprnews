@@ -1,0 +1,71 @@
+//----------------------------------------------
+// Collection Item
+//----------------------------------------------
+
+.teaser {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: $color-teaser-bg;
+  color: $color-white;
+  font-family: $font-family-default;
+  border: 1px solid $color-grey-30;
+  border-radius: 5px;
+
+  a {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.teaser_button {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+}
+
+.teaser_image {
+  overflow: hidden;
+  padding-right: 20px;
+
+  img {
+    margin: 10px;
+    width: 100%;
+  }
+}
+
+.teaser_content {
+  margin: 20px;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+}
+
+.teaser_header {
+  display: flex;
+  margin-bottom: 8px;
+  margin-right: 40px;
+
+  .hdg-2 {
+    font-size: 1.8rem;
+    align-self: center;
+  }
+}
+
+.teaser_meta {
+  color: $color-text-light;
+  margin-bottom: 2px;
+  font-size: 1.4rem;
+  height: 20px;
+  order: -1;
+}
+
+.teaser_time {
+  color: $color-white;
+}
+
+.teaser_body {
+  font-family: $font-family-heading;
+  font-size: 1.25rem;
+  line-height: 1.3;
+}

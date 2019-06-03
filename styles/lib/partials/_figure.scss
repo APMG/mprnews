@@ -1,0 +1,81 @@
+//--------------------------------------------
+// Component mixins for figures
+//--------------------------------------------
+@mixin figure() {
+  margin: 0 -10px 50px;
+  font-family: $font-family-default;
+  font-size: 1.4rem;
+  line-height: normal;
+
+  &.align-none {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  > * {
+    display: block;
+  }
+
+  > img,
+  > iframe,
+  > video,
+  > canvas {
+    display: block;
+    width: 100%;
+  }
+}
+
+@mixin figure-half() {
+  @include media($media-tablet) {
+    width: 60%;
+  }
+}
+
+@mixin figure-quarter() {
+  width: 40%;
+  margin-left: 0;
+  float: left;
+  margin-right: 20px;
+  margin-bottom: 25px;
+
+  @include media($media-tablet) {
+    width: 25%;
+    margin-left: 0;
+  }
+}
+
+@mixin figure-right() {
+  @include media($media-tablet) {
+    float: right;
+    margin-left: 30px;
+  }
+}
+
+@mixin figure-left() {
+  @include media($media-tablet) {
+    float: left;
+    margin-right: 30px;
+  }
+}
+
+@mixin figure_caption() {
+  display: flex;
+  flex-direction: column;
+  font-family: $font-family-sans;
+  margin: .5em 10px 0;
+}
+
+@mixin figure_credit() {
+  order: 1;
+  display: inline-block;
+  margin-bottom: 5px;
+  color: $color-text-light;
+  font-size: 1.2rem;
+  text-align: right;
+  font-style: italic;
+}
+
+@mixin figure_text() {
+  order: 2;
+  font-size: 1.4rem;
+}

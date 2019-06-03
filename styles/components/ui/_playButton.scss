@@ -1,0 +1,44 @@
+//----------------------------------------
+// Play button (for embedded audio, etc)
+//----------------------------------------
+
+.playButton {
+  @include reset-button();
+  display: inline-flex;
+  align-items: center;
+  flex-direction: row;
+
+  &:focus {
+    outline: 0; // replaced with box-shadow inside .playButton_button
+  }
+}
+
+.playButton_button {
+  height: 50px; // component 'size' prop may modify this inline
+  width: 50px; // component 'size' prop may modify this inline
+  border-radius: 1000px; // pill/circle shape
+  color: $color-black;
+  background-color: $color-white;
+  display: flex;
+
+  .icon {
+    margin: auto;
+  }
+
+  .icon-play {
+    margin-left: 15px;
+  }
+
+  .playButton:focus & {
+    box-shadow: 0 0 0 3px rgba($color-grey-50, 50%);
+  }
+
+  &:hover {
+    background: $color-default;
+    color: $color-text;
+  }
+}
+
+.playButton_label {
+  margin-left: 10px;
+}

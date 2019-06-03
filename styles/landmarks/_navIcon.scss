@@ -1,0 +1,57 @@
+//----------------------------------------------
+// Nav Icon, a hamburger icon that changes
+// into an 'x'
+//----------------------------------------------
+
+// sass-lint:disable variable-name-format nesting-depth
+$_navIcon-line-width: 2px;
+$_navIcon-size: 30px;
+$_navIcon-v-offset: .2;
+$_navIcon-v-offset-pct: $_navIcon-v-offset * 100;
+$_navIcon-v-offset-px: $_navIcon-size * $_navIcon-v-offset;
+
+.navIcon {
+  display: block;
+  height: $_navIcon-size;
+  width: $_navIcon-size;
+  position: relative;
+
+  span {
+    display: block;
+    width: 100%;
+    border-top: $_navIcon-line-width solid currentColor;
+    border-radius: 2px;
+    position: absolute;
+    transition: transform $transition, opacity $transition;
+
+    &:first-child {
+      top: $_navIcon-v-offset-px;
+      transform-origin: $_navIcon-v-offset-px ($_navIcon-v-offset-px - ($_navIcon-line-width / 2));
+
+      .is-open & {
+        transform: rotate(45deg);
+      }
+    }
+
+    &:nth-child(2) {
+      top: 50%;
+      margin-top: -($_navIcon-line-width / 2);
+
+      .is-open & {
+        transform: rotate(-45deg);
+        transform-origin: center;
+      }
+    }
+
+    &:last-child {
+      bottom: $_navIcon-v-offset-px;
+      transform-origin: $_navIcon-v-offset-px (-$_navIcon-v-offset-px);
+      opacity: 1;
+
+      .is-open & {
+        transform: rotate(-45deg);
+        opacity: 0;
+      }
+    }
+  }
+}

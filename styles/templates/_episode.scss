@@ -1,0 +1,28 @@
+//--------------------------------------
+// Episode
+//--------------------------------------
+
+.episode_playButton {
+  border: $color-white 1px solid;
+  width: 100%;
+  max-width: 160px;
+}
+
+.episode_audio {
+  margin-top: 8px;
+
+  @include media($media-tablet) {
+    padding: 8px;
+    position: absolute;
+    left: 58px;
+    top: 210px;
+
+    &.no-image {
+      top: 42px;
+    }
+  }
+
+  .icon-play {
+    margin: 25%;
+  }
+}

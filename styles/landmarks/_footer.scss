@@ -1,0 +1,47 @@
+//----------------------------------------
+// Main Site Footer
+//----------------------------------------
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: $color-black;
+  border-top: 1px solid $color-border;
+  border-bottom: 1px solid $color-border;
+  padding-bottom: $player-height;
+}
+
+.footer_header {
+  text-align: center;
+  margin: 40px 0;
+}
+
+.footer_links {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.footer_section {
+  display: flex;
+  flex-direction: column;
+  min-width: 310px;
+  text-align: center;
+}
+
+.footer_column {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  text-align: center;
+}
+
+.footer_small {
+  margin-bottom: 40px;
+}
+
+.footer_link {
+  margin: 4px 0;
+  font-size: 1.2rem;
+}

@@ -1,0 +1,136 @@
+$_standard-hero-gap: 14px;
+$_mobile-hero-gap: 25px;
+$_hero-padding: 28px;
+$_hero-height: 430px;
+
+.hero {
+  position: relative;
+
+  @include media($media-t-d) {
+    height: $_hero-height;
+  }
+}
+
+.hero_overlay {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  align-items: flex-start;
+  padding: $_hero-padding;
+  border: 1px solid $color-border;
+  border-radius: 5px;
+  width: 100%;
+  z-index: $z-hero-overlay;
+
+  @include media($media-t-d) {
+    height: $_hero-height;
+    background-image: linear-gradient(to right, $color-black, $color-content-bg, $color-transparent, $color-transparent);
+  }
+
+  @include media-max($media-t-d) {
+    position: relative;
+    align-items: center;
+    text-align: center;
+    background-color: $color-screen;
+  }
+}
+
+.hero_background {
+  position: absolute;
+  border-radius: 5px;
+  z-index: $z-hero-background;
+
+  @include media-max($media-t-d) {
+    position: relative;
+    display: none;
+  }
+}
+
+.hero_quote {
+  margin: 14px 0;
+}
+
+.hero_bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: auto;
+}
+
+.hero_art {
+  width: 100px;
+  height: 100px;
+  border: 1px solid $color-border;
+  border-radius: 5px;
+
+  @include media-max($media-t-d) {
+    display: none;
+  }
+}
+
+.hero_mobileArt {
+  width: 180px;
+  height: 180px;
+  border: 1px solid $color-border;
+  border-radius: 5px;
+  margin-bottom: 37px;
+
+  @include media($media-t-d) {
+    display: none;
+  }
+}
+
+.hero_podcastLinks {
+  @include media($media-t-d) {
+    display: flex;
+  }
+}
+
+.hero_podcastLink {
+  width: 200px;
+  margin-bottom: 15px;
+  margin-right: 15px;
+
+  @include media($media-t-d) {
+    width: 150px;
+  }
+}
+
+.hero_subscribeLink {
+  text-decoration: underline;
+  font-size: 1.4rem;
+  font-family: $font-family-heading, sans-serif;
+  font-weight: 500;
+}
+
+.hero_tagline {
+  max-width: 525px;
+}
+
+.hero_subscribe {
+  margin: $_mobile-hero-gap 0;
+}
+
+.hero_latestEpisode {
+  @include media-max($media-t-d) {
+    margin-top: $_mobile-hero-gap;
+  }
+}
+
+.hero_player {
+  display: flex;
+  text-align: left;
+  margin-top: $_standard-hero-gap;
+  font-size: 1.2rem;
+  line-height: 1.8;
+}
+
+.hero_playerInfo {
+  margin-left: $_standard-hero-gap;
+}
+
+.hero_playerDate {
+  font-weight: 700;
+}

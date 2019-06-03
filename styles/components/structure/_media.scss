@@ -1,0 +1,21 @@
+//----------------------------------------------
+// Media Object
+// A structure containing an image (or other
+// media) and some associated text, with the
+// image to one side
+//
+// The name comes from an old pattern defined by Nicole Sullivan:
+// http://www.stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code/
+//----------------------------------------------
+
+.media {
+  @include mediaObj();
+}
+
+.media_figure {
+  @include mediaObj_figure();
+}
+
+.media_body {
+  @include mediaObj_body();
+}

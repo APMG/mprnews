@@ -1,0 +1,119 @@
+//---------------------------------------
+// Buttons
+//---------------------------------------
+
+$_btn-transition: 0.2s;
+$_btn-transition-fast: 0.05s;
+$_btn-color-theme: $color-theme;
+$_btn-bg-default: rgba($color-black, 0.5);
+$_btn-bg-default-hover: rgba($color-grey-10, 0.8);
+$_btn-color-default: $color-white;
+
+.btn {
+  @include reset-button();
+  padding: 6px 20px;
+  border: 1px solid transparent;
+  border-radius: 100px; // Pill shaped
+  font-size: 1.5rem;
+  font-family: $font-family-sans;
+  line-height: 1.5;
+  background: $_btn-bg-default;
+  color: $_btn-color-default;
+  outline: 0;
+  // sass-lint:disable indentation
+  transition: background-color $_btn-transition, border $_btn-transition,
+    color $_btn-transition, opacity $_btn-transition;
+  // sass-lint:enable indentation
+
+  &:hover,
+  &:focus {
+    background-color: $_btn-bg-default-hover;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 3px rgba($color-grey-50, 50%);
+  }
+
+  &[disabled],
+  &[disabled]:hover,
+  &[disabled]:focus,
+  &[disabled]:active {
+    border-color: $color-disabled;
+    background: $color-disabled-bg;
+    color: $color-disabled;
+    cursor: default;
+
+    > .icon {
+      fill: $color-disabled;
+    }
+  }
+
+  > .icon {
+    height: 18px;
+    width: 18px;
+    margin: -2px 6px -2px 0;
+    vertical-align: -2px;
+  }
+}
+
+.btn_inlineText {
+  display: inline-block;
+  margin: 5px 0 5px 10px;
+  vertical-align: top;
+}
+
+// Button Sizes ***********
+
+.btn-large {
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 10px 40px;
+}
+
+.btn-small {
+  font-size: 1.25rem;
+  padding: 4px 12px;
+}
+
+// Button Types ***********
+
+.btn-primary {
+  border: 1px solid $color-default;
+  background: $color-default;
+  color: $color-text;
+
+  &:hover,
+  &:focus {
+    background: $color-default;
+    opacity: 0.8;
+  }
+}
+
+.btn-secondary {
+  font-size: 1.3rem;
+  text-decoration: underline;
+}
+
+.btn-destructive {
+  border: 1px solid $color-warning;
+  background: $color-warning;
+  color: $color-white;
+
+  &:hover,
+  &:focus {
+    border-color: lighten($color-warning, 10%);
+    background: lighten($color-warning, 10%);
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 3px rgba($color-warning, 50%);
+  }
+}
+
+.btn-promo {
+  padding: 5px 32px;
+}
+
+.btn-donate {
+  padding: 4px 10px;
+}

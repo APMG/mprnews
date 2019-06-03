@@ -1,0 +1,142 @@
+//--------------------------------------
+// Content
+//
+// This is the basic story page layout,
+// but it can appear in other content
+// types such as pages, bios, and
+// collection bodies
+//--------------------------------------
+
+.content {
+  display: grid;
+
+  a {
+    @include link();
+  }
+
+  @include media($media-tablet) {
+    grid-template-columns: 160px 2fr;
+    grid-column-gap: 44px;
+    height: auto;
+    min-height: 364px;
+  }
+}
+
+.content_header {
+  margin-bottom: 4rem;
+}
+
+// For containing metadata such as author, date
+.content_meta {
+  margin: 25px 0;
+  font-size: 1.8rem;
+  font-family: $font-family-default;
+}
+
+.content_body {
+  font-size: 1.4rem;
+  line-height: 1.85;
+  text-align: left;
+  margin-top: 12px;
+
+  p {
+    margin: 1.5em 0;
+  }
+}
+
+.content_topic {
+  text-transform: uppercase;
+}
+
+.content_title {
+  @include hdg();
+  @include hdg-1();
+}
+
+.content_subtitle {
+  @include hdg();
+  @include hdg-2();
+}
+
+.content_image {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 180px;
+
+  @include media($media-tablet) {
+    max-width: 160px;
+  }
+}
+
+.content_thumbnail {
+  border: 1px solid $color-black;
+  border-radius: 5px;
+  background-color: $color-black;
+  height: auto;
+  width: 180px;
+
+  @include media($media-tablet) {
+    width: 160px;
+  }
+
+  @supports (object-fit: cover) {
+    object-fit: cover;
+    object-position: center;
+    height: 180px;
+
+    @include media($media-tablet) {
+      height: 160px;
+    }
+  }
+}
+
+
+.content_byline {
+  margin-bottom: 5px;
+  color: $color-grey-20;
+
+  a {
+    @include link();
+    @include link-plain();
+  }
+}
+
+.content_date {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.content_date_updated {
+  font-style: italic;
+  font-size: 1.4rem;
+  color: $color-text-light;
+}
+
+.content_social {
+  display: inline-block;
+  color: $color-text-light;
+  fill: $color-text-light;
+
+  a {
+    vertical-align: middle;
+    transition: color $transition, fill $transition;
+
+    &:hover {
+      color: $color-red;
+      fill: $color-red;
+    }
+  }
+
+  svg {
+    height: 24px;
+    width: 24px;
+  }
+}
+
+.content_hero {
+  margin: 0 0 50px;
+
+  img {
+    width: 100%;
+  }
+}

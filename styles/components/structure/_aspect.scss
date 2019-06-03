@@ -1,0 +1,40 @@
+//----------------------------------------------
+// Aspect Ratio
+//----------------------------------------------
+
+.aspect {
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    display: block;
+    content: '';
+    width: 100%;
+  }
+
+  > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  > iframe {
+    height: 100%;
+  }
+}
+
+.aspect-widescreen {
+  @include aspect-ratio(16, 9);
+}
+
+.aspect-fullscreen {
+  @include aspect-ratio(4, 3);
+}
+
+.aspect-square {
+  @include aspect-ratio(1, 1);
+}

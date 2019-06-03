@@ -1,0 +1,31 @@
+//--------------------------------
+// Social Media Links
+//--------------------------------
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 50px;
+  padding: 2px;
+  border-radius: 100px; // circle/pill shape
+  color: $color-black;
+  fill: $color-black;
+  background-color: $color-grey-80;
+  // sass-lint:disable indentation
+  transition: background-color $transition, color $transition, fill $transition;
+  // sass-lint:enable indentation
+
+  svg {
+    height: 22px;
+    width: 22px;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: $color-default;
+    color: $color-text;
+    fill: $color-text;
+  }
+}

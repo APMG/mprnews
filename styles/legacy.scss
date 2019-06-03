@@ -1,0 +1,8 @@
+@charset 'UTF-8';
+
+// The $no-media-queries variable interacts with the media() mixin to disable media queries
+$no-media-queries: true;
+
+// Import all styles with media queries removed for legacy browsers,
+// maintaining cascade of base styles followed by their overridden values.
+@import 'main';

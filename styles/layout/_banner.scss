@@ -1,0 +1,26 @@
+//----------------------------------------------
+// Banner - for taking up full screen width
+//----------------------------------------------
+$_undo-gutter: calc(-50vw + #{$max-width / 2} - #{$container-edge});
+$_undo-container-edge: -($container-edge);
+
+.banner {
+  margin: 0 $_undo-container-edge;
+  grid-column: 1 / -1;
+
+  @include media($max-width) {
+    margin: 0 $_undo-gutter;
+  }
+}
+
+.banner-newsletter {
+  background-color: $color-black;
+  border-top: 1px solid $color-border;
+  border-bottom: 1px solid $color-border;
+}
+
+.banner-pagination {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
