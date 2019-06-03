@@ -1,19 +1,17 @@
 import gql from 'graphql-tag';
 
-export function StoryPreviewQuery(siteSlug, storySlug, previewToken) {
-  return gql`
-    {
-      story: story(contentAreaSlug: "${siteSlug}", slug: "${storySlug}", previewToken: "${previewToken}") {
+export function episodePreviewQuery(siteSlug, episodeSlug, previewToken) {
+  const qry = `{
+    episode: episode(contentAreaSlug: "${siteSlug}", slug: "${episodeSlug}", previewToken: "${previewToken}") {
         id
         title
         canonicalSlug
         publishDate
         body
-        description
         embeddedAssetJson
         primaryVisuals {
           lead {
-            aspect_Ratios: aspectRatios {
+            aspectRatios: aspectRatios {
               square {
                 instances {
                   url
@@ -38,7 +36,14 @@ export function StoryPreviewQuery(siteSlug, storySlug, previewToken) {
             xid
           }
         }
+        audio {
+          title
+          durationHms
+          encodings {
+            httpFilePath
+          }
+        }
       }
-    }
-  `;
+    }`;
+  return gql(qry);
 }
