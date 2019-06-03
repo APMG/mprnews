@@ -13,7 +13,7 @@ export function StoryPreviewQuery(siteSlug, storySlug, previewToken) {
         embeddedAssetJson
         primaryVisuals {
           lead {
-            aspectRatios {
+            aspect_Ratios: aspectRatios {
               square {
                 instances {
                   url
