@@ -20,7 +20,7 @@ namespace :deploy do
   task :restart do
     on roles(:app) do
       within deploy_path do
-        execute :pm2, 'startOrGracefulReload', '/WWW/web-home/mprnews/ecosystem.json'
+        execute :pm2, 'startOrGracefulReload', 'ecosystem.json'
         execute :pm2, :save
       end
     end
@@ -39,5 +39,5 @@ namespace :npm do
       end
     end
   end
-  after 'deploy:published', 'install'
+  after 'deploy:published', 'npm:install'
 end

@@ -17,8 +17,8 @@ import {
 export default function ReactAppSsr(app) {
   app.use((req, res) => {
     const helmetContext = {};
-    const filepath =
-      process.env.APP_PATH === 'relative' ? 'build' : 'current/build';
+    const filepath = 'build';
+    // process.env.APP_PATH === 'relative' ? 'build' : 'current/build';
 
     const forwarded = globalHostFunc(req).split(':')[0];
     const hostname = os.hostname();
