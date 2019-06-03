@@ -1,7 +1,7 @@
 import { hashFileName } from '../utils/utils';
 
 const mprNewsConfig = {
-  slug: 'mpr',
+  slug: 'apm-research-lab',
   name: 'Minnesota Public Radio News',
   fallbackImg: hashFileName('/assets/sites/mprnews/fallback.png'),
   domains: ['localhost', 'www-dev.mprnews.org', 'www-stage.mprnews.org'],

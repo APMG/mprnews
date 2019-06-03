@@ -19,6 +19,7 @@
     @include hdg();
     margin: 1em 0 .5em;
     line-height: normal;
+    clear: both; // don't clash with floated images
   }
 
   h1 { @include hdg-1(); }

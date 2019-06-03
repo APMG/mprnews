@@ -2,8 +2,9 @@
 
 @mixin bList() {
   li {
-    margin-left: 3rem;
+    margin-left: 2rem;
     padding-left: 1rem;
+    clear: left;
   }
 
   ul {

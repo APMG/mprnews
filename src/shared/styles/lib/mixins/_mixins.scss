@@ -176,3 +176,23 @@ $max-legacy-width: 60em;
   background: transparent;
   cursor: pointer;
 }
+
+@mixin fluid-type() {
+  // These fz-* vars set up base values to use in the root calc()
+  $_fz-min: 10; // px
+  $_fz-max: 12; // px
+  $_fz-min-vw: 320; // px
+  $_fz-max-vw: 900; // px
+  $_fz-min-vw-em: #{$_fz-min-vw / 16}em; // Use ems for media queries so zooming works nicely
+  $_fz-max-vw-em: #{$_fz-max-vw / 16}em;
+
+  font-size: #{$_fz-min}px;
+
+  @media (min-width: $_fz-min-vw-em) and (max-width: $_fz-max-vw-em) {
+    font-size: calc(#{$_fz-min}px + (#{$_fz-max} - #{$_fz-min}) * ((100vw - #{$_fz-min-vw}px) / (#{$_fz-max-vw} - #{$_fz-min-vw})));
+  }
+
+  @media (min-width: $_fz-max-vw-em) {
+    font-size: #{$_fz-max}px;
+  }
+}
