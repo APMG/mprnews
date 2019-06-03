@@ -20,13 +20,13 @@ export function StoryPreviewQuery(siteSlug, storySlug, previewToken) {
                   width
                   height
                 }
+              }
               uncropped {
                 instances {
                   url
                   width
                   height
                 }
-              }
               }
             }
             contentArea
