@@ -11,6 +11,7 @@ import CollectionWithData from '../components/Collection';
 import TwitterWithData from '../components/Twitter';
 import EpisodeWithData from '../components/Episode';
 import EpisodePreviewWithData from '../components/Episode/Preview';
+import StoryPreviewWithData from '../components/Story/Preview';
 
 const Routes = () => {
   return (
@@ -22,6 +23,7 @@ const Routes = () => {
       <EpisodePreviewWithData path="/preview/episodes/*" />
       <StoryWithData path="/story/*" />
       <StoriesWithData path="/stories" />
+      <StoryPreviewWithData path="/preview/stories/*" />
       <Weather path="/weather/*" />
       <Event path="/event/*" />
       <TwitterWithData path="/story/card/*" />

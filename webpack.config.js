@@ -2,28 +2,47 @@ const globImporter = require('node-sass-glob-importer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const nodeExternals = require('webpack-node-externals');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack');
-
+const CopyPlugin = require('copy-webpack-plugin');
 require('ignore-loader');
+const fs = require('fs');
+
+let HASH = null;
+try {
+  HASH = fs
+    .readFileSync('REVISION')
+    .toString()
+    .substring(0, 10);
+
+  fs.writeFile('HASH.json', `"${HASH}"`, function(err) {
+    if (err) {
+      return console.error(err); //eslint-disable-line
+    }
+  });
+} catch (err) {
+  HASH = null;
+
+  fs.unlink('HASH.json', () => {});
+}
 
 module.exports = (env, argv) => {
-  const devCmsEndpoint = `https://cmsapi-dev.publicradio.org/v1/content-areas`;
-  const prodCmsEndpoint = `https://cmsapi.publicradio.org/v1/content-areas`;
-  const nodeEnv =
-    process.env.NODE_ENV === 'development' ? devCmsEndpoint : prodCmsEndpoint;
   const devMode =
     argv && argv.mode && argv.mode !== 'production' ? true : false;
+
   const clientConfig = {
-    entry: './src/client/index.js',
+    entry: ['@babel/polyfill', './src/client/index.js'],
     output: {
       path: __dirname,
       filename: './build/assets/bundle.js'
     },
     devtool: 'cheap-module-source-map',
+    stats: {
+      // 'warnings': false
+      warningsFilter: ["Can't resolve '../../../HASH.json"]
+    },
     module: {
       rules: [
         {
-          test: /\.(pdf|jpg|png|gif|svg|ico)$/,
+          test: /\.(jpe?g|png|gif|svg|ico)$/i,
           use: [
             {
               loader: 'url-loader'
@@ -70,13 +89,24 @@ module.exports = (env, argv) => {
           : 'build/assets/[id].[hash].css'
       }),
       new HtmlWebpackPlugin({
-        template: 'src/server/index.tmpl.html',
+        template: 'src/server/index.html.tmpl',
         inject: false,
         filename: 'build/index.html'
       }),
-      new webpack.DefinePlugin({
-        'process.env.URL_ENV': JSON.stringify(nodeEnv)
-      })
+      new CopyPlugin([
+        {
+          from: './src/shared/config',
+          to: !HASH
+            ? './build/assets/[path][name].[ext]'
+            : `./build/assets/[path][name].${HASH}.[ext]`,
+          ignore: ['config.js', '.DS_Store*', 'index.js']
+        },
+        {
+          from: './src/shared/assets',
+          to: './build/assets',
+          ignore: ['config.js', '.DS_Store*', 'index.js']
+        }
+      ])
     ]
   };
 
@@ -89,6 +119,9 @@ module.exports = (env, argv) => {
       libraryTarget: 'commonjs2'
     },
     devtool: 'cheap-module-source-map',
+    stats: {
+      warningsFilter: ["Can't resolve '../../../HASH.json"]
+    },
     externals: [nodeExternals()],
     module: {
       rules: [
@@ -103,12 +136,8 @@ module.exports = (env, argv) => {
           query: { presets: ['react-app'] }
         }
       ]
-    },
-    plugins: [
-      new webpack.DefinePlugin({
-        'process.env.URL_ENV': JSON.stringify(nodeEnv)
-      })
-    ]
+    }
   };
+
   return [clientConfig, serverConfig];
 };
