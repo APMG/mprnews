@@ -4,6 +4,7 @@
 lock '~> 3.11.0'
 
 set :application, 'mpr_news'
+set :deploy_to, web_home_path
 set :repo_url,
     (
       ENV['CI_REPOSITORY_URL'] ||
@@ -19,7 +20,7 @@ namespace :deploy do
   task :restart do
     on roles(:app) do
       within deploy_path do
-        execute :pm2, 'startOrGracefulReload', 'ecosystem.json'
+        execute :pm2, 'startOrGracefulReload', '/WWW/web-home/mprnews/ecosystem.json'
         execute :pm2, :save
       end
     end
