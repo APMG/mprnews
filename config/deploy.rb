@@ -3,7 +3,7 @@
 # config valid for current version and patch releases of Capistrano
 lock '~> 3.11.0'
 
-set :application, 'mpr_news'
+set :application, 'mprnews'
 set :deploy_to, web_home_path
 set :repo_url,
     (
@@ -39,5 +39,5 @@ namespace :npm do
       end
     end
   end
-  after 'deploy:published', 'npm:install'
+  after 'deploy:published', 'install'
 end
