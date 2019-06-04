@@ -1,11 +1,11 @@
 import React from 'react';
 import App from '../components/App';
-import Home from '../endpoints/Home';
+import Weather from '../endpoints/Weather';
 
 /* eslint react/display-name: 0 */
 
 export default () => (
   <App>
-    <Home />
+    <Weather />
   </App>
 );

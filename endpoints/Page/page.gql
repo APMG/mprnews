@@ -1,0 +1,32 @@
+query PageQuery($contentAreaSlug: String!, $slug: String!) {
+  page: page(contentAreaSlug: $contentAreaSlug, slug: $slug) {
+    id
+    title
+    canonicalSlug
+    publishDate
+    body
+    description
+    resourceType
+    embeddedAssetJson
+    primaryVisuals {
+      lead {
+        aspectRatios {
+          square {
+            instances {
+              url
+              width
+              height
+            }
+          }
+        }
+        contentArea
+        dateTaken
+        dateline
+        fallback
+        longCaption
+        shortCaption
+        xid
+      }
+    }
+  }
+}
