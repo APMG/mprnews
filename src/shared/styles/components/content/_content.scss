@@ -24,8 +24,8 @@
 .content_byline {
   display: inline-block;
   font-weight: bold;
-  color: $color-link;
-  margin-right: 1em;
+  color: $color-text-light;
+  margin-right: .75em;
 }
 
 .content_pubdate {
@@ -35,8 +35,10 @@
 }
 
 .content_body {
-  font-family: $font-family-copy;
+  margin: 0 auto;
+  max-width: 50rem;
   line-height: 1.5;
+  font-family: $font-family-copy;
 
   .apm-gallery-title {
     @include hdg-3();

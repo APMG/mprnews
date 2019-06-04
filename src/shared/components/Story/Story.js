@@ -3,14 +3,16 @@ import PropTypes from 'prop-types';
 import { Loading } from 'apm-titan';
 import { Image } from 'apm-mimas';
 import { format } from 'date-fns';
+import ContentLayout from '../Content/ContentLayout';
 import Content from '../Content/Content';
+import Sidebar from '../Sidebar/Sidebar';
 
 const Story = (props) => {
   const { data } = props;
   const { story } = data;
 
   if (!data || data.loading) return <Loading />;
-  if (data.error) return <div>Error</div>;
+  if (data.error || !story) return <div>Error</div>;
 
   const authors = story.contributors.map((contributor) => {
     return {
@@ -29,29 +31,31 @@ const Story = (props) => {
   };
 
   return (
-    <Content
-      title={story.title}
-      authors={authors}
-      body={story.body}
-      image={
-        story.primaryVisuals?.lead && (
-          <Image
-            key={story.primaryVisuals.lead.fallback}
-            image={story.primaryVisuals.lead}
-            aspectRatio="uncropped"
-            sizes="(max-width: 1100px) 100vw, 1100px"
-            alt={story.primaryVisuals.lead.shortCaption}
-          />
-        )
-      }
-      imageCaption={story.primaryVisuals?.lead?.longCaption}
-      imageCredit={story.primaryVisuals?.lead?.credit?.name}
-      imageCreditHref={story.primaryVisuals?.lead?.credit?.url}
-      publishDate={format(story.publishDate, 'MMMM D, YYYY')}
-      embeddedAssetJson={story.embeddedAssetJson}
-      tag={tag()}
-      elementClass="story"
-    />
+    <ContentLayout sidebar={<Sidebar />}>
+      <Content
+        title={story.title}
+        authors={authors}
+        body={story.body}
+        image={
+          story.primaryVisuals?.lead && (
+            <Image
+              key={story.primaryVisuals.lead.fallback}
+              image={story.primaryVisuals.lead}
+              aspectRatio="uncropped"
+              sizes="(max-width: 1100px) 100vw, 1100px"
+              alt={story.primaryVisuals.lead.shortCaption}
+            />
+          )
+        }
+        imageCaption={story.primaryVisuals?.lead?.longCaption}
+        imageCredit={story.primaryVisuals?.lead?.credit?.name}
+        imageCreditHref={story.primaryVisuals?.lead?.credit?.url}
+        publishDate={format(story.publishDate, 'MMMM D, YYYY')}
+        embeddedAssetJson={story.embeddedAssetJson}
+        tag={tag()}
+        elementClass="story"
+      />
+    </ContentLayout>
   );
 };
 

@@ -2,10 +2,15 @@
 // Component mixins for figures
 //--------------------------------------------
 @mixin figure() {
-  margin: 0 -10px 50px;
+  margin: 0 -#{$container-edge} 1em;
   font-family: $font-family-default;
   font-size: 1.4rem;
   line-height: normal;
+
+  @include media($media-full-layout) {
+    margin-left: 0;
+    margin-right: 0;
+  }
 
   &.align-none {
     margin-left: auto;
@@ -45,11 +50,20 @@
 
 @mixin figure-right() {
   float: right;
+  margin-left: 10px;
 
   @include media($media-tablet) {
     float: right;
     margin-left: 30px;
   }
+
+  @include media($media-full-layout) {
+    margin-right: 0;
+  }
+}
+
+@mixin figure-quarter-right() {
+  margin-right: 0;
 }
 
 @mixin figure-left() {
@@ -60,10 +74,15 @@
 }
 
 @mixin figure_caption() {
-  margin-top: 0;
+  margin: 0 $container-edge;
   padding: 1em 1em 1em 0;
   font-size: 1.3rem;
   font-family: $font-family-default;
+
+  @include media($media-full-layout) {
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
 
 @mixin figure_credit() {

@@ -8,11 +8,13 @@ const ContentHeader = (props) => {
   return (
     <header className="content_header">
       {props.tag && (
-        <TagLink
-          to={props.tag.to}
-          tagName={props.tag.tagName}
-          elementClass="content_topic"
-        />
+        <div className="content_topic">
+          <TagLink
+            to={props.tag.to}
+            tagName={props.tag.tagName}
+            elementClass="link link-none"
+          />
+        </div>
       )}
 
       <Heading
@@ -33,7 +35,11 @@ const ContentHeader = (props) => {
           <div className="content_byline" data-testid="contentByline">
             {props.authors.map((author) => {
               return (
-                <Link to={author.href} key={author.href}>
+                <Link
+                  to={author.href}
+                  key={author.href}
+                  className="link link-none"
+                >
                   {`${author.name} `}
                 </Link>
               );
