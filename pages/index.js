@@ -1,6 +1,6 @@
 import React from 'react';
-import App from '../components/App';
-import Home from '../components/Home';
+import App from '../page-components/App';
+import Home from '../page-components/Home';
 
 /* eslint react/display-name: 0 */
 

@@ -1,6 +1,6 @@
 import React from 'react';
-import App from '../components/App';
-import Story from '../components/Story';
+import App from '../page-components/App';
+import Story from '../page-components/Story';
 
 /* eslint react/display-name: 0 */
 

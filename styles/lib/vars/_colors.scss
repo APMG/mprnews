@@ -17,8 +17,8 @@ $color-grey-20: hsl(0, 0%, 20%);
 $color-grey-10: hsl(0, 0%, 10%);
 
 // Sitewide colors
-$color-bg: $color-grey-20;
-$color-content-bg: rgba($color-black, 0.1);
+$color-bg: $color-white;
+$color-content-bg: $color-white;
 $color-default: $color-black;
 
 $color-disabled: $color-grey-10;

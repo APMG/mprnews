@@ -1,8 +1,8 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
-import { Heading } from 'apm-titan';
-import { Body } from 'amat-react';
+import { Loading } from 'apm-titan';
+import Content from '../../components/Content';
 import query from './story.gql';
 
 const Story = () => (
@@ -16,7 +16,7 @@ const Story = () => (
   >
     {({ loading, error, data: { story } }) => {
       if (error) return <div>Error loading page data</div>;
-      if (loading) return <div>Loading</div>;
+      if (loading) return <Loading />;
 
       return <StoryInner story={story} />;
     }}
@@ -25,13 +25,13 @@ const Story = () => (
 
 const StoryInner = ({ story }) => {
   return (
-    <>
-      <Heading level={1}>{story.title}</Heading>
-      <Body
-        nodeData={JSON.parse(story.body)}
-        embedded={JSON.parse(story.embeddedAssetJson)}
+    <article className="story">
+      <Content
+        title={story.title}
+        body={story.body}
+        embeddedAssetJson={story.embeddedAssetJson}
       />
-    </>
+    </article>
   );
 };
 
