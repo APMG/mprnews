@@ -9,12 +9,12 @@ const Story = ({ slug }) => (
   <Query
     query={query}
     variables={{
-      contentAreaSlug: 'mprnews',
+      contentAreaSlug: 'mpr',
       slug: slug
     }}
   >
     {({ loading, error, data: { story } }) => {
-      if (error) return <div>Error loading page data</div>;
+      if (error) return <div>Error loading story</div>;
       if (loading) return <Loading />;
 
       return <StoryInner story={story} />;
