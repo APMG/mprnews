@@ -31,9 +31,9 @@ One issue with using Next is that it renders Reach Router unusable. This, in tur
   - [x] ESLint
   - [x] Sasslint
   - [x] Prettier
-- [ ] Basic homepage
+- [x] Basic homepage
   - [x] Amat/Titan/Mimas (our libraries)
-  - [ ] GraphQL
+  - [x] GraphQL
 - [ ] Build out basic pages
 - [ ] Router
   - [ ] Routing to pages
@@ -46,10 +46,6 @@ One issue with using Next is that it renders Reach Router unusable. This, in tur
   - [ ] AudioPlayerButton
 - [ ] Google Analytics
 - [ ] Set up GitLab CI
-
-## Need Matt's help/input
-
-- [ ] Make sure Audio Player is working correctly
 
 ## Need Geoff's help/input
 
