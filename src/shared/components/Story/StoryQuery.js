@@ -7,6 +7,21 @@ export function storyQuery(siteSlug, storySlug) {
         id
         title
         canonicalSlug
+        collections {
+          title
+          canonicalSlug
+        }
+        contributors {
+          profile {
+            firstName
+            lastName
+            canonicalSlug
+
+          }
+          roles {
+            name
+          }
+        }
         publishDate
         body
         description
@@ -24,6 +39,10 @@ export function storyQuery(siteSlug, storySlug) {
               }
             }
             contentArea
+            credit {
+              name
+              url
+            }
             dateTaken
             dateline
             fallback

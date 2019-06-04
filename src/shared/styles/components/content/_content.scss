@@ -11,6 +11,29 @@
   margin-bottom: 2rem;
 }
 
+.content_topic {
+  font-weight: bold;
+  color: $color-link;
+  margin-bottom: .5em;
+}
+
+.content_meta {
+  margin: .5em 0;
+}
+
+.content_byline {
+  display: inline-block;
+  font-weight: bold;
+  color: $color-link;
+  margin-right: 1em;
+}
+
+.content_pubdate {
+  display: inline-block;
+  font-weight: bold;
+  color: $color-text-light;
+}
+
 .content_body {
   font-family: $font-family-copy;
   line-height: 1.5;
