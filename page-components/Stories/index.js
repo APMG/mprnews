@@ -25,7 +25,10 @@ const StoriesInner = ({ stories }) => (
 
         return (
           <li key={story.id}>
-            <Link as={`/story/${slug}`} href={`/story?slug=${slug}`}>
+            <Link
+              as={`/story/${slug}`}
+              href={{ pathname: '/story', query: { slug: slug } }}
+            >
               <a>{story.title}</a>
             </Link>
           </li>
