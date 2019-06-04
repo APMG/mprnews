@@ -5,17 +5,16 @@ import { Loading } from 'apm-titan';
 import Content from '../../components/Content';
 import query from './story.gql';
 
-const Story = () => (
+const Story = ({ slug }) => (
   <Query
     query={query}
     variables={{
-      contentAreaSlug: 'mprnews',
-      slug:
-        '2019/06/03/npr-sudan-security-forces-open-fire-on-protesters-in-capital'
+      contentAreaSlug: 'mpr',
+      slug: slug
     }}
   >
     {({ loading, error, data: { story } }) => {
-      if (error) return <div>Error loading page data</div>;
+      if (error) return <div>Error loading story</div>;
       if (loading) return <Loading />;
 
       return <StoryInner story={story} />;
@@ -33,6 +32,10 @@ const StoryInner = ({ story }) => {
       />
     </article>
   );
+};
+
+Story.propTypes = {
+  slug: PropTypes.string
 };
 
 StoryInner.propTypes = {

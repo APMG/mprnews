@@ -7,7 +7,7 @@ import Stories from '../page-components/Stories';
 export default () => (
   <App>
     <div>
-      <h1>Home</h1>
+      <h1>Stories</h1>
       <Stories />
     </div>
   </App>
