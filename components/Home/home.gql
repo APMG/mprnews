@@ -1,0 +1,10 @@
+query home($contentAreaSlug: String!, $slug: String!) {
+  story: story(contentAreaSlug: $contentAreaSlug, slug: $slug) {
+    title
+    publishDate
+    description
+    body
+    embeddedAssetJson
+    resourceType
+  }
+}

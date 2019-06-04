@@ -15,22 +15,25 @@ module.exports = withSass(withImages());
 
 These packages simply wrap around Next's build process and add these capabilities. Note: I tried for HOURS to get `node-sass-glob-importer` to work, but to no avail. When I put in print statements it seemed like I should have been able to overwrite their SCSS build process, but nothing worked. It seems like a small enough trade-off for now in the face of all the other gains we'll be making.
 
+I then brought in all of our standard eslint, prettier, and sasslint stuff, adding the `.next` directory to the ignore files where necessary.
+
+### Using Titan (for now)
+
+One issue with using Next is that it renders Reach Router unusable. This, in turn, renders two of our Titan components unusuable: Router and Link. I wrote a version of Titan that uses `next/link` instead, but to use it you'll want to download `apm-titan` yourself, switch to the `with-next` branch, build it with `npm run dev` and use `npm link` to connect it to this project locally for now.
+
 ## Checklist (things this app must have)
 
 - [x] SSR
-- [ ] Tests
-- [ ] SASS Styles
-- [ ] PropTypes
-- [ ] Linting
-  - [ ] ESLint
-  - [ ] Sasslint
-  - [ ] Prettier
+- [x] Tests
+- [x] SASS Styles
+- [x] PropTypes
+- [x] Linting
+  - [x] ESLint
+  - [x] Sasslint
+  - [x] Prettier
 - [ ] Basic homepage
-  - [ ] Amat/Titan/Mimas (our libraries)
+  - [x] Amat/Titan/Mimas (our libraries)
   - [ ] GraphQL
-  - [ ] Our GraphQL CMS
-- [ ] Header
-- [ ] Footer
 - [ ] Build out basic pages
 - [ ] Router
   - [ ] Routing to pages

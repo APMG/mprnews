@@ -1,4 +1,12 @@
 const withSass = require('@zeit/next-sass');
 const withImages = require('next-images');
-
-module.exports = withSass(withImages());
+require('dotenv').config();
+const webpack = require('webpack');
+module.exports = withSass(
+  withImages({
+    webpack: (config) => {
+      config.plugins.push(new webpack.EnvironmentPlugin(process.env));
+      return config;
+    }
+  })
+);
