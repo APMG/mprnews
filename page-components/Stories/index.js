@@ -1,6 +1,8 @@
 /* eslint-disable react/display-name */
 import React from 'react';
-import Link from 'next/link';
+// import Link from 'next/link';
+import { withRouter } from 'next/router';
+import { Link } from '../../routes';
 import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
 import { Loading } from 'apm-titan';
@@ -22,9 +24,13 @@ const StoriesInner = ({ stories }) => {
     <div>
       <ul>
         {stories.results?.items?.map((story) => {
+          let slug = story.canonicalSlug;
+
+          console.log(encodeURIComponent(slug));
+
           return (
             <li key={story.id}>
-              <Link href={`/story?slug=${story.canonicalSlug}`}>
+              <Link route="story" params={{ slug: slug }}>
                 <a>{story.title}</a>
               </Link>
             </li>
@@ -39,4 +45,4 @@ StoriesInner.propTypes = {
   stories: PropTypes.object
 };
 
-export default Stories;
+export default withRouter(Stories);

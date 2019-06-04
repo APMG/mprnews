@@ -5,8 +5,10 @@ import Story from '../page-components/Story';
 
 /* eslint react/display-name: 0 */
 
-export default withRouter((props) => (
-  <App>
-    <Story slug={props.router.query.slug} />
-  </App>
-));
+export default withRouter(({ router }) => {
+  return (
+    <App>
+      <Story slug={router.query.slug} />
+    </App>
+  );
+});
