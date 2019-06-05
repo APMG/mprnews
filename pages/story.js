@@ -1,17 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import App from '../page-components/App';
-import Story from '../page-components/Story';
+import App from '../components/App';
+import Story from '../endpoints/Story';
 
-/* eslint react/display-name: 0 */
-
-// export default withRouter(({ router }) => {
-//   return (
-//     <App>
-//       <Story slug={router.query.slug} />
-//     </App>
-//   );
-// });
 const StoryPage = (props) => (
   <App>
     <Story slug={props.slug} />

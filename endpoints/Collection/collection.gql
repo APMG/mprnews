@@ -1,0 +1,50 @@
+query collectionQuery($contentAreaSlug: String!, $slug: String!) {
+  collection: collection(contentAreaSlug: $contentAreaSlug, slug: $slug) { 
+    id
+    title
+    results(page: ${pageNum}, pageSize: 10) {
+      nextPage
+      pageSize
+      totalPages
+      totalItems
+      previousPage
+      currentPage
+      items {
+        id
+        title
+        publishDate
+        description
+        canonicalSlug
+        primaryVisuals {
+          lead {
+            aspect_ratios: aspectRatios {
+              uncropped {
+                instances {
+                  url
+                  width
+                  height
+                }
+              }
+            }
+            contentArea
+            dateTaken
+            dateline
+            fallback
+            longCaption
+            shortCaption
+            xid
+          }
+        }
+        audio {
+          title
+          durationHms
+          encodings {
+            httpFilePath
+          }
+        }
+      }
+      totalItems
+      nextPage
+    }
+  }
+}

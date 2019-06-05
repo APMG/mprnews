@@ -1,11 +1,13 @@
-query story($contentAreaSlug: String!, $slug: String!) {
-  story: story(contentAreaSlug: $contentAreaSlug, slug: $slug) {
+query PageQuery($contentAreaSlug: String!, $slug: String!) {
+  page: page(contentAreaSlug: $contentAreaSlug, slug: $slug) {
+    id
     title
+    canonicalSlug
     publishDate
-    description
     body
-    embeddedAssetJson
+    description
     resourceType
+    embeddedAssetJson
     primaryVisuals {
       lead {
         aspectRatios {
