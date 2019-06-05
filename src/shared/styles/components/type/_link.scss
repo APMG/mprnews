@@ -1,0 +1,15 @@
+//-----------------------------------------
+// Link Styles
+//-----------------------------------------
+
+.link {
+  @include link();
+}
+
+.link-plain {
+  @include link-plain();
+}
+
+.link-none {
+  @include link-none();
+}

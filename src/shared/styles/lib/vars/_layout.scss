@@ -7,7 +7,7 @@
 //--------------------------------------------------
 
 // Site layout
-$max-width: 900px;
+$max-width: 1400px;
 $vertical-buffer: 0; // Space below header
 $container-edge: 10px; // Minimum margin around sides of site container
 $player-height: 100px;
@@ -15,6 +15,7 @@ $player-height: 100px;
 // Main Header
 $header-height-mobile: 96px;
 $header-height-desktop: 96px;
+$header-buffer: 10px;
 
 // Grid
 $grid-row-gutter: 17.5px;
