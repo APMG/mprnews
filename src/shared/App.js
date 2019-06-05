@@ -14,8 +14,8 @@ class App extends Component {
     super(props);
 
     this.state = {
-      selectedCoordinates: null,
-      selectedId: null,
+      // selectedCoordinates: null,
+      // selectedName: null,
       coordinates: null,
       defaultWeather: {
         id: 'minneapolis',
@@ -24,27 +24,34 @@ class App extends Component {
         long: '-93.2223',
         forecastOffice: 'MPX'
       },
-      weather: { isLoaded: false, error: null },
+      weather: {
+        isLoaded: false,
+        error: null,
+        selectedCoordinates: null,
+        selectedName: null,
+        coordinates: null
+      },
       handleOnChange: this.handleOnChange.bind(this),
       fetchProps: this.fetchProps.bind(this)
     };
   }
 
   fetchProps(slug) {
+    console.log('this is slug', slug);
     const coordinates = weatherConfig.find(
       (weather) => weather.id.indexOf(slug) > -1
     );
-    if (coordinates === this.state.coordinates) return;
+    if (coordinates === this.state.weather.selectedCoordinates) return;
     this.setState(
       {
-        coordinates: `${coordinates.lat},${coordinates.long}`
+        ...this.state.weather,
+        weather: {
+          selectedCoordinates: `${coordinates.lat},${coordinates.long}`,
+          selectedName: coordinates.name
+        }
       },
       this.fetchWeatherData(`${coordinates.lat},${coordinates.long}`)
     );
-  }
-
-  componentDidMount() {
-    console.log('componentdidMount', this.state);
   }
 
   fetchWeatherData(coordinates) {
@@ -55,7 +62,12 @@ class App extends Component {
       .get(url)
       .then((res) => {
         return this.setState({
-          weather: { response: res.data, isLoaded: true }
+          weather: {
+            isLoaded: true,
+            selectedName: this.state.weather.selectedName,
+            selectedCoordinates: this.state.weather.selectedCoordinates,
+            response: res.data
+          }
         });
       })
       .catch((error) => {
@@ -66,11 +78,12 @@ class App extends Component {
   handleOnChange(event) {
     this.setState(
       {
-        ...this.state,
-        selectedCoordinates: event.target.value,
-        selectedId: event.target[event.target.selectedIndex].id
+        weather: {
+          ...this.state.weather,
+          selectedCoordinates: event.target.value,
+          selectedName: event.target[event.target.selectedIndex].label
+        }
       },
-
       this.fetchWeatherData(event.target.value)
     );
     navigate(`/weather/${event.target[event.target.selectedIndex].id}`);

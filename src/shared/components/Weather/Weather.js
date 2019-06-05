@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Heading } from 'apm-titan';
-import Dropdown from './utils/DropDown';
+// import Dropdown from './utils/DropDown';
 import { weatherConfig } from '../../config/index';
 
 export default class Weather extends React.Component {
@@ -14,7 +14,6 @@ export default class Weather extends React.Component {
 
   render() {
     const { isLoaded, response, error } = this.props.weather;
-    console.log('this', this);
 
     if (error) {
       return <div>Error: {error.message}</div>;
@@ -23,8 +22,9 @@ export default class Weather extends React.Component {
     } else {
       return (
         <div>
-          <Heading level={2}>{this.props.selectedId}</Heading>
-          <Dropdown response={this} />
+          {console.log('weather.JS 💡', this.props)}
+          <Heading level={2}>{this.props.weather.selectedName}</Heading>
+          {/* <Dropdown response={this} /> */}
           Generated at:
           {response.properties.generatedAt}
           <br />
@@ -33,14 +33,14 @@ export default class Weather extends React.Component {
           <div>
             <select onChange={isLoaded && this.props.handleOnChange}>
               <option defaultValue="selected">More locations</option>
-              {weatherConfig.map((event) => (
+              {weatherConfig.map((location) => (
                 <option
-                  id={event.id}
-                  name={event.name}
-                  key={event.id}
-                  value={`${event.lat},${event.long}`}
+                  id={location.id}
+                  label={location.name}
+                  key={location.id}
+                  value={`${location.lat},${location.long}`}
                 >
-                  {event.name}
+                  {location.name}
                 </option>
               ))}
             </select>
@@ -91,7 +91,7 @@ Weather.propTypes = {
   handleOnChange: PropTypes.func,
   pathSlug: PropTypes.string,
   fetchProps: PropTypes.func,
-  selectedId: PropTypes.string,
+  selectedName: PropTypes.string,
   weather: PropTypes.object,
   error: PropTypes.object,
   isLoaded: PropTypes.bool,
