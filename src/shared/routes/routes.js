@@ -10,6 +10,9 @@ import NotFound from '../components/Errors/NotFound';
 import CollectionWithData from '../components/Collection';
 import TwitterWithData from '../components/Twitter';
 import EpisodeWithData from '../components/Episode';
+import EpisodePreviewWithData from '../components/Episode/Preview';
+import StoryPreviewWithData from '../components/Story/Preview';
+import PagePreviewWithData from '../components/Page/Preview';
 
 const Routes = () => {
   return (
@@ -17,9 +20,12 @@ const Routes = () => {
       <Home path="/" />
       <CollectionWithData path="/topic/*" />
       <PageWithData path="/page/*" />
+      <PagePreviewWithData path="/preview/pages/*" />
       <EpisodeWithData path="/episode/*" />
+      <EpisodePreviewWithData path="/preview/episodes/*" />
       <StoryWithData path="/story/*" />
       <StoriesWithData path="/stories" />
+      <StoryPreviewWithData path="/preview/stories/*" />
       <Weather path="/weather/*" />
       <Event path="/event/*" />
       <TwitterWithData path="/story/card/*" />

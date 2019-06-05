@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import Routes from '../shared/routes/routes';
 import axios from 'axios';
-// import PropTypes from 'prop-types';
-import { Link, navigate } from 'apm-titan';
+import { navigate } from 'apm-titan';
+import MainLayout from './components/Layout/MainLayout';
 import SiteConfigContext from './context/SiteConfigContext';
 import mprNewsConfig from './config/config';
-import WeatherHeader from './components/WeatherHeader/index';
-import CollectionLink from './components/Collection/CollectionLink';
 import WeatherContext from './context/WeatherContext';
 import '../shared/styles/index.scss';
 import { weatherConfig } from './config';
@@ -83,15 +81,9 @@ class App extends Component {
       <div>
         <SiteConfigContext.Provider value={mprNewsConfig}>
           <WeatherContext.Provider value={this.state}>
-            <Link to="/">
-              <img
-                src="//mpr.apmcdn.org/news/1550179261168/img/mprnews.svg"
-                alt=""
-              />
-            </Link>
-            <WeatherHeader />
-            <CollectionLink />
-            <Routes />
+            <MainLayout>
+              <Routes />
+            </MainLayout>
           </WeatherContext.Provider>
         </SiteConfigContext.Provider>
       </div>

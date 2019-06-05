@@ -7,30 +7,38 @@
 // collection bodies
 //--------------------------------------
 
+.content_header {
+  margin-bottom: 2rem;
+}
+
+.content_topic {
+  font-weight: bold;
+  color: $color-link;
+  margin-bottom: .5em;
+}
+
+.content_meta {
+  margin: .5em 0;
+}
+
+.content_byline {
+  display: inline-block;
+  font-weight: bold;
+  color: $color-text-light;
+  margin-right: .75em;
+}
+
+.content_pubdate {
+  display: inline-block;
+  font-weight: bold;
+  color: $color-text-light;
+}
+
 .content_body {
-  .figure_caption {
-    display: table;
-    height: 100%;
-    width: 100%;
-    margin-top: 0;
-    background-color: $color-grey-90;
-    padding: 1em 1em 1em 0;
-  }
-
-  .figure_text {
-    display: inline;
-    font-size: 1.2em;
-    font-family: $font-family-copy;
-  }
-
-  .figure_credit {
-    display: inline;
-    padding-left: .5em;
-    text-align: left;
-    font-size: 1.2em;
-    font-weight: 900;
-    color: $color-grey-40;
-  }
+  margin: 0 auto;
+  max-width: 50rem;
+  line-height: 1.5;
+  font-family: $font-family-copy;
 
   .apm-gallery-title {
     @include hdg-3();

@@ -6,8 +6,8 @@
 //----------------------------------------------
 
 html {
+  @include fluid-type();
   box-sizing: border-box;
-  font-size: $font-size-root;
   height: 100%;
 }
 

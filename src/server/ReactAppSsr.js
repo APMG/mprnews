@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom/server';
 import { ApolloProvider, renderToStringWithData } from 'react-apollo';
 import { HelmetProvider } from 'react-helmet-async';
 import { ServerLocation } from 'apm-titan';
-import { client } from '../shared/graphql/graphqlClient';
+import { createClient } from '../shared/graphql/graphqlClient';
 import App from '../shared/App';
 import fs from 'fs';
-import os from 'os';
+
 import {
   globalHostFunc,
   replaceTemplateStrings,
@@ -17,20 +17,18 @@ import {
 export default function ReactAppSsr(app) {
   app.use((req, res) => {
     const helmetContext = {};
-    const filepath =
-      process.env.APP_PATH === 'relative' ? 'build' : 'current/build';
+    const filepath = 'build';
+    // process.env.APP_PATH === 'relative' ? 'build' : 'current/build';
 
     const forwarded = globalHostFunc(req).split(':')[0];
-    const hostname = os.hostname();
+
     const context = {};
 
-    let graphqlEnv = hostname.match(/dev/) ? '-dev' : '';
-    graphqlEnv = process.env.NODE_ENV === 'development' ? '-dev' : graphqlEnv;
-    const graphqlClient = client(graphqlEnv);
+    const client = createClient();
 
     let template = fs.readFileSync(`${filepath}/index.html`).toString();
     const component = (
-      <ApolloProvider client={graphqlClient}>
+      <ApolloProvider client={client}>
         <HelmetProvider context={helmetContext}>
           <ServerLocation url={req.url} context={context}>
             <App forward={forwarded} />

@@ -1,6 +1,9 @@
 // Colors
 $color-red: #b4111a;
 $color-green: #84c446;
+$color-blue: #3d8fa5;
+$color-blue-dark: #00334e;
+$color-blue-faded: #3f6275;
 $color-transparent: rgba(255, 255, 255, 0);
 $color-white: #ffffff;
 $color-black: #000000;
@@ -18,12 +21,12 @@ $color-grey-10: hsl(0, 0%, 10%);
 // Sitewide colors
 $color-bg: $color-white;
 $color-content-bg: rgba($color-black, .75);
-$color-default: $color-grey-20;
+$color-default: $color-grey-10;
 
 $color-disabled: $color-grey-90;
 $color-disabled-bg: #fafafa;
 
-$color-selection: $color-grey-70;
+$color-selection: #c2f2ff;
 
 $color-success: $color-green;
 $color-warning: $color-red;
@@ -33,10 +36,11 @@ $color-header: $color-default;
 $color-header-bg: $color-white;
 $color-text: $color-default;
 $color-text-light: $color-grey-50;
-$color-text-dark: $color-grey-20;
-$color-link: $color-red;
-$color-link-hover: darken($color-link, 20%);
+$color-text-dark: $color-grey-30;
+$color-link: $color-blue-dark;
+$color-link-hover: $color-blue-faded;
 $color-screen: rgba($color-black, .7);
 
 // Temp podcast theme color
-$color-theme: $color-white;
+$color-theme-text: $color-blue-dark;
+$color-theme: $color-blue;

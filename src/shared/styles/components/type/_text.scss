@@ -1,0 +1,57 @@
+//----------------------------------------------
+// Utility text styles
+//----------------------------------------------
+
+// Colors
+
+.text-light {
+  color: $color-text-light;
+}
+
+.text-dark {
+  color: $color-text-dark;
+}
+
+.text-white {
+  color: $color-white;
+}
+
+// Styles
+
+.text-bold {
+  font-weight: bold;
+}
+
+.text-small {
+  font-size: 1.4rem;
+}
+
+.text-em {
+  font-style: italic;
+}
+
+// Alignment
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+// Fonts
+
+.text-sans {
+  font-family: $font-family-sans;
+}
+
+.text-serif {
+  font-family: $font-family-serif;
+}
+
+// Miscellany
