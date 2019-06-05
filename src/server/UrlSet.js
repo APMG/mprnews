@@ -8,22 +8,18 @@ export default function UrlSet(app) {
       res.header('Content-Type', 'text/xml');
       globalHostFunc(req);
 
-      let resourceConfig = ['profile', 'story', 'page'];
       let xmlString = `<?xml version="1.0" encoding="UTF-8"?>
 
   <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
-
-      response.data.contentArea.items.forEach((type) => {
-        if (resourceConfig.indexOf(type.resourceType) > -1) {
-          xmlString += `
+      response.data.sitemap.items.forEach((type) => {
+        xmlString += `
               <sitemap>
-                <loc>https://${global.host}/${
-            resourceConfig[resourceConfig.indexOf(type.resourceType)]
-          }/${type.canonicalSlug}</loc>
+                <loc>https://${global.host}/${type.resourceType}/${
+          type.canonicalSlug
+        }</loc>
           <lastmod>${type.updatedAt}</lastmod>
               </sitemap>
           `;
-        }
       });
 
       xmlString += `</sitemapindex> `;

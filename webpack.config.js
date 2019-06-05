@@ -29,7 +29,7 @@ module.exports = (env, argv) => {
   const devCmsEndpoint = `https://cmsproxy-dev.publicradio.org/api/v1/graphql`;
   const prodCmsEndpoint = `https://cmsproxy.publicradio.org/api/v1/graphql`;
 
-  const nodeEnv =
+  const graphqlEnv =
     process.env.NODE_ENV === 'development' ? devCmsEndpoint : prodCmsEndpoint;
 
   const devMode =
@@ -115,7 +115,7 @@ module.exports = (env, argv) => {
         }
       ]),
       new webpack.DefinePlugin({
-        'process.env.URL_ENV': JSON.stringify(nodeEnv)
+        'process.env.URL_ENV': JSON.stringify(graphqlEnv)
       })
     ]
   };
@@ -149,7 +149,7 @@ module.exports = (env, argv) => {
     },
     plugins: [
       new webpack.DefinePlugin({
-        'process.env.URL_ENV': JSON.stringify(nodeEnv)
+        'process.env.URL_ENV': JSON.stringify(graphqlEnv)
       })
     ]
   };

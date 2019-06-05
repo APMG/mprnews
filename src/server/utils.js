@@ -10,8 +10,8 @@ export async function sitemapFetchById(slug, id) {
     method: 'post',
     data: {
       query: `
-        query NewQuery($contentSlug: String = "${slug}" $contentPage: Int = ${id}) {
-          contentArea: contentList(contentAreaSlug: $contentSlug, page: $contentPage) {
+        query SitemapQuery($contentSlug: String = "${slug}" $contentPage: Int = ${id}) {
+          sitemap: contentList(contentAreaSlug: $contentSlug, page: $contentPage, contentTypes: [PROFILES, STORIES, PAGES]) {
             totalPages
             totalItems
             items {
@@ -40,8 +40,8 @@ export async function sitemapFetch(slug) {
     method: 'post',
     data: {
       query: `
-        query NewQuery($contentSlug: String = "${slug}") {
-          contentArea: contentList(contentAreaSlug: $contentSlug) {
+        query SitemapQuery($contentSlug: String = "${slug}") {
+          sitemap: contentList(contentAreaSlug: $contentSlug ) {
             totalPages
             totalItems
           }
