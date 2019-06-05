@@ -5,8 +5,27 @@ import fs from 'fs';
 
 export async function sitemapFetchById(slug, id) {
   let data;
-  await axios
-    .get(`${process.env.URL_ENV}/${slug}/sitemap?page=${id}`)
+  await axios({
+    url: process.env.URL_ENV,
+    method: 'post',
+    data: {
+      query: `
+        query SitemapQuery($contentSlug: String = "${slug}" $contentPage: Int = ${id}) {
+          sitemap: contentList(contentAreaSlug: $contentSlug, page: $contentPage, contentTypes: [PROFILES, STORIES, PAGES]) {
+            totalPages
+            totalItems
+            items {
+              id
+              slugs
+              resourceType
+              canonicalSlug
+              updatedAt
+            }
+          }
+        }  
+      `
+    }
+  })
     .then((response) => {
       data = response.data;
     })
@@ -16,8 +35,20 @@ export async function sitemapFetchById(slug, id) {
 
 export async function sitemapFetch(slug) {
   let data;
-  await axios
-    .get(`${process.env.URL_ENV}/${slug}/sitemap`)
+  await axios({
+    url: process.env.URL_ENV,
+    method: 'post',
+    data: {
+      query: `
+        query SitemapQuery($contentSlug: String = "${slug}") {
+          sitemap: contentList(contentAreaSlug: $contentSlug ) {
+            totalPages
+            totalItems
+          }
+        }  
+      `
+    }
+  })
     .then((response) => {
       data = response.data;
     })

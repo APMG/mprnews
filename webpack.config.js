@@ -3,6 +3,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const nodeExternals = require('webpack-node-externals');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const webpack = require('webpack');
 require('ignore-loader');
 const fs = require('fs');
 
@@ -25,6 +26,12 @@ try {
 }
 
 module.exports = (env, argv) => {
+  const devCmsEndpoint = `https://cmsproxy-dev.publicradio.org/api/v1/graphql`;
+  const prodCmsEndpoint = `https://cmsproxy.publicradio.org/api/v1/graphql`;
+
+  const graphqlEnv =
+    process.env.NODE_ENV === 'development' ? devCmsEndpoint : prodCmsEndpoint;
+
   const devMode =
     argv && argv.mode && argv.mode !== 'production' ? true : false;
 
@@ -106,7 +113,10 @@ module.exports = (env, argv) => {
           to: './build/assets',
           ignore: ['config.js', '.DS_Store*', 'index.js']
         }
-      ])
+      ]),
+      new webpack.DefinePlugin({
+        'process.env.URL_ENV': JSON.stringify(graphqlEnv)
+      })
     ]
   };
 
@@ -136,7 +146,12 @@ module.exports = (env, argv) => {
           query: { presets: ['react-app'] }
         }
       ]
-    }
+    },
+    plugins: [
+      new webpack.DefinePlugin({
+        'process.env.URL_ENV': JSON.stringify(graphqlEnv)
+      })
+    ]
   };
 
   return [clientConfig, serverConfig];
