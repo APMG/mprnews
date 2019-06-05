@@ -2,7 +2,7 @@ import React from 'react';
 import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
 import query from './page.gql';
-import Content from '../../components/Content/Content';
+import Content from '../../components/Content';
 
 const Page = () => (
   <Query

@@ -9,7 +9,7 @@ const Story = ({ slug }) => (
   <Query
     query={query}
     variables={{
-      contentAreaSlug: 'mpr',
+      contentAreaSlug: 'mprnews',
       slug: slug
     }}
   >
