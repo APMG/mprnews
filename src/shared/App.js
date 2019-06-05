@@ -14,30 +14,19 @@ class App extends Component {
     super(props);
 
     this.state = {
-      // selectedCoordinates: null,
-      // selectedName: null,
-      coordinates: null,
-      defaultWeather: {
-        id: 'minneapolis',
-        name: 'MSP Airport',
-        lat: '44.8848',
-        long: '-93.2223',
-        forecastOffice: 'MPX'
-      },
       weather: {
         isLoaded: false,
         error: null,
         selectedCoordinates: null,
-        selectedName: null,
+        selectedHeader: null,
         coordinates: null
       },
       handleOnChange: this.handleOnChange.bind(this),
-      fetchProps: this.fetchProps.bind(this)
+      fetchSlugProps: this.fetchSlugProps.bind(this)
     };
   }
 
-  fetchProps(slug) {
-    console.log('this is slug', slug);
+  fetchSlugProps(slug) {
     const coordinates = weatherConfig.find(
       (weather) => weather.id.indexOf(slug) > -1
     );
@@ -47,7 +36,7 @@ class App extends Component {
         ...this.state.weather,
         weather: {
           selectedCoordinates: `${coordinates.lat},${coordinates.long}`,
-          selectedName: coordinates.name
+          selectedHeader: coordinates.name
         }
       },
       this.fetchWeatherData(`${coordinates.lat},${coordinates.long}`)
@@ -56,15 +45,13 @@ class App extends Component {
 
   fetchWeatherData(coordinates) {
     let url = `https://api.weather.gov/points/${coordinates}/forecast`;
-
-    console.log('🇨🇱', url);
     axios
       .get(url)
       .then((res) => {
         return this.setState({
           weather: {
             isLoaded: true,
-            selectedName: this.state.weather.selectedName,
+            selectedHeader: this.state.weather.selectedHeader,
             selectedCoordinates: this.state.weather.selectedCoordinates,
             response: res.data
           }
@@ -81,7 +68,7 @@ class App extends Component {
         weather: {
           ...this.state.weather,
           selectedCoordinates: event.target.value,
-          selectedName: event.target[event.target.selectedIndex].label
+          selectedHeader: event.target[event.target.selectedIndex].label
         }
       },
       this.fetchWeatherData(event.target.value)
@@ -89,7 +76,6 @@ class App extends Component {
     navigate(`/weather/${event.target[event.target.selectedIndex].id}`);
   }
   render() {
-    console.log(this);
     return (
       <div>
         <SiteConfigContext.Provider value={mprNewsConfig}>
@@ -103,8 +89,5 @@ class App extends Component {
     );
   }
 }
-// App.propTypes = {
-//   history: PropTypes.string
-// };
 
 export default App;

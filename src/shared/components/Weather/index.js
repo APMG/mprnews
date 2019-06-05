@@ -11,7 +11,7 @@ const WeatherWrapper = (props) => {
       pathSlug={pathSlug}
       weather={context.weather}
       handleOnChange={context.handleOnChange}
-      fetchProps={context.fetchProps}
+      fetchSlugProps={context.fetchSlugProps}
     />
   );
 };

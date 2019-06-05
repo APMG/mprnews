@@ -1,14 +1,12 @@
 import React from 'react';
 
 const WeatherContext = React.createContext({
-  // selectedCoordinates: null,
-  // selectedName: null,
   weather: {
     response: {},
     isloaded: '',
     error: '',
     selectedCoordinates: null,
-    selectedName: null
+    selectedHeader: null
   },
   defaultWeather: {
     id: 'minneapolis',

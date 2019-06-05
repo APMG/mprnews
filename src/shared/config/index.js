@@ -133,6 +133,13 @@ export const weatherConfig = [
       forecastOffice: 'FGF'
     },
     {
+      id: 'virginia',
+      name: 'Virginia, MN',
+      lat: '47.5233',
+      long: '-92.5366',
+      forecastOffice: 'DLH'
+    },
+    {
       id: 'worthington',
       name: 'Worthington, MN',
       lat: '43.6229',
