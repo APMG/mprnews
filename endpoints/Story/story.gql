@@ -1,0 +1,32 @@
+query storyQuery($contentAreaSlug: String!, $slug: String!) {
+  story: story(contentAreaSlug: $contentAreaSlug, slug: $slug) {
+    id
+    title
+    canonicalSlug
+    publishDate
+    body
+    description
+    resourceType
+    embeddedAssetJson
+    primaryVisuals {
+      lead {
+        aspectRatios {
+          square {
+            instances {
+              url
+              width
+              height
+            }
+          }
+        }
+        contentArea
+        dateTaken
+        dateline
+        fallback
+        longCaption
+        shortCaption
+        xid
+      }
+    }
+  }
+}

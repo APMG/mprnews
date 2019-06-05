@@ -1,14 +1,13 @@
 import React from 'react';
-import App from '../page-components/App';
-import Stories from '../page-components/Stories';
+import App from '../components/App';
+import Home from '../endpoints/Home';
 
 /* eslint react/display-name: 0 */
 
 export default () => (
   <App>
     <div>
-      <h1>Home</h1>
-      <Stories />
+      <Home />
     </div>
   </App>
 );
