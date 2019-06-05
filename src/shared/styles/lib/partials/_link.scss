@@ -20,9 +20,16 @@
 
 @mixin link-plain() {
   text-decoration: none;
-  background-color: transparent;
 
   &:hover {
     text-decoration: underline;
+  }
+}
+
+@mixin link-none() {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
   }
 }
