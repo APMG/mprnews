@@ -6,10 +6,10 @@ import Page from '../endpoints/Page';
 
 /* eslint react/display-name: 0 */
 
-const AmpPage = withAmp((props) => {
+const AmpPage = withAmp(({ slug }) => {
   return (
     <Main>
-      <Page slug={props.slug} />
+      <Page slug={slug} />
     </Main>
   );
 });

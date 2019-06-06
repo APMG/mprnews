@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import Main from '../layouts/Main';
 import Story from '../endpoints/Story';
 
-const StoryPage = (props) => (
+const StoryPage = ({ slug }) => (
   <Main>
-    <Story slug={props.slug} />
+    <Story slug={slug} />
   </Main>
 );
 

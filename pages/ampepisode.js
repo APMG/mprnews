@@ -6,10 +6,10 @@ import Episode from '../endpoints/Episode';
 
 /* eslint react/display-name: 0 */
 
-const AmpEpsiode = withAmp((props) => {
+const AmpEpsiode = withAmp(({ slug }) => {
   return (
     <Main>
-      <Episode slug={props.slug} />
+      <Episode slug={slug} />
     </Main>
   );
 });

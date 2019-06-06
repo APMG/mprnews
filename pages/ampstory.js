@@ -6,10 +6,10 @@ import Story from '../endpoints/Story';
 
 /* eslint react/display-name: 0 */
 
-const AmpStory = withAmp((props) => {
+const AmpStory = withAmp(({ slug }) => {
   return (
     <Main>
-      <Story slug={props.slug} />
+      <Story slug={slug} />
     </Main>
   );
 });

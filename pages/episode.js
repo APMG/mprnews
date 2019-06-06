@@ -5,9 +5,9 @@ import Episode from '../endpoints/Episode';
 
 /* eslint react/display-name: 0 */
 
-const EpisodePage = (props) => (
+const EpisodePage = ({ slug }) => (
   <Main>
-    <Episode slug={props.slug} />
+    <Episode slug={slug} />
   </Main>
 );
 
