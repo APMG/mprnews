@@ -5,7 +5,7 @@ import WeatherContext from '../endpoints/Weather/WeatherContext';
 import axios from 'axios';
 import Router from 'next/router';
 
-export default function WeatherPage() {
+const WeatherPage = () => {
   const [location, setLocation] = useState(null);
   const [weather, setWeather] = useState({
     response: {},
@@ -56,4 +56,6 @@ export default function WeatherPage() {
       </WeatherContext.Provider>
     </Main>
   );
-}
+};
+
+export default WeatherPage;
