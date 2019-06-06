@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withAmp } from 'next/amp';
-import App from '../components/App';
+import Main from '../layouts/Main';
 import Episode from '../endpoints/Episode';
 
 /* eslint react/display-name: 0 */
 
 const AmpEpsiode = withAmp((props) => {
   return (
-    <App>
+    <Main>
       <Episode slug={props.slug} />
-    </App>
+    </Main>
   );
 });
 

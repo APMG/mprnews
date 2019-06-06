@@ -3,6 +3,7 @@ logs
 npm-debug.log*
 .DS_Store
 .next
+.vscode
 
 coverage
 build

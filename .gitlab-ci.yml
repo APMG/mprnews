@@ -3,9 +3,9 @@ before_script:
 # Jest:
 #   script:
 #     - npm run test:ci
-# ESLint:
-#   script:
-#     - npm run eslint
+ESLint:
+  script:
+    - npm run eslint
 SassLint:
   script:
     - npm run sasslint

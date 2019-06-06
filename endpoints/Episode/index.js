@@ -8,7 +8,7 @@ const Episode = ({ slug }) => (
   <Query
     query={query}
     variables={{
-      contentAreaSlug: 'mprnews',
+      contentAreaSlug: process.env.CONTENT_AREA_SLUG,
       slug: slug
     }}
   >

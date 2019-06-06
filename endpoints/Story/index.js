@@ -1,7 +1,7 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
-import { Loading } from 'apm-titan';
+import { Loading } from '@apmg/titan';
 import Content from '../../components/Content';
 import query from './story.gql';
 
@@ -9,15 +9,15 @@ const Story = ({ slug }) => (
   <Query
     query={query}
     variables={{
-      contentAreaSlug: 'mprnews',
+      contentAreaSlug: process.env.CONTENT_AREA_SLUG,
       slug: slug
     }}
   >
-    {({ loading, error, data: { story } }) => {
+    {({ loading, error, data }) => {
       if (error) return <div>Error loading story</div>;
       if (loading) return <Loading />;
 
-      return <StoryInner story={story} />;
+      return <StoryInner story={data.story} />;
     }}
   </Query>
 );

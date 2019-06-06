@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withAmp } from 'next/amp';
-import App from '../components/App';
+import Main from '../layouts/Main';
 import Page from '../endpoints/Page';
 
 /* eslint react/display-name: 0 */
 
 const AmpPage = withAmp((props) => {
   return (
-    <App>
+    <Main>
       <Page slug={props.slug} />
-    </App>
+    </Main>
   );
 });
 

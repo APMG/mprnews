@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Heading } from 'apm-titan';
+import { Heading } from '@apmg/titan';
 import { Body } from 'amat-react';
 
 const Content = (props) => {

@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import App from '../components/App';
+import Main from '../layouts/Main';
 import Episode from '../endpoints/Episode';
 
 /* eslint react/display-name: 0 */
 
 const EpisodePage = (props) => (
-  <App>
+  <Main>
     <Episode slug={props.slug} />
-  </App>
+  </Main>
 );
 
 EpisodePage.getInitialProps = async ({ query }) => {

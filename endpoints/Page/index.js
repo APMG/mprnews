@@ -8,15 +8,15 @@ const Page = ({ slug }) => (
   <Query
     query={query}
     variables={{
-      contentAreaSlug: 'mprnews',
+      contentAreaSlug: process.env.CONTENT_AREA_SLUG,
       slug: slug
     }}
   >
-    {({ loading, error, data: { page } }) => {
+    {({ loading, error, data }) => {
       if (error) return <div>Error loading page data</div>;
       if (loading) return <div>Loading</div>;
 
-      return <PageInner page={page} />;
+      return <PageInner page={data.page} />;
     }}
   </Query>
 );
