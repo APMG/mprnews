@@ -5,7 +5,6 @@ import Nav from './Nav';
 import Logo from './Logo';
 import WeatherHeader from '../WeatherHeader/index';
 import Icon from '../Icons/IconSearch';
-// import SearchIcon from '../Icons/IconSearch';
 
 class Header extends React.Component {
   constructor(props) {
