@@ -4,20 +4,19 @@ import PropTypes from 'prop-types';
 import query from './episode.gql';
 import Content from '../../components/Content';
 
-const Episode = () => (
+const Episode = ({ slug }) => (
   <Query
     query={query}
     variables={{
       contentAreaSlug: 'mprnews',
-      slug:
-        '2019/05/28/simple-episode-do-voting-laws-keep-people-of-color-from-the-polls'
+      slug: slug
     }}
   >
-    {({ loading, error, data: { episode } }) => {
+    {({ loading, error, data }) => {
       if (error) return <div>Error loading page data</div>;
       if (loading) return <div>Loading</div>;
 
-      return <EpisodeInner episode={episode} />;
+      return <EpisodeInner episode={data.episode} />;
     }}
   </Query>
 );
@@ -32,6 +31,10 @@ const EpisodeInner = ({ episode }) => {
       />
     </article>
   );
+};
+
+Episode.propTypes = {
+  slug: PropTypes.string
 };
 
 EpisodeInner.propTypes = {

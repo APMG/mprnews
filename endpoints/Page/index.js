@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 import query from './page.gql';
 import Content from '../../components/Content';
 
-const Page = () => (
+const Page = ({ slug }) => (
   <Query
     query={query}
     variables={{
       contentAreaSlug: 'mprnews',
-      slug: 'ethics'
+      slug: slug
     }}
   >
     {({ loading, error, data: { page } }) => {
@@ -31,6 +31,10 @@ const PageInner = ({ page }) => {
       />
     </article>
   );
+};
+
+Page.propTypes = {
+  slug: PropTypes.any
 };
 
 PageInner.propTypes = {
