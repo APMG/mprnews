@@ -6,7 +6,7 @@ const WeatherContext = React.createContext({
     isloaded: '',
     error: '',
     selectedCoordinates: null,
-    selectedHeader: null
+    selectedLocationName: null
   },
   defaultWeather: {
     id: 'minneapolis',

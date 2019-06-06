@@ -10,7 +10,7 @@ export default class Weather extends React.Component {
     super(props);
   }
   componentDidMount() {
-    this.props.fetchSlugProps(this.props.pathSlug);
+    this.props.getSlugProps(this.props.pathSlug);
   }
 
   render() {
@@ -23,7 +23,7 @@ export default class Weather extends React.Component {
     } else {
       return (
         <div>
-          <Heading level={2}>{this.props.weather.selectedHeader}</Heading>
+          <Heading level={2}>{this.props.weather.selectedLocationName}</Heading>
           <DropDownList select={this.props} />
           <CurrentWeather weather={response} />
           Generated at:
@@ -39,8 +39,8 @@ export default class Weather extends React.Component {
 
 Weather.propTypes = {
   pathSlug: PropTypes.string,
-  fetchSlugProps: PropTypes.func,
-  selectedHeader: PropTypes.string,
+  getSlugProps: PropTypes.func,
+  selectedLocationName: PropTypes.string,
   weather: PropTypes.object,
   error: PropTypes.object,
   isLoaded: PropTypes.bool,

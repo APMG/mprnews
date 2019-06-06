@@ -18,15 +18,15 @@ class App extends Component {
         isLoaded: false,
         error: null,
         selectedCoordinates: null,
-        selectedHeader: null,
+        selectedLocationName: null,
         coordinates: null
       },
       handleOnChange: this.handleOnChange.bind(this),
-      fetchSlugProps: this.fetchSlugProps.bind(this)
+      getSlugProps: this.getSlugProps.bind(this)
     };
   }
 
-  fetchSlugProps(slug) {
+  getSlugProps(slug) {
     const coordinates = weatherConfig.find(
       (weather) => weather.id.indexOf(slug) > -1
     );
@@ -36,7 +36,7 @@ class App extends Component {
         ...this.state.weather,
         weather: {
           selectedCoordinates: `${coordinates.lat},${coordinates.long}`,
-          selectedHeader: coordinates.name
+          selectedLocationName: coordinates.name
         }
       },
       this.fetchWeatherData(`${coordinates.lat},${coordinates.long}`)
@@ -51,7 +51,7 @@ class App extends Component {
         return this.setState({
           weather: {
             isLoaded: true,
-            selectedHeader: this.state.weather.selectedHeader,
+            selectedLocationName: this.state.weather.selectedLocationName,
             selectedCoordinates: this.state.weather.selectedCoordinates,
             response: res.data
           }
@@ -68,7 +68,7 @@ class App extends Component {
         weather: {
           ...this.state.weather,
           selectedCoordinates: event.target.value,
-          selectedHeader: event.target[event.target.selectedIndex].label
+          selectedLocationName: event.target[event.target.selectedIndex].label
         }
       },
       this.fetchWeatherData(event.target.value)
