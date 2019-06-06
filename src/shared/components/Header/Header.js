@@ -1,10 +1,11 @@
 import React from 'react';
-import { Link } from '@reach/router';
+import { Link } from 'apm-titan';
 import classNames from 'classnames';
 import Nav from './Nav';
 import Logo from './Logo';
 import WeatherHeader from '../WeatherHeader/index';
-import SearchIcon from '../Icons/Search';
+import Icon from '../Icons/IconSearch';
+// import SearchIcon from '../Icons/IconSearch';
 
 class Header extends React.Component {
   constructor(props) {
@@ -77,7 +78,7 @@ class Header extends React.Component {
           <WeatherHeader />
           <div className="separator separator-search">
             <div className="icon icon-medium">
-              <SearchIcon />
+              <Icon elementClass="icon-search" name="search" />
             </div>
           </div>
         </header>

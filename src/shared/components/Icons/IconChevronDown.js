@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const CaratDownIcon = (props) => {
+const IconChevronDown = (props) => {
   return (
     <svg
       width="52px"
@@ -26,9 +26,8 @@ const CaratDownIcon = (props) => {
     </svg>
   );
 };
-
-CaratDownIcon.propTypes = {
+IconChevronDown.propTypes = {
   elementClass: PropTypes.string
 };
 
-export default CaratDownIcon;
+export default IconChevronDown;

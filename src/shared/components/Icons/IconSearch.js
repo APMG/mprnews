@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const SearchIcon = (props) => {
+const IconSearch = (props) => {
   return (
     <svg
       width="30px"
@@ -27,8 +27,8 @@ const SearchIcon = (props) => {
   );
 };
 
-SearchIcon.propTypes = {
+IconSearch.propTypes = {
   elementClass: PropTypes.string
 };
 
-export default SearchIcon;
+export default IconSearch;

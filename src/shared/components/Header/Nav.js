@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from '@reach/router';
+import { Link } from 'apm-titan';
 import PropTypes from 'prop-types';
-import CaratDownIcon from '../Icons/CaratDown';
+import Icon from '../Icons/Icon';
 
 const Nav = (props) => {
   return (
@@ -12,7 +12,7 @@ const Nav = (props) => {
             <Link to={item.to} className={props.dropdownClasses}>
               {item.text}
               <div className="nav_icon">
-                <CaratDownIcon />
+                <Icon elementClass="icon-nav" name="chevronDown" />
               </div>
             </Link>
           </li>
