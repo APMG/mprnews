@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 
 import '../styles/index.scss';
 
-const Main = ({ children }) => <main>{children}</main>;
+const Main = ({ children }) => (
+  <div className="main">
+    <div className="container">{children}</div>
+  </div>
+);
 
 Main.propTypes = {
   children: PropTypes.any
