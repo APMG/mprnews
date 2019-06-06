@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 import '../styles/index.scss';
 
-const App = ({ children }) => <main>{children}</main>;
+const Main = ({ children }) => <main>{children}</main>;
 
-App.propTypes = {
+Main.propTypes = {
   children: PropTypes.any
 };
 
-export default App;
+export default Main;

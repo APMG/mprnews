@@ -1,11 +1,11 @@
 import React from 'react';
-import App from '../components/App';
+import Main from '../layouts/Main';
 import Page from '../endpoints/Page';
 
 /* eslint react/display-name: 0 */
 
 export default () => (
-  <App>
+  <Main>
     <Page />
-  </App>
+  </Main>
 );

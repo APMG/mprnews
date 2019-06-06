@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import App from '../components/App';
+import Main from '../layouts/Main';
 import Story from '../endpoints/Story';
 
 const StoryPage = (props) => (
-  <App>
+  <Main>
     <Story slug={props.slug} />
-  </App>
+  </Main>
 );
 
 StoryPage.getInitialProps = async ({ query }) => {

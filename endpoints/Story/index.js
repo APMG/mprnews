@@ -1,7 +1,7 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
-import { Loading } from 'apm-titan';
+import { Loading } from '@apmg/titan';
 import Content from '../../components/Content';
 import query from './story.gql';
 

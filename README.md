@@ -17,10 +17,6 @@ These packages simply wrap around Next's build process and add these capabilitie
 
 I then brought in all of our standard eslint, prettier, and sasslint stuff, adding the `.next` directory to the ignore files where necessary.
 
-### Using Titan (for now)
-
-One issue with using Next is that it renders Reach Router unusable. This, in turn, renders two of our Titan components unusuable: Router and Link. I wrote a version of Titan that uses `next/link` instead, but to use it you'll want to download `apm-titan` yourself, switch to the `with-next` branch, build it with `npm run dev` and use `npm link` to connect it to this project locally for now.
-
 ## Checklist (things this app must have)
 
 - [x] SSR
