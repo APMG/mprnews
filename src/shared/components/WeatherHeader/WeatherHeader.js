@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { getCurrentPosition } from './utils';
+import Icon from '../Icons/Icon';
 
 export default function weatherHeaderRequest() {
   const [data, setData] = useState([]);
@@ -25,21 +26,30 @@ export default function weatherHeaderRequest() {
   };
 
   return data.properties ? (
-    <div>
+    <div className="weatherHeader">
       <a
         href={`/weather/${data.geometry.geometries[0].coordinates[1]},${
           data.geometry.geometries[0].coordinates[0]
         }`}
       >
-        <h1>{data.properties.periods[0].temperature}°</h1>
-        {data.properties.periods[0].shortForecast}
+        <div className="weatherTemp">
+          {data.properties.periods[0].temperature}°{' '}
+        </div>
+        <div className="weatherText invisible">
+          {data.properties.periods[0].shortForecast}
+        </div>
       </a>
-      <br />
-      <button type="button" onClick={fetchCoordinates}>
-        Get Geolocation
+      <button
+        className="weatherButton"
+        type="button"
+        onClick={fetchCoordinates}
+      >
+        <Icon elementClass="icon-weather" name="location" />
+        <div className="invisible"> Get Geolocation</div>
+        <div className="weatherDefault">MSP</div>
       </button>
     </div>
   ) : (
-    <div>Loading...</div>
+    <div className="weatherHeader">Loading...</div>
   );
 }

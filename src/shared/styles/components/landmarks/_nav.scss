@@ -1,0 +1,120 @@
+//--------------------------------
+// Main Nav
+//--------------------------------
+
+.nav {
+  font-size: 1.8rem;
+  display: flex;
+  flex-direction: row;
+
+  @include media($media-full-layout) {
+    font-size: 1.6rem;
+  }
+
+  @include media($media-desktop) {
+    font-size: 2rem;
+
+    .is-compact & {
+      font-size: 1.6rem;
+    }
+  }
+}
+
+.nav_header {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+.nav_logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+}
+
+.nav_button {
+  @include reset-button();
+  display: flex;
+  line-height: 1.6;
+}
+
+.nav_closeButton {
+  @include reset-button();
+  display: block;
+  order: 1;
+  transition: color $transition-menu;
+  color: $color-white;
+}
+
+.nav_list {
+  display: flex;
+  flex-direction: row;
+}
+
+.nav_item {
+  @include media($media-full-layout) {
+    margin-left: 7%;
+
+    &:first-child {
+      margin-left: .5em;
+    }
+  }
+}
+
+.nav_item-donate {
+  font-size: 1.2rem;
+  margin-left: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+
+  .nav_link {
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 0 4px;
+    border: 2px solid $color-darkred;
+    border-radius: 2px;
+    color: $color-darkblue;
+  }
+}
+
+.nav_link {
+  display: flex;
+  flex-direction: row;
+  padding: 10px 0;
+  color: $color-white;
+  transition: color $transition;
+
+  &:hover,
+  &:focus {
+    color: var(--theme-color-main);
+  }
+
+  @include media($media-full-layout) {
+    color: $color-black;
+  }
+}
+
+.nav_icon {
+  display: none;
+  width: 18px;
+  height: 18px;
+  margin-top: 4px;
+  margin-left: 4px;
+
+  > svg {
+    height: 100%;
+    width: 100%;
+  }
+
+  @include media($media-full-layout) {
+    display: block;
+  }
+}
+
+.nav_link-button {
+  @include reset-button();
+}
+
+.nav_footer {
+  margin-top: 50px;
+}

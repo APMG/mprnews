@@ -4,8 +4,7 @@ import classNames from 'classnames';
 import Nav from './Nav';
 import Logo from './Logo';
 import WeatherHeader from '../WeatherHeader/index';
-import Icon from '../Icons/IconSearch';
-// import SearchIcon from '../Icons/IconSearch';
+import Icon from '../Icons/Icon';
 
 class Header extends React.Component {
   constructor(props) {
@@ -24,10 +23,12 @@ class Header extends React.Component {
       this.setState({ menuOpen: true });
     }
   };
+
   // Close mobile menu
   closeMenu() {
     this.setState({ menuOpen: false });
   }
+
   render() {
     // Mobile menu classes
     const headerClasses = classNames('header', {
@@ -35,16 +36,19 @@ class Header extends React.Component {
       'is-closed': !this.state.menuOpen
     });
 
-    const items = [
-      { text: 'Sections', icon: '', to: '/story' },
-      { text: 'Members', icon: '', to: '/collection' },
-      { text: 'More', icon: '', to: '/page' },
-      { text: 'Give Now', icon: '', to: '/profile' }
-    ];
+    const items = [{ text: 'Sections' }, { text: 'Members' }, { text: 'More' }];
 
     return (
       <div className="headerContainer">
         <header className={headerClasses} data-testid="header">
+          <button className="header_navButton" onClick={this.toggleMenu}>
+            <div className="navIcon">
+              <span />
+              <span />
+              <span />
+            </div>
+            <span className="invisible">Menu</span>
+          </button>
           <Link
             to="/"
             className="header_logo"
@@ -56,14 +60,7 @@ class Header extends React.Component {
               <span className="invisible">MPR News</span>
             </div>
           </Link>
-          <button className="header_navButton" onClick={this.toggleMenu}>
-            <div className="navIcon">
-              <span />
-              <span />
-              <span />
-            </div>
-            <span className="invisible">Menu</span>
-          </button>
+
           {/* disabling these eslint jsx-a11y features because this element is for convenience; the menu can still be closed through other means */}
           {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
           <div
@@ -77,9 +74,7 @@ class Header extends React.Component {
 
           <WeatherHeader />
           <div className="separator separator-search">
-            <div className="icon icon-medium">
-              <Icon elementClass="icon-search" name="search" />
-            </div>
+            <Icon elementClass="icon-search" name="search" />
           </div>
         </header>
       </div>
