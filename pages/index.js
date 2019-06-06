@@ -6,8 +6,6 @@ import Home from '../endpoints/Home';
 
 export default () => (
   <App>
-    <div>
-      <Home />
-    </div>
+    <Home />
   </App>
 );

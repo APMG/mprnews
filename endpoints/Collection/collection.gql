@@ -1,8 +1,8 @@
-query collectionQuery($contentAreaSlug: String!, $slug: String!) {
-  collection: collection(contentAreaSlug: $contentAreaSlug, slug: $slug) { 
+query collection($contentAreaSlug: String!, $slug: String!, $pageNum: Int = 1) {
+  collection: collection(contentAreaSlug: $contentAreaSlug, slug: $slug) {
     id
     title
-    results(page: ${pageNum}, pageSize: 10) {
+    results(page: $pageNum, pageSize: 10) {
       nextPage
       pageSize
       totalPages

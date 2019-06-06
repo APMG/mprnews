@@ -9,15 +9,15 @@ const Story = ({ slug }) => (
   <Query
     query={query}
     variables={{
-      contentAreaSlug: 'mprnews',
+      contentAreaSlug: process.env.CONTENT_AREA_SLUG,
       slug: slug
     }}
   >
-    {({ loading, error, data: { story } }) => {
+    {({ loading, error, data }) => {
       if (error) return <div>Error loading story</div>;
       if (loading) return <Loading />;
 
-      return <StoryInner story={story} />;
+      return <StoryInner story={data.story} />;
     }}
   </Query>
 );

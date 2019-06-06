@@ -8,16 +8,16 @@ const Episode = () => (
   <Query
     query={query}
     variables={{
-      contentAreaSlug: 'mprnews',
+      contentAreaSlug: process.env.CONTENT_AREA_SLUG,
       slug:
         '2019/05/28/simple-episode-do-voting-laws-keep-people-of-color-from-the-polls'
     }}
   >
-    {({ loading, error, data: { episode } }) => {
+    {({ loading, error, data }) => {
       if (error) return <div>Error loading page data</div>;
       if (loading) return <div>Loading</div>;
 
-      return <EpisodeInner episode={episode} />;
+      return <EpisodeInner episode={data.episode} />;
     }}
   </Query>
 );
