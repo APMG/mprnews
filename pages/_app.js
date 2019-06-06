@@ -3,7 +3,7 @@ import React from 'react';
 import withApolloClient from '../lib/with-apollo-client';
 import { ApolloProvider } from 'react-apollo';
 
-class MyApp extends App {
+class MPRNews extends App {
   constructor(props) {
     super(props);
   }
@@ -20,4 +20,4 @@ class MyApp extends App {
   }
 }
 
-export default withApolloClient(MyApp);
+export default withApolloClient(MPRNews);

@@ -1,27 +1,19 @@
-/* eslint react/display-name: 0 */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Main from '../layouts/Main';
 import Weather from '../endpoints/Weather';
 import WeatherContext from '../endpoints/Weather/WeatherContext';
 import axios from 'axios';
 import Router from 'next/router';
 
-class WeatherPage extends React.Component {
-  constructor(props) {
-    super(props);
+export default function WeatherPage() {
+  const [location, setLocation] = useState(null);
+  const [weather, setWeather] = useState({
+    response: {},
+    isLoaded: false,
+    error: null
+  });
 
-    this.state = {
-      selectLocation: null,
-      weather: { response: {}, isLoaded: false, error: null },
-      handleOnChange: this.handleOnChange.bind(this)
-    };
-  }
-
-  componentDidMount() {
-    this.fetchWeatherData();
-  }
-
-  fetchWeatherData() {
+  const fetchWeatherData = () => {
     const pathname = window.location.pathname.split('/');
     const geoLocation = pathname[pathname.length - 1];
     const coordinates = geoLocation.match(/-?\d+(\.\d+)?,\s*(-?\d+(\.\d+)?)/g)
@@ -32,33 +24,36 @@ class WeatherPage extends React.Component {
     axios
       .get(url)
       .then((res) => {
-        this.setState({
-          weather: { response: res.data, isLoaded: true }
-        });
+        setWeather({ response: res.data, isLoaded: true });
       })
       .catch((error) => {
-        this.setState({ weather: { isLoaded: true, error: error } });
+        setWeather({ isLoaded: true, error: error });
       });
-  }
+  };
 
-  handleOnChange(event) {
-    this.setState({
-      selectLocation: `${event.target.value}`
-    });
+  const handleOnChange = (event) => {
+    setLocation(`${event.target.value}`);
+
     Router.push(`/weather/${event.target.value}`);
 
-    return this.fetchWeatherData();
-  }
+    return fetchWeatherData();
+  };
 
-  render() {
-    return (
-      <Main>
-        <WeatherContext.Provider value={this.state}>
-          <Weather />
-        </WeatherContext.Provider>
-      </Main>
-    );
-  }
+  useEffect(() => {
+    fetchWeatherData();
+  });
+
+  return (
+    <Main>
+      <WeatherContext.Provider
+        value={{
+          location: location,
+          weather: weather,
+          handleOnChange: handleOnChange
+        }}
+      >
+        <Weather />
+      </WeatherContext.Provider>
+    </Main>
+  );
 }
-
-export default WeatherPage;
