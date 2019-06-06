@@ -7,9 +7,10 @@ const app = next({ dev })
 const handle = app.getRequestHandler()
 
 var slug = (req, res, next) => {
-  const pathname = req.originalUrl;
-  const pathSlug = pathname.split('/story/')[1]
-  req.slug = pathSlug;
+  const pathParts = req.path.split('/')
+  pathParts.shift();
+  pathParts.shift();
+  req.slug = pathParts.join('/');
   next();
 }
 
@@ -22,6 +23,29 @@ app
     server.get('/story/*', (req, res) => {
       app.render(req, res, '/story', { slug: req.slug })
     });
+
+    server.get('/ampstory/*', (req, res) => {
+      app.render(req, res, '/ampstory', { slug: req.slug })
+    });
+
+    server.get('/episode/*', (req, res) => {
+      app.render(req, res, '/episode', { slug: req.slug })
+    });
+
+    server.get('/ampepisode/*', (req, res) => {
+      app.render(req, res, '/ampepisode', { slug: req.slug })
+    });
+
+    server.get('/page/*', (req, res) => {
+      app.render(req, res, '/page', { slug: req.slug })
+    });
+
+    server.get('/amppage/*', (req, res) => {
+      app.render(req, res, '/amppage', { slug: req.slug })
+    });
+
+
+
 
     server.get('*', (req, res) => {
       return handle(req, res);
@@ -36,3 +60,6 @@ app
     console.error(ex.stack);
     process.exit(1);
   });
+
+
+
