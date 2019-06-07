@@ -112,3 +112,12 @@ $_header-button-full-width: 62px;
     background: $color-screen;
   }
 }
+
+.header_search {
+  display: none;
+  padding-top: .4em;
+  padding-left: 1em;
+  @include media($media-full-layout) {
+    display: block;
+  }
+}

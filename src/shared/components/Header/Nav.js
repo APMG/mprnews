@@ -10,7 +10,7 @@ const Nav = (props) => {
       <ul className="nav_list">
         {props.items.map((item, index) => (
           <li key={index} className="nav_item">
-            <button to={item.to} className="nav_button">
+            <button className="nav_button">
               {item.text}
               <div className="nav_icon">
                 <Icon elementClass="icon-nav" name="chevronDown" />

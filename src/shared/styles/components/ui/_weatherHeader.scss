@@ -18,40 +18,39 @@
     padding: 0 .85em;
     text-align: right;
   }
+}
 
-  .weatherTemp {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: $color-darkblue;
+.weatherHeader_temp {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: $color-darkblue;
 
-    @include media($media-full-layout) {
-      font-size: 2.8rem;
-    }
+  @include media($media-full-layout) {
+    font-size: 2.8rem;
   }
+}
 
-  .weatherButton {
-    @include reset-button();
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.weatherButton {
+  @include reset-button();
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  color: $color-grey-50;
+
+  @include media($media-full-layout) {
+    flex-direction: row;
     align-items: flex-end;
-    color: $color-grey-50;
-
-    @include media($media-full-layout) {
-      flex-direction: row;
-      align-items: flex-end;
-      justify-content: space-between;
-    }
+    justify-content: space-between;
   }
+}
 
-  .weatherDefault {
-    display: block;
-    font-size: 1rem;
+.weatherHeader_default {
+  display: block;
+  font-size: 1rem;
 
-    @include media($media-full-layout) {
-      font-size: unset;
-    }
+  @include media($media-full-layout) {
+    font-size: unset;
   }
-
 }
 

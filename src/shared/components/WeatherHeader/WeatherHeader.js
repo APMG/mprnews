@@ -25,31 +25,35 @@ export default function weatherHeaderRequest() {
     }
   };
 
-  return data.properties ? (
+  return (
     <div className="weatherHeader">
-      <a
-        href={`/weather/${data.geometry.geometries[0].coordinates[1]},${
-          data.geometry.geometries[0].coordinates[0]
-        }`}
-      >
-        <div className="weatherTemp">
-          {data.properties.periods[0].temperature}°{' '}
-        </div>
-        <div className="weatherText invisible">
-          {data.properties.periods[0].shortForecast}
-        </div>
-      </a>
-      <button
-        className="weatherButton"
-        type="button"
-        onClick={fetchCoordinates}
-      >
-        <Icon elementClass="icon-weather" name="location" />
-        <div className="invisible"> Get Geolocation</div>
-        <div className="weatherDefault">MSP</div>
-      </button>
+      {data.properties ? (
+        <>
+          <a
+            href={`/weather/${data.geometry.geometries[0].coordinates[1]},${
+              data.geometry.geometries[0].coordinates[0]
+            }`}
+          >
+            <div className="weatherHeader_temp">
+              {data.properties.periods[0].temperature}°{' '}
+            </div>
+            <div className="weatherHeader_text invisible">
+              {data.properties.periods[0].shortForecast}
+            </div>
+          </a>
+          <button
+            className="weatherButton"
+            type="button"
+            onClick={fetchCoordinates}
+          >
+            <Icon elementClass="icon-weatherHeader" name="location" />
+            <div className="invisible"> Get Geolocation</div>
+            <div className="weatherHeader_default">MSP</div>
+          </button>
+        </>
+      ) : (
+        <> Loading...</>
+      )}
     </div>
-  ) : (
-    <div className="weatherHeader">Loading...</div>
   );
 }
