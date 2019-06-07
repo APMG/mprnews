@@ -1,22 +1,9 @@
 {
-  "env": {
-    "test": {
-      "plugins": ["@babel/plugin-transform-runtime"]
-    }
-  },
+  "presets": ["next/babel"],
   "plugins": [
+    "import-graphql",
+    "@babel/plugin-proposal-optional-chaining",
     "@babel/plugin-syntax-dynamic-import",
-    "@babel/plugin-proposal-class-properties",
-    "@babel/plugin-proposal-optional-chaining"
-  ],
-  "presets": [
-    "@babel/preset-env",
-    "@babel/preset-react",
-    [
-      "react-app",
-      {
-        "absoluteRuntime": false
-      }
-    ]
+    "@babel/plugin-proposal-class-properties"
   ]
 }

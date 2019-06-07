@@ -5,3 +5,4 @@ dist/**/*
 build/**/*
 server.js
 src/shared/config/index.js
+.next

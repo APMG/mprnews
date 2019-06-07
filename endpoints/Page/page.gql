@@ -1,0 +1,10 @@
+query PageQuery($contentAreaSlug: String!, $slug: String!) {
+  page: page(contentAreaSlug: $contentAreaSlug, slug: $slug) {
+    id
+    title
+    canonicalSlug
+    publishDate
+    body
+    embeddedAssetJson
+  }
+}
