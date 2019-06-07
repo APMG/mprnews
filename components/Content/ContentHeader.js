@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from '@reach/router';
-import { Heading, TagLink } from 'apm-titan';
+import Link from 'next/link';
+import { Heading, TagLink } from '@apmg/titan';
 import { format } from 'date-fns';
 
 const ContentHeader = (props) => {
@@ -35,12 +35,8 @@ const ContentHeader = (props) => {
           <div className="content_byline" data-testid="contentByline">
             {props.authors.map((author) => {
               return (
-                <Link
-                  to={author.href}
-                  key={author.href}
-                  className="link link-none"
-                >
-                  {`${author.name} `}
+                <Link href={author.href} key={author.href}>
+                  <a className="link link-none">{`${author.name} `}</a>
                 </Link>
               );
             })}

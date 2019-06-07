@@ -29,7 +29,11 @@ const Home = () => (
 );
 
 const HomeInner = ({ data }) => {
-  if (data.homeList) {
+  if (
+    data.homeList &&
+    data.homelist?.results &&
+    data.homelist?.results?.items
+  ) {
     data.homelist?.results?.items?.map((item) => {
       let link =
         data.resourceType === 'link'
