@@ -21,6 +21,13 @@ query home($contentAreaSlug: String!, $slug: String!) {
                   url
                 }
               }
+              uncropped {
+                instances {
+                  url
+                  width
+                  height
+                }
+              }
             }
             contentArea
             dateTaken

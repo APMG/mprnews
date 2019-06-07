@@ -6,12 +6,12 @@ import { Heading, Loading } from '@apmg/titan';
 import { Body } from 'amat-react';
 import query from './page.gql';
 
-const Page = ({ pageName }) => (
+const Page = ({ slug }) => (
   <Query
     query={query}
     variables={{
       contentAreaSlug: process.env.CONTENT_AREA_SLUG,
-      slug: pageName
+      slug: slug
     }}
   >
     {({ loading, error, data }) => {
@@ -47,7 +47,7 @@ const PageInner = ({ page }) => {
 };
 
 Page.propTypes = {
-  pageName: PropTypes.any
+  slug: PropTypes.string
 };
 
 PageInner.propTypes = {
