@@ -1,0 +1,22 @@
+//----------------------------------------------
+// Icons
+//----------------------------------------------
+
+.icon {
+  display: inline-block;
+}
+
+.icon-medium {
+  width: 30px;
+  height: 30px;
+}
+
+.icon-weatherHeader {
+  width: 15px;
+  height: 15px;
+
+  @include media($media-full-layout) {
+    width: 30px;
+    height: 30px;
+  }
+}

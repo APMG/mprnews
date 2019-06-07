@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'apm-titan';
 import PropTypes from 'prop-types';
+
 import Icon from '../Icons/Icon';
 
 const Nav = (props) => {
@@ -9,21 +10,28 @@ const Nav = (props) => {
       <ul className="nav_list">
         {props.items.map((item, index) => (
           <li key={index} className="nav_item">
-            <Link to={item.to} className={props.dropdownClasses}>
+            <button className="nav_button">
               {item.text}
               <div className="nav_icon">
                 <Icon elementClass="icon-nav" name="chevronDown" />
               </div>
-            </Link>
+            </button>
           </li>
         ))}
       </ul>
+      <div className="nav_item nav_item-donate">
+        <Link
+          to="https://contribute.publicradio.org/contribute.php?refId=default&WT.mc_id=news_web_nav_button&WT.mc_ev=click&utm_campaign=membership_contribution&utm_medium=web_nav_button&utm_source=news&utm_content=&utm_terms"
+          className="nav_link"
+        >
+          Give Now
+        </Link>
+      </div>
     </nav>
   );
 };
 
 Nav.propTypes = {
-  dropdownClasses: PropTypes.string,
   items: PropTypes.arrayOf(
     PropTypes.shape({
       text: PropTypes.string,
