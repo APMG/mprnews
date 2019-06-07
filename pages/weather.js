@@ -27,7 +27,6 @@ class WeatherPage extends Component {
     const coordinates = weatherConfig.find(
       (weather) => weather.id.indexOf(slug) > -1
     );
-    console.log(coordinates);
     if (coordinates === this.state.weather.selectedCoordinates) return;
     this.setState(
       {
