@@ -53,7 +53,7 @@ app
 
     server.listen(port, err => {
       if (err) throw err;
-      console.log(`\n🚀 Ready on http://localhost:${port}\n`);
+      console.log(`\nReady on http://localhost:${port} 🚀\n`);
     });
   })
   .catch(ex => {

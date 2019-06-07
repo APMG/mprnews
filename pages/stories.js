@@ -1,4 +1,5 @@
 import React from 'react';
+import { Heading } from '@apmg/titan';
 import MainLayout from '../layouts/MainLayout';
 import Collection from '../endpoints/Collection';
 
@@ -7,8 +8,10 @@ import Collection from '../endpoints/Collection';
 export default () => (
   <MainLayout>
     <div>
-      <h1>All News</h1>
-      <Collection collectionName="all-news" />
+      <section className="stories section">
+        <Heading level={2}>Collection of Stories</Heading>
+        <Collection collectionName="all-news" endpointName="story" />
+      </section>
     </div>
   </MainLayout>
 );

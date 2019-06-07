@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const NotFound = (props) => {
-  return <h1>{`URL ${props.uri} Not Found. 404.`}</h1>;
+  return <h1>{`404 - URL ${props.uri} not found.`}</h1>;
 };
 
 NotFound.propTypes = {

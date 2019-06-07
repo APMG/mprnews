@@ -1,5 +1,6 @@
 /* eslint-disable react/display-name */
 import React from 'react';
+import Router from 'next/router';
 import { Teaser, Heading, Loading } from '@apmg/titan';
 import { Image } from 'apm-mimas';
 import { Body } from 'amat-react';
@@ -7,26 +8,33 @@ import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
 import query from './collection.gql';
 
-const Collection = ({ collectionName }) => (
-  <Query
-    query={query}
-    variables={{
-      contentAreaSlug: process.env.CONTENT_AREA_SLUG,
-      slug: collectionName
-    }}
-  >
-    {({ loading, error, data }) => {
-      if (error) return <div>{`Error: ${error}`}</div>;
-      if (loading) return <Loading />;
-
-      return <CollectionInner collection={data.collection} />;
-    }}
-  </Query>
-);
-
-const CollectionInner = ({ collection }) => {
+const Collection = ({ collectionName, endpointName }) => {
   return (
-    <section className="collection section">
+    <Query
+      query={query}
+      variables={{
+        contentAreaSlug: process.env.CONTENT_AREA_SLUG,
+        slug: collectionName
+      }}
+    >
+      {({ loading, error, data }) => {
+        if (error) return <div>{`Error: ${error}`}</div>;
+        if (loading) return <Loading />;
+
+        return (
+          <CollectionInner
+            collection={data.collection}
+            endpointName={endpointName}
+          />
+        );
+      }}
+    </Query>
+  );
+};
+
+const CollectionInner = ({ collection, endpointName }) => {
+  return (
+    <>
       <Heading level={2}>{collection.title}</Heading>
 
       {collection.results.items.map((item) => {
@@ -35,7 +43,9 @@ const CollectionInner = ({ collection }) => {
             key={item.id}
             id={item.id}
             title={item.title}
-            href={`/story/${item.canonicalSlug}`}
+            href={`/${endpointName}?slug=${item.canonicalSlug}`}
+            as={`/${endpointName}/${item.canonicalSlug}`}
+            router={Router}
             publishDate={item.publishDate}
             headingLevel={2}
             image={
@@ -54,16 +64,18 @@ const CollectionInner = ({ collection }) => {
           />
         );
       })}
-    </section>
+    </>
   );
 };
 
 CollectionInner.propTypes = {
-  collection: PropTypes.object
+  collection: PropTypes.object,
+  endpointName: PropTypes.string
 };
 
 Collection.propTypes = {
-  collectionName: PropTypes.string
+  collectionName: PropTypes.string,
+  endpointName: PropTypes.string
 };
 
 export default Collection;

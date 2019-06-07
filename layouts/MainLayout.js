@@ -1,12 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Header from '../components/Header';
 
 import '../styles/index.scss';
 
 const MainLayout = ({ children }) => (
-  <div className="main">
-    <div className="container">{children}</div>
-  </div>
+  <>
+    <Header />
+    <div className="main">
+      <div className="container">{children}</div>
+    </div>
+  </>
 );
 
 MainLayout.propTypes = {
