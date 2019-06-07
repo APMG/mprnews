@@ -7,34 +7,54 @@ import SiteConfigContext from './context/SiteConfigContext';
 import mprNewsConfig from './config/config';
 import WeatherContext from './context/WeatherContext';
 import '../shared/styles/index.scss';
+import { weatherConfig } from './config';
 
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      selectLocation: null,
-      weather: { response: {}, isLoaded: false, error: null },
-      handleOnChange: this.handleOnChange.bind(this)
+      weather: {
+        isLoaded: false,
+        error: null,
+        selectedCoordinates: null,
+        selectedLocationName: null,
+        coordinates: null
+      },
+      handleOnChange: this.handleOnChange.bind(this),
+      getSlugProps: this.getSlugProps.bind(this)
     };
   }
-  componentDidMount() {
-    this.fetchWeatherData();
+
+  getSlugProps(slug) {
+    const coordinates = weatherConfig.find(
+      (weather) => weather.id.indexOf(slug) > -1
+    );
+    if (coordinates === this.state.weather.selectedCoordinates) return;
+    this.setState(
+      {
+        ...this.state.weather,
+        weather: {
+          selectedCoordinates: `${coordinates.lat},${coordinates.long}`,
+          selectedLocationName: coordinates.name
+        }
+      },
+      this.fetchWeatherData(`${coordinates.lat},${coordinates.long}`)
+    );
   }
 
-  fetchWeatherData() {
-    const pathname = window.location.pathname.split('/');
-    const geoLocation = pathname[pathname.length - 1];
-    const coordinates = geoLocation.match(/-?\d+(\.\d+)?,\s*(-?\d+(\.\d+)?)/g)
-      ? geoLocation
-      : `44.9434,-93.0965`;
-
+  fetchWeatherData(coordinates) {
     let url = `https://api.weather.gov/points/${coordinates}/forecast`;
     axios
       .get(url)
       .then((res) => {
-        this.setState({
-          weather: { response: res.data, isLoaded: true }
+        return this.setState({
+          weather: {
+            isLoaded: true,
+            selectedLocationName: this.state.weather.selectedLocationName,
+            selectedCoordinates: this.state.weather.selectedCoordinates,
+            response: res.data
+          }
         });
       })
       .catch((error) => {
@@ -43,12 +63,17 @@ class App extends Component {
   }
 
   handleOnChange(event) {
-    this.setState({
-      selectLocation: `${event.target.value}`
-    });
-    navigate(`/weather/${event.target.value}`);
-
-    return this.fetchWeatherData();
+    this.setState(
+      {
+        weather: {
+          ...this.state.weather,
+          selectedCoordinates: event.target.value,
+          selectedLocationName: event.target[event.target.selectedIndex].label
+        }
+      },
+      this.fetchWeatherData(event.target.value)
+    );
+    navigate(`/weather/${event.target[event.target.selectedIndex].id}`);
   }
   render() {
     return (
