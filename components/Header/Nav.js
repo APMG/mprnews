@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'apm-titan';
+import { Link } from '@apmg/titan';
 import PropTypes from 'prop-types';
 
 import Icon from '../Icons/Icon';

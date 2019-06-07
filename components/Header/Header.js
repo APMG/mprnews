@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'apm-titan';
+import { Link } from '@apmg/titan';
 import classNames from 'classnames';
 import Nav from './Nav';
 import Logo from './Logo';
