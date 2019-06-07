@@ -73,7 +73,7 @@ class Header extends React.Component {
           </div>
 
           <WeatherHeader />
-          <div className="separator separator-search">
+          <div className="header_search ">
             <Icon elementClass="icon-search" name="search" />
           </div>
         </header>
