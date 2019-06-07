@@ -1,6 +1,8 @@
 /* eslint-disable react/display-name */
 import React from 'react';
-import Link from 'next/link';
+import { Teaser, Heading, Loading } from '@apmg/titan';
+import { Image } from 'apm-mimas';
+import { Body } from 'amat-react';
 import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
 import query from './collection.gql';
@@ -14,8 +16,8 @@ const Collection = ({ collectionName }) => (
     }}
   >
     {({ loading, error, data }) => {
-      if (error) return <div>Error loading page data</div>;
-      if (loading) return <div>Loading</div>;
+      if (error) return <div>{`Error: ${error}`}</div>;
+      if (loading) return <Loading />;
 
       return <CollectionInner collection={data.collection} />;
     }}
@@ -24,24 +26,35 @@ const Collection = ({ collectionName }) => (
 
 const CollectionInner = ({ collection }) => {
   return (
-    <div className="collection">
-      <ul>
-        {collection.results?.items?.map((item) => {
-          let slug = item.canonicalSlug;
+    <section className="collection section">
+      <Heading level={2}>{collection.title}</Heading>
 
-          return (
-            <li key={item.id}>
-              <Link
-                as={`/story/${slug}`}
-                href={{ pathname: '/story', query: { slug: slug } }}
-              >
-                <a>{item.title}</a>
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
+      {collection.results.items.map((item) => {
+        return (
+          <Teaser
+            key={item.id}
+            id={item.id}
+            title={item.title}
+            href={`/story/${item.canonicalSlug}`}
+            publishDate={item.publishDate}
+            headingLevel={2}
+            image={
+              item.primaryVisuals?.lead ? (
+                <Image
+                  image={item.primaryVisuals.lead}
+                  aspectRatio="uncropped"
+                  sizes="(max-width: 590px) 95vw, (max-width: 890px) 45vw, 300px"
+                  alt={item.primaryVisuals.lead.longCaption}
+                />
+              ) : (
+                <Image fallbackSrc="/static/fallback.png" alt="" />
+              )
+            }
+            description=<Body nodeData={JSON.parse(item.description)} />
+          />
+        );
+      })}
+    </section>
   );
 };
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Main from '../layouts/Main';
+import MainLayout from '../layouts/MainLayout';
 import Weather from '../endpoints/Weather';
 import WeatherContext from '../endpoints/Weather/WeatherContext';
 import axios from 'axios';
@@ -44,7 +44,7 @@ const WeatherPage = () => {
   });
 
   return (
-    <Main>
+    <MainLayout>
       <WeatherContext.Provider
         value={{
           location: location,
@@ -54,7 +54,7 @@ const WeatherPage = () => {
       >
         <Weather />
       </WeatherContext.Provider>
-    </Main>
+    </MainLayout>
   );
 };
 

@@ -1,11 +1,11 @@
 import React from 'react';
-import Main from '../layouts/Main';
+import MainLayout from '../layouts/MainLayout';
 import Home from '../endpoints/Home';
 
 /* eslint react/display-name: 0 */
 
 export default () => (
-  <Main>
+  <MainLayout>
     <Home />
-  </Main>
+  </MainLayout>
 );
