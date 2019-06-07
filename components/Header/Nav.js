@@ -1,8 +1,8 @@
 import React from 'react';
-import Link from 'next/link';
+import { Link } from 'apm-titan';
 import PropTypes from 'prop-types';
 
-import Icon from '../Icons';
+import Icon from '../Icons/Icon';
 
 const Nav = (props) => {
   return (
@@ -20,8 +20,11 @@ const Nav = (props) => {
         ))}
       </ul>
       <div className="nav_item nav_item-donate">
-        <Link href="https://contribute.publicradio.org/contribute.php?refId=default&WT.mc_id=news_web_nav_button&WT.mc_ev=click&utm_campaign=membership_contribution&utm_medium=web_nav_button&utm_source=news&utm_content=&utm_terms">
-          <a className="nav_link">Give Now</a>
+        <Link
+          to="https://contribute.publicradio.org/contribute.php?refId=default&WT.mc_id=news_web_nav_button&WT.mc_ev=click&utm_campaign=membership_contribution&utm_medium=web_nav_button&utm_source=news&utm_content=&utm_terms"
+          className="nav_link"
+        >
+          Give Now
         </Link>
       </div>
     </nav>

@@ -1,55 +1,55 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Link from 'next/link';
-import { Heading, TagLink } from '@apmg/titan';
+import { Link } from '@reach/router';
+import { Heading, TagLink } from 'apm-titan';
 import { format } from 'date-fns';
 
-const ContentHeader = ({
-  tag,
-  headingLevel,
-  title,
-  subtitle,
-  authors,
-  publishDate
-}) => {
+const ContentHeader = (props) => {
   return (
     <header className="content_header">
-      {tag && (
+      {props.tag && (
         <div className="content_topic">
           <TagLink
-            to={tag.to}
-            tagName={tag.tagName}
+            to={props.tag.to}
+            tagName={props.tag.tagName}
             elementClass="link link-none"
           />
         </div>
       )}
 
-      <Heading level={headingLevel ? headingLevel : 1} className="hdg hdg-1">
-        {title}
+      <Heading
+        level={props.headingLevel ? props.headingLevel : 1}
+        className="hdg hdg-1"
+      >
+        {props.title}
       </Heading>
 
-      {subtitle && (
+      {props.subtitle && (
         <p className="content_subtitle" data-testid="contentSubtitle">
-          {subtitle}
+          {props.subtitle}
         </p>
       )}
 
       <div className="content_meta">
-        {authors && (
+        {props.authors && (
           <div className="content_byline" data-testid="contentByline">
-            {authors.map((author) => {
+            {props.authors.map((author) => {
               return (
-                <Link href={author.href} key={author.href}>
-                  <a className="link link-none">{`${author.name} `}</a>
+                <Link
+                  to={author.href}
+                  key={author.href}
+                  className="link link-none"
+                >
+                  {`${author.name} `}
                 </Link>
               );
             })}
           </div>
         )}
 
-        {publishDate && (
-          <time className="content_pubdate" dateTime={publishDate}>
-            {format(publishDate, 'MMMM D, YYYY')}
+        {props.publishDate && (
+          <time className="content_pubdate" dateTime={props.publishDate}>
+            {format(props.publishDate, 'MMMM D, YYYY')}
           </time>
         )}
       </div>
