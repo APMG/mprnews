@@ -13,6 +13,7 @@ import EpisodeWithData from '../components/Episode';
 import EpisodePreviewWithData from '../components/Episode/Preview';
 import StoryPreviewWithData from '../components/Story/Preview';
 import PagePreviewWithData from '../components/Page/Preview';
+import Schedule from '../components/Schedule/Schedule';
 
 const Routes = () => {
   return (
@@ -29,6 +30,7 @@ const Routes = () => {
       <Weather path="/weather/*" />
       <Event path="/event/*" />
       <TwitterWithData path="/story/card/*" />
+      <Schedule path="/schedule/*" />
       <NotFound default />
     </Router>
   );
