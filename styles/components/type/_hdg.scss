@@ -18,76 +18,22 @@
   @include hdg-3();
 }
 
+.hdg-4 {
+  @include hdg-3();
+}
+
+.hdg-5 {
+  @include hdg-3();
+}
+
+.hdg-6 {
+  @include hdg-3();
+}
+
 .hdg-inline {
   display: inline-block;
 }
 
 .hdg-light {
   font-weight: normal;
-}
-
-.hdg-onBg {
-  color: $color-default;
-}
-
-.hdg-promo {
-  font-size: 2rem;
-  font-weight: 400;
-}
-
-.hdg-newsletter {
-  font-size: 1.8rem;
-  font-weight: 500;
-  max-width: 472px;
-  text-align: center;
-  letter-spacing: .5px;
-}
-
-.hdg-footer {
-  font-size: 1.9rem;
-  font-weight: 400;
-}
-
-.hdg-tagline {
-  font-size: 1.2rem;
-  font-weight: 500;
-}
-
-.hdg-taglineMain {
-  font-size: 2rem;
-  line-height: 1.3;
-  font-weight: 500;
-}
-
-.hdg-section {
-  font-weight: normal;
-  font-size: 1.4rem;
-
-  @include media($media-small-tablet) {
-    font-size: 1.8rem;
-  }
-}
-
-.hdg-page {
-  font-size: 1.8rem;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
-
-.hdg-hero {
-  font-size: 1.35rem;
-  text-transform: uppercase;
-  font-weight: normal;
-  letter-spacing: 2px;
-}
-
-.hdg-podcast {
-  font-size: 2.5rem;
-  letter-spacing: -.13px;
-  line-height: 1.3;
-  margin: 12px 0;
-}
-
-.hdg-bold {
-  font-weight: bold;
 }

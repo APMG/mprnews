@@ -1,18 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Main from '../layouts/Main';
+import MainLayout from '../layouts/MainLayout';
 import Page from '../endpoints/Page';
 
 /* eslint react/display-name: 0 */
 
-const StaticPage = (props) => (
-  <Main>
-    <Page slug={props.slug} />
-  </Main>
+const StaticPage = ({ slug }) => (
+  <MainLayout>
+    <Page slug={slug} />
+  </MainLayout>
 );
 
-StaticPage.getInitialProps = async ({ query }) => {
-  return { slug: query.slug };
+StaticPage.getInitialProps = async ({ query: { slug } }) => {
+  return { slug: slug };
 };
 
 StaticPage.propTypes = {

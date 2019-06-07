@@ -1,21 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withAmp } from 'next/amp';
-import Main from '../layouts/Main';
+import MainLayout from '../layouts/MainLayout';
 import Page from '../endpoints/Page';
 
 /* eslint react/display-name: 0 */
 
 const AmpPage = withAmp(({ slug }) => {
   return (
-    <Main>
+    <MainLayout>
       <Page slug={slug} />
-    </Main>
+    </MainLayout>
   );
 });
 
-AmpPage.getInitialProps = async ({ query }) => {
-  return { slug: query.slug };
+AmpPage.getInitialProps = async ({ query: { slug } }) => {
+  return { slug: slug };
 };
 
 AmpPage.propTypes = {

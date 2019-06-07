@@ -6,8 +6,8 @@
 //----------------------------------------------
 
 html {
+  @include fluid-type();
   box-sizing: border-box;
-  font-size: $font-size-root;
   height: 100%;
 }
 
@@ -25,12 +25,8 @@ html {
   font-smoothing: antialiased;
 }
 
-::-moz-selection {
-  background: $color-default;
-}
-::selection {
-  background: $color-default;
-}
+::-moz-selection { background: $color-selection; }
+::selection { background: $color-selection; }
 
 body {
   // Flexbox and min-height for sticky footer
@@ -45,18 +41,7 @@ body {
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
   color: $color-default;
-  // background: url('/static/noisefilter.png') repeat $color-bg;
-  background-size: 75px 75px;
-
-  &::before {
-    content: '';
-    height: 450px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: -1;
-  }
+  background-color: $color-bg;
 }
 
 // Unstyle lists generally; lists are restyled in landmarks/content.scss

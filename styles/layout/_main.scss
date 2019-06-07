@@ -8,6 +8,7 @@
   margin-right: auto;
   padding-top: $header-height-mobile + $header-buffer;
   flex-grow: 1;
+  flex-basis: auto; // IE11 bug fix
 
   @include media($media-full-layout) {
     padding-top: $header-height-desktop + $header-buffer;

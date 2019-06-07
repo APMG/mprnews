@@ -1,0 +1,15 @@
+query story($contentAreaSlug: String!, $slug: String!) {
+  twitter: story(contentAreaSlug: $contentAreaSlug, slug: $slug) {
+    id
+    title
+    canonicalSlug
+    resourceType
+    audio {
+      title
+      durationHms
+      encodings {
+        httpFilePath
+      }
+    }
+  }
+}

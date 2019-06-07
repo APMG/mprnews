@@ -1,10 +1,22 @@
 //----------------------------------------------
-// Text styles
+// Utility text styles
 //----------------------------------------------
+
+// Colors
 
 .text-light {
   color: $color-text-light;
 }
+
+.text-dark {
+  color: $color-text-dark;
+}
+
+.text-white {
+  color: $color-white;
+}
+
+// Styles
 
 .text-bold {
   font-weight: bold;
@@ -14,13 +26,25 @@
   font-size: 1.4rem;
 }
 
+.text-em {
+  font-style: italic;
+}
+
+// Alignment
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
 .text-center {
   text-align: center;
 }
 
-.text-em {
-  font-style: italic;
-}
+// Fonts
 
 .text-sans {
   font-family: $font-family-sans;
@@ -30,23 +54,4 @@
   font-family: $font-family-serif;
 }
 
-.text-white {
-  color: $color-white;
-}
-
-.text-alt {
-  line-height: 1.8;
-
-  @include media($media-small-tablet) {
-    font-size: 1.7rem;
-  }
-}
-
-.text-animate {
-  opacity: 0;
-  transition: opacity .75s ease-out;
-
-  &.fade-in {
-    opacity: 1;
-  }
-}
+// Miscellany

@@ -7,18 +7,18 @@
 //--------------------------------------------------
 
 // Site layout
-$max-width: 900px;
+$max-width: 1400px;
 $vertical-buffer: 0; // Space below header
-$container-edge: 20px; // Minimum margin around sides of site container
+$container-edge: 10px; // Minimum margin around sides of site container
 $player-height: 100px;
 
 // Main Header
-$header-height-mobile: 85px;
-$header-height-desktop: 115px;
+$header-height-mobile: 38px;
+$header-height-desktop: 52px;
 $header-buffer: 10px;
 
 // Grid
 $grid-row-gutter: 17.5px;
 $grid-column-gutter: 15px;
 
-$teaser-item-min-width: 275px;
+$teaser-item-min-width: 280px;

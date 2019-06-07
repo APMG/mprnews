@@ -1,6 +1,0 @@
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax($teaser-item-min-width, 1fr));
-  grid-row-gap: $grid-row-gutter;
-  grid-column-gap: $grid-column-gutter;
-}

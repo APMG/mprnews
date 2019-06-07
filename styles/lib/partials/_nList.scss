@@ -3,8 +3,9 @@
 @mixin nList() {
   // sass-lint:disable nesting-depth
   li {
-    margin-left: 3rem;
+    margin-left: 2rem;
     padding-left: 1rem;
+    clear: left;
   }
 
   ol {

@@ -1,8 +1,10 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
+import { format } from 'date-fns';
+import { Heading, Loading } from '@apmg/titan';
+import { Body } from 'amat-react';
 import query from './page.gql';
-import Content from '../../components/Content';
 
 const Page = ({ slug }) => (
   <Query
@@ -13,8 +15,8 @@ const Page = ({ slug }) => (
     }}
   >
     {({ loading, error, data }) => {
-      if (error) return <div>Error loading page data</div>;
-      if (loading) return <div>Loading</div>;
+      if (error) return <div>{`Error: ${error}`}</div>;
+      if (loading) return <Loading />;
 
       return <PageInner page={data.page} />;
     }}
@@ -23,18 +25,29 @@ const Page = ({ slug }) => (
 
 const PageInner = ({ page }) => {
   return (
-    <article className="story">
-      <Content
-        title={page.title}
-        body={page.body}
-        embeddedAssetJson={page.embeddedAssetJson}
-      />
-    </article>
+    <>
+      <section className="page section">
+        <div className="content">
+          <div className="content_date">
+            {format(page.publishDate, 'MMMM D, YYYY')}
+          </div>
+          <Heading level={2} elementClass="hdg-page">
+            {page.title}
+          </Heading>
+          <div className="content_body">
+            <Body
+              nodeData={JSON.parse(page.body)}
+              embedded={JSON.parse(page.embeddedAssetJson)}
+            />
+          </div>
+        </div>
+      </section>
+    </>
   );
 };
 
 Page.propTypes = {
-  slug: PropTypes.any
+  slug: PropTypes.string
 };
 
 PageInner.propTypes = {

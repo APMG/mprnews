@@ -2,11 +2,10 @@
 // Buttons
 //---------------------------------------
 
-$_btn-transition: 0.2s;
-$_btn-transition-fast: 0.05s;
+$_btn-transition: .2s;
 $_btn-color-theme: $color-theme;
-$_btn-bg-default: rgba($color-black, 0.5);
-$_btn-bg-default-hover: rgba($color-grey-10, 0.8);
+$_btn-bg-default: rgba($color-black, .5);
+$_btn-bg-default-hover: rgba($color-grey-10, .8);
 $_btn-color-default: $color-white;
 
 .btn {
@@ -21,8 +20,10 @@ $_btn-color-default: $color-white;
   color: $_btn-color-default;
   outline: 0;
   // sass-lint:disable indentation
-  transition: background-color $_btn-transition, border $_btn-transition,
-    color $_btn-transition, opacity $_btn-transition;
+  transition: background-color $_btn-transition,
+    border $_btn-transition,
+    color $_btn-transition,
+    opacity $_btn-transition;
   // sass-lint:enable indentation
 
   &:hover,
@@ -78,14 +79,14 @@ $_btn-color-default: $color-white;
 // Button Types ***********
 
 .btn-primary {
-  border: 1px solid $color-default;
-  background: $color-default;
-  color: $color-text;
+  border: 1px solid var(--theme-color-main);
+  background: var(--theme-color-main);
+  color: var(--theme-color-main-text);
 
   &:hover,
   &:focus {
-    background: $color-default;
-    opacity: 0.8;
+    background: var(--theme-color-main);
+    opacity: .8;
   }
 }
 

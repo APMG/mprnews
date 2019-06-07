@@ -1,17 +1,22 @@
-query episodeQuery($contentAreaSlug: String!, $slug: String!) {
+query episode($contentAreaSlug: String!, $slug: String!) {
   episode: episode(contentAreaSlug: $contentAreaSlug, slug: $slug) {
     id
     title
     canonicalSlug
     publishDate
     body
-    description
-    resourceType
     embeddedAssetJson
     primaryVisuals {
       lead {
-        aspectRatios {
-          square {
+        aspect_ratios: aspectRatios {
+          widescreen {
+            instances {
+              url
+              width
+              height
+            }
+          }
+          uncropped {
             instances {
               url
               width
@@ -26,6 +31,13 @@ query episodeQuery($contentAreaSlug: String!, $slug: String!) {
         longCaption
         shortCaption
         xid
+      }
+    }
+    audio {
+      title
+      durationHms
+      encodings {
+        httpFilePath
       }
     }
   }
