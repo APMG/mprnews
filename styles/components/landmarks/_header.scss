@@ -6,36 +6,24 @@
 $_header-button-full-width: 62px;
 
 .headerContainer {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: $z-header;
-  // background: url('/static/noisefilter.png') repeat $color-bg;
-  background-size: 75px 75px;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 5px;
-    background-color: $color-default;
-  }
+  padding: 0 .5em;
+  position: relative;
+  border-bottom: 2px solid $color-border;
 }
 
 .header {
-  width: 100%;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
   height: $header-height-mobile;
   font-family: $font-family-sans;
   color: $color-default;
+  margin: auto;
+  width: 100%;
 
   @include media($media-full-layout) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    max-width: $max-width;
     height: $header-height-desktop;
   }
 }
@@ -43,25 +31,22 @@ $_header-button-full-width: 62px;
 .header_logo {
   display: flex;
   align-items: center;
-  order: 2;
-  margin-right: auto;
-  margin-left: 20px;
   font-size: 2rem;
-}
+  margin: auto;
 
-.header_logoType {
-  height: 34px;
+  @include media($media-full-layout) {
+    margin: unset;
+  }
 }
 
 .header_logoImg {
-  height: 36px;
-  width: 36px;
+  height: 18px;
+  width: 134px;
   margin-right: 8px;
 
   @include media($media-full-layout) {
-    height: 64px;
-    width: 64px;
-    margin-right: 16px;
+    height: 24px;
+    width: 171px;
   }
 
   svg {
@@ -79,12 +64,21 @@ $_header-button-full-width: 62px;
   left: 0;
   bottom: 0;
   z-index: $z-mobile-nav;
-  background-color: rgba($color-black, 0.975);
+  background-color: rgba($color-black, .975);
   transform: translateX(-100%);
   transition: transform $transition-menu;
 
   @include media($media-full-layout) {
-    width: calc(((100% - #{$max-width}) / 2) + #{$_header-button-full-width});
+    padding: 0;
+    position: relative;
+    background-color: unset;
+    top: unset;
+    left: unset;
+    bottom: unset;
+    transform: translateX(0);
+    min-width: unset;
+    width: 100%;
+    overflow: visible;
   }
 
   .is-open & {
@@ -95,12 +89,11 @@ $_header-button-full-width: 62px;
 .header_navButton {
   @include reset-button();
   display: block;
-  order: 1;
   transition: color $transition-menu;
-}
 
-.header_donate {
-  order: 3;
+  @include media($media-full-layout) {
+    display: none;
+  }
 }
 
 .header_navBg {
@@ -117,5 +110,14 @@ $_header-button-full-width: 62px;
     z-index: $z-mobile-nav-bg;
     opacity: 0;
     background: $color-screen;
+  }
+}
+
+.header_search {
+  display: none;
+  padding-top: .4em;
+  padding-left: 1em;
+  @include media($media-full-layout) {
+    display: block;
   }
 }

@@ -10,10 +10,6 @@
   @include link-plain();
 }
 
-.link-inverted {
-  color: $color-white;
-
-  &:hover {
-    color: $color-white;
-  }
+.link-none {
+  @include link-none();
 }

@@ -4,25 +4,19 @@
 
 .icon {
   display: inline-block;
-  fill: currentColor;
 }
 
-.icon-theme {
-  fill: $color-default;
-}
-
-.icon-small {
-  width: 17px;
-  height: 13px;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  margin: auto;
-}
-
-.icon-pagination {
+.icon-medium {
   width: 30px;
   height: 30px;
+}
+
+.icon-weatherHeader {
+  width: 15px;
+  height: 15px;
+
+  @include media($media-full-layout) {
+    width: 30px;
+    height: 30px;
+  }
 }

@@ -21,6 +21,11 @@
 .figure-right,
 .figure.align-right {
   @include figure-right();
+
+  &.figure-quarter,
+  &.quarter {
+    @include figure-quarter-right();
+  }
 }
 
 .figure-left,
