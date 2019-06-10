@@ -5,14 +5,16 @@ import Episode from '../endpoints/Episode';
 
 /* eslint react/display-name: 0 */
 
-const EpisodePage = ({ slug, previewToken }) => (
-  <MainLayout>
-    <Episode slug={slug} previewToken={previewToken} />
-  </MainLayout>
-);
+const EpisodePage = ({ slug, previewToken }) => {
+  return (
+    <MainLayout>
+      <Episode slug={slug} previewToken={previewToken} />
+    </MainLayout>
+  );
+};
 
-EpisodePage.getInitialProps = async ({ query: { slug } }) => {
-  return { slug: slug };
+EpisodePage.getInitialProps = async ({ query: { slug, previewToken } }) => {
+  return { slug: slug, previewToken: previewToken };
 };
 
 EpisodePage.propTypes = {

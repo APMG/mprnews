@@ -15,8 +15,7 @@ const slug = (req, res, next) => {
 }
 
 const previewSlug = (req, res, next) => {
-  const pathParts = req.path.split('/preview/stories/')
-  req.previewSlug = pathParts[1];
+  req.previewSlug = req.path.replace(/\/preview\/(episodes|stories|pages)\//, '');
   next();
 }
 
@@ -48,7 +47,7 @@ app
     });
 
     server.get('/preview/episodes/*', (req, res) => {
-      app.render(req, res, '/episodes', { slug: req.previewSlug, previewToken: req.previewToken })
+      app.render(req, res, '/episode', { slug: req.previewSlug, previewToken: req.previewToken })
     });
 
     server.get('/ampepisode/*', (req, res) => {
@@ -57,6 +56,10 @@ app
 
     server.get('/page/*', (req, res) => {
       app.render(req, res, '/page', { slug: req.slug })
+    });
+
+    server.get('/preview/pages/*', (req, res) => {
+      app.render(req, res, '/page', { slug: req.previewSlug, previewToken: req.previewToken })
     });
 
     server.get('/amppage/*', (req, res) => {
