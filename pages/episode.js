@@ -5,18 +5,21 @@ import Episode from '../endpoints/Episode/Episode';
 
 /* eslint react/display-name: 0 */
 
-const EpisodePage = ({ slug }) => (
-  <MainLayout>
-    <Episode slug={slug} />
-  </MainLayout>
-);
+const EpisodePage = ({ slug, previewToken }) => {
+  return (
+    <MainLayout>
+      <Episode slug={slug} previewToken={previewToken} />
+    </MainLayout>
+  );
+};
 
-EpisodePage.getInitialProps = async ({ query: { slug } }) => {
-  return { slug: slug };
+EpisodePage.getInitialProps = async ({ query: { slug, previewToken } }) => {
+  return { slug: slug, previewToken: previewToken };
 };
 
 EpisodePage.propTypes = {
-  slug: PropTypes.string
+  slug: PropTypes.string,
+  previewToken: PropTypes.string
 };
 
 export default EpisodePage;
