@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { getCurrentPosition } from './utils';
+import Icon from '../Icons/Icon';
 
 export default function weatherHeaderRequest() {
   const [data, setData] = useState([]);
@@ -24,22 +25,35 @@ export default function weatherHeaderRequest() {
     }
   };
 
-  return data.properties ? (
-    <div>
-      <a
-        href={`/weather/${data.geometry.geometries[0].coordinates[1]},${
-          data.geometry.geometries[0].coordinates[0]
-        }`}
-      >
-        <h1>{data.properties.periods[0].temperature}°</h1>
-        {data.properties.periods[0].shortForecast}
-      </a>
-      <br />
-      <button type="button" onClick={fetchCoordinates}>
-        Get Geolocation
-      </button>
+  return (
+    <div className="weatherHeader">
+      {data.properties ? (
+        <>
+          <a
+            href={`/weather/${data.geometry.geometries[0].coordinates[1]},${
+              data.geometry.geometries[0].coordinates[0]
+            }`}
+          >
+            <div className="weatherHeader_temp">
+              {data.properties.periods[0].temperature}°{' '}
+            </div>
+            <div className="weatherHeader_text invisible">
+              {data.properties.periods[0].shortForecast}
+            </div>
+          </a>
+          <button
+            className="weatherButton"
+            type="button"
+            onClick={fetchCoordinates}
+          >
+            <Icon elementClass="icon-weatherHeader" name="location" />
+            <div className="invisible"> Get Geolocation</div>
+            <div className="weatherHeader_default">MSP</div>
+          </button>
+        </>
+      ) : (
+        <> Loading...</>
+      )}
     </div>
-  ) : (
-    <div>Loading...</div>
   );
 }

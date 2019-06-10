@@ -15,7 +15,7 @@ class Schedule extends Component {
     super(props);
     this.state = {
       response: {},
-      days: ['Sun', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat']
+      days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
     };
   }
 
@@ -57,17 +57,52 @@ class Schedule extends Component {
     );
 
     {
-      // console.log(dateFromProps[0]);
+      console.log(format(dateFromProps, 'ddd YYYY-MM-DD'));
     }
 
     let returnDate = this.props['*'];
-    let newReturnDate = dateFromProps.indexOf(returnDate) > -1;
-    console.log('dasddads', newReturnDate);
-    if (newReturnDate === this.props['*']) return;
-    this.setState({
-      newDates: newReturnDate
+    dateFromProps.find((i) => {
+      if (
+        format(i, 'ddd-YYYY-MM-DD')
+          .split('-')
+          .shift() === returnDate
+      ) {
+        let formatAgain = format(i, 'YYYY-MM-DD');
+        return this.fetchSchedule(formatAgain);
+      }
     });
-    console.log('loggin State', this.state?.newDates);
+    // console.log(formatDate);
+
+    // let returnDate = this.props['*'];
+    // let formatDate = dateFromProps.forEach((i) => {
+    //   let convert = format(i, 'ddd-YYYY-MM-DD');
+    //   let splitThis = convert.split('-');
+    //   let popthis = splitThis.shift();
+
+    //   // console.log(returnDate.find((match) => match));
+    //   if (popthis === returnDate) {
+    //     return console.log('dsadasdsasdadassasaadadadasdadaddad', i);
+    //   }
+    //   console.log(popthis);
+    //   console.log(convert);
+    //   // console.log(convert[i].indexOf(returnDate) > -1);
+
+    //   // i.indexOf(returnDate)
+    //   // if (format(i, 'ddd YYYY-MM-DD') === returnDate) {
+    //   //   console.log(i);
+    //   // }
+    //   return formatDate;
+    // });
+
+    // let newReturnDate =
+    //   format(dateFromProps.indexOf(returnDate), 'ddd YYYY-MM-DD') >
+    //   -1;
+    // console.log('dasddads', newReturnDate);
+    // if (newReturnDate === this.props['*']) return;
+    // this.setState({
+    //   newDates: newReturnDate
+    // });
+    // console.log('loggin State', this.state?.newDates);
 
     //   this.state?.timesToDate.forEach((i) => {
     //     return i.getDate();
@@ -106,6 +141,9 @@ class Schedule extends Component {
       <>
         {console.log(schedule)}
         {console.log('this.props', this.props)}
+        <Link key={'tuesday'} to={`/schedule/${this.props['*']}`}>
+          SELECTED DAY : [{this.props['*']}]
+        </Link>
         {/* {schedule[0].se_id} */}
         {this.state.days.map((day, i) => {
           return (
@@ -116,10 +154,6 @@ class Schedule extends Component {
             </div>
           );
         })}
-
-        <Link key={'tuesday'} to={`/schedule/${this.props['*']}`}>
-          {this.props['*']}
-        </Link>
 
         {schedule.map((program, i) => {
           return (

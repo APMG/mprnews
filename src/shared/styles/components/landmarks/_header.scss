@@ -1,0 +1,123 @@
+//--------------------------------
+// Main Site Header
+//--------------------------------
+
+// Kind of a magic number but basically this is the width of the menu button plus some padding
+$_header-button-full-width: 62px;
+
+.headerContainer {
+  padding: 0 .5em;
+  position: relative;
+  border-bottom: 2px solid $color-border;
+}
+
+.header {
+  display: flex;
+  height: $header-height-mobile;
+  font-family: $font-family-sans;
+  color: $color-default;
+  margin: auto;
+  width: 100%;
+
+  @include media($media-full-layout) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    max-width: $max-width;
+    height: $header-height-desktop;
+  }
+}
+
+.header_logo {
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+  margin: auto;
+
+  @include media($media-full-layout) {
+    margin: unset;
+  }
+}
+
+.header_logoImg {
+  height: 18px;
+  width: 134px;
+  margin-right: 8px;
+
+  @include media($media-full-layout) {
+    height: 24px;
+    width: 171px;
+  }
+
+  svg {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.header_nav {
+  min-width: 300px;
+  padding: 20px 30px 0;
+  position: fixed;
+  overflow-y: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: $z-mobile-nav;
+  background-color: rgba($color-black, .975);
+  transform: translateX(-100%);
+  transition: transform $transition-menu;
+
+  @include media($media-full-layout) {
+    padding: 0;
+    position: relative;
+    background-color: unset;
+    top: unset;
+    left: unset;
+    bottom: unset;
+    transform: translateX(0);
+    min-width: unset;
+    width: 100%;
+    overflow: visible;
+  }
+
+  .is-open & {
+    transform: translateX(0);
+  }
+}
+
+.header_navButton {
+  @include reset-button();
+  display: block;
+  transition: color $transition-menu;
+
+  @include media($media-full-layout) {
+    display: none;
+  }
+}
+
+.header_navBg {
+  display: block;
+  position: fixed;
+  opacity: 0;
+  transition: opacity $transition-menu;
+
+  .is-open & {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: $z-mobile-nav-bg;
+    opacity: 0;
+    background: $color-screen;
+  }
+}
+
+.header_search {
+  display: none;
+  padding-top: .4em;
+  padding-left: 1em;
+  @include media($media-full-layout) {
+    display: block;
+  }
+}

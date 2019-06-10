@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 import IconEmpty from './IconEmpty';
 import IconChevronDown from './IconChevronDown';
 import IconSearch from './IconSearch';
+import IconLocation from './IconLocation';
 
 const icons = {
   empty: IconEmpty,
   chevronDown: IconChevronDown,
-  search: IconSearch
+  search: IconSearch,
+  location: IconLocation
 };
 
 const Icon = (props) => {

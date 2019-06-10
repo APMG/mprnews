@@ -2,6 +2,9 @@
 $color-red: #b4111a;
 $color-green: #84c446;
 $color-blue: #3d8fa5;
+$color-darkred: #9a272a;
+$color-darkblue: #00334e;
+$color-lightblue: #3d8fa5;
 $color-blue-dark: #00334e;
 $color-blue-faded: #3f6275;
 $color-transparent: rgba(255, 255, 255, 0);
@@ -40,6 +43,7 @@ $color-text-dark: $color-grey-30;
 $color-link: $color-blue-dark;
 $color-link-hover: $color-blue-faded;
 $color-screen: rgba($color-black, .7);
+$color-border: $color-grey-70;
 
 // Temp podcast theme color
 $color-theme-text: $color-blue-dark;
