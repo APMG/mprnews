@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 
-import Icon from '../Icons';
+import Icon from '../Icons/Icon';
 
 const Nav = (props) => {
   return (

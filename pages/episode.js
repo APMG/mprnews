@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import MainLayout from '../layouts/MainLayout';
-import Episode from '../endpoints/Episode';
+import Episode from '../endpoints/Episode/Episode';
 
 /* eslint react/display-name: 0 */
 

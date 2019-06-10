@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import { Loading } from '@apmg/titan';
 import { Image } from 'apm-mimas';
 import { format } from 'date-fns';
-import Content from '../../components/Content';
+import Content from '../../components/Content/Content';
 import ContentLayout from '../../layouts/ContentLayout';
-import Sidebar from '../../components/Sidebar';
+import Sidebar from '../../components/Sidebar/Sidebar';
 import query from './story.gql';
 
 const Story = ({ slug, previewToken }) => {
@@ -34,9 +34,7 @@ const StoryInner = ({ story }) => {
   if (story.contributors) {
     authors = story.contributors.map((contributor) => {
       return {
-        name: `${contributor.profile?.firstName} ${
-          contributor.profile?.lastName
-        }`,
+        name: `${contributor.profile?.firstName} ${contributor.profile?.lastName}`,
         href: `/profiles/${contributor.profile?.canonicalSlug}`
       };
     });

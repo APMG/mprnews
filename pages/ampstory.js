@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withAmp } from 'next/amp';
 import MainLayout from '../layouts/MainLayout';
-import Story from '../endpoints/Story';
+import Story from '../endpoints/Story/Story';
 
 /* eslint react/display-name: 0 */
 

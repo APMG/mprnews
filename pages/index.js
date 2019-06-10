@@ -1,6 +1,6 @@
 import React from 'react';
 import MainLayout from '../layouts/MainLayout';
-import Home from '../endpoints/Home';
+import Home from '../endpoints/Home/Home';
 
 /* eslint react/display-name: 0 */
 
