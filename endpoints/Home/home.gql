@@ -1,0 +1,54 @@
+query home($contentAreaSlug: String!, $slug: String!) {
+  homeList: collection(contentAreaSlug: $contentAreaSlug, slug: $slug) {
+    id
+    title
+    description
+    results(page: 1, pageSize: 4) {
+      items {
+        id
+        title
+        canonicalSlug
+        resourceType
+        publishDate
+        description
+        primaryVisuals {
+          thumbnail {
+            aspect_ratios: aspectRatios {
+              widescreen {
+                instances {
+                  width
+                  height
+                  url
+                }
+              }
+              uncropped {
+                instances {
+                  url
+                  width
+                  height
+                }
+              }
+            }
+            contentArea
+            dateTaken
+            dateline
+            fallback
+            longCaption
+            shortCaption
+            xid
+          }
+        }
+        audio {
+          title
+          durationHms
+          encodings {
+            httpFilePath
+          }
+        }
+        ... on Link {
+          destination
+        }
+      }
+    }
+  }
+}

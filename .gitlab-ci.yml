@@ -1,0 +1,41 @@
+before_script:
+  - npm install
+# Jest:
+#   script:
+#     - npm run test:ci
+ESLint:
+  script:
+    - npm run eslint
+SassLint:
+  script:
+    - npm run sasslint
+Prettier:
+  script:
+    - npm run prettier
+# Deploy Dev:
+#   script:
+#     - bundle install --path ~/vendor/bundle
+#     - bundle exec cap dev deploy
+#   type: deploy
+#   tags:
+#     - 'cap_deploy'
+#   only:
+#   - master
+# Deploy Stage:
+#   script:
+#     - bundle install --path ~/vendor/bundle
+#     - bundle exec cap stage deploy
+#   type: deploy
+#   tags:
+#     - 'cap_deploy'
+#   only:
+#   - stage
+# Deploy Prod:
+#  script:
+#   - bundle install --path ~/vendor/bundle
+#   - bundle exec cap prod deploy
+#  type: deploy
+#  tags:
+#    - 'cap_deploy'
+#  only:
+#  - prod
