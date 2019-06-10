@@ -4,7 +4,6 @@ import MainLayout from '../layouts/MainLayout';
 import Story from '../endpoints/Story';
 
 const StoryPage = ({ slug, previewToken }) => {
-  // console.table({ slug, previewToken });
   return (
     <MainLayout>
       <Story slug={slug} previewToken={previewToken} />
