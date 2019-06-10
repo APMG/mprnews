@@ -3,18 +3,21 @@ import PropTypes from 'prop-types';
 import MainLayout from '../layouts/MainLayout';
 import Story from '../endpoints/Story';
 
-const StoryPage = ({ slug }) => (
-  <MainLayout>
-    <Story slug={slug} />
-  </MainLayout>
-);
+const StoryPage = ({ slug, previewToken }) => {
+  return (
+    <MainLayout>
+      <Story slug={slug} previewToken={previewToken} />
+    </MainLayout>
+  );
+};
 
-StoryPage.getInitialProps = async ({ query: { slug } }) => {
-  return { slug: slug };
+StoryPage.getInitialProps = async ({ query: { slug, previewToken } }) => {
+  return { slug: slug, previewToken: previewToken };
 };
 
 StoryPage.propTypes = {
-  slug: PropTypes.string
+  slug: PropTypes.string,
+  previewToken: PropTypes.string
 };
 
 export default StoryPage;

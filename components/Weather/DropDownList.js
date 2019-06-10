@@ -1,5 +1,5 @@
 import React from 'react';
-import { weatherConfig } from '../../config/index';
+import { weatherConfig } from '../../utils/defaultData';
 import PropTypes from 'prop-types';
 
 const DropDownList = (props) => {

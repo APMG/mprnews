@@ -9,22 +9,24 @@ import ContentLayout from '../../layouts/ContentLayout';
 import Sidebar from '../../components/Sidebar';
 import query from './story.gql';
 
-const Story = ({ slug }) => (
-  <Query
-    query={query}
-    variables={{
-      contentAreaSlug: process.env.CONTENT_AREA_SLUG,
-      slug: slug
-    }}
-  >
-    {({ loading, error, data }) => {
-      if (error) return <div>Error loading story</div>;
-      if (loading) return <Loading />;
-
-      return <StoryInner story={data.story} />;
-    }}
-  </Query>
-);
+const Story = ({ slug, previewToken }) => {
+  return (
+    <Query
+      query={query}
+      variables={{
+        contentAreaSlug: process.env.CONTENT_AREA_SLUG,
+        slug: slug,
+        previewToken: previewToken
+      }}
+    >
+      {({ loading, error, data }) => {
+        if (error) return <div>Error loading story</div>;
+        if (loading) return <Loading />;
+        return <StoryInner story={data.story} />;
+      }}
+    </Query>
+  );
+};
 
 const StoryInner = ({ story }) => {
   let authors;
@@ -32,7 +34,9 @@ const StoryInner = ({ story }) => {
   if (story.contributors) {
     authors = story.contributors.map((contributor) => {
       return {
-        name: `${contributor.profile?.firstName} ${contributor.profile?.lastName}`,
+        name: `${contributor.profile?.firstName} ${
+          contributor.profile?.lastName
+        }`,
         href: `/profiles/${contributor.profile?.canonicalSlug}`
       };
     });
@@ -73,7 +77,8 @@ const StoryInner = ({ story }) => {
 };
 
 Story.propTypes = {
-  slug: PropTypes.string
+  slug: PropTypes.string,
+  previewToken: PropTypes.string
 };
 
 StoryInner.propTypes = {
