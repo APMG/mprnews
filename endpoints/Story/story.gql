@@ -1,5 +1,5 @@
-query story($contentAreaSlug: String!, $slug: String!) {
-  story: story(contentAreaSlug: $contentAreaSlug, slug: $slug) {
+query story($contentAreaSlug: String!, $slug: String!, $previewToken: String) {
+  story: story(contentAreaSlug: $contentAreaSlug, slug: $slug, previewToken: $previewToken) {
     id
     title
     canonicalSlug
