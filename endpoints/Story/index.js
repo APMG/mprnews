@@ -32,9 +32,7 @@ const StoryInner = ({ story }) => {
   if (story.contributors) {
     authors = story.contributors.map((contributor) => {
       return {
-        name: `${contributor.profile?.firstName} ${
-          contributor.profile?.lastName
-        }`,
+        name: `${contributor.profile?.firstName} ${contributor.profile?.lastName}`,
         href: `/profiles/${contributor.profile?.canonicalSlug}`
       };
     });
