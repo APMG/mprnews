@@ -24,6 +24,8 @@ app
       app.render(req, res, '/story', { slug: req.slug })
     });
 
+    server.get('/preview/stories/*')
+
     server.get('/ampstory/*', (req, res) => {
       app.render(req, res, '/ampstory', { slug: req.slug })
     });

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Heading } from '@apmg/titan';
 import MainLayout from '../layouts/MainLayout';
-import Collection from '../endpoints/Collection';
+import Collection from '../endpoints/Collection/Collection';
 
 /* eslint react/display-name: 0 */
 

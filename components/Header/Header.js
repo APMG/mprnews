@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from '@apmg/titan';
+import Link from 'next/link';
 import classNames from 'classnames';
 import Nav from './Nav';
 import Logo from './Logo';
@@ -49,16 +49,13 @@ class Header extends React.Component {
             </div>
             <span className="invisible">Menu</span>
           </button>
-          <Link
-            to="/"
-            className="header_logo"
-            data-testid="header-logo"
-            onClick={this.closeMenu}
-          >
-            <div className="header_logoImg">
-              <Logo />
-              <span className="invisible">MPR News</span>
-            </div>
+          <Link href="/" onClick={this.closeMenu}>
+            <a className="header_logo" data-testid="header-logo">
+              <div className="header_logoImg">
+                <Logo />
+                <span className="invisible">MPR News</span>
+              </div>
+            </a>
           </Link>
 
           {/* disabling these eslint jsx-a11y features because this element is for convenience; the menu can still be closed through other means */}
