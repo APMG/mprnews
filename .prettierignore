@@ -1,9 +1,8 @@
 # Location of CSS:
-src/shared/styles/**/*
+styles/**/*
 # Location of built files:
 dist/**/*
 build/**/*
 server.js
 src/shared/config/index.js
 .next
-endpoints/Story/Story.js

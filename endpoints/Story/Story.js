@@ -34,6 +34,7 @@ const StoryInner = ({ story }) => {
   if (story.contributors) {
     authors = story.contributors.map((contributor) => {
       return {
+        // prettier-ignore
         name: `${contributor.profile?.firstName} ${contributor.profile?.lastName}`,
         href: `/profiles/${contributor.profile?.canonicalSlug}`
       };
