@@ -47,6 +47,10 @@ app
       app.render(req, res, '/episode', { slug: req.slug })
     });
 
+    server.get('/preview/episodes/*', (req, res) => {
+      app.render(req, res, '/episodes', { slug: req.previewSlug, previewToken: req.previewToken })
+    });
+
     server.get('/ampepisode/*', (req, res) => {
       app.render(req, res, '/ampepisode', { slug: req.slug })
     });
