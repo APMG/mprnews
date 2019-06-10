@@ -1,12 +1,12 @@
 /*eslint no-console: 0*/
 const express = require('express');
 const next = require('next');
-const port = parseInt(process.env.PORT, 10) || 3000
+const port = parseInt(process.env.APP_PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
 
-var slug = (req, res, next) => {
+const slug = (req, res, next) => {
   const pathParts = req.path.split('/')
   pathParts.shift();
   pathParts.shift();
@@ -14,17 +14,30 @@ var slug = (req, res, next) => {
   next();
 }
 
+const previewSlug = (req, res, next) => {
+  const pathParts = req.path.split('/preview/stories/')
+  req.previewSlug = pathParts[1];
+  next();
+}
+
+const previewToken = (req, res, next) => {
+  req.previewToken = req.query.token;
+  next();
+}
+
 app
   .prepare()
   .then(() => {
     const server = express();
-    server.use(slug);
+    server.use(slug, previewSlug, previewToken);
 
     server.get('/story/*', (req, res) => {
       app.render(req, res, '/story', { slug: req.slug })
     });
 
-    server.get('/preview/stories/*')
+    server.get('/preview/stories/*', (req, res) => {
+      app.render(req, res, '/story', { slug: req.previewSlug, previewToken: req.previewToken })
+    });
 
     server.get('/ampstory/*', (req, res) => {
       app.render(req, res, '/ampstory', { slug: req.slug })
