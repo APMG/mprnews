@@ -22,7 +22,6 @@ const Story = ({ slug, previewToken }) => {
       {({ loading, error, data }) => {
         if (error) return <div>Error loading story</div>;
         if (loading) return <Loading />;
-        // console.log(data);
         return <StoryInner story={data.story} />;
       }}
     </Query>
@@ -35,7 +34,9 @@ const StoryInner = ({ story }) => {
   if (story.contributors) {
     authors = story.contributors.map((contributor) => {
       return {
-        name: `${contributor.profile?.firstName} ${contributor.profile?.lastName}`,
+        name: `${contributor.profile?.firstName} ${
+          contributor.profile?.lastName
+        }`,
         href: `/profiles/${contributor.profile?.canonicalSlug}`
       };
     });
