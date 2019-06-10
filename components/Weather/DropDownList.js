@@ -1,5 +1,5 @@
 import React from 'react';
-// import { weatherConfig } from '../../config/index';
+import { weatherConfig } from '../../utils/defaultData';
 import PropTypes from 'prop-types';
 
 const DropDownList = (props) => {
@@ -8,6 +8,16 @@ const DropDownList = (props) => {
     <div className="section">
       <select onChange={select.handleOnChange}>
         <option defaultValue="selected">More locations</option>
+        {weatherConfig.map((location) => (
+          <option
+            id={location.id}
+            label={location.name}
+            key={location.id}
+            value={`${location.lat},${location.long}`}
+          >
+            {location.name}
+          </option>
+        ))}
       </select>
     </div>
   );
