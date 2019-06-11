@@ -1,142 +1,55 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import Router from 'next/router';
+import React from 'react';
+import fetch from 'isomorphic-unfetch';
+import PropTypes from 'prop-types';
+import { Heading } from '@apmg/titan';
 import MainLayout from '../layouts/MainLayout';
-import Weather from '../endpoints/Weather';
-import WeatherContext from '../endpoints/Weather/WeatherContext';
+import Weather from '../endpoints/Weather/Weather';
 import { weatherConfig } from '../utils/defaultData';
 
-class WeatherPage extends Component {
-  constructor(props) {
-    super(props);
+const defaultLocation = weatherConfig[0];
 
-    this.state = {
-      weather: {
-        isLoaded: false,
-        error: null,
-        selectedCoordinates: null,
-        selectedLocationName: null,
-        coordinates: null
-      },
-      handleOnChange: this.handleOnChange.bind(this),
-      getSlugProps: this.getSlugProps.bind(this)
-    };
-  }
-
-  getSlugProps(slug) {
-    const coordinates = weatherConfig.find(
-      (weather) => weather.id.indexOf(slug) > -1
-    );
-    if (coordinates === this.state.weather.selectedCoordinates) return;
-    this.setState(
-      {
-        ...this.state.weather,
-        weather: {
-          selectedCoordinates: `${coordinates.lat},${coordinates.long}`,
-          selectedLocationName: coordinates.name
-        }
-      },
-      this.fetchWeatherData(`${coordinates.lat},${coordinates.long}`)
-    );
-  }
-
-  fetchWeatherData(coordinates) {
-    let url = `https://api.weather.gov/points/${coordinates}/forecast`;
-    axios
-      .get(url)
-      .then((res) => {
-        return this.setState({
-          weather: {
-            isLoaded: true,
-            selectedLocationName: this.state.weather.selectedLocationName,
-            selectedCoordinates: this.state.weather.selectedCoordinates,
-            response: res.data
-          }
-        });
-      })
-      .catch((error) => {
-        this.setState({ weather: { isLoaded: true, error: error } });
-      });
-  }
-
-  handleOnChange(event) {
-    this.setState(
-      {
-        weather: {
-          ...this.state.weather,
-          selectedCoordinates: event.target.value,
-          selectedLocationName: event.target[event.target.selectedIndex].label
-        }
-      },
-      this.fetchWeatherData(event.target.value)
-    );
-    Router.push(`/weather/${event.target[event.target.selectedIndex].id}`);
-  }
-
-  render() {
-    return (
+const WeatherPage = ({ forecast, alerts }) => {
+  return (
+    <MainLayout>
       <div>
-        <WeatherContext.Provider value={this.state}>
-          <MainLayout>
-            <Weather />
-          </MainLayout>
-        </WeatherContext.Provider>
+        <section className="stories section">
+          <Heading level={2}>Weather</Heading>
+          <Weather
+            location={defaultLocation}
+            forecast={forecast}
+            alerts={alerts}
+          />
+        </section>
       </div>
-    );
-  }
-}
+    </MainLayout>
+  );
+};
 
-// const WeatherPage = () => {
-//   const [location, setLocation] = useState(null);
-//   const [weather, setWeather] = useState({
-//     response: {},
-//     isLoaded: false,
-//     error: null
-//   });
+// getInitialProps can only be used in the /pages directory in Next.js
+WeatherPage.getInitialProps = async () => {
+  const forecastRes = await fetch(
+    `https://api.weather.gov/points/${defaultLocation.lat},${
+      defaultLocation.long
+    }/forecast`
+    // https://api.weather.gov/points/44.8848,-93.2223/forecast
+  );
+  const forecastData = await forecastRes.json();
 
-//   const fetchWeatherData = () => {
-//     const pathname = window.location.pathname.split('/');
-//     const geoLocation = pathname[pathname.length - 1];
-//     const coordinates = geoLocation.match(/-?\d+(\.\d+)?,\s*(-?\d+(\.\d+)?)/g)
-//       ? geoLocation
-//       : `44.9434,-93.0965`;
+  const alertRes = await fetch(
+    `https://api.weather.gov/alerts/active?point=${defaultLocation.lat},${
+      defaultLocation.long
+    }`
+    //https://api.weather.gov/alerts/active?point=44.8848,-93.2223
+  );
+  const alertData = await alertRes.json();
 
-//     let url = `https://api.weather.gov/points/${coordinates}/forecast`;
-//     axios
-//       .get(url)
-//       .then((res) => {
-//         setWeather({ response: res.data, isLoaded: true });
-//       })
-//       .catch((error) => {
-//         setWeather({ isLoaded: true, error: error });
-//       });
-//   };
+  return { forecast: forecastData.properties, alerts: alertData.features };
+  // forecastData.properties should have most of the info we need, while alertData's most relevant information should be in features. We can back out if we somehow need the rest
+};
 
-//   const handleOnChange = (event) => {
-//     setLocation(`${event.target.value}`);
-
-//     Router.push(`/weather/${event.target.value}`);
-
-//     return fetchWeatherData();
-//   };
-
-//   useEffect(() => {
-//     fetchWeatherData();
-//   });
-
-//   return (
-//     <MainLayout>
-//       <WeatherContext.Provider
-//         value={{
-//           location: location,
-//           weather: weather,
-//           handleOnChange: handleOnChange
-//         }}
-//       >
-//         <Weather />
-//       </WeatherContext.Provider>
-//     </MainLayout>
-//   );
-// };
+WeatherPage.propTypes = {
+  forecast: PropTypes.object,
+  alerts: PropTypes.array
+};
 
 export default WeatherPage;
