@@ -332,9 +332,7 @@ class Dropdown extends React.Component {
                                 onClick={() => this.clickItem}
                               >
                                 <a
-                                  className={`dropdownMenuItem_link ${
-                                    item.class
-                                  }`}
+                                  className={`dropdownMenuItem_link ${item.class}`}
                                 >
                                   {item.text}
                                 </a>
