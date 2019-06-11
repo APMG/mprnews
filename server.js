@@ -14,11 +14,17 @@ var slug = (req, res, next) => {
   next();
 }
 
+const daySlug = (req, res, next) => {
+  const pathParts = req.path.split('/')
+  req.daySlug = pathParts.pop()
+  next()
+}
+
 app
   .prepare()
   .then(() => {
     const server = express();
-    server.use(slug);
+    server.use(slug, daySlug);
 
     server.get('/story/*', (req, res) => {
       app.render(req, res, '/story', { slug: req.slug })
@@ -43,6 +49,12 @@ app
     server.get('/amppage/*', (req, res) => {
       app.render(req, res, '/amppage', { slug: req.slug })
     });
+
+    server.get('/schedule/*', (req, res) => {
+      console.log('request',req.daySlug)
+      app.render(req, res, '/schedule', { slug: req.daySlug })
+    });
+
 
 
 
