@@ -1,0 +1,38 @@
+// Amat related links
+
+.apm-related-list {
+  margin: 2em 0;
+  font-family: $font-family-default;
+  clear: both;
+}
+
+.apm-related-link-prefix {
+  display: inline-block;
+  margin-right: .5em;
+  font-weight: 700;
+}
+
+.apm-related-list-title {
+  @include hdg();
+  @include hdg-4();
+  margin-bottom: 0.5rem;
+}
+
+.apm-related-list ul li {
+  list-style: none;
+  padding-left: 0;
+  margin-left: 25px;
+  position: relative;
+
+  &:before {
+    content: '';
+    display: block;
+    height: 12px;
+    width: 12px;
+    position: absolute;
+    left: -25px;
+    top: 7px;
+    font-size: .85em;
+    background: $color-grey-80;
+  }
+}
