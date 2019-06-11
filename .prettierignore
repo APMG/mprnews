@@ -1,5 +1,5 @@
 # Location of CSS:
-src/shared/styles/**/*
+styles/**/*
 # Location of built files:
 dist/**/*
 build/**/*

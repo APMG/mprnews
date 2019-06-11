@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Loading } from '@apmg/titan';
-import Icon from '../Icons';
+import Icon from '../Icons/Icon';
 import axios from 'axios';
 import { getCurrentPosition } from './utils';
 

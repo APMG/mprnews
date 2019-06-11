@@ -5,13 +5,16 @@ import { format } from 'date-fns';
 import { Heading, Loading } from '@apmg/titan';
 import { Body } from 'amat-react';
 import query from './page.gql';
+import Metatags from '../../components/Metatags/Metatags';
+import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
 
-const Page = ({ slug }) => (
+const Page = ({ slug, previewToken }) => (
   <Query
     query={query}
     variables={{
       contentAreaSlug: process.env.CONTENT_AREA_SLUG,
-      slug: slug
+      slug: slug,
+      previewToken: previewToken
     }}
   >
     {({ loading, error, data }) => {
@@ -24,8 +27,20 @@ const Page = ({ slug }) => (
 );
 
 const PageInner = ({ page }) => {
+  const socialImage = fishForSocialMediaImage(page);
+  const tags = [
+    { key: 'description', name: 'description', content: page.descriptionText },
+    { key: 'og:image', name: 'og:image', content: socialImage },
+    {
+      key: 'twitter:card',
+      name: 'twitter:card',
+      content: 'summary_large_image'
+    },
+    { key: 'twitter:image', name: 'twitter:image', content: socialImage }
+  ];
   return (
     <>
+      <Metatags title={page.title} metatags={tags} links={[]} />
       <section className="page section">
         <div className="content">
           <div className="content_date">
@@ -47,7 +62,8 @@ const PageInner = ({ page }) => {
 };
 
 Page.propTypes = {
-  slug: PropTypes.string
+  slug: PropTypes.string,
+  previewToken: PropTypes.string
 };
 
 PageInner.propTypes = {

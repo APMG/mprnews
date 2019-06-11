@@ -1,7 +1,8 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
-import { Link } from '@apmg/titan';
+import Link from 'next/link';
 import classNames from 'classnames';
-import Nav from './Nav';
+import Dropdown from '../Dropdown';
 import Logo from './Logo';
 import WeatherHeader from '../WeatherHeader/index';
 import Icon from '../Icons/Icon';
@@ -36,8 +37,6 @@ class Header extends React.Component {
       'is-closed': !this.state.menuOpen
     });
 
-    const items = [{ text: 'Sections' }, { text: 'Members' }, { text: 'More' }];
-
     return (
       <div className="headerContainer">
         <header className={headerClasses} data-testid="header">
@@ -49,16 +48,13 @@ class Header extends React.Component {
             </div>
             <span className="invisible">Menu</span>
           </button>
-          <Link
-            to="/"
-            className="header_logo"
-            data-testid="header-logo"
-            onClick={this.closeMenu}
-          >
-            <div className="header_logoImg">
-              <Logo />
-              <span className="invisible">MPR News</span>
-            </div>
+          <Link href="/" onClick={this.closeMenu}>
+            <a className="header_logo" data-testid="header-logo">
+              <div className="header_logoImg">
+                <Logo />
+                <span className="invisible">MPR News</span>
+              </div>
+            </a>
           </Link>
 
           {/* disabling these eslint jsx-a11y features because this element is for convenience; the menu can still be closed through other means */}
@@ -69,7 +65,7 @@ class Header extends React.Component {
             onClick={this.closeMenu}
           />
           <div className="header_nav">
-            <Nav items={items} />
+            <Dropdown />
           </div>
 
           <WeatherHeader />

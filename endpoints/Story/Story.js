@@ -4,27 +4,31 @@ import PropTypes from 'prop-types';
 import { Loading } from '@apmg/titan';
 import { Image } from 'apm-mimas';
 import { format } from 'date-fns';
-import Content from '../../components/Content';
+import Content from '../../components/Content/Content';
 import ContentLayout from '../../layouts/ContentLayout';
-import Sidebar from '../../components/Sidebar';
+import Sidebar from '../../components/Sidebar/Sidebar';
 import query from './story.gql';
+import Metatags from '../../components/Metatags/Metatags';
+import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
 
-const Story = ({ slug }) => (
-  <Query
-    query={query}
-    variables={{
-      contentAreaSlug: process.env.CONTENT_AREA_SLUG,
-      slug: slug
-    }}
-  >
-    {({ loading, error, data }) => {
-      if (error) return <div>Error loading story</div>;
-      if (loading) return <Loading />;
-
-      return <StoryInner story={data.story} />;
-    }}
-  </Query>
-);
+const Story = ({ slug, previewToken }) => {
+  return (
+    <Query
+      query={query}
+      variables={{
+        contentAreaSlug: process.env.CONTENT_AREA_SLUG,
+        slug: slug,
+        previewToken: previewToken
+      }}
+    >
+      {({ loading, error, data }) => {
+        if (error) return <div>Error loading story</div>;
+        if (loading) return <Loading />;
+        return <StoryInner story={data.story} />;
+      }}
+    </Query>
+  );
+};
 
 const StoryInner = ({ story }) => {
   let authors;
@@ -32,9 +36,8 @@ const StoryInner = ({ story }) => {
   if (story.contributors) {
     authors = story.contributors.map((contributor) => {
       return {
-        name: `${contributor.profile?.firstName} ${
-          contributor.profile?.lastName
-        }`,
+        // prettier-ignore
+        name: `${contributor.profile?.firstName} ${contributor.profile?.lastName}`,
         href: `/profiles/${contributor.profile?.canonicalSlug}`
       };
     });
@@ -44,9 +47,21 @@ const StoryInner = ({ story }) => {
     tagName: story.collections.title,
     to: `/topic/${story.collections.canonicalSlug}`
   };
+  const socialImage = fishForSocialMediaImage(story);
+  const tags = [
+    { key: 'description', name: 'description', content: story.descriptionText },
+    { key: 'og:image', name: 'og:image', content: socialImage },
+    {
+      key: 'twitter:card',
+      name: 'twitter:card',
+      content: 'summary_large_image'
+    },
+    { key: 'twitter:image', name: 'twitter:image', content: socialImage }
+  ];
 
   return (
     <ContentLayout sidebar={<Sidebar />}>
+      <Metatags title={story.title} metatags={tags} links={[]} />
       <Content
         title={story.title}
         authors={authors}
@@ -75,7 +90,8 @@ const StoryInner = ({ story }) => {
 };
 
 Story.propTypes = {
-  slug: PropTypes.string
+  slug: PropTypes.string,
+  previewToken: PropTypes.string
 };
 
 StoryInner.propTypes = {
