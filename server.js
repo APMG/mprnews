@@ -30,6 +30,9 @@ app
     const server = express();
     server.use(slug, previewSlug, previewToken);
 
+    server.get('/', (req, res) => {
+      app.render(req, res, '/index') 
+    })
     server.get('/story/*', (req, res) => {
       app.render(req, res, '/story', { slug: req.slug })
     });

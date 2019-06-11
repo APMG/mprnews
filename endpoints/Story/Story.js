@@ -58,11 +58,10 @@ const StoryInner = ({ story }) => {
     },
     { key: 'twitter:image', name: 'twitter:image', content: socialImage }
   ];
-  const links = [];
 
   return (
     <ContentLayout sidebar={<Sidebar />}>
-      <Metatags title={story.title} metatags={tags} links={links} />
+      <Metatags title={story.title} metatags={tags} links={[]} />
       <Content
         title={story.title}
         authors={authors}

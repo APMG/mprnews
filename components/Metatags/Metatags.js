@@ -26,22 +26,21 @@ const Metatags = (props) => {
     {
       key: 'twitter:image',
       name: 'twitter:image',
-      content: { fallback_image }
+      content: fallback_image
     },
-    { key: 'og:image', name: 'og:image', content: { fallback_image } }
+    { key: 'og:image', name: 'og:image', content: fallback_image }
   ];
   const linkDefaults = [];
   const favicons = [
-    { key: 'icon', rel: 'icon', type: 'image/png', href: { faviconpng } },
+    { key: 'icon', rel: 'icon', type: 'image/png', href: faviconpng },
     {
       key: 'image/x-icon',
       rel: 'shortcut icon',
-      href: { favicon },
+      href: favicon,
       type: 'image/x-icon'
     },
-    { key: 'apple-touch-icon', rel: 'apple-touch-icon', href: { appletouch } }
+    { key: 'apple-touch-icon', rel: 'apple-touch-icon', href: appletouch }
   ];
-
   // dedupe
   const metatags = metaDefaults.map((row) =>
     Object.assign(row, props.metatags.find((rec) => rec.key == row.key))
@@ -49,25 +48,21 @@ const Metatags = (props) => {
   const links = linkDefaults.map((row) =>
     Object.assign(row, props.links.find((rec) => rec.key == row.key))
   );
-
   return (
     <Head>
       {metatags.map((tag) => {
         return <meta key={tag.key} {...tag} />;
       })}
+
       {favicons.map((link) => {
-        return (
-          <link
-            key={link.key}
-            {...link}
-            href={link.href[Object.keys(link.href)[0]]}
-          />
-        );
+        return <link key={link.key} {...link} />;
       })}
+
       {links.map((link) => {
         return <link key={link.key} {...link} />;
       })}
-      <title>{props.title}</title>
+
+      <title>{`${props.title} | MPR News`}</title>
     </Head>
   );
 };
