@@ -2,7 +2,7 @@
 import React from 'react';
 import Link from 'next/link';
 import classNames from 'classnames';
-import Nav from './Nav';
+import Dropdown from '../Dropdown';
 import Logo from './Logo';
 import WeatherHeader from '../WeatherHeader/index';
 import Icon from '../Icons/Icon';
@@ -37,8 +37,6 @@ class Header extends React.Component {
       'is-closed': !this.state.menuOpen
     });
 
-    const items = [{ text: 'Sections' }, { text: 'Members' }, { text: 'More' }];
-
     return (
       <div className="headerContainer">
         <header className={headerClasses} data-testid="header">
@@ -67,7 +65,7 @@ class Header extends React.Component {
             onClick={this.closeMenu}
           />
           <div className="header_nav">
-            <Nav items={items} />
+            <Dropdown />
           </div>
 
           <WeatherHeader />
