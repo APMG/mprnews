@@ -13,7 +13,7 @@ const Metatags = (props) => {
       name: 'viewport',
       content: 'width=device-width,initial-scale=1.0'
     },
-    { key: 'charSet', charset: 'utf-8' },
+    { key: 'charSet', charSet: 'utf-8' },
     {
       key: 'X-UA-Compatible',
       httpEquiv: 'X-UA-Compatible',
