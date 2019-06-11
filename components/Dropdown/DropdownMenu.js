@@ -7,38 +7,6 @@ class DropdownMenu extends React.Component {
     super(props);
   }
 
-  handleClickOutside(e, props) {
-    var children = window.document.getElementsByTagName('*');
-    for (var x in children) {
-      if (children[x] !== e.Target) {
-        return;
-      }
-    }
-    props.forceCloseFunction(e);
-  }
-
-  handleKeyDown(e) {
-    var key = e.which || e.keyCode;
-    if (key !== 9) {
-      // tab
-      return;
-    }
-
-    var items = window.document.getElementsByTagName('button,a');
-    var id = e.shiftKey ? 1 : items.length - 1;
-    if (e.target == items[id]) {
-      this.props.forceCloseFunction(e);
-    }
-  }
-
-  /* Only have the click events enabled when the menu is open */
-  componentDidUpdate(prevProps) {
-    if (this.props.isOpen && !prevProps.isOpen) {
-      window.addEventListener('click', this.handleClickOutside);
-    } else if (!this.props.isOpen && prevProps.isOpen) {
-      window.removeEventListener('click', this.handleClickOutside);
-    }
-  }
   render() {
     var items = this.props.isOpen ? this.props.children : null;
     return (
