@@ -32,7 +32,7 @@ class DropdownMenu extends React.Component {
   }
 
   /* Only have the click events enabled when the menu is open */
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     if (this.props.isOpen && !prevProps.isOpen) {
       window.addEventListener('click', this.handleClickOutside);
     } else if (!this.props.isOpen && prevProps.isOpen) {
