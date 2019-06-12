@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { format, closestIndexTo } from 'date-fns';
 import PropTypes from 'prop-types';
-import { Heading } from '@apmg/titan';
+import { Heading, Loading } from '@apmg/titan';
 import { Image } from 'apm-mimas';
 import { weatherConfig } from '../../utils/defaultData';
 import { fetchWeather } from '../../utils/fetchWeather';
@@ -9,6 +9,7 @@ import { CtoF, degToCompass, mpsToMph, torrToInhg } from '../../utils/utils';
 
 const Weather = (props) => {
   const [data, setData] = useState(props.data);
+  const [loading, setLoading] = useState(false);
 
   const getValueOfMostRecent = (arr) => {
     let currentTime = Date.parse(data.weather.updateTime);
@@ -26,17 +27,21 @@ const Weather = (props) => {
       (item) => item.name === e.target.value
     );
 
+    setLoading(true);
     const { weather, forecast, alerts } = await fetchWeather(
       newLocation.lat,
       newLocation.long
     );
 
     setData({ location: newLocation, weather, forecast, alerts });
+    setLoading(false);
   };
 
   const { location, weather, forecast, alerts } = data;
 
-  return (
+  return loading ? (
+    <Loading />
+  ) : (
     <section className="weather">
       <div className="weather_location">
         <Heading level={1}>{location.name}</Heading>
