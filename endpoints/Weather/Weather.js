@@ -8,7 +8,6 @@ import { fetchWeather } from '../../utils/fetchWeather';
 import { CtoF, degToCompass, mpsToMph, torrToInhg } from '../../utils/utils';
 
 const Weather = (props) => {
-  const [location, setLocation] = useState(props.location);
   const [data, setData] = useState(props.data);
 
   const getValueOfMostRecent = (arr) => {
@@ -26,15 +25,16 @@ const Weather = (props) => {
     let newLocation = weatherConfig.find(
       (item) => item.name === e.target.value
     );
-    setLocation(newLocation);
 
-    const data = await fetchWeather(newLocation.lat, newLocation.long);
+    const { weather, forecast, alerts } = await fetchWeather(
+      newLocation.lat,
+      newLocation.long
+    );
 
-    setData(data);
+    setData({ location: newLocation, weather, forecast, alerts });
   };
 
-  const { weather, forecast, alerts } = props.data;
-  console.log(props.data);
+  const { location, weather, forecast, alerts } = data;
 
   return (
     <section className="weather">

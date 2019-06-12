@@ -13,7 +13,7 @@ const WeatherPage = ({ data }) => (
     <div>
       <section className="stories section">
         <Heading level={2}>Weather</Heading>
-        <Weather location={defaultLocation} data={data} />
+        <Weather data={data} />
       </section>
     </div>
   </MainLayout>
@@ -21,10 +21,18 @@ const WeatherPage = ({ data }) => (
 
 // getInitialProps can only be used in the /pages directory in Next.js
 WeatherPage.getInitialProps = async () => {
-  const data = await fetchWeather(defaultLocation.lat, defaultLocation.long);
+  const { weather, forecast, alerts } = await fetchWeather(
+    defaultLocation.lat,
+    defaultLocation.long
+  );
 
   return {
-    data: data
+    data: {
+      location: defaultLocation,
+      weather,
+      forecast,
+      alerts
+    }
   };
 };
 
