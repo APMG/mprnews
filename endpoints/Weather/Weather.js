@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { format, closestIndexTo } from 'date-fns';
 import PropTypes from 'prop-types';
 import { Heading } from '@apmg/titan';
 import { Image } from 'apm-mimas';
 import { weatherConfig } from '../../utils/defaultData';
+import { fetchWeather } from '../../utils/fetchWeather';
 import { CtoF, degToCompass, mpsToMph, torrToInhg } from '../../utils/utils';
 
 const Weather = (props) => {
-  // console.log(weather);
   const [location, setLocation] = useState(props.location);
-  const [weather, setWeather] = useState(props.weather);
-  const [forecast, setForecast] = useState(props.forecast);
-  const [alerts, setAlerts] = useState(props.alerts);
-  let currentTime = Date.parse(weather.updateTime);
+  const [data, setData] = useState(props.data);
 
   const getValueOfMostRecent = (arr) => {
+    let currentTime = Date.parse(data.weather.updateTime);
+    if (arr.length <= 0) return 'N/A';
+
     let i = closestIndexTo(
       currentTime,
       arr.map((i) => Date.parse(i.validTime.split('/').shift()))
@@ -27,56 +27,17 @@ const Weather = (props) => {
       (item) => item.name === e.target.value
     );
     setLocation(newLocation);
-    const backgroundUrl = `https://api.weather.gov/points/${newLocation.lat},${
-      newLocation.long
-    }`;
-    const locationRes = await fetch(backgroundUrl);
-    const locationData = await locationRes.json();
 
-    const weatherUrl = locationData.properties.forecastGridData;
-    const weatherRes = await fetch(weatherUrl);
-    const weatherData = await weatherRes.json();
+    const data = await fetchWeather(newLocation.lat, newLocation.long);
 
-    const forecastUrl = locationData.properties.forecast;
-    const forecastRes = await fetch(forecastUrl);
-    const forecastData = await forecastRes.json();
-
-    const alertUrl = `https://api.weather.gov/alerts/active?point=${
-      newLocation.lat
-    },${newLocation.long}`;
-    const alertRes = await fetch(alertUrl);
-    const alertData = await alertRes.json();
-
-    let {
-      updateTime,
-      temperature,
-      apparentTemperature,
-      windDirection,
-      windSpeed,
-      pressure,
-      dewpoint,
-      relativeHumidity
-    } = weatherData.properties;
-
-    setWeather({
-      updateTime,
-      temperature,
-      apparentTemperature,
-      windDirection,
-      windSpeed,
-      pressure,
-      dewpoint,
-      relativeHumidity
-    });
-    setForecast(forecastData.properties);
-    setAlerts(alertData.features);
-
-    console.log('weather', weather);
+    setData(data);
   };
+
+  const { weather, forecast, alerts } = props.data;
+  console.log(props.data);
 
   return (
     <section className="weather">
-      {/* TODO: make this align with whatever location has been chosen in the dropdown (Minneapolis by default?) */}
       <div className="weather_location">
         <Heading level={1}>{location.name}</Heading>
 
@@ -181,9 +142,7 @@ const Weather = (props) => {
 
 Weather.propTypes = {
   location: PropTypes.object,
-  weather: PropTypes.object,
-  forecast: PropTypes.object,
-  alerts: PropTypes.array
+  data: PropTypes.object
 };
 
 export default Weather;
