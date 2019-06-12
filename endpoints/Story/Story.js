@@ -29,6 +29,67 @@ const Story = ({ slug, previewToken }) => {
     </Query>
   );
 };
+// array of objects to array
+function arrayOfObjectsMap(authors) {
+  let nameArray = [];
+  authors.forEach((author) => nameArray.push(author.name.trim()));
+  console.log('nameArray:', nameArray);
+  return nameArray;
+}
+
+// arrayToSentence
+
+function arrayToSentence(contributors) {
+  if (contributors.length > 1) {
+    let results =
+      contributors.slice(0, contributors.length - 1).join(', ') +
+      ', and ' +
+      contributors.slice(-1);
+    return results;
+  } else return contributors[0];
+
+  // authors.slice(0, authors.length - 1).join(',') + ', and' + authors.slice(-1);
+  // // console.log(JSON.stringify(mapAuthors));
+  // console.log('params authors', authors);
+  // let contributors = [];
+  // let pushContributors = [];
+  // let newAuthors = authors.forEach((author) =>
+  //   pushContributors.push(author.name)
+  // );
+  // let newArrat =
+  //   pushContributors.slice(0, authors.length - 1).join(',') +
+  //   ', and' +
+  //   authors.slice(-1);
+  // console.log(newArrat);
+  // authors.forEach((author) =>
+  //   contributors.push({
+  //     name: author.name,
+  //     href: author.href
+  //   })
+  // );
+  // console.log(contributors);
+  // return contributors;
+  // }
+  // console.log(newArray);
+
+  // authors.forEach((author) =>
+  //   newArray.push({
+  //     name: author.name.replace('null', ','),
+  //     href: author.href
+  //   })
+  // );
+
+  // let newObject = new Object();
+  // let contributors = [];
+  // authors.forEach(
+  //   (author) => (
+  //     (newObject.name = author.name.replace('null', ',')),
+  //     (newObject.href = author.href)
+  //   )
+  // );
+  // console.log('newObject', newObject);
+  // return newObject;
+}
 
 const StoryInner = ({ story }) => {
   let authors;
@@ -37,11 +98,15 @@ const StoryInner = ({ story }) => {
     authors = story.contributors.map((contributor) => {
       return {
         // prettier-ignore
-        name: `${contributor.profile?.firstName} ${contributor.profile?.lastName}`,
+        name: `${contributor.profile?.firstName} ${contributor.profile?.lastName ? contributor.profile?.lastName : ''}`,
         href: `/profiles/${contributor.profile?.canonicalSlug}`
       };
     });
   }
+  let contributors = arrayOfObjectsMap(authors);
+  console.log('this is arrayOfObjectsMap:', contributors);
+  let sentence = arrayToSentence(contributors);
+  console.log('this is sentence:', sentence);
 
   const tag = {
     tagName: story.collections.title,
