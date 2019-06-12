@@ -1,7 +1,12 @@
 query story($contentAreaSlug: String!, $slug: String!, $previewToken: String) {
-  story: story(contentAreaSlug: $contentAreaSlug, slug: $slug, previewToken: $previewToken) {
+  story: story(
+    contentAreaSlug: $contentAreaSlug
+    slug: $slug
+    previewToken: $previewToken
+  ) {
     id
     title
+    subtitle
     canonicalSlug
     collections {
       title

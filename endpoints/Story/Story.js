@@ -64,6 +64,7 @@ const StoryInner = ({ story }) => {
       <Metatags title={story.title} metatags={tags} links={[]} />
       <Content
         title={story.title}
+        subtitle={story.subtitle}
         authors={authors}
         body={story.body}
         image={

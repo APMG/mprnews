@@ -31,7 +31,7 @@ const ContentHeader = (props) => {
       )}
 
       <div className="content_meta">
-        {props.authors && (
+        {props.authors.length ? (
           <div className="content_byline" data-testid="contentByline">
             {props.authors.map((author) => {
               return (
@@ -41,7 +41,7 @@ const ContentHeader = (props) => {
               );
             })}
           </div>
-        )}
+        ) : null}
 
         {props.publishDate && (
           <time className="content_pubdate" dateTime={props.publishDate}>
