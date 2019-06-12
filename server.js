@@ -76,7 +76,6 @@ app
     });
 
     server.get('/schedule/*', (req, res) => {
-      console.log('request',req.daySlug)
       app.render(req, res, '/schedule', { slug: req.daySlug })
     });
 

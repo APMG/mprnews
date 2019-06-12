@@ -13,21 +13,21 @@ const Schedule = ({ slug }) => {
   const [error, setHasError] = useState(false);
 
   useEffect(() => {
-    const dates = getDateTime();
-    const formatDate = formatEachDateTime(dates);
-    fetchSchedule(formatDate);
+    const dates = getDateTimes();
+    const formattedDate = formatEachDateTime(dates);
+    fetchSchedule(formattedDate);
   }, []);
 
-  function getDateTime() {
+  function getDateTimes() {
     const todaysDate = format(new Date(), 'YYYY-MM-DD');
     const startOfWeekDate = startOfWeek(todaysDate);
     const endOfWeekDate = endOfWeek(todaysDate);
 
-    const getEachDayDate = eachDay(
+    const results = eachDay(
       format(startOfWeekDate, 'YYYY-MM-DD'),
       format(endOfWeekDate, 'YYYY-MM-DD')
     );
-    return getEachDayDate;
+    return results;
   }
 
   function formatEachDateTime(date) {
