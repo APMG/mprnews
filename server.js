@@ -14,6 +14,12 @@ const slug = (req, res, next) => {
   next();
 }
 
+const daySlug = (req, res, next) => {
+  const pathParts = req.path.split('/')
+  req.daySlug = pathParts.pop()
+  next()
+}
+
 const previewSlug = (req, res, next) => {
   req.previewSlug = req.path.replace(/\/preview\/(episodes|stories|pages)\//, '');
   next();
@@ -28,7 +34,7 @@ app
   .prepare()
   .then(() => {
     const server = express();
-    server.use(slug, previewSlug, previewToken);
+    server.use(slug, previewSlug, previewToken, daySlug);
 
     server.get('/', (req, res) => {
       app.render(req, res, '/index') 
@@ -69,8 +75,9 @@ app
       app.render(req, res, '/amppage', { slug: req.slug })
     });
 
-
-
+    server.get('/schedule/*', (req, res) => {
+      app.render(req, res, '/schedule', { slug: req.daySlug })
+    });
 
     server.get('*', (req, res) => {
       return handle(req, res);
@@ -85,6 +92,3 @@ app
     console.error(ex.stack);
     process.exit(1);
   });
-
-
-
