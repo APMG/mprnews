@@ -24,6 +24,7 @@
   "dependencies": {
     "@apmg/titan": "^0.4.1",
     "amat-react": "^0.1.14",
+    "apm-mimas": "^0.1.9",
     "apollo-boost": "^0.1.16",
     "axios": "^0.19.0",
     "classnames": "^2.2.6",

@@ -29,8 +29,8 @@ query story($contentAreaSlug: String!, $slug: String!, $previewToken: String) {
     embeddedAssetJson
     primaryVisuals {
       lead {
-        aspectRatios {
-          square {
+        aspect_ratios: aspectRatios {
+          uncropped {
             instances {
               url
               width
