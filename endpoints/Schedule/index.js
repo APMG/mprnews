@@ -23,22 +23,22 @@ const Schedule = ({ slug }) => {
     const startOfWeekDate = startOfWeek(todaysDate);
     const endOfWeekDate = endOfWeek(todaysDate);
 
-    const results = eachDay(
+    const getEachDayDate = eachDay(
       format(startOfWeekDate, 'YYYY-MM-DD'),
       format(endOfWeekDate, 'YYYY-MM-DD')
     );
-    return results;
+    return getEachDayDate;
   }
 
   function formatEachDateTime(date) {
-    let result = date.map((i) => {
+    let results = date.map((i) => {
       const formatDateWithDay = format(i, 'ddd');
 
       if (formatDateWithDay.toLowerCase() === slug) {
         return format(i, 'YYYY-MM-DD');
       }
     });
-    return result;
+    return results;
   }
 
   function fetchSchedule(dateTime) {
