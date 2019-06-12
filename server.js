@@ -7,10 +7,7 @@ const app = next({ dev })
 const handle = app.getRequestHandler()
 
 const slug = (req, res, next) => {
-  const pathParts = req.path.split('/')
-  pathParts.shift();
-  pathParts.shift();
-  req.slug = pathParts.join('/');
+  req.slug = req.path.replace(/^(\/newspartners)*\/(story|episode|page)\//, '');
   next();
 }
 
@@ -21,7 +18,7 @@ const daySlug = (req, res, next) => {
 }
 
 const previewSlug = (req, res, next) => {
-  req.previewSlug = req.path.replace(/\/preview\/(episodes|stories|pages)\//, '');
+  req.previewSlug = req.path.replace(/\/preview\/(episodes|stories|page)\//, '');
   next();
 }
 
@@ -41,6 +38,9 @@ app
     })
     server.get('/story/*', (req, res) => {
       app.render(req, res, '/story', { slug: req.slug })
+    });
+    server.get('/newspartners/story/*', (req, res) => {
+      app.render(req, res, '/newspartnerstory', { slug: req.slug })
     });
 
     server.get('/preview/stories/*', (req, res) => {
