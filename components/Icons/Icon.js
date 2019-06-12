@@ -1,15 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import IconEmpty from './IconEmpty';
+import IconFacebook from './IconFacebook';
 import IconChevronDown from './IconChevronDown';
 import IconSearch from './IconSearch';
+import IconTwitter from './IconTwitter';
 import IconLocation from './IconLocation';
 
 const icons = {
   empty: IconEmpty,
   chevronDown: IconChevronDown,
+  facebook: IconFacebook,
+  location: IconLocation,
   search: IconSearch,
-  location: IconLocation
+  twitter: IconTwitter
 };
 
 const Icon = (props) => {
