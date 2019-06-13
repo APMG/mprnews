@@ -90,15 +90,28 @@ function arrayToSentence(contributors) {
   // console.log('newObject', newObject);
   // return newObject;
 }
+function commaFunc(array) {
+  if (array.length > 1) {
+    // return "comma" or "and" or "nothing"
+    let results =
+      array.slice(0, array.length - 1).join(', ') + ', and ' + array.slice(-1);
+    return results;
+  } else return array[0];
+}
 
 const StoryInner = ({ story }) => {
   let authors;
 
   if (story.contributors) {
+    console.log('contra:', story.contributors);
     authors = story.contributors.map((contributor) => {
+      let thisString = `${contributor.profile?.firstName} ${
+        contributor.profile?.lastName ? contributor.profile?.lastName : ''
+      }`;
+      // let commaOrAnd = commaFunc(commaOrAnd);
       return {
         // prettier-ignore
-        name: `${contributor.profile?.firstName} ${contributor.profile?.lastName ? contributor.profile?.lastName : ''}`,
+        name: `${thisString}`,
         href: `/profiles/${contributor.profile?.canonicalSlug}`
       };
     });
@@ -127,6 +140,7 @@ const StoryInner = ({ story }) => {
   return (
     <ContentLayout sidebar={<Sidebar />}>
       <Metatags title={story.title} metatags={tags} links={[]} />
+      {sentence}
       <Content
         title={story.title}
         authors={authors}
