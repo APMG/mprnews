@@ -51,4 +51,8 @@ query home($contentAreaSlug: String!, $slug: String!) {
       }
     }
   }
+  potlatch(slug: "mprnews/alerts") {
+    slug
+    json
+  }
 }
