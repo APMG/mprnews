@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Link from 'next/link';
 import { Heading, TagLink } from '@apmg/titan';
 import { format } from 'date-fns';
+import Byline from '../Byline/Byline';
 
 const ContentHeader = (props) => {
   return (
@@ -33,13 +33,7 @@ const ContentHeader = (props) => {
       <div className="content_meta">
         {props.authors.length ? (
           <div className="content_byline" data-testid="contentByline">
-            {props.authors.map((author) => {
-              return (
-                <Link href={author.href} key={author.href}>
-                  <a className="link link-none">{`${author.name} `}</a>
-                </Link>
-              );
-            })}
+            <Byline authors={props.authors} />
           </div>
         ) : null}
 
