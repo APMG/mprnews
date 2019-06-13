@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
-import { Button } from '@apmg/titan';
+import { Button, Heading } from '@apmg/titan';
 
 const FooterProgramming = (props) => {
   return (
     <div className="footer_prog">
-      <h4 className="invisible">{props.title}</h4>
+      <Heading level={4} className="invisible">
+        {props.title}
+      </Heading>
       <div className="footer_progListen">
         <Button href={props.listenHref} type="primary">
           {props.listenText}

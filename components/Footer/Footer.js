@@ -11,26 +11,28 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer_upper">
-        <FooterApps
-          title={config.appsTitle}
-          imageSrc={config.appsImg}
-          links={config.apps}
-        />
-        <FooterPodcasts
-          title={config.podcastTitle}
-          href={config.podcastLinkHref}
-          text={config.podcastText}
-          linkLabel={config.podcastLinkLabel}
-        />
-        <FooterContact links={config.contact} />
-        <FooterSubscribe />
-        <FooterProgramming
-          listenText={config.listenText}
-          listenHref={config.listenHref}
-          links={config.programmingLinks}
-        />
+        <div className="container">
+          <FooterApps
+            title={config.appsTitle}
+            imageSrc={config.appsImg}
+            links={config.apps}
+          />
+          <FooterPodcasts
+            title={config.podcastTitle}
+            href={config.podcastLinkHref}
+            text={config.podcastText}
+            linkLabel={config.podcastLinkLabel}
+          />
+          <FooterContact links={config.contact} />
+          <FooterSubscribe />
+          <FooterProgramming
+            listenText={config.listenText}
+            listenHref={config.listenHref}
+            links={config.programmingLinks}
+          />
+        </div>
       </div>
-      <FooterLower />
+      <FooterLower nav={config.nav} />
     </footer>
   );
 };

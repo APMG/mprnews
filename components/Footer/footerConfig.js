@@ -34,6 +34,34 @@ export default {
   ],
   listenHref: '/listen',
   listenText: 'Listen Live',
+  nav: [
+    {
+      label: 'About Minnesota Public Radio',
+      href: 'https://www.mpr.org/about'
+    },
+    { label: 'Contact Us', href: 'https://www.mpr.org/contact' },
+    {
+      label: 'Shop',
+      href: 'https://www.publicmediamarket.org/collections/mpr-news'
+    },
+    {
+      label: 'Become a Member',
+      href:
+        'https://contribute.publicradio.org/contribute.php?&WT.mc_id=news_web_footer&WT.mc_ev=click&utm_campaign=membership_contribution&utm_medium=web_footer&utm_source=news&utm_content=&utm_term='
+    },
+    { label: 'Volunteer', href: 'https://www.mpr.org/volunteer' },
+    {
+      label: 'Fundraising Credentials',
+      href:
+        'http://minnesota.publicradio.org/support/membership/fundraising-credentials.shtml'
+    },
+    { label: 'Terms of use', href: 'http://www.mpr.org/public/terms' },
+    { label: 'Your privacy rights', href: 'http://www.mpr.org/public/privacy' },
+    {
+      label: 'Station outage information',
+      href: 'https://www.mpr.org/station-outages'
+    }
+  ],
   podcastTitle: 'MPR News Podcasts',
   podcastText:
     'Check out MPR News podcasts from the award-winning 74 Seconds to in-depth conversations on news and culture with Kerri Miller and our daily news updates.',
