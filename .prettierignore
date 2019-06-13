@@ -6,3 +6,4 @@ build/**/*
 server.js
 src/shared/config/index.js
 .next
+./components/Dropdown/index.js
