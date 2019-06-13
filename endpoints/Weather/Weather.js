@@ -46,9 +46,13 @@ const Weather = (props) => {
       <div className="weather_location">
         <Heading level={1}>{location.name}</Heading>
 
-        <select className="weather_locationSelect" onChange={handleChange}>
+        <select
+          className="weather_locationSelect"
+          onChange={handleChange}
+          value={location.name}
+        >
           {weatherConfig.map((loc) => (
-            <option key={loc.id} value={`${loc.name}`}>
+            <option key={loc.id} value={`${loc.name}`} label={loc.name}>
               {loc.name}
             </option>
           ))}
@@ -146,7 +150,6 @@ const Weather = (props) => {
 };
 
 Weather.propTypes = {
-  location: PropTypes.object,
   data: PropTypes.object
 };
 

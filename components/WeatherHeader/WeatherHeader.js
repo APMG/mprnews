@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Loading } from '@apmg/titan';
 import Icon from '../Icons/Icon';
-import axios from 'axios'; // TODO: switch to isomorphic-unfetch to better stick with Next.js standards (and because it's way smaller)
+import axios from 'axios'; // TODO: switch to isomorphic-unfetch to better stick with Next.js standards (and because it's way smaller). Also, we literally need this one for the Next/Apollo setup, and it's bad form to import two libraries for roughly the same thing.
 import { getCurrentPosition } from '../../utils/utils';
 
 export default function weatherHeaderRequest() {
