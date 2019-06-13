@@ -1,0 +1,96 @@
+// Main Site Footer
+
+.footer {
+  margin-top: 50px;
+  background-color: $color-blue-tint;
+}
+
+.footer_upper {
+  max-width: $max-width;
+  margin: 0 auto;
+  columns: 3 300px;
+}
+
+.footer_apps {
+  grid-area: apps;
+}
+
+.footer_podcasts {
+  grid-area: podcasts;
+}
+
+.footer_contact {
+  grid-area: contact;
+}
+
+.footer_subscribe {
+  grid-area: subscribe;
+}
+
+.footer_prog {
+  grid-area: prog;
+}
+
+.footer_lower {
+  padding: 40px 0 20px;
+  background-color: $color-theme;
+  color: $color-white;
+}
+
+.footer_lowerContent {
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+
+  @include media($media-small-tablet) {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+}
+
+.footer_logo {
+  width: 120px;
+  margin: 0 40px 40px;
+  flex-shrink: 0;
+
+  @include media($media-small-tablet) {
+    margin-bottom: 0;
+  }
+
+  img {
+    width: 120px;
+  }
+}
+
+.footer_navList {
+  @include media($media-tablet) {
+    columns: 3 24rem;
+  }
+}
+
+.footer_navItem {
+  margin-bottom: .5em;
+}
+
+.footer_navLink {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.footer_lowerSmall {
+  text-align: center;
+}
+
+.footer_copyright,
+.footer_disclaimer {
+  font-size: 1.2rem;
+}
+
+.footer_disclaimer {
+  opacity: .8;
+  font-style: italic;
+}
+
