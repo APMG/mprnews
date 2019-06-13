@@ -37,3 +37,8 @@
 .hdg-light {
   font-weight: normal;
 }
+
+// Should be used only for story/content headlines and headings, not other UI elements
+.hdg-headline {
+  @include hdg-headline();
+}

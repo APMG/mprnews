@@ -19,7 +19,7 @@ const ContentHeader = (props) => {
 
       <Heading
         level={props.headingLevel ? props.headingLevel : 1}
-        className="hdg hdg-1"
+        className="hdg hdg-1 hdg-headline"
       >
         {props.title}
       </Heading>
