@@ -1,142 +1,43 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import Router from 'next/router';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Heading } from '@apmg/titan';
 import MainLayout from '../layouts/MainLayout';
-import Weather from '../endpoints/Weather';
-import WeatherContext from '../endpoints/Weather/WeatherContext';
+import Weather from '../endpoints/Weather/Weather';
 import { weatherConfig } from '../utils/defaultData';
+import { fetchWeather } from '../utils/fetchWeather';
 
-class WeatherPage extends Component {
-  constructor(props) {
-    super(props);
+const defaultLocation = weatherConfig[0];
 
-    this.state = {
-      weather: {
-        isLoaded: false,
-        error: null,
-        selectedCoordinates: null,
-        selectedLocationName: null,
-        coordinates: null
-      },
-      handleOnChange: this.handleOnChange.bind(this),
-      getSlugProps: this.getSlugProps.bind(this)
-    };
-  }
+const WeatherPage = ({ data }) => (
+  <MainLayout>
+    <div>
+      <section className="stories section">
+        <Heading level={2}>Weather</Heading>
+        <Weather data={data} />
+      </section>
+    </div>
+  </MainLayout>
+);
 
-  getSlugProps(slug) {
-    const coordinates = weatherConfig.find(
-      (weather) => weather.id.indexOf(slug) > -1
-    );
-    if (coordinates === this.state.weather.selectedCoordinates) return;
-    this.setState(
-      {
-        ...this.state.weather,
-        weather: {
-          selectedCoordinates: `${coordinates.lat},${coordinates.long}`,
-          selectedLocationName: coordinates.name
-        }
-      },
-      this.fetchWeatherData(`${coordinates.lat},${coordinates.long}`)
-    );
-  }
+// getInitialProps can only be used in the /pages directory in Next.js
+WeatherPage.getInitialProps = async () => {
+  const { weather, forecast, alerts } = await fetchWeather(
+    defaultLocation.lat,
+    defaultLocation.long
+  );
 
-  fetchWeatherData(coordinates) {
-    let url = `https://api.weather.gov/points/${coordinates}/forecast`;
-    axios
-      .get(url)
-      .then((res) => {
-        return this.setState({
-          weather: {
-            isLoaded: true,
-            selectedLocationName: this.state.weather.selectedLocationName,
-            selectedCoordinates: this.state.weather.selectedCoordinates,
-            response: res.data
-          }
-        });
-      })
-      .catch((error) => {
-        this.setState({ weather: { isLoaded: true, error: error } });
-      });
-  }
+  return {
+    data: {
+      location: defaultLocation,
+      weather,
+      forecast,
+      alerts
+    }
+  };
+};
 
-  handleOnChange(event) {
-    this.setState(
-      {
-        weather: {
-          ...this.state.weather,
-          selectedCoordinates: event.target.value,
-          selectedLocationName: event.target[event.target.selectedIndex].label
-        }
-      },
-      this.fetchWeatherData(event.target.value)
-    );
-    Router.push(`/weather/${event.target[event.target.selectedIndex].id}`);
-  }
-
-  render() {
-    return (
-      <div>
-        <WeatherContext.Provider value={this.state}>
-          <MainLayout>
-            <Weather />
-          </MainLayout>
-        </WeatherContext.Provider>
-      </div>
-    );
-  }
-}
-
-// const WeatherPage = () => {
-//   const [location, setLocation] = useState(null);
-//   const [weather, setWeather] = useState({
-//     response: {},
-//     isLoaded: false,
-//     error: null
-//   });
-
-//   const fetchWeatherData = () => {
-//     const pathname = window.location.pathname.split('/');
-//     const geoLocation = pathname[pathname.length - 1];
-//     const coordinates = geoLocation.match(/-?\d+(\.\d+)?,\s*(-?\d+(\.\d+)?)/g)
-//       ? geoLocation
-//       : `44.9434,-93.0965`;
-
-//     let url = `https://api.weather.gov/points/${coordinates}/forecast`;
-//     axios
-//       .get(url)
-//       .then((res) => {
-//         setWeather({ response: res.data, isLoaded: true });
-//       })
-//       .catch((error) => {
-//         setWeather({ isLoaded: true, error: error });
-//       });
-//   };
-
-//   const handleOnChange = (event) => {
-//     setLocation(`${event.target.value}`);
-
-//     Router.push(`/weather/${event.target.value}`);
-
-//     return fetchWeatherData();
-//   };
-
-//   useEffect(() => {
-//     fetchWeatherData();
-//   });
-
-//   return (
-//     <MainLayout>
-//       <WeatherContext.Provider
-//         value={{
-//           location: location,
-//           weather: weather,
-//           handleOnChange: handleOnChange
-//         }}
-//       >
-//         <Weather />
-//       </WeatherContext.Provider>
-//     </MainLayout>
-//   );
-// };
+WeatherPage.propTypes = {
+  data: PropTypes.object
+};
 
 export default WeatherPage;

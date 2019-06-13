@@ -68,6 +68,7 @@ const StoryInner = ({ story }) => {
 
       <Content
         title={story.title}
+        subtitle={story.subtitle}
         authors={authors}
         body={story.body}
         image={

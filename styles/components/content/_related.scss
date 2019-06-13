@@ -15,7 +15,7 @@
 .apm-related-list-title {
   @include hdg();
   @include hdg-4();
-  margin-bottom: 0.5rem;
+  margin-bottom: .5rem;
 }
 
 .apm-related-list ul li {
@@ -24,15 +24,16 @@
   margin-left: 25px;
   position: relative;
 
-  &:before {
+  &::before {
     content: '';
     display: block;
     height: 12px;
     width: 12px;
+    border-radius: 2px;
     position: absolute;
     left: -25px;
-    top: 7px;
+    top: .6rem;
     font-size: .85em;
-    background: $color-grey-80;
+    background: $color-blue-light;
   }
 }
