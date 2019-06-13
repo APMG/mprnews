@@ -55,6 +55,9 @@
 // Discrete interface components that can be used anywhere on the site and look the same
 // @import 'components/**/*.scss';
 @import 'components/content/content';
+@import 'components/content/gallery';
+@import 'components/content/slideshow';
+@import 'components/content/related';
 @import 'components/landmarks/header';
 @import 'components/landmarks/nav';
 @import 'components/landmarks/navIcon';
@@ -65,6 +68,9 @@
 @import 'components/type/link';
 @import 'components/type/text';
 @import 'components/ui/btn';
+@import 'components/ui/dropdown';
+@import 'components/ui/dropdownMenu';
+@import 'components/ui/dropdownMenuItem';
 @import 'components/ui/icon';
 @import 'components/ui/weatherHeader';
 

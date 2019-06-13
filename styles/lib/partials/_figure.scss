@@ -93,10 +93,13 @@
   color: $color-text-dark;
 
   &::before {
-    content: '\0025CF';
+    content: '';
+    width: 10px;
+    height: 10px;
     display: inline-block;
     margin-right: .45em;
-    opacity: .5em;
+    border-radius: 2px;
+    background: $color-blue-light;
   }
 }
 

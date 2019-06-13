@@ -1,12 +1,16 @@
 // Colors
 $color-red: #b4111a;
 $color-green: #84c446;
-$color-blue: #3d8fa5;
 $color-darkred: #9a272a;
-$color-darkblue: #00334e;
-$color-lightblue: #3d8fa5;
+
+$color-blue: #4298b5;
+$color-blue-tint: #e5eff4;
+$color-blue-light: #94c4d9;
+$color-lightblue: $color-blue-light;
 $color-blue-dark: #00334e;
+$color-darkblue: $color-blue-dark;
 $color-blue-faded: #3f6275;
+
 $color-transparent: rgba(255, 255, 255, 0);
 $color-white: #ffffff;
 $color-black: #000000;

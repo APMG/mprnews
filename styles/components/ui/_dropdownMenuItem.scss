@@ -1,0 +1,66 @@
+.dropdownMenuItem_link {
+  display: block;
+  padding: .25em 0;
+  color: $color-blue-dark;
+
+  &:last-child {
+    padding-bottom: .5em;
+  }
+
+  &.mprnews {
+    font-weight: bold;
+  }
+
+  &.thecurrent {
+    font-weight: bold;
+    color: $color-red;
+  }
+
+  &.classical {
+    font-weight: bold;
+    color: $color-green;
+  }
+
+  &.bold {
+    font-weight: bold;
+  }
+
+  &:hover {
+    color: $color-blue;
+    transition: color $transition;
+  }
+}
+
+
+.dropdownMenuItem {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  font-weight: normal;
+  padding-top: 30px;
+  border-right: 1px solid $color-grey-80;
+  margin-right: 30px;
+  width: 195px;
+  padding-right: 20px;
+}
+
+.grow-from-center-enter {
+  opacity: .5;
+  transform-origin: 50% 0;
+
+  &.grow-from-center-enter-active {
+    transition: opacity 125ms ease-out;
+    opacity: 1;
+  }
+}
+
+.grow-from-center-leave {
+  transform-origin: 50% 0;
+  opacity: 1;
+
+  &.grow-from-center-leave-active {
+    opacity: 0;
+    transition: opacity 125ms ease-out;
+  }
+}
+
