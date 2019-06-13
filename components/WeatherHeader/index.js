@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import WeatherContext from '../../endpoints/Weather/WeatherContext';
+import WeatherContext from '../../context/WeatherContext';
 import WeatherHeader from './WeatherHeader';
 import PropTypes from 'prop-types';
 

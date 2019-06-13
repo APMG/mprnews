@@ -6,12 +6,18 @@ before_script:
 ESLint:
   script:
     - npm run eslint
+  tags:
+    - general_cent7
 SassLint:
   script:
     - npm run sasslint
+  tags:
+    - general_cent7
 Prettier:
   script:
     - npm run prettier
+  tags:
+    - general_cent7
 # Deploy Dev:
 #   script:
 #     - bundle install --path ~/vendor/bundle
