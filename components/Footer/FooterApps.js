@@ -6,27 +6,35 @@ const FooterApps = (props) => {
   return (
     <div className="footer_apps">
       <div className="footer_header">
-        <Heading level={4}>{props.title}</Heading>
+        <Heading level={4} className="hdg hdg-5">
+          {props.title}
+        </Heading>
       </div>
-      <div className="footer_appImg">
-        <img src={props.imageSrc} alt="" />
-      </div>
-      <div className="footer_appList">
-        <ul className="vList">
-          {props.links.map((link) => {
-            return (
-              <li key={link.href}>
-                <a href={link.href}>
-                  {link.image ? (
-                    <img src={link.image} alt={link.label} />
-                  ) : (
-                    <>{link.label}</>
-                  )}
-                </a>
-              </li>
-            );
-          })}
-        </ul>
+      <div className="footer_body footer_body-apps">
+        <div className="footer_appImg">
+          <img src={props.imageSrc} alt="" />
+        </div>
+        <div className="footer_appList">
+          <ul className="vList">
+            {props.links.map((link) => {
+              return (
+                <li key={link.href}>
+                  <a href={link.href} className="link link-plain">
+                    {link.image ? (
+                      <img
+                        src={link.image}
+                        alt={link.label}
+                        className="footer_appLinkImg"
+                      />
+                    ) : (
+                      <>{link.label}</>
+                    )}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       </div>
     </div>
   );

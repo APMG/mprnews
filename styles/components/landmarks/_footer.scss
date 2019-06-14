@@ -7,29 +7,85 @@
 
 .footer_upper {
   max-width: $max-width;
+  padding: 40px $container-edge;
   margin: 0 auto;
   columns: 3 300px;
+
+  > * {
+    break-inside: avoid;
+  }
 }
 
-.footer_apps {
-  grid-area: apps;
+.footer_header {
+  margin-bottom: 2rem;
 }
+
+//--------------------------
+// Mobile app info
+//--------------------------
+
+.footer_apps {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.footer_body-apps {
+  grid-area: apps;
+  display: grid;
+  grid-template-areas: 'img list';
+  grid-template-columns: 90px 1fr;
+  grid-template-rows: auto auto;
+  grid-column-gap: 20px;
+}
+
+.footer_appImg {
+  grid-area: img;
+}
+
+.footer_appList {
+  grid-area: list;
+}
+
+.footer_appLinkImg {
+  height: 40px;
+  width: auto;
+}
+
+//--------------------------
+// Podcast info
+//--------------------------
 
 .footer_podcasts {
   grid-area: podcasts;
 }
 
+//--------------------------
+// Contact
+//--------------------------
+
 .footer_contact {
   grid-area: contact;
 }
+
+//--------------------------
+// Email subscription
+//--------------------------
 
 .footer_subscribe {
   grid-area: subscribe;
 }
 
+//--------------------------
+// Programming/Audio info
+//--------------------------
+
 .footer_prog {
   grid-area: prog;
 }
+
+//--------------------------
+// Lower footer area
+//--------------------------
 
 .footer_lower {
   padding: 40px 0 20px;
@@ -67,12 +123,13 @@
 
 .footer_navList {
   @include media($media-tablet) {
+    margin-top: .8rem;
     columns: 3 24rem;
   }
 }
 
 .footer_navItem {
-  margin-bottom: .5em;
+  margin-bottom: .8rem;
 }
 
 .footer_navLink {

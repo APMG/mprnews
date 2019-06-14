@@ -1,5 +1,5 @@
 export default {
-  appsTitle: 'MPR News apps for Android and iOS',
+  appsTitle: 'MPR News mobile apps',
   appsImg: '/static/app-news.jpg',
   apps: [
     {
