@@ -1,0 +1,180 @@
+// Main Site Footer
+
+.footer {
+  margin-top: 50px;
+  background-color: $color-blue-tint;
+}
+
+.footer_upper {
+  max-width: $max-width;
+  padding: 50px $container-edge 0;
+  margin: 0 auto;
+  columns: 3 300px;
+  column-gap: 4%;
+  font-size: 1.5rem;
+
+  > * {
+    break-inside: avoid;
+    padding-bottom: 50px;
+  }
+
+  @include media($media-tablet) {
+    padding-left: 3%;
+    padding-right: 3%;
+  }
+}
+
+.footer_row {
+  margin-bottom: 1.5rem;
+}
+
+//--------------------------
+// Mobile app info
+//--------------------------
+
+.footer_apps {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.footer_body-apps {
+  grid-area: apps;
+  display: grid;
+  grid-template-areas: 'img list';
+  grid-template-columns: 90px 1fr;
+  grid-template-rows: auto auto;
+  grid-column-gap: 20px;
+}
+
+.footer_appImg {
+  grid-area: img;
+}
+
+.footer_appList {
+  grid-area: list;
+}
+
+.footer_appLinkImg {
+  height: 40px;
+  width: auto;
+}
+
+//--------------------------
+// Podcast info
+//--------------------------
+
+.footer_podcastText {
+  line-height: 1.5;
+}
+
+.footer_podcastLink {
+  color: $color-link;
+}
+
+//--------------------------
+// Contact
+//--------------------------
+
+.footer_contact {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.footer_contactList {
+  columns: 2;
+
+  > * {
+    margin-bottom: .5em;
+    white-space: nowrap;
+  }
+}
+
+//--------------------------
+// Email subscription
+//--------------------------
+
+.footer_subscribe {
+  font-size: 1.4rem;
+}
+
+//--------------------------
+// Programming/Audio info
+//--------------------------
+
+.footer_progLinks {
+  font-weight: 700;
+  font-size: 1.4rem;
+}
+
+.footer_progListen {
+  float: right;
+}
+
+//--------------------------
+// Lower footer area
+//--------------------------
+
+.footer_lower {
+  padding: 40px 0 20px;
+  background-color: $color-theme;
+  color: $color-white;
+}
+
+.footer_lowerContent {
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+
+  @include media($media-small-tablet) {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+}
+
+.footer_logo {
+  width: 120px;
+  margin: 0 40px 40px;
+  flex-shrink: 0;
+
+  @include media($media-small-tablet) {
+    margin-bottom: 0;
+  }
+
+  img {
+    width: 120px;
+  }
+}
+
+.footer_navList {
+  @include media($media-tablet) {
+    margin-top: .8rem;
+    columns: 3 24rem;
+  }
+}
+
+.footer_navItem {
+  margin-bottom: .8rem;
+}
+
+.footer_navLink {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.footer_lowerSmall {
+  text-align: center;
+}
+
+.footer_copyright,
+.footer_disclaimer {
+  font-size: 1.2rem;
+}
+
+.footer_disclaimer {
+  opacity: .8;
+  font-style: italic;
+}
+

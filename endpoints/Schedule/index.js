@@ -1,11 +1,28 @@
 /* eslint-disable react/display-name */
 import React, { useState, useEffect } from 'react';
+import Tabs from '../../components/Tabs';
+import { getDay } from 'date-fns/get_day';
 import PropTypes from 'prop-types';
 import ScheduleInner from './ScheduleInner';
-import Tab from '../../components/Tabs';
 
 const Schedule = ({ slug }) => {
-  const [days] = useState(['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat']);
+  let days = [
+    { key: 'Sun', href: '/schedule/sun', isActive: false },
+    { key: 'Mon', href: '/schedule/mon', isActive: false },
+    { key: 'Tue', href: '/schedule/tue', isActive: false },
+    { key: 'Wed', href: '/schedule/wed', isActive: false },
+    { key: 'Thu', href: '/schedule/thu', isActive: false },
+    { key: 'Fri', href: '/schedule/fri', isActive: false },
+    { key: 'Sat', href: '/schedule/sat', isActive: false }
+  ];
+
+  if (slug) {
+    const curDay = days.find((dy) => dy.key.toLowerCase() === slug);
+    curDay.isActive = true;
+  } else {
+    days[new Date().getDay()].isActive = true;
+  }
+
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -14,8 +31,12 @@ const Schedule = ({ slug }) => {
 
   return (
     <>
-      <Tab links={days} className="tabs" />
-      {data && data.schedule && <ScheduleInner schedule={data.schedule} />}
+      <Tabs links={days} />
+      {data && data.schedule && (
+        <table>
+          <ScheduleInner schedule={data.schedule} />
+        </table>
+      )}
     </>
   );
 };

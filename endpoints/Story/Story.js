@@ -35,9 +35,12 @@ const StoryInner = ({ story }) => {
 
   if (story.contributors) {
     authors = story.contributors.map((contributor) => {
+      let thisString = `${contributor.profile?.firstName} ${
+        contributor.profile?.lastName ? contributor.profile?.lastName : ''
+      }`;
       return {
         // prettier-ignore
-        name: `${contributor.profile?.firstName} ${contributor.profile?.lastName}`,
+        name: `${thisString}`,
         href: `/profiles/${contributor.profile?.canonicalSlug}`
       };
     });
@@ -62,6 +65,7 @@ const StoryInner = ({ story }) => {
   return (
     <ContentLayout sidebar={<Sidebar />}>
       <Metatags title={story.title} metatags={tags} links={[]} />
+
       <Content
         title={story.title}
         subtitle={story.subtitle}

@@ -3,16 +3,17 @@
 //---------------------------------------
 
 $_btn-transition: .2s;
+$_btn-transition-fast: .05s;
 $_btn-color-theme: $color-theme;
-$_btn-bg-default: rgba($color-black, .5);
-$_btn-bg-default-hover: rgba($color-grey-10, .8);
-$_btn-color-default: $color-white;
+$_btn-bg-default: $color-grey-90;
+$_btn-bg-default-hover: $color-grey-80;
+$_btn-color-default: $color-grey-10;
 
 .btn {
   @include reset-button();
   padding: 6px 20px;
   border: 1px solid transparent;
-  border-radius: 100px; // Pill shaped
+  border-radius: 3px;
   font-size: 1.5rem;
   font-family: $font-family-sans;
   line-height: 1.5;
@@ -23,7 +24,7 @@ $_btn-color-default: $color-white;
   transition: background-color $_btn-transition,
     border $_btn-transition,
     color $_btn-transition,
-    opacity $_btn-transition;
+    box-shadow $_btn-transition;
   // sass-lint:enable indentation
 
   &:hover,
@@ -32,7 +33,7 @@ $_btn-color-default: $color-white;
   }
 
   &:focus {
-    box-shadow: 0 0 0 3px rgba($color-grey-50, 50%);
+    box-shadow: 0 0 0 3px rgba($_btn-color-theme, 50%);
   }
 
   &[disabled],
@@ -50,25 +51,19 @@ $_btn-color-default: $color-white;
   }
 
   > .icon {
+    fill: $color-default;
     height: 18px;
     width: 18px;
-    margin: -2px 6px -2px 0;
+    margin: -2px 0 -2px 6px;
     vertical-align: -2px;
   }
-}
-
-.btn_inlineText {
-  display: inline-block;
-  margin: 5px 0 5px 10px;
-  vertical-align: top;
 }
 
 // Button Sizes ***********
 
 .btn-large {
-  font-size: 2rem;
-  font-weight: bold;
-  padding: 10px 40px;
+  font-size: 1.75rem;
+  padding: 10px 30px;
 }
 
 .btn-small {
@@ -79,20 +74,28 @@ $_btn-color-default: $color-white;
 // Button Types ***********
 
 .btn-primary {
-  border: 1px solid var(--theme-color-main);
-  background: var(--theme-color-main);
-  color: var(--theme-color-main-text);
+  border: 1px solid $_btn-color-theme;
+  background: $_btn-color-theme;
+  color: $color-white;
 
   &:hover,
   &:focus {
-    background: var(--theme-color-main);
-    opacity: .8;
+    border-color: lighten($_btn-color-theme, 10%);
+    background: lighten($_btn-color-theme, 10%);
   }
 }
 
 .btn-secondary {
-  font-size: 1.3rem;
-  text-decoration: underline;
+  border: 1px solid $_btn-color-theme;
+  color: $_btn-color-theme;
+  background: $color-white;
+
+  &:hover,
+  &:focus {
+    border-color: darken($_btn-color-theme, 20%);
+    color: darken($_btn-color-theme, 20%);
+    background: lighten($_btn-color-theme, 35%);
+  }
 }
 
 .btn-destructive {
@@ -109,12 +112,4 @@ $_btn-color-default: $color-white;
   &:focus {
     box-shadow: 0 0 0 3px rgba($color-warning, 50%);
   }
-}
-
-.btn-promo {
-  padding: 5px 32px;
-}
-
-.btn-donate {
-  padding: 4px 10px;
 }

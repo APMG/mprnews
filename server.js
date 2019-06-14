@@ -39,9 +39,15 @@ app
     server.get('/', (req, res) => {
       app.render(req, res, '/index') 
     })
+
+    server.get('/scribble', (req, res) => {
+      app.render(req, res, '/scribble') 
+    })
+
     server.get('/story/*', (req, res) => {
       app.render(req, res, '/story', { slug: req.slug })
     });
+
     server.get('/newspartners/story/*', (req, res) => {
       app.render(req, res, '/newspartnerstory', { slug: req.slug })
     });
