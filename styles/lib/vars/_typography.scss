@@ -1,7 +1,8 @@
 // Font Families
 $font-family-sans: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $font-family-serif: 'Noto Serif', Georgia, serif;
-$font-family-heading: 'Roboto Condensed', 'Arial Narrow', sans-serif;
+$font-family-heading: $font-family-sans;
+$font-family-headline: 'Roboto Condensed', 'Arial Narrow', sans-serif;
 
 $font-family-main: $font-family-sans;
 $font-family-copy: $font-family-serif;

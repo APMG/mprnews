@@ -32,3 +32,7 @@
 @mixin hdg-6() {
   font-size: 1.3rem;
 }
+
+@mixin hdg-headline() {
+  font-family: $font-family-headline;
+}
