@@ -6,17 +6,17 @@
   display: flex;
   border-bottom: 2px solid $color-grey-80;
   margin-bottom: 10px;
+ }
 
-  >li {
-    padding: 4px 0 8px;
+.tabs > .tabs_item {
+  padding: 4px 0 8px;
 
-    &:last-child a {
-      border-right: 2px solid $color-grey-80;
-    }
+  &:last-child .tabs_link {
+    border-right: 2px solid $color-grey-80;
   }
 }
 
-.tabs >li >a {
+.tabs_link {
   border: 2px solid transparent;
   border-right-color: $color-grey-80;
   border-bottom-color: transparent;
@@ -29,5 +29,9 @@
   &.is-active {
     border-bottom-color: $color-white;
     color: $color-blue-dark;
+  }
+
+  &:first-child {
+    border-left-color: $color-grey-80;
   }
 }

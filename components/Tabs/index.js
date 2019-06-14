@@ -9,7 +9,7 @@ const Tabs = (props) => {
         return (
           <li key={lnk.key} className="tabs_item">
             <Link href={lnk.href}>
-              <a className={lnk.isActive ? 'tabs_link is-active' : 'tabs_link'}>
+              <a className={`tabs_link ${lnk.isActive && `is-active`}`}>
                 {lnk.key}
               </a>
             </Link>
