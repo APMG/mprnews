@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { format, closestIndexTo } from 'date-fns';
 import { Heading } from '@apmg/titan';
-import WeatherIconNightWindy from '../../components/WeatherIcons/WeatherIconNightWindy';
+import WeatherIcon from '../../components/WeatherIcons/WeatherIcon';
 import { CtoF, degToCompass, mpsToMph, torrToInhg } from '../../utils/utils';
 
 const CurrentWeather = ({ weather, forecast }) => {
@@ -37,7 +37,7 @@ const CurrentWeather = ({ weather, forecast }) => {
       </div>
       <div className="weather_currentIcon">
         {/* This one (thank goodness) automatically sorts by time and puts the current one first */}
-        <WeatherIconNightWindy />
+        <WeatherIcon iconUrl={forecast.periods[0].icon} />
         <div>{forecast.periods[0].shortForecast}</div>
       </div>
       <div className="weather_currentStats">
