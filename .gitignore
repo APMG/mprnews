@@ -3,7 +3,7 @@ logs
 npm-debug.log*
 .DS_Store
 .next
-.vscode
+
 
 coverage
 build
@@ -15,4 +15,7 @@ build
 node_modules
 .DS_Store
 public
+
+# Ignore editor configs
+/.vscode/*
 

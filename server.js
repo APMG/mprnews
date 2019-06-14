@@ -1,10 +1,13 @@
-/*eslint no-console: 0*/
+
 const express = require('express');
 const next = require('next');
 const port = parseInt(process.env.APP_PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
+const axios = require('axios')
+const { startOfWeek, endOfWeek, eachDay, format } = require('date-fns')
+// import {getDateTimes,formatEachDateTime} from './utils/schedulerUtilis'
 
 const slug = (req, res, next) => {
   req.slug = req.path.replace(/^(\/newspartners)*\/(story|episode|page)\//, '');
@@ -76,9 +79,44 @@ app
     });
 
     server.get('/schedule/*', (req, res) => {
-      app.render(req, res, '/schedule', { slug: req.daySlug })
+      function getDateTimes() {
+        const todaysDate = format(new Date(), 'YYYY-MM-DD');
+        const startOfWeekDate = startOfWeek(todaysDate);
+        const endOfWeekDate = endOfWeek(todaysDate);
+      
+        const getEachDayDate = eachDay(
+          format(startOfWeekDate, 'YYYY-MM-DD'),
+          format(endOfWeekDate, 'YYYY-MM-DD')
+        );
+        return getEachDayDate;
+        }
+      
+      function formatEachDateTime(dates) {
+        let results = dates.map((date) => {
+          const formatDateWithDay = format(date, 'ddd');
+          if (formatDateWithDay.toLowerCase() === req.daySlug) {
+            return format(date, 'YYYY-MM-DD');
+          }
+        });
+        return results;
+      }
+      const dates = getDateTimes();
+      console.log('dates',dates)
+      const formattedDate = formatEachDateTime(dates);
+      console.log('formattedDate',formattedDate)
+      const fetchSchedule = async (dateTime) => {
+        try {
+          return await axios.get(`http://scheduler.publicradio.org/api/v1/services/3/schedule/?datetime=${dateTime}`).then(response => {
+            console.log('response.data', response.data)
+            app.render(req, res, '/schedule', { slug: req.daySlug, props: response.data })
+          })
+        } catch (error) {
+          console.log(error)
+        }
+      }
+      fetchSchedule(formattedDate);  
     });
-
+  
     server.get('*', (req, res) => {
       return handle(req, res);
     });
@@ -91,4 +129,4 @@ app
   .catch(ex => {
     console.error(ex.stack);
     process.exit(1);
-  });
+  })
