@@ -16,17 +16,19 @@ const FooterProgramming = (props) => {
           {props.listenText}
         </Button>
       </div>
-      <ul className="vList">
-        {props.links.map((link) => {
-          return (
-            <li key={link.href}>
-              <Link href={link.href}>
-                <a>{link.label}</a>
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
+      <div className="footer_progLinks">
+        <ul className="vList">
+          {props.links.map((link) => {
+            return (
+              <li key={link.href}>
+                <Link href={link.href}>
+                  <a className="link link-plain">{link.label}</a>
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </div>
   );
 };

@@ -17,6 +17,11 @@
     break-inside: avoid;
     padding-bottom: 50px;
   }
+
+  @include media($media-tablet) {
+    padding-left: 3%;
+    padding-right: 3%;
+  }
 }
 
 .footer_row {
@@ -58,6 +63,10 @@
 // Podcast info
 //--------------------------
 
+.footer_podcastText {
+  line-height: 1.5;
+}
+
 .footer_podcastLink {
   color: $color-link;
 }
@@ -92,8 +101,13 @@
 // Programming/Audio info
 //--------------------------
 
-.footer_prog {
-  grid-area: prog;
+.footer_progLinks {
+  font-weight: 700;
+  font-size: 1.4rem;
+}
+
+.footer_progListen {
+  float: right;
 }
 
 //--------------------------
