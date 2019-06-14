@@ -12,7 +12,6 @@ const SchedulePage = ({ slug, props }) => (
 );
 
 SchedulePage.getInitialProps = async ({ query: slug, query: props }) => {
-  console.log('this is schedule', props);
   return {
     slug: slug,
     schedule: props

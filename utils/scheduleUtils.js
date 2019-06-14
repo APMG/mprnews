@@ -1,3 +1,4 @@
+// const { startOfWeek, endOfWeek, eachDay, format } = require('date-fns');
 import { startOfWeek, endOfWeek, eachDay, format } from 'date-fns';
 
 export function getDateTimes() {
@@ -20,8 +21,4 @@ export function formatEachDateTime(dates, daySlug) {
     }
   });
   return results;
-}
-
-export function nullFunc() {
-  return null;
 }

@@ -1,4 +1,4 @@
-
+/*eslint no-console: 0*/
 const express = require('express');
 const next = require('next');
 const port = parseInt(process.env.APP_PORT, 10) || 3000
@@ -6,8 +6,17 @@ const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
 const axios = require('axios')
-const { startOfWeek, endOfWeek, eachDay, format } = require('date-fns')
-// import {getDateTimes,formatEachDateTime} from './utils/schedulerUtilis'
+const { startOfWeek, endOfWeek, eachDay, format } = require('date-fns');
+// const {CtoF} = require('./utils/utils')
+// import { CtoF } from './utils/utils'
+
+// const {getDateTimes} = require('./utils/scheduleUtils')
+// const {formatEachDateTime} = require('./utils/scheduleUtils')
+
+// import { getDateTimes, formatEachDateTime} from './utils/scheduleUtils'
+
+// const {testFunc} = require('./utils/testFunc')
+// import { testFunc } from './utils/testFunc'
 
 const slug = (req, res, next) => {
   req.slug = req.path.replace(/^(\/newspartners)*\/(story|episode|page)\//, '');
@@ -79,7 +88,9 @@ app
     });
 
     server.get('/schedule/*', (req, res) => {
-      function getDateTimes() {
+      // testFunc()
+
+   function getDateTimes() {
         const todaysDate = format(new Date(), 'YYYY-MM-DD');
         const startOfWeekDate = startOfWeek(todaysDate);
         const endOfWeekDate = endOfWeek(todaysDate);
@@ -89,21 +100,19 @@ app
           format(endOfWeekDate, 'YYYY-MM-DD')
         );
         return getEachDayDate;
-        }
+      }
       
-      function formatEachDateTime(dates) {
+   function formatEachDateTime(dates, daySlug) {
         let results = dates.map((date) => {
           const formatDateWithDay = format(date, 'ddd');
-          if (formatDateWithDay.toLowerCase() === req.daySlug) {
+          if (formatDateWithDay.toLowerCase() === daySlug) {
             return format(date, 'YYYY-MM-DD');
           }
         });
         return results;
       }
       const dates = getDateTimes();
-      console.log('dates',dates)
-      const formattedDate = formatEachDateTime(dates);
-      console.log('formattedDate',formattedDate)
+      const formattedDate = formatEachDateTime(dates, req.daySlug);
       const fetchSchedule = async (dateTime) => {
         try {
           return await axios.get(`http://scheduler.publicradio.org/api/v1/services/3/schedule/?datetime=${dateTime}`).then(response => {

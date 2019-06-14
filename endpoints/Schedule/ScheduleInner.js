@@ -8,7 +8,6 @@ import ContentLayout from '../../layouts/ContentLayout';
 const ScheduleInner = ({ schedule }) => {
   return (
     <ContentLayout>
-      {console.log('scheduleInner', schedule)}
       <table border="1">
         {Array.isArray(schedule) &&
           schedule.map((program, i) => (
