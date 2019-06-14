@@ -1,13 +1,29 @@
 /* eslint-disable react/display-name */
 import React, { useState, useEffect } from 'react';
 import { startOfWeek, endOfWeek, eachDay, format } from 'date-fns';
+import Tabs from '../../components/Tabs';
 import PropTypes from 'prop-types';
 import ScheduleInner from './ScheduleInner';
 import axios from 'axios';
-import Link from 'next/link';
 
 const Schedule = ({ slug }) => {
-  const [days] = useState(['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat']);
+  let days = [
+    { key: 'Sun', href: '/schedule/sun', isActive: false },
+    { key: 'Mon', href: '/schedule/mon', isActive: false },
+    { key: 'Tue', href: '/schedule/tue', isActive: false },
+    { key: 'Wed', href: '/schedule/wed', isActive: false },
+    { key: 'Thu', href: '/schedule/thu', isActive: false },
+    { key: 'Fri', href: '/schedule/fri', isActive: false },
+    { key: 'Sat', href: '/schedule/sat', isActive: false }
+  ];
+
+  if (slug) {
+    const curDay = days.find((dy) => dy.key.toLowerCase() === slug);
+    curDay.isActive = true;
+  } else {
+    days[new Date().getDay()].isActive = true;
+  }
+
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setHasError] = useState(false);
@@ -59,19 +75,9 @@ const Schedule = ({ slug }) => {
 
   return (
     <>
-      <ul className="tabs">
-        {days.map((day) => {
-          return (
-            <li key={day}>
-              <Link href={`/schedule/${day}`}>
-                <a>{day.toUpperCase()}</a>
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
+      <Tabs links={days} />
       {data && data.schedule && (
-        <table border="1">
+        <table>
           <ScheduleInner
             schedule={data.schedule}
             loading={isLoading}

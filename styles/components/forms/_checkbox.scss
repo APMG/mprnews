@@ -1,0 +1,33 @@
+//----------------------------------------------
+// Checkbox fields
+//
+// Can be used with both checkbox
+// inside the label or next to it.
+//----------------------------------------------
+
+// The wrapper class
+.checkbox {
+  display: block;
+}
+
+.checkbox_btn {
+  vertical-align: .1em;
+  // Future styles of custom checkbox
+}
+
+.checkbox_label {
+  // Uses a bigger font size for mobile readability
+  font-size: 1.6rem;
+  padding-right: .5em;
+
+  // Reverse the padding when label comes after btn
+  .checkbox_btn + & {
+    padding-right: 0;
+    padding-left: .5em;
+  }
+
+  @include media($media-tablet) {
+    font-size: inherit;
+  }
+}
+
