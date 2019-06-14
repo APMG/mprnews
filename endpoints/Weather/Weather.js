@@ -29,7 +29,7 @@ const Weather = (props) => {
   return loading ? (
     <Loading />
   ) : (
-    <section className="weather">
+    <section className="weather section">
       <div className="weather_location">
         <Heading level={1}>{location.name}</Heading>
 

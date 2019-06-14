@@ -1,0 +1,37 @@
+.weather {
+  max-width: $max-width;
+}
+
+.weather_location {
+  justify-self: flex-end;
+  order: 2;
+}
+
+.weather_current {
+  display: flex;
+}
+
+.weather_currentTemp {
+  display: flex;
+  align-items: center;
+}
+
+.weather_mainTemp {
+  font-size: 4em;
+}
+
+.weather_currentShare {
+  display: flex;
+  flex-direction: column;
+}
+
+.weather_currentDashboard {
+  display: flex;
+  flex-direction: column;
+}
+
+.weather_currentHeader {
+  display: flex;
+  justify-content: space-between;
+  // align-content: space-between;
+}

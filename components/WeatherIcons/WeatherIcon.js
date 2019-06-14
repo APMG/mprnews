@@ -104,9 +104,9 @@ const WeatherIcon = ({ iconUrl, ...rest }) => {
   let time = urlArray[urlArray.length - 2];
   let code = urlArray[urlArray.length - 1];
 
-  const icon = icons.find((icon) => icon.code === code && icon.time === time);
-
-  const Element = icon === undefined ? icon.icon : WeatherIconEmpty;
+  const Element =
+    icons.find((icon) => icon.code === code && icon.time === time).icon ||
+    WeatherIconEmpty;
 
   return <Element {...rest} />;
 };

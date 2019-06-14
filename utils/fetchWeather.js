@@ -9,7 +9,7 @@ export const fetchWeather = async (lat, long) => {
     const weatherUrl = locationData.properties.forecastGridData;
     const weatherRes = await fetch(weatherUrl);
 
-    const forecastUrl = locationData.properties.forecast;
+    const forecastUrl = locationData.properties.forecastHourly;
     const forecastRes = await fetch(forecastUrl);
 
     const alertUrl = `https://api.weather.gov/alerts/active?point=${lat},${long}`;
