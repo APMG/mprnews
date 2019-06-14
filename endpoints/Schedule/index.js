@@ -2,8 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ScheduleInner from './ScheduleInner';
-import Link from 'next/link';
-// import Tab from '../../components/Tabs';
+import Tab from '../../components/Tabs';
 
 const Schedule = ({ slug }) => {
   const [days] = useState(['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat']);
@@ -15,18 +14,7 @@ const Schedule = ({ slug }) => {
 
   return (
     <>
-      <ul className="tabs">
-        {/* <Tab links={days} /> */}
-        {days.map((day) => {
-          return (
-            <li key={day}>
-              <Link href={`/schedule/${day}`}>
-                <a>{day.toUpperCase()}</a>
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
+      <Tab links={days} className="tabs" />
       {data && data.schedule && <ScheduleInner schedule={data.schedule} />}
     </>
   );

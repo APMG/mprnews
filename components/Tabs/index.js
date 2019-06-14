@@ -7,9 +7,9 @@ const Tabs = (props) => {
     <ul className="tabs">
       {props.links.map((lnk) => {
         return (
-          <li key={lnk.day}>
-            <Link href={lnk.href}>
-              <a className={lnk.className}>${lnk.day}</a>
+          <li key={lnk}>
+            <Link href={`/schedule/${lnk}`}>
+              <a className={props.className}>{lnk.toUpperCase()}</a>
             </Link>
           </li>
         );
@@ -22,7 +22,6 @@ Tabs.propTypes = {
   links: PropTypes.arrayOf(
     PropTypes.shape({
       day: PropTypes.string,
-      href: PropTypes.string,
       className: PropTypes.string
     })
   )
