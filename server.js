@@ -1,22 +1,13 @@
 /*eslint no-console: 0*/
-const express = require('express');
-const next = require('next');
-const port = parseInt(process.env.APP_PORT, 10) || 3000
-const dev = process.env.NODE_ENV !== 'production'
-const app = next({ dev })
-const handle = app.getRequestHandler()
+const express = require('express')
+const next = require('next')
 const axios = require('axios')
-const { startOfWeek, endOfWeek, eachDay, format } = require('date-fns');
-// const {CtoF} = require('./utils/utils')
-// import { CtoF } from './utils/utils'
+const {getDateTimes,formatEachDateTime} = require('./utils/scheduleUtils')
 
-// const {getDateTimes} = require('./utils/scheduleUtils')
-// const {formatEachDateTime} = require('./utils/scheduleUtils')
-
-// import { getDateTimes, formatEachDateTime} from './utils/scheduleUtils'
-
-// const {testFunc} = require('./utils/testFunc')
-// import { testFunc } from './utils/testFunc'
+const port = parseInt(process.env.APP_PORT, 10) || 3000
+const  dev = process.env.NODE_ENV !== 'production'
+const app = next({ dev })
+const  handle = app.getRequestHandler()
 
 const slug = (req, res, next) => {
   req.slug = req.path.replace(/^(\/newspartners)*\/(story|episode|page)\//, '');
@@ -88,29 +79,6 @@ app
     });
 
     server.get('/schedule/*', (req, res) => {
-      // testFunc()
-
-   function getDateTimes() {
-        const todaysDate = format(new Date(), 'YYYY-MM-DD');
-        const startOfWeekDate = startOfWeek(todaysDate);
-        const endOfWeekDate = endOfWeek(todaysDate);
-      
-        const getEachDayDate = eachDay(
-          format(startOfWeekDate, 'YYYY-MM-DD'),
-          format(endOfWeekDate, 'YYYY-MM-DD')
-        );
-        return getEachDayDate;
-      }
-      
-   function formatEachDateTime(dates, daySlug) {
-        let results = dates.map((date) => {
-          const formatDateWithDay = format(date, 'ddd');
-          if (formatDateWithDay.toLowerCase() === daySlug) {
-            return format(date, 'YYYY-MM-DD');
-          }
-        });
-        return results;
-      }
       const dates = getDateTimes();
       const formattedDate = formatEachDateTime(dates, req.daySlug);
       const fetchSchedule = async (dateTime) => {

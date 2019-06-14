@@ -1,7 +1,6 @@
-// const { startOfWeek, endOfWeek, eachDay, format } = require('date-fns');
-import { startOfWeek, endOfWeek, eachDay, format } from 'date-fns';
+const { startOfWeek, endOfWeek, eachDay, format } = require('date-fns');
 
-export function getDateTimes() {
+exports.getDateTimes = () => {
   const todaysDate = format(new Date(), 'YYYY-MM-DD');
   const startOfWeekDate = startOfWeek(todaysDate);
   const endOfWeekDate = endOfWeek(todaysDate);
@@ -11,9 +10,9 @@ export function getDateTimes() {
     format(endOfWeekDate, 'YYYY-MM-DD')
   );
   return getEachDayDate;
-}
+};
 
-export function formatEachDateTime(dates, daySlug) {
+exports.formatEachDateTime = (dates, daySlug) => {
   let results = dates.map((date) => {
     const formatDateWithDay = format(date, 'ddd');
     if (formatDateWithDay.toLowerCase() === daySlug) {
@@ -21,4 +20,4 @@ export function formatEachDateTime(dates, daySlug) {
     }
   });
   return results;
-}
+};
