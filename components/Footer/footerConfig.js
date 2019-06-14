@@ -32,6 +32,7 @@ export default {
     { label: 'newsroom@mpr.org', href: 'mailto:newsroom@mpr.org' },
     { label: 'Tips: 651-290-1424', href: 'tel:+16512901424' }
   ],
+  contactTitle: 'Connect with us',
   listenHref: '/listen',
   listenText: 'Listen Live',
   nav: [
@@ -71,5 +72,7 @@ export default {
     { label: 'Program Schedule', href: '/schedule' },
     { label: 'Station Directory', href: 'https://www.mpr.org/listen/stations' },
     { label: 'Audio Help', href: 'https://www.mpr.org/about/faqs' }
-  ]
+  ],
+  programmingTitle: 'Where to Listen',
+  subscribeTitle: 'Subscribe to email newsletters'
 };

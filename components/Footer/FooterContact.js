@@ -8,7 +8,7 @@ const FooterContact = (props) => {
   return (
     <div className="footer_contact">
       <div className="footer_row">
-        <Heading level={4} elementClass="hdg hdg-5">
+        <Heading level={3} elementClass="hdg hdg-5">
           Connect with us
         </Heading>
       </div>

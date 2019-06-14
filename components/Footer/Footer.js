@@ -1,5 +1,6 @@
 import React from 'react';
 import config from './footerConfig';
+import { Heading } from '@apmg/titan';
 import FooterApps from './FooterApps';
 import FooterContact from './FooterContact';
 import FooterLower from './FooterLower';
@@ -10,6 +11,9 @@ import FooterProgramming from './FooterProgramming';
 const Footer = () => {
   return (
     <footer className="footer">
+      <Heading level={2} className="invisible">
+        About MPR News
+      </Heading>
       <div className="footer_upper">
         <FooterApps
           title={config.appsTitle}
@@ -28,6 +32,7 @@ const Footer = () => {
           listenText={config.listenText}
           listenHref={config.listenHref}
           links={config.programmingLinks}
+          title={config.programmingTitle}
         />
       </div>
       <FooterLower nav={config.nav} />

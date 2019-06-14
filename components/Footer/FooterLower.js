@@ -1,10 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
+import { Heading } from '@apmg/titan';
 
 const FooterLower = (props) => {
   return (
     <div className="footer_lower">
+      <Heading level={3} className="invisible">
+        Additional Information
+      </Heading>
       <div className="container">
         <div className="footer_lowerContent">
           <div className="footer_logo">
@@ -13,7 +17,7 @@ const FooterLower = (props) => {
               alt="Minnesota Public Radio"
             />
           </div>
-          <div className="footer_nav">
+          <nav className="footer_nav">
             <ul className="footer_navList">
               {props.nav.map((item) => (
                 <li key={item.href} className="footer_navItem">
@@ -23,7 +27,7 @@ const FooterLower = (props) => {
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
         </div>
         <div className="footer_lowerSmall">
           <small className="footer_copyright">

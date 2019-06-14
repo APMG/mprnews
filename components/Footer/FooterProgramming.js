@@ -6,9 +6,11 @@ import { Button, Heading } from '@apmg/titan';
 const FooterProgramming = (props) => {
   return (
     <div className="footer_prog">
-      <Heading level={4} className="invisible">
-        {props.title}
-      </Heading>
+      <div className="footer_row">
+        <Heading level={3} className="hdg hdg-5">
+          {props.title}
+        </Heading>
+      </div>
       <div className="footer_progListen">
         <Button href={props.listenHref} type="primary">
           {props.listenText}

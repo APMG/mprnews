@@ -8,7 +8,7 @@ const FooterPodcasts = (props) => {
   return (
     <div className="footer_podcasts">
       <div className="footer_row">
-        <Heading level={4} className="hdg hdg-5">
+        <Heading level={3} className="hdg hdg-5">
           <Link href={props.href}>
             <a>{props.title}</a>
           </Link>
