@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 
@@ -9,7 +9,7 @@ const Byline = (props) => {
     authors.forEach((author) =>
       results.push(
         <Link href={author.href}>
-          <a>{author.name.trim()}</a>
+          <a className="link link-plain">{author.name}</a>
         </Link>
       )
     );
@@ -21,11 +21,11 @@ const Byline = (props) => {
     <>
       {authors.map((author, i) => {
         if (i === authors.length - 1) {
-          return <div key={i}>{author}</div>;
+          return <Fragment key={i}>{author}</Fragment>;
         } else if (i === authors.length - 2) {
-          return <div key={i}>{author} and </div>;
+          return <Fragment key={i}>{author} and </Fragment>;
         }
-        return <div key={i}>{author},</div>;
+        return <Fragment key={i}>{author}, </Fragment>;
       })}
     </>
   );
