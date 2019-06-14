@@ -3,17 +3,15 @@ import PropTypes from 'prop-types';
 
 const icons = {};
 
-const WeatherIcon = (props) => {
-  const { name, ...rest } = props;
-
-  // Check if the icon is in the list; if not, render the empty icon
-  const Element = icons[name] ? icons[name] : icons.empty;
+const WeatherIcon = ({ description, ...rest }) => {
+  // Check if the icon contains any "trigger" words; if not, render the empty icon
+  const Element = icons[description] ? icons[description] : icons.empty;
 
   return <Element {...rest} />;
 };
 
 WeatherIcon.propTypes = {
-  name: PropTypes.string
+  description: PropTypes.string
 };
 
 export default WeatherIcon;
