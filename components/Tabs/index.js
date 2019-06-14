@@ -7,9 +7,11 @@ const Tabs = (props) => {
     <ul className="tabs">
       {props.links.map((lnk) => {
         return (
-          <li key={lnk.day}>
+          <li key={lnk.key} className="tabs_item">
             <Link href={lnk.href}>
-              <a className={lnk.className}>${lnk.day}</a>
+              <a className={`tabs_link ${lnk.isActive && `is-active`}`}>
+                {lnk.key}
+              </a>
             </Link>
           </li>
         );
@@ -22,8 +24,7 @@ Tabs.propTypes = {
   links: PropTypes.arrayOf(
     PropTypes.shape({
       day: PropTypes.string,
-      href: PropTypes.string,
-      className: PropTypes.string
+      href: PropTypes.string
     })
   )
 };
