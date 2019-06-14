@@ -4,7 +4,7 @@ import { Heading, Button } from '@apmg/titan';
 const FooterSubscribe = () => {
   return (
     <div className="footer_subscribe">
-      <div className="footer_header">
+      <div className="footer_row">
         <Heading level={4}>Subscribe to email newsletters</Heading>
       </div>
 

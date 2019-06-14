@@ -1,22 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Heading } from '@apmg/titan';
+import Link from 'next/link';
 import Icon from '../Icons/Icon';
 
 const FooterContact = (props) => {
   return (
     <div className="footer_contact">
-      <Heading level={4} elementClass="invisible">
-        Connect with us
-      </Heading>
-      <ul className="footer_contactGrid">
+      <div className="footer_row">
+        <Heading level={4} elementClass="hdg hdg-5">
+          Connect with us
+        </Heading>
+      </div>
+      <ul className="footer_contactList">
         {props.links.map((link) => {
           return (
             <li key={link.href}>
-              <a href={link.href}>
-                {link.icon && <Icon name={link.icon} />}
-                {link.label}
-              </a>
+              <Link href={link.href}>
+                <a className="link link-plain">
+                  {link.icon && <Icon name={link.icon} />} {link.label}
+                </a>
+              </Link>
             </li>
           );
         })}

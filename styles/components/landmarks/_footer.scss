@@ -7,17 +7,20 @@
 
 .footer_upper {
   max-width: $max-width;
-  padding: 40px $container-edge;
+  padding: 50px $container-edge 0;
   margin: 0 auto;
   columns: 3 300px;
+  column-gap: 4%;
+  font-size: 1.5rem;
 
   > * {
     break-inside: avoid;
+    margin-bottom: 50px;
   }
 }
 
-.footer_header {
-  margin-bottom: 2rem;
+.footer_row {
+  margin-bottom: 1.5rem;
 }
 
 //--------------------------
@@ -55,8 +58,8 @@
 // Podcast info
 //--------------------------
 
-.footer_podcasts {
-  grid-area: podcasts;
+.footer_podcastLink {
+  color: $color-link;
 }
 
 //--------------------------
@@ -64,7 +67,17 @@
 //--------------------------
 
 .footer_contact {
-  grid-area: contact;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.footer_contactList {
+  columns: 2;
+
+  > * {
+    margin-bottom: .5em;
+    white-space: nowrap;
+  }
 }
 
 //--------------------------

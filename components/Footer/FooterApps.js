@@ -5,7 +5,7 @@ import { Heading } from '@apmg/titan';
 const FooterApps = (props) => {
   return (
     <div className="footer_apps">
-      <div className="footer_header">
+      <div className="footer_row">
         <Heading level={4} className="hdg hdg-5">
           {props.title}
         </Heading>
