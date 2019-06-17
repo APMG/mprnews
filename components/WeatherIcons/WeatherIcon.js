@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import WeatherIconDayClear from './WeatherIconDayClear';
 import WeatherIconDayCloudy from './WeatherIconDayCloudy';
 import WeatherIconDayCloudyWindy from './WeatherIconDayCloudyWindy';
@@ -97,18 +98,21 @@ const icons = [
 ];
 
 const WeatherIcon = ({ iconUrl, ...rest }) => {
-  // Check if the icon exists; if not, render the empty icon
-  // const Element = icons[iconUrl] ? icons[iconUrl] : icons.empty;
-  let shortUrl = iconUrl.split('?')[0].split(',')[0];
-  let urlArray = shortUrl.split('/');
-  let time = urlArray[urlArray.length - 2];
-  let code = urlArray[urlArray.length - 1];
+  let timeRegex = /(\w*day|night\w*)/g;
+  let time = iconUrl.match(timeRegex)[0];
+
+  let codeRegex = /(\w*(skc|few|sct|bkn|ovc|snow|rain|sleet|fzra|showers|tsra|hi|tornado|hurricane|tropical|storm|dust|smoke|haze|hot|cold|blizzard|fog)\w*)/g;
+  // They will often stick other codes in the URL too and give a sort of split icon for a 20% chance of thunderstorms, but it looks bad and isn't clear so I'm simply going with their first prediction: the one they've called most likely for this hour. The other information (like chance of rain or storm) can be read more clearly in the text accompanying this icon.
+  let code = iconUrl.match(codeRegex)[0];
 
   const icon = icons.find((icon) => icon.code === code && icon.time === time);
 
-  const Element = icon === undefined ? icon.icon : WeatherIconEmpty;
-
-  return <Element {...rest} />;
+  if (icon === undefined) {
+    return <WeatherIconEmpty />;
+  } else {
+    const Element = icon.icon === undefined ? WeatherIconEmpty : icon.icon;
+    return <Element {...rest} />;
+  }
 };
 
 WeatherIcon.propTypes = {
