@@ -5,22 +5,21 @@ import Schedule from '../endpoints/Schedule';
 
 /* eslint react/display-name: 0 */
 
-const SchedulePage = ({ slug, props }) => (
+const SchedulePage = ({ props }) => (
   <MainLayout>
-    <Schedule slug={slug} schedule={props} />
+    <Schedule schedule={props} />
   </MainLayout>
 );
 
-SchedulePage.getInitialProps = async ({ query: slug, query: props }) => {
+SchedulePage.getInitialProps = async ({ query: props, query: slug }) => {
   return {
     slug: slug,
-    schedule: props
+    props: props
   };
 };
 
 SchedulePage.propTypes = {
-  props: PropTypes.object,
-  slug: PropTypes.object
+  props: PropTypes.object
 };
 
 export default SchedulePage;

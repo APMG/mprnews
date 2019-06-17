@@ -4,7 +4,7 @@ import Tabs from '../../components/Tabs';
 import PropTypes from 'prop-types';
 import ScheduleInner from './ScheduleInner';
 
-const Schedule = ({ slug }) => {
+const Schedule = ({ schedule }) => {
   let days = [
     { key: 'Sun', href: '/schedule/sun', isActive: false },
     { key: 'Mon', href: '/schedule/mon', isActive: false },
@@ -15,8 +15,8 @@ const Schedule = ({ slug }) => {
     { key: 'Sat', href: '/schedule/sat', isActive: false }
   ];
 
-  if (slug) {
-    const curDay = days.find((dy) => dy.key.toLowerCase() === slug.slug);
+  if (schedule.slug) {
+    const curDay = days.find((dy) => dy.key.toLowerCase() === schedule.slug);
     curDay.isActive = true;
   } else {
     days[new Date().getDay()].isActive = true;
@@ -25,7 +25,7 @@ const Schedule = ({ slug }) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    setData(slug.props);
+    setData(schedule.props);
   }, []);
 
   return (
@@ -40,7 +40,7 @@ const Schedule = ({ slug }) => {
   );
 };
 Schedule.propTypes = {
-  slug: PropTypes.object
+  schedule: PropTypes.object
 };
 ScheduleInner.propTypes = {
   schedule: PropTypes.array
