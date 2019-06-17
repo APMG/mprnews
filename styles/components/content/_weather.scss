@@ -3,35 +3,26 @@
 }
 
 .weather_location {
-  justify-self: flex-end;
-  order: 2;
-}
-
-.weather_current {
-  display: flex;
-}
-
-.weather_currentTemp {
-  display: flex;
-  align-items: center;
-}
-
-.weather_mainTemp {
-  font-size: 4em;
-}
-
-.weather_currentShare {
-  display: flex;
-  flex-direction: column;
-}
-
-.weather_currentDashboard {
-  display: flex;
-  flex-direction: column;
-}
-
-.weather_currentHeader {
   display: flex;
   justify-content: space-between;
-  // align-content: space-between;
+}
+
+.weather_currentForecast {
+  display: flex;
+  align-items: flex-end;
+}
+
+.weather_currentStats {
+  display: flex;
+}
+
+.weather_share {
+  display: flex;
+  flex-direction: column;
+  margin-right: 15px;
+}
+
+.weather_currentUpdated {
+  margin-top: 15px;
+  color: $color-text-light;
 }
