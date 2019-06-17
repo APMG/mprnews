@@ -1,5 +1,5 @@
 /* eslint-disable react/display-name */
-import React from 'react';
+import React, { Fragment } from 'react';
 import Link from 'next/link';
 import { format } from 'date-fns';
 import PropTypes from 'prop-types';
@@ -18,10 +18,15 @@ const ScheduleInner = ({ schedule }) => {
                   <td key={show.id}>
                     <Link key={show} href={show.link}>
                       <a>{show.name}</a>
-                    </Link>
-                    {program?.people.map((person) => (
-                      <td key={person.name}>{person.name}</td>
-                    ))}
+                    </Link>{' '}
+                    {program?.people.map((person, i) => {
+                      if (i === program.people.length - 1) {
+                        return <Fragment key={i}>{person.name}</Fragment>;
+                      } else if (i === program.people.length - 2) {
+                        return <Fragment key={i}>{person.name} and </Fragment>;
+                      }
+                      return <Fragment key={i}>{person.name}, </Fragment>;
+                    })}
                   </td>
                 );
               })}
