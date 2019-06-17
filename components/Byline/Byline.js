@@ -1,6 +1,7 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
+import ToSentence from '../ToSentence/ToSentence';
 
 const Byline = (props) => {
   function parseToCompLink(authors) {
@@ -8,7 +9,7 @@ const Byline = (props) => {
 
     authors.forEach((author) =>
       results.push(
-        <Link href={author.href}>
+        <Link href={author}>
           <a className="link link-plain">{author.name}</a>
         </Link>
       )
@@ -19,14 +20,7 @@ const Byline = (props) => {
 
   return (
     <>
-      {authors.map((author, i) => {
-        if (i === authors.length - 1) {
-          return <Fragment key={i}>{author}</Fragment>;
-        } else if (i === authors.length - 2) {
-          return <Fragment key={i}>{author} and </Fragment>;
-        }
-        return <Fragment key={i}>{author}, </Fragment>;
-      })}
+      <ToSentence items={authors} />
     </>
   );
 };
