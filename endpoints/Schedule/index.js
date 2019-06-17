@@ -17,10 +17,10 @@ const Schedule = ({ slug }) => {
   ];
 
   if (slug) {
-    const curDay = days.find((dy) => dy.key.toLowerCase() === slug);
+    const curDay = days.find((dy) => dy.key.toLowerCase() === slug.slug);
     curDay.isActive = true;
   } else {
-    days[new Date().getDay()].isActive = true;
+    days[getDay(new Date())].isActive = true;
   }
 
   const [data, setData] = useState([]);

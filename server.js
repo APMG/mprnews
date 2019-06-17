@@ -90,7 +90,6 @@ app
       const fetchSchedule = async (dateTime) => {
         try {
           return await axios.get(`http://scheduler.publicradio.org/api/v1/services/3/schedule/?datetime=${dateTime}`).then(response => {
-            console.log('response.data', response.data)
             app.render(req, res, '/schedule', { slug: req.daySlug, props: response.data })
           })
         } catch (error) {

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import MainLayout from '../layouts/MainLayout';
-import Schedule from '../endpoints/Schedule/';
+import Schedule from '../endpoints/Schedule';
 
 /* eslint react/display-name: 0 */
 
