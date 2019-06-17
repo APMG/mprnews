@@ -8,7 +8,7 @@ import { CtoF, torrToInhg } from '../../utils/utils';
 const CurrentWeather = ({ weather, forecast }) => {
   const getValueOfMostRecent = (arr) => {
     let currentTime = Date.parse(weather.updateTime);
-    if (arr.length <= 0) return 'N/A';
+    if (arr.length <= 0) return '-';
 
     let i = closestIndexTo(
       currentTime,
@@ -68,16 +68,13 @@ const CurrentWeather = ({ weather, forecast }) => {
                   getValueOfMostRecent(weather.dewpoint.values)
                 )}° F`}</div>
               </div>
-              <div className="weather_currentUpdated">
-                {`Last updated at ${format(
-                  weather.updateTime,
-                  'h:mm A	MMM D, YYYY'
-                )}`}
-              </div>
             </div>
-            {/* We used to provide sunset and sunrise, but weather.gov does not provide this. In lieu of this, I've added some more stats that they do provide and that I have found useful in other weather apps. */}
-            {/* </tbody>
-            </table> */}
+          </div>
+          <div className="weather_currentUpdated">
+            {`Last updated at ${format(
+              weather.updateTime,
+              'h:mm A	MMM D, YYYY'
+            )}`}
           </div>
         </div>
       </div>

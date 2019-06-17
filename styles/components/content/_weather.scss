@@ -30,6 +30,7 @@ $_weather-attr-min-width: 380px;
 
 .weather_attr {
   display: flex;
+  flex-wrap: wrap;
   min-width: 500px;
   padding-left: 20px;
   padding-right: 20px;
@@ -46,8 +47,11 @@ $_weather-attr-min-width: 380px;
 }
 
 .weather_currentUpdated {
-  font-size: .7em;
+  font-size: .9em;
   font-weight: 200;
   color: $color-text-light;
   margin-top: 50px;
+  min-width: 300px;
+  text-align: right;
+  align-self: flex-end;
 }

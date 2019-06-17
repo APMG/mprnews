@@ -110,7 +110,7 @@ const WeatherIcon = ({ iconUrl, ...rest }) => {
   if (icon === undefined) {
     return <WeatherIconEmpty />;
   } else {
-    const Element = icon.icon === undefined ? WeatherIconEmpty : icon.icon;
+    const Element = icon.icon;
     return <Element {...rest} />;
   }
 };
