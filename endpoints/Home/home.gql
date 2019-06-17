@@ -3,7 +3,7 @@ query home($contentAreaSlug: String!, $slug: String!) {
     id
     title
     description
-    results(page: 1, pageSize: 4) {
+    results(page: 1, pageSize: 10) {
       items {
         id
         title
