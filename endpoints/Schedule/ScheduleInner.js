@@ -1,9 +1,10 @@
 /* eslint-disable react/display-name */
-import React, { Fragment } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { format } from 'date-fns';
 import PropTypes from 'prop-types';
 import ContentLayout from '../../layouts/ContentLayout';
+import ToSentence from '../../components/ToSentence/ToSentence';
 
 const ScheduleInner = ({ schedule }) => {
   return (
@@ -19,14 +20,7 @@ const ScheduleInner = ({ schedule }) => {
                     <Link key={show} href={show.link}>
                       <a>{show.name}</a>
                     </Link>{' '}
-                    {program?.people.map((person, i) => {
-                      if (i === program.people.length - 1) {
-                        return <Fragment key={i}>{person.name}</Fragment>;
-                      } else if (i === program.people.length - 2) {
-                        return <Fragment key={i}>{person.name} and </Fragment>;
-                      }
-                      return <Fragment key={i}>{person.name}, </Fragment>;
-                    })}
+                    {program?.people && <ToSentence items={program?.people} />}
                   </td>
                 );
               })}
