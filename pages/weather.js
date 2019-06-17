@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Heading } from '@apmg/titan';
 import MainLayout from '../layouts/MainLayout';
 import Weather from '../endpoints/Weather/Weather';
 import { weatherConfig } from '../utils/defaultData';
@@ -12,7 +11,6 @@ const WeatherPage = ({ data }) => (
   <MainLayout>
     <div>
       <section className="stories section">
-        <Heading level={2}>Weather</Heading>
         <Weather data={data} />
       </section>
     </div>

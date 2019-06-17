@@ -42,3 +42,29 @@
 .hdg-headline {
   @include hdg-headline();
 }
+
+// For the Weather page's unique typography
+.hdg-weather {
+  margin-right: 15px;
+  margin-bottom: 15px;
+}
+
+.hdg-temp {
+  margin-left: 15px;
+  font-size: 4.5em;
+  font-weight: 100;
+}
+
+.hdg-forecast {
+  font-size: 2em;
+  font-weight: 200;
+  margin-bottom: 34px;
+  margin-left: 5px;
+  color: $color-text;
+  align-self: flex-end;
+  // fancy underline (will we need it elsewhere? if so --> mixin)
+  // background-size: 2px 1em;
+  // box-shadow: inset 0 -.12em $color-bg, inset 0 -.15em $color-text-light;
+  // display: inline;
+  // text-shadow: -1px -1px $color-bg, -1px 1px $color-bg, 1px -1px $color-bg, 1px 1px $color-bg;
+}
