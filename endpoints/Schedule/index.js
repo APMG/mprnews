@@ -1,7 +1,6 @@
 /* eslint-disable react/display-name */
 import React, { useState, useEffect } from 'react';
 import Tabs from '../../components/Tabs';
-import { getDay } from 'date-fns/get_day';
 import PropTypes from 'prop-types';
 import ScheduleInner from './ScheduleInner';
 
@@ -20,7 +19,7 @@ const Schedule = ({ slug }) => {
     const curDay = days.find((dy) => dy.key.toLowerCase() === slug.slug);
     curDay.isActive = true;
   } else {
-    days[getDay(new Date())].isActive = true;
+    days[new Date().getDay()].isActive = true;
   }
 
   const [data, setData] = useState([]);
