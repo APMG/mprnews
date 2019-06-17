@@ -1,5 +1,11 @@
+$_weather-attr-min-width: 380px;
+
 .weather {
   max-width: $max-width;
+}
+
+.weather_heading {
+  display: flex;
 }
 
 .weather_location {
@@ -9,20 +15,39 @@
 
 .weather_currentForecast {
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
 }
 
 .weather_currentStats {
   display: flex;
 }
 
-.weather_share {
+.weather_attrs {
+  font-size: 1.2em;
   display: flex;
-  flex-direction: column;
-  margin-right: 15px;
+  flex-wrap: wrap;
+}
+
+.weather_attr {
+  display: flex;
+  min-width: 500px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 8px;
+}
+
+.weather_attrName {
+  min-width: 180px;
+  font-weight: 200;
+}
+
+.weather_attrData {
+  text-align: right;
 }
 
 .weather_currentUpdated {
-  margin-top: 15px;
+  font-size: .7em;
+  font-weight: 200;
   color: $color-text-light;
+  margin-top: 50px;
 }

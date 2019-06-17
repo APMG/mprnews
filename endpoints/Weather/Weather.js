@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Heading, Loading } from '@apmg/titan';
+import { Heading, Button, Loading } from '@apmg/titan';
+import Icon from '../../components/Icons/Icon';
 import CurrentWeather from './CurrentWeather';
 import { weatherConfig } from '../../utils/defaultData';
 import { fetchWeather } from '../../utils/fetchWeather';
@@ -31,7 +32,20 @@ const Weather = (props) => {
   ) : (
     <section className="weather section">
       <div className="weather_location">
-        <Heading level={1}>{location.name}</Heading>
+        <div className="weather_heading">
+          <Heading level={1} elementClass="hdg-weather">
+            {location.name}
+          </Heading>
+          <div className="weather_share">
+            {/* TODO: ask how we do click-to-share content and how we want to do it for this. */}
+            <Button elementClass="btn-shareWeather">
+              <Icon name="twitter" />
+            </Button>
+            <Button elementClass="btn-shareWeather">
+              <Icon name="facebook" />
+            </Button>
+          </div>
+        </div>
 
         <select
           className="weather_locationSelect"
