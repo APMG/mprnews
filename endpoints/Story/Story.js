@@ -46,9 +46,14 @@ const StoryInner = ({ story }) => {
     });
   }
 
-  const tag = {
-    tagName: story.collections.title,
-    to: `/topic/${story.collections.canonicalSlug}`
+  const tag = () => {
+    return story.primaryCollection?.title &&
+      story.primaryCollection?.canonicalSlug
+      ? {
+          tagName: story.primaryCollection.title,
+          to: `/topic/${story.primaryCollection.canonicalSlug}`
+        }
+      : null;
   };
 
   const socialImage = fishForSocialMediaImage(story);
@@ -88,7 +93,7 @@ const StoryInner = ({ story }) => {
         imageCreditHref={story.primaryVisuals?.lead?.credit?.url}
         publishDate={format(story.publishDate, 'MMMM D, YYYY')}
         embeddedAssetJson={story.embeddedAssetJson}
-        tag={tag}
+        tag={tag()}
         elementClass="story"
       />
     </ContentLayout>

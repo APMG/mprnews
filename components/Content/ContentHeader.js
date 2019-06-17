@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Heading, TagLink } from '@apmg/titan';
+import { Heading } from '@apmg/titan';
+import Link from 'next/link';
 import { format } from 'date-fns';
 import Byline from '../Byline/Byline';
 
@@ -9,11 +10,9 @@ const ContentHeader = (props) => {
     <header className="content_header">
       {props.tag && (
         <div className="content_topic">
-          <TagLink
-            to={props.tag.to}
-            tagName={props.tag.tagName}
-            elementClass="link link-none"
-          />
+          <Link href={props.tag.to}>
+            <a className="link link-none">{props.tag.tagName}</a>
+          </Link>
         </div>
       )}
 

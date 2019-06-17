@@ -8,7 +8,7 @@ query story($contentAreaSlug: String!, $slug: String!, $previewToken: String) {
     title
     subtitle
     canonicalSlug
-    collections {
+    primaryCollection {
       title
       canonicalSlug
     }
