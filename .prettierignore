@@ -3,7 +3,4 @@ styles/**/*
 # Location of built files:
 dist/**/*
 build/**/*
-server.js
-src/shared/config/index.js
 .next
-components/Dropdown/index.js
