@@ -35,9 +35,9 @@ const StoryInner = ({ story }) => {
 
   if (story.contributors) {
     authors = story.contributors.map((contributor) => {
-      let thisString = `${contributor.profile?.firstName} ${
-        contributor.profile?.lastName ? contributor.profile?.lastName : ''
-      }`;
+      let thisString = `${
+        contributor.profile?.firstName ? contributor.profile.firstName : ''
+      } ${contributor.profile?.lastName ? contributor.profile.lastName : ''}`;
       return {
         // prettier-ignore
         name: `${thisString}`,
@@ -50,6 +50,7 @@ const StoryInner = ({ story }) => {
     tagName: story.collections.title,
     to: `/topic/${story.collections.canonicalSlug}`
   };
+
   const socialImage = fishForSocialMediaImage(story);
   const tags = [
     { key: 'description', name: 'description', content: story.descriptionText },
