@@ -8,6 +8,7 @@ const port = parseInt(process.env.APP_PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
+console.log('handle', handle);
 
 const slug = (req, res, next) => {
   req.slug = req.path.replace(/^(\/newspartners)*\/(story|episode|page)\//, '');
@@ -37,6 +38,7 @@ app
   .prepare()
   .then(() => {
     const server = express();
+    console.log(`req`, server);
     server.use(slug, previewSlug, previewToken, daySlug);
 
     server.get('/', (req, res) => {
@@ -63,6 +65,15 @@ app
         slug: req.previewSlug,
         previewToken: req.previewToken
       });
+    });
+
+    server.get(`/topic/:id/:page`, (req, res) => {
+      const queryParams = {
+        collection: req.params.id,
+        pageNum: Number(req.params.page),
+        slug: req.slug
+      };
+      app.render(req, res, '/collection', queryParams);
     });
 
     server.get('/ampstory/*', (req, res) => {
