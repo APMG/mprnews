@@ -1,6 +1,6 @@
 import React from 'react';
 import Router from 'next/router';
-import { Teaser, Heading, Loading } from '@apmg/titan';
+import { Teaser, Heading, Loading, Pagination } from '@apmg/titan';
 import { Image } from 'apm-mimas';
 import { Body } from 'amat-react';
 import { Query } from 'react-apollo';
@@ -15,7 +15,8 @@ const Collection = ({ collectionName, endpointName }) => {
       query={query}
       variables={{
         contentAreaSlug: process.env.CONTENT_AREA_SLUG,
-        slug: collectionName
+        slug: collectionName,
+        pageNum: 2
       }}
     >
       {({ loading, error, data }) => {
@@ -51,6 +52,7 @@ const CollectionInner = ({ collection, endpointName }) => {
   ];
   return (
     <>
+      {console.log('collection', collection)}
       <Heading level={2}>{collection.title}</Heading>
       <Metatags title={collection.title} metatags={tags} links={[]} />
       {collection.results.items.map((item) => {
@@ -80,6 +82,35 @@ const CollectionInner = ({ collection, endpointName }) => {
           />
         );
       })}
+      {collection.results.currentPage < collection.results.totalPages + 1 && (
+        <div className="banner banner-pagination">
+          <div className="section">
+            <Pagination
+              hasFirstAndLast={false}
+              linksToShow={1}
+              linkPrefix={collection.__typename}
+              currentPage={collection.results.currentPage}
+              elementsPerPage={collection.results.items.length}
+              totalElements={collection.results.totalItems}
+              prevSymbol={
+                <span>
+                  <span className="">Previous Page</span>
+                  {/* <Icon elementClass="icon-pagination" name="chevronLeft" /> */}
+                </span>
+              }
+              nextSymbol={
+                collection.results.currentPage <
+                  collection.results.totalPages && (
+                  <span>
+                    <span className="">Next Page</span>
+                    {/* <Icon elementClass="icon-pagination" name="chevronRight" /> */}
+                  </span>
+                )
+              }
+            />
+          </div>
+        </div>
+      )}
     </>
   );
 };
