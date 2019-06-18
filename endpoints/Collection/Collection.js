@@ -1,6 +1,6 @@
 import React from 'react';
 import Router from 'next/router';
-import { Teaser, Heading, Loading, Pagination } from '@apmg/titan';
+import { Teaser, Heading, Loading } from '@apmg/titan';
 import { Image } from 'apm-mimas';
 import { Body } from 'amat-react';
 import { Query } from 'react-apollo';
@@ -9,14 +9,14 @@ import query from './collection.gql';
 import Metatags from '../../components/Metatags/Metatags';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
 
-const Collection = ({ collectionName, endpointName }) => {
+const Collection = ({ collectionName, endpointName, pageNum }) => {
   return (
     <Query
       query={query}
       variables={{
         contentAreaSlug: process.env.CONTENT_AREA_SLUG,
         slug: collectionName,
-        pageNum: 2
+        pageNum: pageNum
       }}
     >
       {({ loading, error, data }) => {
@@ -25,8 +25,10 @@ const Collection = ({ collectionName, endpointName }) => {
 
         return (
           <CollectionInner
+            collectionName={collectionName}
             collection={data.collection}
             endpointName={endpointName}
+            pageNum={pageNum}
           />
         );
       }}
@@ -36,6 +38,7 @@ const Collection = ({ collectionName, endpointName }) => {
 
 const CollectionInner = ({ collection, endpointName }) => {
   const socialImage = fishForSocialMediaImage(collection);
+
   const tags = [
     {
       key: 'description',
@@ -52,7 +55,6 @@ const CollectionInner = ({ collection, endpointName }) => {
   ];
   return (
     <>
-      {console.log('collection', collection)}
       <Heading level={2}>{collection.title}</Heading>
       <Metatags title={collection.title} metatags={tags} links={[]} />
       {collection.results.items.map((item) => {
@@ -82,35 +84,6 @@ const CollectionInner = ({ collection, endpointName }) => {
           />
         );
       })}
-      {collection.results.currentPage < collection.results.totalPages + 1 && (
-        <div className="banner banner-pagination">
-          <div className="section">
-            <Pagination
-              hasFirstAndLast={false}
-              linksToShow={1}
-              linkPrefix={collection.__typename}
-              currentPage={collection.results.currentPage}
-              elementsPerPage={collection.results.items.length}
-              totalElements={collection.results.totalItems}
-              prevSymbol={
-                <span>
-                  <span className="">Previous Page</span>
-                  {/* <Icon elementClass="icon-pagination" name="chevronLeft" /> */}
-                </span>
-              }
-              nextSymbol={
-                collection.results.currentPage <
-                  collection.results.totalPages && (
-                  <span>
-                    <span className="">Next Page</span>
-                    {/* <Icon elementClass="icon-pagination" name="chevronRight" /> */}
-                  </span>
-                )
-              }
-            />
-          </div>
-        </div>
-      )}
     </>
   );
 };
@@ -122,7 +95,8 @@ CollectionInner.propTypes = {
 
 Collection.propTypes = {
   collectionName: PropTypes.string,
-  endpointName: PropTypes.string
+  endpointName: PropTypes.string,
+  pageNum: PropTypes.number
 };
 
 export default Collection;
