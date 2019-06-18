@@ -19,7 +19,6 @@ DropdownMenuItem.defaultProps = {
 };
 
 DropdownMenuItem.propTypes = {
-  action: PropTypes.func,
   childrenProps: PropTypes.object,
   children: PropTypes.object,
   component: PropTypes.oneOf(['div', 'a'])

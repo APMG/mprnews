@@ -2,9 +2,6 @@ import React, { useState } from 'react';
 
 const SearchForm = () => {
   const [value, setValue] = useState('');
-  const handleSubmit = (evt) => {
-    console.log(value);
-  };
 
   const handleInputChange = (e) => {
     setValue(e.target.value);
@@ -16,7 +13,6 @@ const SearchForm = () => {
       method="get"
       action="/search"
       role="search"
-      onSubmit={handleSubmit}
     >
       <label htmlFfor="searchbox">
         Search MPR

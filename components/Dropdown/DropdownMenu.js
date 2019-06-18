@@ -40,7 +40,6 @@ DropdownMenu.defaultProps = {
 
 DropdownMenu.propTypes = {
   isOpen: PropTypes.bool,
-  forceCloseFunction: PropTypes.func,
   toggle: PropTypes.node.isRequired,
   direction: PropTypes.oneOf(['center', 'right', 'left']),
   className: PropTypes.string,
