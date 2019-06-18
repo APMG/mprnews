@@ -22,7 +22,7 @@
     "clean": "rm -rf node_modules .next package-lock.json && npm cache verify"
   },
   "dependencies": {
-    "@apmg/titan": "^0.4.1",
+    "@apmg/titan": "^0.4.4",
     "amat-react": "^0.1.16",
     "apm-mimas": "^0.1.9",
     "apollo-boost": "^0.1.16",
