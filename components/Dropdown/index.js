@@ -295,7 +295,6 @@ class Dropdown extends React.Component {
           return (
             <DropdownMenu
               isOpen={this.state.open[i]}
-              forceCloseFunction={() => this.clickItem(i)}
               toggle={this.getToggle(
                 dropdownList.text,
                 () => this.toggle(i),
@@ -323,7 +322,7 @@ class Dropdown extends React.Component {
                         {group.linkgroup}
                       </div>
                       <ul className="dropdownMenuItem" role="menu">
-                        {group.links.map((item, index) =>
+                        {group.links.map((item) =>
                           !item.href ? null : (
                             <DropdownMenuItem key={item.text + i} onClick={this.clickItem}>
                               <Link href={item.href}>
