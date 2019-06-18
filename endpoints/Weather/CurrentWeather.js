@@ -23,7 +23,10 @@ const CurrentWeather = ({ weather, forecast }) => {
         <div className="weather_dashboard">
           {/* This one (thank goodness) automatically sorts by time and puts the current one first */}
           <div className="weather_currentForecast">
-            <WeatherIcon iconUrl={forecast.periods[0].icon} />
+            <WeatherIcon
+              elementClass="weatherIcon-current"
+              iconUrl={forecast.periods[0].icon}
+            />
             <Heading level={3} elementClass="hdg-temp">{`${CtoF(
               getValueOfMostRecent(weather.temperature.values)
             )}°`}</Heading>

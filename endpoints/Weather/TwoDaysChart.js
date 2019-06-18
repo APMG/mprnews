@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { scaleLinear } from 'd3-scale';
 
 const BUFFER = 10;
@@ -32,24 +33,6 @@ const TwoDaysChart = ({ forecast }) => {
       className="chart"
       xmlns="http://www.w3.org/2000/svg"
     >
-      {/* <polyline
-        fill="none"
-        stroke="#0074d9"
-        strokeWidth="3"
-        points={`
-          10,${tempScale(75)}
-          20,${tempScale(76)}
-          30,${tempScale(75)}
-          40,${tempScale(75)}
-          50,${tempScale(73)}`}
-      /> */}
-      {/* <circle
-        fill="red"
-        cx={`${forecast.periods[0].number * 10}`}
-        cy={`${tempScale(forecast.periods[0].temperature)}`}
-        r="2"
-      /> */}
-
       {forecast.periods.map((period) => {
         return (
           <circle
@@ -64,6 +47,10 @@ const TwoDaysChart = ({ forecast }) => {
       })}
     </svg>
   );
+};
+
+TwoDaysChart.propTypes = {
+  forecast: PropTypes.object
 };
 
 export default TwoDaysChart;
