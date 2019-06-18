@@ -40,8 +40,11 @@ const Header = () => {
           </div>
           <span className="invisible">Menu</span>
         </button>
-        <Link href="/" onClick={closeMenu}>
-          <a className="header_logo" data-testid="header-logo">
+        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
+
+        <Link href="/">
+          {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
+          <a className="header_logo" onClick={closeMenu}>
             <div className="header_logoImg">
               <Logo />
               <span className="invisible">MPR News</span>

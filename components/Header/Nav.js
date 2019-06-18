@@ -8,9 +8,11 @@ const Nav = (props) => {
   return (
     <nav className="nav">
       <div className="nav_header">
-        <Link to="/">
+        <Link href="/">
           <div className="header_logoImg">
-            <Logo />
+            <a>
+              <Logo />
+            </a>
             <span className="invisible">MPR News</span>
           </div>
         </Link>
@@ -20,13 +22,16 @@ const Nav = (props) => {
       </div>
       <ul className="nav_list">
         {props.items.map((item, index) => (
-          <li key={item + index} className="nav_item">
+          <li key={index} className="nav_item">
             <span className="nav_title">{item.linkgroup}</span>
             <ul className="nav_items">
               {item.links.map((link, index) => (
                 <li key={index}>
                   <Link href={link.href}>
-                    <a className="nav_link">{link.text}</a>
+                    {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
+                    <a className="nav_link" onClick={props.closeMenu}>
+                      {link.text}
+                    </a>
                   </Link>
                 </li>
               ))}

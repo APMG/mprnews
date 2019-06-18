@@ -2,7 +2,7 @@ export const navItems = [
   {
     linkgroup: 'MPR News Coverage',
     links: [
-      { text: 'Arts', class: '', href: '/arts' },
+      { text: 'Arts', class: '', href: '/stories' },
       { text: 'Education', class: '', href: '/education' },
       { text: 'Lifestyle', class: '', href: '/lifestyle' },
       { text: 'Twin Cities', class: '', href: '/twin-cities' },
