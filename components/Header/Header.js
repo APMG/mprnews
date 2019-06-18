@@ -32,7 +32,7 @@ const Header = () => {
   return (
     <div className="headerContainer">
       <header className={headerClasses} data-testid="header">
-        <button className="header_navButton" onClick={toggleMenu}>
+        <button type="button" className="header_navButton" onClick={toggleMenu}>
           <div className="navIcon">
             <span />
             <span />

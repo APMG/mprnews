@@ -9,14 +9,19 @@ const Nav = (props) => {
     <nav className="nav">
       <div className="nav_header">
         <Link href="/">
-          <div className="header_logoImg">
-            <a>
+          <a>
+            <div className="header_logoImg">
               <Logo />
-            </a>
-            <span className="invisible">MPR News</span>
-          </div>
+
+              <span className="invisible">MPR News</span>
+            </div>
+          </a>
         </Link>
-        <button className="nav_closeButton" onClick={props.closeMenu}>
+        <button
+          type="button"
+          className="nav_closeButton"
+          onClick={props.closeMenu}
+        >
           <NavButtonContents label="Close Menu" />
         </button>
       </div>
