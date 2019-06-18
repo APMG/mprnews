@@ -1,14 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import IconEmpty from './IconEmpty';
-import IconFacebook from './IconFacebook';
 import IconChevronDown from './IconChevronDown';
 import IconChevronLeft from './IconChevronLeft';
 import IconChevronRight from './IconChevronRight';
 import IconChevronUp from './IconChevronUp';
+import IconEmpty from './IconEmpty';
+import IconFacebook from './IconFacebook';
+import IconLocation from './IconLocation';
+import IconPause from './IconPause';
+import IconPlay from './IconPlay';
 import IconSearch from './IconSearch';
 import IconTwitter from './IconTwitter';
-import IconLocation from './IconLocation';
+import IconVolumeDown from './IconVolumeDown';
+import IconVolumeMute from './IconVolumeMute';
+import IconVolumeOff from './IconVolumeOff';
+import IconVolumeUp from './IconVolumeUp';
 
 const icons = {
   empty: IconEmpty,
@@ -18,8 +24,14 @@ const icons = {
   chevronUp: IconChevronUp,
   facebook: IconFacebook,
   location: IconLocation,
+  pause: IconPause,
+  play: IconPlay,
   search: IconSearch,
-  twitter: IconTwitter
+  twitter: IconTwitter,
+  volumeDown: IconVolumeDown,
+  volumeMute: IconVolumeMute,
+  volumeOff: IconVolumeOff,
+  volumeUp: IconVolumeUp
 };
 
 const Icon = (props) => {

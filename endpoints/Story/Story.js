@@ -5,6 +5,7 @@ import { Loading } from '@apmg/titan';
 import { Image } from 'apm-mimas';
 import { format } from 'date-fns';
 import Content from '../../components/Content/Content';
+import AudioPlayButton from '../../components/AudioPlayButton/AudioPlayButton';
 import ContentLayout from '../../layouts/ContentLayout';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import query from './story.gql';
@@ -72,6 +73,12 @@ const StoryInner = ({ story }) => {
     <ContentLayout sidebar={<Sidebar />}>
       <Metatags title={story.title} metatags={tags} links={[]} />
 
+      {story.primaryAudio && (
+        <AudioPlayButton
+          audioSource={story.primaryAudio.encodings[0].httpFilePath}
+          audioTitle={story.primaryAudio.title}
+        />
+      )}
       <Content
         title={story.title}
         subtitle={story.subtitle}
