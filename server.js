@@ -43,6 +43,9 @@ app
       app.render(req, res, '/index');
     });
 
+    server.get('/search', (req, res) => {
+      app.render(req, res, '/search');
+    });
     server.get('/scribble', (req, res) => {
       app.render(req, res, '/scribble');
     });

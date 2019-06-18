@@ -6,6 +6,7 @@ import Dropdown from '../Dropdown';
 import Logo from './Logo';
 import WeatherHeader from '../WeatherHeader/index';
 import Icon from '../Icons/Icon';
+import SearchForm from './SearchForm';
 
 class Header extends React.Component {
   constructor(props) {
@@ -70,6 +71,7 @@ class Header extends React.Component {
 
           <WeatherHeader />
           <div className="header_search ">
+            <SearchForm />
             <Icon elementClass="icon-search" name="search" />
           </div>
         </header>
