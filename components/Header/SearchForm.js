@@ -1,23 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const SearchForm = () => {
+  const [value, setValue] = useState('');
+  const handleSubmit = (evt) => {
+    console.log(value);
+  };
+
+  const handleInputChange = (e) => {
+    setValue(e.target.value);
+  };
   return (
     <form
       id="searchForm"
       name="search"
       method="get"
-      action="https://www.mprnews.org//search"
+      action="/search"
       role="search"
+      onSubmit={handleSubmit}
     >
       <label htmlFfor="searchbox">
         Search MPR
         <input
           type="search"
           placeholder="Search: Phrase, topic, politician..."
-          value=""
+          value={value}
           name="q"
           className="searchbox"
           id="nav-searchbox"
+          onChange={handleInputChange}
         />
       </label>
       <input type="hidden" name="site" value="mpr" />
