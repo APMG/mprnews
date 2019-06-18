@@ -28,7 +28,7 @@ const Nav = (props) => {
               {item.links.map((link, index) => (
                 <li key={index}>
                   <Link href={link.href}>
-                    {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
+                    {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions, jsx-a11y/anchor-is-valid*/}
                     <a className="nav_link" onClick={props.closeMenu}>
                       {link.text}
                     </a>
