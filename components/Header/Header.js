@@ -1,81 +1,73 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import classNames from 'classnames';
 import Dropdown from '../Dropdown';
 import Logo from './Logo';
+import Nav from './Nav';
+import { navItems } from './NavItems';
 import WeatherHeader from '../WeatherHeader/index';
 import Icon from '../Icons/Icon';
 
-class Header extends React.Component {
-  constructor(props) {
-    super(props);
-    // Mobile menu state
-    this.state = {
-      menuOpen: false
-    };
-  }
+const Header = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  // Toggle mobile menu
-  toggleMenu = () => {
-    if (this.state.menuOpen) {
-      this.setState({ menuOpen: false });
+  const headerClasses = classNames('header', {
+    'is-open': menuOpen,
+    'is-closed': !menuOpen
+  });
+
+  const toggleMenu = () => {
+    if (menuOpen) {
+      setMenuOpen(false);
     } else {
-      this.setState({ menuOpen: true });
+      setMenuOpen(true);
     }
   };
 
-  // Close mobile menu
-  closeMenu() {
-    this.setState({ menuOpen: false });
-  }
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
 
-  render() {
-    // Mobile menu classes
-    const headerClasses = classNames('header', {
-      'is-open': this.state.menuOpen,
-      'is-closed': !this.state.menuOpen
-    });
-
-    return (
-      <div className="headerContainer">
-        <header className={headerClasses} data-testid="header">
-          <button className="header_navButton" onClick={this.toggleMenu}>
-            <div className="navIcon">
-              <span />
-              <span />
-              <span />
+  return (
+    <div className="headerContainer">
+      <header className={headerClasses} data-testid="header">
+        <button className="header_navButton" onClick={toggleMenu}>
+          <div className="navIcon">
+            <span />
+            <span />
+            <span />
+          </div>
+          <span className="invisible">Menu</span>
+        </button>
+        <Link href="/" onClick={closeMenu}>
+          <a className="header_logo" data-testid="header-logo">
+            <div className="header_logoImg">
+              <Logo />
+              <span className="invisible">MPR News</span>
             </div>
-            <span className="invisible">Menu</span>
-          </button>
-          <Link href="/" onClick={this.closeMenu}>
-            <a className="header_logo" data-testid="header-logo">
-              <div className="header_logoImg">
-                <Logo />
-                <span className="invisible">MPR News</span>
-              </div>
-            </a>
-          </Link>
+          </a>
+        </Link>
 
-          {/* disabling these eslint jsx-a11y features because this element is for convenience; the menu can still be closed through other means */}
-          {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
-          <div
-            className="header_navBg"
-            data-testid="header-closenav"
-            onClick={this.closeMenu}
-          />
-          <div className="header_nav">
-            <Dropdown />
-          </div>
+        {/* disabling these eslint jsx-a11y features because this element is for convenience; the menu can still be closed through other means */}
+        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
+        <div
+          className="header_navBg"
+          data-testid="header-closenav"
+          onClick={closeMenu}
+        />
+        <div className="header_nav">
+          <Dropdown />
+          <Nav items={navItems} closeMenu={closeMenu} />
+        </div>
 
-          <WeatherHeader />
-          <div className="header_search ">
-            <Icon elementClass="icon-search" name="search" />
-          </div>
-        </header>
-      </div>
-    );
-  }
-}
+        <WeatherHeader />
+        <div className="header_search ">
+          <Icon elementClass="icon-search" name="search" />
+        </div>
+      </header>
+    </div>
+  );
+};
 
 export default Header;

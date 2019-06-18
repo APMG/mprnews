@@ -40,8 +40,8 @@ $_header-button-full-width: 62px;
 }
 
 .header_logoImg {
-  height: 18px;
-  width: 134px;
+  height: 20px;
+  width: 150px;
   margin-right: 8px;
 
   @include media($media-full-layout) {
@@ -57,16 +57,18 @@ $_header-button-full-width: 62px;
 
 .header_nav {
   min-width: 300px;
-  padding: 20px 30px 0;
+  width: 65%;
+  padding: 20px 40px 0 30px;
   position: fixed;
   overflow-y: auto;
   top: 0;
   left: 0;
   bottom: 0;
   z-index: $z-mobile-nav;
-  background-color: rgba($color-black, .975);
+  background-color: $color-white;
   transform: translateX(-100%);
   transition: transform $transition-menu;
+  border-right: 2px solid $color-border;
 
   @include media($media-full-layout) {
     padding: 0;
@@ -79,11 +81,12 @@ $_header-button-full-width: 62px;
     min-width: unset;
     width: 100%;
     overflow: visible;
-
+    box-shadow: 0;
   }
 
   .is-open & {
     transform: translateX(0);
+    box-shadow: 0 0 72px -20px rgba($color-black, .75);
   }
 }
 

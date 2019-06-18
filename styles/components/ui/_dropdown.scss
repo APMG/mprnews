@@ -1,6 +1,11 @@
 .dropdown {
-  display: flex;
+  display: none;
   flex-direction: row;
   align-items: center;
   width: 100%;
+
+  @include media($media-tablet) {
+    display: flex;
+  }
 }
+
