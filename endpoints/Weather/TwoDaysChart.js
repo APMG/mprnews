@@ -2,12 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { scaleLinear } from 'd3-scale';
 import { format } from 'date-fns';
+import { Heading } from '@apmg/titan';
 import WeatherIcon from '../../components/WeatherIcons/WeatherIcon';
 
-const BUFFER_BOTTOM = 10;
-const BUFFER_TOP = 25;
-const CHART_HEIGHT = 150;
+const BUFFER_TOP = 10;
+const BUFFER_BOTTOM = 30;
+const CHART_HEIGHT = 160;
 const CHART_WIDTH = 800;
+const LINE_OPACITY = 0.2;
 
 const TwoDaysChart = ({ forecast }) => {
   forecast.periods = forecast.periods.slice(0, 48);
@@ -24,24 +26,15 @@ const TwoDaysChart = ({ forecast }) => {
       forecast.periods[0].temperature
     ) + BUFFER_TOP;
 
-  let tempScale = scaleLinear()
-    .domain([lo, hi])
+  let tempPositionScale = scaleLinear()
+    .domain([hi, lo])
     .range([0, CHART_HEIGHT]);
-
-  let colors = [
-    '#012942',
-    '#00607d',
-    '#009ea8',
-    '#32debd',
-    '#6fde85',
-    '#b0d646',
-    '#f4c300'
-  ];
-
-  console.log(forecast);
 
   return (
     <div className="weather_chart">
+      <Heading level={2} elementClass="weather_chartTitle">
+        48 hour forecast
+      </Heading>
       <svg
         className="weather_chartScrollable"
         viewBox={`0 0 ${CHART_WIDTH} ${CHART_HEIGHT}`}
@@ -54,15 +47,15 @@ const TwoDaysChart = ({ forecast }) => {
           y2={CHART_HEIGHT}
           stroke="black"
           strokeWidth={0.2}
-          opacity={0.4}
+          opacity={LINE_OPACITY}
         />
         {forecast.periods.map((period, i) => {
           let xPos = i * 25;
-          let yPos = tempScale(period.temperature);
-          let hour = format(
-            Date.parse(period.startTime.split('/').shift()),
-            'hA'
-          );
+          let yPos = tempPositionScale(period.temperature);
+          let date = Date.parse(period.startTime.split('/').shift());
+          let hour = format(date, 'hA');
+          let dayOfWeek =
+            hour === '12AM' ? format(date, 'ddd').toUpperCase() : false;
 
           return (
             <g key={period.number} className="weather_chartPoint">
@@ -79,10 +72,19 @@ const TwoDaysChart = ({ forecast }) => {
               <text
                 className="weather_chartPointHour"
                 x={`${xPos + 4.5}`}
-                y={CHART_HEIGHT - 4}
+                y={CHART_HEIGHT - 5}
               >
                 {hour}
               </text>
+              {dayOfWeek && (
+                <text
+                  className="weather_chartPointDay"
+                  x={xPos + 5.5}
+                  y={CHART_HEIGHT - 18}
+                >
+                  {dayOfWeek}
+                </text>
+              )}
               <line
                 x1={xPos}
                 y1={0}
@@ -90,7 +92,7 @@ const TwoDaysChart = ({ forecast }) => {
                 y2={CHART_HEIGHT}
                 stroke="black"
                 strokeWidth={0.2}
-                opacity={0.4}
+                opacity={LINE_OPACITY}
               />
             </g>
           );
@@ -102,7 +104,7 @@ const TwoDaysChart = ({ forecast }) => {
           y2={CHART_HEIGHT}
           stroke="black"
           strokeWidth={0.2}
-          opacity={0.4}
+          opacity={LINE_OPACITY}
         />
       </svg>
     </div>

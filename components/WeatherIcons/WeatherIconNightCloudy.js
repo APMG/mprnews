@@ -2,7 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-const WeatherIconNightCloudy = ({ elementClass, x, y, width, height }) => {
+const WeatherIconNightCloudy = ({
+  elementClass,
+  x,
+  y,
+  width,
+  height,
+  fill
+}) => {
   const classes = classNames({
     weatherIcon: true,
     'weatherIcon_night-cloudy': true,
@@ -16,6 +23,7 @@ const WeatherIconNightCloudy = ({ elementClass, x, y, width, height }) => {
       height={height}
       x={x}
       y={y}
+      fill={fill}
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 30 30"
@@ -46,7 +54,8 @@ WeatherIconNightCloudy.propTypes = {
   x: PropTypes.number,
   y: PropTypes.number,
   width: PropTypes.number,
-  height: PropTypes.number
+  height: PropTypes.number,
+  fill: PropTypes.string
 };
 
 export default WeatherIconNightCloudy;

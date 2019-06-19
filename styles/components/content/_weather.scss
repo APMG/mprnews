@@ -58,8 +58,13 @@ $_weather-attr-min-width: 380px;
 
 .weather_chart {
   width: 100%;
-  overflow: scroll;
+  overflow-x: scroll;
+  overflow-y: hidden;
   margin-top: 50px;
+}
+
+.weather_chartTitle {
+  margin-bottom: 25px;
 }
 
 .weather_chartScrollable {
@@ -68,10 +73,18 @@ $_weather-attr-min-width: 380px;
 
 .weather_chartPoint {
   font-size: .45em;
-  font-weight: 200;
+  font-weight: 700;
+  fill: $color-grey-20;
 }
 
 .weather_chartPointHour {
   font-size: .75em;
   font-weight: 400;
+  fill: $color-grey-40;
+}
+
+.weather_chartPointDay {
+  font-size: .9em;
+  font-weight: 400;
+  fill: $color-grey-60;
 }
