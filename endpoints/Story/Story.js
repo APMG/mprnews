@@ -35,9 +35,9 @@ const StoryInner = ({ story }) => {
 
   if (story.contributors) {
     authors = story.contributors.map((contributor) => {
-      let thisString = `${contributor.profile?.firstName} ${
-        contributor.profile?.lastName ? contributor.profile?.lastName : ''
-      }`;
+      let thisString = `${
+        contributor.profile?.firstName ? contributor.profile.firstName : ''
+      } ${contributor.profile?.lastName ? contributor.profile.lastName : ''}`;
       return {
         // prettier-ignore
         name: `${thisString}`,
@@ -46,10 +46,16 @@ const StoryInner = ({ story }) => {
     });
   }
 
-  const tag = {
-    tagName: story.collections.title,
-    to: `/topic/${story.collections.canonicalSlug}`
+  const tag = () => {
+    return story.primaryCollection?.title &&
+      story.primaryCollection?.canonicalSlug
+      ? {
+          tagName: story.primaryCollection.title,
+          to: `/topic/${story.primaryCollection.canonicalSlug}`
+        }
+      : null;
   };
+
   const socialImage = fishForSocialMediaImage(story);
   const tags = [
     { key: 'description', name: 'description', content: story.descriptionText },
@@ -87,7 +93,7 @@ const StoryInner = ({ story }) => {
         imageCreditHref={story.primaryVisuals?.lead?.credit?.url}
         publishDate={format(story.publishDate, 'MMMM D, YYYY')}
         embeddedAssetJson={story.embeddedAssetJson}
-        tag={tag}
+        tag={tag()}
         elementClass="story"
       />
     </ContentLayout>

@@ -9,13 +9,14 @@ import query from './collection.gql';
 import Metatags from '../../components/Metatags/Metatags';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
 
-const Collection = ({ collectionName, endpointName }) => {
+const Collection = ({ collectionName, endpointName, pageNum }) => {
   return (
     <Query
       query={query}
       variables={{
         contentAreaSlug: process.env.CONTENT_AREA_SLUG,
-        slug: collectionName
+        slug: collectionName,
+        pageNum: pageNum
       }}
     >
       {({ loading, error, data }) => {
@@ -24,8 +25,10 @@ const Collection = ({ collectionName, endpointName }) => {
 
         return (
           <CollectionInner
+            collectionName={collectionName}
             collection={data.collection}
             endpointName={endpointName}
+            pageNum={pageNum}
           />
         );
       }}
@@ -35,6 +38,7 @@ const Collection = ({ collectionName, endpointName }) => {
 
 const CollectionInner = ({ collection, endpointName }) => {
   const socialImage = fishForSocialMediaImage(collection);
+
   const tags = [
     {
       key: 'description',
@@ -91,7 +95,8 @@ CollectionInner.propTypes = {
 
 Collection.propTypes = {
   collectionName: PropTypes.string,
-  endpointName: PropTypes.string
+  endpointName: PropTypes.string,
+  pageNum: PropTypes.number
 };
 
 export default Collection;

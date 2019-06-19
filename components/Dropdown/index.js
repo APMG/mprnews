@@ -324,12 +324,13 @@ class Dropdown extends React.Component {
                       <ul className="dropdownMenuItem" role="menu">
                         {group.links.map((item) =>
                           !item.href ? null : (
-                            <DropdownMenuItem key={item.text + i} onClick={this.clickItem}>
+                            <DropdownMenuItem
+                              key={item.text + i}
+                              onClick={this.clickItem}
+                            >
                               <Link href={item.href}>
                                 <a
-                                  className={`dropdownMenuItem_link ${
-                                    item.class
-                                  }`}
+                                  className={`dropdownMenuItem_link ${item.class}`}
                                 >
                                   {item.text}
                                 </a>

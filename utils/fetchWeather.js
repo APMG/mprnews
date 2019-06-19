@@ -9,7 +9,7 @@ export const fetchWeather = async (lat, long) => {
     const weatherUrl = locationData.properties.forecastGridData;
     const weatherRes = await fetch(weatherUrl);
 
-    const forecastUrl = locationData.properties.forecast;
+    const forecastUrl = locationData.properties.forecastHourly;
     const forecastRes = await fetch(forecastUrl);
 
     const alertUrl = `https://api.weather.gov/alerts/active?point=${lat},${long}`;
@@ -23,20 +23,18 @@ export const fetchWeather = async (lat, long) => {
       updateTime,
       temperature,
       apparentTemperature,
-      windDirection,
-      windSpeed,
+      probabilityOfPrecipitation,
       pressure,
       dewpoint,
       relativeHumidity
     } = weatherData.properties;
 
-    let data = {
+    return {
       weather: {
         updateTime,
         temperature,
         apparentTemperature,
-        windDirection,
-        windSpeed,
+        probabilityOfPrecipitation,
         pressure,
         dewpoint,
         relativeHumidity
@@ -44,8 +42,6 @@ export const fetchWeather = async (lat, long) => {
       forecast: forecastData.properties,
       alerts: alertData.features
     };
-
-    return data;
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error(error);

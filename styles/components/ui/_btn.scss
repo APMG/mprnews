@@ -113,3 +113,18 @@ $_btn-color-default: $color-grey-10;
     box-shadow: 0 0 0 3px rgba($color-warning, 50%);
   }
 }
+
+// Buttons for sharing content from the weather page
+
+.btn-shareWeather {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  margin-right: 5px;
+  margin-top: 2px;
+
+  > .icon {
+    margin: -2px 0 -2px 1px;
+    vertical-align: 0;
+  }
+}
