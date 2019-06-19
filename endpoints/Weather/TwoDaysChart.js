@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { scaleLinear } from 'd3-scale';
+import WeatherIcon from '../../components/WeatherIcons/WeatherIcon';
 
 const BUFFER = 10;
 
 const TwoDaysChart = ({ forecast }) => {
   forecast.periods = forecast.periods.slice(0, 48);
 
-  // get low
   let lo =
     forecast.periods.reduce(
       (min, b) => Math.min(min, b.temperature),
@@ -24,8 +24,6 @@ const TwoDaysChart = ({ forecast }) => {
     .domain([lo, hi])
     .range([0, 100]);
 
-  console.log(forecast);
-
   return (
     // I set this box to be 500 wide so that, for each of the 48 hours, I'd know I was just moving 10 pixels (with 10 px to spare on either side). Easy math :P. (actually, there's an attr "number" on each of these points that can literally be used to compute this. Just point.number * 10.)
     <svg
@@ -35,13 +33,13 @@ const TwoDaysChart = ({ forecast }) => {
     >
       {forecast.periods.map((period) => {
         return (
-          <circle
+          <WeatherIcon
             key={period.number}
-            fill="red"
-            cx={`${period.number * 10}`}
-            cy={`${tempScale(period.temperature)}`}
-            data-value={period.temperature}
-            r="2"
+            width={10}
+            height={10}
+            x={`${period.number * 10}`}
+            y={`${tempScale(period.temperature)}`}
+            iconUrl={period.icon}
           />
         );
       })}

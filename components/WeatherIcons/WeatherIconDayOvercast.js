@@ -2,16 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-const WeatherIconDayOvercast = (props) => {
+const WeatherIconDayOvercast = ({ elementClass, x, y, width, height }) => {
   const classes = classNames({
     weatherIcon: true,
     'weatherIcon_day-overcast': true,
-    [props.elementClass]: props.elementClass
+    [elementClass]: elementClass
   });
 
   return (
     <svg
       className={classes}
+      width={width}
+      height={height}
+      x={x}
+      y={y}
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 30 30"
@@ -48,7 +52,11 @@ const WeatherIconDayOvercast = (props) => {
 };
 
 WeatherIconDayOvercast.propTypes = {
-  elementClass: PropTypes.string
+  elementClass: PropTypes.string,
+  x: PropTypes.number,
+  y: PropTypes.number,
+  width: PropTypes.number,
+  height: PropTypes.number
 };
 
 export default WeatherIconDayOvercast;
