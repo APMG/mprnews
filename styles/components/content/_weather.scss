@@ -55,3 +55,23 @@ $_weather-attr-min-width: 380px;
   text-align: right;
   align-self: flex-end;
 }
+
+.weather_chart {
+  width: 100%;
+  overflow: scroll;
+  margin-top: 50px;
+}
+
+.weather_chartScrollable {
+  width: 125%;
+}
+
+.weather_chartPoint {
+  font-size: .45em;
+  font-weight: 200;
+}
+
+.weather_chartPointHour {
+  font-size: .75em;
+  font-weight: 400;
+}
