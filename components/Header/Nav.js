@@ -1,39 +1,65 @@
 import React from 'react';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
-
-import Icon from '../Icons/Icon';
+import NavButtonContents from './NavButtonContents';
+import Logo from './Logo';
 
 const Nav = (props) => {
   return (
     <nav className="nav">
+      <div className="nav_header">
+        <Link href="/">
+          <a>
+            <div className="header_logoImg">
+              <Logo />
+
+              <span className="invisible">MPR News</span>
+            </div>
+          </a>
+        </Link>
+        <button
+          type="button"
+          className="nav_closeButton"
+          onClick={props.closeMenu}
+        >
+          <NavButtonContents label="Close Menu" />
+        </button>
+      </div>
       <ul className="nav_list">
         {props.items.map((item, index) => (
           <li key={index} className="nav_item">
-            <button className="nav_button">
-              {item.text}
-              <div className="nav_icon">
-                <Icon elementClass="icon-nav" name="chevronDown" />
-              </div>
-            </button>
+            <span className="nav_title">{item.linkgroup}</span>
+            <ul className="nav_items">
+              {item.links.map((link, index) => (
+                <li key={index}>
+                  <Link href={link.href}>
+                    {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions, jsx-a11y/anchor-is-valid*/}
+                    <a className="nav_link" onClick={props.closeMenu}>
+                      {link.text}
+                    </a>
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </li>
         ))}
       </ul>
-      <div className="nav_item nav_item-donate">
-        <Link href="https://contribute.publicradio.org/contribute.php?refId=default&WT.mc_id=news_web_nav_button&WT.mc_ev=click&utm_campaign=membership_contribution&utm_medium=web_nav_button&utm_source=news&utm_content=&utm_terms">
-          <a className="nav_link">Give Now</a>
-        </Link>
-      </div>
     </nav>
   );
 };
 
 Nav.propTypes = {
+  closeMenu: PropTypes.func,
   items: PropTypes.arrayOf(
     PropTypes.shape({
-      text: PropTypes.string,
-      icon: PropTypes.string,
-      to: PropTypes.string
+      linkgroup: PropTypes.string,
+      links: PropTypes.arrayOf(
+        PropTypes.shape({
+          text: PropTypes.string,
+          class: PropTypes.string,
+          href: PropTypes.string
+        })
+      )
     })
   )
 };

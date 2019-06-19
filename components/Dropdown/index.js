@@ -68,7 +68,7 @@ class Dropdown extends React.Component {
           {
             linkgroup: 'MPR News Coverage',
             links: [
-              { text: 'Arts', class: '', href: '/arts' },
+              { text: 'Arts', class: '', href: '/stories' },
               { text: 'Education', class: '', href: '/education' },
               { text: 'Lifestyle', class: '', href: '/lifestyle' },
               { text: 'Twin Cities', class: '', href: '/twin-cities' },
@@ -295,7 +295,6 @@ class Dropdown extends React.Component {
           return (
             <DropdownMenu
               isOpen={this.state.open[i]}
-              forceCloseFunction={() => this.clickItem(i)}
               toggle={this.getToggle(
                 dropdownList.text,
                 () => this.toggle(i),
@@ -323,14 +322,13 @@ class Dropdown extends React.Component {
                         {group.linkgroup}
                       </div>
                       <ul className="dropdownMenuItem" role="menu">
-                        {group.links.map((item, index) =>
+                        {group.links.map((item) =>
                           !item.href ? null : (
-                            <DropdownMenuItem key={item.text + i}>
-                              <Link
-                                key={index}
-                                href={item.href}
-                                onClick={() => this.clickItem}
-                              >
+                            <DropdownMenuItem
+                              key={item.text + i}
+                              onClick={this.clickItem}
+                            >
+                              <Link href={item.href}>
                                 <a
                                   className={`dropdownMenuItem_link ${item.class}`}
                                 >
