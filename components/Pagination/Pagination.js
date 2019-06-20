@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Router from 'next/router';
-import { prevIndex, nextIndex } from './PaginationUtils';
+import { prevIndex, nextIndex } from '../../utils/utils';
 
 const Pagination = ({ collection, collectionName, pageNum }) => {
   return (
@@ -9,26 +9,29 @@ const Pagination = ({ collection, collectionName, pageNum }) => {
       {collection.results.currentPage < collection.results.totalPages + 1 && (
         <div className="banner banner-pagination">
           <div className="section">
-            <button
-              onClick={() =>
-                Router.push(`/topic/${collectionName}/${prevIndex(pageNum)}`)
-              }
-              disabled={pageNum <= 1}
-            >
-              PREV
-            </button>
-            <button
-              onClick={() =>
-                Router.push(
-                  `/topic/${collectionName}/${nextIndex(
-                    pageNum,
-                    collection.results.totalPages
-                  )}`
-                )
-              }
-            >
-              NEXT
-            </button>
+            {pageNum > 1 && (
+              <button
+                onClick={() =>
+                  Router.push(`/topic/${collectionName}/${prevIndex(pageNum)}`)
+                }
+              >
+                PREV
+              </button>
+            )}
+            {pageNum <= 1 && (
+              <button
+                onClick={() =>
+                  Router.push(
+                    `/topic/${collectionName}/${nextIndex(
+                      pageNum,
+                      collection.results.totalPages
+                    )}`
+                  )
+                }
+              >
+                NEXT
+              </button>
+            )}
           </div>
         </div>
       )}

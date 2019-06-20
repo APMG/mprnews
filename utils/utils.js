@@ -42,3 +42,13 @@ export function mpsToMph(num) {
 export function torrToInhg(num) {
   return (num / 25.4).toFixed(2);
 }
+
+// Get the previous index OR min
+export function prevIndex(i) {
+  return i > 1 ? i - 1 : 1;
+}
+
+// Get the next index OR max
+export function nextIndex(i, count) {
+  return i < count ? i + 1 : count;
+}
