@@ -1,4 +1,4 @@
-query collection($contentAreaSlug: String!, $slug: String!, $pageNum: Int!) {
+query collection($contentAreaSlug: String!, $slug: String!, $pageNum: Int) {
   collection: collection(contentAreaSlug: $contentAreaSlug, slug: $slug) {
     id
     title

@@ -64,6 +64,9 @@ const CollectionInner = ({ collection, pageNum, collectionName }) => {
       <Heading level={2}>{collection.title}</Heading>
       <Metatags title={collection.title} metatags={tags} links={[]} />
       {collection.results.items.map((item) => {
+        {
+          console.log('collection', collection);
+        }
         return (
           <Teaser
             key={item.id}
