@@ -37,17 +37,6 @@ app
   .prepare()
   .then(() => {
     const server = express();
-    console.log(`req`, server);
-
-    // Error handler
-    const errorHandler = (err, req, res, next) => {
-      if (res.headersSent) {
-        return next(err);
-      }
-      const { status } = err;
-      res.status(status).json(err);
-    };
-    server.use(errorHandler);
 
     server.use(slug, previewSlug, previewToken, daySlug);
 
@@ -77,7 +66,7 @@ app
       });
     });
 
-    server.get(`/topic/:id/:page`, (req, res) => {
+    server.get(`/topic/:id/:page?`, (req, res) => {
       const queryParams = {
         collection: req.params.id,
         pageNum: parseInt(req.params.page ? req.params.page : 1),
