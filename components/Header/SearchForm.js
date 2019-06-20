@@ -14,7 +14,7 @@ const SearchForm = () => {
       action="/search"
       role="search"
     >
-      <label htmlFfor="searchbox">
+      <label htmlFor="searchbox">
         Search MPR
         <input
           type="search"
@@ -46,7 +46,7 @@ const SearchForm = () => {
       <span
         className="search-icon"
         aria-label="Search MPR Websites - click to open search "
-      ></span>
+      />
     </form>
   );
 };

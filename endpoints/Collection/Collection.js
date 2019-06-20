@@ -16,7 +16,7 @@ const Collection = ({ collectionName, endpointName, pageNum }) => {
       variables={{
         contentAreaSlug: process.env.CONTENT_AREA_SLUG,
         slug: collectionName,
-        pageNum: pageNum
+        pageNum: pageNum ? pageNum : 1
       }}
     >
       {({ loading, error, data }) => {
