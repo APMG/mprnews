@@ -1,4 +1,4 @@
-query collection($contentAreaSlug: String!, $slug: String!, $pageNum: Int!) {
+query collection($contentAreaSlug: String!, $slug: String!, $pageNum: Int) {
   collection: collection(contentAreaSlug: $contentAreaSlug, slug: $slug) {
     id
     title
@@ -15,6 +15,7 @@ query collection($contentAreaSlug: String!, $slug: String!, $pageNum: Int!) {
         publishDate
         description
         canonicalSlug
+        resourceType
         primaryVisuals {
           lead {
             aspect_ratios: aspectRatios {
@@ -41,6 +42,9 @@ query collection($contentAreaSlug: String!, $slug: String!, $pageNum: Int!) {
           encodings {
             httpFilePath
           }
+        }
+        ... on Link {
+          destination
         }
       }
       totalItems

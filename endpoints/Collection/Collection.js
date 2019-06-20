@@ -29,7 +29,7 @@ const Collection = ({ collectionName, endpointName, pageNum }) => {
             collectionName={collectionName}
             collection={data.collection}
             endpointName={endpointName}
-            pageNum={pageNum}
+            pageNum={parseInt(pageNum)}
           />
         );
       }}
@@ -55,24 +55,29 @@ const CollectionInner = ({ collection, pageNum, collectionName }) => {
     { key: 'twitter:image', name: 'twitter:image', content: socialImage }
   ];
 
-  function checkTypeName(type) {
-    return type === 'Link' ? 'story' : type.toLowerCase();
-  }
-
   return (
     <>
       <Heading level={2}>{collection.title}</Heading>
       <Metatags title={collection.title} metatags={tags} links={[]} />
       {collection.results.items.map((item) => {
+        const link =
+          item.resourceType === 'link'
+            ? item.destination
+            : `/${item.resourceType}?slug=${item.canonicalSlug}
+        `;
+        const linkAs =
+          item.resourceType === 'link'
+            ? item.destination
+            : `/${item.resourceType}/${item.canonicalSlug}
+      `;
+
         return (
           <Teaser
             key={item.id}
             id={item.id}
             title={item.title}
-            href={`/${checkTypeName(item.__typename)}?slug=${
-              item.canonicalSlug
-            }`}
-            as={`/${checkTypeName(item.__typename)}/${item.canonicalSlug}`}
+            href={link}
+            as={linkAs}
             router={Router}
             publishDate={item.publishDate}
             headingLevel={2}
