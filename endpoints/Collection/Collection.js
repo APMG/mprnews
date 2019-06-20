@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import query from './collection.gql';
 import Metatags from '../../components/Metatags/Metatags';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
+import Pagination from '../../components/Pagination/Pagination';
 
 const Collection = ({ collectionName, endpointName, pageNum }) => {
   return (
@@ -16,7 +17,7 @@ const Collection = ({ collectionName, endpointName, pageNum }) => {
       variables={{
         contentAreaSlug: process.env.CONTENT_AREA_SLUG,
         slug: collectionName,
-        pageNum: pageNum
+        pageNum: parseInt(pageNum)
       }}
     >
       {({ loading, error, data }) => {
@@ -36,7 +37,7 @@ const Collection = ({ collectionName, endpointName, pageNum }) => {
   );
 };
 
-const CollectionInner = ({ collection, endpointName }) => {
+const CollectionInner = ({ collection, pageNum, collectionName }) => {
   const socialImage = fishForSocialMediaImage(collection);
 
   const tags = [
@@ -53,6 +54,11 @@ const CollectionInner = ({ collection, endpointName }) => {
     },
     { key: 'twitter:image', name: 'twitter:image', content: socialImage }
   ];
+
+  function checkTypeName(type) {
+    return type === 'Link' ? 'story' : type.toLowerCase();
+  }
+
   return (
     <>
       <Heading level={2}>{collection.title}</Heading>
@@ -63,8 +69,10 @@ const CollectionInner = ({ collection, endpointName }) => {
             key={item.id}
             id={item.id}
             title={item.title}
-            href={`/${endpointName}?slug=${item.canonicalSlug}`}
-            as={`/${endpointName}/${item.canonicalSlug}`}
+            href={`/${checkTypeName(item.__typename)}?slug=${
+              item.canonicalSlug
+            }`}
+            as={`/${checkTypeName(item.__typename)}/${item.canonicalSlug}`}
             router={Router}
             publishDate={item.publishDate}
             headingLevel={2}
@@ -84,13 +92,19 @@ const CollectionInner = ({ collection, endpointName }) => {
           />
         );
       })}
+      <Pagination
+        collection={collection}
+        collectionName={collectionName}
+        pageNum={pageNum}
+      />
     </>
   );
 };
 
 CollectionInner.propTypes = {
   collection: PropTypes.object,
-  endpointName: PropTypes.string
+  collectionName: PropTypes.string,
+  pageNum: PropTypes.number
 };
 
 Collection.propTypes = {

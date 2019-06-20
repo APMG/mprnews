@@ -70,7 +70,7 @@ app
     server.get(`/topic/:id/:page`, (req, res) => {
       const queryParams = {
         collection: req.params.id,
-        pageNum: Number(req.params.page),
+        pageNum: parseInt(req.params.page),
         slug: req.slug
       };
       app.render(req, res, '/collection', queryParams);
