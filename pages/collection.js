@@ -14,7 +14,7 @@ const CollectionPage = ({ slug, collection, pageNum }) => (
         <Collection
           collectionName={collection}
           endpointName={slug}
-          pageNum={pageNum}
+          pageNum={parseInt(pageNum)}
         />
       </section>
     </div>
