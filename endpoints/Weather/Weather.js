@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Heading, Button, Loading } from '@apmg/titan';
 import Icon from '../../components/Icons/Icon';
 import CurrentWeather from './CurrentWeather';
+import TwoDaysChart from './TwoDaysChart';
 import { weatherConfig } from '../../utils/defaultData';
 import { fetchWeather } from '../../utils/fetchWeather';
 
@@ -71,22 +72,13 @@ const Weather = (props) => {
 
       <CurrentWeather weather={data.weather} forecast={data.forecast} />
 
-      <div className="weather_forecast">
-        {/* TODO: insert a better visual here for at least the next 48 hours and 7 days */}
-        {/* TODO: temperature chart (high/low bar graph) */}
-      </div>
+      <TwoDaysChart forecast={data.forecast} />
 
-      <div className="weather_updraft">
-        {/* TODO: Is this a Strelka collection? If so, probably we'll use Teaser objects here. */}
-      </div>
+      <div className="weather_updraft" />
 
-      <div className="weather_signup">
-        {/* TODO: display signup options (Twitter and SMS) more efficiently */}
+      <div className="weather_signup" />
 
-        <div className="weather_news">
-          {/* TODO: Same as for Updraft: is it a collection? */}
-        </div>
-      </div>
+      <div className="weather_news" />
     </section>
   );
 };
