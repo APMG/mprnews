@@ -7,7 +7,10 @@ const AudioPlayerContext = React.createContext({
   audioSubtitle: '',
   isAudioPlaying: false,
   isPlayerVisible: false,
-  handleAudioButtonClick() {}
+  handleAudioButtonClick() {},
+  loadPlayer() {},
+  playerInstance: {},
+  playerRef: (el) => (this.playerRef = el)
 });
 
 export default AudioPlayerContext;

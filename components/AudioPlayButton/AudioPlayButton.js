@@ -45,7 +45,7 @@ const AudioPlayButton = (props) => {
           type="button"
           className={classes}
           onClick={(e) => {
-            e.preventDefault;
+            e.preventDefault();
             context.handleAudioButtonClick(
               audioSource,
               audioTitle,

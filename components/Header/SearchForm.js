@@ -16,7 +16,7 @@ const SearchForm = () => {
       action="/search"
       role="search"
     >
-      <label htmlFor="searchbox" className="search is-closed">
+      <label htmlFor="nav-searchbox" className="search is-closed">
         <span className="invisible">Search MPR</span>
         <input
           type="search"
