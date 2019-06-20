@@ -33,8 +33,8 @@ const HomeInner = ({ data }) => {
   return (
     <>
       {info.alert && info.show_on.indexOf('home') > -1 && (
-        <Link href={info.url} className="alert-box">
-          {`${info.prefix} ${info.title}`}
+        <Link href={info.url}>
+          <a className="alert-box">{`${info.prefix} ${info.title}`}</a>
         </Link>
       )}
       {data.homeList.results.items.map((item) => {

@@ -1,6 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+let weatherMoods = {
+  day: '#fba301',
+  night: '#002576',
+  snow: '#72d9ff'
+};
+
 import WeatherIconDayClear from './WeatherIconDayClear';
 import WeatherIconDayCloudy from './WeatherIconDayCloudy';
 import WeatherIconDayCloudyWindy from './WeatherIconDayCloudyWindy';

@@ -37,12 +37,16 @@ app
   .prepare()
   .then(() => {
     const server = express();
+
     server.use(slug, previewSlug, previewToken, daySlug);
 
     server.get('/', (req, res) => {
       app.render(req, res, '/index');
     });
 
+    server.get('/search', (req, res) => {
+      app.render(req, res, '/search');
+    });
     server.get('/scribble', (req, res) => {
       app.render(req, res, '/scribble');
     });
@@ -60,6 +64,15 @@ app
         slug: req.previewSlug,
         previewToken: req.previewToken
       });
+    });
+
+    server.get(`/topic/:id/:page?`, (req, res) => {
+      const queryParams = {
+        collection: req.params.id,
+        pageNum: parseInt(req.params.page ? req.params.page : 1),
+        slug: req.slug
+      };
+      app.render(req, res, '/collection', queryParams);
     });
 
     server.get('/ampstory/*', (req, res) => {

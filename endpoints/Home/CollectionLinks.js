@@ -9,7 +9,9 @@ const CollectionLinks = () => {
       {collectionConfig.newsCoverage.map((link) => {
         return (
           <Link href={link.path} key={link.name}>
-            {link.name} {''}
+            <a>
+              {link.name} {''}
+            </a>
           </Link>
         );
       })}

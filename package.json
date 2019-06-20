@@ -4,7 +4,7 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "dev": "node server.js",
+    "dev": "RAILS_ENV=development NODE_ENV=development node server.js",
     "dev:clean": "rm -rf build && npm run dev",
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
@@ -22,8 +22,9 @@
     "clean": "rm -rf node_modules .next package-lock.json && npm cache verify"
   },
   "dependencies": {
-    "@apmg/titan": "^0.4.1",
+    "@apmg/titan": "^0.4.4",
     "amat-react": "^0.1.16",
+    "apm-html5-player": "^1.0.0-rc.2",
     "apm-mimas": "^0.1.9",
     "apollo-boost": "^0.1.16",
     "axios": "^0.19.0",

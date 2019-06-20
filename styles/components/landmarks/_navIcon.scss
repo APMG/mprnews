@@ -19,7 +19,7 @@ $_navIcon-v-offset-px: $_navIcon-size * $_navIcon-v-offset;
   span {
     display: block;
     width: 100%;
-    border-top: $_navIcon-line-width solid currentColor;
+    border-top: $_navIcon-line-width solid $color-blue-dark;
     border-radius: 2px;
     position: absolute;
     transition: transform $transition, opacity $transition;
