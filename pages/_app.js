@@ -3,6 +3,7 @@ import React from 'react';
 import withApolloClient from '../lib/with-apollo-client';
 import { ApolloProvider } from 'react-apollo';
 import AudioPlayerContext from '../context/AudioPlayerContext';
+import NowPlayingClient from 'nowplaying-client';
 
 class MPRNews extends App {
   constructor(props) {
@@ -37,6 +38,7 @@ class MPRNews extends App {
   }
 
   componentDidMount() {
+    console.log(NowPlayingClient);
     this.state.audioElementRef.current?.addEventListener('pause', () => {
       if (this.state.isAudioPlaying === true) {
         this.setState({ isAudioPlaying: false });
