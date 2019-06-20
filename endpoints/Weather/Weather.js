@@ -4,6 +4,7 @@ import { Heading, Button, Loading } from '@apmg/titan';
 import Icon from '../../components/Icons/Icon';
 import CurrentWeather from './CurrentWeather';
 import TwoDaysChart from './TwoDaysChart';
+import WeekForecast from './WeekForecast';
 import { weatherConfig } from '../../utils/defaultData';
 import { fetchWeather } from '../../utils/fetchWeather';
 
@@ -17,12 +18,18 @@ const Weather = (props) => {
     );
 
     setLoading(true);
-    const { weather, forecast, alerts } = await fetchWeather(
+    const { weather, forecast, weekly, alerts } = await fetchWeather(
       newLocation.lat,
       newLocation.long
     );
 
-    setData({ location: newLocation, weather, forecast, alerts });
+    setData({
+      location: newLocation,
+      weather: weather,
+      forecast: forecast,
+      weekly: weekly,
+      alerts: alerts
+    });
     setLoading(false);
   };
 
@@ -74,11 +81,7 @@ const Weather = (props) => {
 
       <TwoDaysChart forecast={data.forecast} />
 
-      <div className="weather_updraft" />
-
-      <div className="weather_signup" />
-
-      <div className="weather_news" />
+      <WeekForecast forecast={data.forecast} />
     </section>
   );
 };

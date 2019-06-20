@@ -26,6 +26,7 @@ const CurrentWeather = ({ weather, forecast }) => {
             <WeatherIcon
               elementClass="weatherIcon-current"
               iconUrl={forecast.periods[0].icon}
+              fill={forecast.periods[0].isDaytime ? '#fba301' : '#35145a'}
             />
             <Heading level={3} elementClass="hdg-temp">{`${CtoF(
               getValueOfMostRecent(weather.temperature.values)

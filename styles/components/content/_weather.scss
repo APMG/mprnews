@@ -101,3 +101,42 @@ $_weather-attr-min-width: 380px;
   font-weight: 400;
   fill: $color-grey-60;
 }
+
+.weather_weeklyChart {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+}
+
+.weather_weekday {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 25px;
+}
+
+.weekday_temps {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+.weekday_lo {
+  padding-right: 5px;
+
+  > span {
+    color: $color-blue;
+  }
+}
+
+.weekday_hi {
+  padding-left: 5px;
+
+  > span {
+    color: $color-red;
+  }
+}
+
+.weekday_label {
+  color: $color-grey-40;
+}
