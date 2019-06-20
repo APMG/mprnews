@@ -11,8 +11,12 @@ const AudioWrapper = () => {
       audioSource={context.audioSource}
       audioSubtitle={context.audioSubtitle}
       audioTitle={context.audioTitle}
+      isAudioLive={context.isAudioLive}
       isPlayerVisible={context.isPlayerVisible}
       handleAudioButtonClick={context.handleAudioButtonClick}
+      loadPlayer={context.loadPlayer}
+      playerRef={context.playerRef}
+      playerInstance={context.playerInstance}
     />
   );
 };
