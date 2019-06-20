@@ -26,6 +26,18 @@ query story($contentAreaSlug: String!, $slug: String!, $previewToken: String) {
     body
     description
     resourceType
+    primaryAudio {
+      title
+      credit
+      durationHms
+      durationMs
+      encodings {
+        format
+        mediaType
+        httpFilePath
+        playFilePath
+      }
+    }
     embeddedAssetJson
     primaryVisuals {
       lead {
