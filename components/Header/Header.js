@@ -7,7 +7,7 @@ import Logo from './Logo';
 import Nav from './Nav';
 import { navItems } from './NavItems';
 import WeatherHeader from '../WeatherHeader/index';
-import Icon from '../Icons/Icon';
+
 import SearchForm from './SearchForm';
 
 const Header = () => {
@@ -66,7 +66,6 @@ const Header = () => {
         <WeatherHeader />
         <div className="header_search ">
           <SearchForm />
-          <Icon elementClass="icon-search" name="search" />
         </div>
       </header>
     </div>

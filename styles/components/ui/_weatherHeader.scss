@@ -26,7 +26,7 @@
   color: $color-darkblue;
 
   @include media($media-full-layout) {
-    font-size: 2.8rem;
+    font-size: 2rem;
   }
 }
 
@@ -40,7 +40,7 @@
 
   @include media($media-full-layout) {
     flex-direction: row;
-    align-items: flex-end;
+    align-items: center;
     justify-content: space-between;
   }
 }
