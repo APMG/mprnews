@@ -14,6 +14,7 @@ const slug = (req, res, next) => {
   next();
 };
 
+// TODO: in the case of the weather page, this actually grabs the city name? Might need a more generic name for this thing.
 const daySlug = (req, res, next) => {
   const pathParts = req.path.split('/');
   req.daySlug = pathParts.pop();
@@ -110,6 +111,7 @@ app
     });
 
     server.get('/schedule/*', (req, res) => {
+      // TODO: ask Geoff about the CORS issue that placed this here, since it's weird af
       const dates = getDateTimes();
       const formattedDate = formatEachDateTime(dates, req.daySlug);
       const fetchSchedule = async (dateTime) => {
@@ -129,6 +131,10 @@ app
         }
       };
       fetchSchedule(formattedDate);
+    });
+
+    server.get('/weather/*', (req, res) => {
+      app.render(req, res, '/weather', { slug: req.slug });
     });
 
     server.get('*', (req, res) => {

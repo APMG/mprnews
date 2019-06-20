@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import Router from 'next/router';
 import { Heading, Button, Loading } from '@apmg/titan';
 import Icon from '../../components/Icons/Icon';
 import CurrentWeather from './CurrentWeather';
@@ -18,6 +19,11 @@ const Weather = (props) => {
     );
 
     setLoading(true);
+
+    const href = `/weather/${newLocation.id}`;
+    const as = href;
+    Router.push(href, as, { shallow: true });
+
     const { weather, forecast, weekly, alerts } = await fetchWeather(
       newLocation.lat,
       newLocation.long
