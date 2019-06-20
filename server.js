@@ -8,7 +8,6 @@ const port = parseInt(process.env.APP_PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
-console.log('handle', handle);
 
 const slug = (req, res, next) => {
   req.slug = req.path.replace(/^(\/newspartners)*\/(story|episode|page)\//, '');
@@ -39,6 +38,17 @@ app
   .then(() => {
     const server = express();
     console.log(`req`, server);
+
+    // Error handler
+    const errorHandler = (err, req, res, next) => {
+      if (res.headersSent) {
+        return next(err);
+      }
+      const { status } = err;
+      res.status(status).json(err);
+    };
+    server.use(errorHandler);
+
     server.use(slug, previewSlug, previewToken, daySlug);
 
     server.get('/', (req, res) => {
@@ -70,7 +80,7 @@ app
     server.get(`/topic/:id/:page`, (req, res) => {
       const queryParams = {
         collection: req.params.id,
-        pageNum: Number(req.params.page),
+        pageNum: parseInt(req.params.page ? req.params.page : 1),
         slug: req.slug
       };
       app.render(req, res, '/collection', queryParams);
