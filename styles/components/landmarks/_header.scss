@@ -68,7 +68,6 @@ $_header-button-full-width: 62px;
   background-color: $color-white;
   transform: translateX(-100%);
   transition: transform $transition-menu;
-  border-right: 2px solid $color-border;
 
   @include media($media-full-layout) {
     padding: 0;
@@ -121,6 +120,7 @@ $_header-button-full-width: 62px;
   display: none;
   padding-top: .4em;
   padding-left: 1em;
+
   @include media($media-full-layout) {
     display: block;
   }

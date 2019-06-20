@@ -1,0 +1,16 @@
+.search {
+  display: none;
+
+  &.is-open {
+    display: flex;
+  }
+}
+
+.searchButton {
+  @include reset-button();
+  background: transparent;
+
+  &:hover {
+    opacity: .5;
+  }
+}
