@@ -55,18 +55,11 @@ const CollectionInner = ({ collection, pageNum, collectionName }) => {
     { key: 'twitter:image', name: 'twitter:image', content: socialImage }
   ];
 
-  // function checkTypeName(type) {
-  //   return type === 'Story' ? 'story' : type.toLowerCase();
-  // }
-
   return (
     <>
       <Heading level={2}>{collection.title}</Heading>
       <Metatags title={collection.title} metatags={tags} links={[]} />
       {collection.results.items.map((item) => {
-        {
-          console.log('collection', collection);
-        }
         const link =
           item.resourceType === 'link'
             ? item.destination
