@@ -6,11 +6,22 @@ $_weather-attr-min-width: 380px;
 
 .weather_heading {
   display: flex;
+  padding-bottom: 15px;
 }
 
 .weather_location {
   display: flex;
   justify-content: space-between;
+
+
+  @include media-max($media-tablet) {
+    flex-direction: column;
+    margin: 25px 0;
+  }
+}
+
+.weather_locationSelect {
+  height: 40px;
 }
 
 .weather_currentForecast {
@@ -30,10 +41,12 @@ $_weather-attr-min-width: 380px;
 
 .weather_attr {
   display: flex;
-  min-width: 500px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 8px;
+  flex-wrap: wrap;
+  padding-top: 20px;
+
+  @include media($media-small-tablet) {
+    min-width: 500px;
+  }
 }
 
 .weather_attrName {
@@ -46,8 +59,45 @@ $_weather-attr-min-width: 380px;
 }
 
 .weather_currentUpdated {
-  font-size: .7em;
+  align-self: flex-end;
+  margin-top: 50px;
+  min-width: 300px;
+  text-align: right;
+  font-size: .9em;
   font-weight: 200;
   color: $color-text-light;
-  margin-top: 50px;
+}
+
+.weather_chart {
+  margin-top: 25px;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+.weather_chartTitle {
+  margin-top: 25px;
+}
+
+.weather_chartScrollable {
+  min-width: 1900px;
+}
+
+.weather_chartPoint {
+  font-size: .85em;
+  font-weight: 700;
+  fill: $color-grey-20;
+}
+
+.weather_chartPointHour {
+  font-size: .75em;
+  font-weight: 400;
+  fill: $color-grey-40;
+}
+
+.weather_chartPointDay {
+  font-size: .9em;
+  font-weight: 400;
+  fill: $color-grey-60;
 }
