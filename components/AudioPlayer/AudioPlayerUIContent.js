@@ -70,27 +70,23 @@ const AudioPlayerUIContent = (props) => {
       {props.label && (
         <div className="player_label js-player-label">{props.label}</div>
       )}
-      {context.audioTitle && !context.isAudioPlaying && (
-        <div className="player_title js-player-title">
-          <div
-            className={innerClasses}
-            style={animationStyle}
-            ref={titleRef}
-            data-title={context.audioTitle}
-          >
-            <span id="js-scroll-content">{context.audioTitle}</span>
-          </div>
+      <div className="player_title js-player-title">
+        <div
+          className={innerClasses}
+          style={animationStyle}
+          ref={titleRef}
+          data-title={context.audioTitle}
+        >
+          <span id="js-scroll-content">{context.audioTitle}</span>
         </div>
-      )}
-      {props.subtitle && <div className="player_subhead">{props.subtitle}</div>}
+      </div>
     </div>
   );
 };
 
 AudioPlayerUIContent.propTypes = {
   label: PropTypes.string,
-  title: PropTypes.string,
-  subtitle: PropTypes.string
+  title: PropTypes.string
 };
 
 export default AudioPlayerUIContent;
