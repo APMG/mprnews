@@ -1,7 +1,7 @@
 /*eslint no-console: 0*/
 const express = require('express');
 const next = require('next');
-const axios = require('axios');
+const fetch = require('isomorphic-unfetch');
 const { getDateTimes, formatEachDateTime } = require('./utils/scheduleUtils');
 
 const port = parseInt(process.env.APP_PORT, 10) || 3000;
@@ -116,15 +116,23 @@ app
       const formattedDate = formatEachDateTime(dates, req.daySlug);
       const fetchSchedule = async (dateTime) => {
         try {
-          return await axios
-            .get(
-              `http://scheduler.publicradio.org/api/v1/services/3/schedule/?datetime=${dateTime}`
-            )
-            .then((response) => {
+          return await fetch(
+            `http://scheduler.publicradio.org/api/v1/services/3/schedule/?datetime=${dateTime}`
+          )
+            .then(function(response) {
+              if (!response.ok) {
+                throw Error(response.statusText);
+              }
+              return response.json();
+            })
+            .then(function(response) {
               app.render(req, res, '/schedule', {
                 slug: req.daySlug,
-                props: response.data
+                props: response
               });
+            })
+            .catch(function(error) {
+              console.log(error);
             });
         } catch (error) {
           console.log(error);
