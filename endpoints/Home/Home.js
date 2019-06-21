@@ -10,7 +10,7 @@ import AdBottom from '../../components/Ads/AdBottom';
 import AdTop from '../../components/Ads/AdTop';
 import query from './home.gql';
 import Link from 'next/link';
-import { linkByType, linkByTypeAs } from '../../utils/utils';
+import { linkByTypeHref, linkByTypeAs } from '../../utils/utils';
 
 const Home = () => (
   <Query
@@ -39,7 +39,7 @@ const HomeInner = ({ data }) => {
         </Link>
       )}
       {data.homeList.results.items.map((item) => {
-        const link = linkByType(item);
+        const link = linkByTypeHref(item);
         const linkAs = linkByTypeAs(item);
 
         let image = item.primaryVisuals?.thumbnail ? (

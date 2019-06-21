@@ -9,7 +9,7 @@ import query from './collection.gql';
 import Metatags from '../../components/Metatags/Metatags';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
 import Pagination from '../../components/Pagination/Pagination';
-import { linkByType, linkByTypeAs } from '../../utils/utils';
+import { linkByTypeHref, linkByTypeAs } from '../../utils/utils';
 
 const Collection = ({ collectionName, endpointName, pageNum }) => {
   return (
@@ -61,7 +61,7 @@ const CollectionInner = ({ collection, pageNum, collectionName }) => {
       <Heading level={2}>{collection.title}</Heading>
       <Metatags title={collection.title} metatags={tags} links={[]} />
       {collection.results.items.map((item) => {
-        const link = linkByType(item);
+        const link = linkByTypeHref(item);
         const linkAs = linkByTypeAs(item);
 
         return (

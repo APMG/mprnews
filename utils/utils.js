@@ -53,18 +53,40 @@ export function nextIndex(i, count) {
   return i < count ? i + 1 : count;
 }
 
+// Returns resourceType and if collection return as topic
+export function resourceType(item) {
+  let resource;
+
+  switch (item.resourceType) {
+    case 'story':
+      resource = 'story';
+      break;
+    case 'episode':
+      resource = 'episode';
+      break;
+    case 'collection':
+      resource = 'topic';
+      break;
+    default:
+      resource = item.resourceType;
+  }
+  return resource;
+}
+
 // Returns either external link or resourceType/slug
-export function linkByType(item) {
+export function linkByTypeHref(item) {
+  const type = resourceType(item);
   return item.resourceType === 'link'
     ? item.destination
-    : `/${item.resourceType}?slug=${item.canonicalSlug}
+    : `/${type}?slug=${item.canonicalSlug}
 `;
 }
 
 // Returns either external link or resourceType/slug
 export function linkByTypeAs(item) {
+  const type = resourceType(item);
   return item.resourceType === 'link'
     ? item.destination
-    : `/${item.resourceType}/${item.canonicalSlug}
+    : `/${type}/${item.canonicalSlug}
       `;
 }
