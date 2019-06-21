@@ -42,7 +42,8 @@ export function mpsToMph(num) {
 
 // source: https://www.google.com/search?ei=HyMBXcUv0LC2BY_okfAL&q=torr+to+inhg&oq=torr+to+inhg&gs_l=psy-ab.3..0i20i263j0l2j0i22i30l7.3328.5353..5665...1.0..0.147.583.7j1......0....1..gws-wiz.......0i71j0i67.N0l305HdQhU
 export function torrToInhg(num) {
-  return (num / 25.4).toFixed(2);
+  let inHg = (num / 25.4).toFixed(2);
+  return isNaN(inHg) ? '-' : inHg;
 }
 
 // Get the previous index OR min
@@ -102,5 +103,6 @@ export function getValueOfMostRecent(weather, arr) {
     currentTime,
     arr.map((i) => Date.parse(i.validTime.split('/').shift()))
   );
-  return arr[i].value;
+
+  return isNaN(arr[i].value) ? '-' : arr[i].value;
 }
