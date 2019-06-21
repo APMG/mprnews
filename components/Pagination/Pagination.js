@@ -18,7 +18,7 @@ const Pagination = ({ collection, collectionName, pageNum }) => {
                 PREV
               </button>
             )}
-            {pageNum <= 1 && (
+            {collection.results.currentPage < collection.results.totalPages && (
               <button
                 onClick={() =>
                   Router.push(
