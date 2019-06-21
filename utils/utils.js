@@ -1,3 +1,5 @@
+import { closestIndexTo } from 'date-fns';
+
 export function getCurrentPosition(options = {}) {
   return new Promise((resolve, reject) => {
     navigator.geolocation.getCurrentPosition(resolve, reject, options);
@@ -89,4 +91,16 @@ export function linkByTypeAs(item) {
     ? item.destination
     : `/${type}/${item.canonicalSlug}
       `;
+}
+
+// This takes an array of objects with a .validTime attribute, reads in that date, then figures out which of those objects is most recent using a `date-fns` function
+export function getValueOfMostRecent(weather, arr) {
+  let currentTime = Date.parse(weather.updateTime);
+  if (arr.length <= 0) return '-';
+
+  let i = closestIndexTo(
+    currentTime,
+    arr.map((i) => Date.parse(i.validTime.split('/').shift()))
+  );
+  return arr[i].value;
 }

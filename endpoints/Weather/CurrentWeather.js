@@ -1,23 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { format, closestIndexTo } from 'date-fns';
+import { format } from 'date-fns';
 import { Heading } from '@apmg/titan';
 import WeatherIcon from '../../components/WeatherIcons/WeatherIcon';
-import { CtoF, torrToInhg } from '../../utils/utils';
+import { CtoF, torrToInhg, getValueOfMostRecent } from '../../utils/utils';
 
 const CurrentWeather = ({ weather, forecast }) => {
-  // This takes an array of objects with a .validTime attribute, reads in that date, then figures out which of those objects is most recent using a `date-fns` function
-  const getValueOfMostRecent = (arr) => {
-    let currentTime = Date.parse(weather.updateTime);
-    if (arr.length <= 0) return '-';
-
-    let i = closestIndexTo(
-      currentTime,
-      arr.map((i) => Date.parse(i.validTime.split('/').shift()))
-    );
-    return arr[i].value;
-  };
-
   return (
     <>
       <div className="weather_current">
@@ -30,7 +18,7 @@ const CurrentWeather = ({ weather, forecast }) => {
               fill={forecast.periods[0].isDaytime ? '#fba301' : '#35145a'}
             />
             <Heading level={3} elementClass="hdg-temp">{`${CtoF(
-              getValueOfMostRecent(weather.temperature.values)
+              getValueOfMostRecent(weather, weather.temperature.values)
             )}°`}</Heading>
             <Heading level={4} elementClass="hdg-forecast">
               {forecast.periods[0].shortForecast}
@@ -42,18 +30,23 @@ const CurrentWeather = ({ weather, forecast }) => {
               <div className="weather_attr">
                 <div className="weather_attrName">Feels like</div>
                 <div className="weather_attrData">{`${CtoF(
-                  getValueOfMostRecent(weather.apparentTemperature.values)
+                  getValueOfMostRecent(
+                    weather,
+                    weather.apparentTemperature.values
+                  )
                 )}° F`}</div>
               </div>
               <div className="weather_attr">
                 <div className="weather_attrName">Humidity</div>
                 <div className="weather_attrData">{`${getValueOfMostRecent(
+                  weather,
                   weather.relativeHumidity.values
                 )}%`}</div>
               </div>
               <div className="weather_attr">
                 <div className="weather_attrName">Chance of rain</div>
                 <div className="weather_attrData">{`${getValueOfMostRecent(
+                  weather,
                   weather.probabilityOfPrecipitation.values
                 )}%`}</div>
               </div>
@@ -64,13 +57,13 @@ const CurrentWeather = ({ weather, forecast }) => {
               <div className="weather_attr">
                 <div className="weather_attrName">Pressure</div>
                 <div className="weather_attrData">{`${torrToInhg(
-                  getValueOfMostRecent(weather.pressure.values)
+                  getValueOfMostRecent(weather, weather.pressure.values)
                 )} inHg`}</div>
               </div>
               <div className="weather_attr">
                 <div className="weather_attrName">Dew Point</div>
                 <div className="weather_attrData">{`${CtoF(
-                  getValueOfMostRecent(weather.dewpoint.values)
+                  getValueOfMostRecent(weather, weather.dewpoint.values)
                 )}° F`}</div>
               </div>
             </div>
