@@ -78,7 +78,7 @@ const AudioPlayerUIContent = (props) => {
       {props.label && (
         <div className="player_label js-player-label">{props.label}</div>
       )}
-      {props.title && !context.isAudioPlaying && (
+      {context.playlist.title && !context.isAudioPlaying && (
         <div className="player_title js-player-title">
           <div
             className={innerClasses}
