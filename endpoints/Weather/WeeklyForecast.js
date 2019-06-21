@@ -6,7 +6,7 @@ import { Heading } from '@apmg/titan';
 
 const ICON_SIZE = 75;
 
-const WeekForecast = ({ forecast }) => {
+const WeeklyForecast = ({ forecast }) => {
   let dates = new Set(
     forecast.periods.map((period) => format(period.startTime, 'ddd'))
   );
@@ -57,45 +57,45 @@ const WeekForecast = ({ forecast }) => {
           width={ICON_SIZE}
           height={ICON_SIZE}
           dayOnly={true}
-          fill="#00334e"
+          fill="#4298b5"
         />
       )
     });
   });
 
   return (
-    <div className="weather_weeklyForecast">
+    <>
       <Heading level={2} elementClass="weather_chartTitle">
         {'Weekly forecast'}
       </Heading>
-      <div className="weather_weeklyChart">
-        {buckets.map((bucket, i) => {
-          return (
-            <div key={i} className="weather_weekday">
-              {bucket.icon}
-              <div className="weekday_temps">
-                <div className="weekday_lo">
-                  <span>⬇</span>
-                  {`${bucket.lo}`}
+      <div className="weather_weeklyForecast">
+        <div className="weather_weeklyChart">
+          {buckets.map((bucket, i) => {
+            return (
+              <div key={i} className="weather_weekday">
+                <div className="weekday_label">
+                  {`${bucket.date.toUpperCase()}`}
                 </div>
-                <div className="weekday_hi">
-                  <span>⬆</span>
-                  {`${bucket.hi}`}
+                {bucket.icon}
+                <div className="weekday_temps">
+                  <div className="weekday_temp weekday_temp-hi">
+                    {bucket.hi}°
+                    <span className="weekday_temp weekday_temp-lo">
+                      /{bucket.lo}°
+                    </span>
+                  </div>
                 </div>
               </div>
-              <div className="weekday_label">
-                {`${bucket.date.toUpperCase()}`}
-              </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
-WeekForecast.propTypes = {
+WeeklyForecast.propTypes = {
   forecast: PropTypes.object
 };
 
-export default WeekForecast;
+export default WeeklyForecast;

@@ -5,7 +5,7 @@ import { Heading, Button, Loading } from '@apmg/titan';
 import Icon from '../../components/Icons/Icon';
 import CurrentWeather from './CurrentWeather';
 import TwoDaysChart from './TwoDaysChart';
-import WeekForecast from './WeekForecast';
+import WeeklyForecast from './WeeklyForecast';
 import { weatherConfig } from '../../utils/defaultData';
 import { fetchWeather } from '../../utils/fetchWeather';
 
@@ -85,9 +85,9 @@ const Weather = (props) => {
 
       <CurrentWeather weather={data.weather} forecast={data.forecast} />
 
-      <TwoDaysChart forecast={data.forecast} />
+      <WeeklyForecast forecast={data.forecast} />
 
-      <WeekForecast forecast={data.forecast} />
+      <TwoDaysChart forecast={data.forecast} />
     </section>
   );
 };

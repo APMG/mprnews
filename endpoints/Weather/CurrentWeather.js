@@ -6,6 +6,7 @@ import WeatherIcon from '../../components/WeatherIcons/WeatherIcon';
 import { CtoF, torrToInhg } from '../../utils/utils';
 
 const CurrentWeather = ({ weather, forecast }) => {
+  // This takes an array of objects with a .validTime attribute, reads in that date, then figures out which of those objects is most recent using a `date-fns` function
   const getValueOfMostRecent = (arr) => {
     let currentTime = Date.parse(weather.updateTime);
     if (arr.length <= 0) return '-';

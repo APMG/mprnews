@@ -27,6 +27,7 @@ $_weather-attr-min-width: 380px;
 .weather_currentForecast {
   display: flex;
   align-items: flex-start;
+  flex-wrap: wrap;
 }
 
 .weather_currentStats {
@@ -77,7 +78,7 @@ $_weather-attr-min-width: 380px;
 }
 
 .weather_chartTitle {
-  margin-top: 25px;
+  margin-top: 50px;
 }
 
 .weather_chartScrollable {
@@ -104,7 +105,7 @@ $_weather-attr-min-width: 380px;
 
 .weather_weeklyChart {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
 }
 
 .weather_weekday {
@@ -116,25 +117,14 @@ $_weather-attr-min-width: 380px;
 
 .weekday_temps {
   display: flex;
-  justify-content: space-between;
-  font-size: 1.2em;
-  font-weight: 600;
+  font-size: 1.7em;
+  color: $color-blue-dark;
 }
 
-.weekday_lo {
-  padding-right: 5px;
-
-  > span {
-    color: $color-blue;
-  }
-}
-
-.weekday_hi {
-  padding-left: 5px;
-
-  > span {
-    color: $color-red;
-  }
+.weekday_temp-lo {
+  font-size: .7em;
+  color: $color-grey-40;
+  font-weight: 200;
 }
 
 .weekday_label {
