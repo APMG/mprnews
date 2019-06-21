@@ -18,16 +18,7 @@ Prettier:
     - npm run prettier
   tags:
     - general_cent7
- Deploy Dev:
-   script:
-     - bundle install --path ~/vendor/bundle
-     - bundle exec cap dev deploy
-   type: deploy
-   tags:
-     - 'cap_deploy'
-   only:
-   - master
-Deploy Stage:
+Deploy Dev:
   script:
     - bundle install --path ~/vendor/bundle
     - bundle exec cap dev deploy
