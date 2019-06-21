@@ -10,6 +10,7 @@ import AdBottom from '../../components/Ads/AdBottom';
 import AdTop from '../../components/Ads/AdTop';
 import query from './home.gql';
 import Link from 'next/link';
+import { linkByType, linkByTypeAs } from '../../utils/utils';
 
 const Home = () => (
   <Query
@@ -38,14 +39,8 @@ const HomeInner = ({ data }) => {
         </Link>
       )}
       {data.homeList.results.items.map((item) => {
-        let link =
-          data.resourceType === 'link'
-            ? item.destination
-            : `/story?slug=${item.canonicalSlug}`;
-        let asLink =
-          data.resourceType === 'link'
-            ? item.destination
-            : `/story/${item.canonicalSlug}`;
+        const link = linkByType(item);
+        const linkAs = linkByTypeAs(item);
 
         let image = item.primaryVisuals?.thumbnail ? (
           <Image
@@ -68,7 +63,7 @@ const HomeInner = ({ data }) => {
             id={item.id}
             title={item.title}
             href={link}
-            as={asLink}
+            as={linkAs}
             router={Router}
             publishDate={item.publishDate}
             headingLevel={2}

@@ -52,3 +52,19 @@ export function prevIndex(i) {
 export function nextIndex(i, count) {
   return i < count ? i + 1 : count;
 }
+
+// Returns either external link or resourceType/slug
+export function linkByType(item) {
+  return item.resourceType === 'link'
+    ? item.destination
+    : `/${item.resourceType}?slug=${item.canonicalSlug}
+`;
+}
+
+// Returns either external link or resourceType/slug
+export function linkByTypeAs(item) {
+  return item.resourceType === 'link'
+    ? item.destination
+    : `/${item.resourceType}/${item.canonicalSlug}
+      `;
+}
