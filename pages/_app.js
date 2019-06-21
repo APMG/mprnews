@@ -141,7 +141,7 @@ class MPRNews extends App {
     return title;
   }
 
-  setupNowPlaying() {
+  setupNowPlaying = () => {
     const self = this;
     const client = new NowPlayingClient({
       server: 'http://nowplaying.publicradio.org'
@@ -161,7 +161,7 @@ class MPRNews extends App {
     );
     // Add the registration object to the array of registrations.
     registrations.push(playlist_registration);
-  }
+  };
 
   render() {
     const { Component, pageProps, apolloClient } = this.props;
