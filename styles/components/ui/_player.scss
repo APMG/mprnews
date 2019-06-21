@@ -9,36 +9,60 @@ $_timeline-mobile-width: 12em;
 
 .player {
   display: flex;
-  background: rgba($color-grey-90, .5);
+  background: rgba($color-blue-tint, 1);
   border-radius: 2px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
   width: 100%;
-  border: 1px solid rgba($color-default, .5);
+
+  &.is-live {
+    .player_time {
+      grid-column: 1 / span 5;
+    }
+
+    .player_liveLabel {
+      display:  inline-block;
+      padding: 2px 4px;
+      border-radius: 2px;
+      background: $color-darkblue;
+      color: $color-white;
+      margin-right: 6px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .player_time-right {
+      display: none;
+    }
+
+    .player_timeline {
+      display: none;
+    }
+  }
 }
 
 .player_wrapper {
   display: flex;
-  flex-direction: column;
-  padding: 16px;
+  padding: 8px;
   width: inherit;
-  font-size: .9em;
   overflow: hidden;
 
   @include media($media-tablet) {
-    padding: 8px;
+    padding: 16px;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between;
   }
 }
 
-.player_wrapper_content {
+.player_wrapperContent {
   // https://css-tricks.com/flexbox-truncated-text/
   // without min-width: 0 things break, you are going bad time
   min-width: 0;
   width: 100%;
+  margin: 6px 24px;
 
   @include media($media-tablet) {
-    margin-left: 10px;
     order: 2;
   }
 }
@@ -66,14 +90,12 @@ $_timeline-mobile-width: 12em;
 }
 
 .player_timeWrapper {
-  display: block;
-  text-align: center;
-  margin-top: 6px;
-  margin-bottom: 10px;
+  display: grid;
+  grid-template-columns: 60px 1fr 1fr 1fr 60px;
+  align-items: center;
 
   @include media($media-tablet) {
-    margin-bottom: 0;
-    text-align: left;
+
   }
 }
 
@@ -84,7 +106,6 @@ $_timeline-mobile-width: 12em;
   background: none;
   border-radius: 50%;
   position: relative;
-  margin: auto 10px;
 
   &[disabled] {
     opacity: .3;
@@ -181,6 +202,7 @@ $_timeline-mobile-width: 12em;
   display: block;
   font-family: $font-family-main;
   color: $color-text-dark;
+  font-weight: 700;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -188,27 +210,16 @@ $_timeline-mobile-width: 12em;
 
 .player_label {
   color: $color-theme;
-  text-transform: uppercase;
   font-family: $font-family-heading;
   font-weight: bold;
-  font-size: .7em;
-  letter-spacing: 1px;
-  margin-bottom: 6px;
 }
 
 .player_time {
   color: $color-text-dark;
-  display: inline-block;
-  width: 12.5%;
-  margin: auto 1%;
-  border-radius: 5px;
+}
 
-  @include media($media-tablet) {
-    width: 7%;
-  }
-  @include media($media-large-desktop) {
-    width: 4.5%;
-  }
+.player_liveLabel {
+  display: none;
 }
 
 .player_time-right {
@@ -217,83 +228,13 @@ $_timeline-mobile-width: 12em;
 
 .player_timeline {
   height: $_timeline-height;
-  overflow: hidden;
-  background: $color-grey-80;
-  border-radius: 5px;
+  background: rgba($color-blue-dark, .25);
+  border-radius: 2px;
+  grid-column: 2 / span 3;
   cursor: pointer;
-  display: inline-block;
-  width: 68%;
-  margin: auto 1%;
   position: relative;
-
-  @include media($media-tablet) {
-    width: 80%;
-  }
-
-  @include media($media-large-desktop) {
-    width: 85%;
-  }
-
 }
 
-.player_content {
-  align-items: baseline;
-  text-align: center;
-  margin: 8px 12px;
-  line-height: 1.4;
-
-  @include media($media-tablet) {
-    text-align: left;
-    margin: 0 1%;
-  }
-}
-
-.player_text {
-  text-transform: uppercase;
-}
-
-.player_text,
-.player_subhead {
-  font-size: .7em;
-}
-
-
-.player-wave {
-  position: relative;
-  height: 14px;
-  width: 20px;
-  margin: auto 0;
-
-  @include media($media-tablet) {
-    margin: auto;
-  }
-
-  span {
-    background: $color-theme;
-    opacity: .5;
-    bottom: 0;
-    height: 20%;
-    position: absolute;
-    width: 4px;
-    transition: opacity .25s, height .25s, background-color .4s;
-
-    &:nth-child(1) {
-      left: 0;
-    }
-
-    &:nth-child(2) {
-      left: 5px;
-    }
-
-    &:nth-child(3) {
-      left: 10px;
-    }
-
-    &:nth-child(4) {
-      left: 15px;
-    }
-  }
-}
 
 
 // PLAYER STATES
@@ -380,7 +321,7 @@ $_timeline-mobile-width: 12em;
       position: absolute;
       top: 0;
       bottom: 0;
-      background: $color-grey-70;
+      background: rgba($color-grey-70, .75);
     }
 
     .player_timeline_loading {

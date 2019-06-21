@@ -23,14 +23,12 @@ class AudioPlayer extends React.Component {
         data-src={this.props.audioSource}
         ref={this.props.playerRef}
       >
+        {console.log(this.props)}
         <audio
           id="main-audio"
           preload="metadata"
           ref={this.props.audioElementRef}
         />
-        <div
-          style={{ position: 'absolute', top: '35px', left: 0 }}
-        >{`isAudioLive: ${this.props.isAudioLive.toString()}`}</div>
         <AudioPlayerUI {...this.props} />
       </div>
     );

@@ -4,6 +4,7 @@ const AudioPlayerUITime = () => {
   return (
     <div className="player_timeWrapper">
       <div className="player_time player_time-current">
+        <div className="player_liveLabel">On Air</div>
         <span className="player_time_current js-player-currentTime">0:00</span>
       </div>
       <div className="player_timeline js-player-timeline">

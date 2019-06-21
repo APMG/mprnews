@@ -9,7 +9,9 @@ import '../styles/index.scss';
 const MainLayout = ({ children }) => (
   <>
     <Header />
-    <AudioPlayer />
+    <div className="container container-player">
+      <AudioPlayer />
+    </div>
     <main className="main">
       <div className="container">{children}</div>
     </main>
