@@ -28,9 +28,6 @@ class AudioPlayer extends React.Component {
           preload="metadata"
           ref={this.props.audioElementRef}
         />
-        <div
-          style={{ position: 'absolute', top: '35px', left: 0 }}
-        >{`isAudioLive: ${this.props.isAudioLive.toString()}`}</div>
         <AudioPlayerUI {...this.props} />
       </div>
     );
