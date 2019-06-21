@@ -6,7 +6,7 @@ import Dropdown from '../Dropdown';
 import Logo from './Logo';
 import Nav from './Nav';
 import { navItems } from './NavItems';
-import WeatherHeader from '../WeatherHeader/index';
+import WeatherHeader from '../WeatherHeader/WeatherHeader';
 
 import SearchForm from './SearchForm';
 
