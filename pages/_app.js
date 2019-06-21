@@ -3,6 +3,7 @@ import React from 'react';
 import withApolloClient from '../lib/with-apollo-client';
 import { ApolloProvider } from 'react-apollo';
 import AudioPlayerContext from '../context/AudioPlayerContext';
+import NowPlayingClient from 'nowplaying-client';
 
 class MPRNews extends App {
   constructor(props) {
@@ -32,11 +33,13 @@ class MPRNews extends App {
       handleAudioButtonClick: this.handleAudioButtonClick,
       loadPlayer: this.loadPlayer,
       playerInstance: null,
-      playerRef: this.playerRef
+      playerRef: this.playerRef,
+      playlist: {}
     };
   }
 
   componentDidMount() {
+    this.setupNowPlaying();
     this.state.audioElementRef.current?.addEventListener('pause', () => {
       if (this.state.isAudioPlaying === true) {
         this.setState({ isAudioPlaying: false });
@@ -129,6 +132,36 @@ class MPRNews extends App {
     });
     this.state.playerInstance.unloadAudio();
   }
+
+  audioTitle(songdata) {
+    let title = songdata.title;
+    if (songdata.artist) {
+      title += ` with ${songdata.artist}`;
+    }
+    return title;
+  }
+
+  setupNowPlaying = () => {
+    const self = this;
+    const client = new NowPlayingClient({
+      server: 'http://nowplaying.publicradio.org'
+    });
+    const registrations = [];
+    const service = 'mpr-news';
+
+    // Register the callback for a playlist change.
+    const playlist_registration = client.register_callback(
+      service,
+      'playlist',
+      function(data) {
+        if (self.state.isAudioLive) {
+          self.setState({ audioTitle: self.audioTitle(data.songs[0]) });
+        }
+      }
+    );
+    // Add the registration object to the array of registrations.
+    registrations.push(playlist_registration);
+  };
 
   render() {
     const { Component, pageProps, apolloClient } = this.props;
