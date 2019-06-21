@@ -133,6 +133,14 @@ class MPRNews extends App {
     this.state.playerInstance.unloadAudio();
   }
 
+  audioTitle(songdata) {
+    let title = songdata.title;
+    if (songdata.artist) {
+      title += ` with ${songdata.artist}`;
+    }
+    return title;
+  }
+
   setupNowPlaying() {
     const self = this;
     const client = new NowPlayingClient({
@@ -146,7 +154,9 @@ class MPRNews extends App {
       service,
       'playlist',
       function(data) {
-        self.setState({ playlist: data.songs[0] });
+        if (self.state.isAudioLive) {
+          self.setState({ audioTitle: self.audioTitle(data.songs[0]) });
+        }
       }
     );
     // Add the registration object to the array of registrations.
