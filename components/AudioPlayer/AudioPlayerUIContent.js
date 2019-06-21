@@ -65,20 +65,28 @@ const AudioPlayerUIContent = (props) => {
     setScrollSpeed(getTitleWidth());
   }, [props.title]);
 
+  const audioTitle = () => {
+    let title = context.playlist.title;
+    if (context.playlist.artist) {
+      title += ` with ${context.playlist.artist}`;
+    }
+    return title;
+  };
+
   return (
     <div className="player_content">
       {props.label && (
         <div className="player_label js-player-label">{props.label}</div>
       )}
-      {props.title && (
+      {props.title && !context.isAudioPlaying && (
         <div className="player_title js-player-title">
           <div
             className={innerClasses}
             style={animationStyle}
             ref={titleRef}
-            data-title={props.title}
+            data-title={audioTitle()}
           >
-            <span id="js-scroll-content">{props.title}</span>
+            <span id="js-scroll-content">{audioTitle()}</span>
           </div>
         </div>
       )}

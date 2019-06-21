@@ -33,12 +33,13 @@ class MPRNews extends App {
       handleAudioButtonClick: this.handleAudioButtonClick,
       loadPlayer: this.loadPlayer,
       playerInstance: null,
-      playerRef: this.playerRef
+      playerRef: this.playerRef,
+      playlist: {}
     };
   }
 
   componentDidMount() {
-    console.log(NowPlayingClient);
+    this.setupNowPlaying();
     this.state.audioElementRef.current?.addEventListener('pause', () => {
       if (this.state.isAudioPlaying === true) {
         this.setState({ isAudioPlaying: false });
@@ -130,6 +131,26 @@ class MPRNews extends App {
       audioSource: this.defaultAudioSource
     });
     this.state.playerInstance.unloadAudio();
+  }
+
+  setupNowPlaying() {
+    const self = this;
+    const client = new NowPlayingClient({
+      server: 'http://nowplaying.publicradio.org'
+    });
+    const registrations = [];
+    const service = 'mpr-news';
+
+    // Register the callback for a playlist change.
+    const playlist_registration = client.register_callback(
+      service,
+      'playlist',
+      function(data) {
+        self.setState({ playlist: data.songs[0] });
+      }
+    );
+    // Add the registration object to the array of registrations.
+    registrations.push(playlist_registration);
   }
 
   render() {
