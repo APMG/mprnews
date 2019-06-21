@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Button } from '@apmg/titan';
+import Icon from '../Icons/Icon';
 
 const SearchForm = () => {
   const [value, setValue] = useState('');
@@ -14,8 +16,8 @@ const SearchForm = () => {
       action="/search"
       role="search"
     >
-      <label htmlFfor="searchbox">
-        Search MPR
+      <label htmlFor="nav-searchbox" className="search is-closed">
+        <span className="invisible">Search MPR</span>
         <input
           type="search"
           placeholder="Search: Phrase, topic, politician..."
@@ -37,16 +39,14 @@ const SearchForm = () => {
       <input type="hidden" name="access" value="p" />
       <input type="hidden" name="start" value="0" />
       <input type="hidden" name="num" value="10" />
-      <input
-        type="submit"
-        className="search-submit"
-        value=""
-        aria-hidden="true"
-      />
+
+      <Button submitForm={true} className="searchButton">
+        <Icon elementClass="icon-search" name="search" />
+      </Button>
       <span
         className="search-icon"
         aria-label="Search MPR Websites - click to open search "
-      ></span>
+      />
     </form>
   );
 };

@@ -5,45 +5,27 @@ import AudioPlayerUI from './AudioPlayerUI';
 class AudioPlayer extends React.Component {
   constructor(props) {
     super(props);
-    this.formatTime = null;
-    this.apmPlayer = null;
-    this.playerRef = React.createRef();
   }
 
   componentDidMount() {
-    let Player, AudioAnalytics, analytics;
-
-    new Promise((resolve) => {
-      Player = require('apm-html5-player').Player;
-      AudioAnalytics = require('apm-html5-player').AudioAnalytics;
-      resolve();
-    }).then(
-      () => {
-        analytics = new AudioAnalytics();
-        this.apmPlayer = new Player(this.playerRef.current).init();
-        analytics.init({ audio: this.playerRef.current });
-      },
-      (error) => {
-        /* eslint-disable-next-line no-console */
-        console.error(error);
-      }
-    );
+    this.props.loadPlayer();
   }
 
   render() {
     return (
       <div
         id="player"
-        className="player js-player"
+        className={`player js-player ${
+          this.props.isAudioLive ? 'is-live' : 'is-prerecorded'
+        }`}
         role="region"
         aria-label="Audio Player"
         data-src={this.props.audioSource}
-        ref={this.playerRef}
+        ref={this.props.playerRef}
       >
         <audio
           id="main-audio"
           preload="metadata"
-          src={this.props.audioSource}
           ref={this.props.audioElementRef}
         />
         <AudioPlayerUI {...this.props} />
@@ -56,7 +38,10 @@ AudioPlayer.propTypes = {
   audioElementRef: PropTypes.object,
   audioSource: PropTypes.string,
   audioTitle: PropTypes.string,
-  handleAudioButtonClick: PropTypes.func
+  handleAudioButtonClick: PropTypes.func,
+  isAudioLive: PropTypes.bool,
+  loadPlayer: PropTypes.func,
+  playerRef: PropTypes.object
 };
 
 export default AudioPlayer;

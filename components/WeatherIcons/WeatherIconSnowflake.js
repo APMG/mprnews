@@ -2,16 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-const WeatherIconSnowflake = (props) => {
+const WeatherIconSnowflake = ({ elementClass, x, y, width, height, fill }) => {
   const classes = classNames({
     weatherIcon: true,
     weatherIcon_snowflake: true,
-    [props.elementClass]: props.elementClass
+    [elementClass]: elementClass
   });
 
   return (
     <svg
       className={classes}
+      width={width}
+      height={height}
+      x={x}
+      y={y}
+      fill={fill}
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 30 30"
@@ -49,7 +54,12 @@ const WeatherIconSnowflake = (props) => {
 };
 
 WeatherIconSnowflake.propTypes = {
-  elementClass: PropTypes.string
+  elementClass: PropTypes.string,
+  x: PropTypes.number,
+  y: PropTypes.number,
+  width: PropTypes.number,
+  height: PropTypes.number,
+  fill: PropTypes.string
 };
 
 export default WeatherIconSnowflake;
