@@ -51,8 +51,12 @@ app
       app.render(req, res, '/scribble');
     });
 
-    server.get('/story/*', (req, res) => {
+    server.get('/story/:card?/*', (req, res) => {
       app.render(req, res, '/story', { slug: req.slug });
+    });
+
+    server.get('/card/*', (req, res) => {
+      app.render(req, res, '/twitter', { slug: req.slug });
     });
 
     server.get('/newspartners/story/*', (req, res) => {
