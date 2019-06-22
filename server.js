@@ -8,6 +8,8 @@ const port = parseInt(process.env.APP_PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
+const { pages } = require('./server/pages');
+const { collections } = require('./server/collections');
 
 const slug = (req, res, next) => {
   req.slug = req.path.replace(/^(\/newspartners)*\/(story|episode|page)\//, '');
@@ -143,6 +145,21 @@ app
 
     server.get('/weather/*', (req, res) => {
       app.render(req, res, '/weather', { slug: req.slug });
+    });
+
+    server.get('/:slug/:page?', (req, res) => {
+      //whitelisted routes for pages and collections
+      if (pages().indexOf(req.params.slug) >= 0) {
+        app.render(req, res, '/page', { slug: req.params.slug });
+      } else if (collections().indexOf(req.params.slug) >= 0) {
+        const queryParams = {
+          collection: req.params.slug,
+          pageNum: parseInt(req.params.page ? req.params.page : 1)
+        };
+        app.render(req, res, '/collection', queryParams);
+      } else {
+        return handle(req, res);
+      }
     });
 
     server.get('*', (req, res) => {

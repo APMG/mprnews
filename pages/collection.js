@@ -6,16 +6,12 @@ import Collection from '../endpoints/Collection/Collection';
 
 /* eslint react/display-name: 0 */
 
-const CollectionPage = ({ slug, collection, pageNum }) => (
+const CollectionPage = ({ collection, pageNum }) => (
   <MainLayout>
     <div>
       <section className="Collection section">
         <Heading level={2}>Collection of {collection}</Heading>
-        <Collection
-          collectionName={collection}
-          endpointName={slug}
-          pageNum={parseInt(pageNum)}
-        />
+        <Collection collectionName={collection} pageNum={parseInt(pageNum)} />
       </section>
     </div>
   </MainLayout>
@@ -28,7 +24,6 @@ CollectionPage.getInitialProps = async ({
 };
 
 CollectionPage.propTypes = {
-  slug: PropTypes.string,
   collection: PropTypes.string,
   pageNum: PropTypes.number
 };
