@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
-import { Heading, Loading } from '@apmg/titan';
+import { Loading } from '@apmg/titan';
 import query from './twitter.gql';
+// import AudioPlayer from '../../components/AudioPlayer/AudioPlayer';
+// import AudioPlayerContext from '../../context/AudioPlayerContext';
 
 const Twitter = ({ slug }) => (
   <Query
@@ -21,19 +23,29 @@ const Twitter = ({ slug }) => (
   </Query>
 );
 
-const TwitterInner = ({ twitter, slug }) => {
+const TwitterInner = ({ twitter }) => {
+  const context = useContext(AudioPlayerContext);
   return (
     <div className="twitter">
-      {console.log('twitter', twitter)}
-      {console.log('slug', slug)}
-      <Heading level={2}>LISTEN: {twitter.title}</Heading>
+      {console.log(twitter)}
+      <AudioPlayer
+        audioElementRef={context.audioElementRef}
+        // audioSource={twitter.audio.encodings}
+        // audioSubtitle={context.audioSubtitle}
+        audioTitle={twitter.audio.title}
+        // isAudioLive={context.isAudioLive}
+        // isPlayerVisible={context.isPlayerVisible}
+        // handleAudioButtonClick={context.handleAudioButtonClick}
+        loadPlayer={context.loadPlayer}
+        // playerRef={context.playerRef}
+        // playerInstance={context.playerInstance}
+      />
     </div>
   );
 };
 
 TwitterInner.propTypes = {
-  twitter: PropTypes.object,
-  slug: PropTypes.string
+  twitter: PropTypes.object
 };
 
 Twitter.propTypes = {
