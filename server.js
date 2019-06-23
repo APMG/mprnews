@@ -10,7 +10,10 @@ const app = next({ dev });
 const handle = app.getRequestHandler();
 
 const slug = (req, res, next) => {
-  req.slug = req.path.replace(/^(\/newspartners)*\/(story|episode|page)\//, '');
+  req.slug = req.path.replace(
+    /^(\/newspartners)*\/(amp)*(story|episode|page)\//,
+    ''
+  );
   next();
 };
 
