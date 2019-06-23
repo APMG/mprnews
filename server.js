@@ -90,6 +90,10 @@ app
       app.render(req, res, '/ampstory', { slug: req.slug });
     });
 
+    server.get('/story/*', (req, res) => {
+      app.render(req, res, '/story', { slug: req.slug });
+    });
+
     server.get('/episode/*', (req, res) => {
       app.render(req, res, '/episode', { slug: req.slug });
     });
