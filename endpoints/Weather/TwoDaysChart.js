@@ -2,18 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { scaleLinear } from 'd3-scale';
 import { format } from 'date-fns';
+import DragScroll from 'react-dragscroll';
 import { Heading } from '@apmg/titan';
 import WeatherIcon from '../../components/WeatherIcons/WeatherIcon';
 
 const BUFFER_TOP = 4;
-const BUFFER_BOTTOM = 10;
+const BUFFER_BOTTOM = 13;
 const CHART_HEIGHT = 300;
 const CHART_WIDTH = 1875;
 const GRID_WIDTH = 39;
 const ICON_SIZE = 41;
 const LINE_OPACITY = 0.2;
-const WEEKDAY_LABEL_VPOS = CHART_HEIGHT - 25;
-const HOUR_LABEL_VPOS = CHART_HEIGHT - 5;
+const WEEKDAY_LABEL_VPOS = CHART_HEIGHT - 35;
+const HOUR_LABEL_VPOS = CHART_HEIGHT - 15;
 const TEMP_VERT_OFFSET = 55;
 
 const gridLine = (xPos) => (
@@ -29,18 +30,18 @@ const gridLine = (xPos) => (
 );
 
 const TwoDaysChart = ({ forecast }) => {
-  forecast.periods = forecast.periods.slice(0, 48);
+  let fortyEightHours = forecast.periods.slice(0, 48);
 
   let lo =
-    forecast.periods.reduce(
+    fortyEightHours.reduce(
       (min, b) => Math.min(min, b.temperature),
-      forecast.periods[0].temperature
+      fortyEightHours[0].temperature
     ) - BUFFER_BOTTOM;
 
   let hi =
-    forecast.periods.reduce(
+    fortyEightHours.reduce(
       (max, b) => Math.max(max, b.temperature),
-      forecast.periods[0].temperature
+      fortyEightHours[0].temperature
     ) + BUFFER_TOP;
 
   let tempPositionScale = scaleLinear()
@@ -52,14 +53,14 @@ const TwoDaysChart = ({ forecast }) => {
       <Heading level={2} elementClass="weather_chartTitle">
         48 hour forecast
       </Heading>
-      <div className="weather_chart">
+      <DragScroll className="weather_chart">
         <svg
           className="weather_chartScrollable"
           viewBox={`0 0 ${CHART_WIDTH} ${CHART_HEIGHT}`}
           xmlns="http://www.w3.org/2000/svg"
         >
           {gridLine(0)}
-          {forecast.periods.map((period, i) => {
+          {fortyEightHours.map((period, i) => {
             let xPos = i * GRID_WIDTH;
             let yPos = tempPositionScale(period.temperature);
             let date = Date.parse(period.startTime.split('/').shift());
@@ -75,6 +76,7 @@ const TwoDaysChart = ({ forecast }) => {
                   x={xPos}
                   y={yPos}
                   iconUrl={period.icon}
+                  fill={period.isDaytime ? '#fba301' : '#35145a'}
                 />
                 <g>
                   <text
@@ -113,7 +115,7 @@ const TwoDaysChart = ({ forecast }) => {
           })}
           {gridLine(CHART_WIDTH)}
         </svg>
-      </div>
+      </DragScroll>
     </>
   );
 };
