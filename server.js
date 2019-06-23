@@ -34,6 +34,11 @@ const previewSlug = (req, res, next) => {
   next();
 };
 
+const twitterSlug = (req, res, next) => {
+  req.twitterSlug = req.path.replace(/^(\/story|episode|page)*\/(card)\//, '');
+  next();
+};
+
 const previewToken = (req, res, next) => {
   req.previewToken = req.query.token;
   next();
@@ -44,7 +49,7 @@ app
   .then(() => {
     const server = express();
 
-    server.use(slug, previewSlug, previewToken, daySlug);
+    server.use(slug, previewSlug, previewToken, daySlug, twitterSlug);
 
     server.get('/', (req, res) => {
       app.render(req, res, '/index');
@@ -57,8 +62,8 @@ app
       app.render(req, res, '/scribble');
     });
 
-    server.get('/story/*', (req, res) => {
-      app.render(req, res, '/story', { slug: req.slug });
+    server.get('/story/card/*', (req, res) => {
+      app.render(req, res, '/twitter', req.twitterSlug);
     });
 
     server.get('/newspartners/story/*', (req, res) => {

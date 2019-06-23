@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
-import { Heading, Loading } from '@apmg/titan';
+import { Loading } from '@apmg/titan';
 import query from './twitter.gql';
+import AudioPlayer from '../../components/AudioPlayer/AudioPlayer';
+import AudioPlayerContext from '../../context/AudioPlayerContext';
 
-const Twitter = () => (
+const Twitter = ({ slug }) => (
   <Query
     query={query}
     variables={{
-      contentAreaSlug: 'live-from-here',
-      slug: '2019/04/12/test'
+      contentAreaSlug: process.env.CONTENT_AREA_SLUG,
+      slug: slug
     }}
   >
     {({ loading, error, data }) => {
@@ -22,15 +24,26 @@ const Twitter = () => (
 );
 
 const TwitterInner = ({ twitter }) => {
+  const context = useContext(AudioPlayerContext);
   return (
     <div className="twitter">
-      <Heading level={2}>LISTEN: {twitter.title}</Heading>
+      <AudioPlayer
+        audioElementRef={context.audioElementRef}
+        audioSource={twitter.audio[0].encodings[0].httpFilePath}
+        audioTitle={twitter.audio[0].title}
+        loadPlayer={context.loadPlayer}
+        playerRef={context.playerRef}
+      />
     </div>
   );
 };
 
 TwitterInner.propTypes = {
   twitter: PropTypes.object
+};
+
+Twitter.propTypes = {
+  slug: PropTypes.string
 };
 
 export default Twitter;
