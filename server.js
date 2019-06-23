@@ -13,7 +13,7 @@ const { collections } = require('./server/collections');
 
 const slug = (req, res, next) => {
   req.slug = req.path.replace(
-    /^(\/newspartners)*\/(amp)*(story|episode|page)\//,
+    /^(\/newspartners)*\/(amp)*(story|episode|page|people)\//,
     ''
   );
   next();
@@ -28,7 +28,7 @@ const daySlug = (req, res, next) => {
 
 const previewSlug = (req, res, next) => {
   req.previewSlug = req.path.replace(
-    /\/preview\/(episodes|stories|page)\//,
+    /\/preview\/(episodes|stories|page|people)\//,
     ''
   );
   next();
@@ -111,6 +111,10 @@ app
 
     server.get('/page/*', (req, res) => {
       app.render(req, res, '/page', { slug: req.slug });
+    });
+
+    server.get('/people/*', (req, res) => {
+      app.render(req, res, '/profile', { slug: req.slug });
     });
 
     server.get('/preview/pages/*', (req, res) => {
