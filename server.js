@@ -62,19 +62,8 @@ app
       app.render(req, res, '/scribble');
     });
 
-    // server.get('/story/*', (req, res) => {
-    //   app.render(req, res, '/story', { slug: req.slug });
-    // });
-
     server.get('/story/card/*', (req, res) => {
-      console.log('reqqqq', req.twitterSlug);
-      app.render(
-        req,
-        res,
-        '/twitter',
-        // slug: req.slug.replace(/card/\/, '')
-        req.twitterSlug
-      );
+      app.render(req, res, '/twitter', req.twitterSlug);
     });
 
     server.get('/newspartners/story/*', (req, res) => {
