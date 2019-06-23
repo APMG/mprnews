@@ -3,8 +3,8 @@ import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
 import { Loading } from '@apmg/titan';
 import query from './twitter.gql';
-// import AudioPlayer from '../../components/AudioPlayer/AudioPlayer';
-// import AudioPlayerContext from '../../context/AudioPlayerContext';
+import AudioPlayer from '../../components/AudioPlayer/AudioPlayer';
+import AudioPlayerContext from '../../context/AudioPlayerContext';
 
 const Twitter = ({ slug }) => (
   <Query
@@ -27,18 +27,12 @@ const TwitterInner = ({ twitter }) => {
   const context = useContext(AudioPlayerContext);
   return (
     <div className="twitter">
-      {console.log(twitter)}
       <AudioPlayer
         audioElementRef={context.audioElementRef}
-        // audioSource={twitter.audio.encodings}
-        // audioSubtitle={context.audioSubtitle}
-        audioTitle={twitter.audio.title}
-        // isAudioLive={context.isAudioLive}
-        // isPlayerVisible={context.isPlayerVisible}
-        // handleAudioButtonClick={context.handleAudioButtonClick}
+        audioSource={twitter.audio[0].encodings[0].httpFilePath}
+        audioTitle={twitter.audio[0].title}
         loadPlayer={context.loadPlayer}
-        // playerRef={context.playerRef}
-        // playerInstance={context.playerInstance}
+        playerRef={context.playerRef}
       />
     </div>
   );
