@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Heading } from '@apmg/titan';
 import MainLayout from '../layouts/MainLayout';
 import Collection from '../endpoints/Collection/Collection';
 
@@ -8,16 +7,11 @@ import Collection from '../endpoints/Collection/Collection';
 
 const CollectionPage = ({ slug, collection, pageNum }) => (
   <MainLayout>
-    <div>
-      <section className="Collection section">
-        <Heading level={2}>Collection of {collection}</Heading>
-        <Collection
-          collectionName={collection}
-          endpointName={slug}
-          pageNum={parseInt(pageNum)}
-        />
-      </section>
-    </div>
+    <Collection
+      collectionName={collection}
+      endpointName={slug}
+      pageNum={parseInt(pageNum)}
+    />
   </MainLayout>
 );
 

@@ -1,30 +1,39 @@
 // Collection Pages
 
-.collection_header {
-  margin-bottom: 120px;
+.collection {
+  display: grid;
+  grid-template-columns: 30% 1fr;
+  grid-template-areas:
+  'header header'
+  'body body'
+  'sidebar items'
+  'pager pager';
 
-  &::after {
-    content: '';
-    display: block;
-    margin: 0 auto;
-    width: 50%;
-    height: 1px;
-    position: relative;
-    top: 60px;
-    background: $color-grey-50;
+  @include media($media-tablet) {
+    margin-left: $container-edge-larger;
   }
 }
 
-.collection_list {
-  @include col();
-  @include col-page();
+.collection_header {
+  grid-area: header;
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.collection_body {
+  grid-area: body;
+  margin-bottom: 40px;
+}
+
+.collection_items {
+  grid-area: items;
 
   > * {
-    display: block;
-    margin-bottom: 40px;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
+    margin-bottom: 6rem;
   }
+}
+
+.collection_pagination {
+  grid-area: pager;
 }

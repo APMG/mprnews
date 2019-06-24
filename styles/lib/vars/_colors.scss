@@ -15,23 +15,23 @@ $color-transparent: rgba(255, 255, 255, 0);
 $color-white: #ffffff;
 $color-black: #000000;
 
-$color-grey-90: hsl(0, 0%, 90%);
-$color-grey-80: hsl(0, 0%, 80%);
-$color-grey-70: hsl(0, 0%, 70%);
-$color-grey-60: hsl(0, 0%, 60%);
-$color-grey-50: hsl(0, 0%, 50%);
-$color-grey-40: hsl(0, 0%, 40%);
-$color-grey-30: hsl(0, 0%, 30%);
-$color-grey-20: hsl(0, 0%, 20%);
-$color-grey-10: hsl(0, 0%, 10%);
+$color-grey-90: hsl(195, 3%, 90%);
+$color-grey-80: hsl(195, 3%, 80%);
+$color-grey-70: hsl(195, 3%, 70%);
+$color-grey-60: hsl(195, 3%, 60%);
+$color-grey-50: hsl(195, 3%, 50%);
+$color-grey-40: hsl(195, 3%, 40%);
+$color-grey-30: hsl(195, 3%, 30%);
+$color-grey-20: hsl(195, 3%, 20%);
+$color-grey-10: hsl(195, 3%, 10%);
 
 // Sitewide colors
 $color-bg: $color-white;
 $color-content-bg: rgba($color-black, .75);
 $color-default: $color-grey-10;
 
-$color-disabled: $color-grey-90;
-$color-disabled-bg: #fafafa;
+$color-disabled: $color-grey-70;
+$color-disabled-bg: $color-grey-90;
 
 $color-selection: #c2f2ff;
 
