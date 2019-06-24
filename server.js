@@ -3,6 +3,7 @@ const express = require('express');
 const next = require('next');
 const fetch = require('isomorphic-unfetch');
 const { getDateTimes, formatEachDateTime } = require('./utils/scheduleUtils');
+const { daysofweek } = require('./server/daysofweek');
 
 const port = parseInt(process.env.APP_PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== 'production';
@@ -23,6 +24,10 @@ const slug = (req, res, next) => {
 const daySlug = (req, res, next) => {
   const pathParts = req.path.split('/');
   req.daySlug = pathParts.pop();
+  // if we get /schedule not /schedule/day
+  if (daysofweek().indexOf(req.daySlug) === -1) {
+    req.daySlug = daysofweek()[new Date().getDay()];
+  }
   next();
 };
 
@@ -128,10 +133,10 @@ app
       app.render(req, res, '/amppage', { slug: req.slug });
     });
 
-    server.get('/schedule/*', (req, res) => {
-      // TODO: ask Geoff about the CORS issue that placed this here, since it's weird af
-      const dates = getDateTimes();
-      const formattedDate = formatEachDateTime(dates, req.daySlug);
+    server.get('/schedule/:day?', (req, res, next) => {
+      const daysOfThisWeek = getDateTimes();
+      const formattedDate = formatEachDateTime(daysOfThisWeek, req.daySlug);
+
       const fetchSchedule = async (dateTime) => {
         try {
           return await fetch(
@@ -139,7 +144,7 @@ app
           )
             .then(function(response) {
               if (!response.ok) {
-                throw Error(response.statusText);
+                next();
               }
               return response.json();
             })
@@ -153,6 +158,7 @@ app
               console.log(error);
             });
         } catch (error) {
+          next();
           console.log(error);
         }
       };
