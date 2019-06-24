@@ -9,16 +9,16 @@ import ToSentence from '../../components/ToSentence/ToSentence';
 const ScheduleInner = ({ schedule }) => {
   return (
     <ContentLayout>
-      <table className="table">
+      <table className="schedule">
         {Array.isArray(schedule) &&
           schedule.map((program, i) => (
-            <tr className={i % 2 !== 0 ? 'striped-row' : ''} key={i}>
-              <td className="leftmost">
+            <tr className={i % 2 !== 0 ? 'schedule_striped' : ''} key={i}>
+              <td className="schedule_leftmost">
                 <time>{format(program.start_dtim, 'h:mm A')}</time>
               </td>
               {program?.shows.map((show) => {
                 return (
-                  <td key={show.id} className="rightmost">
+                  <td key={show.id} className="schedule_rightmost">
                     <strong>
                       <Link key={show} href={show.link}>
                         <a>{show.name}</a>

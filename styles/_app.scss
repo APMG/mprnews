@@ -70,7 +70,6 @@
 @import 'components/lists/nList';
 @import 'components/lists/vList';
 @import 'components/structure/figure';
-@import 'components/structure/table';
 @import 'components/type/blockquote';
 @import 'components/type/hdg';
 @import 'components/type/hr';
@@ -95,6 +94,7 @@
 @import 'templates/collection';
 @import 'templates/episode';
 @import 'templates/story';
+@import 'templates/schedule';
 
 // Landmarks
 // Elements that exist on every page (The main header and footer, etc.)

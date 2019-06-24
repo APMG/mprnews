@@ -1,19 +1,19 @@
-.table {
+.schedule {
   width: 100%;
 }
 
-.striped-row {
+.schedule_striped {
   background-color:  $color-grey-90;
 }
 
-.leftmost {
+.schedule_leftmost {
   padding-left: 1rem;
   font-weight: bold;
   color: $color-grey-60;
   width: 15%;
 }
 
-.rightmost {
+.schedule_rightmost {
   padding: 1rem 0 1rem 1rem;
   width: 85%;
 }
