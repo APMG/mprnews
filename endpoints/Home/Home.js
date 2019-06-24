@@ -30,7 +30,6 @@ const Home = () => (
 );
 
 const HomeInner = ({ data }) => {
-  console.log(data);
   const { info } = JSON.parse(data.potlatch.json);
   return (
     <>
