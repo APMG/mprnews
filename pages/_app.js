@@ -144,7 +144,7 @@ class MPRNews extends App {
   setupNowPlaying = () => {
     const self = this;
     const client = new NowPlayingClient({
-      server: 'http://nowplaying.publicradio.org'
+      server: 'https://nowplaying.publicradio.org'
     });
     const registrations = [];
     const service = 'mpr-news';

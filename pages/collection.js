@@ -5,13 +5,9 @@ import Collection from '../endpoints/Collection/Collection';
 
 /* eslint react/display-name: 0 */
 
-const CollectionPage = ({ slug, collection, pageNum }) => (
+const CollectionPage = ({ collection, pageNum }) => (
   <MainLayout>
-    <Collection
-      collectionName={collection}
-      endpointName={slug}
-      pageNum={parseInt(pageNum)}
-    />
+    <Collection collectionName={collection} pageNum={parseInt(pageNum)} />
   </MainLayout>
 );
 
@@ -22,7 +18,6 @@ CollectionPage.getInitialProps = async ({
 };
 
 CollectionPage.propTypes = {
-  slug: PropTypes.string,
   collection: PropTypes.string,
   pageNum: PropTypes.number
 };

@@ -1,0 +1,19 @@
+.schedule {
+  width: 100%;
+}
+
+.schedule_striped {
+  background-color:  $color-grey-90;
+}
+
+.schedule_leftmost {
+  padding-left: 1rem;
+  font-weight: bold;
+  color: $color-grey-60;
+  width: 15%;
+}
+
+.schedule_rightmost {
+  padding: 1rem 0 1rem 1rem;
+  width: 85%;
+}

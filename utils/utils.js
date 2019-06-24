@@ -1,3 +1,5 @@
+import { closestIndexTo } from 'date-fns';
+
 export function getCurrentPosition(options = {}) {
   return new Promise((resolve, reject) => {
     navigator.geolocation.getCurrentPosition(resolve, reject, options);
@@ -40,7 +42,8 @@ export function mpsToMph(num) {
 
 // source: https://www.google.com/search?ei=HyMBXcUv0LC2BY_okfAL&q=torr+to+inhg&oq=torr+to+inhg&gs_l=psy-ab.3..0i20i263j0l2j0i22i30l7.3328.5353..5665...1.0..0.147.583.7j1......0....1..gws-wiz.......0i71j0i67.N0l305HdQhU
 export function torrToInhg(num) {
-  return (num / 25.4).toFixed(2);
+  let inHg = (num / 25.4).toFixed(2);
+  return isNaN(inHg) ? '-' : inHg;
 }
 
 // Get the previous index OR min
@@ -125,4 +128,17 @@ export function secondsToHms(timeInSeconds) {
     formattedTime + formattedMinutes + 'min ' + formattedSeconds + 'sec';
 
   return formattedTime;
+}
+
+// This takes an array of objects with a .validTime attribute, reads in that date, then figures out which of those objects is most recent using a `date-fns` function
+export function getValueOfMostRecent(weather, arr) {
+  let currentTime = Date.parse(weather.updateTime);
+  if (arr.length <= 0) return '-';
+
+  let i = closestIndexTo(
+    currentTime,
+    arr.map((i) => Date.parse(i.validTime.split('/').shift()))
+  );
+
+  return isNaN(arr[i].value) ? '-' : arr[i].value;
 }

@@ -14,7 +14,7 @@ import Pagination from '../../components/Pagination/Pagination';
 import { linkByTypeHref, linkByTypeAs, secondsToHms } from '../../utils/utils';
 import AudioPlayButton from '../../components/AudioPlayButton/AudioPlayButton';
 
-const Collection = ({ collectionName, endpointName, pageNum }) => {
+const Collection = ({ collectionName, pageNum }) => {
   return (
     <Query
       query={query}
@@ -32,7 +32,6 @@ const Collection = ({ collectionName, endpointName, pageNum }) => {
           <CollectionInner
             collectionName={collectionName}
             collection={data.collection}
-            endpointName={endpointName}
             pageNum={parseInt(pageNum)}
           />
         );
@@ -150,7 +149,6 @@ CollectionInner.propTypes = {
 
 Collection.propTypes = {
   collectionName: PropTypes.string,
-  endpointName: PropTypes.string,
   pageNum: PropTypes.number
 };
 

@@ -1,0 +1,29 @@
+exports.collections = () => {
+  return [
+    'arts',
+    'business',
+    'capitol-view',
+    'cities',
+    'daily-circuit',
+    'education',
+    'environment',
+    'ground-level',
+    'health',
+    'lifestyle',
+    'minnecon',
+    'newscut',
+    'newspartners',
+    'oncampus',
+    'politics',
+    'stadium-watch',
+    'state-of-the-arts',
+    'state',
+    'statewide',
+    'thread',
+    'todays-question',
+    'twin-cities',
+    'updraft',
+    'water',
+    'most-viewed'
+  ];
+};

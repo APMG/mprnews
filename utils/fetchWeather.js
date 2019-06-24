@@ -45,6 +45,5 @@ export const fetchWeather = async (lat, long) => {
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error(error);
-    // TODO: make some sort of component to display error and print out this message on the page itself?
   }
 };
