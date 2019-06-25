@@ -2,10 +2,12 @@ import React from 'react';
 import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
 import { Heading, Loading } from '@apmg/titan';
+import { Image } from 'apm-mimas';
 import { Body } from 'amat-react';
 import query from './profile.gql';
 import Metatags from '../../components/Metatags/Metatags';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
+import Link from 'next/link';
 
 const Profile = ({ slug, previewToken }) => (
   <Query
@@ -49,6 +51,29 @@ const ProfileInner = ({ profile }) => {
           <Heading level={2} elementClass="hdg-page">
             {profile.title}
           </Heading>
+          <Heading level={3} elementClass="hdg-page">
+            {profile.jobTitle}
+          </Heading>
+          <div>
+            {profile.email}
+            <br />
+            {profile.profileRelatedLinks.map((link) => {
+              return (
+                <Link href={link.uri} key={link.uri}>
+                  <a>{link.text}</a>
+                </Link>
+              );
+            })}
+          </div>
+          {profile.primaryVisuals?.lead && (
+            <Image
+              key={profile.primaryVisuals.lead.fallback}
+              image={profile.primaryVisuals.lead}
+              aspectRatio="uncropped"
+              sizes="(max-width: 1100px) 100vw, 1100px"
+              alt={profile.primaryVisuals.lead.shortCaption}
+            />
+          )}
           <div className="content_body">
             <Body
               nodeData={JSON.parse(profile.body)}
@@ -62,8 +87,14 @@ const ProfileInner = ({ profile }) => {
         {profile.contributions.map((contribution) => {
           return (
             <article key={contribution.id}>
-              <h4>{contribution.title}</h4>
-              <div>{contribution.descriptionText}</div>
+              <Link
+                href={`/${contribution.resourceType}/${contribution.canonicalSlug}`}
+              >
+                <a>
+                  <h4>{contribution.title}</h4>
+                  <div>{contribution.descriptionText}</div>
+                </a>
+              </Link>
             </article>
           );
         })}
