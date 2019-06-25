@@ -21,13 +21,12 @@ class MPRNews extends App {
       }
     ]);
     this.defaultAudioTitle = 'MPR News';
-    this.defaultThumbnail = null;
 
     this.state = {
       audioElementRef: this.audioElementRef,
       audioSource: this.defaultAudioSource,
       audioTitle: this.defaultAudioTitle,
-      audioThumbnail: this.defaultThumbnail,
+      audioThumbnail: null,
       audioSubtitle: '',
       isAudioLive: true,
       isAudioPlaying: false,
