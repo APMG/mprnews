@@ -21,8 +21,8 @@ const WeatherPage = ({ data }) => {
 
 WeatherPage.getInitialProps = async ({ req, res }) => {
   let location =
-    req.daySlug !== 'weather'
-      ? weatherConfig.find((config) => config.id === req.daySlug)
+    typeof req.params.id !== 'undefined'
+      ? weatherConfig.find((config) => config.id === req.params.id)
       : weatherConfig[0];
 
   if (!location && res) return (res.statusCode = 404);

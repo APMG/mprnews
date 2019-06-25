@@ -165,8 +165,8 @@ app
       fetchSchedule(formattedDate);
     });
 
-    server.get('/weather/*', (req, res) => {
-      app.render(req, res, '/weather', { slug: req.slug });
+    server.get('/weather/:id?', (req, res) => {
+      app.render(req, res, '/weather', { id: req.params.id });
     });
 
     server.get('/:slug/:page?', (req, res) => {
