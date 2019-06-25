@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import AudioPlayerContext from '../../context/AudioPlayerContext';
 import classNames from 'classnames';
+import Icon from '../Icons/Icon';
 
 const AudioPlayerUIContent = (props) => {
   const animationSpeed = 40; // px per second
@@ -67,6 +68,15 @@ const AudioPlayerUIContent = (props) => {
 
   return (
     <div className="player_content">
+      <button className="player_listenLive">
+        <Icon name="headphones" />
+        Listen Live
+      </button>
+      <button className="player_expand">
+        <Icon name="chevronDown" />
+        Expand
+      </button>
+
       {props.label && (
         <div className="player_label js-player-label">{props.label}</div>
       )}

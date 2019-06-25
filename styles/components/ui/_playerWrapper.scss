@@ -1,0 +1,14 @@
+.playerWrapper {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: 0;
+  position: absolute;
+  bottom: 0;
+  z-index: $z-player-mobile;
+  width: 100%;
+
+  @include media($media-tablet) {
+    position: static;
+    bottom: auto;
+  }
+}

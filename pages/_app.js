@@ -26,6 +26,7 @@ class MPRNews extends App {
       audioElementRef: this.audioElementRef,
       audioSource: this.defaultAudioSource,
       audioTitle: this.defaultAudioTitle,
+      audioThumbnail: null,
       audioSubtitle: '',
       isAudioLive: true,
       isAudioPlaying: false,
@@ -139,6 +140,14 @@ class MPRNews extends App {
       title += ` with ${songdata.artist}`;
     }
     return title;
+  }
+
+  audioThumbnail(songdata) {
+    let thumbnail = songdata.art_url;
+    if (songdata.art_url) {
+      thumbnail += ` with ${songdata.art_url}`;
+    }
+    return thumbnail;
   }
 
   setupNowPlaying = () => {
