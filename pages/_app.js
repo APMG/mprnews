@@ -4,6 +4,8 @@ import withApolloClient from '../lib/with-apollo-client';
 import { ApolloProvider } from 'react-apollo';
 import AudioPlayerContext from '../context/AudioPlayerContext';
 import NowPlayingClient from 'nowplaying-client';
+import Header from '../components/Header/Header';
+import AudioPlayer from '../components/AudioPlayer';
 
 class MPRNews extends App {
   constructor(props) {
@@ -178,6 +180,8 @@ class MPRNews extends App {
       <AudioPlayerContext.Provider value={this.state}>
         <Container>
           <ApolloProvider client={apolloClient}>
+            <Header />
+            <AudioPlayer />
             <Component {...pageProps} />
           </ApolloProvider>
         </Container>
