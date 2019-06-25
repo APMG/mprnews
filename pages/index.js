@@ -17,7 +17,7 @@ const tags = [
     content: 'summary_large_image'
   }
 ];
-const title = 'Minnesota Public Radio News';
+const title = '';
 
 export default () => (
   <MainLayout>
