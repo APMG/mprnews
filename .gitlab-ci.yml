@@ -25,6 +25,7 @@ Deploy Dev:
   type: deploy
   tags:
     - 'cap_deploy'
+    - general_cent7
   only:
   - master
 Deploy Stage:
@@ -34,6 +35,7 @@ Deploy Stage:
   type: deploy
   tags:
     - 'cap_deploy'
+    - general_cent7
   only:
   - stage
 Deploy Prod:
@@ -43,5 +45,6 @@ Deploy Prod:
  type: deploy
  tags:
    - 'cap_deploy'
+   - general_cent7
  only:
  - prod
