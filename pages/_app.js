@@ -42,9 +42,6 @@ class MPRNews extends App {
   componentDidMount() {
     this.setupNowPlaying();
     this.state.audioElementRef.current?.addEventListener('pause', () => {
-      {
-        console.log(this.state.isAudioPlaying);
-      }
       if (this.state.isAudioPlaying === true) {
         this.setState({ isAudioPlaying: false });
       }
