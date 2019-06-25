@@ -1,0 +1,64 @@
+//----------------------------------------------
+// Collection Teaser
+//----------------------------------------------
+
+.teaser {
+  display: flex;
+  flex-direction: column;
+
+  // Change this to teaser_link when titan gets updated
+  > a {
+    order: 1;
+  }
+}
+
+.teaser_button {
+  order: 2;
+  margin-top: .75rem;
+}
+
+.teaser_header {
+  margin-bottom: .5rem;
+
+  .hdg {
+    @include hdg-headline();
+    color: $color-link;
+  }
+}
+
+.teaser_image {
+  margin-bottom: .75rem;
+
+  > * {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.teaser_time {
+  display: inline-block;
+  margin-right: .75rem;
+  font-size: 1.2rem;
+}
+
+.teaser_contributors {
+  display: inline-block;
+  font-size: 1.2rem;
+  color: $color-text-dark;
+
+  &::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    margin-right: .45em;
+    border-radius: 2px;
+    background: $color-blue-light;
+  }
+}
+
+.teaser_body {
+  margin-top: .75rem;
+  font-family: $font-family-copy;
+  font-size: 1.4rem;
+}

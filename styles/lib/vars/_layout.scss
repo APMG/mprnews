@@ -10,12 +10,13 @@
 $max-width: 1400px;
 $vertical-buffer: 0; // Space below header
 $container-edge: 10px; // Minimum margin around sides of site container
+$container-edge-larger: 30px; // Added to $container-edge to increase margin at larger screen sizes
 $player-height: 100px;
 
 // Main Header
 $header-height-mobile: 38px;
 $header-height-desktop: 52px;
-$header-buffer: 10px;
+$header-buffer: 40px;
 
 // Grid
 $grid-row-gutter: 17.5px;

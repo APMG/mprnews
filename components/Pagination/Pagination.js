@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Router from 'next/router';
+import Link from 'next/link';
 import { prevIndex, nextIndex } from '../../utils/utils';
+import Icon from '../Icons/Icon';
 
 const Pagination = ({ collection, collectionName, pageNum }) => {
   return (
@@ -10,27 +11,25 @@ const Pagination = ({ collection, collectionName, pageNum }) => {
         <div className="banner banner-pagination">
           <div className="section">
             {pageNum > 1 && (
-              <button
-                onClick={() =>
-                  Router.push(`/topic/${collectionName}/${prevIndex(pageNum)}`)
-                }
-              >
-                PREV
-              </button>
+              <Link href={`/topic/${collectionName}/${prevIndex(pageNum)}`}>
+                <a className="btn btn-secondary">
+                  <Icon name="chevronLeft" />
+                  Previous page
+                </a>
+              </Link>
             )}
             {collection.results.currentPage < collection.results.totalPages && (
-              <button
-                onClick={() =>
-                  Router.push(
-                    `/topic/${collectionName}/${nextIndex(
-                      pageNum,
-                      collection.results.totalPages
-                    )}`
-                  )
-                }
+              <Link
+                href={`/topic/${collectionName}/${nextIndex(
+                  pageNum,
+                  collection.results.totalPages
+                )}`}
               >
-                NEXT
-              </button>
+                <a className="btn btn-secondary">
+                  Next page
+                  <Icon name="chevronRight" />
+                </a>
+              </Link>
             )}
           </div>
         </div>
