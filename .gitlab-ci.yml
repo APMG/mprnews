@@ -24,7 +24,6 @@ Deploy Dev:
     - bundle exec cap dev deploy
   type: deploy
   tags:
-    - 'cap_deploy'
     - general_cent7
   only:
   - master
@@ -34,7 +33,6 @@ Deploy Stage:
     - bundle exec cap stage deploy
   type: deploy
   tags:
-    - 'cap_deploy'
     - general_cent7
   only:
   - stage
@@ -44,7 +42,6 @@ Deploy Prod:
   - bundle exec cap prod deploy
  type: deploy
  tags:
-   - 'cap_deploy'
    - general_cent7
  only:
  - prod
