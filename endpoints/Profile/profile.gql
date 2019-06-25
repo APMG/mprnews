@@ -6,10 +6,11 @@ query profile($contentAreaSlug: String!, $slug: String!, $previewToken: String) 
   ) {
     id
     title
-    subtitle
+    jobTitle
     canonicalSlug
     publishDate
     body
+    email
     description
     resourceType
     embeddedAssetJson
@@ -19,8 +20,13 @@ query profile($contentAreaSlug: String!, $slug: String!, $previewToken: String) 
       title
       description
       publishDate
+      canonicalSlug
       id
       resourceType
+    }
+    profileRelatedLinks {
+      uri
+      text
     }
     primaryVisuals {
       lead {
@@ -38,8 +44,6 @@ query profile($contentAreaSlug: String!, $slug: String!, $previewToken: String) 
           name
           url
         }
-        dateTaken
-        dateline
         fallback
         longCaption
         shortCaption

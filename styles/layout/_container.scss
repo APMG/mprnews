@@ -12,21 +12,3 @@
   padding: 0 $container-edge;
   position: relative;
 }
-
-.container-player {
-  padding: 0;
-  position: absolute;
-  bottom: 0;
-  z-index: $z-player-mobile;
-  width: 100%;
-
-  @include media($media-tablet) {
-    position: unset;
-    bottom: unset;
-  }
-}
-
-.container-sticky {
-  position: sticky;
-  top: 0;
-}
