@@ -14,21 +14,27 @@ class AudioPlayer extends React.Component {
   render() {
     return (
       <div
-        id="player"
-        className={`player js-player ${
-          this.props.isAudioLive ? 'is-live' : 'is-prerecorded'
+        className={`container container-player js-player ${
+          this.props.isAudioLive ? 'container-sticky' : ''
         }`}
-        role="region"
-        aria-label="Audio Player"
-        data-src={this.props.audioSource}
-        ref={this.props.playerRef}
       >
-        <audio
-          id="main-audio"
-          preload="metadata"
-          ref={this.props.audioElementRef}
-        />
-        <AudioPlayerUI {...this.props} />
+        <div
+          id="player"
+          className={`player js-player ${
+            this.props.isAudioLive ? 'is-live' : 'is-prerecorded'
+          }`}
+          role="region"
+          aria-label="Audio Player"
+          data-src={this.props.audioSource}
+          ref={this.props.playerRef}
+        >
+          <audio
+            id="main-audio"
+            preload="metadata"
+            ref={this.props.audioElementRef}
+          />
+          <AudioPlayerUI {...this.props} />
+        </div>
       </div>
     );
   }
