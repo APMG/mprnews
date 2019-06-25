@@ -72,11 +72,11 @@ const StoryInner = ({ story }) => {
   return (
     <ContentGrid sidebar={<Sidebar />}>
       <Metatags title={story.title} metatags={tags} links={[]} />
-
       {story.primaryAudio && (
         <AudioPlayButton
           audioSource={story.primaryAudio.encodings[0].httpFilePath}
           audioTitle={story.primaryAudio.title}
+          label="Listen"
         />
       )}
       <Content
