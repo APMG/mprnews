@@ -58,7 +58,10 @@ const AudioPlayButton = (props) => {
           </span>
           {props.label && (
             <span className="playButton_label">
-              {context.isAudioPlaying ? 'Pause' : 'Play'} {props.label}
+              {context.isAudioPlaying &&
+              context.audioSource === props.audioSource
+                ? 'Pause'
+                : props.label}
             </span>
           )}
         </button>

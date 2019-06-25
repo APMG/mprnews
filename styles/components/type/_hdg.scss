@@ -43,6 +43,24 @@
   @include hdg-headline();
 }
 
+.hdg-section {
+  @include hdg-2();
+  position: relative;
+  display: inline-block;
+
+  &::after {
+    content: '';
+    height: 16px;
+    width: calc(100% + 20px);
+    position: absolute;
+    bottom: -4px;
+    left: -10px;
+    z-index: -1;
+    border-radius: 3px;
+    background: $color-blue-tint;
+  }
+}
+
 // For the Weather page's unique typography
 .hdg-weather {
   margin: 0 15px 15px 0;

@@ -3,12 +3,12 @@ import React from 'react';
 import Link from 'next/link';
 import { format } from 'date-fns';
 import PropTypes from 'prop-types';
-import ContentLayout from '../../layouts/ContentLayout';
+import ContentGrid from '../../grids/ContentGrid';
 import ToSentence from '../../components/ToSentence/ToSentence';
 
 const ScheduleInner = ({ schedule }) => {
   return (
-    <ContentLayout>
+    <ContentGrid>
       <table className="schedule">
         {Array.isArray(schedule) &&
           schedule.map((program, i) => (
@@ -36,7 +36,7 @@ const ScheduleInner = ({ schedule }) => {
             </tr>
           ))}
       </table>
-    </ContentLayout>
+    </ContentGrid>
   );
 };
 

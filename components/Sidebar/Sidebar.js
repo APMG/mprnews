@@ -6,9 +6,13 @@ const Sidebar = () => {
   const programDate = format(new Date(), 'ddd');
 
   return (
-    <div>
+    <div className="sidebar">
       <div>Sidebar content</div>
-      <div>Ads/etc</div>
+      <div className="sidebar_ad">
+        <div style={{ width: '320px', height: '280px', background: '#cccccc' }}>
+          Advertisement
+        </div>
+      </div>
       <Link href={`/schedule/${programDate.toLowerCase()}`}>
         <a>Program Schedule</a>
       </Link>

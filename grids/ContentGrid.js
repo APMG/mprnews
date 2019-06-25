@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ContentLayout = (props) => {
+const ContentGrid = (props) => {
   return (
     <div className="gridContent">
       <div className="gridContent_main">{props.children}</div>
@@ -10,9 +10,9 @@ const ContentLayout = (props) => {
   );
 };
 
-ContentLayout.propTypes = {
+ContentGrid.propTypes = {
   children: PropTypes.node,
   sidebar: PropTypes.node
 };
 
-export default ContentLayout;
+export default ContentGrid;
