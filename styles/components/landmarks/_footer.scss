@@ -3,6 +3,10 @@
 .footer {
   margin-top: 50px;
   background-color: $color-blue-tint;
+  padding-bottom: 74px;
+  @include media($media-tablet) {
+    padding-bottom: 0;
+  }
 }
 
 .footer_upper {

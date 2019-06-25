@@ -23,7 +23,6 @@ class AudioPlayer extends React.Component {
         data-src={this.props.audioSource}
         ref={this.props.playerRef}
       >
-        {console.log(this.props)}
         <audio
           id="main-audio"
           preload="metadata"
