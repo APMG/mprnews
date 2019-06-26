@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { weatherConfig } from '../../utils/defaultData';
 import fetch from 'isomorphic-unfetch';
-import { Loading } from '@apmg/titan';
 import Icon from '../Icons/Icon';
 
 export default function weatherHeaderRequest() {
@@ -39,7 +38,7 @@ export default function weatherHeaderRequest() {
           </div>
         </>
       ) : (
-        <Loading />
+        <></>
       )}
     </div>
   );

@@ -94,6 +94,42 @@ export function linkByTypeAs(item) {
       `;
 }
 
+// Formats an ugly time (in seconds) to a nice readable format
+// e.g. 125 > 2:05, or 4226 > 1:10:26
+export function secondsToHms(timeInSeconds) {
+  timeInSeconds = Math.round(timeInSeconds);
+
+  var formattedTime = '';
+  var formattedMinutes = '';
+  var formattedSeconds = '';
+  var hours = Math.floor(timeInSeconds / 3600);
+  var minutes = Math.floor(timeInSeconds / 60 - hours * 60);
+  var seconds = timeInSeconds - minutes * 60 - hours * 3600;
+
+  if (hours !== 0) {
+    formattedTime = hours + 'hr ';
+
+    if (minutes < 10) {
+      formattedMinutes = '0' + minutes;
+    } else {
+      formattedMinutes = minutes.toString();
+    }
+  } else {
+    formattedMinutes = minutes.toString();
+  }
+
+  if (seconds < 10) {
+    formattedSeconds = '0' + seconds;
+  } else {
+    formattedSeconds = seconds.toString();
+  }
+
+  formattedTime =
+    formattedTime + formattedMinutes + 'min ' + formattedSeconds + 'sec';
+
+  return formattedTime;
+}
+
 // This takes an array of objects with a .validTime attribute, reads in that date, then figures out which of those objects is most recent using a `date-fns` function
 export function getValueOfMostRecent(weather, arr) {
   let currentTime = Date.parse(weather.updateTime);

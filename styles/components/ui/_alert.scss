@@ -1,0 +1,25 @@
+.weatherAlert {
+  background-color: $color-lightred;
+  color: $color-darkred;
+  fill: $color-darkred;
+  margin-bottom: 25px;
+}
+
+.weatherAlert_main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid $color-darkred;
+  padding: 10px;
+}
+
+.weatherAlert_detail {
+  border: 1px solid $color-darkred;
+  border-top: 0;
+  padding: 10px;
+  margin-bottom: 25px;
+}
+
+.weatherAlert_title {
+  font-size: 1.4em;
+}

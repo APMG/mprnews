@@ -1,7 +1,7 @@
 /* eslint-disable react/display-name */
 import React from 'react';
 import { Query } from 'react-apollo';
-import Router from 'next/router';
+import Link from 'next/link';
 import PropTypes from 'prop-types';
 import { Teaser, Loading } from '@apmg/titan';
 import { Image } from 'apm-mimas';
@@ -9,7 +9,6 @@ import { Body } from 'amat-react';
 import AdBottom from '../../components/Ads/AdBottom';
 import AdTop from '../../components/Ads/AdTop';
 import query from './home.gql';
-import Link from 'next/link';
 import { linkByTypeHref, linkByTypeAs } from '../../utils/utils';
 
 const Home = () => (
@@ -42,35 +41,37 @@ const HomeInner = ({ data }) => {
         const link = linkByTypeHref(item);
         const linkAs = linkByTypeAs(item);
 
-        let image = item.primaryVisuals?.thumbnail ? (
-          <Image
-            image={item.primaryVisuals?.thumbnail}
-            elementClass="content_thumbnail"
-            aspectRatio="widescreen"
-            sizes="(max-width: 590px) 95vw, (max-width: 890px) 45vw, 300px"
-            alt={item.primaryVisuals?.thumbnail?.shortCaption}
-          />
-        ) : (
-          <Image
-            elementClass="content_thumbnail"
-            fallbackSrc="/static/fallback.png"
-            alt={item.title || ''}
-          />
-        );
-        return (
-          <Teaser
-            key={item.id}
-            id={item.id}
-            title={item.title}
-            href={link}
-            as={linkAs}
-            router={Router}
-            publishDate={item.publishDate}
-            headingLevel={2}
-            image={image}
-            description=<Body nodeData={JSON.parse(item.description)} />
-          />
-        );
+        {
+          let image = item.primaryVisuals?.thumbnail ? (
+            <Image
+              image={item.primaryVisuals?.thumbnail}
+              elementClass="content_thumbnail"
+              aspectRatio="widescreen"
+              sizes="(max-width: 590px) 95vw, (max-width: 890px) 45vw, 300px"
+              alt={item.primaryVisuals?.thumbnail?.shortCaption}
+            />
+          ) : (
+            <Image
+              elementClass="content_thumbnail"
+              fallbackSrc="/static/fallback.png"
+              alt={item.title || ''}
+            />
+          );
+
+          return (
+            <Teaser
+              key={item.id}
+              id={item.id}
+              title={item.title}
+              href={link}
+              as={linkAs}
+              publishDate={item.publishDate}
+              headingLevel={2}
+              image={image}
+              description=<Body nodeData={JSON.parse(item.description)} />
+            />
+          );
+        }
       })}
       <AdTop />
       <AdBottom />

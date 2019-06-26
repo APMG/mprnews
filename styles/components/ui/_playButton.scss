@@ -1,0 +1,38 @@
+// Audio play button
+
+.playButton {
+  @include reset-button();
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: $color-blue-tint;
+  width: 100%;
+  overflow: hidden;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.playButton_button {
+  height: 36px;
+  width: 36px;
+  padding: 3px;
+  border-radius: 100px;
+  background: $color-blue;
+  color: $color-white;
+  fill: currentColor;
+  box-shadow: 0 0 0 3px rgba($color-white, 1);
+
+  svg {
+    display: block;
+    height: 31px;
+    width: 31px;
+  }
+}
+
+
+.playButton_label {
+  padding: 0 1rem;
+  font-size: 1.2rem;
+}

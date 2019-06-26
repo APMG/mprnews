@@ -6,7 +6,7 @@ import { Image } from 'apm-mimas';
 import { format } from 'date-fns';
 import Content from '../../components/Content/Content';
 import AudioPlayButton from '../../components/AudioPlayButton/AudioPlayButton';
-import ContentLayout from '../../layouts/ContentLayout';
+import ContentGrid from '../../grids/ContentGrid';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import query from './story.gql';
 import Metatags from '../../components/Metatags/Metatags';
@@ -70,13 +70,13 @@ const StoryInner = ({ story }) => {
   ];
 
   return (
-    <ContentLayout sidebar={<Sidebar />}>
+    <ContentGrid sidebar={<Sidebar />}>
       <Metatags title={story.title} metatags={tags} links={[]} />
-
       {story.primaryAudio && (
         <AudioPlayButton
           audioSource={story.primaryAudio.encodings[0].httpFilePath}
           audioTitle={story.primaryAudio.title}
+          label="Listen"
         />
       )}
       <Content
@@ -103,7 +103,7 @@ const StoryInner = ({ story }) => {
         tag={tag()}
         elementClass="story"
       />
-    </ContentLayout>
+    </ContentGrid>
   );
 };
 

@@ -56,9 +56,11 @@
 // @import 'components/**/*.scss';
 @import 'components/content/content';
 @import 'components/content/gallery';
-@import 'components/content/slideshow';
-@import 'components/content/weather';
+@import 'components/content/miniBio';
 @import 'components/content/related';
+@import 'components/content/slideshow';
+@import 'components/content/teaser';
+@import 'components/content/weather';
 @import 'components/forms/checkbox';
 @import 'components/forms/field';
 @import 'components/landmarks/footer';
@@ -75,12 +77,15 @@
 @import 'components/type/hr';
 @import 'components/type/link';
 @import 'components/type/text';
+@import 'components/ui/alert';
 @import 'components/ui/btn';
 @import 'components/ui/dropdown';
 @import 'components/ui/dropdownMenu';
 @import 'components/ui/dropdownMenuItem';
 @import 'components/ui/icon';
 @import 'components/ui/player';
+@import 'components/ui/playButton';
+@import 'components/ui/playerWrapper';
 @import 'components/ui/search';
 @import 'components/ui/spinner';
 @import 'components/ui/tabs';
@@ -93,6 +98,7 @@
 @import 'templates/collection';
 @import 'templates/episode';
 @import 'templates/story';
+@import 'templates/schedule';
 
 // Landmarks
 // Elements that exist on every page (The main header and footer, etc.)

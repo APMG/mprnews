@@ -15,6 +15,7 @@ import IconVolumeDown from './IconVolumeDown';
 import IconVolumeMute from './IconVolumeMute';
 import IconVolumeOff from './IconVolumeOff';
 import IconVolumeUp from './IconVolumeUp';
+import IconHeadphones from './IconHeadphones';
 
 const icons = {
   empty: IconEmpty,
@@ -31,7 +32,8 @@ const icons = {
   volumeDown: IconVolumeDown,
   volumeMute: IconVolumeMute,
   volumeOff: IconVolumeOff,
-  volumeUp: IconVolumeUp
+  volumeUp: IconVolumeUp,
+  headphones: IconHeadphones
 };
 
 const Icon = (props) => {

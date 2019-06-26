@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Router from 'next/router';
 import { Heading, Button, Loading } from '@apmg/titan';
 import Icon from '../../components/Icons/Icon';
+import WeatherAlert from '../../components/WeatherAlert/WeatherAlert';
 import CurrentWeather from './CurrentWeather';
 import TwoDaysChart from './TwoDaysChart';
 import WeeklyForecast from './WeeklyForecast';
@@ -76,11 +77,7 @@ const Weather = (props) => {
 
       {alerts.map((alert) => {
         // This should be a link, but I can't figure out how to link to an endpoint for this alert given this data. However, we do have the raw alert data and could simply set this to expand and show the detailed description for ourselves. I think that's the best approach.
-        return (
-          <div key={alert.id} className="weather_alert">
-            <Heading level={2}>{alert.properties.event}</Heading>
-          </div>
-        );
+        return <WeatherAlert key={alert.id} alert={alert} />;
       })}
 
       <CurrentWeather weather={data.weather} forecast={data.forecast} />

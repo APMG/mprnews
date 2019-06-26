@@ -1,4 +1,13 @@
 query home($contentAreaSlug: String!, $slug: String!) {
+  updraft:collection(contentAreaSlug: $contentAreaSlug, slug:"updraft") {
+    results(page:1, pageSize:1) {
+      items {
+        title
+        resourceType
+        description
+      }
+    }
+  }
   homeList: collection(contentAreaSlug: $contentAreaSlug, slug: $slug) {
     id
     title

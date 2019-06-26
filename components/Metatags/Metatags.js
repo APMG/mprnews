@@ -48,6 +48,7 @@ const Metatags = (props) => {
   const links = linkDefaults.map((row) =>
     Object.assign(row, props.links.find((rec) => rec.key == row.key))
   );
+  const combinedTitle = props.title ? `${props.title} | MPR News` : 'MPR News';
   return (
     <Head>
       {metatags.map((tag) => {
@@ -62,7 +63,7 @@ const Metatags = (props) => {
         return <link key={link.key} {...link} />;
       })}
 
-      <title>{`${props.title} | MPR News`}</title>
+      <title>{combinedTitle}</title>
 
       <link
         href="https://fonts.googleapis.com/css?family=Noto+Serif:400,400i|Roboto+Condensed:700|Roboto:400,700&display=swap&subset=latin-ext"

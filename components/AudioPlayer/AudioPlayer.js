@@ -14,21 +14,28 @@ class AudioPlayer extends React.Component {
   render() {
     return (
       <div
-        id="player"
-        className={`player js-player ${
-          this.props.isAudioLive ? 'is-live' : 'is-prerecorded'
+        className={`playerWrapper ${
+          this.props.isAudioPlaying ? 'is-sticky' : ''
         }`}
-        role="region"
-        aria-label="Audio Player"
-        data-src={this.props.audioSource}
-        ref={this.props.playerRef}
       >
-        <audio
-          id="main-audio"
-          preload="metadata"
-          ref={this.props.audioElementRef}
-        />
-        <AudioPlayerUI {...this.props} />
+        <div
+          id="player"
+          className={`player js-player ${
+            this.props.isAudioLive ? 'is-live' : 'is-prerecorded'
+          }`}
+          role="region"
+          aria-label="Audio Player"
+          data-src={this.props.audioSource}
+          ref={this.props.playerRef}
+        >
+          <audio
+            id="main-audio"
+            preload="metadata"
+            ref={this.props.audioElementRef}
+          />
+
+          <AudioPlayerUI {...this.props} />
+        </div>
       </div>
     );
   }
@@ -40,6 +47,7 @@ AudioPlayer.propTypes = {
   audioTitle: PropTypes.string,
   handleAudioButtonClick: PropTypes.func,
   isAudioLive: PropTypes.bool,
+  isAudioPlaying: PropTypes.bool,
   loadPlayer: PropTypes.func,
   playerRef: PropTypes.object
 };

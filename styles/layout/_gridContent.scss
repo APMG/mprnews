@@ -3,7 +3,7 @@
 .gridContent {
   @include media($media-full-layout) {
     display: grid;
-    grid-template-columns: 1fr 320px;
+    grid-template-columns: 1fr 310px;
     grid-template-areas: 'main sidebar';
     grid-column-gap: 5%;
   }

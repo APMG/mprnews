@@ -31,11 +31,7 @@ const Schedule = ({ schedule }) => {
   return (
     <>
       <Tabs links={days} />
-      {data && data.schedule && (
-        <table>
-          <ScheduleInner schedule={data.schedule} />
-        </table>
-      )}
+      {data && data.schedule && <ScheduleInner schedule={data.schedule} />}
     </>
   );
 };

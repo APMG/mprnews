@@ -1,20 +1,18 @@
-before_script:
-  - npm install
-# Jest:
-#   script:
-#     - npm run test:ci
 ESLint:
   script:
+    - npm install
     - npm run eslint
   tags:
     - general_cent7
 SassLint:
   script:
+    - npm install
     - npm run sasslint
   tags:
     - general_cent7
 Prettier:
   script:
+    - npm install
     - npm run prettier
   tags:
     - general_cent7
@@ -24,7 +22,7 @@ Deploy Dev:
     - bundle exec cap dev deploy
   type: deploy
   tags:
-    - 'cap_deploy'
+    - cap_deploy
   only:
   - master
 Deploy Stage:
@@ -33,7 +31,7 @@ Deploy Stage:
     - bundle exec cap stage deploy
   type: deploy
   tags:
-    - 'cap_deploy'
+    - cap_deploy
   only:
   - stage
 Deploy Prod:
@@ -42,6 +40,6 @@ Deploy Prod:
   - bundle exec cap prod deploy
  type: deploy
  tags:
-   - 'cap_deploy'
+   - cap_deploy
  only:
  - prod
