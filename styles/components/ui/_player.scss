@@ -13,8 +13,12 @@ $_timeline-mobile-width: 12em;
   border-radius: 3px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-  box-shadow: 0 14px 32px -30px rgba($color-black, .75);
+  box-shadow: 0 14px 32px 0 rgba($color-black, .75);
   width: 100%;
+
+  @include media($media-tablet) {
+    box-shadow: 0 14px 32px -30px rgba($color-black, .75);
+  }
 
   &.is-live {
     .player_time {
