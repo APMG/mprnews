@@ -4,6 +4,41 @@ query collection($contentAreaSlug: String!, $slug: String!, $pageNum: Int) {
     title
     body
     embeddedAssetJson
+    contributors {
+      profile {
+        canonicalSlug
+        firstName
+        lastName
+        profileRelatedLinks {
+          uri
+          text
+          subtype
+        }
+        primaryVisuals {
+          thumbnail {
+            longCaption
+            shortCaption
+            fallback
+            aspect_ratios: aspectRatios {
+              uncropped {
+                instances {
+                  url
+                  width
+                  height
+                }
+              }
+              square {
+                instances {
+                  url
+                  width
+                  height
+                }
+              }
+            }
+          }
+        }
+      }
+    }
     results(page: $pageNum, pageSize: 10) {
       nextPage
       pageSize
@@ -32,7 +67,7 @@ query collection($contentAreaSlug: String!, $slug: String!, $pageNum: Int) {
           }
         }
         primaryVisuals {
-          lead {
+          thumbnail {
             aspect_ratios: aspectRatios {
               uncropped {
                 instances {

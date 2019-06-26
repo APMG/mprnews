@@ -1,0 +1,30 @@
+// Mini Bio for profiles used in sidebars etc.
+
+.miniBio {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 1.4rem;
+}
+
+.miniBio_img {
+  flex: 0 0 auto;
+  height: 40px;
+  width: 40px;
+  margin-right: 1rem;
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.miniBio_name {
+  @include link();
+  @include link-plain();
+  display: block;
+  font-weight: bold;
+}
+
+.miniBio_social {
+  @include link();
+  @include link-plain();
+  display: block;
+}

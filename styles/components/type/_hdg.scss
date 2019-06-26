@@ -51,13 +51,25 @@
   &::after {
     content: '';
     height: 16px;
-    width: calc(100% + 20px);
     position: absolute;
     bottom: -4px;
     left: -10px;
+    right: -10px;
     z-index: -1;
     border-radius: 3px;
     background: $color-blue-tint;
+  }
+}
+
+.hdg-section-small {
+  @include hdg-6();
+  text-transform: uppercase;
+
+  &::after {
+    height: 8px;
+    bottom: 0;
+    left: -4px;
+    right: -4px;
   }
 }
 
