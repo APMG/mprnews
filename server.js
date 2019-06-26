@@ -1,13 +1,13 @@
 /*eslint no-console: 0*/
 const express = require('express');
-const next = require('next');
+const nextjs = require('next');
 const fetch = require('isomorphic-unfetch');
 const { getDateTimes, formatEachDateTime } = require('./utils/scheduleUtils');
 const { daysofweek } = require('./server/daysofweek');
 
 const port = parseInt(process.env.APP_PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== 'production';
-const app = next({ dev });
+const app = nextjs({ dev });
 const handle = app.getRequestHandler();
 const { pages } = require('./server/pages');
 const { collections } = require('./server/collections');
@@ -55,6 +55,48 @@ app
     const server = express();
 
     server.use(slug, previewSlug, previewToken, daySlug, twitterSlug);
+
+    server.get('_next/*', (req, res) => {
+      return handle(req, res);
+    });
+    server.get('*', (req, res, next) => {
+      const slug = req.path.replace(/^\//, '');
+      const query = JSON.stringify({
+        query: `{ content(slug: "${slug}",  contentAreaSlug: "mprnews") { resourceType } }`
+      });
+      const routes = {
+        story: '/story',
+        collection: '/collection',
+        page: '/page'
+      };
+      const fetchRoute = async () => {
+        return await fetch(process.env.GRAPHQL_API, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: query
+        })
+          .then((response) => {
+            if (!response.ok) {
+              next();
+            }
+            return response.json();
+          })
+          .then((response) => {
+            const content = response.data.content;
+            if (!content) {
+              return next();
+            }
+            const route = response.data.content.resourceType;
+            return app.render(req, res, routes[route], { slug: slug });
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+      };
+      fetchRoute();
+    });
 
     server.get('/', (req, res) => {
       app.render(req, res, '/index');
@@ -167,21 +209,6 @@ app
 
     server.get('/weather/:id?', (req, res) => {
       app.render(req, res, '/weather', { id: req.params.id });
-    });
-
-    server.get('/:slug/:page?', (req, res) => {
-      //whitelisted routes for pages and collections
-      if (pages().indexOf(req.params.slug) >= 0) {
-        app.render(req, res, '/page', { slug: req.params.slug });
-      } else if (collections().indexOf(req.params.slug) >= 0) {
-        const queryParams = {
-          collection: req.params.slug,
-          pageNum: parseInt(req.params.page ? req.params.page : 1)
-        };
-        app.render(req, res, '/collection', queryParams);
-      } else {
-        return handle(req, res);
-      }
     });
 
     server.get('*', (req, res) => {

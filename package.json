@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "RAILS_ENV=development NODE_ENV=development node server.js",
+    "debug": "RAILS_ENV=development NODE_ENV=development node --inspect server.js",
     "dev:clean": "rm -rf build && npm run dev",
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
