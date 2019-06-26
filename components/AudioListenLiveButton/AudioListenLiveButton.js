@@ -1,54 +1,28 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useContext } from 'react';
 import AudioPlayerContext from '../../context/AudioPlayerContext';
 import Icon from '../Icons/Icon';
 
-const AudioListenLiveButton = (props) => {
-  let audioSource = JSON.stringify([
-    {
-      url: 'https://nis.stream.publicradio.org/nis.aac',
-      type: 'audio/aac'
-    },
-    {
-      url: 'https://nis.stream.publicradio.org/nis.mp3',
-      type: 'audio/mpeg'
-    }
-  ]);
-  let audioTitle = 'MPR News';
-  let audioSubtitle = '';
+const AudioListenLiveButton = () => {
+  const context = useContext(AudioPlayerContext);
 
   return (
-    <AudioPlayerContext.Consumer>
-      {(context) => (
-        <>
-          <button
-            className="player_listenLive"
-            onClick={(e) => {
-              e.preventDefault();
-              context.handleAudioButtonClick(
-                audioSource,
-                audioTitle,
-                audioSubtitle
-              );
-            }}
-          >
-            <Icon name="headphones" />
-            Listen Live
-          </button>
-          <button className="player_expand">
-            <Icon name="chevronDown" />
-            Expand
-          </button>
-        </>
-      )}
-    </AudioPlayerContext.Consumer>
+    <>
+      <button
+        className="player_listenLive"
+        onClick={(e) => {
+          e.preventDefault();
+          context.resetLivePlayer(true);
+        }}
+      >
+        <Icon name="headphones" />
+        Listen Live
+      </button>
+      <button className="player_expand">
+        <Icon name="chevronDown" />
+        Expand
+      </button>
+    </>
   );
-};
-
-AudioListenLiveButton.propTypes = {
-  audioSource: PropTypes.string,
-  audioSubtitle: PropTypes.string,
-  audioTitle: PropTypes.string
 };
 
 export default AudioListenLiveButton;

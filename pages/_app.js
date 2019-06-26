@@ -35,9 +35,12 @@ class MPRNews extends App {
       isPlayerVisible: false,
       handleAudioButtonClick: this.handleAudioButtonClick,
       loadPlayer: this.loadPlayer,
+      nowPlayingTitle: this.defaultAudioTitle,
+      nowPlayingThumbnail: null,
       playerInstance: null,
       playerRef: this.playerRef,
-      playlist: {}
+      playlist: {},
+      resetLivePlayer: this.resetLivePlayer
     };
   }
 
@@ -63,7 +66,7 @@ class MPRNews extends App {
     this.state.audioElementRef.current?.addEventListener('ended', () => {
       // Use the live player when audio playback completes
       this.setState({ isAudioLive: true });
-      this.resetLivePlayer();
+      this.state.resetLivePlayer();
     });
   }
 
@@ -125,18 +128,27 @@ class MPRNews extends App {
     );
   }
 
-  resetLivePlayer() {
+  resetLivePlayer = (autoPlay) => {
     if (this.state.playerInstance === null) return;
 
     this.playerRef.current.setAttribute('data-src', this.defaultAudioSource);
-    this.setState({
-      audioTitle: this.defaultAudioTitle,
-      audioSource: this.defaultAudioSource
-    });
-    this.state.playerInstance.unloadAudio();
-  }
+    this.setState(
+      {
+        audioTitle: this.state.nowPlayingTitle,
+        audioSource: this.defaultAudioSource
+      },
+      () => {
+        if (autoPlay) {
+          this.state.playerInstance.unloadAudio();
+          this.playAudio(this.state.audioSource, this.state.audioTitle);
+        } else {
+          this.state.playerInstance.unloadAudio();
+        }
+      }
+    );
+  };
 
-  audioTitle(songdata) {
+  setNowPlayingTitle(songdata) {
     let title = songdata.title;
     if (songdata.artist) {
       title += ` with ${songdata.artist}`;
@@ -144,7 +156,7 @@ class MPRNews extends App {
     return title;
   }
 
-  audioThumbnail(songdata) {
+  setNowPlayingThumbnail(songdata) {
     let thumbnail = songdata.art_url;
     if (songdata.art_url) {
       thumbnail += ` with ${songdata.art_url}`;
@@ -166,7 +178,15 @@ class MPRNews extends App {
       'playlist',
       function(data) {
         if (self.state.isAudioLive) {
-          self.setState({ audioTitle: self.audioTitle(data.songs[0]) });
+          self.setState(
+            {
+              nowPlayingTitle: self.setNowPlayingTitle(data.songs[0]),
+              nowPlayingThumbnail: self.setNowPlayingThumbnail(data.songs[0])
+            },
+            () => {
+              self.setState({ audioTitle: self.state.nowPlayingTitle });
+            }
+          );
         }
       }
     );
