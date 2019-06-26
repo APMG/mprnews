@@ -133,6 +133,7 @@ app
     });
 
     // Schedule Routing
+    // @todo rework so this endpoint just send out json
     server.get('/schedule/:day?', (req, res, next) => {
       const daysOfThisWeek = getDateTimes();
       const formattedDate = formatEachDateTime(daysOfThisWeek, req.daySlug);
@@ -165,13 +166,44 @@ app
       fetchSchedule(formattedDate);
     });
 
+    // RSS feeds for collections
+    server.get(`/topic/feed/:id`, (req, res) => {
+      res.header('Content-Type', 'text/xml');
+      let xml = '<?xml version="1.0" encoding="UTF-8"?>';
+      let query = JSON.stringify(`{
+      collection(contentAreaSlug: ${process.env.CONTENT_AREA_SLUG}, slug: {req.params.id}) {
+        title
+        descriptionText
+        results {
+          items {
+            title
+            descriptionText
+          }
+        }
+      }
+    }
+    `);
+      xml +=
+        '<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom"></rss>';
+      res.send(xml);
+
+      const fetchFeedData = async (query) => {
+        return await fetch(process.env.GRAPHQL_API, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(query)
+        }).then((response) => response.json());
+      };
+      fetchFeedData(query);
+    });
+
     // Dynamic Routing for collections and pages
     server.get('*', (req, res, next) => {
       const path = req.path.replace(/^\//, '');
       const slug = path.replace(/\/\d+$/, '');
-      console.log('slug ', slug);
       const pageNum = path.match(/\d+$/) ? path.match(/\d+$/)[0] : 1;
-      console.log('pageNum ', pageNum);
       const query = JSON.stringify({
         query: `{ content(slug: "${slug}",  contentAreaSlug: "mprnews") { resourceType } }`
       });
