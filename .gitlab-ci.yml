@@ -20,31 +20,28 @@ Prettier:
     - general_cent7
 Deploy Dev:
   script:
-    - bundle install --path ~/vendor/bundle
+    - bundle install --path ~/vendor/bundle --without="default test development common_dev stage production"
     - bundle exec cap dev deploy
   type: deploy
   tags:
-    - general_cent7
     - cap_deploy
   only:
   - master
 Deploy Stage:
   script:
-    - bundle install --path ~/vendor/bundle
+    - bundle install --path ~/vendor/bundle --without="default test development common_dev stage production"
     - bundle exec cap stage deploy
   type: deploy
   tags:
-    - general_cent7
     - cap_deploy
   only:
   - stage
 Deploy Prod:
  script:
-  - bundle install --path ~/vendor/bundle
+  - bundle install --path ~/vendor/bundle --without="default test development common_dev stage production"
   - bundle exec cap prod deploy
  type: deploy
  tags:
-   - general_cent7
    - cap_deploy
  only:
  - prod
