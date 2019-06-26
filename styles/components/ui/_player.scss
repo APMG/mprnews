@@ -17,7 +17,7 @@ $_timeline-mobile-width: 12em;
   width: 100%;
 
   @include media($media-tablet) {
-    box-shadow: 0 14px 32px -30px rgba($color-black, .75);
+    box-shadow: none;
   }
 
   &.is-live {

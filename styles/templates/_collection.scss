@@ -1,16 +1,25 @@
 // Collection Pages
 
 .collection {
-  display: grid;
-  grid-template-columns: 30% 1fr;
+  grid-template-columns: minmax(180px, 30%) 1fr;
   grid-template-areas:
   'header header'
   'body body'
   'sidebar items'
   'pager pager';
+  grid-column-gap: 30px;
+
+  @include media($media-small-tablet) {
+    display: grid;
+  }
 
   @include media($media-tablet) {
+    display: block;
     margin-left: $container-edge-larger;
+  }
+
+  @include media($media-desktop) {
+    display: grid;
   }
 }
 
@@ -24,6 +33,50 @@
 .collection_body {
   grid-area: body;
   margin-bottom: 40px;
+}
+
+.collection_sidebar {
+  grid-area: sidebar;
+}
+
+.collection_sidebarHeader {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.collection_sidebarBody {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  > * {
+    margin-bottom: 1rem;
+    margin-right: 1rem;
+  }
+
+  @include media($media-small-tablet) {
+    flex-direction: column;
+
+    > * {
+      margin-right: 0;
+    }
+  }
+
+  @include media($media-tablet) {
+    flex-direction: row;
+
+    > * {
+      margin-right: 1rem;
+    }
+  }
+
+  @include media($media-desktop) {
+    flex-direction: column;
+
+    > * {
+      margin-right: 0;
+    }
+  }
 }
 
 .collection_items {
