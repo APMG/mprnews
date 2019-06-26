@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import AudioPlayerUIContent from './AudioPlayerUIContent';
 import AudioPlayerUITime from './AudioPlayerUITime';
 import AudioPlayerUIControls from './AudioPlayerUIControls';
-import AudioThumbnail from './AudioThumbnail';
+import AudioPlayerThumbnail from './AudioPlayerThumbnail';
 
 const AudioPlayerUI = (props) => {
   return (
@@ -11,7 +11,7 @@ const AudioPlayerUI = (props) => {
       <div className="player_wrapperContent">
         <AudioPlayerUITime />
         {props.audioThumbnail && (
-          <AudioThumbnail
+          <AudioPlayerThumbnail
             audioTitle={props.audioTitle}
             audioThumbnail={props.audioThumbnail}
           />
