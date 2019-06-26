@@ -2,7 +2,7 @@
   max-width: $max-width;
   margin: 0 auto;
   padding: 0;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   z-index: $z-player-mobile;
   width: 100%;
@@ -13,7 +13,9 @@
   }
 
   &.is-sticky {
-    top: 0;
-    position: sticky;
+    @include media($media-tablet) {
+      top: 0;
+      position: sticky;
+    }
   }
 }
