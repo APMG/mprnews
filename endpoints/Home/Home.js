@@ -63,8 +63,8 @@ const HomeInner = ({ data }) => {
               key={item.id}
               id={item.id}
               title={item.title}
-              href={`${item.resourceType}?slug=${item.canonicalSlug}`}
-              as={item.canonicalSlug}
+              href={link}
+              as={linkAs}
               publishDate={item.publishDate}
               headingLevel={2}
               image={image}

@@ -11,7 +11,12 @@ const Pagination = ({ collection, collectionName, pageNum }) => {
         <div className="banner banner-pagination">
           <div className="section">
             {pageNum > 1 && (
-              <Link href={`/topic/${collectionName}/${prevIndex(pageNum)}`}>
+              <Link
+                as={`/${collectionName}/${prevIndex(pageNum)}`}
+                href={`/collection?slug=${collectionName}&pageNum=${prevIndex(
+                  pageNum
+                )}`}
+              >
                 <a className="btn btn-secondary">
                   <Icon name="chevronLeft" />
                   Previous page
@@ -20,9 +25,12 @@ const Pagination = ({ collection, collectionName, pageNum }) => {
             )}
             {collection.results.currentPage < collection.results.totalPages && (
               <Link
-                href={`/topic/${collectionName}/${nextIndex(
+                as={`/${collectionName}/${nextIndex(
                   pageNum,
                   collection.results.totalPages
+                )}`}
+                href={`/collection?slug=${collectionName}&pageNum=${nextIndex(
+                  pageNum
                 )}`}
               >
                 <a className="btn btn-secondary">
