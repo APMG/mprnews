@@ -171,13 +171,13 @@ app
 
     // Dynamic Routing for collections and pages
     server.get('*', (req, res, next) => {
-      const params = req.path.replace(/^\//, '').split('/');
-      const slug = params[0];
-      const pageNum = params[1] || 1;
+      const path = req.path.replace(/^\//, '');
+      const slug = path.replace(/\/\d+$/, '');
+      console.log('slug ', slug);
+      const pageNum = path.match(/\d+$/) ? path.match(/\d+$/)[0] : 1;
+      console.log('pageNum ', pageNum);
       const query = JSON.stringify({
-        query: `{ content(slug: "${
-          params[0]
-        }",  contentAreaSlug: "mprnews") { resourceType } }`
+        query: `{ content(slug: "${slug}",  contentAreaSlug: "mprnews") { resourceType } }`
       });
       const routes = {
         collection: '/collection',
