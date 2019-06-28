@@ -54,10 +54,6 @@ app
 
     server.use(slug, previewSlug, previewToken, daySlug, twitterSlug);
 
-    server.get('_next/*', (req, res) => {
-      return handle(req, res);
-    });
-
     //Root route
     server.get('/', (req, res) => {
       app.render(req, res, '/index');
