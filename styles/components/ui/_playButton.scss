@@ -6,12 +6,14 @@
   flex-direction: row;
   align-items: center;
   background: $color-blue-tint;
-  width: 100%;
-  overflow: hidden;
   border-top-left-radius: 18px;
   border-bottom-left-radius: 18px;
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
+}
+
+.playButton-primary {
+  width: 100%;
 }
 
 .playButton_button {
@@ -24,13 +26,24 @@
   fill: currentColor;
   box-shadow: 0 0 0 3px rgba($color-white, 1);
 
-  svg {
+  .icon {
     display: block;
     height: 31px;
     width: 31px;
   }
-}
 
+  .playButton-primary & {
+    height: 50px;
+    width: 50px;
+    margin-top: -4px;
+    margin-bottom: -4px;
+
+    .icon {
+      height: 45px;
+      width: 45px;
+    }
+  }
+}
 
 .playButton_label {
   padding: 0 1rem;

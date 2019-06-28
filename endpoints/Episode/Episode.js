@@ -1,8 +1,14 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
-import { Heading, Loading } from '@apmg/titan';
-import { Body } from 'amat-react';
+import { Loading } from '@apmg/titan';
+import { Image } from 'apm-mimas';
+import { collectionLinkData } from '../../utils/utils';
+import { format } from 'date-fns';
+import Content from '../../components/Content/Content';
+import AudioPlayButton from '../../components/AudioPlayButton/AudioPlayButton';
+import ContentGrid from '../../grids/ContentGrid';
+import Sidebar from '../../components/Sidebar/Sidebar';
 import query from './episode.gql';
 import Metatags from '../../components/Metatags/Metatags';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
@@ -17,7 +23,7 @@ const Episode = ({ slug, previewToken }) => (
     }}
   >
     {({ loading, error, data }) => {
-      if (error) return <div>Error loading page data</div>;
+      if (error) return <div>Error loading episode</div>;
       if (loading) return <Loading />;
 
       return <EpisodeInner episode={data.episode} />;
@@ -26,6 +32,21 @@ const Episode = ({ slug, previewToken }) => (
 );
 
 const EpisodeInner = ({ episode }) => {
+  let authors;
+
+  if (episode.contributors) {
+    authors = episode.contributors.map((contributor) => {
+      let thisString = `${
+        contributor.profile?.firstName ? contributor.profile.firstName : ''
+      } ${contributor.profile?.lastName ? contributor.profile.lastName : ''}`;
+      return {
+        // prettier-ignore
+        name: `${thisString}`,
+        href: `/profiles/${contributor.profile?.canonicalSlug}`
+      };
+    });
+  }
+
   const socialImage = fishForSocialMediaImage(episode);
   const tags = [
     {
@@ -41,15 +62,46 @@ const EpisodeInner = ({ episode }) => {
     },
     { key: 'twitter:image', name: 'twitter:image', content: socialImage }
   ];
+
   return (
-    <article className="episode">
+    <ContentGrid sidebar={<Sidebar />}>
       <Metatags title={episode.title} metatags={tags} links={[]} />
-      <Heading level={2}>{episode.title}</Heading>
-      <Body
-        nodeData={JSON.parse(episode.body)}
-        embedded={JSON.parse(episode.embeddedAssetJson)}
+
+      <Content
+        title={episode.title}
+        subtitle={episode.subtitle}
+        authors={authors}
+        body={episode.body}
+        audioPlayButton={
+          episode.primaryAudio && (
+            <AudioPlayButton
+              audioSource={episode.primaryAudio.encodings[0].httpFilePath}
+              audioTitle={episode.primaryAudio.title}
+              label="Listen"
+              elementClass="playButton-primary"
+            />
+          )
+        }
+        image={
+          episode.primaryVisuals?.lead && (
+            <Image
+              key={episode.primaryVisuals.lead.fallback}
+              image={episode.primaryVisuals.lead}
+              aspectRatio="uncropped"
+              sizes="(max-width: 1100px) 100vw, 1100px"
+              alt={episode.primaryVisuals.lead.shortCaption}
+            />
+          )
+        }
+        imageCaption={episode.primaryVisuals?.lead?.longCaption}
+        imageCredit={episode.primaryVisuals?.lead?.credit?.name}
+        imageCreditHref={episode.primaryVisuals?.lead?.credit?.url}
+        publishDate={format(episode.publishDate, 'MMMM D, YYYY')}
+        embeddedAssetJson={episode.embeddedAssetJson}
+        tag={collectionLinkData(episode.primaryCollection)}
+        elementClass="episode"
       />
-    </article>
+    </ContentGrid>
   );
 };
 
@@ -59,7 +111,26 @@ Episode.propTypes = {
 };
 
 EpisodeInner.propTypes = {
-  episode: PropTypes.object
+  episode: PropTypes.shape({
+    title: PropTypes.string,
+    authors: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string,
+        href: PropTypes.string
+      })
+    ),
+    body: PropTypes.string,
+    image: PropTypes.element,
+    imageCaption: PropTypes.string,
+    imageCredit: PropTypes.string,
+    imageCreditHref: PropTypes.string,
+    publishDate: PropTypes.string,
+    embeddedAssetJson: PropTypes.string,
+    tag: PropTypes.shape({
+      tagName: PropTypes.string,
+      to: PropTypes.string
+    })
+  })
 };
 
 export default Episode;

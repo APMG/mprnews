@@ -86,6 +86,15 @@ export function linkByTypeAs(item) {
   return link;
 }
 
+export function collectionLinkData(collection) {
+  return collection?.title && collection?.canonicalSlug
+    ? {
+        tagName: collection.title,
+        to: `/${collection.canonicalSlug}`
+      }
+    : null;
+}
+
 // Formats an ugly time (in seconds) to a nice readable format
 // e.g. 125 > 2:05, or 4226 > 1:10:26
 export function secondsToHms(timeInSeconds) {

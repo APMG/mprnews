@@ -12,6 +12,7 @@ const Content = ({
   authors,
   headingLevel,
   publishDate,
+  audioPlayButton,
   body,
   embeddedAssetJson,
   tag,
@@ -36,14 +37,20 @@ const Content = ({
         tag={tag}
       />
 
+      {audioPlayButton && (
+        <div className="content_audio">{audioPlayButton}</div>
+      )}
+
       {image && (
-        <Figure
-          caption={imageCaption}
-          credit={imageCredit}
-          creditHref={imageCreditHref}
-          elementClass={'content_figure'}
-          image={image}
-        />
+        <div className="content_primaryVisual">
+          <Figure
+            caption={imageCaption}
+            credit={imageCredit}
+            creditHref={imageCreditHref}
+            elementClass={'content_figure'}
+            image={image}
+          />
+        </div>
       )}
 
       {body && (
@@ -70,6 +77,7 @@ Content.propTypes = {
   ),
   headingLevel: PropTypes.number,
   publishDate: PropTypes.string,
+  audioPlayButton: PropTypes.node,
   body: PropTypes.string,
   embeddedAssetJson: PropTypes.string,
   tag: PropTypes.shape({

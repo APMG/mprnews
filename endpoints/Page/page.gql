@@ -1,8 +1,20 @@
-query PageQuery($contentAreaSlug: String!, $slug: String!, $previewToken: String) {
-  page: page(contentAreaSlug: $contentAreaSlug, slug: $slug, previewToken: $previewToken) {
+query PageQuery(
+  $contentAreaSlug: String!
+  $slug: String!
+  $previewToken: String
+) {
+  page: page(
+    contentAreaSlug: $contentAreaSlug
+    slug: $slug
+    previewToken: $previewToken
+  ) {
     id
     title
     canonicalSlug
+    primaryCollection {
+      title
+      canonicalSlug
+    }
     publishDate
     body
     embeddedAssetJson
