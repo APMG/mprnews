@@ -30,7 +30,8 @@ const Pagination = ({ collection, collectionName, pageNum }) => {
                   collection.results.totalPages
                 )}`}
                 href={`/collection?slug=${collectionName}&pageNum=${nextIndex(
-                  pageNum
+                  pageNum,
+                  collection.results.totalPages
                 )}`}
               >
                 <a className="btn btn-secondary">

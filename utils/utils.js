@@ -69,13 +69,16 @@ export function linkByTypeAs(item) {
   let link;
   switch (item.resourceType) {
     case 'link':
-      link = item.destination;
+      link = `/${item.destination}`;
       break;
     case 'collection':
-      link = item.canonicalSlug;
+      link = `/${item.canonicalSlug}`;
       break;
     case 'page':
-      link = item.canonicalSlug;
+      link = `/${item.canonicalSlug}`;
+      break;
+    case 'people':
+      link = `/profile/${item.canonicalSlug}`;
       break;
     default:
       link = `/${item.resourceType}/${item.canonicalSlug}`;
