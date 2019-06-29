@@ -4,11 +4,13 @@ const nextjs = require('next');
 const fetch = require('isomorphic-unfetch');
 const { getDateTimes, formatEachDateTime } = require('./utils/scheduleUtils');
 const { daysofweek } = require('./server/daysofweek');
+const { format } = require('date-fns');
 
 const port = parseInt(process.env.APP_PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== 'production';
 const app = nextjs({ dev });
 const handle = app.getRequestHandler();
+const { linkByTypeAs } = require('./utils/cjsutils');
 
 const slug = (req, res, next) => {
   req.slug = req.path.replace(
@@ -133,7 +135,7 @@ app
     });
 
     // Schedule Routing
-    // @todo rework so this endpoint just send out json
+    // TODO rework so this endpoint just sends out json
     server.get('/schedule/:day?', (req, res, next) => {
       const daysOfThisWeek = getDateTimes();
       const formattedDate = formatEachDateTime(daysOfThisWeek, req.daySlug);
@@ -167,36 +169,82 @@ app
     });
 
     // RSS feeds for collections
-    server.get(`/topic/feed/:id`, (req, res) => {
+    server.get(`/feed/*`, (req, res) => {
       res.header('Content-Type', 'text/xml');
       let xml = '<?xml version="1.0" encoding="UTF-8"?>';
-      let query = JSON.stringify(`{
-      collection(contentAreaSlug: ${process.env.CONTENT_AREA_SLUG}, slug: {req.params.id}) {
-        title
-        descriptionText
-        results {
-          items {
+      const query = JSON.stringify({
+        query: `{collection(contentAreaSlug: "${
+          process.env.CONTENT_AREA_SLUG
+        }", slug: "${req.params['0']}") {
+            canonicalSlug
             title
             descriptionText
-          }
-        }
-      }
-    }
-    `);
-      xml +=
-        '<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom"></rss>';
-      res.send(xml);
+            updatedAt
+            results {
+              items {
+                title
+                descriptionText
+                resourceType
+                canonicalSlug
+                updatedAt
+              }
+            }
+          }}`
+      });
 
+      xml +=
+        '<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom">';
+      xml += '<channel>';
       const fetchFeedData = async (query) => {
         return await fetch(process.env.GRAPHQL_API, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify(query)
-        }).then((response) => response.json());
+          body: query
+        })
+          .then((response) => {
+            return response.json();
+          })
+          .then((response) => {
+            return response;
+          })
+          .catch((err) => {
+            console.error('Error: ', err);
+          });
       };
-      fetchFeedData(query);
+      const queryRes = fetchFeedData(query);
+      queryRes.then((results) => {
+        xml += `<title>${results.data.collection.title} - MPR News</title>`;
+        xml += `<description>${results.data.collection.descriptionText}</description>`;
+        xml += `<pubDate>${format(
+          new Date(results.data.collection.updatedAt),
+          'ddd, D MMM YYYY HH:mm:ss ZZ'
+        )}</pubDate>`;
+        xml += `<atom:link
+                href="https://www.mprnews.org/feed/${results.data.collection.canonicalSlug}"
+                rel="self"
+                type="application/rss+xml"/> `;
+        results.data.collection.results.items.forEach((item) => {
+          if (item.resourceType === 'link') {
+            return;
+          }
+          const link = linkByTypeAs(item);
+          const dte = format(
+            new Date(item.updatedAt),
+            'ddd, D MMM YYYY HH:mm:ss ZZ'
+          );
+          xml += `<item>
+                      <pubDate>${item.updatedAt}</pubDate>
+                      <title>${item.title}</title>
+                      <description>${dte}</description>
+                      <link>https://www.mprnews.org${link}</link>
+                    </item>`;
+        });
+        xml += '</channel>';
+        xml += '</rss>';
+        res.send(xml);
+      });
     });
 
     // Dynamic Routing for collections and pages
@@ -205,7 +253,7 @@ app
       const slug = path.replace(/\/\d+$/, '');
       const pageNum = path.match(/\d+$/) ? path.match(/\d+$/)[0] : 1;
       const query = JSON.stringify({
-        query: `{ content(slug: "${slug}",  contentAreaSlug: "mprnews") { resourceType } }`
+        query: `{ content(slug: "${slug}",  contentAreaSlug: "${process.env.CONTENT_AREA_SLUG}") { resourceType } }`
       });
       const routes = {
         collection: '/collection',

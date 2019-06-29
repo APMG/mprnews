@@ -9,7 +9,7 @@ import { Body } from 'amat-react';
 import AdBottom from '../../components/Ads/AdBottom';
 import AdTop from '../../components/Ads/AdTop';
 import query from './home.gql';
-import { linkByTypeHref, linkByTypeAs } from '../../utils/utils';
+import { linkByTypeHref, linkByTypeAs } from '../../utils/cjsutils';
 
 const Home = () => (
   <Query
