@@ -12,6 +12,7 @@ query profile($contentAreaSlug: String!, $slug: String!, $previewToken: String) 
     body
     email
     description
+    descriptionText
     resourceType
     embeddedAssetJson
     contributions(

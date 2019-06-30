@@ -14,8 +14,7 @@ query story($contentAreaSlug: String!, $slug: String!, $previewToken: String) {
     }
     contributors {
       profile {
-        firstName
-        lastName
+      	title
         canonicalSlug
       }
       roles {
