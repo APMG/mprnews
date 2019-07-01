@@ -4,7 +4,7 @@ import { Query } from 'react-apollo';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import { Teaser, Loading } from '@apmg/titan';
-import { Image } from 'apm-mimas';
+import { Image } from '@apmg/mimas';
 import { Body } from 'amat-react';
 import AdBottom from '../../components/Ads/AdBottom';
 import AdTop from '../../components/Ads/AdTop';
@@ -32,6 +32,7 @@ const HomeInner = ({ data }) => {
   const { info } = JSON.parse(data.potlatch.json);
   return (
     <>
+      <Slideshow images={images} animation="slide" />
       {info.alert && info.show_on.indexOf('home') > -1 && (
         <Link href={info.url}>
           <a className="alert-box">{`${info.prefix} ${info.title}`}</a>
