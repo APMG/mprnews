@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Figure } from '@apmg/titan';
-import { Body } from 'amat-react';
+import { Body } from '@apmg/amat';
 import ContentHeader from './ContentHeader';
 
 const Content = ({

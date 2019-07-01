@@ -104,6 +104,7 @@ Story.propTypes = {
 StoryInner.propTypes = {
   story: PropTypes.shape({
     title: PropTypes.string,
+    subtitle: PropTypes.string,
     authors: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string,
@@ -111,10 +112,15 @@ StoryInner.propTypes = {
       })
     ),
     body: PropTypes.string,
+    contributors: PropTypes.array,
+    descriptionText: PropTypes.string,
     image: PropTypes.element,
     imageCaption: PropTypes.string,
     imageCredit: PropTypes.string,
     imageCreditHref: PropTypes.string,
+    primaryAudio: PropTypes.any,
+    primaryCollection: PropTypes.any,
+    primaryVisuals: PropTypes.any,
     publishDate: PropTypes.string,
     embeddedAssetJson: PropTypes.string,
     tag: PropTypes.shape({

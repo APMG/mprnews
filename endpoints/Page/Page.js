@@ -80,11 +80,15 @@ Page.propTypes = {
 PageInner.propTypes = {
   page: PropTypes.shape({
     title: PropTypes.string,
+    subtitle: PropTypes.string,
     body: PropTypes.string,
+    descriptionText: PropTypes.string,
     image: PropTypes.element,
     imageCaption: PropTypes.string,
     imageCredit: PropTypes.string,
     imageCreditHref: PropTypes.string,
+    primaryVisuals: PropTypes.any,
+    primaryCollection: PropTypes.any,
     publishDate: PropTypes.string,
     embeddedAssetJson: PropTypes.string,
     tag: PropTypes.shape({

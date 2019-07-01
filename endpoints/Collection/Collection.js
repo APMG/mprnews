@@ -2,7 +2,7 @@ import React from 'react';
 import Router from 'next/router';
 import { Teaser, Heading, Loading } from '@apmg/titan';
 import { Image } from 'apm-mimas';
-import { Body } from 'amat-react';
+import { Body } from '@apmg/amat';
 import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
 import query from './collection.gql';
