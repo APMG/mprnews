@@ -36,13 +36,9 @@ const StoryInner = ({ story }) => {
 
   if (story.contributors) {
     authors = story.contributors.map((contributor) => {
-      let thisString = `${
-        contributor.profile?.firstName ? contributor.profile.firstName : ''
-      } ${contributor.profile?.lastName ? contributor.profile.lastName : ''}`;
       return {
-        // prettier-ignore
-        name: `${thisString}`,
-        href: `/profiles/${contributor.profile?.canonicalSlug}`
+        name: `${contributor.profile.title}`,
+        href: `/people/${contributor.profile?.canonicalSlug}`
       };
     });
   }

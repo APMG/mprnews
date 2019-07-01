@@ -25,7 +25,6 @@ const Content = ({
     content: true,
     [elementClass]: elementClass
   });
-
   return (
     <article className={classes}>
       <ContentHeader
