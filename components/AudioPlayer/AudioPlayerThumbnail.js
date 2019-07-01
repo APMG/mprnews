@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Image } from 'apm-mimas';
 
-const AudioThumbnail = (props) => {
+const AudioPlayerThumbnail = (props) => {
   return (
     <Image
       elementClass="audioThumbnail"
@@ -12,9 +12,9 @@ const AudioThumbnail = (props) => {
   );
 };
 
-AudioThumbnail.propTypes = {
+AudioPlayerThumbnail.propTypes = {
   audioTitle: PropTypes.string,
   audioThumbnail: PropTypes.string
 };
 
-export default AudioThumbnail;
+export default AudioPlayerThumbnail;

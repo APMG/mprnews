@@ -13,6 +13,7 @@ const AudioWrapper = () => {
       audioTitle={context.audioTitle}
       audioThumbnail={context.audioThumbnail}
       isAudioLive={context.isAudioLive}
+      isAudioPlaying={context.isAudioPlaying}
       isPlayerVisible={context.isPlayerVisible}
       handleAudioButtonClick={context.handleAudioButtonClick}
       loadPlayer={context.loadPlayer}

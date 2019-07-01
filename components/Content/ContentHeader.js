@@ -30,7 +30,7 @@ const ContentHeader = (props) => {
       )}
 
       <div className="content_meta">
-        {props.authors.length ? (
+        {props.authors?.length ? (
           <div className="content_byline" data-testid="contentByline">
             <Byline authors={props.authors} />
           </div>

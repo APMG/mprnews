@@ -3,6 +3,7 @@ import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
 import { Loading } from '@apmg/titan';
 import { Image } from 'apm-mimas';
+import { collectionLinkData } from '../../utils/utils';
 import { format } from 'date-fns';
 import Content from '../../components/Content/Content';
 import AudioPlayButton from '../../components/AudioPlayButton/AudioPlayButton';
@@ -12,50 +13,35 @@ import query from './story.gql';
 import Metatags from '../../components/Metatags/Metatags';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
 
-const Story = ({ slug, previewToken }) => {
-  return (
-    <Query
-      query={query}
-      variables={{
-        contentAreaSlug: process.env.CONTENT_AREA_SLUG,
-        slug: slug,
-        previewToken: previewToken
-      }}
-    >
-      {({ loading, error, data }) => {
-        if (error) return <div>Error loading story</div>;
-        if (loading) return <Loading />;
-        return <StoryInner story={data.story} />;
-      }}
-    </Query>
-  );
-};
+const Story = ({ slug, previewToken }) => (
+  <Query
+    query={query}
+    variables={{
+      contentAreaSlug: process.env.CONTENT_AREA_SLUG,
+      slug: slug,
+      previewToken: previewToken
+    }}
+  >
+    {({ loading, error, data }) => {
+      if (error) return <div>Error loading story</div>;
+      if (loading) return <Loading />;
+
+      return <StoryInner story={data.story} />;
+    }}
+  </Query>
+);
 
 const StoryInner = ({ story }) => {
   let authors;
 
   if (story.contributors) {
     authors = story.contributors.map((contributor) => {
-      let thisString = `${
-        contributor.profile?.firstName ? contributor.profile.firstName : ''
-      } ${contributor.profile?.lastName ? contributor.profile.lastName : ''}`;
       return {
-        // prettier-ignore
-        name: `${thisString}`,
-        href: `/profiles/${contributor.profile?.canonicalSlug}`
+        name: `${contributor.profile.title}`,
+        href: `/people/${contributor.profile?.canonicalSlug}`
       };
     });
   }
-
-  const tag = () => {
-    return story.primaryCollection?.title &&
-      story.primaryCollection?.canonicalSlug
-      ? {
-          tagName: story.primaryCollection.title,
-          to: `/topic/${story.primaryCollection.canonicalSlug}`
-        }
-      : null;
-  };
 
   const socialImage = fishForSocialMediaImage(story);
   const tags = [
@@ -72,18 +58,21 @@ const StoryInner = ({ story }) => {
   return (
     <ContentGrid sidebar={<Sidebar />}>
       <Metatags title={story.title} metatags={tags} links={[]} />
-      {story.primaryAudio && (
-        <AudioPlayButton
-          audioSource={story.primaryAudio.encodings[0].httpFilePath}
-          audioTitle={story.primaryAudio.title}
-          label="Listen"
-        />
-      )}
       <Content
         title={story.title}
         subtitle={story.subtitle}
         authors={authors}
         body={story.body}
+        audioPlayButton={
+          story.primaryAudio && (
+            <AudioPlayButton
+              audioSource={story.primaryAudio.encodings[0].httpFilePath}
+              audioTitle={story.primaryAudio.title}
+              label="Listen"
+              elementClass="playButton-primary"
+            />
+          )
+        }
         image={
           story.primaryVisuals?.lead && (
             <Image
@@ -100,7 +89,7 @@ const StoryInner = ({ story }) => {
         imageCreditHref={story.primaryVisuals?.lead?.credit?.url}
         publishDate={format(story.publishDate, 'MMMM D, YYYY')}
         embeddedAssetJson={story.embeddedAssetJson}
-        tag={tag()}
+        tag={collectionLinkData(story.primaryCollection)}
         elementClass="story"
       />
     </ContentGrid>
@@ -115,6 +104,7 @@ Story.propTypes = {
 StoryInner.propTypes = {
   story: PropTypes.shape({
     title: PropTypes.string,
+    subtitle: PropTypes.string,
     authors: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string,
@@ -122,10 +112,15 @@ StoryInner.propTypes = {
       })
     ),
     body: PropTypes.string,
+    contributors: PropTypes.array,
+    descriptionText: PropTypes.string,
     image: PropTypes.element,
     imageCaption: PropTypes.string,
     imageCredit: PropTypes.string,
     imageCreditHref: PropTypes.string,
+    primaryAudio: PropTypes.any,
+    primaryCollection: PropTypes.any,
+    primaryVisuals: PropTypes.any,
     publishDate: PropTypes.string,
     embeddedAssetJson: PropTypes.string,
     tag: PropTypes.shape({

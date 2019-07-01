@@ -2,7 +2,7 @@ import React from 'react';
 import Router from 'next/router';
 import { Teaser, Heading, Loading } from '@apmg/titan';
 import { Image } from 'apm-mimas';
-import { Body } from 'amat-react';
+import { Body } from '@apmg/amat';
 import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
 import query from './collection.gql';
@@ -10,8 +10,10 @@ import Metatags from '../../components/Metatags/Metatags';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
 import ContentGrid from '../../grids/ContentGrid';
 import Sidebar from '../../components/Sidebar/Sidebar';
+import CollectionContributors from './CollectionContributors';
 import Pagination from '../../components/Pagination/Pagination';
-import { linkByTypeHref, linkByTypeAs, secondsToHms } from '../../utils/utils';
+import { linkByTypeHref, linkByTypeAs } from '../../utils/cjsutils';
+import { secondsToHms } from '../../utils/utils';
 import AudioPlayButton from '../../components/AudioPlayButton/AudioPlayButton';
 
 const Collection = ({ collectionName, pageNum }) => {
@@ -21,7 +23,7 @@ const Collection = ({ collectionName, pageNum }) => {
       variables={{
         contentAreaSlug: process.env.CONTENT_AREA_SLUG,
         slug: collectionName,
-        pageNum: parseInt(pageNum)
+        pageNum: pageNum
       }}
     >
       {({ loading, error, data }) => {
@@ -80,13 +82,19 @@ const CollectionInner = ({ collection, pageNum, collectionName }) => {
             {collection.title}
           </Heading>
         </div>
-        <div className="collection_body userContent">
-          <Body
-            nodeData={JSON.parse(collection.body)}
-            embedded={JSON.parse(collection.embeddedAssetJson)}
-          />
-        </div>
-        <aside className="collection_sidebar">Sidebar</aside>
+        {collection.body && (
+          <div className="collection_body userContent">
+            <Body
+              nodeData={JSON.parse(collection.body)}
+              embedded={JSON.parse(collection.embeddedAssetJson)}
+            />
+          </div>
+        )}
+        <aside className="collection_sidebar">
+          {collection.contributors?.length ? (
+            <CollectionContributors contributors={collection.contributors} />
+          ) : null}
+        </aside>
         <div className="collection_items">
           {collection.results.items.map((item) => {
             const link = linkByTypeHref(item);
@@ -104,12 +112,12 @@ const CollectionInner = ({ collection, pageNum, collectionName }) => {
                 publishDate={item.publishDate}
                 headingLevel={2}
                 image={
-                  item.primaryVisuals?.lead ? (
+                  item.primaryVisuals?.thumbnail ? (
                     <Image
-                      image={item.primaryVisuals.lead}
+                      image={item.primaryVisuals.thumbnail}
                       aspectRatio="widescreen"
                       sizes="(max-width: 590px) 95vw, (max-width: 890px) 45vw, 500px"
-                      alt={item.primaryVisuals.lead.longCaption}
+                      alt={item.primaryVisuals.thumbnail.shortCaption}
                     />
                   ) : null
                 }

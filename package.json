@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "RAILS_ENV=development NODE_ENV=development node server.js",
+    "debug": "RAILS_ENV=development NODE_ENV=development node --inspect server.js",
     "dev:clean": "rm -rf build && npm run dev",
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
@@ -52,11 +53,17 @@
     "@babel/plugin-proposal-optional-chaining": "^7.2.0",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@zeit/next-sass": "^1.0.1",
+    "babel-eslint": "^10.0.2",
     "babel-plugin-import-graphql": "^2.7.0",
+    "eslint": "^6.0.1",
     "eslint-config-prettier": "^4.3.0",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.14.2",
     "file-loader": "^4.0.0",
+    "jest": "^24.8.0",
     "next-images": "^1.1.1",
-    "node-sass": "^4.12.0",
+    "prettier": "^1.18.2",
     "sass-lint": "^1.13.1"
   },
   "husky": {

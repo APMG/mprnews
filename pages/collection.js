@@ -5,20 +5,20 @@ import Collection from '../endpoints/Collection/Collection';
 
 /* eslint react/display-name: 0 */
 
-const CollectionPage = ({ collection, pageNum }) => (
-  <MainLayout>
-    <Collection collectionName={collection} pageNum={parseInt(pageNum)} />
-  </MainLayout>
-);
+const CollectionPage = ({ slug, pageNum = 1 }) => {
+  return (
+    <MainLayout>
+      <Collection collectionName={slug} pageNum={parseInt(pageNum)} />
+    </MainLayout>
+  );
+};
 
-CollectionPage.getInitialProps = async ({
-  query: { slug, collection, pageNum }
-}) => {
-  return { slug, collection, pageNum };
+CollectionPage.getInitialProps = async ({ query: { slug, pageNum } }) => {
+  return { slug, pageNum };
 };
 
 CollectionPage.propTypes = {
-  collection: PropTypes.string,
-  pageNum: PropTypes.number
+  slug: PropTypes.string,
+  pageNum: PropTypes.string
 };
 export default CollectionPage;

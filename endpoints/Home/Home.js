@@ -5,11 +5,11 @@ import Link from 'next/link';
 import PropTypes from 'prop-types';
 import { Teaser, Loading } from '@apmg/titan';
 import { Image } from '@apmg/mimas';
-import { Body } from 'amat-react';
+import { Body } from '@apmg/amat';
 import AdBottom from '../../components/Ads/AdBottom';
 import AdTop from '../../components/Ads/AdTop';
 import query from './home.gql';
-import { linkByTypeHref, linkByTypeAs } from '../../utils/utils';
+import { linkByTypeHref, linkByTypeAs } from '../../utils/cjsutils';
 
 const Home = () => (
   <Query
@@ -32,7 +32,6 @@ const HomeInner = ({ data }) => {
   const { info } = JSON.parse(data.potlatch.json);
   return (
     <>
-      <Slideshow images={images} animation="slide" />
       {info.alert && info.show_on.indexOf('home') > -1 && (
         <Link href={info.url}>
           <a className="alert-box">{`${info.prefix} ${info.title}`}</a>

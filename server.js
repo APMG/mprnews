@@ -1,16 +1,15 @@
 /*eslint no-console: 0*/
 const express = require('express');
-const next = require('next');
-const fetch = require('isomorphic-unfetch');
-const { getDateTimes, formatEachDateTime } = require('./utils/scheduleUtils');
+const nextjs = require('next');
 const { daysofweek } = require('./server/daysofweek');
 
 const port = parseInt(process.env.APP_PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== 'production';
-const app = next({ dev });
+const app = nextjs({ dev });
 const handle = app.getRequestHandler();
-const { pages } = require('./server/pages');
-const { collections } = require('./server/collections');
+const { feed } = require('./server/feed');
+const { schedule } = require('./server/schedule');
+const { dynamic } = require('./server/dynamic');
 
 const slug = (req, res, next) => {
   req.slug = req.path.replace(
@@ -56,15 +55,29 @@ app
 
     server.use(slug, previewSlug, previewToken, daySlug, twitterSlug);
 
+    //Root route
     server.get('/', (req, res) => {
       app.render(req, res, '/index');
     });
 
+    // Search Routing
     server.get('/search', (req, res) => {
       app.render(req, res, '/search');
     });
+
+    // Scribble Live Routing
     server.get('/scribble', (req, res) => {
       app.render(req, res, '/scribble');
+    });
+
+    // Weather routing
+    server.get('/weather/:id?', (req, res) => {
+      app.render(req, res, '/weather', { id: req.params.id });
+    });
+
+    // Story routing
+    server.get('/story/*', (req, res) => {
+      app.render(req, res, '/story', { slug: req.slug });
     });
 
     server.get('/story/card/*', (req, res) => {
@@ -75,32 +88,24 @@ app
       app.render(req, res, '/newspartnerstory', { slug: req.slug });
     });
 
-    server.get('/preview/stories/*', (req, res) => {
-      app.render(req, res, '/story', {
+    // Profile Routing
+    server.get('/people/*', (req, res) => {
+      app.render(req, res, '/profile', { slug: req.slug });
+    });
+
+    // Preview Routing
+    server.get('/preview/pages/*', (req, res) => {
+      app.render(req, res, '/page', {
         slug: req.previewSlug,
         previewToken: req.previewToken
       });
     });
 
-    server.get(`/topic/:id/:page?`, (req, res) => {
-      const queryParams = {
-        collection: req.params.id,
-        pageNum: parseInt(req.params.page ? req.params.page : 1),
-        slug: req.slug
-      };
-      app.render(req, res, '/collection', queryParams);
-    });
-
-    server.get('/ampstory/*', (req, res) => {
-      app.render(req, res, '/ampstory', { slug: req.slug });
-    });
-
-    server.get('/story/*', (req, res) => {
-      app.render(req, res, '/story', { slug: req.slug });
-    });
-
-    server.get('/episode/*', (req, res) => {
-      app.render(req, res, '/episode', { slug: req.slug });
+    server.get('/preview/stories/*', (req, res) => {
+      app.render(req, res, '/story', {
+        slug: req.previewSlug,
+        previewToken: req.previewToken
+      });
     });
 
     server.get('/preview/episodes/*', (req, res) => {
@@ -110,79 +115,32 @@ app
       });
     });
 
+    // AMP Routing
+    server.get('/ampstory/*', (req, res) => {
+      app.render(req, res, '/ampstory', { slug: req.slug });
+    });
+
     server.get('/ampepisode/*', (req, res) => {
       app.render(req, res, '/ampepisode', { slug: req.slug });
-    });
-
-    server.get('/page/*', (req, res) => {
-      app.render(req, res, '/page', { slug: req.slug });
-    });
-
-    server.get('/people/*', (req, res) => {
-      app.render(req, res, '/profile', { slug: req.slug });
-    });
-
-    server.get('/preview/pages/*', (req, res) => {
-      app.render(req, res, '/page', {
-        slug: req.previewSlug,
-        previewToken: req.previewToken
-      });
     });
 
     server.get('/amppage/*', (req, res) => {
       app.render(req, res, '/amppage', { slug: req.slug });
     });
 
-    server.get('/schedule/:day?', (req, res, next) => {
-      const daysOfThisWeek = getDateTimes();
-      const formattedDate = formatEachDateTime(daysOfThisWeek, req.daySlug);
-
-      const fetchSchedule = async (dateTime) => {
-        try {
-          return await fetch(
-            `http://scheduler.publicradio.org/api/v1/services/3/schedule/?datetime=${dateTime}`
-          )
-            .then(function(response) {
-              if (!response.ok) {
-                next();
-              }
-              return response.json();
-            })
-            .then(function(response) {
-              app.render(req, res, '/schedule', {
-                slug: req.daySlug,
-                props: response
-              });
-            })
-            .catch(function(error) {
-              console.log(error);
-            });
-        } catch (error) {
-          next();
-          console.log(error);
-        }
-      };
-      fetchSchedule(formattedDate);
+    // Episode Routing
+    server.get('/episode/*', (req, res) => {
+      app.render(req, res, '/episode', { slug: req.slug });
     });
 
-    server.get('/weather/:id?', (req, res) => {
-      app.render(req, res, '/weather', { id: req.params.id });
-    });
+    // schedule route
+    schedule(server, app);
 
-    server.get('/:slug/:page?', (req, res) => {
-      //whitelisted routes for pages and collections
-      if (pages().indexOf(req.params.slug) >= 0) {
-        app.render(req, res, '/page', { slug: req.params.slug });
-      } else if (collections().indexOf(req.params.slug) >= 0) {
-        const queryParams = {
-          collection: req.params.slug,
-          pageNum: parseInt(req.params.page ? req.params.page : 1)
-        };
-        app.render(req, res, '/collection', queryParams);
-      } else {
-        return handle(req, res);
-      }
-    });
+    // imported RSS route
+    feed(server);
+
+    // Dynamic Routing for collections and pages
+    dynamic(server, app);
 
     server.get('*', (req, res) => {
       return handle(req, res);

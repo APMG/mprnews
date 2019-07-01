@@ -13,7 +13,11 @@ class AudioPlayer extends React.Component {
 
   render() {
     return (
-      <div className="playerWrapper">
+      <div
+        className={`playerWrapper ${
+          this.props.isAudioPlaying ? 'is-sticky' : ''
+        }`}
+      >
         <div
           id="player"
           className={`player js-player ${
@@ -29,6 +33,7 @@ class AudioPlayer extends React.Component {
             preload="metadata"
             ref={this.props.audioElementRef}
           />
+
           <AudioPlayerUI {...this.props} />
         </div>
       </div>
@@ -42,6 +47,7 @@ AudioPlayer.propTypes = {
   audioTitle: PropTypes.string,
   handleAudioButtonClick: PropTypes.func,
   isAudioLive: PropTypes.bool,
+  isAudioPlaying: PropTypes.bool,
   loadPlayer: PropTypes.func,
   playerRef: PropTypes.object
 };

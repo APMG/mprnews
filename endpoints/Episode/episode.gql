@@ -1,21 +1,51 @@
-query episode($contentAreaSlug: String!, $slug: String!, $previewToken: String) {
-  episode: episode(contentAreaSlug: $contentAreaSlug, slug: $slug, previewToken: $previewToken) {
+query episode(
+  $contentAreaSlug: String!
+  $slug: String!
+  $previewToken: String
+) {
+  episode: episode(
+    contentAreaSlug: $contentAreaSlug
+    slug: $slug
+    previewToken: $previewToken
+  ) {
     id
     title
+    subtitle
     canonicalSlug
+    primaryCollection {
+      title
+      canonicalSlug
+    }
+    contributors {
+      profile {
+        firstName
+        lastName
+        canonicalSlug
+      }
+      roles {
+        name
+      }
+    }
     publishDate
     body
+    description
+    resourceType
+    primaryAudio {
+      title
+      credit
+      durationHms
+      durationMs
+      encodings {
+        format
+        mediaType
+        httpFilePath
+        playFilePath
+      }
+    }
     embeddedAssetJson
     primaryVisuals {
       lead {
         aspect_ratios: aspectRatios {
-          widescreen {
-            instances {
-              url
-              width
-              height
-            }
-          }
           uncropped {
             instances {
               url
@@ -25,19 +55,16 @@ query episode($contentAreaSlug: String!, $slug: String!, $previewToken: String) 
           }
         }
         contentArea
+        credit {
+          name
+          url
+        }
         dateTaken
         dateline
         fallback
         longCaption
         shortCaption
         xid
-      }
-    }
-    audio {
-      title
-      durationHms
-      encodings {
-        httpFilePath
       }
     }
   }
