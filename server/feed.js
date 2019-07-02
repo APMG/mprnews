@@ -14,7 +14,7 @@ module.exports.feed = (server) => {
             title
             descriptionText
             updatedAt
-            results {
+            results(pageSize: 30) {
               items {
                 title
                 descriptionText
@@ -74,7 +74,7 @@ module.exports.feed = (server) => {
                       <title>${item.title}</title>
                       <description>${item.descriptionText}</description>
                       <link>https://www.mprnews.org${link}</link>
-                      <guid>https://www.mprnews.org${link}</guid>
+                      <guid isPermaLink="true">https://www.mprnews.org${link}</guid>
                     </item>`;
       });
       xml += '</channel>';
