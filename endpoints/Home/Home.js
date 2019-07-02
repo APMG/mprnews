@@ -4,29 +4,30 @@ import { Query } from 'react-apollo';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import { Teaser, Loading } from '@apmg/titan';
-import { Image } from 'apm-mimas';
-import { Body } from 'amat-react';
+import { Image } from '@apmg/mimas';
+import { Body } from '@apmg/amat';
 import AdBottom from '../../components/Ads/AdBottom';
 import AdTop from '../../components/Ads/AdTop';
 import query from './home.gql';
-import { linkByTypeHref, linkByTypeAs } from '../../utils/utils';
+import { linkByTypeHref, linkByTypeAs } from '../../utils/cjsutils';
 
-const Home = () => (
-  <Query
-    query={query}
-    variables={{
-      contentAreaSlug: process.env.CONTENT_AREA_SLUG,
-      slug: 'homepage'
-    }}
-  >
-    {({ loading, error, data }) => {
-      if (error) return <div>{`Error: ${error}`}</div>;
-      if (loading) return <Loading />;
-
-      return <HomeInner data={data} />;
-    }}
-  </Query>
-);
+const Home = () => {
+  return (
+    <Query
+      query={query}
+      variables={{
+        contentAreaSlug: process.env.CONTENT_AREA_SLUG,
+        slug: 'homepage'
+      }}
+    >
+      {({ loading, error, data }) => {
+        if (error) return <div>{`Error: ${error}`}</div>;
+        if (loading) return <Loading />;
+        return <HomeInner data={data} />;
+      }}
+    </Query>
+  );
+};
 
 const HomeInner = ({ data }) => {
   const { info } = JSON.parse(data.potlatch.json);

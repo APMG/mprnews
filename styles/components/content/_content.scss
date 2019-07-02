@@ -7,8 +7,14 @@
 // collection bodies
 //--------------------------------------
 
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
 .content_header {
   margin-bottom: 2rem;
+  order: 1;
 }
 
 .content_subtitle {
@@ -42,7 +48,17 @@
   color: $color-text-light;
 }
 
+.content_primaryVisual {
+  order: 2;
+}
+
+.content_audio {
+  order: 3;
+  margin-bottom: 2rem;
+}
+
 .content_body {
+  order: 4;
   margin: 0 auto;
   max-width: 50rem;
   line-height: 1.5;

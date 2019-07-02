@@ -2,7 +2,7 @@ import React from 'react';
 import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
 import { Loading } from '@apmg/titan';
-import { Body } from 'amat-react';
+import { Body } from '@apmg/amat';
 import query from './photoGallery.gql';
 
 const PhotoGallery = () => (

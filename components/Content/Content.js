@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Figure } from '@apmg/titan';
-import { Body } from 'amat-react';
+import { Body } from '@apmg/amat';
 import ContentHeader from './ContentHeader';
 
 const Content = ({
@@ -12,6 +12,7 @@ const Content = ({
   authors,
   headingLevel,
   publishDate,
+  audioPlayButton,
   body,
   embeddedAssetJson,
   tag,
@@ -24,7 +25,6 @@ const Content = ({
     content: true,
     [elementClass]: elementClass
   });
-
   return (
     <article className={classes}>
       <ContentHeader
@@ -36,14 +36,20 @@ const Content = ({
         tag={tag}
       />
 
+      {audioPlayButton && (
+        <div className="content_audio">{audioPlayButton}</div>
+      )}
+
       {image && (
-        <Figure
-          caption={imageCaption}
-          credit={imageCredit}
-          creditHref={imageCreditHref}
-          elementClass={'content_figure'}
-          image={image}
-        />
+        <div className="content_primaryVisual">
+          <Figure
+            caption={imageCaption}
+            credit={imageCredit}
+            creditHref={imageCreditHref}
+            elementClass={'content_figure'}
+            image={image}
+          />
+        </div>
       )}
 
       {body && (
@@ -70,6 +76,7 @@ Content.propTypes = {
   ),
   headingLevel: PropTypes.number,
   publishDate: PropTypes.string,
+  audioPlayButton: PropTypes.node,
   body: PropTypes.string,
   embeddedAssetJson: PropTypes.string,
   tag: PropTypes.shape({

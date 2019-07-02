@@ -1,9 +1,12 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
-import { format } from 'date-fns';
-import { Heading, Loading } from '@apmg/titan';
-import { Body } from 'amat-react';
+import { Loading } from '@apmg/titan';
+import { Image } from 'apm-mimas';
+import { collectionLinkData } from '../../utils/utils';
+import Content from '../../components/Content/Content';
+import ContentGrid from '../../grids/ContentGrid';
+import Sidebar from '../../components/Sidebar/Sidebar';
 import query from './page.gql';
 import Metatags from '../../components/Metatags/Metatags';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
@@ -38,26 +41,34 @@ const PageInner = ({ page }) => {
     },
     { key: 'twitter:image', name: 'twitter:image', content: socialImage }
   ];
+
   return (
-    <>
+    <ContentGrid sidebar={<Sidebar />}>
       <Metatags title={page.title} metatags={tags} links={[]} />
-      <section className="page section">
-        <div className="content">
-          <div className="content_date">
-            {format(page.publishDate, 'MMMM D, YYYY')}
-          </div>
-          <Heading level={2} elementClass="hdg-page">
-            {page.title}
-          </Heading>
-          <div className="content_body">
-            <Body
-              nodeData={JSON.parse(page.body)}
-              embedded={JSON.parse(page.embeddedAssetJson)}
+
+      <Content
+        title={page.title}
+        subtitle={page.subtitle}
+        body={page.body}
+        image={
+          page.primaryVisuals?.lead && (
+            <Image
+              key={page.primaryVisuals.lead.fallback}
+              image={page.primaryVisuals.lead}
+              aspectRatio="uncropped"
+              sizes="(max-width: 1100px) 100vw, 1100px"
+              alt={page.primaryVisuals.lead.shortCaption}
             />
-          </div>
-        </div>
-      </section>
-    </>
+          )
+        }
+        imageCaption={page.primaryVisuals?.lead?.longCaption}
+        imageCredit={page.primaryVisuals?.lead?.credit?.name}
+        imageCreditHref={page.primaryVisuals?.lead?.credit?.url}
+        embeddedAssetJson={page.embeddedAssetJson}
+        tag={collectionLinkData(page.primaryCollection)}
+        elementClass="episode"
+      />
+    </ContentGrid>
   );
 };
 
@@ -67,7 +78,24 @@ Page.propTypes = {
 };
 
 PageInner.propTypes = {
-  page: PropTypes.object
+  page: PropTypes.shape({
+    title: PropTypes.string,
+    subtitle: PropTypes.string,
+    body: PropTypes.string,
+    descriptionText: PropTypes.string,
+    image: PropTypes.element,
+    imageCaption: PropTypes.string,
+    imageCredit: PropTypes.string,
+    imageCreditHref: PropTypes.string,
+    primaryVisuals: PropTypes.any,
+    primaryCollection: PropTypes.any,
+    publishDate: PropTypes.string,
+    embeddedAssetJson: PropTypes.string,
+    tag: PropTypes.shape({
+      tagName: PropTypes.string,
+      to: PropTypes.string
+    })
+  })
 };
 
 export default Page;
