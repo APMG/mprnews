@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import AudioPlayerUI from './AudioPlayerUI';
+import classNames from 'classnames';
 
 class AudioPlayer extends React.Component {
   constructor(props) {
@@ -12,12 +13,13 @@ class AudioPlayer extends React.Component {
   }
 
   render() {
+    const playerClasses = classNames({
+      playerWrapper: true,
+      'is-sticky': this.props.isAudioPlaying,
+      'is-listenPage': this.props.listenPage
+    });
     return (
-      <div
-        className={`playerWrapper ${
-          this.props.isAudioPlaying ? 'is-sticky' : ''
-        }`}
-      >
+      <div className={playerClasses}>
         <div
           id="player"
           className={`player js-player ${
@@ -49,7 +51,8 @@ AudioPlayer.propTypes = {
   isAudioLive: PropTypes.bool,
   isAudioPlaying: PropTypes.bool,
   loadPlayer: PropTypes.func,
-  playerRef: PropTypes.object
+  playerRef: PropTypes.object,
+  listenPage: PropTypes.bool
 };
 
 export default AudioPlayer;

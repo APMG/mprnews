@@ -14,3 +14,13 @@
     padding-top: $header-height-desktop + $header-buffer;
   }
 }
+
+
+.main-listen {
+  padding-top: 0;
+  position: relative;
+
+  .player.is-live .player_popout {
+    display: none;
+  }
+}

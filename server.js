@@ -65,6 +65,11 @@ app
       app.render(req, res, '/search');
     });
 
+    // Listen Routing
+    server.get('/listen', (req, res) => {
+      app.render(req, res, '/listen');
+    });
+
     // Scribble Live Routing
     server.get('/scribble', (req, res) => {
       app.render(req, res, '/scribble');

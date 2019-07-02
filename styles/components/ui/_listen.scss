@@ -1,0 +1,20 @@
+//--------------------------------
+// Listen Page
+//--------------------------------
+
+.listen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 24px auto;
+}
+
+.listen_thumbnail {
+  height: auto;
+  width: 276px;
+  margin: 24px 0;
+}
+
+.listen-highlight {
+  background-image: radial-gradient(50% -3%, $color-white 52%, rgba(255, 255, 255, 0) 100%);
+}
