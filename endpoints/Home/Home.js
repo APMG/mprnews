@@ -11,22 +11,23 @@ import AdTop from '../../components/Ads/AdTop';
 import query from './home.gql';
 import { linkByTypeHref, linkByTypeAs } from '../../utils/cjsutils';
 
-const Home = () => (
-  <Query
-    query={query}
-    variables={{
-      contentAreaSlug: process.env.CONTENT_AREA_SLUG,
-      slug: 'homepage'
-    }}
-  >
-    {({ loading, error, data }) => {
-      if (error) return <div>{`Error: ${error}`}</div>;
-      if (loading) return <Loading />;
-
-      return <HomeInner data={data} />;
-    }}
-  </Query>
-);
+const Home = () => {
+  return (
+    <Query
+      query={query}
+      variables={{
+        contentAreaSlug: process.env.CONTENT_AREA_SLUG,
+        slug: 'homepage'
+      }}
+    >
+      {({ loading, error, data }) => {
+        if (error) return <div>{`Error: ${error}`}</div>;
+        if (loading) return <Loading />;
+        return <HomeInner data={data} />;
+      }}
+    </Query>
+  );
+};
 
 const HomeInner = ({ data }) => {
   const { info } = JSON.parse(data.potlatch.json);
