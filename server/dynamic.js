@@ -8,14 +8,13 @@ module.exports.dynamic = (server, app, handle) => {
     if (req.path.match(/^\/favicon|_next|static/)) {
       return handle(req, res);
     }
-    const path = req.path.replace(/^\//, '');
+    let path = req.path.replace(/^\//, '');
+    path = path.replace(/\/$/, '');
     const slug = path.replace(/\/\d+$/, '');
-    console.log('Slug ', slug);
     const pageNum = path.match(/\d+$/) ? path.match(/\d+$/)[0] : 1;
     const query = JSON.stringify({
       query: `{ content(slug: "${slug}",  contentAreaSlug: "${process.env.CONTENT_AREA_SLUG}") { resourceType } }`
     });
-    console.log(query);
     const routes = {
       collection: '/collection',
       page: '/page'
