@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Router from 'next/router';
 import { Heading, Button, Loading } from '@apmg/titan';
@@ -9,36 +9,68 @@ import TwoDaysChart from './TwoDaysChart';
 import WeeklyForecast from './WeeklyForecast';
 import { weatherConfig } from '../../utils/defaultData';
 import { fetchWeather } from '../../utils/fetchWeather';
+import LocationContext from '../../context/LocationContext';
 
 const Weather = (props) => {
   const [data, setData] = useState(props.data);
   const [loading, setLoading] = useState(false);
+  let context = useContext(LocationContext);
 
-  const handleChange = async (e) => {
-    let newLocation = weatherConfig.find(
-      (item) => item.name === e.target.value
-    );
-
+  useEffect(() => {
+    console.log('use effect called');
+    console.log(context.location);
     setLoading(true);
 
-    const href = `/weather/${newLocation.id}`;
+    const href = `/weather/${context.location.id}`;
     const as = href;
     Router.push(href, as, { shallow: true });
 
-    const { weather, forecast, weekly, alerts } = await fetchWeather(
-      newLocation.lat,
-      newLocation.long
-    );
+    const callFetchWeather = async () => {
+      console.log('fetch weather called');
+      const { weather, forecast, weekly, alerts } = await fetchWeather(
+        context.location.lat,
+        context.location.long
+      );
 
-    setData({
-      location: newLocation,
-      weather: weather,
-      forecast: forecast,
-      weekly: weekly,
-      alerts: alerts
-    });
+      setData({
+        location: context.location,
+        weather: weather,
+        forecast: forecast,
+        weekly: weekly,
+        alerts: alerts
+      });
+    };
+
+    callFetchWeather();
+
     setLoading(false);
-  };
+  }, [context.location]);
+
+  // const handleChange = async (e) => {
+  //   setLoading(true);
+
+  //   let test = context.handleLocationChange(e.target.value);
+
+  //   console.log(test);
+
+  //   const href = `/weather/${context.location.id}`;
+  //   const as = href;
+  //   Router.push(href, as, { shallow: true });
+
+  //   const { weather, forecast, weekly, alerts } = await fetchWeather(
+  //     context.location.lat,
+  //     context.location.long
+  //   );
+
+  //   setData({
+  //     location: context.location,
+  //     weather: weather,
+  //     forecast: forecast,
+  //     weekly: weekly,
+  //     alerts: alerts
+  //   });
+  //   setLoading(false);
+  // };
 
   const { location, alerts } = data;
 
@@ -64,7 +96,9 @@ const Weather = (props) => {
 
         <select
           className="weather_locationSelect"
-          onChange={handleChange}
+          onChange={(e) => {
+            context.handleLocationChange(e.target.value);
+          }}
           value={location.name}
         >
           {weatherConfig.map((loc) => (
