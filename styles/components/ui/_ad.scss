@@ -1,0 +1,25 @@
+// Ads
+
+.ad {
+  margin-right: -($container-edge);
+}
+
+.ad_link {
+  margin-bottom: .5rem;
+  font-size: 1rem;
+  color: $color-text-light;
+  transition: $transition;
+
+  &:hover {
+    color: $color-link;
+  }
+}
+
+.ad_slot {
+  background: $color-grey-90;
+}
+
+.ad_slot-mr {
+  width: 300px;
+  height: 250px;
+}

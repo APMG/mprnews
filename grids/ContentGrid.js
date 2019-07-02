@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 const ContentGrid = (props) => {
   return (
-    <div className="gridContent">
-      <div className="gridContent_main">{props.children}</div>
-      <div className="gridContent_sidebar">{props.sidebar}</div>
+    <div className="contentGrid">
+      <div className="contentGrid_main">{props.children}</div>
+      <div className="contentGrid_sidebar">{props.sidebar}</div>
     </div>
   );
 };

@@ -1,0 +1,83 @@
+// Homepage template/layout
+
+.home {
+  display: grid;
+  grid-row-gap: 40px;
+  grid-template-areas:
+  'top'
+  'first'
+  'rail'
+  'main'
+  'sidebar'
+  'footer';
+
+  > * {
+    // Fallback in case the browser doesn't support grid
+    margin-bottom: 40px;
+
+    @supports (grid-row-gap: 40px) {
+      margin-bottom: 0;
+    }
+  }
+
+  @include media($media-small-tablet) {
+    grid-template-columns: 1fr 180px;
+    grid-template-areas:
+    'top top'
+    'first rail'
+    'main rail'
+    'sidebar rail'
+    'footer footer';
+    grid-column-gap: 5%;
+  }
+
+  @include media($media-tablet) {
+    grid-template-columns: 1fr 300px;
+    grid-template-areas:
+    'top top'
+    'first sidebar'
+    'rail sidebar'
+    'main sidebar'
+    'footer footer';
+  }
+
+  @include media($media-desktop) {
+    grid-template-columns: 200px 1fr 300px;
+    grid-template-areas:
+    'top top sidebar'
+    'rail first sidebar'
+    'rail main sidebar'
+    'footer footer footer';
+    margin-right: -($container-edge);
+  }
+}
+
+.home_top {
+  grid-area: top;
+}
+
+.home_first {
+  grid-area: first;
+}
+
+.home_rail {
+  grid-area: rail;
+}
+
+.home_railSections {
+  @include media-max($media-desktop) {
+    display: none;
+  }
+}
+
+.home_main {
+  grid-area: main;
+}
+
+.home_sidebar {
+  grid-area: sidebar;
+}
+
+.home_footer {
+  grid-area: footer;
+}

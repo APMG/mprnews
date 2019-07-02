@@ -47,7 +47,7 @@
 // Should apply mostly to overall page structure, not inner content
 // @import 'layout/**/*.scss';
 @import 'layout/container';
-@import 'layout/gridContent';
+@import 'layout/contentGrid';
 @import 'layout/main';
 @import 'layout/section';
 
@@ -67,16 +67,19 @@
 @import 'components/landmarks/header';
 @import 'components/landmarks/nav';
 @import 'components/landmarks/navIcon';
+@import 'components/landmarks/sidebar';
 @import 'components/lists/bList';
 @import 'components/lists/hList';
 @import 'components/lists/nList';
 @import 'components/lists/vList';
 @import 'components/structure/figure';
+@import 'components/structure/module';
 @import 'components/type/blockquote';
 @import 'components/type/hdg';
 @import 'components/type/hr';
 @import 'components/type/link';
 @import 'components/type/text';
+@import 'components/ui/ad';
 @import 'components/ui/alert';
 @import 'components/ui/btn';
 @import 'components/ui/dropdown';
@@ -97,6 +100,7 @@
 // @import 'templates/**/*.scss';
 @import 'templates/collection';
 @import 'templates/episode';
+@import 'templates/home';
 @import 'templates/story';
 @import 'templates/schedule';
 
