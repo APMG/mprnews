@@ -2,7 +2,7 @@ import React from 'react';
 import Router from 'next/router';
 import { Teaser, Heading, Loading } from '@apmg/titan';
 import { Image } from 'apm-mimas';
-import { Body } from 'amat-react';
+import { Body } from '@apmg/amat';
 import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
 import query from './collection.gql';
@@ -12,7 +12,8 @@ import ContentGrid from '../../grids/ContentGrid';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import CollectionContributors from './CollectionContributors';
 import Pagination from '../../components/Pagination/Pagination';
-import { linkByTypeHref, linkByTypeAs, secondsToHms } from '../../utils/utils';
+import { linkByTypeHref, linkByTypeAs } from '../../utils/cjsutils';
+import { secondsToHms } from '../../utils/utils';
 import AudioPlayButton from '../../components/AudioPlayButton/AudioPlayButton';
 
 const Collection = ({ collectionName, pageNum }) => {
@@ -22,7 +23,7 @@ const Collection = ({ collectionName, pageNum }) => {
       variables={{
         contentAreaSlug: process.env.CONTENT_AREA_SLUG,
         slug: collectionName,
-        pageNum: parseInt(pageNum)
+        pageNum: pageNum
       }}
     >
       {({ loading, error, data }) => {

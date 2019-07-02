@@ -9,22 +9,28 @@ const Search = () => {
   };
 
   const myCallback = () => {
-    if (document.readyState == 'complete') {
-      // Document is ready when CSE element is initialized.
-      // Render an element with both search box and search results in div with id 'test'.
-      google.search.cse.element.render({
-        div: 'gsearch',
-        tag: 'search'
-      });
-    } else {
-      // Document is not ready yet, when CSE element is initialized.
-      google.setOnLoadCallback(function() {
-        // Render an element with both search box and search results in div with id 'gsearch'.
+    const gsearch = document.getElementById('gsearch');
+    if (gsearch.children.length === 0) {
+      if (document.readyState == 'complete') {
+        // Document is ready when CSE element is initialized.
+        // Render an element with both search box and search results in div with id 'test'.
         google.search.cse.element.render({
           div: 'gsearch',
           tag: 'search'
         });
-      }, true);
+      } else {
+        // Document is not ready yet, when CSE element is initialized.
+        if (typeof google === 'undefined') {
+          return;
+        }
+        google.setOnLoadCallback(function() {
+          // Render an element with both search box and search results in div with id 'gsearch'.
+          google.search.cse.element.render({
+            div: 'gsearch',
+            tag: 'search'
+          });
+        }, true);
+      }
     }
   };
   useEffect(() => {

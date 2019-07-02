@@ -1,14 +1,17 @@
 /*eslint no-console: 0*/
 const express = require('express');
+const compression = require('compression');
 const nextjs = require('next');
-const fetch = require('isomorphic-unfetch');
-const { getDateTimes, formatEachDateTime } = require('./utils/scheduleUtils');
 const { daysofweek } = require('./server/daysofweek');
 
 const port = parseInt(process.env.APP_PORT, 10) || 3000;
-const dev = process.env.NODE_ENV !== 'production';
+const dev =
+  process.env.RAILS_ENV !== 'stage' && process.env.RAILS_ENV !== 'production';
 const app = nextjs({ dev });
 const handle = app.getRequestHandler();
+const { feed } = require('./server/feed');
+const { schedule } = require('./server/schedule');
+const { dynamic } = require('./server/dynamic');
 
 const slug = (req, res, next) => {
   req.slug = req.path.replace(
@@ -53,6 +56,11 @@ app
     const server = express();
 
     server.use(slug, previewSlug, previewToken, daySlug, twitterSlug);
+
+    // gzip in prod
+    if (!dev) {
+      server.use(compression());
+    }
 
     //Root route
     server.get('/', (req, res) => {
@@ -132,84 +140,14 @@ app
       app.render(req, res, '/episode', { slug: req.slug });
     });
 
-    // Schedule Routing
-    server.get('/schedule/:day?', (req, res, next) => {
-      const daysOfThisWeek = getDateTimes();
-      const formattedDate = formatEachDateTime(daysOfThisWeek, req.daySlug);
+    // schedule route
+    schedule(server, app);
 
-      const fetchSchedule = async (dateTime) => {
-        try {
-          return await fetch(
-            `http://scheduler.publicradio.org/api/v1/services/3/schedule/?datetime=${dateTime}`
-          )
-            .then(function(response) {
-              if (!response.ok) {
-                next();
-              }
-              return response.json();
-            })
-            .then(function(response) {
-              app.render(req, res, '/schedule', {
-                slug: req.daySlug,
-                props: response
-              });
-            })
-            .catch(function(error) {
-              console.log(error);
-            });
-        } catch (error) {
-          next();
-          console.log(error);
-        }
-      };
-      fetchSchedule(formattedDate);
-    });
+    // imported RSS route
+    feed(server);
 
     // Dynamic Routing for collections and pages
-    server.get('*', (req, res, next) => {
-      const path = req.path.replace(/^\//, '');
-      const slug = path.replace(/\/\d+$/, '');
-      console.log('slug ', slug);
-      const pageNum = path.match(/\d+$/) ? path.match(/\d+$/)[0] : 1;
-      console.log('pageNum ', pageNum);
-      const query = JSON.stringify({
-        query: `{ content(slug: "${slug}",  contentAreaSlug: "mprnews") { resourceType } }`
-      });
-      const routes = {
-        collection: '/collection',
-        page: '/page'
-      };
-      const fetchRoute = async () => {
-        return await fetch(process.env.GRAPHQL_API, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: query
-        })
-          .then((response) => {
-            if (!response.ok) {
-              next();
-            }
-            return response.json();
-          })
-          .then((response) => {
-            const content = response.data.content;
-            if (!content) {
-              return next();
-            }
-            const route = response.data.content.resourceType;
-            return app.render(req, res, routes[route], {
-              slug: slug,
-              pageNum: pageNum
-            });
-          })
-          .catch((error) => {
-            console.error('Error:', error);
-          });
-      };
-      fetchRoute();
-    });
+    dynamic(server, app, handle);
 
     server.get('*', (req, res) => {
       return handle(req, res);

@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Figure } from '@apmg/titan';
-import { Body } from 'amat-react';
+import { Body } from '@apmg/amat';
 import ContentHeader from './ContentHeader';
 
 const Content = ({
   elementClass,
   title,
   subtitle,
+  dateline,
   authors,
   headingLevel,
   publishDate,
@@ -33,6 +34,7 @@ const Content = ({
         headingLevel={headingLevel}
         publishDate={publishDate}
         subtitle={subtitle}
+        dateline={dateline}
         tag={tag}
       />
 
@@ -68,6 +70,7 @@ Content.propTypes = {
   elementClass: PropTypes.string,
   title: PropTypes.string,
   subtitle: PropTypes.string,
+  dateline: PropTypes.string,
   authors: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string,

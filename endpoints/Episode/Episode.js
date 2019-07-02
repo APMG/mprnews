@@ -113,6 +113,7 @@ Episode.propTypes = {
 EpisodeInner.propTypes = {
   episode: PropTypes.shape({
     title: PropTypes.string,
+    subtitle: PropTypes.string,
     authors: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string,
@@ -120,10 +121,16 @@ EpisodeInner.propTypes = {
       })
     ),
     body: PropTypes.string,
+    contributors: PropTypes.array,
+    description: PropTypes.string,
+    descriptionText: PropTypes.string,
     image: PropTypes.element,
     imageCaption: PropTypes.string,
     imageCredit: PropTypes.string,
     imageCreditHref: PropTypes.string,
+    primaryVisuals: PropTypes.any,
+    primaryCollection: PropTypes.any,
+    primaryAudio: PropTypes.any,
     publishDate: PropTypes.string,
     embeddedAssetJson: PropTypes.string,
     tag: PropTypes.shape({

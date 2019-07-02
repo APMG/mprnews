@@ -5,35 +5,35 @@ import Link from 'next/link';
 import PropTypes from 'prop-types';
 import { Teaser, Loading } from '@apmg/titan';
 import { Image } from 'apm-mimas';
-import { Body } from 'amat-react';
+import { Body } from '@apmg/amat';
 import query from './home.gql';
-import { linkByTypeHref, linkByTypeAs } from '../../utils/utils';
 import HomeGrid from '../../grids/HomeGrid';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import HomeFooter from './HomeFooter';
 import HomeRail from './HomeRail';
 import HomeTop from './HomeTop';
+import { linkByTypeHref, linkByTypeAs } from '../../utils/cjsutils';
 
-const Home = () => (
-  <Query
-    query={query}
-    variables={{
-      contentAreaSlug: process.env.CONTENT_AREA_SLUG,
-      slug: 'homepage'
-    }}
-  >
-    {({ loading, error, data }) => {
-      if (error) return <div>{`Error: ${error}`}</div>;
-      if (loading) return <Loading />;
-
-      return <HomeInner data={data} />;
-    }}
-  </Query>
-);
+const Home = () => {
+  return (
+    <Query
+      query={query}
+      variables={{
+        contentAreaSlug: process.env.CONTENT_AREA_SLUG,
+        slug: 'homepage'
+      }}
+    >
+      {({ loading, error, data }) => {
+        if (error) return <div>{`Error: ${error}`}</div>;
+        if (loading) return <Loading />;
+        return <HomeInner data={data} />;
+      }}
+    </Query>
+  );
+};
 
 const HomeInner = ({ data }) => {
   const { info } = JSON.parse(data.potlatch.json);
-  console.log(JSON.parse(data.potlatch.json));
   const firstItem = data.homeList.results.items[0];
 
   return (
