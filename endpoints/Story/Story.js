@@ -25,6 +25,7 @@ const Story = ({ slug, previewToken }) => (
     {({ loading, error, data }) => {
       if (error) return <div>Error loading story</div>;
       if (loading) return <Loading />;
+      console.log(data.story.dateline);
 
       return <StoryInner story={data.story} />;
     }}
@@ -61,6 +62,7 @@ const StoryInner = ({ story }) => {
       <Content
         title={story.title}
         subtitle={story.subtitle}
+        dateline={story.dateline}
         authors={authors}
         body={story.body}
         audioPlayButton={
@@ -105,6 +107,7 @@ StoryInner.propTypes = {
   story: PropTypes.shape({
     title: PropTypes.string,
     subtitle: PropTypes.string,
+    dateline: PropTypes.string,
     authors: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string,

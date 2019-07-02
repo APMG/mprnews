@@ -9,6 +9,7 @@ const Content = ({
   elementClass,
   title,
   subtitle,
+  dateline,
   authors,
   headingLevel,
   publishDate,
@@ -33,6 +34,7 @@ const Content = ({
         headingLevel={headingLevel}
         publishDate={publishDate}
         subtitle={subtitle}
+        dateline={dateline}
         tag={tag}
       />
 
@@ -68,6 +70,7 @@ Content.propTypes = {
   elementClass: PropTypes.string,
   title: PropTypes.string,
   subtitle: PropTypes.string,
+  dateline: PropTypes.string,
   authors: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string,
