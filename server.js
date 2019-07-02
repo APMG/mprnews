@@ -15,7 +15,7 @@ const { dynamic } = require('./server/dynamic');
 
 const slug = (req, res, next) => {
   req.slug = req.path.replace(
-    /^(\/newspartners)*\/(amp)*(story|episode|page|people)\//,
+    /^(\/newspartners)*\/(amp\/)*(story|episode|page|people)\//,
     ''
   );
   next();
@@ -123,15 +123,16 @@ app
     });
 
     // AMP Routing
-    server.get('/ampstory/*', (req, res) => {
+    server.get('/amp/story/*', (req, res) => {
+      console.log(req.slug);
       app.render(req, res, '/ampstory', { slug: req.slug });
     });
 
-    server.get('/ampepisode/*', (req, res) => {
+    server.get('/amp/episode/*', (req, res) => {
       app.render(req, res, '/ampepisode', { slug: req.slug });
     });
 
-    server.get('/amppage/*', (req, res) => {
+    server.get('/amp/page/*', (req, res) => {
       app.render(req, res, '/amppage', { slug: req.slug });
     });
 
