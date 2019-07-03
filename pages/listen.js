@@ -18,23 +18,6 @@ const ListenPage = () => {
                 src="/static/MPRnews-default-audio-thumbnail.jpg"
                 alt="Minnesota Public Radio Audio Stream Thumbnail"
               />
-              <div className="player-sound">
-                <div className="player-volume">
-                  <div className="player_volumeLevel js-player-volume">
-                    <div className="player_volumeCurrent js-player-volume-current"></div>
-                  </div>
-                  <div className="player_volumeMute js-player-mute">
-                    <span className="player_volume">
-                      <Icon name="volumeUp" />
-                      <span className="invisible">Volume</span>
-                    </span>
-                    <span className="player_mute">
-                      <Icon name="mute" />
-                      <span className="invisible">Mute Sound</span>
-                    </span>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
