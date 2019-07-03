@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Heading } from '@apmg/titan';
+import WeatherSidebar from '../../components/WeatherSidebar/WeatherSidebar';
 
 const HomeRail = () => {
   const sections = [
@@ -20,7 +21,9 @@ const HomeRail = () => {
 
   return (
     <>
-      <div className="section section-md">Weather</div>
+      <div className="section section-md">
+        <WeatherSidebar />
+      </div>
       <div className="section section-md">Updraft</div>
       <div className="section section-md">Traffic</div>
       <div className="section section-md">Email Newsletters</div>

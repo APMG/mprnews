@@ -11,7 +11,7 @@ const Dropdown = () => {
     1: false,
     2: false
   });
-  // console.log(open);
+
   const closeItem = (id) => {
     open[id] = false;
     setOpen(
