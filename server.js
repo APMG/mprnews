@@ -13,6 +13,7 @@ const { feed } = require('./server/feed');
 const { schedule } = require('./server/schedule');
 const { dynamic } = require('./server/dynamic');
 
+const TTL = 60;
 const slug = (req, res, next) => {
   req.slug = req.path.replace(
     /^(\/newspartners)*\/(amp\/)*(story|episode|page|people)\/(card\/)*/,
@@ -50,12 +51,23 @@ const previewToken = (req, res, next) => {
   next();
 };
 
+const cacheControl = (req, res) => {
+  res.set('Cache-Control', `public, max-age=${TTL}`);
+};
+
 app
   .prepare()
   .then(() => {
     const server = express();
 
-    server.use(slug, previewSlug, previewToken, daySlug, twitterSlug);
+    server.use(
+      slug,
+      previewSlug,
+      previewToken,
+      daySlug,
+      twitterSlug,
+      cacheControl
+    );
 
     // gzip in prod
     if (!dev) {
