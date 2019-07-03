@@ -3,7 +3,6 @@ import { Button, Heading } from '@apmg/titan';
 import ListenLayout from '../layouts/ListenLayout';
 import Link from 'next/link';
 import FooterSubscribe from '../components/Footer/FooterSubscribe';
-import Icon from '../components/Icons/Icon';
 
 const ListenPage = () => {
   return (
