@@ -41,10 +41,17 @@ const PageInner = ({ page }) => {
     },
     { key: 'twitter:image', name: 'twitter:image', content: socialImage }
   ];
+  const links = [
+    {
+      key: 'amphtml',
+      rel: 'amphtml',
+      href: `https://www.mprnews.org/amp/page/${page.canonicalSlug}`
+    }
+  ];
 
   return (
     <ContentGrid sidebar={<Sidebar />}>
-      <Metatags title={page.title} metatags={tags} links={[]} />
+      <Metatags title={page.title} metatags={tags} links={links} />
 
       <Content
         title={page.title}
@@ -79,6 +86,7 @@ Page.propTypes = {
 
 PageInner.propTypes = {
   page: PropTypes.shape({
+    canonicalSlug: PropTypes.string,
     title: PropTypes.string,
     subtitle: PropTypes.string,
     body: PropTypes.string,

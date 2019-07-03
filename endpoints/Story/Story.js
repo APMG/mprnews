@@ -25,7 +25,6 @@ const Story = ({ slug, previewToken }) => (
     {({ loading, error, data }) => {
       if (error) return <div>Error loading story</div>;
       if (loading) return <Loading />;
-      console.log(data.story.dateline);
 
       return <StoryInner story={data.story} />;
     }}
@@ -55,10 +54,17 @@ const StoryInner = ({ story }) => {
     },
     { key: 'twitter:image', name: 'twitter:image', content: socialImage }
   ];
+  const links = [
+    {
+      key: 'amphtml',
+      rel: 'amphtml',
+      href: `https://www.mprnews.org/amp/story/${story.canonicalSlug}`
+    }
+  ];
 
   return (
     <ContentGrid sidebar={<Sidebar />}>
-      <Metatags title={story.title} metatags={tags} links={[]} />
+      <Metatags title={story.title} metatags={tags} links={links} />
       <Content
         title={story.title}
         subtitle={story.subtitle}
@@ -105,6 +111,7 @@ Story.propTypes = {
 
 StoryInner.propTypes = {
   story: PropTypes.shape({
+    canonicalSlug: PropTypes.string,
     title: PropTypes.string,
     subtitle: PropTypes.string,
     dateline: PropTypes.string,
