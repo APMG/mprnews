@@ -1,22 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Error from 'next/error';
-import MainLayout from '../layouts/MainLayout';
 import Weather from '../endpoints/Weather/Weather';
 import { weatherConfig } from '../utils/defaultData';
 import { fetchWeather } from '../utils/fetchWeather';
 
 const WeatherPage = ({ data }) => {
   if (!data) return <Error statusCode={404} />;
-  return (
-    <MainLayout>
-      <div>
-        <section className="stories section">
-          <Weather data={data} />
-        </section>
-      </div>
-    </MainLayout>
-  );
+  return <Weather data={data} />;
 };
 
 WeatherPage.getInitialProps = async ({ req, res }) => {

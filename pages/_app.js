@@ -5,8 +5,7 @@ import { ApolloProvider } from 'react-apollo';
 import AudioPlayerContext from '../context/AudioPlayerContext';
 import LocationContext from '../context/LocationContext';
 import NowPlayingClient from 'nowplaying-client';
-import Header from '../components/Header/Header';
-import AudioPlayer from '../components/AudioPlayer';
+import Layout from '../layouts/Layout';
 import { weatherConfig } from '../utils/defaultData';
 
 class MPRNews extends App {
@@ -213,9 +212,9 @@ class MPRNews extends App {
         <LocationContext.Provider value={this.state}>
           <Container>
             <ApolloProvider client={apolloClient}>
-              <Header />
-              <AudioPlayer />
-              <Component {...pageProps} />
+              <Layout layout={pageProps?.layout}>
+                <Component {...pageProps} />
+              </Layout>
             </ApolloProvider>
           </Container>
         </LocationContext.Provider>

@@ -4,7 +4,6 @@
 
 .vList {
   > * {
-    display: block;
     margin-bottom: 10px;
 
     &:last-child {
@@ -28,5 +27,11 @@
 .vList-collection {
   > * {
     margin-bottom: 6rem;
+  }
+}
+
+.vList-block {
+  > * {
+    display: block;
   }
 }

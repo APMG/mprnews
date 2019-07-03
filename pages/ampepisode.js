@@ -6,15 +6,11 @@ import Episode from '../endpoints/Episode/Episode';
 /* eslint react/display-name: 0 */
 
 const AmpEpsiode = withAmp(({ slug }) => {
-  return (
-    <>
-      <Episode slug={slug} />
-    </>
-  );
+  return <Episode slug={slug} />;
 });
 
 AmpEpsiode.getInitialProps = async ({ query: { slug } }) => {
-  return { slug: slug };
+  return { slug: slug, layout: 'amp' };
 };
 
 AmpEpsiode.propTypes = {

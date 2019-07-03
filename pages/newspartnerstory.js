@@ -3,15 +3,11 @@ import PropTypes from 'prop-types';
 import Story from '../endpoints/Story/Story';
 
 const NewspartnerStory = ({ slug }) => {
-  return (
-    <>
-      <Story slug={slug} />
-    </>
-  );
+  return <Story slug={slug} />;
 };
 
 NewspartnerStory.getInitialProps = async ({ query: { slug } }) => {
-  return { slug: slug };
+  return { slug: slug, layout: 'newspartners' };
 };
 
 NewspartnerStory.propTypes = {

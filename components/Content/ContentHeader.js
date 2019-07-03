@@ -36,6 +36,9 @@ const ContentHeader = (props) => {
           </div>
         ) : null}
 
+        {props.dateline && (
+          <div className="content_dateline">{props.dateline} </div>
+        )}
         {props.publishDate && (
           <time className="content_pubdate" dateTime={props.publishDate}>
             {format(props.publishDate, 'MMMM D, YYYY')}
@@ -56,6 +59,7 @@ ContentHeader.propTypes = {
   headingLevel: PropTypes.number,
   publishDate: PropTypes.string,
   subtitle: PropTypes.string,
+  dateline: PropTypes.string,
   tag: PropTypes.shape({
     to: PropTypes.string,
     tagName: PropTypes.string

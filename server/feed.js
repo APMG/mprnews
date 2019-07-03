@@ -14,7 +14,7 @@ module.exports.feed = (server) => {
             title
             descriptionText
             updatedAt
-            results {
+            results(pageSize: 30) {
               items {
                 title
                 descriptionText
@@ -70,10 +70,11 @@ module.exports.feed = (server) => {
           'ddd, D MMM YYYY HH:mm:ss ZZ'
         );
         xml += `<item>
-                      <pubDate>${item.updatedAt}</pubDate>
+                      <pubDate>${dte}</pubDate>
                       <title>${item.title}</title>
-                      <description>${dte}</description>
+                      <description>${item.descriptionText}</description>
                       <link>https://www.mprnews.org${link}</link>
+                      <guid isPermaLink="true">https://www.mprnews.org${link}</guid>
                     </item>`;
       });
       xml += '</channel>';
