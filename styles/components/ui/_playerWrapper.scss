@@ -18,19 +18,6 @@
       position: sticky;
     }
   }
-
-  &.is-listenPage {
-    position: static;
-    bottom: auto;
-
-    .player {
-      box-shadow: none;
-    }
-
-    .player_popout {
-      display: none;
-    }
-  }
 }
 
 .playerWrapper-listenpage {

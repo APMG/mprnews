@@ -15,8 +15,7 @@ class AudioPlayer extends React.Component {
   render() {
     const playerClasses = classNames({
       playerWrapper: true,
-      'is-sticky': this.props.isAudioPlaying,
-      'is-listenPage': this.props.listenPage
+      'is-sticky': this.props.isAudioPlaying
     });
     return (
       <div className={playerClasses}>
@@ -51,8 +50,7 @@ AudioPlayer.propTypes = {
   isAudioLive: PropTypes.bool,
   isAudioPlaying: PropTypes.bool,
   loadPlayer: PropTypes.func,
-  playerRef: PropTypes.object,
-  listenPage: PropTypes.bool
+  playerRef: PropTypes.object
 };
 
 export default AudioPlayer;

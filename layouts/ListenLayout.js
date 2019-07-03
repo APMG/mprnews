@@ -6,9 +6,11 @@ import AudioPlayer from '../components/AudioPlayer/index';
 
 const ListenLayout = ({ children }) => (
   <>
-    <AudioPlayer />
-    <main className="main main-listen">{children}</main>
-    <ListenFooter />
+    <main className="main main-listen">
+      <AudioPlayer />
+      {children}
+      <ListenFooter />
+    </main>
   </>
 );
 

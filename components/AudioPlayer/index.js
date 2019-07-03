@@ -19,7 +19,6 @@ const AudioWrapper = () => {
       loadPlayer={context.loadPlayer}
       playerRef={context.playerRef}
       playerInstance={context.playerInstance}
-      listenPage={context.listenPage}
     />
   );
 };

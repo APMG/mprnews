@@ -39,8 +39,7 @@ class MPRNews extends App {
       playerInstance: null,
       playerRef: this.playerRef,
       playlist: {},
-      resetLivePlayer: this.resetLivePlayer,
-      listenPage: null
+      resetLivePlayer: this.resetLivePlayer
     };
   }
 
@@ -51,17 +50,6 @@ class MPRNews extends App {
         this.setState({ isAudioPlaying: false });
       }
     });
-
-    if (window.location.pathname === '/listen') {
-      this.setState({ listenPage: true }, () => {
-        return;
-      });
-    }
-    if (window.location.pathname !== '/listen') {
-      this.setState({ listenPage: false }, () => {
-        return;
-      });
-    }
 
     this.state.audioElementRef.current?.addEventListener('play', () => {
       // This assumes we only have one possible live audio stream. Something else will need to be done to handle more
