@@ -1,22 +1,22 @@
-import React, { useEffect, useState } from 'react';
-import { weatherConfig } from '../../utils/defaultData';
+import React, { useEffect, useState, useContext } from 'react';
 import fetch from 'isomorphic-unfetch';
+import LocationContext from '../../context/LocationContext';
 import Icon from '../Icons/Icon';
 
-export default function weatherHeaderRequest() {
+const WeatherHeader = () => {
   const [data, setData] = useState({});
-  const { lat, long } = weatherConfig[0];
+  const context = useContext(LocationContext);
 
   useEffect(() => {
-    const getData = async (latitude, longitude) => {
+    const getData = async (lat, long) => {
       let response = await fetch(
-        `https://api.weather.gov/points/${latitude},${longitude}/forecast`
+        `https://api.weather.gov/points/${lat},${long}/forecast/hourly`
       );
       let result = await response.json();
       setData(result);
     };
 
-    getData(lat, long);
+    getData(context.location.lat, context.location.long);
   }, {});
 
   return (
@@ -25,7 +25,7 @@ export default function weatherHeaderRequest() {
         <>
           <a href="/weather">
             <div className="weatherHeader_temp">
-              {data.properties.periods[0].temperature}°{' '}
+              {`${data.properties.periods[0].temperature}°`}
             </div>
             <div className="weatherHeader_text invisible">
               {data.properties.periods[0].shortForecast}
@@ -42,4 +42,6 @@ export default function weatherHeaderRequest() {
       )}
     </div>
   );
-}
+};
+
+export default WeatherHeader;
