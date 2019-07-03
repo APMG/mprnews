@@ -4,6 +4,9 @@ import Icon from '../Icons/Icon';
 
 const AudioListenLiveButton = () => {
   const context = useContext(AudioPlayerContext);
+  const openInNewTab = () => {
+    window.open('/listen', 'Listen Page', 'resizable,height=850,width=776');
+  };
 
   return (
     <>
@@ -17,10 +20,19 @@ const AudioListenLiveButton = () => {
         <Icon name="headphones" />
         Listen Live
       </button>
-      <button className="player_expand">
-        <Icon name="chevronDown" />
-        Expand
-      </button>
+
+      <a
+        href="/listen"
+        className="player_popout"
+        onClick={(e) => {
+          e.preventDefault();
+          openInNewTab();
+          context.resetLivePlayer();
+        }}
+      >
+        <Icon name="popout" />
+        Open In New Tab
+      </a>
     </>
   );
 };

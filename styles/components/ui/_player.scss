@@ -10,7 +10,6 @@ $_timeline-mobile-width: 12em;
 .player {
   display: flex;
   background: rgba($color-blue-tint, 1);
-  border-radius: 3px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   box-shadow: 0 14px 32px 0 rgba($color-black, .75);
@@ -49,7 +48,7 @@ $_timeline-mobile-width: 12em;
       display: none;
     }
 
-    .player_expand {
+    .player_popout {
       display: flex;
     }
   }
@@ -67,6 +66,26 @@ $_timeline-mobile-width: 12em;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between;
+  }
+}
+
+.player_wrapper-listenpage {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid rgba($color-blue-dark, .2);
+  border-bottom: 1px solid $color-white;
+  padding: 0;
+
+  &::before {
+    border-top: 1px solid $color-white;
+    content: '';
+    display: table;
+  }
+
+  &::after {
+    border-top: 1px solid rgba($color-blue-dark, .2);
+    content: '';
+    display: table;
   }
 }
 
@@ -253,7 +272,7 @@ $_timeline-mobile-width: 12em;
 }
 
 .player_listenLive,
-.player_expand {
+.player_popout {
   @include reset-button();
   display: flex;
   align-items: center;
@@ -273,8 +292,42 @@ $_timeline-mobile-width: 12em;
   }
 }
 
-.player_expand {
+.player_popout {
   display: none;
+}
+
+.player-listenpage {
+  background-color: rgba($color-blue-tint, 1);
+  background: radial-gradient(circle, rgba($color-white, 1) 7%, rgba($color-blue-tint, 1) 50%);
+  box-shadow: none;
+  position: static;
+  bottom: auto;
+}
+
+.player_volumeLevel {
+  width: 20px;
+  height: 29px;
+  position: relative;
+  cursor: pointer;
+}
+
+.listenLayout {
+  .player.is-live .player_popout {
+    display: none;
+  }
+
+  .playerWrapper {
+    position: static;
+    bottom: auto;
+
+    .player {
+      box-shadow: none;
+    }
+
+    .player_popout {
+      display: none;
+    }
+  }
 }
 
 // PLAYER STATES
@@ -458,25 +511,11 @@ $_timeline-mobile-width: 12em;
   }
 }
 
-.player-volume-level {
-  width: 8px;
-  height: 29px;
-  border-radius: 5px;
-  background: rgba($color-theme, .5);
-  // background: image-url('volume-bar-bg.svg') repeat bottom transparent;
-  position: relative;
-  cursor: pointer;
 
-  @media (min-width: 37.5em) {
-    height: 38px;
-  }
-}
-
-.player-volume-current {
+.player_volumeCurrent {
   width: 100%;
   height: 100%;
   background: $color-theme;
-  // background: image-url('volume-bar.svg') repeat bottom transparent;
   position: absolute;
   pointer-events: none;
   bottom: 0;
