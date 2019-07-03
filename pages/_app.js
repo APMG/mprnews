@@ -208,19 +208,17 @@ class MPRNews extends App {
 
   render() {
     const { Component, pageProps, apolloClient } = this.props;
-    {
-      return (
-        <AudioPlayerContext.Provider value={this.state}>
-          <Container>
-            <ApolloProvider client={apolloClient}>
-              <Header />
-              <AudioPlayer />
-              <Component {...pageProps} />
-            </ApolloProvider>
-          </Container>
-        </AudioPlayerContext.Provider>
-      );
-    }
+    return (
+      <AudioPlayerContext.Provider value={this.state}>
+        <Container>
+          <ApolloProvider client={apolloClient}>
+            <Header />
+            <AudioPlayer />
+            <Component {...pageProps} />
+          </ApolloProvider>
+        </Container>
+      </AudioPlayerContext.Provider>
+    );
   }
 }
 

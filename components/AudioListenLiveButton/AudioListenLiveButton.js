@@ -21,7 +21,8 @@ const AudioListenLiveButton = () => {
         Listen Live
       </button>
 
-      <button
+      <a
+        href="/listen"
         className="player_popout"
         onClick={(e) => {
           e.preventDefault();
@@ -31,7 +32,7 @@ const AudioListenLiveButton = () => {
       >
         <Icon name="popout" />
         Open In New Tab
-      </button>
+      </a>
     </>
   );
 };
