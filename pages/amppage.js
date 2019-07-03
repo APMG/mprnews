@@ -6,15 +6,11 @@ import Page from '../endpoints/Page/Page';
 /* eslint react/display-name: 0 */
 
 const AmpPage = withAmp(({ slug }) => {
-  return (
-    <>
-      <Page slug={slug} />
-    </>
-  );
+  return <Page slug={slug} />;
 });
 
 AmpPage.getInitialProps = async ({ query: { slug } }) => {
-  return { slug: slug };
+  return { slug: slug, layout: 'amp' };
 };
 
 AmpPage.propTypes = {

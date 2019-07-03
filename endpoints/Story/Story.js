@@ -25,7 +25,6 @@ const Story = ({ slug, previewToken }) => (
     {({ loading, error, data }) => {
       if (error) return <div>Error loading story</div>;
       if (loading) return <Loading />;
-      console.log(data.story.dateline);
 
       return <StoryInner story={data.story} />;
     }}
