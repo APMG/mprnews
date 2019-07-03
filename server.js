@@ -14,6 +14,7 @@ const { schedule } = require('./server/schedule');
 const { dynamic } = require('./server/dynamic');
 
 const TTL = 60;
+
 const slug = (req, res, next) => {
   req.slug = req.path.replace(
     /^(\/newspartners)*\/(amp\/)*(story|episode|page|people)\/(card\/)*/,
@@ -51,23 +52,12 @@ const previewToken = (req, res, next) => {
   next();
 };
 
-const cacheControl = (req, res) => {
-  res.set('Cache-Control', `public, max-age=${TTL}`);
-};
-
 app
   .prepare()
   .then(() => {
     const server = express();
 
-    server.use(
-      slug,
-      previewSlug,
-      previewToken,
-      daySlug,
-      twitterSlug,
-      cacheControl
-    );
+    server.use(slug, previewSlug, previewToken, daySlug, twitterSlug);
 
     // gzip in prod
     if (!dev) {
@@ -76,6 +66,7 @@ app
 
     //Root route
     server.get('/', (req, res) => {
+      res.set('Cache-Control', `public, max-age=${TTL}`);
       app.render(req, res, '/index');
     });
 
@@ -86,30 +77,36 @@ app
 
     // Scribble Live Routing
     server.get('/scribble', (req, res) => {
+      res.set('Cache-Control', `public, max-age=${TTL}`);
       app.render(req, res, '/scribble');
     });
 
     // Weather routing
     server.get('/weather/:id?', (req, res) => {
+      res.set('Cache-Control', `public, max-age=${TTL}`);
       app.render(req, res, '/weather', { id: req.params.id });
     });
 
     // Story routing
 
     server.get('/story/card/*', (req, res) => {
+      res.set('Cache-Control', `public, max-age=${TTL}`);
       app.render(req, res, '/twitter', req.twitterSlug);
     });
 
     server.get('/story/*', (req, res) => {
+      res.set('Cache-Control', `public, max-age=${TTL}`);
       app.render(req, res, '/story', { slug: req.slug });
     });
 
     server.get('/newspartners/story/*', (req, res) => {
+      res.set('Cache-Control', `public, max-age=${TTL}`);
       app.render(req, res, '/newspartnerstory', { slug: req.slug });
     });
 
     // Profile Routing
     server.get('/people/*', (req, res) => {
+      res.set('Cache-Control', `public, max-age=${TTL}`);
       app.render(req, res, '/profile', { slug: req.slug });
     });
 
@@ -122,6 +119,7 @@ app
     });
 
     server.get('/preview/stories/*', (req, res) => {
+      res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
       app.render(req, res, '/story', {
         slug: req.previewSlug,
         previewToken: req.previewToken
@@ -129,6 +127,7 @@ app
     });
 
     server.get('/preview/episodes/*', (req, res) => {
+      res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
       app.render(req, res, '/episode', {
         slug: req.previewSlug,
         previewToken: req.previewToken
@@ -137,20 +136,23 @@ app
 
     // AMP Routing
     server.get('/amp/story/*', (req, res) => {
-      console.log(req.slug);
+      res.set('Cache-Control', `public, max-age=${TTL}`);
       app.render(req, res, '/ampstory', { slug: req.slug });
     });
 
     server.get('/amp/episode/*', (req, res) => {
+      res.set('Cache-Control', `public, max-age=${TTL}`);
       app.render(req, res, '/ampepisode', { slug: req.slug });
     });
 
     server.get('/amp/page/*', (req, res) => {
+      res.set('Cache-Control', `public, max-age=${TTL}`);
       app.render(req, res, '/amppage', { slug: req.slug });
     });
 
     // Episode Routing
     server.get('/episode/*', (req, res) => {
+      res.set('Cache-Control', `public, max-age=${TTL}`);
       app.render(req, res, '/episode', { slug: req.slug });
     });
 
