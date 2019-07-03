@@ -1,12 +1,7 @@
 import React from 'react';
-import MainLayout from '../layouts/MainLayout';
 
 const Scribble = () => {
-  return (
-    <>
-      <MainLayout />
-    </>
-  );
+  return <div className="scribbleLive"></div>;
 };
 
 export default Scribble;

@@ -6,15 +6,11 @@ import Story from '../endpoints/Story/Story';
 /* eslint react/display-name: 0 */
 
 const AmpStory = withAmp(({ slug }) => {
-  return (
-    <>
-      <Story slug={slug} />
-    </>
-  );
+  return <Story slug={slug} />;
 });
 
 AmpStory.getInitialProps = async ({ query: { slug } }) => {
-  return { slug: slug };
+  return { slug: slug, layout: 'amp' };
 };
 
 AmpStory.propTypes = {
