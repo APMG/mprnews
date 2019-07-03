@@ -30,7 +30,6 @@ const Metatags = (props) => {
     },
     { key: 'og:image', name: 'og:image', content: fallback_image }
   ];
-  const linkDefaults = [];
   const favicons = [
     { key: 'icon', rel: 'icon', type: 'image/png', href: faviconpng },
     {
@@ -45,9 +44,6 @@ const Metatags = (props) => {
   const metatags = metaDefaults.map((row) =>
     Object.assign(row, props.metatags.find((rec) => rec.key == row.key))
   );
-  const links = linkDefaults.map((row) =>
-    Object.assign(row, props.links.find((rec) => rec.key == row.key))
-  );
   const combinedTitle = props.title ? `${props.title} | MPR News` : 'MPR News';
   return (
     <Head>
@@ -59,7 +55,7 @@ const Metatags = (props) => {
         return <link key={link.key} {...link} />;
       })}
 
-      {links.map((link) => {
+      {props.links.map((link) => {
         return <link key={link.key} {...link} />;
       })}
 

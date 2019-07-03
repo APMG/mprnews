@@ -15,7 +15,7 @@ const { dynamic } = require('./server/dynamic');
 
 const slug = (req, res, next) => {
   req.slug = req.path.replace(
-    /^(\/newspartners)*\/(amp\/)*(story|episode|page|people)\//,
+    /^(\/newspartners)*\/(amp\/)*(story|episode|page|people)\/(card\/)*/,
     ''
   );
   next();
@@ -83,12 +83,13 @@ app
     });
 
     // Story routing
-    server.get('/story/*', (req, res) => {
-      app.render(req, res, '/story', { slug: req.slug });
-    });
 
     server.get('/story/card/*', (req, res) => {
       app.render(req, res, '/twitter', req.twitterSlug);
+    });
+
+    server.get('/story/*', (req, res) => {
+      app.render(req, res, '/story', { slug: req.slug });
     });
 
     server.get('/newspartners/story/*', (req, res) => {

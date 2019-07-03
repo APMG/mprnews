@@ -1,5 +1,4 @@
 import React from 'react';
-import MainLayout from '../layouts/MainLayout';
 import Home from '../endpoints/Home/Home';
 import Metatags from '../components/Metatags/Metatags';
 
@@ -20,8 +19,8 @@ const tags = [
 const title = '';
 
 export default () => (
-  <MainLayout>
+  <>
     <Metatags title={title} metatags={tags} links={[]} />
     <Home />
-  </MainLayout>
+  </>
 );
