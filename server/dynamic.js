@@ -1,5 +1,4 @@
 const fetch = require('isomorphic-unfetch');
-const TTL = 60;
 
 // Dynamic Routing for collections and pages
 module.exports.dynamic = (server, app, handle) => {
@@ -40,7 +39,7 @@ module.exports.dynamic = (server, app, handle) => {
             return next();
           }
           const route = response.data.content.resourceType;
-          res.set('Cache-Control', `public, max-age=${TTL}`);
+          res.set('Cache-Control', 'public, max-age=60');
           return app.render(req, res, routes[route], {
             slug: slug,
             pageNum: pageNum
