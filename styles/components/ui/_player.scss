@@ -304,6 +304,13 @@ $_timeline-mobile-width: 12em;
   bottom: auto;
 }
 
+.player_volumeLevel {
+  width: 20px;
+  height: 29px;
+  position: relative;
+  cursor: pointer;
+}
+
 // PLAYER STATES
 .is-playing {
   .player_play {
@@ -485,25 +492,11 @@ $_timeline-mobile-width: 12em;
   }
 }
 
-.player-volume-level {
-  width: 8px;
-  height: 29px;
-  border-radius: 5px;
-  background: rgba($color-theme, .5);
-  // background: image-url('volume-bar-bg.svg') repeat bottom transparent;
-  position: relative;
-  cursor: pointer;
 
-  @media (min-width: 37.5em) {
-    height: 38px;
-  }
-}
-
-.player-volume-current {
+.player_volumeCurrent {
   width: 100%;
   height: 100%;
   background: $color-theme;
-  // background: image-url('volume-bar.svg') repeat bottom transparent;
   position: absolute;
   pointer-events: none;
   bottom: 0;

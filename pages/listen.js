@@ -3,11 +3,12 @@ import { Button, Heading } from '@apmg/titan';
 import ListenLayout from '../layouts/ListenLayout';
 import Link from 'next/link';
 import FooterSubscribe from '../components/Footer/FooterSubscribe';
+import Icon from '../components/Icons/Icon';
 
 const ListenPage = () => {
   return (
     <ListenLayout>
-      <div className="playerWrapper playerWrapper-listenpage">
+      <div className="playerWrapper playerWrapper-listenpage js-player">
         <div className="player player-listenpage">
           <div className="player_wrapper player_wrapper-listenpage">
             <div className="listen listen-highlight ">
@@ -17,6 +18,23 @@ const ListenPage = () => {
                 src="/static/MPRnews-default-audio-thumbnail.jpg"
                 alt="Minnesota Public Radio Audio Stream Thumbnail"
               />
+              <div className="player-sound">
+                <div className="player-volume">
+                  <div className="player_volumeLevel js-player-volume">
+                    <div className="player_volumeCurrent js-player-volume-current"></div>
+                  </div>
+                  <div className="player_volumeMute js-player-mute">
+                    <span className="player_volume">
+                      <Icon name="volumeUp" />
+                      <span className="invisible">Volume</span>
+                    </span>
+                    <span className="player_mute">
+                      <Icon name="mute" />
+                      <span className="invisible">Mute Sound</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
