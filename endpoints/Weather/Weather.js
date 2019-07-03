@@ -4,7 +4,6 @@ import Router from 'next/router';
 import { Heading, Button, Loading } from '@apmg/titan';
 import Icon from '../../components/Icons/Icon';
 import WeatherAlert from '../../components/WeatherAlert/WeatherAlert';
-import WeatherSidebar from '../../components/WeatherSidebar/WeatherSidebar';
 import CurrentWeather from './CurrentWeather';
 import TwoDaysChart from './TwoDaysChart';
 import WeeklyForecast from './WeeklyForecast';
@@ -79,7 +78,6 @@ const Weather = (props) => {
     <Loading />
   ) : (
     <section className="weather section">
-      <WeatherSidebar />
       <div className="weather_location">
         <div className="weather_heading">
           <Heading level={1} elementClass="hdg-weather">
