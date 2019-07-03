@@ -14,26 +14,3 @@
     padding-top: $header-buffer;
   }
 }
-
-
-.main-listen {
-  padding-top: 0;
-  position: relative;
-
-  .player.is-live .player_popout {
-    display: none;
-  }
-
-  .playerWrapper {
-    position: static;
-    bottom: auto;
-
-    .player {
-      box-shadow: none;
-    }
-
-    .player_popout {
-      display: none;
-    }
-  }
-}

@@ -5,13 +5,13 @@ import ListenFooter from '../components/ListenFooter/ListenFooter';
 import AudioPlayer from '../components/AudioPlayer/index';
 
 const ListenLayout = ({ children }) => (
-  <>
-    <main className="main main-listen">
+  <div className="listenLayout">
+    <main className="main">
       <AudioPlayer />
       {children}
-      <ListenFooter />
     </main>
-  </>
+    <ListenFooter />
+  </div>
 );
 
 ListenLayout.propTypes = {

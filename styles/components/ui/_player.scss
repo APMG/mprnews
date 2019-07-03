@@ -311,6 +311,25 @@ $_timeline-mobile-width: 12em;
   cursor: pointer;
 }
 
+.listenLayout {
+  .player.is-live .player_popout {
+    display: none;
+  }
+
+  .playerWrapper {
+    position: static;
+    bottom: auto;
+
+    .player {
+      box-shadow: none;
+    }
+
+    .player_popout {
+      display: none;
+    }
+  }
+}
+
 // PLAYER STATES
 .is-playing {
   .player_play {
