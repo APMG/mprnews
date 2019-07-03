@@ -6,12 +6,12 @@
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-  padding-top: $header-height-mobile + $header-buffer;
+  padding-top: $header-buffer;
   flex-grow: 1;
   flex-basis: auto; // IE11 bug fix
 
   @include media($media-full-layout) {
-    padding-top: $header-height-desktop + $header-buffer;
+    padding-top: $header-buffer;
   }
 }
 

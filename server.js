@@ -1,10 +1,12 @@
 /*eslint no-console: 0*/
 const express = require('express');
+const compression = require('compression');
 const nextjs = require('next');
 const { daysofweek } = require('./server/daysofweek');
 
 const port = parseInt(process.env.APP_PORT, 10) || 3000;
-const dev = process.env.NODE_ENV !== 'production';
+const dev =
+  process.env.RAILS_ENV !== 'stage' && process.env.RAILS_ENV !== 'production';
 const app = nextjs({ dev });
 const handle = app.getRequestHandler();
 const { feed } = require('./server/feed');
@@ -13,7 +15,7 @@ const { dynamic } = require('./server/dynamic');
 
 const slug = (req, res, next) => {
   req.slug = req.path.replace(
-    /^(\/newspartners)*\/(amp)*(story|episode|page|people)\//,
+    /^(\/newspartners)*\/(amp\/)*(story|episode|page|people)\/(card\/)*/,
     ''
   );
   next();
@@ -55,6 +57,11 @@ app
 
     server.use(slug, previewSlug, previewToken, daySlug, twitterSlug);
 
+    // gzip in prod
+    if (!dev) {
+      server.use(compression());
+    }
+
     //Root route
     server.get('/', (req, res) => {
       app.render(req, res, '/index');
@@ -81,12 +88,13 @@ app
     });
 
     // Story routing
-    server.get('/story/*', (req, res) => {
-      app.render(req, res, '/story', { slug: req.slug });
-    });
 
     server.get('/story/card/*', (req, res) => {
       app.render(req, res, '/twitter', req.twitterSlug);
+    });
+
+    server.get('/story/*', (req, res) => {
+      app.render(req, res, '/story', { slug: req.slug });
     });
 
     server.get('/newspartners/story/*', (req, res) => {
@@ -121,15 +129,16 @@ app
     });
 
     // AMP Routing
-    server.get('/ampstory/*', (req, res) => {
+    server.get('/amp/story/*', (req, res) => {
+      console.log(req.slug);
       app.render(req, res, '/ampstory', { slug: req.slug });
     });
 
-    server.get('/ampepisode/*', (req, res) => {
+    server.get('/amp/episode/*', (req, res) => {
       app.render(req, res, '/ampepisode', { slug: req.slug });
     });
 
-    server.get('/amppage/*', (req, res) => {
+    server.get('/amp/page/*', (req, res) => {
       app.render(req, res, '/amppage', { slug: req.slug });
     });
 
@@ -145,7 +154,7 @@ app
     feed(server);
 
     // Dynamic Routing for collections and pages
-    dynamic(server, app);
+    dynamic(server, app, handle);
 
     server.get('*', (req, res) => {
       return handle(req, res);

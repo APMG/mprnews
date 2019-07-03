@@ -1,15 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import MainLayout from '../layouts/MainLayout';
 import Schedule from '../endpoints/Schedule';
 
 /* eslint react/display-name: 0 */
 
-const SchedulePage = ({ props }) => (
-  <MainLayout>
-    <Schedule schedule={props} />
-  </MainLayout>
-);
+const SchedulePage = ({ props }) => <Schedule schedule={props} />;
 
 SchedulePage.getInitialProps = async ({ query: props, query: slug }) => {
   return {

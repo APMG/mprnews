@@ -54,13 +54,21 @@ const StoryInner = ({ story }) => {
     },
     { key: 'twitter:image', name: 'twitter:image', content: socialImage }
   ];
+  const links = [
+    {
+      key: 'amphtml',
+      rel: 'amphtml',
+      href: `https://www.mprnews.org/amp/story/${story.canonicalSlug}`
+    }
+  ];
 
   return (
     <ContentGrid sidebar={<Sidebar />}>
-      <Metatags title={story.title} metatags={tags} links={[]} />
+      <Metatags title={story.title} metatags={tags} links={links} />
       <Content
         title={story.title}
         subtitle={story.subtitle}
+        dateline={story.dateline}
         authors={authors}
         body={story.body}
         audioPlayButton={
@@ -103,8 +111,10 @@ Story.propTypes = {
 
 StoryInner.propTypes = {
   story: PropTypes.shape({
+    canonicalSlug: PropTypes.string,
     title: PropTypes.string,
     subtitle: PropTypes.string,
+    dateline: PropTypes.string,
     authors: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string,

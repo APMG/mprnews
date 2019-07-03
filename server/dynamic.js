@@ -1,9 +1,15 @@
 const fetch = require('isomorphic-unfetch');
 
 // Dynamic Routing for collections and pages
-module.exports.dynamic = (server, app) => {
+module.exports.dynamic = (server, app, handle) => {
   server.get('*', (req, res, next) => {
-    const path = req.path.replace(/^\//, '');
+    // Since this is dynamic we need to
+    // bail if this is a static asset
+    if (req.path.match(/^\/favicon|_next|static/)) {
+      return handle(req, res);
+    }
+    let path = req.path.replace(/^\//, '');
+    path = path.replace(/\/$/, '');
     const slug = path.replace(/\/\d+$/, '');
     const pageNum = path.match(/\d+$/) ? path.match(/\d+$/)[0] : 1;
     const query = JSON.stringify({

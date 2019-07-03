@@ -1,14 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import MainLayout from '../layouts/MainLayout';
 import Page from '../endpoints/Page/Page';
 
 /* eslint react/display-name: 0 */
 
 const StaticPage = ({ slug, previewToken }) => (
-  <MainLayout>
-    <Page slug={slug} previewToken={previewToken} />
-  </MainLayout>
+  <Page slug={slug} previewToken={previewToken} />
 );
 
 StaticPage.getInitialProps = async ({ query: { slug, previewToken } }) => {
