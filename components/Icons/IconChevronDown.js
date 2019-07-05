@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 
 const IconChevronDown = (props) => (
   <svg
-    className={`icon icon-chevronDown ${
-      props.elementClass ? props.elementClass : ''
-    }`}
+    className={`icon ${props.elementClass ? props.elementClass : ''}`}
     width="24px"
     height="24px"
     viewBox="0 0 24 24"
