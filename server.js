@@ -12,6 +12,8 @@ const handle = app.getRequestHandler();
 const { feed } = require('./server/feed');
 const { schedule } = require('./server/schedule');
 const { dynamic } = require('./server/dynamic');
+const { sitemap } = require('./server/sitemap');
+const { urlset } = require('./server/urlset');
 
 const TTL = 60;
 
@@ -166,6 +168,12 @@ app
 
     // imported RSS route
     feed(server);
+
+    // imported sitemap route
+    sitemap(server);
+
+    // imported sitemap route
+    urlset(server);
 
     // Dynamic Routing for collections and pages
     dynamic(server, app, handle);
