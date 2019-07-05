@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Icon from '../Icons/Icon';
 import DropdownMenu from './DropdownMenu';
@@ -6,36 +6,30 @@ import DropdownMenuItem from './DropdownMenuItem';
 import { dropdownLists } from '../../utils/dropdownConfig';
 
 const Dropdown = () => {
-  const [open, setOpen] = useState({
+  let [open, setOpen] = useState({
     0: false,
     1: false,
     2: false
   });
 
   const closeItem = (id) => {
-    open[id] = false;
     setOpen(
       {
         ...open,
-        open: {
-          0: false,
-          1: false,
-          2: false
-        }
-      },
-      getToggle
-    );
-  };
-
-  const toggle = (id) => {
-    open[id] = !open[id];
-    setOpen({
-      ...open,
-      open: {
         0: false,
         1: false,
         2: false
-      }
+      },
+      getToggle
+    );
+    open[id] = false;
+  };
+
+  const toggle = (id) => {
+    open = { 0: false, 1: false, 2: false };
+    open[id] = !open[id];
+    setOpen({
+      ...open
     });
   };
 
@@ -61,6 +55,11 @@ const Dropdown = () => {
       </button>
     );
   };
+
+  useEffect(() => {
+    document.title = `${Object.values(open)}`;
+    console.log(open);
+  });
 
   return (
     <div className="dropdown">
