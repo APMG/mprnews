@@ -7,7 +7,7 @@ export const dropdownLists = [
       {
         linkgroup: 'MPR News Coverage',
         links: [
-          { text: 'Arts', class: '', href: '/art' },
+          { text: 'Arts', class: '', href: '/arts' },
           { text: 'Education', class: '', href: '/education' },
           { text: 'Lifestyle', class: '', href: '/lifestyle' },
           { text: 'Twin Cities', class: '', href: '/twin-cities' },
