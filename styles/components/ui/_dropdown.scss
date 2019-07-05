@@ -9,3 +9,9 @@
   }
 }
 
+
+.dropdown_ref {
+  @include media($media-tablet) {
+    display: flex;
+  }
+}
