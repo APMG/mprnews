@@ -44,7 +44,6 @@ const Collection = ({ collectionName, pageNum }) => {
 
 const CollectionInner = ({ collection, pageNum, collectionName }) => {
   const socialImage = fishForSocialMediaImage(collection);
-
   const tags = [
     {
       key: 'description',
@@ -97,8 +96,11 @@ const CollectionInner = ({ collection, pageNum, collectionName }) => {
         </aside>
         <div className="collection_items">
           {collection.results.items.map((item) => {
-            const link = linkByTypeHref(item);
+            let link = linkByTypeHref(item);
             const linkAs = linkByTypeAs(item);
+            if (collectionName === 'newspartners') {
+              link = link.replace(/story/, 'newspartnerstory');
+            }
 
             return (
               <Teaser

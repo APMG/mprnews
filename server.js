@@ -163,6 +163,14 @@ app
       app.render(req, res, '/episode', { slug: req.slug });
     });
 
+    server.get('/newspartners/:pageNum?', (req, res) => {
+      res.set('Cache-Control', `public, max-age=${TTL}`);
+      const pageNum = req.params.pageNum || 1;
+      app.render(req, res, '/collection', {
+        slug: 'newspartners',
+        pageNum: pageNum
+      });
+    });
     // schedule route
     schedule(server, app);
 
