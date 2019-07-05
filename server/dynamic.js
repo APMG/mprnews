@@ -39,6 +39,7 @@ module.exports.dynamic = (server, app, handle) => {
             return next();
           }
           const route = response.data.content.resourceType;
+          res.set('Cache-Control', 'public, max-age=60');
           return app.render(req, res, routes[route], {
             slug: slug,
             pageNum: pageNum
