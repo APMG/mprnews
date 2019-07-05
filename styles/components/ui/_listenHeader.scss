@@ -1,0 +1,21 @@
+.listenHeader {
+  padding: 1em .5em;
+  position: relative;
+  border-bottom: 2px solid $color-border;
+}
+
+.listenHeader_logo {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
+
+.listenHeader_logoImg {
+  height: 24px;
+  width: 171px;
+
+  svg {
+    height: 100%;
+    width: 100%;
+  }
+}
