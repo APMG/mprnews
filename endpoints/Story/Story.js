@@ -13,7 +13,7 @@ import query from './story.gql';
 import Metatags from '../../components/Metatags/Metatags';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
 
-const Story = ({ slug, previewToken }) => (
+const Story = ({ slug, previewToken, minimal }) => (
   <Query
     query={query}
     variables={{
@@ -25,13 +25,12 @@ const Story = ({ slug, previewToken }) => (
     {({ loading, error, data }) => {
       if (error) return <div>Error loading story</div>;
       if (loading) return <Loading />;
-
-      return <StoryInner story={data.story} />;
+      return <StoryInner story={data.story} minimal={minimal} />;
     }}
   </Query>
 );
 
-const StoryInner = ({ story }) => {
+const StoryInner = ({ story, minimal }) => {
   let authors;
 
   if (story.contributors) {
@@ -71,6 +70,8 @@ const StoryInner = ({ story }) => {
         dateline={story.dateline}
         authors={authors}
         body={story.body}
+        minimal={minimal}
+        redistributable={story.primaryVisuals?.lead?.rights?.redistributable}
         audioPlayButton={
           story.primaryAudio && (
             <AudioPlayButton
@@ -106,7 +107,8 @@ const StoryInner = ({ story }) => {
 
 Story.propTypes = {
   slug: PropTypes.string,
-  previewToken: PropTypes.string
+  previewToken: PropTypes.string,
+  minimal: PropTypes.bool
 };
 
 StoryInner.propTypes = {
@@ -137,7 +139,8 @@ StoryInner.propTypes = {
       tagName: PropTypes.string,
       to: PropTypes.string
     })
-  })
+  }),
+  minimal: PropTypes.bool
 };
 
 export default Story;

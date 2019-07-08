@@ -20,12 +20,21 @@ const Content = ({
   image,
   imageCaption,
   imageCredit,
-  imageCreditHref
+  imageCreditHref,
+  minimal,
+  redistributable
 }) => {
   const classes = classNames({
     content: true,
     [elementClass]: elementClass
   });
+  let largest;
+  if (image && redistributable) {
+    const instances = image?.props.image.aspect_ratios.uncropped.instances;
+    largest = instances.reduce((accum = { width: 0 }, curr) => {
+      return accum.width > curr.width ? accum : curr;
+    });
+  }
   return (
     <article className={classes}>
       <ContentHeader
@@ -51,6 +60,7 @@ const Content = ({
             elementClass={'content_figure'}
             image={image}
           />
+          {largest && <a href={largest.url}>Download full resolution image</a>}
         </div>
       )}
 
@@ -59,6 +69,7 @@ const Content = ({
           <Body
             nodeData={JSON.parse(body)}
             embedded={JSON.parse(embeddedAssetJson)}
+            minimal={minimal}
           />
         </div>
       )}
@@ -89,7 +100,9 @@ Content.propTypes = {
   image: PropTypes.element,
   imageCaption: PropTypes.string,
   imageCredit: PropTypes.string,
-  imageCreditHref: PropTypes.string
+  imageCreditHref: PropTypes.string,
+  minimal: PropTypes.bool,
+  redistributable: PropTypes.bool
 };
 
 export default Content;
