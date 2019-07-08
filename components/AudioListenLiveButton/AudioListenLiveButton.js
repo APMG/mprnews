@@ -5,7 +5,7 @@ import Icon from '../Icons/Icon';
 const AudioListenLiveButton = () => {
   const context = useContext(AudioPlayerContext);
   const openInNewTab = () => {
-    window.open('/listen', 'Listen Page', 'resizable,height=850,width=776');
+    window.open('/listen', 'Listen Page', 'resizable,height=842,width=776');
   };
 
   return (
