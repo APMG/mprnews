@@ -23,7 +23,7 @@
     "clean": "rm -rf node_modules .next package-lock.json && npm cache verify"
   },
   "dependencies": {
-    "@apmg/amat": "^0.2.1",
+    "@apmg/amat": "^0.2.2",
     "@apmg/mimas": "^0.2.0",
     "@apmg/titan": "^0.5.1",
     "apm-html5-player": "^1.0.0-rc.2",
