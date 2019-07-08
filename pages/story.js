@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Story from '../endpoints/Story/Story';
 
 const StoryPage = ({ slug, previewToken }) => {
-  return <Story slug={slug} previewToken={previewToken} />;
+  return <Story slug={slug} previewToken={previewToken} minimal={false} />;
 };
 
 StoryPage.getInitialProps = async ({ query: { slug, previewToken } }) => {
