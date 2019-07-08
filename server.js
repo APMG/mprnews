@@ -141,22 +141,6 @@ app
       });
     });
 
-    // AMP Routing
-    server.get('/amp/story/*', (req, res) => {
-      res.set('Cache-Control', `public, max-age=${TTL}`);
-      app.render(req, res, '/ampstory', { slug: req.slug });
-    });
-
-    server.get('/amp/episode/*', (req, res) => {
-      res.set('Cache-Control', `public, max-age=${TTL}`);
-      app.render(req, res, '/ampepisode', { slug: req.slug });
-    });
-
-    server.get('/amp/page/*', (req, res) => {
-      res.set('Cache-Control', `public, max-age=${TTL}`);
-      app.render(req, res, '/amppage', { slug: req.slug });
-    });
-
     // Episode Routing
     server.get('/episode/*', (req, res) => {
       res.set('Cache-Control', `public, max-age=${TTL}`);
