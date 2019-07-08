@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Image } from 'apm-mimas';
+import { Image } from '@apmg/mimas';
 import { Heading } from '@apmg/titan';
 import Link from 'next/link';
 
