@@ -8,7 +8,7 @@ import query from './profile.gql';
 import Metatags from '../../components/Metatags/Metatags';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
 import Link from 'next/link';
-
+import { linkByTypeHref, linkByTypeAs } from '../../utils/cjsutils';
 const Profile = ({ slug, previewToken }) => (
   <Query
     query={query}
@@ -33,7 +33,7 @@ const ProfileInner = ({ profile }) => {
     {
       key: 'description',
       name: 'description',
-      content: profile.descriptionText
+      content: profile?.descriptionText
     },
     { key: 'og:image', name: 'og:image', content: socialImage },
     {
@@ -45,59 +45,80 @@ const ProfileInner = ({ profile }) => {
   ];
   return (
     <>
-      <Metatags title={profile.title} metatags={tags} links={[]} />
+      <Metatags title={profile?.title} metatags={tags} links={[]} />
       <section className="page section">
         <div className="content">
-          <Heading level={2} elementClass="hdg-page">
-            {profile.title}
-          </Heading>
-          <Heading level={3} elementClass="hdg-page">
-            {profile.jobTitle}
-          </Heading>
-          <div>
-            {profile.email}
-            <br />
-            {profile.profileRelatedLinks.map((link) => {
-              return (
-                <Link href={link.uri} key={link.uri}>
-                  <a>{link.text}</a>
-                </Link>
-              );
-            })}
-          </div>
-          {profile.primaryVisuals?.lead && (
-            <Image
-              key={profile.primaryVisuals.lead.fallback}
-              image={profile.primaryVisuals.lead}
-              aspectRatio="uncropped"
-              sizes="(max-width: 1100px) 100vw, 1100px"
-              alt={profile.primaryVisuals.lead.shortCaption}
-            />
-          )}
-          <div className="content_body">
-            <Body
-              nodeData={JSON.parse(profile.body)}
-              embedded={JSON.parse(profile.embeddedAssetJson)}
-            />
+          <div className="content_body userContent">
+            <div className="profile">
+              <div className="profile_header">
+                {profile?.primaryVisuals?.lead && (
+                  <div className="profile_image">
+                    <Image
+                      key={profile?.primaryVisuals.lead.fallback}
+                      image={profile?.primaryVisuals.lead}
+                      aspectRatio="uncropped"
+                      sizes="(max-width: 1100px) 100vw, 1100px"
+                      alt={profile?.primaryVisuals.lead.shortCaption}
+                    />
+                  </div>
+                )}
+
+                <div className="profile_information">
+                  <Heading level={2} elementClass="hdg-profile">
+                    {profile?.title}
+                  </Heading>
+                  <Heading level={3} elementClass="hdg-profile">
+                    {profile?.jobTitle}
+                  </Heading>
+
+                  <div className="profile_email">{profile?.email}</div>
+                  <div className="profile_relatedLinks">
+                    {profile &&
+                      profile.profileRelatedLinks &&
+                      profile.profileRelatedLinks.map((link) => {
+                        return (
+                          <Link href={link.uri} key={link.uri}>
+                            <a className="link">{link.text}</a>
+                          </Link>
+                        );
+                      })}
+                  </div>
+                </div>
+              </div>
+              <div className="profile_body">
+                {profile && profile.body && (
+                  <Body
+                    nodeData={JSON.parse(profile?.body)}
+                    embedded={JSON.parse(profile?.embeddedAssetJson)}
+                  />
+                )}
+              </div>
+              <div className="profile_footer">
+                <h3>Recent Contributions</h3>
+                <ul>
+                  {profile &&
+                    profile.contributions &&
+                    profile.contributions.map((contribution) => {
+                      const linkAs = linkByTypeAs(contribution);
+                      return (
+                        <li key={contribution.id}>
+                          <Link
+                            href={`/${contribution.resourceType}/${contribution.canonicalSlug}`}
+                            as={linkAs}
+                          >
+                            <a className="contributer">
+                              {contribution.title}
+                              <div>{contribution.descriptionText}</div>
+                            </a>
+                          </Link>
+                        </li>
+                      );
+                    })}
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
-      </section>
-      <section className="page section">
-        <h3>Contributions</h3>
-        {profile.contributions.map((contribution) => {
-          return (
-            <article key={contribution.id}>
-              <Link
-                href={`/${contribution.resourceType}/${contribution.canonicalSlug}`}
-              >
-                <a>
-                  <h4>{contribution.title}</h4>
-                  <div>{contribution.descriptionText}</div>
-                </a>
-              </Link>
-            </article>
-          );
-        })}
       </section>
     </>
   );
