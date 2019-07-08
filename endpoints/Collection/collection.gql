@@ -4,6 +4,7 @@ query collection($contentAreaSlug: String!, $slug: String!, $pageNum: Int) {
     title
     body
     embeddedAssetJson
+    canonicalSlug
     contributors {
       profile {
         canonicalSlug

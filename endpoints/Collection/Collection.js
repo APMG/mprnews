@@ -97,9 +97,10 @@ const CollectionInner = ({ collection, pageNum, collectionName }) => {
         <div className="collection_items">
           {collection.results.items.map((item) => {
             let link = linkByTypeHref(item);
-            const linkAs = linkByTypeAs(item);
-            if (collectionName === 'newspartners') {
+            let linkAs = linkByTypeAs(item);
+            if (collection.canonicalSlug === 'newspartners') {
               link = link.replace(/story/, 'newspartnerstory');
+              linkAs = linkAs.replace(/story/, 'newspartnerstory');
             }
 
             return (
