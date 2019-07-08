@@ -2,7 +2,7 @@ import React from 'react';
 import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
 import { Loading } from '@apmg/titan';
-import { Image } from 'apm-mimas';
+import { Image } from '@apmg/mimas';
 import { collectionLinkData } from '../../utils/utils';
 import Content from '../../components/Content/Content';
 import ContentGrid from '../../grids/ContentGrid';

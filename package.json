@@ -23,9 +23,10 @@
     "clean": "rm -rf node_modules .next package-lock.json && npm cache verify"
   },
   "dependencies": {
-    "@apmg/amat": "^0.2.3",
+    "@apmg/amat": "^0.2.4",
     "@apmg/mimas": "^0.2.0",
     "@apmg/titan": "^0.5.1",
+    "acorn": "^6.2.0",
     "apm-html5-player": "^1.0.0-rc.2",
     "apollo-boost": "^0.1.16",
     "classnames": "^2.2.6",
@@ -37,7 +38,7 @@
     "graphql": "^14.3.1",
     "http": "0.0.0",
     "isomorphic-unfetch": "^3.0.0",
-    "next": "^8.1.0",
+    "next": "^9.0.0",
     "node-sass": "^4.12.0",
     "nowplaying-client": "git+https://gitlab+deploy-token-1:ykGvZaPj9yncv8X4MAsK@gitlab.mpr.org/js-libraries/nowplaying-client.git",
     "prop-types": "^15.7.2",
@@ -47,10 +48,12 @@
     "react-dom": "^16.8.6",
     "react-dragscroll": "^2.0.1",
     "react-transition-group": "^1.2.1",
-    "url": "^0.11.0"
+    "url": "^0.11.0",
+    "webpack": "^4.35.3",
+    "webpack-cli": "^3.3.5"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/plugin-proposal-class-properties": "^7.5.0",
     "@babel/plugin-proposal-optional-chaining": "^7.2.0",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@zeit/next-sass": "^1.0.1",

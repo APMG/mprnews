@@ -4,7 +4,7 @@ import { Query } from 'react-apollo';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import { Teaser, Loading } from '@apmg/titan';
-import { Image } from 'apm-mimas';
+import { Image } from '@apmg/mimas';
 import { Body } from '@apmg/amat';
 import query from './home.gql';
 import HomeGrid from '../../grids/HomeGrid';

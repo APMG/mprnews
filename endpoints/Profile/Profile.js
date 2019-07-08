@@ -2,7 +2,7 @@ import React from 'react';
 import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
 import { Heading, Loading } from '@apmg/titan';
-import { Image } from 'apm-mimas';
+import { Image } from '@apmg/mimas';
 import { Body } from '@apmg/amat';
 import query from './profile.gql';
 import Metatags from '../../components/Metatags/Metatags';
