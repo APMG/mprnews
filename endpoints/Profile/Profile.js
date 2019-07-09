@@ -8,7 +8,7 @@ import query from './profile.gql';
 import Metatags from '../../components/Metatags/Metatags';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
 import Link from 'next/link';
-import { linkByTypeAs } from '../../utils/cjsutils';
+import { linkByTypeHref, linkByTypeAs } from '../../utils/cjsutils';
 const Profile = ({ slug, previewToken }) => (
   <Query
     query={query}
@@ -76,8 +76,9 @@ const ProfileInner = ({ profile }) => {
                     {profile &&
                       profile.profileRelatedLinks &&
                       profile.profileRelatedLinks.map((link) => {
+                        const linkAs = linkByTypeHref(link);
                         return (
-                          <Link href={link.uri} key={link.uri}>
+                          <Link href={link.uri} key={link.uri} as={linkAs}>
                             <a className="link">{link.text}</a>
                           </Link>
                         );
@@ -102,7 +103,6 @@ const ProfileInner = ({ profile }) => {
                       const linkAs = linkByTypeAs(contribution);
                       return (
                         <li key={contribution.id}>
-                          {console.log(contribution)}
                           <Link
                             href={`/${contribution.resourceType}/${contribution.canonicalSlug}`}
                             as={linkAs}
