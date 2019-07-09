@@ -20,7 +20,7 @@
     "test:ci": "jest",
     "test:coverage": "jest --coverage",
     "test:update": "jest -u",
-    "clean": "rm -rf node_modules .next package-lock.json && npm cache verify"
+    "blast": "rm -rf node_modules .next package-lock.json && npm cache verify"
   },
   "dependencies": {
     "@apmg/amat": "^0.2.4",

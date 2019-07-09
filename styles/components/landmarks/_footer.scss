@@ -9,6 +9,23 @@
   }
 }
 
+.footer-minimal {
+  background-color: $color-transparent;
+
+  .footer_upper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.footer_buttonIcon {
+  svg {
+    width: 30px;
+    height: 30px;
+  }
+}
+
 .footer_upper {
   max-width: $max-width;
   padding: 50px $container-edge 0;
