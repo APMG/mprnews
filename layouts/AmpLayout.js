@@ -10,7 +10,7 @@ const AmpLayout = ({ children }) => (
   <>
     <MinimalHeader />
     <main className="main">
-      <div className="container">{children}</div>
+      <div className="container container-amp">{children}</div>
     </main>
     <MinimalFooter />
   </>

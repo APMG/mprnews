@@ -5,9 +5,9 @@ import { Loading } from '@apmg/titan';
 import { Image } from '@apmg/mimas';
 import { collectionLinkData } from '../../utils/utils';
 import Content from '../../components/Content/Content';
-import query from './page.gql';
 import Metatags from '../../components/Metatags/Metatags';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
+import query from './page.gql';
 
 const Page = ({ slug, previewToken }) => (
   <Query

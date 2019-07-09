@@ -5,13 +5,7 @@ import classNames from 'classnames';
 import Logo from '../Logo/Logo';
 import Icon from '../Icons/Icon';
 import config from '../Footer/footerConfig';
-import { Heading } from '@apmg/titan';
-import FooterApps from '../Footer/FooterApps';
-import FooterContact from '../Footer/FooterContact';
 import FooterLower from '../Footer/FooterLower';
-import FooterPodcasts from '../Footer/FooterPodcasts';
-import FooterSubscribe from '../Footer/FooterSubscribe';
-import FooterProgramming from '../Footer/FooterProgramming';
 
 const MinimalFooter = () => {
   const classes = classNames('footer', 'footer-minimal');

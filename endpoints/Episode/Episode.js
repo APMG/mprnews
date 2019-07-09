@@ -7,9 +7,9 @@ import { collectionLinkData } from '../../utils/utils';
 import { format } from 'date-fns';
 import Content from '../../components/Content/Content';
 import AudioPlayButton from '../../components/AudioPlayButton/AudioPlayButton';
-import query from './episode.gql';
 import Metatags from '../../components/Metatags/Metatags';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
+import query from './episode.gql';
 
 const Episode = ({ slug, previewToken }) => (
   <Query
