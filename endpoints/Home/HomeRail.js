@@ -28,7 +28,7 @@ const HomeRail = (props) => {
         <div className="section section-md">
           <InfoLink
             title="Updraft"
-            href="updraft"
+            href="topic/weather/updraft"
             hrefType="collection"
             icon="updraft"
             description="with Paul Huttner"

@@ -7,12 +7,12 @@ import { Teaser, Loading } from '@apmg/titan';
 import { Image } from '@apmg/mimas';
 import { Body } from '@apmg/amat';
 import query from './home.gql';
+import { linkByTypeHref, linkByTypeAs } from '../../utils/cjsutils';
 import HomeGrid from '../../grids/HomeGrid';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import HomeFooter from './HomeFooter';
 import HomeRail from './HomeRail';
 import HomeTop from './HomeTop';
-import { linkByTypeHref, linkByTypeAs } from '../../utils/cjsutils';
 
 const Home = () => {
   return (
