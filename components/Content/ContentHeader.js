@@ -6,6 +6,12 @@ import { format } from 'date-fns';
 import Byline from '../Byline/Byline';
 
 const ContentHeader = (props) => {
+  let authorsTag = [];
+  props.authors.forEach((author) => {
+    authorsTag.push(author.name);
+  });
+  const authorTosStr = `["${authorsTag}"]`;
+
   return (
     <header className="content_header">
       {props.tag && (
@@ -31,7 +37,11 @@ const ContentHeader = (props) => {
 
       <div className="content_meta">
         {props.authors?.length ? (
-          <div className="content_byline" data-testid="contentByline">
+          <div
+            className="content_byline"
+            data-testid="contentByline"
+            data-mpr-authors={authorTosStr}
+          >
             <Byline authors={props.authors} />
           </div>
         ) : null}
