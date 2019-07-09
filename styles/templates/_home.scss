@@ -2,7 +2,6 @@
 
 .home {
   display: grid;
-  grid-row-gap: 40px;
   grid-template-areas:
   'top'
   'first'
@@ -12,12 +11,9 @@
   'footer';
 
   > * {
-    // Fallback in case the browser doesn't support grid
+    // Using bottom margin instead of grid-row-gap
+    // because otherwise empty grid areas won't completely collapse
     margin-bottom: 40px;
-
-    @supports (grid-row-gap: 40px) {
-      margin-bottom: 0;
-    }
   }
 
   @include media($media-small-tablet) {
@@ -42,7 +38,7 @@
   }
 
   @include media($media-desktop) {
-    grid-template-columns: 200px 1fr 300px;
+    grid-template-columns: 210px 1fr 300px;
     grid-template-areas:
     'top top sidebar'
     'rail first sidebar'
@@ -62,6 +58,26 @@
 
 .home_rail {
   grid-area: rail;
+}
+
+.home_railLinks {
+  columns: 2;
+
+  @include media($media-small-tablet) {
+    columns: auto;
+  }
+
+  @include media($media-tablet) {
+    columns: 3;
+  }
+
+  @include media($media-desktop) {
+    columns: auto;
+  }
+
+  > * {
+    break-inside: avoid;
+  }
 }
 
 .home_railSections {
