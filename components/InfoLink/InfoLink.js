@@ -38,9 +38,10 @@ const InfoLink = (props) => {
         <a className="infoLink">
           <Heading
             level={props.headingLevel}
-            className="hdg hdg-3 infoLink_title"
+            className="hdg hdg-4 infoLink_title"
           >
-            {props.title} <Icon name={props.icon} />
+            {props.title}
+            <Icon name={props.icon} />
           </Heading>
           {props.description && (
             <div className="infoLink_description">{props.description}</div>

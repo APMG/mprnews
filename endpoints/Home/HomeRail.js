@@ -23,24 +23,42 @@ const HomeRail = (props) => {
 
   return (
     <>
-      <div className="section section-md">
-        <WeatherSidebar />
+      <WeatherSidebar />
+      <div className="home_railLinks">
+        <div className="section section-md">
+          <InfoLink
+            title="Updraft"
+            href="updraft"
+            hrefType="collection"
+            icon="updraft"
+            description="with Paul Huttner"
+            headingLevel={2}
+            headline={props.updraft?.title}
+            headlineHref={props.updraft?.canonicalSlug}
+            headlineHrefType={props.updraft?.resourceType}
+          />
+        </div>
+        <div className="section section-md">
+          <InfoLink
+            title="Traffic"
+            description="Minnesota highways and streets"
+            href="traffic"
+            hrefType="page"
+            icon="car"
+            headingLevel={2}
+          />
+        </div>
+        <div className="section section-md">
+          <InfoLink
+            title="Email Newsletters"
+            description="The stories that matter, in your inbox"
+            href="newsletter?WT.mc_id=news_home_leftrail&WT.mc_ev=click&utm_source=mprnews&utm_medium=home+leftrail&utm_campaign=mprnews+newsletters"
+            hrefType="page"
+            icon="mail"
+            headingLevel={2}
+          />
+        </div>
       </div>
-      <div className="section section-md">
-        <InfoLink
-          title="Updraft"
-          href="updraft"
-          hrefType="collection"
-          icon="updraft"
-          description="with Paul Huttner"
-          headingLevel={2}
-          headline={props.updraft?.title}
-          headlineHref={props.updraft?.canonicalSlug}
-          headlineHrefType={props.updraft?.resourceType}
-        />
-      </div>
-      <div className="section section-md">Traffic</div>
-      <div className="section section-md">Email Newsletters</div>
       <div className="home_railSections">
         <div className="module_header">
           <Heading level={3} className="hdg hdg-section hdg-section-small">

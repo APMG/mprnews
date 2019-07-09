@@ -6,12 +6,22 @@
 
 .infoLink_title {
   color: $color-link;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
 
   > .icon {
     margin-left: .5rem;
+    height: 28px;
+    width: 28px;
+    vertical-align: -5px;
+    fill: $color-link;
+  }
+
+  > .icon-updraft {
     height: 32px;
     width: 32px;
-    vertical-align: -8px;
+    fill: $color-text;
   }
 }
 
