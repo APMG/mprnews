@@ -1,9 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { Heading } from '@apmg/titan';
 import WeatherSidebar from '../../components/WeatherSidebar/WeatherSidebar';
+import InfoLink from '../../components/InfoLink/InfoLink';
 
-const HomeRail = () => {
+const HomeRail = (props) => {
   const sections = [
     { text: 'Arts', href: '/art' },
     { text: 'Education', href: '/education' },
@@ -24,7 +26,19 @@ const HomeRail = () => {
       <div className="section section-md">
         <WeatherSidebar />
       </div>
-      <div className="section section-md">Updraft</div>
+      <div className="section section-md">
+        <InfoLink
+          title="Updraft"
+          href="/updraft"
+          hrefType="collection"
+          icon="updraft"
+          description="with Paul Huttner"
+          headingLevel={2}
+          headline={props.updraft?.title}
+          headlineHref={props.updraft?.canonicalSlug}
+          headlineHrefType={props.updraft?.resourceType}
+        />
+      </div>
       <div className="section section-md">Traffic</div>
       <div className="section section-md">Email Newsletters</div>
       <div className="home_railSections">
@@ -47,6 +61,14 @@ const HomeRail = () => {
       </div>
     </>
   );
+};
+
+HomeRail.propTypes = {
+  updraft: PropTypes.shape({
+    canonicalSlug: PropTypes.string,
+    resourceType: PropTypes.string,
+    title: PropTypes.string
+  })
 };
 
 export default HomeRail;

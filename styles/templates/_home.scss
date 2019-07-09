@@ -2,7 +2,6 @@
 
 .home {
   display: grid;
-  grid-row-gap: 40px;
   grid-template-areas:
   'top'
   'first'
@@ -12,12 +11,9 @@
   'footer';
 
   > * {
-    // Fallback in case the browser doesn't support grid
+    // Using bottom margin instead of grid-row-gap
+    // because otherwise empty grid areas won't completely collapse
     margin-bottom: 40px;
-
-    @supports (grid-row-gap: 40px) {
-      margin-bottom: 0;
-    }
   }
 
   @include media($media-small-tablet) {

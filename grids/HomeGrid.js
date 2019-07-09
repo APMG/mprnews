@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const HomeGrid = (props) => {
   return (
     <div className="home">
-      <div className="home_top">{props.top}</div>
+      {props.top && <div className="home_top">{props.top}</div>}
       <div className="home_first">{props.first}</div>
       <div className="home_rail">{props.rail}</div>
       <div className="home_main">{props.children}</div>

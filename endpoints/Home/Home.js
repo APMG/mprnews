@@ -36,6 +36,10 @@ const HomeInner = ({ data }) => {
   const { info } = JSON.parse(data.potlatch.json);
   const firstItem = data.homeList.results.items[0];
 
+  const showAlert = () => {
+    return info?.alert && info?.show_on?.indexOf('home') > -1 ? true : false;
+  };
+
   return (
     <HomeGrid
       sidebar={<Sidebar />}
@@ -62,8 +66,8 @@ const HomeInner = ({ data }) => {
           description=<Body nodeData={JSON.parse(firstItem.description)} />
         />
       }
-      rail={<HomeRail />}
-      top={<HomeTop info={info} />}
+      rail={<HomeRail updraft={data.updraft?.results?.items?.[0]} />}
+      top={showAlert() ? <HomeTop info={info} /> : null}
       footer={<HomeFooter />}
     >
       <div className="vList vList-collection">
