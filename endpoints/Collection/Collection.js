@@ -8,8 +8,6 @@ import PropTypes from 'prop-types';
 import query from './collection.gql';
 import Metatags from '../../components/Metatags/Metatags';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
-import ContentGrid from '../../grids/ContentGrid';
-import Sidebar from '../../components/Sidebar/Sidebar';
 import CollectionContributors from './CollectionContributors';
 import Pagination from '../../components/Pagination/Pagination';
 import { linkByTypeHref, linkByTypeAs } from '../../utils/cjsutils';
@@ -72,7 +70,7 @@ const CollectionInner = ({ collection, pageNum, collectionName }) => {
   };
 
   return (
-    <ContentGrid sidebar={<Sidebar />}>
+    <>
       <Metatags title={collection.title} metatags={tags} links={[]} />
 
       <section className="collection">
@@ -148,7 +146,7 @@ const CollectionInner = ({ collection, pageNum, collectionName }) => {
           />
         </div>
       </section>
-    </ContentGrid>
+    </>
   );
 };
 

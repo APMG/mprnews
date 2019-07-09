@@ -7,8 +7,6 @@ import { collectionLinkData } from '../../utils/utils';
 import { format } from 'date-fns';
 import Content from '../../components/Content/Content';
 import AudioPlayButton from '../../components/AudioPlayButton/AudioPlayButton';
-import ContentGrid from '../../grids/ContentGrid';
-import Sidebar from '../../components/Sidebar/Sidebar';
 import query from './episode.gql';
 import Metatags from '../../components/Metatags/Metatags';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
@@ -71,7 +69,7 @@ const EpisodeInner = ({ episode }) => {
   ];
 
   return (
-    <ContentGrid sidebar={<Sidebar />}>
+    <>
       <Metatags title={episode.title} metatags={tags} links={links} />
 
       <Content
@@ -108,7 +106,7 @@ const EpisodeInner = ({ episode }) => {
         tag={collectionLinkData(episode.primaryCollection)}
         elementClass="episode"
       />
-    </ContentGrid>
+    </>
   );
 };
 

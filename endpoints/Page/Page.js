@@ -5,8 +5,6 @@ import { Loading } from '@apmg/titan';
 import { Image } from '@apmg/mimas';
 import { collectionLinkData } from '../../utils/utils';
 import Content from '../../components/Content/Content';
-import ContentGrid from '../../grids/ContentGrid';
-import Sidebar from '../../components/Sidebar/Sidebar';
 import query from './page.gql';
 import Metatags from '../../components/Metatags/Metatags';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
@@ -50,7 +48,7 @@ const PageInner = ({ page }) => {
   ];
 
   return (
-    <ContentGrid sidebar={<Sidebar />}>
+    <>
       <Metatags title={page.title} metatags={tags} links={links} />
 
       <Content
@@ -75,7 +73,7 @@ const PageInner = ({ page }) => {
         tag={collectionLinkData(page.primaryCollection)}
         elementClass="episode"
       />
-    </ContentGrid>
+    </>
   );
 };
 
