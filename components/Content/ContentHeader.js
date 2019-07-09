@@ -10,7 +10,7 @@ const ContentHeader = (props) => {
   props.authors.forEach((author) => {
     authorsTag.push(author.name);
   });
-  const authorTosStr = `["${authorsTag}"]`;
+  const authorTosStr = `[ ${JSON.stringify(authorsTag)} ]`;
 
   return (
     <header className="content_header">
