@@ -130,3 +130,78 @@ $_weather-attr-min-width: 380px;
 .weekday_label {
   color: $color-grey-10;
 }
+
+
+.weatherHeader {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  @include media($media-full-layout) {
+    position: relative;
+    right: unset;
+    padding: 0 .85em;
+    text-align: right;
+  }
+}
+
+.weatherHeader_temp {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: $color-darkblue;
+
+  @include media($media-full-layout) {
+    font-size: 2rem;
+  }
+}
+
+.weatherButton {
+  @include reset-button();
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  color: $color-grey-50;
+
+  @include media($media-full-layout) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.weatherHeader_default {
+  display: block;
+  font-size: 1rem;
+
+  @include media($media-full-layout) {
+    font-size: unset;
+  }
+}
+
+.weatherSidebar {
+  font-size: .9em;
+}
+
+.weatherSidebar_header {
+  color: $color-text-light;
+  margin-bottom: 5px;
+}
+
+.weatherSidebar_label {
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.weatherSidebar_desc {
+  font-weight: 200;
+}
+
+.weatherSidebar_section {
+  margin-bottom: 20px;
+}

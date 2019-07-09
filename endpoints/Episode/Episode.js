@@ -2,7 +2,7 @@ import React from 'react';
 import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
 import { Loading } from '@apmg/titan';
-import { Image } from 'apm-mimas';
+import { Image } from '@apmg/mimas';
 import { collectionLinkData } from '../../utils/utils';
 import { format } from 'date-fns';
 import Content from '../../components/Content/Content';
@@ -62,10 +62,17 @@ const EpisodeInner = ({ episode }) => {
     },
     { key: 'twitter:image', name: 'twitter:image', content: socialImage }
   ];
+  const links = [
+    {
+      key: 'amphtml',
+      rel: 'amphtml',
+      href: `https://www.mprnews.org/amp/episode/${episode.canonicalSlug}`
+    }
+  ];
 
   return (
     <ContentGrid sidebar={<Sidebar />}>
-      <Metatags title={episode.title} metatags={tags} links={[]} />
+      <Metatags title={episode.title} metatags={tags} links={links} />
 
       <Content
         title={episode.title}
@@ -112,6 +119,7 @@ Episode.propTypes = {
 
 EpisodeInner.propTypes = {
   episode: PropTypes.shape({
+    canonicalSlug: PropTypes.string,
     title: PropTypes.string,
     subtitle: PropTypes.string,
     authors: PropTypes.arrayOf(

@@ -1,41 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Link from 'next/link';
 import Icon from '../Icons/Icon';
 import DropdownMenu from './DropdownMenu';
 import DropdownMenuItem from './DropdownMenuItem';
 import { dropdownLists } from '../../utils/dropdownConfig';
+import OutsideClick from '../OutsideClick/OutsideClick';
 
 const Dropdown = () => {
-  const [open, setOpen] = useState({
-    0: false,
-    1: false,
-    2: false
+  const ref = useRef();
+  const initialMenuState = { 0: false, 1: false, 2: false };
+  OutsideClick(ref, () => {
+    setOpen(initialMenuState);
   });
-  // console.log(open);
+
+  let [open, setOpen] = useState(initialMenuState);
+
   const closeItem = (id) => {
+    setOpen(initialMenuState, getToggle);
     open[id] = false;
-    setOpen(
-      {
-        ...open,
-        open: {
-          0: false,
-          1: false,
-          2: false
-        }
-      },
-      getToggle
-    );
   };
 
   const toggle = (id) => {
+    if (open[id] === true) {
+      open = initialMenuState;
+      setOpen({
+        ...open
+      });
+      return;
+    }
+    open = initialMenuState;
     open[id] = !open[id];
     setOpen({
-      ...open,
-      open: {
-        0: false,
-        1: false,
-        2: false
-      }
+      ...open
     });
   };
 
@@ -64,54 +60,58 @@ const Dropdown = () => {
 
   return (
     <div className="dropdown">
-      {dropdownLists.map((dropdownList, i) => {
-        return (
-          <DropdownMenu
-            isOpen={open[i]}
-            toggle={getToggle(dropdownList.text, () => toggle(i), open[i])}
-            direction={dropdownList.direction}
-            key={dropdownList.text + i}
-            className={dropdownList.className}
-          >
-            <ul
-              role="menu"
-              className={
-                'dropdownMenu dropdownMenu-expand' + (open ? ' active' : '')
-              }
+      <span className="dropdown_ref" ref={ref}>
+        {dropdownLists.map((dropdownList, i) => {
+          return (
+            <DropdownMenu
+              isOpen={open[i]}
+              toggle={getToggle(dropdownList.text, () => toggle(i), open[i])}
+              direction={dropdownList.direction}
+              key={dropdownList.text + i}
+              className={dropdownList.className}
             >
-              {dropdownList.groups.map((group, index) =>
-                !group.linkgroup ? null : (
-                  <li
-                    className="dropdownMenu_section"
-                    key={group.linkgroup + index}
-                    role="menuitem"
-                  >
-                    <div className="dropdownMenu_title">{group.linkgroup}</div>
-                    <ul className="dropdownMenuItem" role="menu">
-                      {group.links.map((item) =>
-                        !item.href ? null : (
-                          <DropdownMenuItem
-                            key={item.text + i}
-                            onClick={clickItem}
-                          >
-                            <Link href={item.href}>
-                              <a
-                                className={`dropdownMenuItem_link ${item.class}`}
-                              >
-                                {item.text}
-                              </a>
-                            </Link>
-                          </DropdownMenuItem>
-                        )
-                      )}
-                    </ul>
-                  </li>
-                )
-              )}
-            </ul>
-          </DropdownMenu>
-        );
-      })}
+              <ul
+                role="menu"
+                className={
+                  'dropdownMenu dropdownMenu-expand' + (open ? ' active' : '')
+                }
+              >
+                {dropdownList.groups.map((group, index) =>
+                  !group.linkgroup ? null : (
+                    <li
+                      className="dropdownMenu_section"
+                      key={group.linkgroup + index}
+                      role="menuitem"
+                    >
+                      <div className="dropdownMenu_title">
+                        {group.linkgroup}
+                      </div>
+                      <ul className="dropdownMenuItem" role="menu">
+                        {group.links.map((item) =>
+                          !item.href ? null : (
+                            <DropdownMenuItem
+                              key={item.text + i}
+                              onClick={clickItem}
+                            >
+                              <Link href={item.href}>
+                                <a
+                                  className={`dropdownMenuItem_link ${item.class}`}
+                                >
+                                  {item.text}
+                                </a>
+                              </Link>
+                            </DropdownMenuItem>
+                          )
+                        )}
+                      </ul>
+                    </li>
+                  )
+                )}
+              </ul>
+            </DropdownMenu>
+          );
+        })}
+      </span>
       <div className="nav_item nav_item-donate">
         <Link href="https://contribute.publicradio.org/contribute.php?refId=default&WT.mc_id=news_web_nav_button&WT.mc_ev=click&utm_campaign=membership_contribution&utm_medium=web_nav_button&utm_source=news&utm_content=&utm_terms">
           <a className="nav_link"> Give Now </a>

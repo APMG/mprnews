@@ -1,7 +1,7 @@
 import React from 'react';
 import Router from 'next/router';
 import { Teaser, Heading, Loading } from '@apmg/titan';
-import { Image } from 'apm-mimas';
+import { Image } from '@apmg/mimas';
 import { Body } from '@apmg/amat';
 import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
@@ -44,7 +44,6 @@ const Collection = ({ collectionName, pageNum }) => {
 
 const CollectionInner = ({ collection, pageNum, collectionName }) => {
   const socialImage = fishForSocialMediaImage(collection);
-
   const tags = [
     {
       key: 'description',
@@ -97,8 +96,12 @@ const CollectionInner = ({ collection, pageNum, collectionName }) => {
         </aside>
         <div className="collection_items">
           {collection.results.items.map((item) => {
-            const link = linkByTypeHref(item);
-            const linkAs = linkByTypeAs(item);
+            let link = linkByTypeHref(item);
+            let linkAs = linkByTypeAs(item);
+            if (collection.canonicalSlug === 'newspartners') {
+              link = link.replace(/story/, 'newspartnerstory');
+              linkAs = linkAs.replace(/story/, 'newspartnerstory');
+            }
 
             return (
               <Teaser

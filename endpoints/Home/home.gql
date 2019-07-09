@@ -1,6 +1,6 @@
 query home($contentAreaSlug: String!, $slug: String!) {
-  updraft:collection(contentAreaSlug: $contentAreaSlug, slug:"updraft") {
-    results(page:1, pageSize:1) {
+  updraft: collection(contentAreaSlug: $contentAreaSlug, slug: "updraft") {
+    results(page: 1, pageSize: 1) {
       items {
         title
         resourceType

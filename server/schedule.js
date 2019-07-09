@@ -19,6 +19,7 @@ module.exports.schedule = (server, app) => {
             return response.json();
           })
           .then(function(response) {
+            res.set('Cache-Control', `public, max-age=60`);
             app.render(req, res, '/schedule', {
               slug: req.daySlug,
               props: response

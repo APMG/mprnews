@@ -3,9 +3,10 @@ import React from 'react';
 import withApolloClient from '../lib/with-apollo-client';
 import { ApolloProvider } from 'react-apollo';
 import AudioPlayerContext from '../context/AudioPlayerContext';
+import LocationContext from '../context/LocationContext';
 import NowPlayingClient from 'nowplaying-client';
-import Header from '../components/Header/Header';
-import AudioPlayer from '../components/AudioPlayer';
+import Layout from '../layouts/Layout';
+import { weatherConfig } from '../utils/defaultData';
 
 class MPRNews extends App {
   constructor(props) {
@@ -40,7 +41,9 @@ class MPRNews extends App {
       playerInstance: null,
       playerRef: this.playerRef,
       playlist: {},
-      resetLivePlayer: this.resetLivePlayer
+      resetLivePlayer: this.resetLivePlayer,
+      location: weatherConfig[0],
+      handleLocationChange: this.handleLocationChange
     };
   }
 
@@ -194,17 +197,28 @@ class MPRNews extends App {
     registrations.push(playlist_registration);
   };
 
+  handleLocationChange = (locationName) => {
+    let newLocation = weatherConfig.find((item) => item.name === locationName);
+
+    this.setState({
+      location: newLocation
+    });
+  };
+
   render() {
     const { Component, pageProps, apolloClient } = this.props;
+    const { location, handleLocationChange } = this.state;
     return (
       <AudioPlayerContext.Provider value={this.state}>
-        <Container>
-          <ApolloProvider client={apolloClient}>
-            <Header />
-            <AudioPlayer />
-            <Component {...pageProps} />
-          </ApolloProvider>
-        </Container>
+        <LocationContext.Provider value={{ location, handleLocationChange }}>
+          <Container>
+            <ApolloProvider client={apolloClient}>
+              <Layout layout={pageProps?.layout}>
+                <Component {...pageProps} />
+              </Layout>
+            </ApolloProvider>
+          </Container>
+        </LocationContext.Provider>
       </AudioPlayerContext.Provider>
     );
   }

@@ -12,10 +12,14 @@ const handle = app.getRequestHandler();
 const { feed } = require('./server/feed');
 const { schedule } = require('./server/schedule');
 const { dynamic } = require('./server/dynamic');
+const { sitemap } = require('./server/sitemap');
+const { urlset } = require('./server/urlset');
+
+const TTL = 60;
 
 const slug = (req, res, next) => {
   req.slug = req.path.replace(
-    /^(\/newspartners)*\/(amp)*(story|episode|page|people)\//,
+    /^(\/newspartners)*\/(amp\/)*(story|episode|page|people)\/(card\/)*/,
     ''
   );
   next();
@@ -64,6 +68,7 @@ app
 
     //Root route
     server.get('/', (req, res) => {
+      res.set('Cache-Control', `public, max-age=${TTL}`);
       app.render(req, res, '/index');
     });
 
@@ -72,31 +77,43 @@ app
       app.render(req, res, '/search');
     });
 
+    // Listen Routing
+    server.get('/listen', (req, res) => {
+      app.render(req, res, '/listen');
+    });
+
     // Scribble Live Routing
     server.get('/scribble', (req, res) => {
+      res.set('Cache-Control', `public, max-age=${TTL}`);
       app.render(req, res, '/scribble');
     });
 
     // Weather routing
     server.get('/weather/:id?', (req, res) => {
+      res.set('Cache-Control', `public, max-age=${TTL}`);
       app.render(req, res, '/weather', { id: req.params.id });
     });
 
     // Story routing
-    server.get('/story/*', (req, res) => {
-      app.render(req, res, '/story', { slug: req.slug });
-    });
 
     server.get('/story/card/*', (req, res) => {
+      res.set('Cache-Control', `public, max-age=${TTL}`);
       app.render(req, res, '/twitter', req.twitterSlug);
     });
 
+    server.get('/story/*', (req, res) => {
+      res.set('Cache-Control', `public, max-age=${TTL}`);
+      app.render(req, res, '/story', { slug: req.slug });
+    });
+
     server.get('/newspartners/story/*', (req, res) => {
+      res.set('Cache-Control', `public, max-age=${TTL}`);
       app.render(req, res, '/newspartnerstory', { slug: req.slug });
     });
 
     // Profile Routing
     server.get('/people/*', (req, res) => {
+      res.set('Cache-Control', `public, max-age=${TTL}`);
       app.render(req, res, '/profile', { slug: req.slug });
     });
 
@@ -109,6 +126,7 @@ app
     });
 
     server.get('/preview/stories/*', (req, res) => {
+      res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
       app.render(req, res, '/story', {
         slug: req.previewSlug,
         previewToken: req.previewToken
@@ -116,6 +134,7 @@ app
     });
 
     server.get('/preview/episodes/*', (req, res) => {
+      res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
       app.render(req, res, '/episode', {
         slug: req.previewSlug,
         previewToken: req.previewToken
@@ -123,28 +142,46 @@ app
     });
 
     // AMP Routing
-    server.get('/ampstory/*', (req, res) => {
+    server.get('/amp/story/*', (req, res) => {
+      res.set('Cache-Control', `public, max-age=${TTL}`);
       app.render(req, res, '/ampstory', { slug: req.slug });
     });
 
-    server.get('/ampepisode/*', (req, res) => {
+    server.get('/amp/episode/*', (req, res) => {
+      res.set('Cache-Control', `public, max-age=${TTL}`);
       app.render(req, res, '/ampepisode', { slug: req.slug });
     });
 
-    server.get('/amppage/*', (req, res) => {
+    server.get('/amp/page/*', (req, res) => {
+      res.set('Cache-Control', `public, max-age=${TTL}`);
       app.render(req, res, '/amppage', { slug: req.slug });
     });
 
     // Episode Routing
     server.get('/episode/*', (req, res) => {
+      res.set('Cache-Control', `public, max-age=${TTL}`);
       app.render(req, res, '/episode', { slug: req.slug });
     });
 
+    server.get('/newspartners/:pageNum?', (req, res) => {
+      res.set('Cache-Control', `public, max-age=${TTL}`);
+      const pageNum = req.params.pageNum || 1;
+      app.render(req, res, '/collection', {
+        slug: 'newspartners',
+        pageNum: pageNum
+      });
+    });
     // schedule route
     schedule(server, app);
 
     // imported RSS route
     feed(server);
+
+    // imported sitemap route
+    sitemap(server);
+
+    // imported sitemap route
+    urlset(server);
 
     // Dynamic Routing for collections and pages
     dynamic(server, app, handle);

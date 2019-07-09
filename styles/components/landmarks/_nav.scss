@@ -38,6 +38,12 @@
   line-height: 1.6;
 }
 
+.nav_button.active {
+  .icon-chevronDown {
+    transform: rotate(180deg);
+  }
+}
+
 .nav_closeButton {
   @include reset-button();
   display: block;

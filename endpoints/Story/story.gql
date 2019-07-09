@@ -7,6 +7,7 @@ query story($contentAreaSlug: String!, $slug: String!, $previewToken: String) {
     id
     title
     subtitle
+    dateline
     canonicalSlug
     primaryCollection {
       title
@@ -58,6 +59,9 @@ query story($contentAreaSlug: String!, $slug: String!, $previewToken: String) {
         dateline
         fallback
         longCaption
+	rights {
+	  redistributable
+	}
         shortCaption
         xid
       }

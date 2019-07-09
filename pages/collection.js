@@ -1,16 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import MainLayout from '../layouts/MainLayout';
 import Collection from '../endpoints/Collection/Collection';
 
 /* eslint react/display-name: 0 */
 
 const CollectionPage = ({ slug, pageNum = 1 }) => {
-  return (
-    <MainLayout>
-      <Collection collectionName={slug} pageNum={parseInt(pageNum)} />
-    </MainLayout>
-  );
+  return <Collection collectionName={slug} pageNum={parseInt(pageNum)} />;
 };
 
 CollectionPage.getInitialProps = async ({ query: { slug, pageNum } }) => {

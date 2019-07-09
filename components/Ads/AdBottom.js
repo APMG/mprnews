@@ -1,10 +1,13 @@
 import React from 'react';
+import Link from 'next/link';
 
 const AdBottom = () => {
   return (
-    <div id="mpr-mr-ads" className="adWrapper">
-      <span>Sponsor</span>
-      <div id="mpr-ad-2" className="ad ad_mr" />
+    <div id="mpr-mr-ads" className="ad">
+      <Link href="/sponsor">
+        <a className="ad_link">Sponsor us</a>
+      </Link>
+      <div id="mpr-ad-2" className="ad_slot ad_slot-mr" />
     </div>
   );
 };

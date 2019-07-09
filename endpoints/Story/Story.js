@@ -2,7 +2,7 @@ import React from 'react';
 import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
 import { Loading } from '@apmg/titan';
-import { Image } from 'apm-mimas';
+import { Image } from '@apmg/mimas';
 import { collectionLinkData } from '../../utils/utils';
 import { format } from 'date-fns';
 import Content from '../../components/Content/Content';
@@ -13,7 +13,7 @@ import query from './story.gql';
 import Metatags from '../../components/Metatags/Metatags';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
 
-const Story = ({ slug, previewToken }) => (
+const Story = ({ slug, previewToken, minimal }) => (
   <Query
     query={query}
     variables={{
@@ -25,13 +25,12 @@ const Story = ({ slug, previewToken }) => (
     {({ loading, error, data }) => {
       if (error) return <div>Error loading story</div>;
       if (loading) return <Loading />;
-
-      return <StoryInner story={data.story} />;
+      return <StoryInner story={data.story} minimal={minimal} />;
     }}
   </Query>
 );
 
-const StoryInner = ({ story }) => {
+const StoryInner = ({ story, minimal }) => {
   let authors;
 
   if (story.contributors) {
@@ -54,15 +53,25 @@ const StoryInner = ({ story }) => {
     },
     { key: 'twitter:image', name: 'twitter:image', content: socialImage }
   ];
+  const links = [
+    {
+      key: 'amphtml',
+      rel: 'amphtml',
+      href: `https://www.mprnews.org/amp/story/${story.canonicalSlug}`
+    }
+  ];
 
   return (
     <ContentGrid sidebar={<Sidebar />}>
-      <Metatags title={story.title} metatags={tags} links={[]} />
+      <Metatags title={story.title} metatags={tags} links={links} />
       <Content
         title={story.title}
         subtitle={story.subtitle}
+        dateline={story.dateline}
         authors={authors}
         body={story.body}
+        minimal={minimal}
+        redistributable={story.primaryVisuals?.lead?.rights?.redistributable}
         audioPlayButton={
           story.primaryAudio && (
             <AudioPlayButton
@@ -98,13 +107,16 @@ const StoryInner = ({ story }) => {
 
 Story.propTypes = {
   slug: PropTypes.string,
-  previewToken: PropTypes.string
+  previewToken: PropTypes.string,
+  minimal: PropTypes.bool
 };
 
 StoryInner.propTypes = {
   story: PropTypes.shape({
+    canonicalSlug: PropTypes.string,
     title: PropTypes.string,
     subtitle: PropTypes.string,
+    dateline: PropTypes.string,
     authors: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string,
@@ -127,7 +139,8 @@ StoryInner.propTypes = {
       tagName: PropTypes.string,
       to: PropTypes.string
     })
-  })
+  }),
+  minimal: PropTypes.bool
 };
 
 export default Story;

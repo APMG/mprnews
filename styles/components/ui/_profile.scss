@@ -1,0 +1,44 @@
+
+.profile_header {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+
+  @include media($media-small-tablet) {
+    flex-direction: row;
+    align-items: flex-end;
+  }
+
+  @include media($media-tablet) {
+    margin-bottom: 40px;
+    flex-direction: row;
+  }
+}
+
+.profile_image {
+  img {
+    width: 280px;
+    border: $color-grey-90 1px solid;
+
+    @include media($media-small-tablet) {
+      width: 200px;
+      margin-right: 2em;
+    }
+  }
+}
+
+.profile_body {
+  margin-bottom: 20px;
+
+  @include media($media-tablet) {
+    margin-bottom: 40px;
+  }
+}
+
+.profile_footer {
+  li {
+    list-style: initial;
+    list-style-type: disc;
+    list-style-position: outside;
+  }
+}

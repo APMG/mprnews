@@ -1,0 +1,29 @@
+//--------------------------------
+// Listen Page Footer
+//--------------------------------
+
+.playerFooter {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba($color-blue-tint, 1);
+  margin: auto;
+  justify-content: space-evenly;
+  max-width: $max-width;
+  padding: 8px 16px;
+
+  @include media($media-tablet) {
+    flex-direction: row;
+  }
+}
+
+.playerFooter_row {
+  margin-bottom: 1.5rem;
+}
+
+.playerFooter_column {
+  margin: 18px 0;
+
+  @include media($media-tablet) {
+    margin: 24px 0;
+  }
+}

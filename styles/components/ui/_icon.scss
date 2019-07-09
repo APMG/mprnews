@@ -36,3 +36,7 @@
   height: 15px;
   margin-right: 4px;
 }
+
+.icon-chevronDown {
+  transition: transform $transition cubic-bezier(.33, 0, .5, .99);
+}

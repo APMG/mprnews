@@ -1,16 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import MainLayout from '../layouts/MainLayout';
 import Episode from '../endpoints/Episode/Episode';
 
 /* eslint react/display-name: 0 */
 
 const EpisodePage = ({ slug, previewToken }) => {
-  return (
-    <MainLayout>
-      <Episode slug={slug} previewToken={previewToken} />
-    </MainLayout>
-  );
+  return <Episode slug={slug} previewToken={previewToken} />;
 };
 
 EpisodePage.getInitialProps = async ({ query: { slug, previewToken } }) => {
