@@ -29,7 +29,7 @@ const HomeRail = (props) => {
       <div className="section section-md">
         <InfoLink
           title="Updraft"
-          href="/updraft"
+          href="updraft"
           hrefType="collection"
           icon="updraft"
           description="with Paul Huttner"

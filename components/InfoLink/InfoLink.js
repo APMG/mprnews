@@ -6,9 +6,35 @@ import Icon from '../Icons/Icon';
 import { linkByTypeHref, linkByTypeAs } from '../../utils/cjsutils';
 
 const InfoLink = (props) => {
+  const linkObj = () => {
+    if (props.hrefType) {
+      return {
+        canonicalSlug: props.href,
+        resourceType: props.hrefType
+      };
+    } else {
+      return {
+        canonicalSlug: props.href
+      };
+    }
+  };
+
+  const headlineLinkObj = () => {
+    if (props.headlineHrefType) {
+      return {
+        canonicalSlug: props.headlineHref,
+        resourceType: props.headlineHrefType
+      };
+    } else {
+      return {
+        canonicalSlug: props.headlineHref
+      };
+    }
+  };
+
   return (
     <>
-      <Link href={props.href}>
+      <Link href={linkByTypeHref(linkObj())} as={linkByTypeAs(linkObj())}>
         <a className="infoLink">
           <Heading
             level={props.headingLevel}
@@ -23,8 +49,8 @@ const InfoLink = (props) => {
       </Link>
       {props.headline && props.headlineHref && (
         <Link
-          href={linkByTypeHref(props.headlineHref)}
-          as={linkByTypeAs(props.headlineHref)}
+          href={linkByTypeHref(headlineLinkObj())}
+          as={linkByTypeAs(headlineLinkObj())}
         >
           <a className="infoLink_headline link link-plain">
             <Heading
@@ -45,9 +71,11 @@ InfoLink.propTypes = {
   headingLevel: PropTypes.number.isRequired,
   headline: PropTypes.string,
   headlineHref: PropTypes.string,
-  href: PropTypes.string,
+  headlineHrefType: PropTypes.string,
+  href: PropTypes.string.isRequired,
+  hrefType: PropTypes.string,
   icon: PropTypes.string,
-  title: PropTypes.string
+  title: PropTypes.string.isRequired
 };
 
 export default InfoLink;
