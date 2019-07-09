@@ -8,37 +8,27 @@ import OutsideClick from '../OutsideClick/OutsideClick';
 
 const Dropdown = () => {
   const ref = useRef();
-
+  const initialMenuState = { 0: false, 1: false, 2: false };
   OutsideClick(ref, () => {
-    setOpen({
-      ...open,
-      0: false,
-      1: false,
-      2: false
-    });
+    setOpen(initialMenuState);
   });
 
-  let [open, setOpen] = useState({
-    0: false,
-    1: false,
-    2: false
-  });
+  let [open, setOpen] = useState(initialMenuState);
 
   const closeItem = (id) => {
-    setOpen(
-      {
-        ...open,
-        0: false,
-        1: false,
-        2: false
-      },
-      getToggle
-    );
+    setOpen(initialMenuState, getToggle);
     open[id] = false;
   };
 
   const toggle = (id) => {
-    open = { 0: false, 1: false, 2: false };
+    if (open[id] === true) {
+      open = initialMenuState;
+      setOpen({
+        ...open
+      });
+      return;
+    }
+    open = initialMenuState;
     open[id] = !open[id];
     setOpen({
       ...open

@@ -40,3 +40,11 @@
 .icon-chevronDown {
   transition: transform $transition cubic-bezier(.33, 0, .5, .99);
 }
+
+.icon-updraft_sun {
+  fill: $color-yellow;
+}
+
+.icon-updraft_wind {
+  fill: $color-blue;
+}

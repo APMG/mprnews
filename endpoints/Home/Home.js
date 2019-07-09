@@ -7,12 +7,12 @@ import { Teaser, Loading } from '@apmg/titan';
 import { Image } from '@apmg/mimas';
 import { Body } from '@apmg/amat';
 import query from './home.gql';
+import { linkByTypeHref, linkByTypeAs } from '../../utils/cjsutils';
 import HomeGrid from '../../grids/HomeGrid';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import HomeFooter from './HomeFooter';
 import HomeRail from './HomeRail';
 import HomeTop from './HomeTop';
-import { linkByTypeHref, linkByTypeAs } from '../../utils/cjsutils';
 
 const Home = () => {
   return (
@@ -35,6 +35,10 @@ const Home = () => {
 const HomeInner = ({ data }) => {
   const { info } = JSON.parse(data.potlatch.json);
   const firstItem = data.homeList.results.items[0];
+
+  const showAlert = () => {
+    return info?.alert && info?.show_on?.indexOf('home') > -1 ? true : false;
+  };
 
   return (
     <HomeGrid
@@ -62,8 +66,8 @@ const HomeInner = ({ data }) => {
           description=<Body nodeData={JSON.parse(firstItem.description)} />
         />
       }
-      rail={<HomeRail />}
-      top={<HomeTop info={info} />}
+      rail={<HomeRail updraft={data.updraft?.results?.items?.[0]} />}
+      top={showAlert() ? <HomeTop info={info} /> : null}
       footer={<HomeFooter />}
     >
       <div className="vList vList-collection">

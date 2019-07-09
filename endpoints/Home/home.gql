@@ -1,10 +1,13 @@
 query home($contentAreaSlug: String!, $slug: String!) {
-  updraft: collection(contentAreaSlug: $contentAreaSlug, slug: "updraft") {
+  updraft: collection(
+    contentAreaSlug: $contentAreaSlug
+    slug: "topic/weather/updraft"
+  ) {
     results(page: 1, pageSize: 1) {
       items {
         title
         resourceType
-        description
+        canonicalSlug
       }
     }
   }
