@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import NavButtonContents from './NavButtonContents';
-import Logo from './Logo';
+import Logo from '../Logo/Logo';
 
 const Nav = (props) => {
   return (

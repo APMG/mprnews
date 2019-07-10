@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import Logo from '../Header/Logo';
+import Logo from '../Logo/Logo';
 
 const ListenHeader = () => (
   <div className="listenHeader">

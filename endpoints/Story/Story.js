@@ -7,11 +7,9 @@ import { collectionLinkData } from '../../utils/utils';
 import { format } from 'date-fns';
 import Content from '../../components/Content/Content';
 import AudioPlayButton from '../../components/AudioPlayButton/AudioPlayButton';
-import ContentGrid from '../../grids/ContentGrid';
-import Sidebar from '../../components/Sidebar/Sidebar';
-import query from './story.gql';
 import Metatags from '../../components/Metatags/Metatags';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
+import query from './story.gql';
 
 const Story = ({ slug, previewToken, minimal }) => (
   <Query
@@ -25,6 +23,7 @@ const Story = ({ slug, previewToken, minimal }) => (
     {({ loading, error, data }) => {
       if (error) return <div>Error loading story</div>;
       if (loading) return <Loading />;
+
       return <StoryInner story={data.story} minimal={minimal} />;
     }}
   </Query>
@@ -61,7 +60,7 @@ const StoryInner = ({ story, minimal }) => {
   ];
 
   return (
-    <ContentGrid sidebar={<Sidebar />}>
+    <>
       <Metatags title={story.title} metatags={tags} links={links} />
       <Content
         title={story.title}
@@ -100,7 +99,7 @@ const StoryInner = ({ story, minimal }) => {
         tag={collectionLinkData(story.primaryCollection)}
         elementClass="story"
       />
-    </ContentGrid>
+    </>
   );
 };
 
