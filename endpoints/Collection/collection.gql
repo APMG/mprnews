@@ -101,6 +101,11 @@ query collection($contentAreaSlug: String!, $slug: String!, $pageNum: Int) {
             httpFilePath
           }
         }
+        collectionRelatedLinks {
+          url
+          title
+          prefix
+        }
         ... on Link {
           destination
         }

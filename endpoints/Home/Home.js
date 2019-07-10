@@ -1,18 +1,15 @@
 /* eslint-disable react/display-name */
 import React from 'react';
 import { Query } from 'react-apollo';
-import Link from 'next/link';
 import PropTypes from 'prop-types';
-import { Teaser, Loading } from '@apmg/titan';
-import { Image } from '@apmg/mimas';
-import { Body } from '@apmg/amat';
+import { Button, Loading } from '@apmg/titan';
 import query from './home.gql';
-import { linkByTypeHref, linkByTypeAs } from '../../utils/cjsutils';
 import HomeGrid from '../../grids/HomeGrid';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import HomeFooter from './HomeFooter';
 import HomeRail from './HomeRail';
 import HomeTop from './HomeTop';
+import FullTeaser from '../../components/FullTeaser/FullTeaser';
 
 const Home = () => {
   return (
@@ -43,29 +40,7 @@ const HomeInner = ({ data }) => {
   return (
     <HomeGrid
       sidebar={<Sidebar />}
-      first={
-        <Teaser
-          key={firstItem.id}
-          id={firstItem.id}
-          title={firstItem.title}
-          href={linkByTypeHref(firstItem)}
-          as={linkByTypeAs(firstItem)}
-          publishDate={firstItem.publishDate}
-          headingLevel={2}
-          image={
-            firstItem.primaryVisuals?.thumbnail ? (
-              <Image
-                image={firstItem.primaryVisuals?.thumbnail}
-                elementClass="content_thumbnail"
-                aspectRatio="widescreen"
-                sizes="(max-width: 590px) 95vw, (max-width: 890px) 45vw, 300px"
-                alt={firstItem.primaryVisuals?.thumbnail?.shortCaption}
-              />
-            ) : null
-          }
-          description=<Body nodeData={JSON.parse(firstItem.description)} />
-        />
-      }
+      first={<FullTeaser item={firstItem} />}
       rail={<HomeRail updraft={data.updraft?.results?.items?.[0]} />}
       top={showAlert() ? <HomeTop info={info} /> : null}
       footer={<HomeFooter />}
@@ -73,36 +48,14 @@ const HomeInner = ({ data }) => {
       <div className="vList vList-collection">
         {data.homeList.results.items.map((item, index) => {
           if (index === 0) return;
-
-          return (
-            <Teaser
-              key={item.id}
-              id={item.id}
-              title={item.title}
-              href={linkByTypeHref(item)}
-              as={linkByTypeAs(item)}
-              publishDate={item.publishDate}
-              headingLevel={2}
-              elementClass="teaser-condensed"
-              image={
-                item.primaryVisuals?.thumbnail ? (
-                  <Image
-                    image={item.primaryVisuals?.thumbnail}
-                    elementClass="content_thumbnail"
-                    aspectRatio="widescreen"
-                    sizes="(max-width: 590px) 95vw, (max-width: 890px) 45vw, 300px"
-                    alt={item.primaryVisuals?.thumbnail?.shortCaption}
-                  />
-                ) : null
-              }
-              description=<Body nodeData={JSON.parse(item.description)} />
-            />
-          );
+          return <FullTeaser key={item.id} item={item} size="condensed" />;
         })}
       </div>
-      <Link href="/">
-        <a className="home_more">More News</a>
-      </Link>
+      <div className="home_more">
+        <Button type="primary" href="/">
+          More News
+        </Button>
+      </div>
     </HomeGrid>
   );
 };

@@ -54,6 +54,16 @@
 
 .home_first {
   grid-area: first;
+  margin-bottom: 0;
+
+  &::after {
+    content: '';
+    display: block;
+    height: 1px;
+    width: 80%;
+    margin: 3rem auto;
+    background: $color-blue-tint;
+  }
 }
 
 .home_rail {

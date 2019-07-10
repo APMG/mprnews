@@ -52,7 +52,7 @@ const HomeRail = (props) => {
           <InfoLink
             title="Email Newsletters"
             description="The stories that matter, in your inbox"
-            href="newsletter?WT.mc_id=news_home_leftrail&WT.mc_ev=click&utm_source=mprnews&utm_medium=home+leftrail&utm_campaign=mprnews+newsletters"
+            href="newsletter"
             hrefType="page"
             icon="mail"
             headingLevel={2}
