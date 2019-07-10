@@ -3,7 +3,7 @@ const { linkByTypeAs } = require('../utils/cjsutils');
 
 module.exports.feed = (server) => {
   // RSS feeds for collections
-  server.get(`/feed/*`, (req, res) => {
+  server.get(`/feed/*/*$`, (req, res) => {
     res.header('Content-Type', 'text/xml');
     res.set('Cache-Control', `public, max-age=60`);
     let xml = '<?xml version="1.0" encoding="UTF-8"?>';
@@ -50,6 +50,7 @@ module.exports.feed = (server) => {
         });
     };
     const queryRes = fetchFeedData(query);
+    console.log(query);
     queryRes.then((results) => {
       xml += `<title>${results.data.collection.title} - MPR News</title>`;
       xml += `<description>${results.data.collection.descriptionText}</description>`;
@@ -61,6 +62,10 @@ module.exports.feed = (server) => {
                 href="https://www.mprnews.org/feed/${results.data.collection.canonicalSlug}"
                 rel="self"
                 type="application/rss+xml"/> `;
+      console.log(
+        'collections.canonicalSlug',
+        results.data.collection.canonicalSlug
+      );
       results.data.collection.results.items.forEach((item) => {
         if (item.resourceType === 'link') {
           return;
