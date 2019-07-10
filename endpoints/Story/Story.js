@@ -36,7 +36,7 @@ const StoryInner = ({ story, minimal }) => {
   if (story.contributors) {
     authors = story.contributors.map((contributor) => {
       return {
-        name: `${contributor.profile.title}`,
+        title: `${contributor.profile.title}`,
         href: `/people/${contributor.profile?.canonicalSlug}`
       };
     });
@@ -119,7 +119,7 @@ StoryInner.propTypes = {
     dateline: PropTypes.string,
     authors: PropTypes.arrayOf(
       PropTypes.shape({
-        name: PropTypes.string,
+        title: PropTypes.string,
         href: PropTypes.string
       })
     ),

@@ -12,7 +12,7 @@ const Byline = (props) => {
           as={author.href}
           href={`/profile?slug=${author.href.split('/')[2]}`}
         >
-          <a className="link link-plain">{author.name}</a>
+          <a className="link link-plain">{author.title}</a>
         </Link>
       )
     );

@@ -84,7 +84,7 @@ Content.propTypes = {
   dateline: PropTypes.string,
   authors: PropTypes.arrayOf(
     PropTypes.shape({
-      name: PropTypes.string,
+      title: PropTypes.string,
       href: PropTypes.string
     })
   ),

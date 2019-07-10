@@ -41,7 +41,7 @@ const EpisodeInner = ({ episode }) => {
       } ${contributor.profile?.lastName ? contributor.profile.lastName : ''}`;
       return {
         // prettier-ignore
-        name: `${thisString}`,
+        title: `${thisString}`,
         href: `/profiles/${contributor.profile?.canonicalSlug}`
       };
     });
@@ -124,7 +124,7 @@ EpisodeInner.propTypes = {
     subtitle: PropTypes.string,
     authors: PropTypes.arrayOf(
       PropTypes.shape({
-        name: PropTypes.string,
+        title: PropTypes.string,
         href: PropTypes.string
       })
     ),
