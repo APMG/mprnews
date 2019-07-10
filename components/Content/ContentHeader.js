@@ -8,9 +8,9 @@ import Byline from '../Byline/Byline';
 const ContentHeader = (props) => {
   let authorsTag = [];
   props.authors.forEach((author) => {
-    authorsTag.push(author.name);
+    authorsTag.push(author.title);
   });
-  const authorTosStr = `[ ${JSON.stringify(authorsTag)} ]`;
+  const authorTosStr = JSON.stringify(authorsTag);
 
   return (
     <header className="content_header">
@@ -62,7 +62,7 @@ const ContentHeader = (props) => {
 ContentHeader.propTypes = {
   authors: PropTypes.arrayOf(
     PropTypes.shape({
-      name: PropTypes.string,
+      title: PropTypes.string,
       href: PropTypes.string
     })
   ),
