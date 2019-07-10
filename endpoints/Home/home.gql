@@ -15,7 +15,7 @@ query home($contentAreaSlug: String!, $slug: String!) {
     id
     title
     description
-    results(page: 1, pageSize: 10) {
+    results(page: 1, pageSize: 20) {
       items {
         id
         title
@@ -55,7 +55,13 @@ query home($contentAreaSlug: String!, $slug: String!) {
           durationHms
           encodings {
             httpFilePath
+            durationMs
           }
+        }
+        collectionRelatedLinks {
+          url
+          title
+          prefix
         }
         ... on Link {
           destination

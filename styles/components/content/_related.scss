@@ -1,15 +1,18 @@
-// Amat related links
+// Contains the base classes as well as Amat related links
+
+.related {
+  line-height: 1.5;
+}
+
+.related-teaser {
+  margin-top: 1rem;
+  font-size: 1.4rem;
+}
 
 .apm-related-list {
   margin: 2em 0;
   font-family: $font-family-default;
   clear: both;
-}
-
-.apm-related-link-prefix {
-  display: inline-block;
-  margin-right: .5em;
-  font-weight: 700;
 }
 
 .apm-related-list-title {
@@ -18,6 +21,7 @@
   margin-bottom: .5rem;
 }
 
+.related_item,
 .apm-related-list ul li {
   list-style: none;
   padding-left: 0;
@@ -36,4 +40,15 @@
     font-size: .85em;
     background: $color-blue-light;
   }
+}
+
+.related_prefix,
+.apm-related-link-prefix {
+  display: inline-block;
+  margin-right: .5em;
+  font-weight: 700;
+}
+
+.related_link {
+  @include link();
 }
