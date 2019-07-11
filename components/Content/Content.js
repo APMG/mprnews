@@ -23,8 +23,7 @@ const Content = ({
   imageCredit,
   imageCreditHref,
   minimal,
-  redistributable,
-  isNewsPartners
+  redistributable
 }) => {
   const classes = classNames({
     content: true,
@@ -64,10 +63,12 @@ const Content = ({
             elementClass={'content_figure'}
             image={image}
           />
-          {largest && isNewsPartners ? (
-            <a href={largest.url}>Download full resolution image</a>
-          ) : (
-            ''
+          {largest && minimal && (
+            <div className="content_newsPartners">
+              <a className="link" href={largest.url}>
+                Download full resolution image
+              </a>
+            </div>
           )}
         </div>
       )}
@@ -111,8 +112,7 @@ Content.propTypes = {
   imageCredit: PropTypes.string,
   imageCreditHref: PropTypes.string,
   minimal: PropTypes.bool,
-  redistributable: PropTypes.bool,
-  isNewsPartners: PropTypes.bool
+  redistributable: PropTypes.bool
 };
 
 export default Content;

@@ -103,14 +103,13 @@ app
 
     server.get('/story/*', (req, res) => {
       res.set('Cache-Control', `public, max-age=${TTL}`);
-      app.render(req, res, '/story', { slug: req.slug, isNewsPartners: false });
+      app.render(req, res, '/story', { slug: req.slug });
     });
 
     server.get('/newspartners/story/*', (req, res) => {
       res.set('Cache-Control', `public, max-age=${TTL}`);
       app.render(req, res, '/newspartnerstory', {
-        slug: req.slug,
-        isNewsPartners: true
+        slug: req.slug
       });
     });
 
@@ -171,8 +170,7 @@ app
       const pageNum = req.params.pageNum || 1;
       app.render(req, res, '/collection', {
         slug: 'newspartners',
-        pageNum: pageNum,
-        isNewsPartners: true
+        pageNum: pageNum
       });
     });
     // schedule route

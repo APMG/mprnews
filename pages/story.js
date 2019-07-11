@@ -4,31 +4,22 @@ import Story from '../endpoints/Story/Story';
 import ContentGrid from '../grids/ContentGrid';
 import Sidebar from '../components/Sidebar/Sidebar';
 
-const StoryPage = ({ slug, previewToken, isNewsPartners }) => (
+const StoryPage = ({ slug, previewToken }) => (
   <ContentGrid sidebar={<Sidebar />}>
-    <Story
-      slug={slug}
-      previewToken={previewToken}
-      minimal={false}
-      isNewsPartners={isNewsPartners}
-    />
+    <Story slug={slug} previewToken={previewToken} minimal={false} />
   </ContentGrid>
 );
 
-StoryPage.getInitialProps = async ({
-  query: { slug, isNewsPartners, previewToken }
-}) => {
+StoryPage.getInitialProps = async ({ query: { slug, previewToken } }) => {
   return {
     slug: slug,
-    isNewsPartners: isNewsPartners,
     previewToken: previewToken
   };
 };
 
 StoryPage.propTypes = {
   slug: PropTypes.string,
-  previewToken: PropTypes.string,
-  isNewsPartners: PropTypes.bool
+  previewToken: PropTypes.string
 };
 
 export default StoryPage;

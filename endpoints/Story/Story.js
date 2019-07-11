@@ -12,7 +12,7 @@ import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelper
 import ShareSocialButtons from '../../components/ShareSocialButtons/ShareSocialButtons';
 import query from './story.gql';
 
-const Story = ({ slug, previewToken, minimal, isNewsPartners }) => (
+const Story = ({ slug, previewToken, minimal }) => (
   <Query
     query={query}
     variables={{
@@ -25,18 +25,12 @@ const Story = ({ slug, previewToken, minimal, isNewsPartners }) => (
       if (error) return <div>Error loading story</div>;
       if (loading) return <Loading />;
 
-      return (
-        <StoryInner
-          story={data.story}
-          minimal={minimal}
-          isNewsPartners={isNewsPartners}
-        />
-      );
+      return <StoryInner story={data.story} minimal={minimal} />;
     }}
   </Query>
 );
 
-const StoryInner = ({ story, minimal, isNewsPartners }) => {
+const StoryInner = ({ story, minimal }) => {
   let authors;
   if (story.contributors) {
     authors = story.contributors.map((contributor) => {
@@ -85,7 +79,6 @@ const StoryInner = ({ story, minimal, isNewsPartners }) => {
         authors={authors}
         body={story.body}
         minimal={minimal}
-        isNewsPartners={isNewsPartners}
         redistributable={story.primaryVisuals?.lead?.rights?.redistributable}
         shareButtons={
           <ShareSocialButtons
@@ -129,12 +122,10 @@ const StoryInner = ({ story, minimal, isNewsPartners }) => {
 Story.propTypes = {
   slug: PropTypes.string,
   previewToken: PropTypes.string,
-  minimal: PropTypes.bool,
-  isNewsPartners: PropTypes.bool
+  minimal: PropTypes.bool
 };
 
 StoryInner.propTypes = {
-  isNewsPartners: PropTypes.bool,
   story: PropTypes.shape({
     canonicalSlug: PropTypes.string,
     title: PropTypes.string,
