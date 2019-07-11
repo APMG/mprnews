@@ -79,7 +79,7 @@ query home($contentAreaSlug: String!, $slug: String!) {
     slug
     json
   }
-  homeStoryConfig: potlatch(slug: "mprnews/home-story-control") {
+  homeStoryConfig: potlatch(slug: "mprnews/homepage-stories") {
     slug
     json
   }
