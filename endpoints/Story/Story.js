@@ -12,6 +12,7 @@ import Sidebar from '../../components/Sidebar/Sidebar';
 import query from './story.gql';
 import Metatags from '../../components/Metatags/Metatags';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
+import ShareSocialButtons from '../../components/ShareSocialButtons/ShareSocialButtons';
 
 const Story = ({ slug, previewToken, minimal }) => (
   <Query
@@ -72,6 +73,12 @@ const StoryInner = ({ story, minimal }) => {
         body={story.body}
         minimal={minimal}
         redistributable={story.primaryVisuals?.lead?.rights?.redistributable}
+        shareButtons={
+          <ShareSocialButtons
+            storyUrl={story.canonicalSlug}
+            title={story.title}
+          />
+        }
         audioPlayButton={
           story.primaryAudio && (
             <AudioPlayButton
