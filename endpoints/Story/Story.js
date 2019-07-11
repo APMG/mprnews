@@ -34,7 +34,7 @@ const StoryInner = ({ story, minimal }) => {
   if (story.contributors) {
     authors = story.contributors.map((contributor) => {
       return {
-        title: `${contributor.profile.title}`,
+        title: `${contributor.profile?.title}`,
         href: `/people/${contributor.profile?.canonicalSlug}`
       };
     });
@@ -42,7 +42,11 @@ const StoryInner = ({ story, minimal }) => {
 
   const socialImage = fishForSocialMediaImage(story);
   const tags = [
-    { key: 'description', name: 'description', content: story.descriptionText },
+    {
+      key: 'description',
+      name: 'description',
+      content: story?.descriptionText
+    },
     { key: 'og:image', name: 'og:image', content: socialImage },
     {
       key: 'mpr-content-topic',
@@ -60,7 +64,7 @@ const StoryInner = ({ story, minimal }) => {
     {
       key: 'amphtml',
       rel: 'amphtml',
-      href: `https://www.mprnews.org/amp/story/${story.canonicalSlug}`
+      href: `https://www.mprnews.org/amp/story/${story?.canonicalSlug}`
     }
   ];
 
