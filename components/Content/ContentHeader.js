@@ -7,9 +7,15 @@ import Byline from '../Byline/Byline';
 
 const ContentHeader = (props) => {
   let authorsTag = [];
-  props.authors.forEach((author) => {
-    authorsTag.push(author.title);
-  });
+
+  if (props.authors?.length >= 1) {
+    props.authors.forEach((author) => {
+      authorsTag.push(author.title);
+    });
+  } else {
+    authorsTag.push(null);
+  }
+
   const authorTosStr = JSON.stringify(authorsTag);
 
   return (
