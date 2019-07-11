@@ -1,17 +1,10 @@
-/* global googletag */
-import React, { useEffect } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { format } from 'date-fns';
 import AdBottom from '../../components/Ads/AdBottom';
 import AdTop from '../../components/Ads/AdTop';
 
 const Sidebar = () => {
-  useEffect(() => {
-    if (window.googletag && googletag.apiReady) {
-      googletag.pubads().refresh();
-    }
-  }, []);
-
   const programDate = format(new Date(), 'ddd');
 
   return (
