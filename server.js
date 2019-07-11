@@ -113,7 +113,9 @@ app
 
     server.get('/newspartners/story/*', (req, res) => {
       res.set('Cache-Control', `public, max-age=${TTL}`);
-      app.render(req, res, '/newspartnerstory', { slug: req.slug });
+      app.render(req, res, '/newspartnerstory', {
+        slug: req.slug
+      });
     });
 
     // Profile Routing
