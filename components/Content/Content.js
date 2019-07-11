@@ -63,7 +63,7 @@ const Content = ({
             elementClass={'content_figure'}
             image={image}
           />
-          {largest && <a href={largest.url}>Download full resolution image</a>}
+          {largest && <div className="content_newspartner"><a className="link" href={largest.url}>Download full resolution image</a></div>}
         </div>
       )}
 
@@ -76,6 +76,7 @@ const Content = ({
           />
         </div>
       )}
+
     </article>
   );
 };
