@@ -15,7 +15,6 @@ const WeatherHeader = () => {
       );
       let result = await response.json();
       let match = getClosestHourMatch(result.properties.periods);
-      console.log(match);
       setData(match);
     };
 
