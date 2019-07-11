@@ -34,7 +34,7 @@ namespace :npm do
   task :install do
     on roles(:app) do
       within release_path do
-        execute :npm, :cache, :clean --force
+        execute :npm, 'cache clean --force'
         execute :npm, :install
         execute :npm, :run, :build
       end
