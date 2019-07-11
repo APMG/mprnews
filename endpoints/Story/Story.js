@@ -31,7 +31,7 @@ const Story = ({ slug, previewToken, minimal }) => (
 
 const StoryInner = ({ story, minimal }) => {
   let authors;
-  if (story?.contributors.length >= 1) {
+  if (story.contributors) {
     authors = story.contributors.map((contributor) => {
       return {
         title: `${contributor.profile?.title}`,
