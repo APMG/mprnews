@@ -6,6 +6,7 @@ import { Button, Loading } from '@apmg/titan';
 import query from './home.gql';
 import HomeGrid from '../../grids/HomeGrid';
 import Sidebar from '../../components/Sidebar/Sidebar';
+import Icon from '../../components/Icons/Icon';
 import HomeFooter from './HomeFooter';
 import HomeRail from './HomeRail';
 import HomeTop from './HomeTop';
@@ -31,11 +32,14 @@ const Home = () => {
 };
 
 const HomeInner = ({ data }) => {
-  const { info } = JSON.parse(data.potlatch.json);
+  const alerts = JSON.parse(data.alertConfig.json);
+  const homeStoryConfig = JSON.parse(data.homeStoryConfig.json);
   const firstItem = data.homeList.results.items[0];
 
-  const showAlert = () => {
-    return info?.alert && info?.show_on?.indexOf('home') > -1 ? true : false;
+  const showInfoAlert = () => {
+    return alerts?.info?.alert && alerts?.info?.show_on?.indexOf('home') > -1
+      ? true
+      : false;
   };
 
   return (
@@ -51,21 +55,32 @@ const HomeInner = ({ data }) => {
         links={[]}
       />
       <HomeGrid
+        blowout={homeStoryConfig?.top_story_blowout_level > 0}
         sidebar={<Sidebar />}
         first={<FullTeaser item={firstItem} />}
         rail={<HomeRail updraft={data.updraft?.results?.items?.[0]} />}
-        top={showAlert() ? <HomeTop info={info} /> : null}
+        top={showInfoAlert() ? <HomeTop info={alerts.info} /> : null}
         footer={<HomeFooter />}
       >
         <div className="vList vList-collection">
           {data.homeList.results.items.map((item, index) => {
             if (index === 0) return;
-            return <FullTeaser key={item.id} item={item} size="condensed" />;
+            return (
+              <FullTeaser
+                key={item.id}
+                item={item}
+                size={
+                  index >= homeStoryConfig?.promoted_stories
+                    ? 'condensed'
+                    : null
+                }
+              />
+            );
           })}
         </div>
         <div className="home_more">
           <Button type="primary" href="/">
-            More News
+            <span>More News</span> <Icon name="chevronRight" />
           </Button>
         </div>
       </HomeGrid>
