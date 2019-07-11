@@ -14,8 +14,13 @@ const { schedule } = require('./server/schedule');
 const { dynamic } = require('./server/dynamic');
 const { sitemap } = require('./server/sitemap');
 const { urlset } = require('./server/urlset');
+const { ssGql } = require('./server/ssGql');
 
 const TTL = 60;
+const ampQuery = (slug) =>
+  JSON.stringify({
+    query: `{ content(slug: "${slug}",  contentAreaSlug: "${process.env.CONTENT_AREA_SLUG}") { supportedOutputFormats } }`
+  });
 
 const slug = (req, res, next) => {
   req.slug = req.path.replace(
@@ -142,14 +147,28 @@ app
     });
 
     // AMP Routing
-    server.get('/amp/story/*', (req, res) => {
-      res.set('Cache-Control', `public, max-age=${TTL}`);
-      app.render(req, res, '/ampstory', { slug: req.slug });
+    server.get('/amp/story/*', (req, res, next) => {
+      ssGql(ampQuery(req.slug), next).then((data) => {
+        if (typeof data === 'undefined') return;
+        if (data.supportedOutputFormats.indexOf('amp') === -1) {
+          res.status(404).send('Not Found');
+          return;
+        }
+        res.set('Cache-Control', `public, max-age=${TTL}`);
+        app.render(req, res, '/ampstory', { slug: req.slug });
+      });
     });
 
-    server.get('/amp/episode/*', (req, res) => {
-      res.set('Cache-Control', `public, max-age=${TTL}`);
-      app.render(req, res, '/ampepisode', { slug: req.slug });
+    server.get('/amp/episode/*', (req, res, next) => {
+      ssGql(ampQuery(req.slug), next).then((data) => {
+        if (typeof data === 'undefined') return;
+        if (data.supportedOutputFormats.indexOf('amp') === -1) {
+          res.status(404).send('Not Found');
+          return;
+        }
+        res.set('Cache-Control', `public, max-age=${TTL}`);
+        app.render(req, res, '/ampepisode', { slug: req.slug });
+      });
     });
 
     server.get('/amp/page/*', (req, res) => {
