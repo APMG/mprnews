@@ -1,9 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 const HomeGrid = (props) => {
+  const classes = classNames({
+    home: true,
+    'is-blowout': props.blowout
+  });
+
   return (
-    <div className="home">
+    <div className={classes}>
       {props.top && <div className="home_top">{props.top}</div>}
       <div className="home_first">{props.first}</div>
       <div className="home_main">{props.children}</div>
@@ -15,6 +21,7 @@ const HomeGrid = (props) => {
 };
 
 HomeGrid.propTypes = {
+  blowout: PropTypes.bool,
   children: PropTypes.node,
   first: PropTypes.node,
   footer: PropTypes.node,

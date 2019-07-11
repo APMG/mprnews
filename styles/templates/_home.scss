@@ -46,6 +46,38 @@
     'footer footer footer';
     margin-right: -($container-edge);
   }
+
+  &.is-blowout {
+    .home_first .hdg {
+      @include hdg-1();
+    }
+
+    @include media($media-small-tablet) {
+      grid-template-areas:
+      'top top'
+      'first first'
+      'main rail'
+      'sidebar rail'
+      'footer footer';
+    }
+
+    @include media($media-tablet) {
+      grid-template-areas:
+      'top top'
+      'first sidebar'
+      'rail sidebar'
+      'main sidebar'
+      'footer footer';
+    }
+
+    @include media($media-desktop) {
+      grid-template-areas:
+      'top top sidebar'
+      'first first sidebar'
+      'rail main sidebar'
+      'footer footer footer';
+    }
+  }
 }
 
 .home_top {

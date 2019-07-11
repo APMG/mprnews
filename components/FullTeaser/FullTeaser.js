@@ -19,7 +19,10 @@ const FullTeaser = ({ item, size, newspartners }) => {
 
   const aspectRatio = size === 'condensed' ? 'thumbnail' : 'widescreen';
   const elementClass = size ? `teaser-${size}` : null;
-  const imageSizes = '(max-width: 590px) 95vw, (max-width: 890px) 45vw, 300px';
+  const imageSizes =
+    size === 'condensed'
+      ? '120px'
+      : '(max-width: 590px) 95vw, (max-width: 890px) 45vw, 300px';
 
   const contributors = (contributorsArr) => {
     if (contributorsArr?.length) {

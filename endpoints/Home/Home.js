@@ -55,6 +55,7 @@ const HomeInner = ({ data }) => {
         links={[]}
       />
       <HomeGrid
+        blowout={homeStoryConfig?.top_story_blowout_level > 0}
         sidebar={<Sidebar />}
         first={<FullTeaser item={firstItem} />}
         rail={<HomeRail updraft={data.updraft?.results?.items?.[0]} />}
