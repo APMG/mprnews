@@ -89,8 +89,7 @@ export const dropdownLists = [
           {
             text: 'Become a member',
             class: '',
-            href:
-              'https://contribute.publicradio.org/contribute.php?refId=default&WT.mc_id=news_web_header_dropdown&WT.mc_ev=click&utm_campaign=membership_contribution&utm_medium=web_header_dropdown&utm_source=news&utm_content=&utm_term'
+            href: 'https://contribute.publicradio.org/contribute.php'
           }
         ]
       },

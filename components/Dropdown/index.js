@@ -113,7 +113,7 @@ const Dropdown = () => {
         })}
       </span>
       <div className="nav_item nav_item-donate">
-        <Link href="https://contribute.publicradio.org/contribute.php?refId=default&WT.mc_id=news_web_nav_button&WT.mc_ev=click&utm_campaign=membership_contribution&utm_medium=web_nav_button&utm_source=news&utm_content=&utm_terms">
+        <Link href="https://contribute.publicradio.org/contribute.php">
           <a className="nav_link"> Give Now </a>
         </Link>
       </div>

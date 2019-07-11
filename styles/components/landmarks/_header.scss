@@ -28,6 +28,10 @@ $_header-button-full-width: 62px;
   }
 }
 
+.header-minimal {
+  justify-content: center;
+}
+
 .header_logo {
   display: flex;
   align-items: center;

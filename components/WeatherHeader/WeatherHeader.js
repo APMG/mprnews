@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import fetch from 'isomorphic-unfetch';
 import LocationContext from '../../context/LocationContext';
 import Icon from '../Icons/Icon';
+import { getClosestHourMatch } from '../../utils/utils';
 
 const WeatherHeader = () => {
   const [data, setData] = useState({});
@@ -13,7 +14,9 @@ const WeatherHeader = () => {
         `https://api.weather.gov/points/${lat},${long}/forecast/hourly`
       );
       let result = await response.json();
-      setData(result);
+      let match = getClosestHourMatch(result.properties.periods);
+      console.log(match);
+      setData(match);
     };
 
     getData(context.location.lat, context.location.long);
@@ -21,14 +24,12 @@ const WeatherHeader = () => {
 
   return (
     <div className="weatherHeader">
-      {data.properties ? (
+      {data.temperature ? (
         <>
           <a href="/weather">
-            <div className="weatherHeader_temp">
-              {`${data.properties.periods[0].temperature}°`}
-            </div>
+            <div className="weatherHeader_temp">{`${data.temperature}°`}</div>
             <div className="weatherHeader_text invisible">
-              {data.properties.periods[0].shortForecast}
+              {data.shortForecast}
             </div>
           </a>
           <div className="weatherButton">

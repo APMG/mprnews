@@ -7,12 +7,10 @@ import { collectionLinkData } from '../../utils/utils';
 import { format } from 'date-fns';
 import Content from '../../components/Content/Content';
 import AudioPlayButton from '../../components/AudioPlayButton/AudioPlayButton';
-import ContentGrid from '../../grids/ContentGrid';
-import Sidebar from '../../components/Sidebar/Sidebar';
-import query from './story.gql';
 import Metatags from '../../components/Metatags/Metatags';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
 import ShareSocialButtons from '../../components/ShareSocialButtons/ShareSocialButtons';
+import query from './story.gql';
 
 const Story = ({ slug, previewToken, minimal }) => (
   <Query
@@ -26,6 +24,7 @@ const Story = ({ slug, previewToken, minimal }) => (
     {({ loading, error, data }) => {
       if (error) return <div>Error loading story</div>;
       if (loading) return <Loading />;
+
       return <StoryInner story={data.story} minimal={minimal} />;
     }}
   </Query>
@@ -33,11 +32,10 @@ const Story = ({ slug, previewToken, minimal }) => (
 
 const StoryInner = ({ story, minimal }) => {
   let authors;
-
   if (story.contributors) {
     authors = story.contributors.map((contributor) => {
       return {
-        name: `${contributor.profile.title}`,
+        title: `${contributor.profile?.title}`,
         href: `/people/${contributor.profile?.canonicalSlug}`
       };
     });
@@ -45,8 +43,17 @@ const StoryInner = ({ story, minimal }) => {
 
   const socialImage = fishForSocialMediaImage(story);
   const tags = [
-    { key: 'description', name: 'description', content: story.descriptionText },
+    {
+      key: 'description',
+      name: 'description',
+      content: story?.descriptionText
+    },
     { key: 'og:image', name: 'og:image', content: socialImage },
+    {
+      key: 'mpr-content-topic',
+      name: 'mpr-content-topic',
+      content: collectionLinkData(story.primaryCollection)
+    },
     {
       key: 'twitter:card',
       name: 'twitter:card',
@@ -58,12 +65,12 @@ const StoryInner = ({ story, minimal }) => {
     {
       key: 'amphtml',
       rel: 'amphtml',
-      href: `https://www.mprnews.org/amp/story/${story.canonicalSlug}`
+      href: `https://www.mprnews.org/amp/story/${story?.canonicalSlug}`
     }
   ];
 
   return (
-    <ContentGrid sidebar={<Sidebar />}>
+    <>
       <Metatags title={story.title} metatags={tags} links={links} />
       <Content
         title={story.title}
@@ -108,7 +115,7 @@ const StoryInner = ({ story, minimal }) => {
         tag={collectionLinkData(story.primaryCollection)}
         elementClass="story"
       />
-    </ContentGrid>
+    </>
   );
 };
 
@@ -126,7 +133,7 @@ StoryInner.propTypes = {
     dateline: PropTypes.string,
     authors: PropTypes.arrayOf(
       PropTypes.shape({
-        name: PropTypes.string,
+        title: PropTypes.string,
         href: PropTypes.string
       })
     ),

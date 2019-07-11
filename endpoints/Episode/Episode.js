@@ -7,12 +7,10 @@ import { collectionLinkData } from '../../utils/utils';
 import { format } from 'date-fns';
 import Content from '../../components/Content/Content';
 import AudioPlayButton from '../../components/AudioPlayButton/AudioPlayButton';
-import ContentGrid from '../../grids/ContentGrid';
-import Sidebar from '../../components/Sidebar/Sidebar';
-import query from './episode.gql';
 import Metatags from '../../components/Metatags/Metatags';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
 import ShareSocialButtons from '../../components/ShareSocialButtons/ShareSocialButtons';
+import query from './episode.gql';
 
 const Episode = ({ slug, previewToken }) => (
   <Query
@@ -42,7 +40,7 @@ const EpisodeInner = ({ episode }) => {
       } ${contributor.profile?.lastName ? contributor.profile.lastName : ''}`;
       return {
         // prettier-ignore
-        name: `${thisString}`,
+        title: `${thisString}`,
         href: `/profiles/${contributor.profile?.canonicalSlug}`
       };
     });
@@ -54,6 +52,11 @@ const EpisodeInner = ({ episode }) => {
       key: 'description',
       name: 'description',
       content: episode.descriptionText
+    },
+    {
+      key: 'mpr-content-topic',
+      name: 'mpr-content-topic',
+      content: collectionLinkData(episode.primaryCollection)
     },
     { key: 'og:image', name: 'og:image', content: socialImage },
     {
@@ -72,7 +75,7 @@ const EpisodeInner = ({ episode }) => {
   ];
 
   return (
-    <ContentGrid sidebar={<Sidebar />}>
+    <>
       <Metatags title={episode.title} metatags={tags} links={links} />
 
       <Content
@@ -115,7 +118,7 @@ const EpisodeInner = ({ episode }) => {
         tag={collectionLinkData(episode.primaryCollection)}
         elementClass="episode"
       />
-    </ContentGrid>
+    </>
   );
 };
 
@@ -131,7 +134,7 @@ EpisodeInner.propTypes = {
     subtitle: PropTypes.string,
     authors: PropTypes.arrayOf(
       PropTypes.shape({
-        name: PropTypes.string,
+        title: PropTypes.string,
         href: PropTypes.string
       })
     ),
