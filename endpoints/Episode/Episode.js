@@ -66,13 +66,17 @@ const EpisodeInner = ({ episode }) => {
     },
     { key: 'twitter:image', name: 'twitter:image', content: socialImage }
   ];
-  const links = [
-    {
-      key: 'amphtml',
-      rel: 'amphtml',
-      href: `https://www.mprnews.org/amp/episode/${episode.canonicalSlug}`
-    }
-  ];
+
+  const links =
+    episode.supportedOutputFormats.indexOf('amp') === -1
+      ? []
+      : [
+          {
+            key: 'amphtml',
+            rel: 'amphtml',
+            href: `https://www.mprnews.org/amp/episode/${episode?.canonicalSlug}`
+          }
+        ];
 
   return (
     <>
@@ -140,6 +144,7 @@ EpisodeInner.propTypes = {
     ),
     body: PropTypes.string,
     contributors: PropTypes.array,
+    supportedOutputFormats: PropTypes.array,
     description: PropTypes.string,
     descriptionText: PropTypes.string,
     image: PropTypes.element,
