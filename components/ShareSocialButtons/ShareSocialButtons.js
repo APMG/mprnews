@@ -5,8 +5,27 @@ import { Heading } from '@apmg/titan';
 
 const ShareSocialButtons = ({ storyUrl, title }) => {
   //Don't send the share event information to GA by default
-  const shareEventGA = false;
+  const shareFBEventGA = 'facebook';
+  const shareTwitterEventGA = 'tweet';
   const dataLayer = null;
+  const shareEventGA = false;
+  const via = 'mprnews';
+  const twitterLink =
+    'http://twitter.com/share?url=' +
+    'https://www.mprnews.org/story' +
+    storyUrl +
+    '&text=' +
+    title +
+    '&via=' +
+    via;
+  console.log(twitterLink);
+  const fbLink =
+    'http://www.facebook.com/sharer.php?u=' +
+    'https://www.mprnews.org/story' +
+    storyUrl +
+    '&text=' +
+    title +
+    'sharer';
 
   const dataLayerObj = {
     event: 'GAevent',
@@ -15,42 +34,8 @@ const ShareSocialButtons = ({ storyUrl, title }) => {
     eventLabel: shareEventGA,
     eventInteraction: 'false'
   };
-  const openTweetNewTab = (storyUrl, dataLayerObj, shareEventGA, title) => {
-    window.open(
-      'http://twitter.com/share?url=' +
-        'https://www.mprnews.org/story' +
-        storyUrl +
-        '&text=' +
-        title +
-        '&via=' +
-        'mprnews',
-      +'sharer',
-      'toolbar=0,status=0,width=626,height=436'
-    );
-    //This is for Google Analytics tracking, wired up in Google Tag Manager
-    shareEventGA = 'tweet';
-    if (shareEventGA && typeof dataLayer === 'object') {
-      try {
-        //push data layer through Google Tag in GTM, data lives in GA
-        dataLayer.push(dataLayerObj);
-      } catch (e) {
-        return;
-      }
-    }
-  };
 
-  const openFbMsgNewTab = (storyUrl, dataLayerObj, shareEventGA, title) => {
-    window.open(
-      'http://www.facebook.com/sharer.php?u=' +
-        'https://www.mprnews.org/story' +
-        storyUrl +
-        '&text=' +
-        title,
-      'sharer',
-      'toolbar=0,status=0,width=626,height=436'
-    );
-    //This is for Google Analytics tracking, wired up in Google Tag Manager
-    shareEventGA = 'facebook';
+  const pushLayerInfoForGA = (dataLayerObj, shareEventGA) => {
     if (shareEventGA && typeof dataLayer === 'object') {
       try {
         //push data layer through Google Tag in GTM, data lives in GA
@@ -68,11 +53,12 @@ const ShareSocialButtons = ({ storyUrl, title }) => {
       </Heading>
 
       <a
-        href="/"
+        href={twitterLink}
+        target="_blank"
+        rel="noopener noreferrer"
         className="shareSocialButtons_twitter"
-        onClick={(e) => {
-          e.preventDefault();
-          openTweetNewTab(storyUrl, dataLayerObj, shareEventGA, title);
+        onClick={() => {
+          pushLayerInfoForGA(dataLayerObj, shareTwitterEventGA);
         }}
       >
         <Icon name="twitter" />
@@ -80,11 +66,12 @@ const ShareSocialButtons = ({ storyUrl, title }) => {
       </a>
 
       <a
-        href="/"
+        href={fbLink}
+        target="_blank"
+        rel="noopener noreferrer"
         className="shareSocialButtons_facebook"
-        onClick={(e) => {
-          e.preventDefault();
-          openFbMsgNewTab(storyUrl, dataLayerObj, shareEventGA, title);
+        onClick={() => {
+          pushLayerInfoForGA(dataLayerObj, shareFBEventGA);
         }}
       >
         <Icon name="facebook" />
