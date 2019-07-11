@@ -8,7 +8,7 @@ import Byline from '../Byline/Byline';
 const ContentHeader = (props) => {
   let authorsTag = [];
 
-  if (props.authors?.length >= 0) {
+  if (props.authors?.length > 0) {
     props.authors.forEach((author) => {
       authorsTag.push(author.title);
     });
