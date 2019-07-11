@@ -52,6 +52,11 @@ const EpisodeInner = ({ episode }) => {
       name: 'description',
       content: episode.descriptionText
     },
+    {
+      key: 'mpr-content-topic',
+      name: 'mpr-content-topic',
+      content: collectionLinkData(episode.primaryCollection)
+    },
     { key: 'og:image', name: 'og:image', content: socialImage },
     {
       key: 'twitter:card',
