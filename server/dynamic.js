@@ -1,4 +1,4 @@
-const { fetchRoute } = require('../utils/cjsutils');
+const { ssGql } = require('./ssGql');
 // Dynamic Routing for collections and pages
 module.exports.dynamic = (server, app, handle) => {
   server.get('*', (req, res, next) => {
@@ -20,12 +20,12 @@ module.exports.dynamic = (server, app, handle) => {
       page: '/page'
     };
 
-    fetchRoute(query, next).then((data) => {
-      console.log(data);
+    ssGql(query, next).then((data) => {
+      if (typeof data === 'undefined') return;
       res.set('Cache-Control', 'public, max-age=60');
       return app.render(req, res, routes[data.resourceType], {
         slug: slug,
-        pageNum: pageNum
+        pageNum: pageNum.toString()
       });
     });
   });
