@@ -103,12 +103,15 @@ app
 
     server.get('/story/*', (req, res) => {
       res.set('Cache-Control', `public, max-age=${TTL}`);
-      app.render(req, res, '/story', { slug: req.slug });
+      app.render(req, res, '/story', { slug: req.slug, isNewsPartners: false });
     });
 
     server.get('/newspartners/story/*', (req, res) => {
       res.set('Cache-Control', `public, max-age=${TTL}`);
-      app.render(req, res, '/newspartnerstory', { slug: req.slug });
+      app.render(req, res, '/newspartnerstory', {
+        slug: req.slug,
+        isNewsPartners: true
+      });
     });
 
     // Profile Routing
@@ -168,7 +171,8 @@ app
       const pageNum = req.params.pageNum || 1;
       app.render(req, res, '/collection', {
         slug: 'newspartners',
-        pageNum: pageNum
+        pageNum: pageNum,
+        isNewsPartners: true
       });
     });
     // schedule route
