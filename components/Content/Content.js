@@ -13,6 +13,7 @@ const Content = ({
   authors,
   headingLevel,
   publishDate,
+  shareButtons,
   audioPlayButton,
   body,
   embeddedAssetJson,
@@ -46,6 +47,8 @@ const Content = ({
         dateline={dateline}
         tag={tag}
       />
+
+      <div className="content_social">{shareButtons}</div>
 
       {audioPlayButton && (
         <div className="content_audio">{audioPlayButton}</div>
@@ -91,6 +94,7 @@ Content.propTypes = {
   headingLevel: PropTypes.number,
   publishDate: PropTypes.string,
   audioPlayButton: PropTypes.node,
+  shareButtons: PropTypes.node,
   body: PropTypes.string,
   embeddedAssetJson: PropTypes.string,
   tag: PropTypes.shape({

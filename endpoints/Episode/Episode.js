@@ -9,6 +9,7 @@ import Content from '../../components/Content/Content';
 import AudioPlayButton from '../../components/AudioPlayButton/AudioPlayButton';
 import Metatags from '../../components/Metatags/Metatags';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
+import ShareSocialButtons from '../../components/ShareSocialButtons/ShareSocialButtons';
 import query from './episode.gql';
 
 const Episode = ({ slug, previewToken }) => (
@@ -82,6 +83,12 @@ const EpisodeInner = ({ episode }) => {
         subtitle={episode.subtitle}
         authors={authors}
         body={episode.body}
+        shareButtons={
+          <ShareSocialButtons
+            contentUrl={episode.canonicalSlug}
+            title={episode.title}
+          />
+        }
         audioPlayButton={
           episode.primaryAudio && (
             <AudioPlayButton
