@@ -1,0 +1,43 @@
+.shareSocialButtons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  margin-bottom: .5rem;
+  padding: .5rem 0 0 .5rem;
+  //add background for when share container
+  background: rgba($color-white, .95);
+}
+
+.shareSocialButtons_twitter,
+.shareSocialButtons_facebook {
+  cursor: pointer;
+  height: 32px;
+  width: 32px;
+
+  svg {
+    fill: $color-white;
+  }
+}
+
+.shareSocialButtons_twitter {
+  background-color: $color-twitter;
+  display: flex;
+
+  svg {
+    margin: auto;
+    height: 28px;
+    width: 24px;
+  }
+}
+
+.shareSocialButtons_facebook {
+  background-color: $color-facebook;
+  display: flex;
+
+  svg {
+    margin: auto;
+    height: 25px;
+    width: 13px;
+  }
+}

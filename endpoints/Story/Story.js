@@ -9,6 +9,7 @@ import Content from '../../components/Content/Content';
 import AudioPlayButton from '../../components/AudioPlayButton/AudioPlayButton';
 import Metatags from '../../components/Metatags/Metatags';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
+import ShareSocialButtons from '../../components/ShareSocialButtons/ShareSocialButtons';
 import query from './story.gql';
 
 const Story = ({ slug, previewToken, minimal }) => (
@@ -34,7 +35,7 @@ const StoryInner = ({ story, minimal }) => {
   if (story.contributors) {
     authors = story.contributors.map((contributor) => {
       return {
-        title: `${contributor.profile.title}`,
+        title: `${contributor.profile?.title}`,
         href: `/people/${contributor.profile?.canonicalSlug}`
       };
     });
@@ -42,8 +43,17 @@ const StoryInner = ({ story, minimal }) => {
 
   const socialImage = fishForSocialMediaImage(story);
   const tags = [
-    { key: 'description', name: 'description', content: story.descriptionText },
+    {
+      key: 'description',
+      name: 'description',
+      content: story?.descriptionText
+    },
     { key: 'og:image', name: 'og:image', content: socialImage },
+    {
+      key: 'mpr-content-topic',
+      name: 'mpr-content-topic',
+      content: collectionLinkData(story.primaryCollection)
+    },
     {
       key: 'twitter:card',
       name: 'twitter:card',
@@ -55,7 +65,7 @@ const StoryInner = ({ story, minimal }) => {
     {
       key: 'amphtml',
       rel: 'amphtml',
-      href: `https://www.mprnews.org/amp/story/${story.canonicalSlug}`
+      href: `https://www.mprnews.org/amp/story/${story?.canonicalSlug}`
     }
   ];
 
@@ -70,6 +80,12 @@ const StoryInner = ({ story, minimal }) => {
         body={story.body}
         minimal={minimal}
         redistributable={story.primaryVisuals?.lead?.rights?.redistributable}
+        shareButtons={
+          <ShareSocialButtons
+            contentUrl={story.canonicalSlug}
+            title={story.title}
+          />
+        }
         audioPlayButton={
           story.primaryAudio && (
             <AudioPlayButton

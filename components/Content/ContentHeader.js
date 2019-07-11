@@ -7,15 +7,22 @@ import Byline from '../Byline/Byline';
 
 const ContentHeader = (props) => {
   let authorsTag = [];
-  props.authors.forEach((author) => {
-    authorsTag.push(author.title);
-  });
+
+  if (props.authors?.length > 0) {
+    props.authors.forEach((author) => {
+      authorsTag.push(author.title);
+    });
+  }
+
   const authorTosStr = JSON.stringify(authorsTag);
 
   return (
     <header className="content_header">
       {props.tag && (
-        <div className="content_topic">
+        <div
+          className="content_topic page-purpose"
+          data-mpr-content-topic={props.tag.tagName}
+        >
           <Link href={props.tag.to}>
             <a className="link link-none">{props.tag.tagName}</a>
           </Link>
