@@ -12,4 +12,4 @@ const AdBottom = () => {
   );
 };
 
-export default AdBottom;
+export default React.memo(AdBottom);

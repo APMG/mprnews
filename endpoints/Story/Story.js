@@ -45,6 +45,11 @@ const StoryInner = ({ story, minimal }) => {
     { key: 'description', name: 'description', content: story.descriptionText },
     { key: 'og:image', name: 'og:image', content: socialImage },
     {
+      key: 'mpr-content-topic',
+      name: 'mpr-content-topic',
+      content: collectionLinkData(story.primaryCollection)
+    },
+    {
       key: 'twitter:card',
       name: 'twitter:card',
       content: 'summary_large_image'

@@ -7,9 +7,9 @@ const AdTop = () => {
       <Link href="/sponsor">
         <a className="ad_link">Sponsor us</a>
       </Link>
-      <div id="mpr-ad-1" className="ad_slot ad_slot-mr" />
+      <div id="mpr-ad-1" className="ad_slot ad_slot-mr"></div>
     </div>
   );
 };
 
-export default AdTop;
+export default React.memo(AdTop);

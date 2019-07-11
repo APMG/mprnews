@@ -15,7 +15,10 @@ const ContentHeader = (props) => {
   return (
     <header className="content_header">
       {props.tag && (
-        <div className="content_topic">
+        <div
+          className="content_topic page-purpose"
+          data-mpr-content-topic={props.tag.tagName}
+        >
           <Link href={props.tag.to}>
             <a className="link link-none">{props.tag.tagName}</a>
           </Link>
