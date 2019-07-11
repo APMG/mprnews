@@ -8,12 +8,10 @@ import Byline from '../Byline/Byline';
 const ContentHeader = (props) => {
   let authorsTag = [];
 
-  if (props.authors?.length >= 1) {
+  if (props.authors?.length >= 0) {
     props.authors.forEach((author) => {
       authorsTag.push(author.title);
     });
-  } else {
-    authorsTag.push(null);
   }
 
   const authorTosStr = JSON.stringify(authorsTag);
