@@ -1,5 +1,4 @@
-const fetch = require('isomorphic-unfetch');
-
+const { fetchRoute } = require('../utils/cjsutils');
 // Dynamic Routing for collections and pages
 module.exports.dynamic = (server, app, handle) => {
   server.get('*', (req, res, next) => {
@@ -8,6 +7,7 @@ module.exports.dynamic = (server, app, handle) => {
     if (req.path.match(/^\/favicon|_next|static/)) {
       return handle(req, res);
     }
+
     let path = req.path.replace(/^\//, '');
     path = path.replace(/\/$/, '');
     const slug = path.replace(/\/\d+$/, '');
@@ -19,37 +19,14 @@ module.exports.dynamic = (server, app, handle) => {
       collection: '/collection',
       page: '/page'
     };
-    const fetchRoute = async () => {
-      return await fetch(process.env.GRAPHQL_API, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: query
-      })
-        .then((response) => {
-          if (!response.ok) {
-            next();
-          }
-          return response.json();
-        })
-        .then((response) => {
-          const content = response.data.content;
-          if (!content) {
-            return next();
-          }
-          const route = response.data.content.resourceType;
-          res.set('Cache-Control', 'public, max-age=60');
-          return app.render(req, res, routes[route], {
-            slug: slug,
-            pageNum: pageNum
-          });
-        })
-        .catch((error) => {
-          // eslint-disable-next-line
-          console.error('Error:', error);
-        });
-    };
-    fetchRoute();
+
+    fetchRoute(query, next).then((data) => {
+      console.log(data);
+      res.set('Cache-Control', 'public, max-age=60');
+      return app.render(req, res, routes[data.resourceType], {
+        slug: slug,
+        pageNum: pageNum
+      });
+    });
   });
 };

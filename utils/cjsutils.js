@@ -26,8 +26,7 @@ exports.linkByTypeHref = (item) => {
     ? item.destination
     : `/${item.resourceType}?slug=${item.canonicalSlug}`;
 };
-
-exports.ssGql = async (query, next) => {
+exports.fetchRoute = async (query, next) => {
   const fetch = require('isomorphic-unfetch');
   return await fetch(process.env.GRAPHQL_API, {
     method: 'POST',
