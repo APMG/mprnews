@@ -1,11 +1,9 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import fetch from 'isomorphic-unfetch';
-import LocationContext from '../../context/LocationContext';
 import Icon from '../Icons/Icon';
 
 const WeatherHeader = () => {
   const [data, setData] = useState({});
-  const context = useContext(LocationContext);
 
   useEffect(() => {
     const getData = async () => {
@@ -20,7 +18,7 @@ const WeatherHeader = () => {
       });
     };
 
-    getData(context.location.lat, context.location.long);
+    getData();
   }, {});
 
   return (
