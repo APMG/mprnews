@@ -17,6 +17,10 @@ const FullTeaser = ({ item, size, newspartners }) => {
     linkAs = linkAs.replace(/story/, 'newspartners/story');
   }
 
+  const aspectRatio = size === 'condensed' ? 'thumbnail' : 'widescreen';
+  const elementClass = size ? `teaser-${size}` : null;
+  const imageSizes = '(max-width: 590px) 95vw, (max-width: 890px) 45vw, 300px';
+
   const contributors = (contributorsArr) => {
     if (contributorsArr?.length) {
       return contributorsArr.map((contributor) => {
@@ -38,7 +42,7 @@ const FullTeaser = ({ item, size, newspartners }) => {
         as={linkAs}
         publishDate={item.publishDate}
         headingLevel={2}
-        elementClass={size ? `teaser-${size}` : null}
+        elementClass={elementClass}
         contributors={contributors(item.contributors)}
         audioPlayButton={
           item.audio[0]?.encodings[0]?.httpFilePath ? (
@@ -54,8 +58,8 @@ const FullTeaser = ({ item, size, newspartners }) => {
             <Image
               image={item.primaryVisuals?.thumbnail}
               elementClass="content_thumbnail"
-              aspectRatio="widescreen"
-              sizes="(max-width: 590px) 95vw, (max-width: 890px) 45vw, 300px"
+              aspectRatio={aspectRatio}
+              sizes={imageSizes}
               alt={item.primaryVisuals?.thumbnail?.shortCaption}
             />
           ) : null
