@@ -82,7 +82,7 @@ const EpisodeInner = ({ episode }) => {
         body={episode.body}
         shareButtons={
           <ShareSocialButtons
-            storyUrl={episode.canonicalSlug}
+            contentUrl={episode.canonicalSlug}
             title={episode.title}
           />
         }

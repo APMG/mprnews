@@ -75,7 +75,7 @@ const StoryInner = ({ story, minimal }) => {
         redistributable={story.primaryVisuals?.lead?.rights?.redistributable}
         shareButtons={
           <ShareSocialButtons
-            storyUrl={story.canonicalSlug}
+            contentUrl={story.canonicalSlug}
             title={story.title}
           />
         }

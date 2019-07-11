@@ -3,7 +3,7 @@ import Icon from '../Icons/Icon';
 import PropTypes from 'prop-types';
 import { Heading } from '@apmg/titan';
 
-const ShareSocialButtons = ({ storyUrl, title }) => {
+const ShareSocialButtons = ({ contentUrl, title }) => {
   //Don't send the share event information to GA by default
   const shareFBEventGA = 'facebook';
   const shareTwitterEventGA = 'tweet';
@@ -13,16 +13,15 @@ const ShareSocialButtons = ({ storyUrl, title }) => {
   const twitterLink =
     'http://twitter.com/share?url=' +
     'https://www.mprnews.org/story' +
-    storyUrl +
+    contentUrl +
     '&text=' +
     title +
     '&via=' +
     via;
-  console.log(twitterLink);
   const fbLink =
     'http://www.facebook.com/sharer.php?u=' +
     'https://www.mprnews.org/story' +
-    storyUrl +
+    contentUrl +
     '&text=' +
     title +
     'sharer';
@@ -82,7 +81,7 @@ const ShareSocialButtons = ({ storyUrl, title }) => {
 };
 
 ShareSocialButtons.propTypes = {
-  storyUrl: PropTypes.string,
+  contentUrl: PropTypes.string,
   title: PropTypes.string
 };
 
