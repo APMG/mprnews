@@ -2,16 +2,16 @@ export const navItems = [
   {
     linkgroup: 'MPR News Coverage',
     links: [
-      { text: 'Arts', class: '', href: '/arts' },
-      { text: 'Books', class: '', href: '/arts/books' },
-      { text: 'Business', class: '', href: '/business' },
-      { text: 'Education', class: '', href: '/education' },
-      { text: 'Environment', class: '', href: '/environment' },
-      { text: 'Health', class: '', href: '/health' },
-      { text: 'Lifestyle', class: '', href: '/lifestyle' },
-      { text: 'Minnesota', class: '', href: '/minnesota' },
-      { text: 'Politics', class: '', href: '/politics' },
-      { text: 'Weather', class: '', href: '/forecast' }
+      { text: 'Arts', class: '', href: 'arts' },
+      { text: 'Books', class: '', href: 'arts/books' },
+      { text: 'Business', class: '', href: 'business' },
+      { text: 'Education', class: '', href: 'education' },
+      { text: 'Environment', class: '', href: 'environment' },
+      { text: 'Health', class: '', href: 'health' },
+      { text: 'Lifestyle', class: '', href: 'lifestyle' },
+      { text: 'Minnesota', class: '', href: 'minnesota' },
+      { text: 'Politics', class: '', href: 'politics' },
+      { text: 'Weather', class: '', href: 'forecast' }
     ]
   },
   {

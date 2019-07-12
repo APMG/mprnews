@@ -7,16 +7,16 @@ import InfoLink from '../../components/InfoLink/InfoLink';
 
 const HomeRail = (props) => {
   const sections = [
-    { text: 'Arts', href: '/arts' },
-    { text: 'Books', href: '/arts/books' },
-    { text: 'Business', href: '/business' },
-    { text: 'Education', href: '/education' },
-    { text: 'Environment', href: '/environment' },
-    { text: 'Health', href: '/health' },
-    { text: 'Lifestyle', href: '/lifestyle' },
-    { text: 'Minnesota', href: '/minnesota' },
-    { text: 'Politics', href: '/politics' },
-    { text: 'Weather', href: '/forecast' }
+    { text: 'Arts', href: 'arts' },
+    { text: 'Books', href: 'arts/books' },
+    { text: 'Business', href: 'business' },
+    { text: 'Education', href: 'education' },
+    { text: 'Environment', href: 'environment' },
+    { text: 'Health', href: 'health' },
+    { text: 'Lifestyle', href: 'lifestyle' },
+    { text: 'Minnesota', href: 'minnesota' },
+    { text: 'Politics', href: 'politics' },
+    { text: 'Weather', href: 'forecast' }
   ];
 
   return (
@@ -67,7 +67,10 @@ const HomeRail = (props) => {
           <ul className="vList">
             {sections.map((section) => (
               <li key={`${section.text}${section.href}`}>
-                <Link href={section.href} as={section.href}>
+                <Link
+                  href={`/collection?slug=${section.href}`}
+                  as={`/${section.href}`}
+                >
                   <a className="link link-plain">{section.text}</a>
                 </Link>
               </li>
