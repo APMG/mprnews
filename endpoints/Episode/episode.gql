@@ -12,6 +12,7 @@ query episode(
     title
     subtitle
     canonicalSlug
+    supportedOutputFormats
     primaryCollection {
       title
       canonicalSlug

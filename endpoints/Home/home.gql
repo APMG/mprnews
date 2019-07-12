@@ -21,11 +21,17 @@ query home($contentAreaSlug: String!, $slug: String!) {
         title
         canonicalSlug
         resourceType
-        publishDate
         description
         primaryVisuals {
           thumbnail {
             aspect_ratios: aspectRatios {
+              thumbnail {
+                instances {
+                  width
+                  height
+                  url
+                }
+              }
               widescreen {
                 instances {
                   width
@@ -69,7 +75,11 @@ query home($contentAreaSlug: String!, $slug: String!) {
       }
     }
   }
-  potlatch(slug: "mprnews/alerts") {
+  alertConfig: potlatch(slug: "mprnews/alerts") {
+    slug
+    json
+  }
+  homeStoryConfig: potlatch(slug: "mprnews/homepage-stories") {
     slug
     json
   }

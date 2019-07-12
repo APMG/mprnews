@@ -63,8 +63,8 @@ const Content = ({
             elementClass={'content_figure'}
             image={image}
           />
-          {largest && (
-            <div className="content_newspartner">
+          {largest && minimal && (
+            <div className="content_newsPartners">
               <a className="link" href={largest.url}>
                 Download full resolution image
               </a>

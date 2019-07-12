@@ -5,10 +5,16 @@
 .teaser {
   display: flex;
   flex-direction: column;
+}
 
-  // Change this to teaser_link when titan gets updated
-  > a {
-    order: 1;
+.teaser_link {
+  order: 1;
+  border-radius: 1px; // to make focus outline have rounded corners
+  transition: box-shadow $transition;
+
+  &:focus {
+    outline: 0;
+    box-shadow: 0 0 0 3px rgba($color-blue, .3);
   }
 }
 
@@ -21,8 +27,13 @@
   margin-bottom: .5rem;
 
   .hdg {
+    @include hdg-2();
     @include hdg-headline();
     color: $color-link;
+
+    .teaser-condensed & {
+      @include hdg-3();
+    }
   }
 }
 
@@ -32,6 +43,12 @@
   > * {
     width: 100%;
     height: auto;
+  }
+
+  .teaser-condensed & {
+    float: right;
+    margin: 5px 0 10px 10px;
+    width: 120px;
   }
 }
 

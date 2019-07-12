@@ -11,7 +11,10 @@ const StoryPage = ({ slug, previewToken }) => (
 );
 
 StoryPage.getInitialProps = async ({ query: { slug, previewToken } }) => {
-  return { slug: slug, previewToken: previewToken };
+  return {
+    slug: slug,
+    previewToken: previewToken
+  };
 };
 
 StoryPage.propTypes = {

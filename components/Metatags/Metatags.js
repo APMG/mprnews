@@ -81,7 +81,7 @@ const Metatags = (props) => {
 Metatags.propTypes = {
   metatags: PropTypes.array.isRequired,
   links: PropTypes.array.isRequired,
-  title: PropTypes.string.isRequired
+  title: PropTypes.string
 };
 
 export default React.memo(Metatags);

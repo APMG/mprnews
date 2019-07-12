@@ -33,7 +33,7 @@ $_btn-color-default: $color-grey-10;
   }
 
   &:focus {
-    box-shadow: 0 0 0 3px rgba($_btn-color-theme, 50%);
+    box-shadow: 0 0 0 3px rgba($_btn-color-theme, .5);
   }
 
   &.disabled,
