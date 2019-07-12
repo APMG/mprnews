@@ -33,7 +33,7 @@ $_btn-color-default: $color-grey-10;
   }
 
   &:focus {
-    box-shadow: 0 0 0 3px rgba($_btn-color-theme, 50%);
+    box-shadow: 0 0 0 3px rgba($_btn-color-theme, .5);
   }
 
   &.disabled,
@@ -151,5 +151,22 @@ $_btn-color-default: $color-grey-10;
     > .icon {
       fill: $color-black;
     }
+  }
+}
+
+.btn-footer {
+  display: flex;
+  align-items: center;
+  width: 206px;
+  // margin: 0 0 30px;
+  padding: 7px 0 7px 7px;
+  border: 2px solid $color-grey-80;
+  // position: relative;
+  // text-align: left;
+  font-weight: bold;
+  color: $color-grey-30;
+
+  .footerButtonLogo {
+    width: 154px;
   }
 }

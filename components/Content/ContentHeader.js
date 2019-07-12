@@ -6,10 +6,23 @@ import { format } from 'date-fns';
 import Byline from '../Byline/Byline';
 
 const ContentHeader = (props) => {
+  let authorsTag = [];
+
+  if (props.authors?.length > 0) {
+    props.authors.forEach((author) => {
+      authorsTag.push(author.title);
+    });
+  }
+
+  const authorTosStr = JSON.stringify(authorsTag);
+
   return (
     <header className="content_header">
       {props.tag && (
-        <div className="content_topic">
+        <div
+          className="content_topic page-purpose"
+          data-mpr-content-topic={props.tag.tagName}
+        >
           <Link href={props.tag.to}>
             <a className="link link-none">{props.tag.tagName}</a>
           </Link>
@@ -31,7 +44,11 @@ const ContentHeader = (props) => {
 
       <div className="content_meta">
         {props.authors?.length ? (
-          <div className="content_byline" data-testid="contentByline">
+          <div
+            className="content_byline"
+            data-testid="contentByline"
+            data-mpr-authors={authorTosStr}
+          >
             <Byline authors={props.authors} />
           </div>
         ) : null}
@@ -52,7 +69,7 @@ const ContentHeader = (props) => {
 ContentHeader.propTypes = {
   authors: PropTypes.arrayOf(
     PropTypes.shape({
-      name: PropTypes.string,
+      title: PropTypes.string,
       href: PropTypes.string
     })
   ),

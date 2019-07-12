@@ -1,13 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Story from '../endpoints/Story/Story';
+import ContentGrid from '../grids/ContentGrid';
+import Sidebar from '../components/Sidebar/Sidebar';
 
-const StoryPage = ({ slug, previewToken }) => {
-  return <Story slug={slug} previewToken={previewToken} minimal={false} />;
-};
+const StoryPage = ({ slug, previewToken }) => (
+  <ContentGrid sidebar={<Sidebar />}>
+    <Story slug={slug} previewToken={previewToken} minimal={false} />
+  </ContentGrid>
+);
 
 StoryPage.getInitialProps = async ({ query: { slug, previewToken } }) => {
-  return { slug: slug, previewToken: previewToken };
+  return {
+    slug: slug,
+    previewToken: previewToken
+  };
 };
 
 StoryPage.propTypes = {

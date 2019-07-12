@@ -7,11 +7,10 @@ import { collectionLinkData } from '../../utils/utils';
 import { format } from 'date-fns';
 import Content from '../../components/Content/Content';
 import AudioPlayButton from '../../components/AudioPlayButton/AudioPlayButton';
-import ContentGrid from '../../grids/ContentGrid';
-import Sidebar from '../../components/Sidebar/Sidebar';
-import query from './episode.gql';
 import Metatags from '../../components/Metatags/Metatags';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
+import ShareSocialButtons from '../../components/ShareSocialButtons/ShareSocialButtons';
+import query from './episode.gql';
 
 const Episode = ({ slug, previewToken }) => (
   <Query
@@ -41,7 +40,7 @@ const EpisodeInner = ({ episode }) => {
       } ${contributor.profile?.lastName ? contributor.profile.lastName : ''}`;
       return {
         // prettier-ignore
-        name: `${thisString}`,
+        title: `${thisString}`,
         href: `/profiles/${contributor.profile?.canonicalSlug}`
       };
     });
@@ -54,6 +53,11 @@ const EpisodeInner = ({ episode }) => {
       name: 'description',
       content: episode.descriptionText
     },
+    {
+      key: 'mpr-content-topic',
+      name: 'mpr-content-topic',
+      content: collectionLinkData(episode.primaryCollection)
+    },
     { key: 'og:image', name: 'og:image', content: socialImage },
     {
       key: 'twitter:card',
@@ -62,16 +66,20 @@ const EpisodeInner = ({ episode }) => {
     },
     { key: 'twitter:image', name: 'twitter:image', content: socialImage }
   ];
-  const links = [
-    {
-      key: 'amphtml',
-      rel: 'amphtml',
-      href: `https://www.mprnews.org/amp/episode/${episode.canonicalSlug}`
-    }
-  ];
+
+  const links =
+    episode.supportedOutputFormats.indexOf('amp') === -1
+      ? []
+      : [
+          {
+            key: 'amphtml',
+            rel: 'amphtml',
+            href: `https://www.mprnews.org/amp/episode/${episode?.canonicalSlug}`
+          }
+        ];
 
   return (
-    <ContentGrid sidebar={<Sidebar />}>
+    <>
       <Metatags title={episode.title} metatags={tags} links={links} />
 
       <Content
@@ -79,6 +87,12 @@ const EpisodeInner = ({ episode }) => {
         subtitle={episode.subtitle}
         authors={authors}
         body={episode.body}
+        shareButtons={
+          <ShareSocialButtons
+            contentUrl={episode.canonicalSlug}
+            title={episode.title}
+          />
+        }
         audioPlayButton={
           episode.primaryAudio && (
             <AudioPlayButton
@@ -108,7 +122,7 @@ const EpisodeInner = ({ episode }) => {
         tag={collectionLinkData(episode.primaryCollection)}
         elementClass="episode"
       />
-    </ContentGrid>
+    </>
   );
 };
 
@@ -124,12 +138,13 @@ EpisodeInner.propTypes = {
     subtitle: PropTypes.string,
     authors: PropTypes.arrayOf(
       PropTypes.shape({
-        name: PropTypes.string,
+        title: PropTypes.string,
         href: PropTypes.string
       })
     ),
     body: PropTypes.string,
     contributors: PropTypes.array,
+    supportedOutputFormats: PropTypes.array,
     description: PropTypes.string,
     descriptionText: PropTypes.string,
     image: PropTypes.element,

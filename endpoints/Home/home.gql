@@ -1,10 +1,13 @@
 query home($contentAreaSlug: String!, $slug: String!) {
-  updraft: collection(contentAreaSlug: $contentAreaSlug, slug: "updraft") {
+  updraft: collection(
+    contentAreaSlug: $contentAreaSlug
+    slug: "topic/weather/updraft"
+  ) {
     results(page: 1, pageSize: 1) {
       items {
         title
         resourceType
-        description
+        canonicalSlug
       }
     }
   }
@@ -12,17 +15,23 @@ query home($contentAreaSlug: String!, $slug: String!) {
     id
     title
     description
-    results(page: 1, pageSize: 10) {
+    results(page: 1, pageSize: 20) {
       items {
         id
         title
         canonicalSlug
         resourceType
-        publishDate
         description
         primaryVisuals {
           thumbnail {
             aspect_ratios: aspectRatios {
+              thumbnail {
+                instances {
+                  width
+                  height
+                  url
+                }
+              }
               widescreen {
                 instances {
                   width
@@ -52,7 +61,13 @@ query home($contentAreaSlug: String!, $slug: String!) {
           durationHms
           encodings {
             httpFilePath
+            durationMs
           }
+        }
+        collectionRelatedLinks {
+          url
+          title
+          prefix
         }
         ... on Link {
           destination
@@ -60,7 +75,11 @@ query home($contentAreaSlug: String!, $slug: String!) {
       }
     }
   }
-  potlatch(slug: "mprnews/alerts") {
+  alertConfig: potlatch(slug: "mprnews/alerts") {
+    slug
+    json
+  }
+  homeStoryConfig: potlatch(slug: "mprnews/homepage-stories") {
     slug
     json
   }

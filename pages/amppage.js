@@ -5,9 +5,9 @@ import Page from '../endpoints/Page/Page';
 
 /* eslint react/display-name: 0 */
 
-const AmpPage = withAmp(({ slug }) => {
+const AmpPage = ({ slug }) => {
   return <Page slug={slug} />;
-});
+};
 
 AmpPage.getInitialProps = async ({ query: { slug } }) => {
   return { slug: slug, layout: 'amp' };
@@ -17,4 +17,4 @@ AmpPage.propTypes = {
   slug: PropTypes.string
 };
 
-export default AmpPage;
+export default withAmp(AmpPage, { hybrid: true });

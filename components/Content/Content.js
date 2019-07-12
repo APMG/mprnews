@@ -13,6 +13,7 @@ const Content = ({
   authors,
   headingLevel,
   publishDate,
+  shareButtons,
   audioPlayButton,
   body,
   embeddedAssetJson,
@@ -47,6 +48,8 @@ const Content = ({
         tag={tag}
       />
 
+      <div className="content_social">{shareButtons}</div>
+
       {audioPlayButton && (
         <div className="content_audio">{audioPlayButton}</div>
       )}
@@ -60,7 +63,13 @@ const Content = ({
             elementClass={'content_figure'}
             image={image}
           />
-          {largest && <a href={largest.url}>Download full resolution image</a>}
+          {largest && minimal && (
+            <div className="content_newsPartners">
+              <a className="link" href={largest.url}>
+                Download full resolution image
+              </a>
+            </div>
+          )}
         </div>
       )}
 
@@ -84,13 +93,14 @@ Content.propTypes = {
   dateline: PropTypes.string,
   authors: PropTypes.arrayOf(
     PropTypes.shape({
-      name: PropTypes.string,
+      title: PropTypes.string,
       href: PropTypes.string
     })
   ),
   headingLevel: PropTypes.number,
   publishDate: PropTypes.string,
   audioPlayButton: PropTypes.node,
+  shareButtons: PropTypes.node,
   body: PropTypes.string,
   embeddedAssetJson: PropTypes.string,
   tag: PropTypes.shape({

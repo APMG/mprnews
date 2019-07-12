@@ -41,9 +41,7 @@ const Metatags = (props) => {
     { key: 'apple-touch-icon', rel: 'apple-touch-icon', href: appletouch }
   ];
   // dedupe
-  const metatags = metaDefaults.map((row) =>
-    Object.assign(row, props.metatags.find((rec) => rec.key == row.key))
-  );
+  const metatags = metaDefaults.concat(props.metatags);
   const combinedTitle = props.title ? `${props.title} | MPR News` : 'MPR News';
   const gtmId = 'GTM-KTT2Z2';
   const scriptHtml = `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push(
@@ -83,7 +81,7 @@ const Metatags = (props) => {
 Metatags.propTypes = {
   metatags: PropTypes.array.isRequired,
   links: PropTypes.array.isRequired,
-  title: PropTypes.string.isRequired
+  title: PropTypes.string
 };
 
-export default Metatags;
+export default React.memo(Metatags);

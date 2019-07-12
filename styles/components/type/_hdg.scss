@@ -52,7 +52,7 @@
     content: '';
     height: 16px;
     position: absolute;
-    bottom: -4px;
+    bottom: -6px;
     left: -10px;
     right: -10px;
     z-index: -1;
@@ -62,12 +62,11 @@
 }
 
 .hdg-section-small {
-  @include hdg-6();
-  text-transform: uppercase;
+  @include hdg-4();
 
   &::after {
-    height: 8px;
-    bottom: 0;
+    height: 12px;
+    bottom: -4px;
     left: -4px;
     right: -4px;
   }

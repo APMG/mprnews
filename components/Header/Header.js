@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import classNames from 'classnames';
 import Dropdown from '../Dropdown';
-import Logo from './Logo';
+import Logo from '../Logo/Logo';
 import Nav from './Nav';
 import { navItems } from './NavItems';
 import WeatherHeader from '../WeatherHeader/WeatherHeader';

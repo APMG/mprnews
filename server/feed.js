@@ -3,7 +3,7 @@ const { linkByTypeAs } = require('../utils/cjsutils');
 
 module.exports.feed = (server) => {
   // RSS feeds for collections
-  server.get(`/feed/*`, (req, res) => {
+  server.get(`/feed/*/*$`, (req, res) => {
     res.header('Content-Type', 'text/xml');
     res.set('Cache-Control', `public, max-age=60`);
     let xml = '<?xml version="1.0" encoding="UTF-8"?>';

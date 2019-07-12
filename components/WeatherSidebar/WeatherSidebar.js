@@ -32,7 +32,7 @@ const WeatherSidebar = () => {
     <div className="weatherSidebar">
       {data.properties ? (
         <>
-          <Heading level={2} elementClass="weatherSidebar_header">
+          <Heading level={2} className="hdg hdg-4">
             Forecast
           </Heading>
           <div className="weatherSidebar_section weatherSidebar_section-now">
@@ -54,9 +54,7 @@ const WeatherSidebar = () => {
             <div className="weatherSidebar_desc">{`${tonightsForecast.shortForecast}`}</div>
           </div>
         </>
-      ) : (
-        <></>
-      )}
+      ) : null}
     </div>
   );
 };

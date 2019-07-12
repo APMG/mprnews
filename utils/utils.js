@@ -133,13 +133,20 @@ export function secondsToHms(timeInSeconds) {
 
 // This takes an array of objects with a .validTime attribute, reads in that date, then figures out which of those objects is most recent using a `date-fns` function
 export function getValueOfMostRecent(weather, arr) {
-  let currentTime = Date.parse(weather.updateTime);
+  // let currentTime = Date.parse(weather.updateTime);
+  // Sometimes weather.updatedTime is several hours old using Date.now() instead
   if (arr.length <= 0) return '-';
 
   let i = closestIndexTo(
-    currentTime,
+    Date.now(),
     arr.map((i) => Date.parse(i.validTime.split('/').shift()))
   );
 
   return isNaN(arr[i].value) ? '-' : arr[i].value;
+}
+
+export function getClosestHourMatch(arr) {
+  let i = closestIndexTo(Date.now(), arr.map((i) => Date.parse(i.endTime)));
+
+  return arr[i];
 }

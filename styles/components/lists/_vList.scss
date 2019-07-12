@@ -26,7 +26,14 @@
 
 .vList-collection {
   > * {
-    margin-bottom: 6rem;
+    &:not(:last-child)::after {
+      content: '';
+      display: block;
+      height: 1px;
+      width: 80%;
+      margin: 3rem auto;
+      background: $color-blue-tint;
+    }
   }
 }
 
