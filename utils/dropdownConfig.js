@@ -7,18 +7,16 @@ export const dropdownLists = [
       {
         linkgroup: 'MPR News Coverage',
         links: [
-          { text: 'Arts', class: '', href: '/arts' },
-          { text: 'Education', class: '', href: '/education' },
-          { text: 'Lifestyle', class: '', href: '/lifestyle' },
-          { text: 'Twin Cities', class: '', href: '/twin-cities' },
-          { text: 'Books', class: '', href: '/books' },
-          { text: 'Environment', class: '', href: '/environment' },
-          { text: 'Politics', class: '', href: '/politics' },
-          { text: 'NewsCut', class: '', href: '/newscut' },
-          { text: 'Business', class: '', href: '/business' },
-          { text: 'Health', class: '', href: '/health' },
-          { text: 'State', class: '', href: '/state' },
-          { text: 'Weather', class: '', href: '/weather' }
+          { text: 'Arts', class: '', href: 'arts' },
+          { text: 'Books', class: '', href: 'arts/books' },
+          { text: 'Business', class: '', href: 'business' },
+          { text: 'Education', class: '', href: 'education' },
+          { text: 'Environment', class: '', href: 'environment' },
+          { text: 'Health', class: '', href: 'health' },
+          { text: 'Lifestyle', class: '', href: 'lifestyle' },
+          { text: 'Minnesota', class: '', href: 'minnesota' },
+          { text: 'Politics', class: '', href: 'politics' },
+          { text: 'Weather', class: '', href: 'forecast' }
         ]
       },
       {
