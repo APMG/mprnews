@@ -52,7 +52,7 @@ const StoryInner = ({ story, minimal }) => {
     {
       key: 'mpr-content-topic',
       name: 'mpr-content-topic',
-      content: collectionLinkData(story.primaryCollection)
+      content: story?.primaryCollection?.title
     },
     {
       key: 'twitter:card',
