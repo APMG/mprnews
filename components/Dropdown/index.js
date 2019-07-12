@@ -93,7 +93,7 @@ const Dropdown = () => {
                               key={item.text + i}
                               onClick={clickItem}
                             >
-                              <Link href={item.href}>
+                              <Link href={item.href} as={item.href}>
                                 <a
                                   className={`dropdownMenuItem_link ${item.class}`}
                                 >
