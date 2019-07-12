@@ -120,8 +120,9 @@ const StoryInner = ({ story, minimal }) => {
       />
       {minimal && (
         <div className="newspartners_notice">
-          This story originally appeared at: https://www.mprnews.org/story/*link
-          of story Questions or requests? Contact MPR News editor Meg Martin at
+          This story originally appeared at:{' '}
+          {`https://www.mprnews.org/story/${story.canonicalSlug}`} of story
+          Questions or requests? Contact MPR News editor Meg Martin at
           newspartners@mpr.org © 2019 Minnesota Public Radio. All rights
           reserved.
         </div>
