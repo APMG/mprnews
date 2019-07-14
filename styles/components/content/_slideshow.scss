@@ -5,7 +5,7 @@ $_button-size: 50px;
 $_button-size-neg: -50px;
 $_button-size-mobile: 40px;
 $_button-size-mobile-neg: -40px;
-$_button-position: -175px;
+$_button-position: -100px;
 $_button-icon-size: 29px;
 $_button-icon-size-mobile: 15px;
 
@@ -130,4 +130,7 @@ $_button-icon-size-mobile: 15px;
   z-index: $z-slideshow-count;
   padding: 4px 8px;
   font-family: $font-family-sans;
+  margin: 4px;
+  border-radius: 3px;
+  font-size: 1.3rem;
 }
