@@ -112,7 +112,6 @@ const Dropdown = () => {
                               onClick={clickItem}
                             >
                               <Link
-                                // href={`/collection?slug=${item.href}`}
                                 href={HrefType(item)}
                                 as={hrefTypeAs(item)}
                               >
