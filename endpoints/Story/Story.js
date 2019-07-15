@@ -1,6 +1,7 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
+import { globals } from '../../config/globals';
 import { Loading } from '@apmg/titan';
 import { Image } from '@apmg/mimas';
 import { collectionLinkData } from '../../utils/utils';
@@ -104,8 +105,8 @@ const StoryInner = ({ story, minimal }) => {
             <Image
               key={story.primaryVisuals.lead.fallback}
               image={story.primaryVisuals.lead}
+              sizes={globals.sizes.primaryVisuals}
               aspectRatio="uncropped"
-              sizes="(max-width: 1100px) 100vw, 1100px"
               alt={story.primaryVisuals.lead.shortCaption}
             />
           )
