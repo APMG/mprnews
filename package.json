@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@apmg/amat": "^0.2.6-beta.10",
-    "@apmg/mimas": "^0.2.0",
+    "@apmg/mimas": "^0.3.0",
     "@apmg/titan": "^0.5.2",
     "acorn": "^6.2.0",
     "apm-html5-player": "^1.0.0-rc.2",

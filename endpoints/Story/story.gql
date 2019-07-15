@@ -16,7 +16,7 @@ query story($contentAreaSlug: String!, $slug: String!, $previewToken: String) {
     }
     contributors {
       profile {
-      	title
+        title
         canonicalSlug
       }
       roles {
@@ -42,6 +42,13 @@ query story($contentAreaSlug: String!, $slug: String!, $previewToken: String) {
     embeddedAssetJson
     primaryVisuals {
       lead {
+        preferredAspectRatio {
+          instances {
+            url
+            width
+            height
+          }
+        }
         aspect_ratios: aspectRatios {
           uncropped {
             instances {
@@ -60,9 +67,9 @@ query story($contentAreaSlug: String!, $slug: String!, $previewToken: String) {
         dateline
         fallback
         longCaption
-	rights {
-	  redistributable
-	}
+        rights {
+          redistributable
+        }
         shortCaption
         xid
       }

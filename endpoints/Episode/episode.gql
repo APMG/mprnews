@@ -46,6 +46,13 @@ query episode(
     embeddedAssetJson
     primaryVisuals {
       lead {
+        preferredAspectRatio {
+          instances {
+            url
+            width
+            height
+          }
+        }
         aspect_ratios: aspectRatios {
           uncropped {
             instances {

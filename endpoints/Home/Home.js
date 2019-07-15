@@ -2,7 +2,8 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
-import { Button, Loading } from '@apmg/titan';
+import Link from 'next/link';
+import { Loading } from '@apmg/titan';
 import query from './home.gql';
 import HomeGrid from '../../grids/HomeGrid';
 import Sidebar from '../../components/Sidebar/Sidebar';
@@ -79,9 +80,21 @@ const HomeInner = ({ data }) => {
           })}
         </div>
         <div className="home_more">
-          <Button type="primary" href="/">
-            <span>More News</span> <Icon name="chevronRight" />
-          </Button>
+          <Link href="/arts">
+            <a className="btn btn-primary">
+              More Arts <Icon name="chevronRight" />
+            </a>
+          </Link>
+          <Link href="/environment">
+            <a className="btn btn-primary">
+              More Environment <Icon name="chevronRight" />
+            </a>
+          </Link>
+          <Link href="/politics">
+            <a className="btn btn-primary">
+              More Politics <Icon name="chevronRight" />
+            </a>
+          </Link>
         </div>
       </HomeGrid>
     </div>
