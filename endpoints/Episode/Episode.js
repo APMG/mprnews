@@ -1,6 +1,7 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
+import Error from 'next/error';
 import { Loading } from '@apmg/titan';
 import { globals } from '../../config/globals';
 import { Image } from '@apmg/mimas';
@@ -25,6 +26,7 @@ const Episode = ({ slug, previewToken }) => (
     {({ loading, error, data }) => {
       if (error) return <div>Error loading episode</div>;
       if (loading) return <Loading />;
+      if (data.episode === null) return <Error statusCode={404} />;
 
       return <EpisodeInner episode={data.episode} />;
     }}
