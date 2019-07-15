@@ -141,7 +141,7 @@ export const dropdownLists = [
             hrefType: 'externalLink'
           },
           {
-            text: 'Donata a vehicle',
+            text: 'Donate a vehicle',
             class: '',
             href: 'https://www.mpr.org/support/donate-vehicle',
             hrefType: 'externalLink'

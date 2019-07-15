@@ -1,16 +1,17 @@
 const { format } = require('date-fns');
 const { linkByTypeAs } = require('../utils/cjsutils');
+const fetch = require('isomorphic-unfetch');
 
 module.exports.feed = (server) => {
   // RSS feeds for collections
-  server.get(`/feed/*/*$`, (req, res) => {
+  server.get(`/feed/*`, (req, res) => {
+    let feedSlug = req.path.replace(/\/feed\//, '');
+    feedSlug = feedSlug.replace(/\/$/, '');
     res.header('Content-Type', 'text/xml');
     res.set('Cache-Control', `public, max-age=60`);
     let xml = '<?xml version="1.0" encoding="UTF-8"?>';
     const query = JSON.stringify({
-      query: `{collection(contentAreaSlug: "${
-        process.env.CONTENT_AREA_SLUG
-      }", slug: "${req.params['0']}") {
+      query: `{collection(contentAreaSlug: "${process.env.CONTENT_AREA_SLUG}", slug: "${feedSlug}") {
             canonicalSlug
             title
             descriptionText
@@ -52,7 +53,7 @@ module.exports.feed = (server) => {
     const queryRes = fetchFeedData(query);
     queryRes.then((results) => {
       xml += `<title>${results.data.collection.title} - MPR News</title>`;
-      xml += `<description>${results.data.collection.descriptionText}</description>`;
+      xml += `<description><![CDATA[${results.data.collection.descriptionText}]]></description>`;
       xml += `<pubDate>${format(
         new Date(results.data.collection.updatedAt),
         'ddd, D MMM YYYY HH:mm:ss ZZ'
@@ -73,7 +74,7 @@ module.exports.feed = (server) => {
         xml += `<item>
                       <pubDate>${dte}</pubDate>
                       <title>${item.title}</title>
-                      <description>${item.descriptionText}</description>
+                      <description><![CDATA[${item.descriptionText}]]></description>
                       <link>https://www.mprnews.org${link}</link>
                       <guid isPermaLink="true">https://www.mprnews.org${link}</guid>
                     </item>`;

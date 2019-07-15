@@ -111,7 +111,14 @@ const Dropdown = () => {
                               key={item.text + i}
                               onClick={clickItem}
                             >
+<<<<<<< HEAD
                               <Link href={HrefType(item)} as={hrefTypeAs(item)}>
+=======
+                              <Link
+                                href={HrefType(item)}
+                                as={hrefTypeAs(item)}
+                              >
+>>>>>>> 710062f41880d6f4194b354c62f93e5e38cd3bcf
                                 <a
                                   className={`dropdownMenuItem_link ${item.class}`}
                                 >
