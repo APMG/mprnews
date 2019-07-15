@@ -1,6 +1,7 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
+import { globals } from '../../config/globals';
 import { Loading } from '@apmg/titan';
 import { Image } from '@apmg/mimas';
 import { collectionLinkData } from '../../utils/utils';
@@ -61,7 +62,7 @@ const PageInner = ({ page }) => {
               key={page.primaryVisuals.lead.fallback}
               image={page.primaryVisuals.lead}
               aspectRatio="uncropped"
-              sizes="(max-width: 1100px) 100vw, 1100px"
+              sizes={globals.sizes.primaryVisuals}
               alt={page.primaryVisuals.lead.shortCaption}
             />
           )

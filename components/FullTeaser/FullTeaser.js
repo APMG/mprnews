@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
+import { globals } from '../../config/globals';
 import { Teaser } from '@apmg/titan';
 import { Image } from '@apmg/mimas';
 import { Body } from '@apmg/amat';
@@ -19,10 +20,7 @@ const FullTeaser = ({ item, size, newspartners }) => {
 
   const aspectRatio = size === 'condensed' ? 'thumbnail' : 'widescreen';
   const elementClass = size ? `teaser-${size}` : null;
-  const imageSizes =
-    size === 'condensed'
-      ? '120px'
-      : '(max-width: 590px) 95vw, (max-width: 890px) 45vw, 300px';
+  const imageSizes = size === 'condensed' ? '120px' : globals.sizes.collection;
 
   const contributors = (contributorsArr) => {
     if (contributorsArr?.length) {
