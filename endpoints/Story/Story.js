@@ -106,7 +106,6 @@ const StoryInner = ({ story, minimal }) => {
               key={story.primaryVisuals.lead.fallback}
               image={story.primaryVisuals.lead}
               sizes={globals.sizes.primaryVisuals}
-              aspectRatio="uncropped"
               alt={story.primaryVisuals.lead.shortCaption}
             />
           )
