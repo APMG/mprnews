@@ -56,36 +56,6 @@ export function nextIndex(i, count) {
   return i < count ? i + 1 : count;
 }
 
-// Returns either external link or resourceType/slug
-export function linkByTypeHref(item) {
-  return item.resourceType === 'link'
-    ? item.destination
-    : `/${item.resourceType}?slug=${item.canonicalSlug}
-`;
-}
-
-// Returns either external link or resourceType/slug
-export function linkByTypeAs(item) {
-  let link;
-  switch (item.resourceType) {
-    case 'link':
-      link = `/${item.destination}`;
-      break;
-    case 'collection':
-      link = `/${item.canonicalSlug}`;
-      break;
-    case 'page':
-      link = `/${item.canonicalSlug}`;
-      break;
-    case 'people':
-      link = `/profile/${item.canonicalSlug}`;
-      break;
-    default:
-      link = `/${item.resourceType}/${item.canonicalSlug}`;
-  }
-  return link;
-}
-
 export function collectionLinkData(collection) {
   return collection?.title && collection?.canonicalSlug
     ? {

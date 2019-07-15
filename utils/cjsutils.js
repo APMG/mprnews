@@ -3,7 +3,7 @@ exports.linkByTypeAs = (item) => {
   let link;
   switch (item.resourceType) {
     case 'link':
-      link = `/${item.destination}`;
+      link = item.destination;
       break;
     case 'collection':
       link = `/${item.canonicalSlug}`;
