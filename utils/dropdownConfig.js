@@ -29,7 +29,7 @@ export const dropdownLists = [
             hrefType: 'collection'
           },
           {
-            text: 'All Things Considered -check!',
+            text: 'All Things Considered',
             class: '',
             href: 'shows/all-things-considered',
             hrefType: 'collection'
@@ -56,7 +56,7 @@ export const dropdownLists = [
             text: 'More programs',
             class: '',
             href: 'schedule',
-            hrefType: 'link'
+            hrefType: 'internalLink'
           }
         ]
       },
@@ -67,7 +67,7 @@ export const dropdownLists = [
             text: 'Program Schedule',
             class: '',
             href: 'schedule',
-            hrefType: 'link'
+            hrefType: 'internalLink'
           },
           {
             text: 'Station directory',
