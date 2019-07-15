@@ -23,3 +23,25 @@
 .weatherAlert_title {
   font-size: 1.4em;
 }
+
+.alertHome {
+  display: flex;
+  flex-flow: row nowrap;
+  background-color: $color-blue-light;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.alertHome_prefix {
+  padding: 8px 12px;
+  background-color: $color-blue-dark;
+  color: $color-white;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.alertHome_title {
+  padding: 8px 12px;
+  font-weight: normal;
+  color: $color-blue-dark;
+}
