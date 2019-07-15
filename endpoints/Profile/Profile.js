@@ -1,6 +1,7 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
+import { globals } from '../../config/globals';
 import { Heading, Loading } from '@apmg/titan';
 import { Image } from '@apmg/mimas';
 import { Body } from '@apmg/amat';
@@ -57,7 +58,7 @@ const ProfileInner = ({ profile }) => {
                       key={profile?.primaryVisuals.lead.fallback}
                       image={profile?.primaryVisuals.lead}
                       aspectRatio="uncropped"
-                      sizes="(max-width: 1100px) 100vw, 1100px"
+                      sizes={globals.sizes.primaryVisuals}
                       alt={profile?.primaryVisuals.lead.shortCaption}
                     />
                   </div>

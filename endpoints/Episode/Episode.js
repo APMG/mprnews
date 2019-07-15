@@ -2,6 +2,7 @@ import React from 'react';
 import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
 import { Loading } from '@apmg/titan';
+import { globals } from '../../config/globals';
 import { Image } from '@apmg/mimas';
 import { collectionLinkData } from '../../utils/utils';
 import { format } from 'date-fns';
@@ -108,7 +109,7 @@ const EpisodeInner = ({ episode }) => {
             <Image
               key={episode.primaryVisuals.lead.fallback}
               image={episode.primaryVisuals.lead}
-              sizes="(max-width: 1100px) 100vw, 1100px"
+              sizes={globals.sizes.primaryVisuals}
               alt={episode.primaryVisuals.lead.shortCaption}
             />
           )
