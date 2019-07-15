@@ -1,6 +1,7 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
+import Error from 'next/error';
 import { globals } from '../../config/globals';
 import { Loading } from '@apmg/titan';
 import { Image } from '@apmg/mimas';
@@ -22,6 +23,7 @@ const Page = ({ slug, previewToken }) => (
     {({ loading, error, data }) => {
       if (error) return <div>{`Error: ${error}`}</div>;
       if (loading) return <Loading />;
+      if (data.page === null) return <Error statusCode={404} />;
 
       return <PageInner page={data.page} />;
     }}
