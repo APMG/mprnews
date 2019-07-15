@@ -108,7 +108,6 @@ const EpisodeInner = ({ episode }) => {
             <Image
               key={episode.primaryVisuals.lead.fallback}
               image={episode.primaryVisuals.lead}
-              aspectRatio="uncropped"
               sizes="(max-width: 1100px) 100vw, 1100px"
               alt={episode.primaryVisuals.lead.shortCaption}
             />
