@@ -13,7 +13,9 @@ const FooterProgramming = (props) => {
       </div>
       <div className="footer_progListen">
         <Button href={props.listenHref} type="primary">
-          {props.listenText}
+          <Link href={props.listenHref}>
+            <a className="link link-plain">{props.listenText}</a>
+          </Link>
         </Button>
       </div>
       <div className="footer_progLinks">
