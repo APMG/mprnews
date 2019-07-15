@@ -39,6 +39,23 @@ const Dropdown = () => {
     closeItem(id);
   };
 
+  const HrefType = (item) => {
+    let link;
+    switch (item.hrefType) {
+      case 'internalLink':
+        link = `/${item.href}`;
+        break;
+      case 'collection':
+        link = `/collection?slug=${item.href}`;
+        break;
+    }
+    return link;
+  };
+
+  const hrefTypeAs = (item) => {
+    return item.hrefType === 'externalLink' ? item.href : `/${item.href}`;
+  };
+
   const getToggle = (text, onClick, isOpen) => {
     return (
       <button
@@ -93,10 +110,7 @@ const Dropdown = () => {
                               key={item.text + i}
                               onClick={clickItem}
                             >
-                              <Link
-                                href={`/collection?slug=${item.href}`}
-                                as={`/${item.href}`}
-                              >
+                              <Link href={HrefType(item)} as={hrefTypeAs(item)}>
                                 <a
                                   className={`dropdownMenuItem_link ${item.class}`}
                                 >
