@@ -105,7 +105,7 @@ export const dropdownLists = [
             href: 'https://www.mpr.org/support/leadership-circle'
           },
           {
-            text: 'Donata a vehicle',
+            text: 'Donate a vehicle',
             class: '',
             href: 'https://www.mpr.org/support/donate-vehicle'
           },
