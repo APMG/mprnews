@@ -7,6 +7,8 @@ import LocationContext from '../context/LocationContext';
 import NowPlayingClient from 'nowplaying-client';
 import Layout from '../layouts/Layout';
 import { weatherConfig } from '../utils/defaultData';
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
 
 class MPRNews extends App {
   constructor(props) {

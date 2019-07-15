@@ -35,6 +35,8 @@ namespace :npm do
     on roles(:app) do
       within release_path do
         execute :npm, 'cache clean --force'
+        execute :rm, '-rf ./node_modules'
+        execute :rm, 'package-lock.json'
         execute :npm, :install
         execute :npm, :run, :build
       end
