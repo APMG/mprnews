@@ -7,16 +7,56 @@ export const dropdownLists = [
       {
         linkgroup: 'MPR News Coverage',
         links: [
-          { text: 'Arts', class: '', href: 'arts' },
-          { text: 'Books', class: '', href: 'arts/books' },
-          { text: 'Business', class: '', href: 'business' },
-          { text: 'Education', class: '', href: 'education' },
-          { text: 'Environment', class: '', href: 'environment' },
-          { text: 'Health', class: '', href: 'health' },
-          { text: 'Lifestyle', class: '', href: 'lifestyle' },
-          { text: 'Minnesota', class: '', href: 'minnesota' },
-          { text: 'Politics', class: '', href: 'politics' },
-          { text: 'Weather', class: '', href: 'weather-and-climate/updraft' }
+          { text: 'Arts', class: '', href: 'arts', hrefType: 'collection' },
+          {
+            text: 'Books',
+            class: '',
+            href: 'arts/books',
+            hrefType: 'collection'
+          },
+          {
+            text: 'Business',
+            class: '',
+            href: 'business',
+            hrefType: 'collection'
+          },
+          {
+            text: 'Education',
+            class: '',
+            href: 'education',
+            hrefType: 'collection'
+          },
+          {
+            text: 'Environment',
+            class: '',
+            href: 'environment',
+            hrefType: 'collection'
+          },
+          { text: 'Health', class: '', href: 'health', hrefType: 'collection' },
+          {
+            text: 'Lifestyle',
+            class: '',
+            href: 'lifestyle',
+            hrefType: 'collection'
+          },
+          {
+            text: 'Minnesota',
+            class: '',
+            href: 'minnesota',
+            hrefType: 'collection'
+          },
+          {
+            text: 'Politics',
+            class: '',
+            href: 'politics',
+            hrefType: 'collection'
+          },
+          {
+            text: 'Weather',
+            class: '',
+            href: 'weather-and-climate/updraft',
+            hrefType: 'collection'
+          }
         ]
       },
       {
