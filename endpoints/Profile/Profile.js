@@ -1,6 +1,7 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
+import Error from 'next/error';
 import { globals } from '../../config/globals';
 import { Heading, Loading } from '@apmg/titan';
 import { Image } from '@apmg/mimas';
@@ -22,6 +23,7 @@ const Profile = ({ slug, previewToken }) => (
     {({ loading, error, data }) => {
       if (error) return <div>{`Error: ${error}`}</div>;
       if (loading) return <Loading />;
+      if (data.profile === null) return <Error statusCode={404} />;
 
       return <ProfileInner profile={data.profile} />;
     }}
