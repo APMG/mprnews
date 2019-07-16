@@ -10,7 +10,7 @@ import query from './profile.gql';
 import Metatags from '../../components/Metatags/Metatags';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
 import Link from 'next/link';
-import { linkByTypeHref, linkByTypeAs } from '../../utils/cjsutils';
+import { linkByTypeAs } from '../../utils/cjsutils';
 const Profile = ({ slug, previewToken }) => (
   <Query
     query={query}
