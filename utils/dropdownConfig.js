@@ -46,6 +46,12 @@ export const dropdownLists = [
             hrefType: 'collection'
           },
           {
+            text: 'Photos',
+            class: '',
+            href: 'photos',
+            hrefType: 'collection'
+          },
+          {
             text: 'Politics',
             class: '',
             href: 'politics',
@@ -54,8 +60,8 @@ export const dropdownLists = [
           {
             text: 'Weather',
             class: '',
-            href: 'weather-and-climate/updraft',
-            hrefType: 'collection'
+            href: 'weather',
+            hrefType: 'internalLink'
           }
         ]
       },

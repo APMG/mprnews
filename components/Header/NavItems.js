@@ -10,47 +10,48 @@ export const navItems = [
       { text: 'Health', class: '', href: 'health' },
       { text: 'Lifestyle', class: '', href: 'lifestyle' },
       { text: 'Minnesota', class: '', href: 'minnesota' },
+      { text: 'Photos', class: '', href: 'photos' },
       { text: 'Politics', class: '', href: 'politics' },
-      { text: 'Weather', class: '', href: 'forecast' }
+      { text: 'Weather', class: '', href: 'weather' }
     ]
   },
   {
     linkgroup: 'MPR News Programs',
     links: [
-      { text: 'Morning Edition', class: '', href: '/morning-edition' },
+      { text: 'Morning Edition', class: '', href: 'shows/morning-edition' },
       {
         text: 'All Things Considered',
         class: '',
-        href: '/all-things-considered'
+        href: 'shows/all-things-considered'
       },
       {
         text: 'MPR News with Kerri Miller',
         class: '',
-        href: '/kerri-miller'
+        href: 'shows/kerri-miller'
       },
       {
         text: 'MPR News with Angela Davis',
         class: '',
-        href: '/angela-davis'
+        href: 'shows/angela-davis'
       },
       {
         text: 'MPR News Presents',
         class: '',
-        href: '/mpr-news-presents'
+        href: 'shows/mpr-news-presents'
       },
-      { text: 'More programs', class: '', href: '/schedule' }
+      { text: 'More programs', class: '', href: 'schedule' }
     ]
   },
   {
     linkgroup: 'MPR News Resources',
     links: [
-      { text: 'Program Schedule', class: '', href: '/schedule' },
+      { text: 'Program Schedule', class: '', href: 'schedule' },
       {
         text: 'Station directory',
         class: '',
         href: 'https://www.mpr.org/listen/stations'
       },
-      { text: 'Podcasts', class: '', href: '/podcasts' },
+      { text: 'Podcasts', class: '', href: 'podcasts' },
       { text: 'Archive', class: '', href: 'https://archive.mpr.org/' }
     ]
   },
