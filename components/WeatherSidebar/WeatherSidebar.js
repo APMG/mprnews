@@ -9,11 +9,18 @@ const WeatherSidebar = () => {
 
   useEffect(() => {
     const getData = async (lat, long) => {
-      let response = await fetch(
-        `https://api.weather.gov/points/${lat},${long}/forecast`
-      );
-      let result = await response.json();
-      setData(result);
+      try {
+        let response = await fetch(
+          `https://api.weather.gov/points/${lat},${long}/forecast`
+        );
+        let result = await response;
+        if (!result.ok) return;
+        result.json().then((data) => {
+          setData(data);
+        });
+      } catch (err) {
+        return;
+      }
     };
 
     getData(context.location.lat, context.location.long);

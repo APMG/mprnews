@@ -7,15 +7,23 @@ const WeatherHeader = () => {
 
   useEffect(() => {
     const getData = async () => {
-      let response = await fetch(
-        `https://w1.weather.gov/xml/current_obs/KMSP.xml`
-      );
-      let result = await response.text();
-      const xml = new window.DOMParser().parseFromString(result, 'text/xml');
-      setData({
-        temperature: xml.getElementsByTagName('temp_f')[0].innerHTML,
-        shortForecast: xml.getElementsByTagName('weather')[0].innerHTML
-      });
+      try {
+        let response = await fetch(
+          `https://w1.weather.gov/xml/current_obs/KMSP.xml`
+        );
+        let result = await response;
+        if (!result.ok) return;
+        result.text().then((data) => {
+          const xml = new window.DOMParser().parseFromString(data, 'text/xml');
+          setData({
+            temperature: xml.getElementsByTagName('temp_f')[0].innerHTML,
+            shortForecast: xml.getElementsByTagName('weather')[0].innerHTML
+          });
+        });
+      } catch (err) {
+        console.error(err);
+        return;
+      }
     };
 
     getData();
