@@ -6,9 +6,11 @@ const HomeTop = (props) => {
   return (
     <Link href={props.info.url}>
       <a className="alertHome">
-        <div className="alertHome_prefix">
-          <h2 className="hdg hdg-3">{`${props.info.prefix}`}</h2>
-        </div>
+        {props.info.prefix && (
+          <div className="alertHome_prefix">
+            <h2 className="hdg hdg-3">{`${props.info.prefix}`}</h2>
+          </div>
+        )}
         <div className="alertHome_title">
           <h2 className="hdg hdg-3">{`${props.info.title}`} </h2>
         </div>
