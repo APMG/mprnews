@@ -32,9 +32,12 @@ const WeatherSidebar = () => {
     <div className="weatherSidebar">
       {data.properties ? (
         <>
-          <Heading level={2} className="hdg hdg-4">
-            Forecast
-          </Heading>
+          <a className="infoLink_title" href="/weather">
+            <Heading level={2} className="hdg hdg-4">
+              Forecast
+            </Heading>
+          </a>
+
           <div className="weatherSidebar_section weatherSidebar_section-now">
             <div className="weatherSidebar_label">{currentForecast.name}</div>
             {currentForecast.temperatureTrend ? (

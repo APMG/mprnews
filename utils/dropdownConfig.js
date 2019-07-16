@@ -16,7 +16,7 @@ export const dropdownLists = [
           { text: 'Lifestyle', class: '', href: 'lifestyle' },
           { text: 'Minnesota', class: '', href: 'minnesota' },
           { text: 'Politics', class: '', href: 'politics' },
-          { text: 'Weather', class: '', href: 'forecast' }
+          { text: 'Weather', class: '', href: 'weather' }
         ]
       },
       {
