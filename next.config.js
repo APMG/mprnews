@@ -27,7 +27,7 @@ module.exports = withSass(
     generateBuildId: async () => {
       // When process.env.YOUR_BUILD_ID is undefined we fall back to the default
       try {
-        fs.readFileSync('REVISION').toString();
+        return fs.readFileSync('REVISION').toString();
       } catch (err) {
         return null;
       }
