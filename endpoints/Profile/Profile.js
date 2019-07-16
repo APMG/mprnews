@@ -79,9 +79,8 @@ const ProfileInner = ({ profile }) => {
                     {profile &&
                       profile.profileRelatedLinks &&
                       profile.profileRelatedLinks.map((link) => {
-                        const linkAs = linkByTypeHref(link);
                         return (
-                          <Link href={link.uri} key={link.uri} as={linkAs}>
+                          <Link href={link.uri} key={link.uri}>
                             <a className="link">{link.text}</a>
                           </Link>
                         );
