@@ -1,6 +1,7 @@
 const withSass = require('@zeit/next-sass');
 const withImages = require('next-images');
 require('dotenv').config({ path: `.env.${process.env.RAILS_ENV}` });
+const fs = require('fs');
 const webpack = require('webpack');
 module.exports = withSass(
   withImages({
@@ -22,6 +23,14 @@ module.exports = withSass(
 
       return config;
     },
-    distDir: 'build'
+    distDir: 'build',
+    generateBuildId: async () => {
+      // When process.env.YOUR_BUILD_ID is undefined we fall back to the default
+      try {
+        return fs.readFileSync('REVISION').toString();
+      } catch (err) {
+        return null;
+      }
+    }
   })
 );
