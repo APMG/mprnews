@@ -39,6 +39,30 @@ const Dropdown = () => {
     closeItem(id);
   };
 
+  const HrefType = (item) => {
+    let link;
+    switch (item.hrefType) {
+      case 'internalLink':
+        link = `/${item.href}`;
+        break;
+      case 'collection':
+        link = `/collection?slug=${item.href}`;
+        break;
+      case 'externalLink':
+        link = `${item.href}`;
+        break;
+      default:
+        console.error(
+          'link is not a type of internal link, collection or external'
+        );
+    }
+    return link;
+  };
+
+  const hrefTypeAs = (item) => {
+    return item.hrefType === 'externalLink' ? null : `/${item.href}`;
+  };
+
   const getToggle = (text, onClick, isOpen) => {
     return (
       <button
@@ -93,10 +117,7 @@ const Dropdown = () => {
                               key={item.text + i}
                               // onClick={clickItem}
                             >
-                              <Link
-                                href={`/collection?slug=${item.href}`}
-                                as={`/${item.href}`}
-                              >
+                              <Link href={HrefType(item)} as={hrefTypeAs(item)}>
                                 {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions, jsx-a11y/anchor-is-valid*/}
                                 <a
                                   className={`dropdownMenuItem_link ${item.class}`}
