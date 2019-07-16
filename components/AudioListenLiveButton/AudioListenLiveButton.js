@@ -31,7 +31,7 @@ const AudioListenLiveButton = () => {
         }}
       >
         <Icon name="popout" />
-        Open In New Tab
+        Open In Popup
       </a>
     </>
   );
