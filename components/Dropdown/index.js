@@ -113,10 +113,7 @@ const Dropdown = () => {
                       <ul className="dropdownMenuItem" role="menu">
                         {group.links.map((item) =>
                           !item.href ? null : (
-                            <DropdownMenuItem
-                              key={item.text + i}
-                              // onClick={clickItem}
-                            >
+                            <DropdownMenuItem key={item.text + i}>
                               <Link href={HrefType(item)} as={hrefTypeAs(item)}>
                                 {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions, jsx-a11y/anchor-is-valid*/}
                                 <a
