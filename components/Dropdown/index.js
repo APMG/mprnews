@@ -37,7 +37,7 @@ const Dropdown = () => {
 
   const clickItem = (id) => {
     closeItem(id);
-  };
+   };
 
   const HrefType = (item) => {
     let link;
@@ -48,12 +48,19 @@ const Dropdown = () => {
       case 'collection':
         link = `/collection?slug=${item.href}`;
         break;
+      case 'externalLink':
+        link = `${item.href}`;
+        break;
+      default:
+        console.log(
+          'link is not a type of internal link, collection or external'
+        );
     }
     return link;
   };
 
   const hrefTypeAs = (item) => {
-    return item.hrefType === 'externalLink' ? item.href : `/${item.href}`;
+    return item.hrefType === 'externalLink' ? null : `/${item.href}`;
   };
 
   const getToggle = (text, onClick, isOpen) => {
