@@ -39,6 +39,7 @@ namespace :npm do
         execute :rm, 'package-lock.json'
         execute :npm, :install
         execute :npm, :run, :build
+        execute :ln, '-s build _next'
       end
     end
   end
