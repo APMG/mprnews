@@ -87,10 +87,12 @@ const StoryInner = ({ story, minimal }) => {
         minimal={minimal}
         redistributable={story.primaryVisuals?.lead?.rights?.redistributable}
         shareButtons={
-          <ShareSocialButtons
-            contentUrl={story.canonicalSlug}
-            title={story.title}
-          />
+          !minimal && (
+            <ShareSocialButtons
+              contentUrl={story.canonicalSlug}
+              title={story.title}
+            />
+          )
         }
         audioPlayButton={
           story.primaryAudio && (
