@@ -91,14 +91,18 @@ const Dropdown = () => {
                           !item.href ? null : (
                             <DropdownMenuItem
                               key={item.text + i}
-                              onClick={clickItem}
+                              // onClick={clickItem}
                             >
                               <Link
                                 href={`/collection?slug=${item.href}`}
                                 as={`/${item.href}`}
                               >
+                                {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions, jsx-a11y/anchor-is-valid*/}
                                 <a
                                   className={`dropdownMenuItem_link ${item.class}`}
+                                  onClick={(e) => {
+                                    clickItem(e);
+                                  }}
                                 >
                                   {item.text}
                                 </a>
