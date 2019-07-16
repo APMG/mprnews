@@ -37,7 +37,7 @@ const Dropdown = () => {
 
   const clickItem = (id) => {
     closeItem(id);
-   };
+  };
 
   const HrefType = (item) => {
     let link;
@@ -52,7 +52,7 @@ const Dropdown = () => {
         link = `${item.href}`;
         break;
       default:
-        console.log(
+        console.error(
           'link is not a type of internal link, collection or external'
         );
     }
