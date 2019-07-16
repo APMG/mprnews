@@ -10,7 +10,6 @@ const HomeTop = (props) => {
           <h2 className="hdg hdg-3">{`${props.info.prefix}`}</h2>
         </div>
         <div className="alertHome_title">
-          {console.log(props.info.title)}
           <h2 className="hdg hdg-3">{`${props.info.title}`} </h2>
         </div>
       </a>
