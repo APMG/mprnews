@@ -5,7 +5,14 @@ import Link from 'next/link';
 const HomeTop = (props) => {
   return (
     <Link href={props.info.url}>
-      <a className="alert-box">{`${props.info.prefix} ${props.info.title}`}</a>
+      <a className="alertHome">
+        <div className="alertHome_prefix">
+          <h2 className="hdg hdg-3">{`${props.info.prefix}`}</h2>
+        </div>
+        <div className="alertHome_title">
+          <h2 className="hdg hdg-3">{`${props.info.title}`} </h2>
+        </div>
+      </a>
     </Link>
   );
 };
