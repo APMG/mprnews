@@ -16,7 +16,8 @@ const HomeRail = (props) => {
     { text: 'Lifestyle', href: 'lifestyle' },
     { text: 'Minnesota', href: 'minnesota' },
     { text: 'Politics', href: 'politics' },
-    { text: 'Weather', href: 'forecast' }
+    { text: 'Photos', href: 'photos' },
+    { text: 'Weather', href: 'weather' }
   ];
 
   return (
@@ -26,7 +27,7 @@ const HomeRail = (props) => {
         <div className="section section-md">
           <InfoLink
             title="Updraft"
-            href="weather/updraft"
+            href="weather-and-climate/updraft"
             hrefType="collection"
             icon="updraft"
             description="with Paul Huttner"

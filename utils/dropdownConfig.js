@@ -7,56 +7,126 @@ export const dropdownLists = [
       {
         linkgroup: 'MPR News Coverage',
         links: [
-          { text: 'Arts', class: '', href: 'arts' },
-          { text: 'Books', class: '', href: 'arts/books' },
-          { text: 'Business', class: '', href: 'business' },
-          { text: 'Education', class: '', href: 'education' },
-          { text: 'Environment', class: '', href: 'environment' },
-          { text: 'Health', class: '', href: 'health' },
-          { text: 'Lifestyle', class: '', href: 'lifestyle' },
-          { text: 'Minnesota', class: '', href: 'minnesota' },
-          { text: 'Politics', class: '', href: 'politics' },
-          { text: 'Weather', class: '', href: 'forecast' }
+          { text: 'Arts', class: '', href: 'arts', hrefType: 'collection' },
+          {
+            text: 'Books',
+            class: '',
+            href: 'arts/books',
+            hrefType: 'collection'
+          },
+          {
+            text: 'Business',
+            class: '',
+            href: 'business',
+            hrefType: 'collection'
+          },
+          {
+            text: 'Education',
+            class: '',
+            href: 'education',
+            hrefType: 'collection'
+          },
+          {
+            text: 'Environment',
+            class: '',
+            href: 'environment',
+            hrefType: 'collection'
+          },
+          { text: 'Health', class: '', href: 'health', hrefType: 'collection' },
+          {
+            text: 'Lifestyle',
+            class: '',
+            href: 'lifestyle',
+            hrefType: 'collection'
+          },
+          {
+            text: 'Minnesota',
+            class: '',
+            href: 'minnesota',
+            hrefType: 'collection'
+          },
+          {
+            text: 'Politics',
+            class: '',
+            href: 'politics',
+            hrefType: 'collection'
+          },
+          {
+            text: 'Weather',
+            class: '',
+            href: 'weather-and-climate/updraft',
+            hrefType: 'collection'
+          }
         ]
       },
       {
         linkgroup: 'MPR News Programs',
         links: [
-          { text: 'Morning Edition', class: '', href: '/morning-edition' },
+          {
+            text: 'Morning Edition',
+            class: '',
+            href: 'shows/morning-edition',
+            hrefType: 'collection'
+          },
           {
             text: 'All Things Considered',
             class: '',
-            href: '/all-things-considered'
+            href: 'shows/all-things-considered',
+            hrefType: 'collection'
           },
           {
             text: 'MPR News with Kerri Miller',
             class: '',
-            href: '/kerri-miller'
+            href: 'shows/kerri-miller',
+            hrefType: 'collection'
           },
           {
             text: 'MPR News with Angela Davis',
             class: '',
-            href: '/angela-davis'
+            href: 'shows/angela-davis',
+            hrefType: 'collection'
           },
           {
             text: 'MPR News Presents',
             class: '',
-            href: '/mpr-news-presents'
+            href: 'shows/mpr-news-presents',
+            hrefType: 'collection'
           },
-          { text: 'More programs', class: '', href: '/schedule' }
+          {
+            text: 'More programs',
+            class: '',
+            href: 'schedule',
+            hrefType: 'internalLink'
+          }
         ]
       },
       {
         linkgroup: 'MPR News Resources',
         links: [
-          { text: 'Program Schedule', class: '', href: '/schedule' },
+          {
+            text: 'Program Schedule',
+            class: '',
+            href: 'schedule',
+            hrefType: 'internalLink'
+          },
           {
             text: 'Station directory',
             class: '',
-            href: 'https://www.mpr.org/listen/stations'
+            href: 'https://www.mpr.org/listen/stations',
+            hrefType: 'externalLink'
           },
-          { text: 'Podcasts', class: '', href: '/podcasts' },
-          { text: 'Archive', class: '', href: 'https://archive.mpr.org/' }
+          {
+            text: 'Podcasts',
+            class: '',
+            href: 'podcasts',
+            hrefType: 'collection'
+          },
+          {
+            text: 'Archive',
+            class: '',
+            href: 'https://archive.mpr.org/',
+            hrefType: 'externalLink'
+          }
         ]
       }
     ]
@@ -72,22 +142,26 @@ export const dropdownLists = [
           {
             text: 'Member benefits',
             class: '',
-            href: 'https://www.mpr.org/members/benefits'
+            href: 'https://www.mpr.org/members/benefits',
+            hrefType: 'externalLink'
           },
           {
             text: 'Sustaining membership',
             class: '',
-            href: 'https://www.mpr.org/members/sustainers'
+            href: 'https://www.mpr.org/members/sustainers',
+            hrefType: 'externalLink'
           },
           {
             text: 'Contact Us',
             class: '',
-            href: 'https://www.mpr.org/contact'
+            href: 'https://www.mpr.org/contact',
+            hrefType: 'externalLink'
           },
           {
             text: 'Become a member',
             class: '',
-            href: 'https://contribute.publicradio.org/contribute.php'
+            href: 'https://contribute.publicradio.org/contribute.php',
+            hrefType: 'externalLink'
           }
         ]
       },
@@ -97,32 +171,38 @@ export const dropdownLists = [
           {
             text: 'Give a gift membership',
             class: '',
-            href: 'https://www.mpr.org/members/gift-membership'
+            href: 'https://www.mpr.org/members/gift-membership',
+            hrefType: 'externalLink'
           },
           {
             text: 'Leadership Circle',
             class: '',
-            href: 'https://www.mpr.org/support/leadership-circle'
+            href: 'https://www.mpr.org/support/leadership-circle',
+            hrefType: 'externalLink'
           },
           {
             text: 'Donate a vehicle',
             class: '',
-            href: 'https://www.mpr.org/support/donate-vehicle'
+            href: 'https://www.mpr.org/support/donate-vehicle',
+            hrefType: 'externalLink'
           },
           {
             text: 'Employer matching gifts',
             class: '',
-            href: 'https://www.mpr.org/members/match'
+            href: 'https://www.mpr.org/members/match',
+            hrefType: 'externalLink'
           },
           {
             text: 'Planned Giving',
             class: '',
-            href: 'https://www.mpr.org/support/planned-giving'
+            href: 'https://www.mpr.org/support/planned-giving',
+            hrefType: 'externalLink'
           },
           {
             text: 'Donate stock',
             class: '',
-            href: 'https://www.mpr.org/support/donate-stock'
+            href: 'https://www.mpr.org/support/donate-stock',
+            hrefType: 'externalLink'
           }
         ]
       }
@@ -140,32 +220,38 @@ export const dropdownLists = [
           {
             text: 'MPR News',
             class: 'mprnews',
-            href: 'https://www.mprnews.org/'
+            href: 'https://www.mprnews.org/',
+            hrefType: 'externalLink'
           },
           {
             text: 'The Current',
             class: 'thecurrent',
-            href: 'https://www.thecurrent.org/'
+            href: 'https://www.thecurrent.org/',
+            hrefType: 'externalLink'
           },
           {
             text: 'Classical MPR',
             class: 'classical',
-            href: 'https://www.classicalmpr.org/'
+            href: 'https://www.classicalmpr.org/',
+            hrefType: 'externalLink'
           },
           {
             text: 'Radio Heartland',
             class: '',
-            href: 'https://www.thecurrent.org/heartland'
+            href: 'https://www.thecurrent.org/heartland',
+            hrefType: 'externalLink'
           },
           {
             text: 'Local Current',
             class: '',
-            href: 'https://www.thecurrent.org/local'
+            href: 'https://www.thecurrent.org/local',
+            hrefType: 'externalLink'
           },
 
           {
             text: 'Choral Classical',
-            href: 'https://www.classicalmpr.org/topic/choral'
+            href: 'https://www.classicalmpr.org/topic/choral',
+            hrefType: 'externalLink'
           }
         ]
       },
@@ -175,47 +261,56 @@ export const dropdownLists = [
           {
             text: 'About MPR',
             class: '',
-            href: 'https://www.mpr.org/about'
+            href: 'https://www.mpr.org/about',
+            hrefType: 'externalLink'
           },
           {
             text: 'Contact Info',
             class: '',
-            href: 'https://www.mpr.org/contact'
+            href: 'https://www.mpr.org/contact',
+            hrefType: 'externalLink'
           },
           {
             text: 'Careers',
             class: '',
-            href: 'https://apmgcareers.org'
+            href: 'https://apmgcareers.org',
+            hrefType: 'externalLink'
           },
           {
             text: 'Company Information',
             class: '',
-            href: 'https://www.mpr.org/about'
+            href: 'https://www.mpr.org/about',
+            hrefType: 'externalLink'
           },
           {
             text: 'Stations',
             class: '',
-            href: 'https://www.mpr.org/listen/stations'
+            href: 'https://www.mpr.org/listen/stations',
+            hrefType: 'externalLink'
           },
           {
             text: 'Staff Directory',
             class: '',
-            href: 'https://www.mpr.org/about/people'
+            href: 'https://www.mpr.org/about/people',
+            hrefType: 'externalLink'
           },
           {
             text: 'Press',
             class: '',
-            href: 'https://www.mpr.org/press'
+            href: 'https://www.mpr.org/press',
+            hrefType: 'externalLink'
           },
           {
             text: 'Events',
             class: 'bold',
-            href: 'https://www.mpr.org/calendar/'
+            href: 'https://www.mpr.org/calendar/',
+            hrefType: 'externalLink'
           },
           {
             text: 'Shop',
             class: 'bold',
-            href: 'https://www.publicmediamarket.org/collections/mpr-news'
+            href: 'https://www.publicmediamarket.org/collections/mpr-news',
+            hrefType: 'externalLink'
           }
         ]
       }

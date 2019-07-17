@@ -74,6 +74,7 @@
   max-width: 50rem;
   top: 0;
   position: sticky;
+  z-index: $z-social-sticky;
 }
 
 .content_body {

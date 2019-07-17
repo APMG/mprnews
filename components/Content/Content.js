@@ -48,7 +48,7 @@ const Content = ({
         tag={tag}
       />
 
-      <div className="content_social">{shareButtons}</div>
+      {shareButtons && <div className="content_social">{shareButtons}</div>}
 
       {audioPlayButton && (
         <div className="content_audio">{audioPlayButton}</div>
