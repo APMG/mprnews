@@ -1,6 +1,7 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
+import Error from 'next/error';
 import { globals } from '../../config/globals';
 import { Loading } from '@apmg/titan';
 import { Image } from '@apmg/mimas';
@@ -25,6 +26,7 @@ const Story = ({ slug, previewToken, minimal }) => (
     {({ loading, error, data }) => {
       if (error) return <div>Error loading story</div>;
       if (loading) return <Loading />;
+      if (data.story === null) return <Error statusCode={404} />;
 
       return <StoryInner story={data.story} minimal={minimal} />;
     }}
@@ -85,10 +87,12 @@ const StoryInner = ({ story, minimal }) => {
         minimal={minimal}
         redistributable={story.primaryVisuals?.lead?.rights?.redistributable}
         shareButtons={
-          <ShareSocialButtons
-            contentUrl={story.canonicalSlug}
-            title={story.title}
-          />
+          !minimal && (
+            <ShareSocialButtons
+              contentUrl={story.canonicalSlug}
+              title={story.title}
+            />
+          )
         }
         audioPlayButton={
           story.primaryAudio && (
@@ -106,7 +110,6 @@ const StoryInner = ({ story, minimal }) => {
               key={story.primaryVisuals.lead.fallback}
               image={story.primaryVisuals.lead}
               sizes={globals.sizes.primaryVisuals}
-              aspectRatio="uncropped"
               alt={story.primaryVisuals.lead.shortCaption}
             />
           )

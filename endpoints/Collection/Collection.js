@@ -1,4 +1,5 @@
 import React from 'react';
+import Error from 'next/error';
 import { Heading, Loading } from '@apmg/titan';
 import { Body } from '@apmg/amat';
 import { Query } from 'react-apollo';
@@ -23,6 +24,7 @@ const Collection = ({ collectionName, pageNum }) => {
       {({ loading, error, data }) => {
         if (error) return <div>{`Error: ${error}`}</div>;
         if (loading) return <Loading />;
+        if (data.collection === null) return <Error statusCode={404} />;
 
         return (
           <CollectionInner

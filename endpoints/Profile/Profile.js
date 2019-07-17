@@ -1,6 +1,7 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
+import Error from 'next/error';
 import { globals } from '../../config/globals';
 import { Heading, Loading } from '@apmg/titan';
 import { Image } from '@apmg/mimas';
@@ -9,7 +10,7 @@ import query from './profile.gql';
 import Metatags from '../../components/Metatags/Metatags';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
 import Link from 'next/link';
-import { linkByTypeHref, linkByTypeAs } from '../../utils/cjsutils';
+import { linkByTypeAs } from '../../utils/cjsutils';
 const Profile = ({ slug, previewToken }) => (
   <Query
     query={query}
@@ -22,6 +23,7 @@ const Profile = ({ slug, previewToken }) => (
     {({ loading, error, data }) => {
       if (error) return <div>{`Error: ${error}`}</div>;
       if (loading) return <Loading />;
+      if (data.profile === null) return <Error statusCode={404} />;
 
       return <ProfileInner profile={data.profile} />;
     }}
@@ -77,9 +79,8 @@ const ProfileInner = ({ profile }) => {
                     {profile &&
                       profile.profileRelatedLinks &&
                       profile.profileRelatedLinks.map((link) => {
-                        const linkAs = linkByTypeHref(link);
                         return (
-                          <Link href={link.uri} key={link.uri} as={linkAs}>
+                          <Link href={link.uri} key={link.uri}>
                             <a className="link">{link.text}</a>
                           </Link>
                         );
