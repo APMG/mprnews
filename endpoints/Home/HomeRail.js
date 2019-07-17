@@ -16,8 +16,7 @@ const HomeRail = (props) => {
     { text: 'Lifestyle', href: 'lifestyle' },
     { text: 'Minnesota', href: 'minnesota' },
     { text: 'Politics', href: 'politics' },
-    { text: 'Photos', href: 'photos' },
-    { text: 'Weather', href: 'weather' }
+    { text: 'Photos', href: 'photos' }
   ];
 
   return (
@@ -76,6 +75,12 @@ const HomeRail = (props) => {
                 </Link>
               </li>
             ))}
+            {/* TODO clean this up better with the one menu config to rule them all ticekt */}
+            <li key="weather">
+              <Link href={`/weather`} as={`/weather`}>
+                <a className="link link-plain">Weather</a>
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
