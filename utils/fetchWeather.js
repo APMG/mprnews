@@ -1,6 +1,7 @@
 import fetch from 'isomorphic-unfetch';
 
 export const fetchWeather = async (lat, long) => {
+  console.log(lat, long);
   try {
     const backgroundUrl = `https://api.weather.gov/points/${lat},${long}`;
     const locationRes = await fetch(backgroundUrl);
