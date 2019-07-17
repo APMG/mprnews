@@ -35,6 +35,10 @@ const WeatherSidebar = () => {
     );
   }
 
+  if (!currentForecast) {
+    return <div className="weatherSidebar"></div>;
+  }
+
   return (
     <div className="weatherSidebar">
       {data.properties ? (
