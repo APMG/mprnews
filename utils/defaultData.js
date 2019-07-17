@@ -93,9 +93,9 @@ export const weatherConfig = [
   {
     id: 'rochester',
     name: 'Rochester, MN',
-    lat: '43.1642',
-    long: '-77.5989',
-    forecastOffice: 'BUF'
+    lat: '42.02',
+    long: '-92.46',
+    forecastOffice: 'ARX'
   },
   {
     id: 'saint-cloud',

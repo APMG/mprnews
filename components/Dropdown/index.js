@@ -111,10 +111,15 @@ const Dropdown = () => {
                               onClick={clickItem}
                             >
                               <Link href={HrefType(item)} as={hrefTypeAs(item)}>
+                                {/* eslint-disable-next-line */}
                                 <a
                                   className={`dropdownMenuItem_link ${item.class}`}
+                                  onClick={(e) => {
+                                    clickItem(e);
+                                  }}
                                 >
-                                  {item.text}
+                                  {' '}
+                                  {item.text}{' '}
                                 </a>
                               </Link>
                             </DropdownMenuItem>
