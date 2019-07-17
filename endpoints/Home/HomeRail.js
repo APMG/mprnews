@@ -16,7 +16,8 @@ const HomeRail = (props) => {
     { text: 'Lifestyle', href: 'lifestyle' },
     { text: 'Minnesota', href: 'minnesota' },
     { text: 'Politics', href: 'politics' },
-    { text: 'Weather', href: 'weather-and-climate/updraft' }
+    { text: 'Photos', href: 'photos' },
+    { text: 'Weather', href: 'weather' }
   ];
 
   return (
