@@ -35,6 +35,10 @@ const WeatherSidebar = () => {
     );
   }
 
+  if (!currentForecast) {
+    return <div className="weatherSidebar"></div>;
+  }
+
   return (
     <div className="weatherSidebar">
       {data.properties ? (
@@ -51,15 +55,19 @@ const WeatherSidebar = () => {
             )}
             <div className="weatherSidebar_desc">{`${currentForecast.shortForecast}`}</div>
           </div>
-          <div className="weatherSidebar_section weatherSidebar_section-later">
-            <div className="weatherSidebar_label">{tonightsForecast.name}</div>
-            {tonightsForecast.temperatureTrend ? (
-              <div className="weatherSidebar_temp">{`${tonightsForecast.temperature}° ${tonightsForecast.temperatureUnit} and ${tonightsForecast.temperatureTrend}`}</div>
-            ) : (
-              <div className="weatherSidebar_temp">{`${tonightsForecast.temperature}° ${tonightsForecast.temperatureUnit}`}</div>
-            )}
-            <div className="weatherSidebar_desc">{`${tonightsForecast.shortForecast}`}</div>
-          </div>
+          {tonightsForecast ? (
+            <div className="weatherSidebar_section weatherSidebar_section-later">
+              <div className="weatherSidebar_label">
+                {tonightsForecast.name}
+              </div>
+              {tonightsForecast.temperatureTrend ? (
+                <div className="weatherSidebar_temp">{`${tonightsForecast.temperature}° ${tonightsForecast.temperatureUnit} and ${tonightsForecast.temperatureTrend}`}</div>
+              ) : (
+                <div className="weatherSidebar_temp">{`${tonightsForecast.temperature}° ${tonightsForecast.temperatureUnit}`}</div>
+              )}
+              <div className="weatherSidebar_desc">{`${tonightsForecast.shortForecast}`}</div>
+            </div>
+          ) : null}
         </>
       ) : null}
     </div>
