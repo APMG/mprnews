@@ -1,7 +1,7 @@
 query home($contentAreaSlug: String!, $slug: String!) {
   updraft: collection(
     contentAreaSlug: $contentAreaSlug
-    slug: "topic/weather/updraft"
+    slug: "weather-and-climate/updraft"
   ) {
     results(page: 1, pageSize: 1) {
       items {
