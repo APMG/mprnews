@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { Heading } from '@apmg/titan';
 import fetch from 'isomorphic-unfetch';
 import LocationContext from '../../context/LocationContext';
 
