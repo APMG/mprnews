@@ -43,34 +43,23 @@ const WeatherSidebar = () => {
     <div className="weatherSidebar">
       {data.properties ? (
         <>
-          <a className="infoLink_title" href="/weather">
-            <Heading level={2} className="hdg hdg-4">
-              Forecast
-            </Heading>
-          </a>
+          <Heading level={2} className="hdg hdg-4">
+            Forecast
+          </Heading>
 
-          <div className="weatherSidebar_section weatherSidebar_section-now">
-            <div className="weatherSidebar_label">{currentForecast.name}</div>
-            {currentForecast.temperatureTrend ? (
-              <div className="weatherSidebar_temp">{`${currentForecast.temperature}° ${currentForecast.temperatureUnit} and ${currentForecast.temperatureTrend}`}</div>
-            ) : (
-              <div className="weatherSidebar_temp">{`${currentForecast.temperature}° ${currentForecast.temperatureUnit}`}</div>
-            )}
+          <div className="section section-md">
+            <div className="weatherSidebar_label weatherSidebar_label-high">
+              High of
+              {currentForecast.temperature &&
+                ` ${currentForecast.temperature}°`}
+            </div>
+            <div className="weatherSidebar_label weatherSidebar_label-low">
+              Low of
+              {tonightsForecast.temperature &&
+                ` ${tonightsForecast.temperature}°`}
+            </div>
             <div className="weatherSidebar_desc">{`${currentForecast.shortForecast}`}</div>
           </div>
-          {tonightsForecast ? (
-            <div className="weatherSidebar_section weatherSidebar_section-later">
-              <div className="weatherSidebar_label">
-                {tonightsForecast.name}
-              </div>
-              {tonightsForecast.temperatureTrend ? (
-                <div className="weatherSidebar_temp">{`${tonightsForecast.temperature}° ${tonightsForecast.temperatureUnit} and ${tonightsForecast.temperatureTrend}`}</div>
-              ) : (
-                <div className="weatherSidebar_temp">{`${tonightsForecast.temperature}° ${tonightsForecast.temperatureUnit}`}</div>
-              )}
-              <div className="weatherSidebar_desc">{`${tonightsForecast.shortForecast}`}</div>
-            </div>
-          ) : null}
         </>
       ) : null}
     </div>
