@@ -23,9 +23,12 @@ const HomeRail = (props) => {
     <>
       <Link href="/weather" as="/weather">
         <a className="infoLink_title">
-          <WeatherSidebar />
+          <Heading level={2} className="hdg hdg-4">
+            Forecast
+          </Heading>
         </a>
       </Link>
+      <WeatherSidebar />
       <div className="home_railLinks">
         <div className="section section-md">
           <InfoLink

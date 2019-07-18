@@ -43,10 +43,6 @@ const WeatherSidebar = () => {
     <div className="weatherSidebar">
       {data.properties ? (
         <>
-          <Heading level={2} className="hdg hdg-4">
-            Forecast
-          </Heading>
-
           <div className="section section-md">
             <div className="weatherSidebar_label weatherSidebar_label-high">
               High of
