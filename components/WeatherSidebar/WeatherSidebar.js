@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import { Heading } from '@apmg/titan';
 import fetch from 'isomorphic-unfetch';
 import LocationContext from '../../context/LocationContext';
+import Link from 'next/link';
 
 const WeatherSidebar = () => {
   const [data, setData] = useState({});
@@ -43,12 +44,13 @@ const WeatherSidebar = () => {
     <div className="weatherSidebar">
       {data.properties ? (
         <>
-          <a className="infoLink_title" href="/weather">
-            <Heading level={2} className="hdg hdg-4">
-              Forecast
-            </Heading>
-          </a>
-
+          <Link href={`/weather`} as={`/weather`}>
+            <a className="infoLink_title">
+              <Heading level={2} className="hdg hdg-4">
+                Forecast
+              </Heading>
+            </a>
+          </Link>
           <div className="weatherSidebar_section weatherSidebar_section-now">
             <div className="weatherSidebar_label">{currentForecast.name}</div>
             {currentForecast.temperatureTrend ? (
