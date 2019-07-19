@@ -1,7 +1,4 @@
 .weatherAlert {
-  background-color: $color-lightred;
-  color: $color-darkred;
-  fill: $color-darkred;
   margin-bottom: 25px;
 }
 
@@ -9,19 +6,39 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid $color-darkred;
-  padding: 10px;
+  border: 2px solid $color-darkred;
+  padding: 4px 12px;
+  background: $color-darkred;
+  border-radius: 3px;
 }
 
 .weatherAlert_detail {
   border: 1px solid $color-darkred;
-  border-top: 0;
-  padding: 10px;
+  background: rgba($color-lightred, .1);
+  padding: 20px;
   margin-bottom: 25px;
+  border-top: 7px solid $color-darkred;
+  margin-top: -7px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+
+  @include media($media-small-tablet) {
+    padding: 40px;
+  }
+
+  &.not-active {
+    display: none;
+  }
+
+  &.active {
+    display: block;
+  }
+
 }
 
 .weatherAlert_title {
-  font-size: 1.4em;
+  color: $color-white;
+  line-height: 1.2;
 }
 
 .alertHome {

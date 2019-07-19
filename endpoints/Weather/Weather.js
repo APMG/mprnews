@@ -48,7 +48,7 @@ const Weather = (props) => {
     <section className="weather section">
       <div className="weather_location">
         <div className="weather_heading">
-          <Heading level={1} elementClass="hdg-weather">
+          <Heading level={1} elementClass="hdg-2">
             {location.name}
           </Heading>
           <div className="weather_share">
