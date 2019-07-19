@@ -137,7 +137,17 @@
   text-align: right;
 
   a {
+    display: inline-block;
     margin-left: 9px;
+    margin-bottom: 10px;
+    padding: 6px 16px;
+  }
+
+  @include media-max($media-tablet) {
+    a {
+      display: block;
+      margin-bottom: 12px;
+    }
   }
 }
 
