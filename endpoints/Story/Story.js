@@ -117,7 +117,7 @@ const StoryInner = ({ story, minimal }) => {
         imageCaption={story.primaryVisuals?.lead?.longCaption}
         imageCredit={story.primaryVisuals?.lead?.credit?.name}
         imageCreditHref={story.primaryVisuals?.lead?.credit?.url}
-        publishDate={format(story.publishDate, 'MMMM D, YYYY')}
+        publishDate={format(story.publishDate, 'MMMM D, YYYY h:mm aa')}
         embeddedAssetJson={story.embeddedAssetJson}
         tag={collectionLinkData(story.primaryCollection)}
         elementClass="story"
