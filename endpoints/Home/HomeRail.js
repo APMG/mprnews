@@ -16,13 +16,23 @@ const HomeRail = (props) => {
     { text: 'Lifestyle', href: 'lifestyle' },
     { text: 'Minnesota', href: 'minnesota' },
     { text: 'Politics', href: 'politics' },
-    { text: 'Photos', href: 'photos' },
-    { text: 'Weather', href: 'weather' }
+    { text: 'Photos', href: 'photos' }
   ];
 
   return (
     <>
-      <WeatherSidebar />
+      <Link href="/weather" as="/weather">
+        <a className="infoLink">
+          <div className="infoLink_title">
+            <Heading level={2} className="hdg hdg-4">
+              Forecast
+            </Heading>
+          </div>
+          <div className="infoLink_description">
+            <WeatherSidebar />
+          </div>
+        </a>
+      </Link>
       <div className="home_railLinks">
         <div className="section section-md">
           <InfoLink
@@ -76,6 +86,12 @@ const HomeRail = (props) => {
                 </Link>
               </li>
             ))}
+            {/* TODO clean this up better with the one menu config to rule them all ticekt */}
+            <li key="weather">
+              <Link href={`/weather`} as={`/weather`}>
+                <a className="link link-plain">Weather</a>
+              </Link>
+            </li>
           </ul>
         </div>
       </div>

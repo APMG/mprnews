@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { Heading } from '@apmg/titan';
 import fetch from 'isomorphic-unfetch';
 import LocationContext from '../../context/LocationContext';
 
@@ -9,11 +8,18 @@ const WeatherSidebar = () => {
 
   useEffect(() => {
     const getData = async (lat, long) => {
-      let response = await fetch(
-        `https://api.weather.gov/points/${lat},${long}/forecast`
-      );
-      let result = await response.json();
-      setData(result);
+      try {
+        let response = await fetch(
+          `https://api.weather.gov/points/${lat},${long}/forecast`
+        );
+        let result = await response;
+        if (!result.ok) return;
+        result.json().then((data) => {
+          setData(data);
+        });
+      } catch (err) {
+        return;
+      }
     };
 
     getData(context.location.lat, context.location.long);
@@ -28,33 +34,26 @@ const WeatherSidebar = () => {
     );
   }
 
+  if (!currentForecast) {
+    return <div className="weatherSidebar"></div>;
+  }
+
   return (
     <div className="weatherSidebar">
       {data.properties ? (
         <>
-          <a className="infoLink_title" href="/weather">
-            <Heading level={2} className="hdg hdg-4">
-              Forecast
-            </Heading>
-          </a>
-
-          <div className="weatherSidebar_section weatherSidebar_section-now">
-            <div className="weatherSidebar_label">{currentForecast.name}</div>
-            {currentForecast.temperatureTrend ? (
-              <div className="weatherSidebar_temp">{`${currentForecast.temperature}° ${currentForecast.temperatureUnit} and ${currentForecast.temperatureTrend}`}</div>
-            ) : (
-              <div className="weatherSidebar_temp">{`${currentForecast.temperature}° ${currentForecast.temperatureUnit}`}</div>
-            )}
+          <div className="section section-md">
+            <div className="weatherSidebar_label weatherSidebar_label-high">
+              High of
+              {currentForecast.temperature &&
+                ` ${currentForecast.temperature}°`}
+            </div>
+            <div className="weatherSidebar_label weatherSidebar_label-low">
+              Low of
+              {tonightsForecast.temperature &&
+                ` ${tonightsForecast.temperature}°`}
+            </div>
             <div className="weatherSidebar_desc">{`${currentForecast.shortForecast}`}</div>
-          </div>
-          <div className="weatherSidebar_section weatherSidebar_section-later">
-            <div className="weatherSidebar_label">{tonightsForecast.name}</div>
-            {tonightsForecast.temperatureTrend ? (
-              <div className="weatherSidebar_temp">{`${tonightsForecast.temperature}° ${tonightsForecast.temperatureUnit} and ${tonightsForecast.temperatureTrend}`}</div>
-            ) : (
-              <div className="weatherSidebar_temp">{`${tonightsForecast.temperature}° ${tonightsForecast.temperatureUnit}`}</div>
-            )}
-            <div className="weatherSidebar_desc">{`${tonightsForecast.shortForecast}`}</div>
           </div>
         </>
       ) : null}

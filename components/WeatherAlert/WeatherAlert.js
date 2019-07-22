@@ -14,15 +14,19 @@ const WeatherAlert = ({ alert }) => {
   return (
     <div className="weatherAlert">
       <div className="weatherAlert_main">
-        <Heading elementClass="weatherAlert_title" level={2}>
+        <Heading elementClass="hdg-3 weatherAlert_title" level={2}>
           {alert.properties.event}
         </Heading>
-        <Button onClick={handleClick} elementClass="btn-weatherAlert">
-          <Icon name="chevronDown" />
+        <Button
+          onClick={handleClick}
+          aria-haspopup="true"
+          aria-expanded={hide ? 'false' : 'true'}
+          elementClass={`btn-weatherAlert ${hide ? 'not-active' : 'active'}`}
+        >
+          <Icon name="chevronDown" elementClass="icon-chevronDown" />
         </Button>
       </div>
-      <div className={`weatherAlert_detail ${hide ? 'hide' : ''}`}>
-        {/* <Heading level={3}>{alert.properties.headline}</Heading> */}
+      <div className={`weatherAlert_detail ${hide ? 'not-active' : 'active'}`}>
         <Heading level={3}>{`Issued for ${alert.properties.areaDesc.replace(
           ';',
           ' &'
@@ -34,7 +38,9 @@ const WeatherAlert = ({ alert }) => {
           'M/D/YYYY @ H:mm A'
         )}`}</Heading>
         <p>{alert.properties.description}</p>
-        <Heading level={4}>INSTRUCTIONS</Heading>
+        <div className="weatherAlert_instructions">
+          <Heading level={4}>INSTRUCTIONS</Heading>
+        </div>
         <p>{alert.properties.instruction}</p>
       </div>
     </div>

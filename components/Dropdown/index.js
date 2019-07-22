@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Icon from '../Icons/Icon';
 import DropdownMenu from './DropdownMenu';
 import DropdownMenuItem from './DropdownMenuItem';
-import { dropdownLists } from '../../utils/dropdownConfig';
+import { dropdownLists } from '../../utils/navConfig';
 import OutsideClick from '../OutsideClick/OutsideClick';
 
 const Dropdown = () => {
@@ -53,7 +53,7 @@ const Dropdown = () => {
         break;
       default:
         console.error(
-          'link is not a type of internal link, collection or external'
+          'link is not a type of internal link, collection link or external link.  Probably a typo.'
         );
     }
     return link;
@@ -113,16 +113,20 @@ const Dropdown = () => {
                       <ul className="dropdownMenuItem" role="menu">
                         {group.links.map((item) =>
                           !item.href ? null : (
-                            <DropdownMenuItem key={item.text + i}>
+                            <DropdownMenuItem
+                              key={item.text + i}
+                              onClick={clickItem}
+                            >
                               <Link href={HrefType(item)} as={hrefTypeAs(item)}>
-                                {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions, jsx-a11y/anchor-is-valid*/}
+                                {/* eslint-disable-next-line */}
                                 <a
                                   className={`dropdownMenuItem_link ${item.class}`}
                                   onClick={(e) => {
                                     clickItem(e);
                                   }}
                                 >
-                                  {item.text}
+                                  {' '}
+                                  {item.text}{' '}
                                 </a>
                               </Link>
                             </DropdownMenuItem>

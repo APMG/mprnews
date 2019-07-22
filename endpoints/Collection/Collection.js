@@ -52,14 +52,22 @@ const CollectionInner = ({ collection, pageNum, collectionName }) => {
       name: 'twitter:card',
       content: 'summary_large_image'
     },
-    { key: 'twitter:image', name: 'twitter:image', content: socialImage }
+    { key: 'twitter:image', name: 'twitter:image', content: socialImage },
+    {
+      key: 'mpr-content-topic',
+      name: 'mpr-content-topic',
+      content: collection.title
+    }
   ];
 
   return (
     <>
       <Metatags title={collection.title} metatags={tags} links={[]} />
 
-      <section className="collection">
+      <section
+        className="collection page-purpose"
+        data-mpr-content-topic={collection.title}
+      >
         <div className="collection_header">
           <Heading level={1} className="hdg hdg-section">
             {collection.title}

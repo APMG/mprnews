@@ -12,6 +12,8 @@ const WeatherPage = ({ data }) => {
 
 WeatherPage.getInitialProps = async ({ req, res }) => {
   let location =
+    typeof req !== 'undefined' &&
+    req.params !== 'undefined' &&
     typeof req.params.id !== 'undefined'
       ? weatherConfig.find((config) => config.id === req.params.id)
       : weatherConfig[0];
@@ -22,7 +24,6 @@ WeatherPage.getInitialProps = async ({ req, res }) => {
     location.lat,
     location.long
   );
-
   return {
     data: {
       location,
