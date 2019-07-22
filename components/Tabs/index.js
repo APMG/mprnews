@@ -8,7 +8,10 @@ const Tabs = (props) => {
       {props.links.map((lnk) => {
         return (
           <li key={lnk.key} className="tabs_item">
-            <Link href={lnk.href}>
+            <Link
+              href={`/schedule?slug=${lnk.href}`}
+              as={`/schedule/${lnk.href}`}
+            >
               <a className={`tabs_link ${lnk.isActive && `is-active`}`}>
                 {lnk.key}
               </a>

@@ -102,7 +102,7 @@ export const dropdownLists = [
             text: 'More programs',
             class: '',
             href: 'schedule',
-            hrefType: 'internalLink'
+            hrefType: 'schedule'
           }
         ]
       },
@@ -113,7 +113,7 @@ export const dropdownLists = [
             text: 'Program Schedule',
             class: '',
             href: 'schedule',
-            hrefType: 'internalLink'
+            hrefType: 'schedule'
           },
           {
             text: 'Station directory',

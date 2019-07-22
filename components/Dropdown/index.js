@@ -5,6 +5,7 @@ import DropdownMenu from './DropdownMenu';
 import DropdownMenuItem from './DropdownMenuItem';
 import { dropdownLists } from '../../utils/navConfig';
 import OutsideClick from '../OutsideClick/OutsideClick';
+import { hrefType, hrefTypeAs } from '../../utils/utils';
 
 const Dropdown = () => {
   const ref = useRef();
@@ -37,30 +38,6 @@ const Dropdown = () => {
 
   const clickItem = (id) => {
     closeItem(id);
-  };
-
-  const HrefType = (item) => {
-    let link;
-    switch (item.hrefType) {
-      case 'internalLink':
-        link = `/${item.href}`;
-        break;
-      case 'collection':
-        link = `/collection?slug=${item.href}`;
-        break;
-      case 'externalLink':
-        link = `${item.href}`;
-        break;
-      default:
-        console.error(
-          'link is not a type of internal link, collection link or external link.  Probably a typo.'
-        );
-    }
-    return link;
-  };
-
-  const hrefTypeAs = (item) => {
-    return item.hrefType === 'externalLink' ? null : `/${item.href}`;
   };
 
   const getToggle = (text, onClick, isOpen) => {
@@ -117,7 +94,7 @@ const Dropdown = () => {
                               key={item.text + i}
                               onClick={clickItem}
                             >
-                              <Link href={HrefType(item)} as={hrefTypeAs(item)}>
+                              <Link href={hrefType(item)} as={hrefTypeAs(item)}>
                                 {/* eslint-disable-next-line */}
                                 <a
                                   className={`dropdownMenuItem_link ${item.class}`}
