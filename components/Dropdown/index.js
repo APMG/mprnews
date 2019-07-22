@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Icon from '../Icons/Icon';
 import DropdownMenu from './DropdownMenu';
 import DropdownMenuItem from './DropdownMenuItem';
-import { dropdownLists } from '../../utils/dropdownConfig';
+import { dropdownLists } from '../../utils/navConfig';
 import OutsideClick from '../OutsideClick/OutsideClick';
 
 const Dropdown = () => {
