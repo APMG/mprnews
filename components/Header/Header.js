@@ -5,9 +5,8 @@ import classNames from 'classnames';
 import Dropdown from '../Dropdown';
 import Logo from '../Logo/Logo';
 import Nav from './Nav';
-// import { navItems } from './NavItems';
 import WeatherHeader from '../WeatherHeader/WeatherHeader';
-import { dropdownLists } from '../../utils/dropdownConfig';
+import { dropdownLists } from '../../utils/navConfig';
 import NavButtonContents from './NavButtonContents';
 import SearchForm from './SearchForm';
 
