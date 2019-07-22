@@ -79,22 +79,31 @@ const HomeInner = ({ data }) => {
             );
           })}
         </div>
-        <div className="home_more">
-          <Link href="/arts">
-            <a className="btn btn-primary">
-              More Arts <Icon name="chevronRight" />
-            </a>
-          </Link>
-          <Link href="/environment">
-            <a className="btn btn-primary">
-              More Environment <Icon name="chevronRight" />
-            </a>
-          </Link>
-          <Link href="/politics">
-            <a className="btn btn-primary">
-              More Politics <Icon name="chevronRight" />
-            </a>
-          </Link>
+        <div className="hList home_more">
+          <div>
+            <Link href="/arts">
+              <a className="btn btn-primary">
+                <span>More Arts </span>
+                <Icon name="chevronRight" />
+              </a>
+            </Link>
+          </div>
+          <div>
+            <Link href="/environment">
+              <a className="btn btn-primary">
+                <span>More Environment </span>
+                <Icon name="chevronRight" />
+              </a>
+            </Link>
+          </div>
+          <div>
+            <Link href="/politics">
+              <a className="btn btn-primary">
+                <span>More Politics </span>
+                <Icon name="chevronRight" />
+              </a>
+            </Link>
+          </div>
         </div>
       </HomeGrid>
     </div>
