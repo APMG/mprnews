@@ -135,13 +135,18 @@ $_btn-color-default: $color-grey-10;
   border: 0;
   background: none;
   padding: 0;
+  line-height: 0;
 
   > .icon {
-    width: 40px;
-    height: 40px;
-    fill: $color-darkred;
+    width: 32px;
+    height: 32px;
+    fill: $color-white;
     padding: 0;
     margin: 0;
+  }
+
+  > .icon:first-child {
+    margin-right: 0;
   }
 
   &:hover {
@@ -149,8 +154,29 @@ $_btn-color-default: $color-grey-10;
     background: none;
 
     > .icon {
-      fill: $color-black;
+      fill: $color-lightred;
+      transition: fill $transition;
     }
+  }
+
+  &:focus {
+    background-color: rgba($color-white, 0);
+    border: 0;
+  }
+}
+
+
+.btn-weatherAlert.active {
+  .icon-chevronDown {
+    transition: transform .175s cubic-bezier(.33, 0, .5, .99);
+    transform: rotate(180deg);
+  }
+}
+
+.btn-weatherAlert.not-active {
+  .icon-chevronDown {
+    transition: transform .175s cubic-bezier(.33, 0, .5, .99);
+    transform: rotate(0deg);
   }
 }
 

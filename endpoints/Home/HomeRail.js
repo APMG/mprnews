@@ -21,7 +21,18 @@ const HomeRail = (props) => {
 
   return (
     <>
-      <WeatherSidebar />
+      <Link href="/weather" as="/weather">
+        <a className="infoLink">
+          <div className="infoLink_title">
+            <Heading level={2} className="hdg hdg-4">
+              Forecast
+            </Heading>
+          </div>
+          <div className="infoLink_description">
+            <WeatherSidebar />
+          </div>
+        </a>
+      </Link>
       <div className="home_railLinks">
         <div className="section section-md">
           <InfoLink

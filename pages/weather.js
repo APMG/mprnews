@@ -24,7 +24,6 @@ WeatherPage.getInitialProps = async ({ req, res }) => {
     location.lat,
     location.long
   );
-
   return {
     data: {
       location,

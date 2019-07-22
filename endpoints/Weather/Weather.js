@@ -9,42 +9,10 @@ import TwoDaysChart from './TwoDaysChart';
 import WeeklyForecast from './WeeklyForecast';
 import { weatherConfig } from '../../utils/defaultData';
 import { fetchWeather } from '../../utils/fetchWeather';
-// import LocationContext from '../../context/LocationContext';
 
 const Weather = (props) => {
   const [data, setData] = useState(props.data);
   const [loading, setLoading] = useState(false);
-  // let context = useContext(LocationContext);
-
-  // useEffect(() => {
-  //   console.log('use effect called');
-  //   console.log(context.location);
-  //   setLoading(true);
-
-  //   const href = `/weather/${context.location.id}`;
-  //   const as = href;
-  //   Router.push(href, as, { shallow: true });
-
-  //   const callFetchWeather = async () => {
-  //     console.log('fetch weather called');
-  //     const { weather, forecast, weekly, alerts } = await fetchWeather(
-  //       context.location.lat,
-  //       context.location.long
-  //     );
-
-  //     setData({
-  //       location: context.location,
-  //       weather: weather,
-  //       forecast: forecast,
-  //       weekly: weekly,
-  //       alerts: alerts
-  //     });
-  //   };
-
-  //   callFetchWeather();
-
-  //   setLoading(false);
-  // }, [context.location]);
 
   const handleChange = async (e) => {
     let newLocation = weatherConfig.find(
@@ -80,7 +48,7 @@ const Weather = (props) => {
     <section className="weather section">
       <div className="weather_location">
         <div className="weather_heading">
-          <Heading level={1} elementClass="hdg-weather">
+          <Heading level={1} elementClass="hdg-2">
             {location.name}
           </Heading>
           <div className="weather_share">
@@ -96,9 +64,6 @@ const Weather = (props) => {
 
         <select
           className="weather_locationSelect"
-          // onChange={(e) => {
-          //   context.handleLocationChange(e.target.value);
-          // }}
           onChange={handleChange}
           value={location.name}
         >
