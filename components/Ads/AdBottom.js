@@ -8,7 +8,7 @@ const AdBottom = () => {
       <div className="ad_textWrapper">
         <div className="ad_text">Providing Support for MPR.</div>
         <div className="link">
-          <Link href="https://www.mpr.org/sponsor">
+          <Link href="https://www.mprnews.org/underwriting">
             <a className="ad_link">Learn More</a>
           </Link>
         </div>
