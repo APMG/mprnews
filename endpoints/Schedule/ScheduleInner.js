@@ -21,13 +21,13 @@ const ScheduleInner = ({ schedule }) => {
                   return (
                     <td key={show.id} className="schedule_rightmost">
                       <strong>
-                        <Link
-                          key={show}
-                          href={`/schedule?slug=${show.link}`}
-                          as={show.link}
-                        >
+                        {show.link ? (
+                          <Link key={show} href={show.link}>
+                            <a>{show.name}</a>
+                          </Link>
+                        ) : (
                           <a>{show.name}</a>
-                        </Link>{' '}
+                        )}{' '}
                       </strong>
                       {program?.people.length > 0 && (
                         <>

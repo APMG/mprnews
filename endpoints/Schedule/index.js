@@ -1,10 +1,12 @@
 /* eslint-disable react/display-name */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Tabs from '../../components/Tabs';
 import PropTypes from 'prop-types';
 import ScheduleInner from './ScheduleInner';
 
 const Schedule = ({ schedule }) => {
+  const [data, setData] = useState([]);
+
   let days = [
     { key: 'Sun', href: 'sun', isActive: false },
     { key: 'Mon', href: 'mon', isActive: false },
@@ -22,12 +24,14 @@ const Schedule = ({ schedule }) => {
     days[new Date().getDay()].isActive = true;
   }
 
+  useEffect(() => {
+    setData(schedule.props);
+  }, [schedule.props]);
+
   return (
     <>
       <Tabs links={days} />
-      {schedule && schedule.props && (
-        <ScheduleInner schedule={schedule.props.schedule} />
-      )}
+      {data && data.schedule && <ScheduleInner schedule={data.schedule} />}
     </>
   );
 };
