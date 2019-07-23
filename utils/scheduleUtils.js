@@ -13,11 +13,12 @@ exports.getDateTimes = () => {
 };
 
 exports.formatEachDateTime = (dates, daySlug) => {
-  let results = dates.map((date) => {
+  let result;
+  dates.map((date) => {
     const formatDateWithDay = format(date, 'ddd');
     if (formatDateWithDay.toLowerCase() === daySlug) {
-      return format(date, 'YYYY-MM-DD');
+      return (result = format(date, 'YYYY-MM-DD'));
     }
   });
-  return results;
+  return result;
 };
