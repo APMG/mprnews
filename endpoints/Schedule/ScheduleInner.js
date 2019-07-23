@@ -23,10 +23,10 @@ const ScheduleInner = ({ schedule }) => {
                       <strong>
                         {show.link ? (
                           <Link key={show} href={show.link}>
-                            <a>{show.name}</a>
+                            <a className="link link-plain">{show.name}</a>
                           </Link>
                         ) : (
-                          <a>{show.name}</a>
+                          <a className="link link-plain">{show.name}</a>
                         )}{' '}
                       </strong>
                       {program?.people.length > 0 && (
