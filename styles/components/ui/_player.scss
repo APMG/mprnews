@@ -137,19 +137,17 @@ $_timeline-mobile-width: 12em;
 
   svg {
     margin: auto;
-
-    &:focus {
-      box-shadow: none;
-    }
   }
 }
 
 .player_btn-playpause {
   background: $color-theme;
   border-radius: 50%;
+  transition: box-shadow $transition;
 
   &:focus {
-    border-radius: 50%;
+    outline: 0;
+    box-shadow: 0 0 0 3px rgba($color-blue, .5);
   }
 }
 
@@ -196,8 +194,8 @@ $_timeline-mobile-width: 12em;
     margin: auto;
     position: relative;
     fill: $color-white;
-    width: 36px;
-    height: 36px;
+    width: 42px;
+    height: 42px;
     top: 0;
 
     @include media($media-tablet) {
