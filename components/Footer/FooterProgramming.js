@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
-import { Heading } from '@apmg/titan';
+import { Heading, Button } from '@apmg/titan';
 import { hrefType } from '../../utils/utils';
 
 const FooterProgramming = (props) => {
@@ -13,10 +13,9 @@ const FooterProgramming = (props) => {
         </Heading>
       </div>
       <div className="footer_progListen">
-        {/* TODO: Make this back into a <Button> component when titan's <Button> gets fixed */}
-        <Link href={props.listenHref}>
-          <a className="btn btn-primary">{props.listenText}</a>
-        </Link>
+        <Button href={props.listenHref} type="primary">
+          {props.listenText}
+        </Button>
       </div>
       <div className="footer_progLinks">
         <ul className="vList">

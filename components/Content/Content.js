@@ -98,7 +98,7 @@ Content.propTypes = {
     })
   ),
   headingLevel: PropTypes.number,
-  publishDate: PropTypes.string,
+  publishDate: PropTypes.node,
   audioPlayButton: PropTypes.node,
   shareButtons: PropTypes.node,
   body: PropTypes.string,

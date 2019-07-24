@@ -3,10 +3,9 @@ import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
 import Error from 'next/error';
 import { globals } from '../../config/globals';
-import { Loading } from '@apmg/titan';
+import { Loading, Time } from '@apmg/titan';
 import { Image } from '@apmg/mimas';
 import { collectionLinkData } from '../../utils/utils';
-import { format } from 'date-fns';
 import Content from '../../components/Content/Content';
 import AudioPlayButton from '../../components/AudioPlayButton/AudioPlayButton';
 import Metatags from '../../components/Metatags/Metatags';
@@ -117,7 +116,12 @@ const StoryInner = ({ story, minimal }) => {
         imageCaption={story.primaryVisuals?.lead?.longCaption}
         imageCredit={story.primaryVisuals?.lead?.credit?.name}
         imageCreditHref={story.primaryVisuals?.lead?.credit?.url}
-        publishDate={format(story.publishDate, 'MMMM D, YYYY h:mm aa')}
+        publishDate={
+          <Time
+            dateTime={story.publishDate}
+            formatString="MMMM D, YYYY h:mm aa"
+          />
+        }
         embeddedAssetJson={story.embeddedAssetJson}
         tag={collectionLinkData(story.primaryCollection)}
         elementClass="story"
