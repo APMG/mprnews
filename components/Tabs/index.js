@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from 'next/link';
 import PropTypes from 'prop-types';
 
 const Tabs = (props) => {
@@ -8,14 +7,12 @@ const Tabs = (props) => {
       {props.links.map((lnk) => {
         return (
           <li key={lnk.key} className="tabs_item">
-            <Link
+            <a
               href={`/schedule?slug=${lnk.href}`}
-              as={`/schedule/${lnk.href}`}
+              className={`tabs_link ${lnk.isActive && `is-active`}`}
             >
-              <a className={`tabs_link ${lnk.isActive && `is-active`}`}>
-                {lnk.key}
-              </a>
-            </Link>
+              {lnk.key}
+            </a>
           </li>
         );
       })}

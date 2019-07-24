@@ -32,9 +32,9 @@ const ListenFooter = () => (
       </div>
       <ul className="vList">
         <li>
-          <Link href="/schedule">
-            <a className="link link-plain">Program Schedule</a>
-          </Link>
+          <a href="/schedule" className="link link-plain">
+            Program Schedule
+          </a>
         </li>
         <li>
           <Link href="https://www.mpr.org/listen/stations">

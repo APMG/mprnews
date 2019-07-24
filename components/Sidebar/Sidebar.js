@@ -11,12 +11,13 @@ const Sidebar = () => {
     <div className="sidebar">
       <div className="section section-sm">
         <div className="hList">
-          <Link
+          <a
             href={`/schedule?slug=${programDate.toLowerCase()}`}
-            as={`/schedule/${programDate.toLowerCase()}`}
+            className="link link-plain"
           >
-            <a className="link link-plain">Program Schedule</a>
-          </Link>
+            Program Schedule
+          </a>
+
           <Link href={`https://www.mpr.org/listen/stations`}>
             <a className="link link-plain">Station Directory</a>
           </Link>
