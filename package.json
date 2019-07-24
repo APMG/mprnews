@@ -23,6 +23,7 @@
     "blast": "rm -rf node_modules .next package-lock.json && npm cache verify"
   },
   "dependencies": {
+    "@apmg/amat": "^0.3.0",
     "@apmg/mimas": "^0.3.0",
     "@apmg/titan": "^0.5.2",
     "acorn": "^6.2.0",
