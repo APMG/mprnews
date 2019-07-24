@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { globals } from '../../config/globals';
-import { Teaser } from '@apmg/titan';
+import { Teaser, Time } from '@apmg/titan';
 import { Image } from '@apmg/mimas';
 import { Body } from '@apmg/amat';
 import { linkByTypeHref, linkByTypeAs } from '../../utils/cjsutils';
@@ -41,7 +41,15 @@ const FullTeaser = ({ item, size, newspartners }) => {
         title={item.title}
         href={link}
         as={linkAs}
-        publishDate={item.publishDate}
+        publishDate={
+          item.publishDate && (
+            <Time
+              elementClass="teaser_time"
+              dateTime={item.publishDate}
+              formatString="MMMM D, YYYY h:mm aa"
+            />
+          )
+        }
         headingLevel={2}
         elementClass={elementClass}
         contributors={contributors(item.contributors)}
