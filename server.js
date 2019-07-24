@@ -3,14 +3,12 @@ const express = require('express');
 const compression = require('compression');
 const nextjs = require('next');
 const { daysofweek } = require('./server/daysofweek');
-
 const port = parseInt(process.env.APP_PORT, 10) || 3000;
 const dev =
   process.env.RAILS_ENV !== 'stage' && process.env.RAILS_ENV !== 'production';
 const app = nextjs({ dev });
 const handle = app.getRequestHandler();
 const { feed } = require('./server/feed');
-const { schedule } = require('./server/schedule');
 const { dynamic } = require('./server/dynamic');
 const { sitemap } = require('./server/sitemap');
 const { urlset } = require('./server/urlset');
@@ -99,8 +97,15 @@ app
       app.render(req, res, '/weather', { id: req.params.id });
     });
 
-    // Story routing
+    // schedule route
+    server.get('/schedule/:day?', (req, res) => {
+      res.set('Cache-Control', `public, max-age=60`);
+      app.render(req, res, '/schedule', {
+        slug: req.daySlug
+      });
+    });
 
+    // Story routing
     server.get('/story/card/*', (req, res) => {
       res.set('Cache-Control', `public, max-age=${TTL}`);
       app.render(req, res, '/twitter', req.twitterSlug);
@@ -192,8 +197,6 @@ app
         pageNum: pageNum
       });
     });
-    // schedule route
-    schedule(server, app);
 
     // imported RSS route
     feed(server);
