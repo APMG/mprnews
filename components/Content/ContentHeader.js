@@ -73,7 +73,7 @@ ContentHeader.propTypes = {
     })
   ),
   headingLevel: PropTypes.number,
-  publishDate: PropTypes.string,
+  publishDate: PropTypes.node,
   subtitle: PropTypes.string,
   dateline: PropTypes.string,
   tag: PropTypes.shape({

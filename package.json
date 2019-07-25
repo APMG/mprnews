@@ -23,9 +23,9 @@
     "blast": "rm -rf node_modules .next package-lock.json && npm cache verify"
   },
   "dependencies": {
-    "@apmg/amat": "^0.2.6",
+    "@apmg/amat": "^0.3.0",
     "@apmg/mimas": "^0.3.0",
-    "@apmg/titan": "^0.5.2",
+    "@apmg/titan": "^0.6.0",
     "acorn": "^6.2.0",
     "apm-html5-player": "^1.0.0-rc.2",
     "apollo-boost": "^0.1.16",
