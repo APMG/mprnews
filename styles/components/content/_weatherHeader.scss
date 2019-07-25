@@ -1,18 +1,12 @@
 // Weather widget in header
 
 .weatherHeader {
-  position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 
   @include media($media-full-layout) {
-    position: relative;
-    right: unset;
     padding: 0 .85em;
     text-align: right;
   }
