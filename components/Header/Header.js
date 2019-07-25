@@ -83,7 +83,7 @@ const Header = () => {
         </div>
 
         <WeatherHeader />
-        <div className="header_search ">
+        <div className="header_search">
           <SearchForm />
         </div>
       </header>
