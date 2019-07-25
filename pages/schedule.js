@@ -1,11 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Schedule from '../endpoints/Schedule';
+import fetch from 'isomorphic-unfetch';
 import Error from 'next/error';
-import { fetchSchedule } from '../utils/fetchSchedule';
 const { getDateTimes, formatEachDateTime } = require('../utils/scheduleUtils');
-
-/* eslint react/display-name: 0 */
 
 const SchedulePage = ({ schedule }) => {
   if (!schedule) return <Error statusCode={404} />;
@@ -14,8 +12,10 @@ const SchedulePage = ({ schedule }) => {
 
 SchedulePage.getInitialProps = async ({ query: { slug } }) => {
   const daysOfThisWeek = getDateTimes();
-  const formattedDate = formatEachDateTime(daysOfThisWeek, slug);
-  const { props } = await fetchSchedule(formattedDate);
+  const formattedDate = await formatEachDateTime(daysOfThisWeek, slug);
+  const scheduleUrl = `http://scheduler.publicradio.org/api/v1/services/3/schedule/?datetime=${formattedDate}`;
+  const scheduleRes = await fetch(scheduleUrl);
+  const props = await scheduleRes.json();
 
   return {
     schedule: {
