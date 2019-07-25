@@ -1,3 +1,5 @@
+import fetch from 'isomorphic-unfetch';
+
 export const fetchSchedule = async (dateTime) => {
   try {
     const scheduleUrl = `http://scheduler.publicradio.org/api/v1/services/3/schedule/?datetime=${dateTime}`;
