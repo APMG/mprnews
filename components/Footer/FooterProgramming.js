@@ -5,6 +5,9 @@ import { Heading, Button } from '@apmg/titan';
 import { hrefType } from '../../utils/utils';
 
 const FooterProgramming = (props) => {
+  const openInNewWindow = () => {
+    window.open('/listen', 'Listen Page', 'resizable,height=842,width=776');
+  };
   return (
     <div className="footer_prog">
       <div className="footer_row">
@@ -13,7 +16,14 @@ const FooterProgramming = (props) => {
         </Heading>
       </div>
       <div className="footer_progListen">
-        <Button href={props.listenHref} type="primary">
+        <Button
+          href={props.listenHref}
+          type="primary"
+          onClick={(e) => {
+            e.preventDefault();
+            openInNewWindow();
+          }}
+        >
           {props.listenText}
         </Button>
       </div>
