@@ -1,16 +1,4 @@
 query home($contentAreaSlug: String!, $slug: String!) {
-  updraft: collection(
-    contentAreaSlug: $contentAreaSlug
-    slug: "weather-and-climate/updraft"
-  ) {
-    results(page: 1, pageSize: 1) {
-      items {
-        title
-        resourceType
-        canonicalSlug
-      }
-    }
-  }
   homeList: collection(contentAreaSlug: $contentAreaSlug, slug: $slug) {
     id
     title
@@ -72,6 +60,20 @@ query home($contentAreaSlug: String!, $slug: String!) {
         ... on Link {
           destination
         }
+      }
+    }
+  }
+  updraft: collection(
+    contentAreaSlug: $contentAreaSlug
+    slug: "weather-and-climate/updraft"
+  ) {
+    id
+    results(page: 1, pageSize: 1) {
+      items {
+        id
+        title
+        resourceType
+        canonicalSlug
       }
     }
   }
