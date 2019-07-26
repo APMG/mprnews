@@ -5,14 +5,16 @@ import PropTypes from 'prop-types';
 import ScheduleInner from './ScheduleInner';
 
 const Schedule = ({ schedule }) => {
+  const [data, setData] = useState([]);
+
   let days = [
-    { key: 'Sun', href: '/schedule/sun', isActive: false },
-    { key: 'Mon', href: '/schedule/mon', isActive: false },
-    { key: 'Tue', href: '/schedule/tue', isActive: false },
-    { key: 'Wed', href: '/schedule/wed', isActive: false },
-    { key: 'Thu', href: '/schedule/thu', isActive: false },
-    { key: 'Fri', href: '/schedule/fri', isActive: false },
-    { key: 'Sat', href: '/schedule/sat', isActive: false }
+    { key: 'Sun', href: 'sun', isActive: false },
+    { key: 'Mon', href: 'mon', isActive: false },
+    { key: 'Tue', href: 'tue', isActive: false },
+    { key: 'Wed', href: 'wed', isActive: false },
+    { key: 'Thu', href: 'thu', isActive: false },
+    { key: 'Fri', href: 'fri', isActive: false },
+    { key: 'Sat', href: 'sat', isActive: false }
   ];
 
   if (schedule.slug) {
@@ -22,11 +24,9 @@ const Schedule = ({ schedule }) => {
     days[new Date().getDay()].isActive = true;
   }
 
-  const [data, setData] = useState([]);
-
   useEffect(() => {
     setData(schedule.props);
-  }, []);
+  }, [schedule.props]);
 
   return (
     <>

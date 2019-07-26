@@ -4,10 +4,15 @@ import Link from 'next/link';
 const AdTop = () => {
   return (
     <div id="mpr-mr-ads" className="ad">
-      <Link href="/sponsor">
-        <a className="ad_link">Sponsor us</a>
-      </Link>
-      <div id="mpr-ad-1" className="ad_slot ad_slot-mr"></div>
+      <div id="mpr-ad-1" className="ad_slot ad_slot-mr" />
+      <div className="ad_textWrapper">
+        <div className="ad_text">Providing Support for MPR.</div>
+        <div className="link">
+          <Link href="https://www.mprnews.org/underwriting">
+            <a className="ad_link">Learn More</a>
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };

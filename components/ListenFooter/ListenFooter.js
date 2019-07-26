@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { Heading } from '@apmg/titan';
+import { Heading, Button } from '@apmg/titan';
 import FooterSubscribe from '../Footer/FooterSubscribe';
 
 const ListenFooter = () => (
@@ -11,10 +11,13 @@ const ListenFooter = () => (
           Member supported
         </Heading>
       </div>
-      {/* TODO: Make this back into a <Button> component when titan's <Button> gets fixed */}
-      <Link href="https://contribute.publicradio.org/contribute.php">
-        <a className="btn btn-primary">Become a Member</a>
-      </Link>
+      <Button
+        href="https://contribute.publicradio.org/contribute.php"
+        type="primary"
+        newWindow={true}
+      >
+        Become a Member
+      </Button>
     </div>
     <div className="playerFooter_column">
       <div className="playerFooter_row">

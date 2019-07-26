@@ -2,11 +2,10 @@ import React from 'react';
 import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
 import Error from 'next/error';
-import { Loading } from '@apmg/titan';
+import { Loading, Time } from '@apmg/titan';
 import { globals } from '../../config/globals';
 import { Image } from '@apmg/mimas';
 import { collectionLinkData } from '../../utils/utils';
-import { format } from 'date-fns';
 import Content from '../../components/Content/Content';
 import AudioPlayButton from '../../components/AudioPlayButton/AudioPlayButton';
 import Metatags from '../../components/Metatags/Metatags';
@@ -119,7 +118,7 @@ const EpisodeInner = ({ episode }) => {
         imageCaption={episode.primaryVisuals?.lead?.longCaption}
         imageCredit={episode.primaryVisuals?.lead?.credit?.name}
         imageCreditHref={episode.primaryVisuals?.lead?.credit?.url}
-        publishDate={format(episode.publishDate, 'MMMM D, YYYY')}
+        publishDate={<Time dateTime={episode.publishDate} />}
         embeddedAssetJson={episode.embeddedAssetJson}
         tag={collectionLinkData(episode.primaryCollection)}
         elementClass="episode"
