@@ -126,7 +126,7 @@ app
     // Profile Routing
     server.get('/people/*', (req, res) => {
       res.set('Cache-Control', `public, max-age=${TTL}`);
-      app.render(req, res, '/profile', { slug: req.slug });
+      app.render(req, res, '/people', { slug: req.slug });
     });
 
     // Preview Routing
