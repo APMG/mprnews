@@ -93,8 +93,8 @@ export const weatherConfig = [
   {
     id: 'rochester',
     name: 'Rochester, MN',
-    lat: '42.02',
-    long: '-92.46',
+    lat: '44.0121',
+    long: '-92.4802',
     forecastOffice: 'ARX'
   },
   {

@@ -4,15 +4,29 @@
   margin-right: -($container-edge);
 }
 
+.ad_textWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .ad_link {
   margin-bottom: .5rem;
   font-size: 1rem;
+  text-transform: uppercase;
   color: $color-text-light;
   transition: $transition;
 
   &:hover {
     color: $color-link;
   }
+}
+
+.ad_text {
+  text-transform: uppercase;
+  color: $color-text-light;
+  font-size: 1rem;
 }
 
 .ad_slot {

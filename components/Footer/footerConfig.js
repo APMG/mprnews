@@ -68,9 +68,17 @@ export default {
   podcastLinkHref: '/podcasts',
   podcastLinkLabel: 'All Podcasts',
   programmingLinks: [
-    { label: 'Program Schedule', href: '/schedule' },
-    { label: 'Station Directory', href: 'https://www.mpr.org/listen/stations' },
-    { label: 'Audio Help', href: 'https://www.mpr.org/about/faqs' }
+    { label: 'Program Schedule', href: '/schedule', hrefType: 'schedule' },
+    {
+      label: 'Station Directory',
+      href: 'https://www.mpr.org/listen/stations',
+      hrefType: 'externalLink'
+    },
+    {
+      label: 'Audio Help',
+      href: 'https://www.mpr.org/about/faqs',
+      hrefType: 'externalLink'
+    }
   ],
   programmingTitle: 'Where to Listen',
   subscribeTitle: 'Subscribe to email newsletters'

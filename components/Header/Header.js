@@ -5,9 +5,9 @@ import classNames from 'classnames';
 import Dropdown from '../Dropdown';
 import Logo from '../Logo/Logo';
 import Nav from './Nav';
-import { navItems } from './NavItems';
 import WeatherHeader from '../WeatherHeader/WeatherHeader';
-
+import { dropdownLists } from '../../utils/navConfig';
+import NavButtonContents from './NavButtonContents';
 import SearchForm from './SearchForm';
 
 const Header = () => {
@@ -60,11 +60,30 @@ const Header = () => {
         />
         <div className="header_nav">
           <Dropdown />
-          <Nav items={navItems} closeMenu={closeMenu} />
+          <nav className="nav">
+            <div className="nav_header">
+              <Link href="/">
+                <a>
+                  <div className="header_logoImg">
+                    <Logo />
+                    <span className="invisible">MPR News</span>
+                  </div>
+                </a>
+              </Link>
+              <button
+                type="button"
+                className="nav_closeButton"
+                onClick={closeMenu}
+              >
+                <NavButtonContents label="Close Menu" />
+              </button>
+            </div>
+            <Nav dropdownLists={dropdownLists} closeMenu={closeMenu} />
+          </nav>
         </div>
 
         <WeatherHeader />
-        <div className="header_search ">
+        <div className="header_search">
           <SearchForm />
         </div>
       </header>

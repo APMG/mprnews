@@ -15,14 +15,14 @@ module.exports.feed = (server) => {
             canonicalSlug
             title
             descriptionText
-            updatedAt
+            publishDate
             results(pageSize: 30) {
               items {
                 title
                 descriptionText
                 resourceType
                 canonicalSlug
-                updatedAt
+                publishDate
               }
             }
           }}`
@@ -55,7 +55,7 @@ module.exports.feed = (server) => {
       xml += `<title>${results.data.collection.title} - MPR News</title>`;
       xml += `<description><![CDATA[${results.data.collection.descriptionText}]]></description>`;
       xml += `<pubDate>${format(
-        new Date(results.data.collection.updatedAt),
+        new Date(results.data.collection.publishDate),
         'ddd, D MMM YYYY HH:mm:ss ZZ'
       )}</pubDate>`;
       xml += `<atom:link
@@ -68,7 +68,7 @@ module.exports.feed = (server) => {
         }
         const link = linkByTypeAs(item);
         const dte = format(
-          new Date(item.updatedAt),
+          new Date(item.publishDate),
           'ddd, D MMM YYYY HH:mm:ss ZZ'
         );
         xml += `<item>

@@ -1,9 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
-import { Heading } from '@apmg/titan';
+import { Heading, Button } from '@apmg/titan';
+import { hrefType } from '../../utils/utils';
 
 const FooterProgramming = (props) => {
+  const openInNewWindow = () => {
+    window.open('/listen', 'Listen Page', 'resizable,height=842,width=776');
+  };
   return (
     <div className="footer_prog">
       <div className="footer_row">
@@ -12,17 +16,23 @@ const FooterProgramming = (props) => {
         </Heading>
       </div>
       <div className="footer_progListen">
-        {/* TODO: Make this back into a <Button> component when titan's <Button> gets fixed */}
-        <Link href={props.listenHref}>
-          <a className="btn btn-primary">{props.listenText}</a>
-        </Link>
+        <Button
+          href={props.listenHref}
+          type="primary"
+          onClick={(e) => {
+            e.preventDefault();
+            openInNewWindow();
+          }}
+        >
+          {props.listenText}
+        </Button>
       </div>
       <div className="footer_progLinks">
         <ul className="vList">
           {props.links.map((link) => {
             return (
               <li key={link.href}>
-                <Link href={link.href}>
+                <Link href={hrefType(link)} as={link.href}>
                   <a className="link link-plain">{link.label}</a>
                 </Link>
               </li>

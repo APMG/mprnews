@@ -3,8 +3,9 @@ import Link from 'next/link';
 import Icon from '../Icons/Icon';
 import DropdownMenu from './DropdownMenu';
 import DropdownMenuItem from './DropdownMenuItem';
-import { dropdownLists } from '../../utils/dropdownConfig';
+import { dropdownLists } from '../../utils/navConfig';
 import OutsideClick from '../OutsideClick/OutsideClick';
+import { hrefType, hrefTypeAs } from '../../utils/utils';
 
 const Dropdown = () => {
   const ref = useRef();
@@ -37,23 +38,6 @@ const Dropdown = () => {
 
   const clickItem = (id) => {
     closeItem(id);
-  };
-
-  const HrefType = (item) => {
-    let link;
-    switch (item.hrefType) {
-      case 'internalLink':
-        link = `/${item.href}`;
-        break;
-      case 'collection':
-        link = `/collection?slug=${item.href}`;
-        break;
-    }
-    return link;
-  };
-
-  const hrefTypeAs = (item) => {
-    return item.hrefType === 'externalLink' ? item.href : `/${item.href}`;
   };
 
   const getToggle = (text, onClick, isOpen) => {
@@ -110,7 +94,7 @@ const Dropdown = () => {
                               key={item.text + i}
                               onClick={clickItem}
                             >
-                              <Link href={HrefType(item)} as={hrefTypeAs(item)}>
+                              <Link href={hrefType(item)} as={hrefTypeAs(item)}>
                                 {/* eslint-disable-next-line */}
                                 <a
                                   className={`dropdownMenuItem_link ${item.class}`}

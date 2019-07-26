@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Heading } from '@apmg/titan';
 import Link from 'next/link';
-import { format } from 'date-fns';
 import Byline from '../Byline/Byline';
 
 const ContentHeader = (props) => {
@@ -58,7 +57,7 @@ const ContentHeader = (props) => {
         )}
         {props.publishDate && (
           <time className="content_pubdate" dateTime={props.publishDate}>
-            {format(props.publishDate, 'MMMM D, YYYY')}
+            {props.publishDate}
           </time>
         )}
       </div>
@@ -74,7 +73,7 @@ ContentHeader.propTypes = {
     })
   ),
   headingLevel: PropTypes.number,
-  publishDate: PropTypes.string,
+  publishDate: PropTypes.node,
   subtitle: PropTypes.string,
   dateline: PropTypes.string,
   tag: PropTypes.shape({

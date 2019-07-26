@@ -121,11 +121,7 @@ $_header-button-full-width: 62px;
 }
 
 .header_search {
-  display: none;
+  display: block;
   padding-top: .4em;
   padding-left: 1em;
-
-  @include media($media-full-layout) {
-    display: block;
-  }
 }

@@ -2,7 +2,6 @@
 
 .weatherSidebar {
   font-size: .9em;
-  margin-bottom: 25px;
   display: none;
 
   @include media($media-small-tablet) {
@@ -11,7 +10,6 @@
 
   @include media($media-tablet) {
     display: none;
-    margin-bottom: 35px;
   }
 
   @include media($media-desktop) {
@@ -24,14 +22,20 @@
 }
 
 .weatherSidebar_label {
-  font-size: 1em;
-  font-weight: bold;
+  display: block;
+}
+
+.weatherSidebar_label-high {
+  color: $color-gold;
+}
+
+.weatherSidebar_label-low {
+  color: $color-blue-faded;
 }
 
 .weatherSidebar_desc {
-  font-weight: 200;
+  color: $color-text-dark;
+  font-size: 1.5rem;
+  text-transform: lowercase;
 }
 
-.weatherSidebar_section {
-  margin-bottom: 20px;
-}
