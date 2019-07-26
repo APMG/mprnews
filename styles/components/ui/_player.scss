@@ -194,12 +194,14 @@ $_timeline-mobile-width: 12em;
     margin: auto;
     position: relative;
     fill: $color-white;
-    width: 42px;
-    height: 42px;
+    width: 36px;
+    height: 36px;
     top: 0;
 
     @include media($media-tablet) {
       top: 2px;
+      width: 42px;
+      height: 42px;
     }
   }
 }
