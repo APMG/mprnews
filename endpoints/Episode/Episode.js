@@ -43,7 +43,8 @@ const EpisodeInner = ({ episode }) => {
       return {
         // prettier-ignore
         title: `${thisString}`,
-        href: `/people/${contributor.profile?.canonicalSlug}`
+        href: `/people?slug=${contributor.profile?.canonicalSlug}`,
+        as: `/people/${contributor.profile?.canonicalSlug}`
       };
     });
   }
