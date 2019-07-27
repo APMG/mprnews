@@ -34,26 +34,30 @@ const WeatherSidebar = () => {
     );
   }
 
-  if (!currentForecast) {
-    return <div className="weatherSidebar"></div>;
-  }
-
   return (
     <div className="weatherSidebar">
       {data.properties ? (
         <>
           <div className="section section-md">
-            <div className="weatherSidebar_label weatherSidebar_label-high">
-              High of
-              {currentForecast.temperature &&
-                ` ${currentForecast.temperature}°`}
-            </div>
-            <div className="weatherSidebar_label weatherSidebar_label-low">
-              Low of
-              {tonightsForecast.temperature &&
-                ` ${tonightsForecast.temperature}°`}
-            </div>
-            <div className="weatherSidebar_desc">{`${currentForecast.shortForecast}`}</div>
+            {currentForecast && (
+              <div className="weatherSidebar_label weatherSidebar_label-high">
+                High of
+                {currentForecast.temperature &&
+                  ` ${currentForecast.temperature}°`}
+              </div>
+            )}
+            {tonightsForecast && (
+              <div className="weatherSidebar_label weatherSidebar_label-low">
+                Low of
+                {tonightsForecast.temperature &&
+                  ` ${tonightsForecast.temperature}°`}
+              </div>
+            )}
+            {currentForecast && (
+              <div className="weatherSidebar_desc">
+                {currentForecast.shortForecast}
+              </div>
+            )}
           </div>
         </>
       ) : null}
