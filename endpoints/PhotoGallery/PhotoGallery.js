@@ -15,6 +15,7 @@ const PhotoGallery = () => (
       contentAreaSlug: 'live-from-here',
       slug: '2019/04/12/test' // point to some real MPR news data?
     }}
+    errorPolicy="all"
   >
     {({ loading, error, data }) => {
       if (error) return <QueryError error={error.message} />;

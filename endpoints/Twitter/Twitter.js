@@ -14,6 +14,7 @@ const Twitter = ({ slug }) => (
       contentAreaSlug: process.env.CONTENT_AREA_SLUG,
       slug: slug
     }}
+    errorPolicy="all"
   >
     {({ loading, error, data }) => {
       if (error) return <QueryError error={error.message} />;

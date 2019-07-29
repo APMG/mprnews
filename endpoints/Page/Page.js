@@ -20,6 +20,7 @@ const Page = ({ slug, previewToken }) => (
       slug: slug,
       previewToken: previewToken
     }}
+    errorPolicy="all"
   >
     {({ loading, error, data }) => {
       if (error) return <QueryError error={error.message} />;
