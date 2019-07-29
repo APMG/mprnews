@@ -31,7 +31,10 @@ const CollectionContributors = (props) => {
                 </Link>
               )}
               <div className="miniBio_info">
-                <Link href={`/people/${contrib.profile.canonicalSlug}`}>
+                <Link
+                  href={`/profile?slug=${contrib.profile?.canonicalSlug}`}
+                  as={`/people/${contrib.profile?.canonicalSlug}`}
+                >
                   <a className="miniBio_name">
                     {contrib.profile.firstName} {contrib.profile.lastName}
                   </a>
