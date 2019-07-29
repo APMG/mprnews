@@ -1,3 +1,4 @@
+# TODO: does this also need a preview? is it being used?
 query photoGallery($contentAreaSlug: String!, $slug: String!) {
   gallery: episode(contentAreaSlug: $contentAreaSlug, slug: $slug) {
     id

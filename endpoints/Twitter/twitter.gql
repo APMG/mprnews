@@ -5,9 +5,11 @@ query story($contentAreaSlug: String!, $slug: String!) {
     canonicalSlug
     resourceType
     audio {
+      id
       title
       durationHms
       encodings {
+        encodingId
         httpFilePath
       }
     }
