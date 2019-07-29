@@ -1,6 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Home from '../endpoints/Home/Home';
 import Metatags from '../components/Metatags/Metatags';
+import Error from 'next/error';
 
 /* eslint react/display-name: 0 */
 
@@ -16,11 +18,30 @@ const tags = [
     content: 'summary_large_image'
   }
 ];
+
 const title = '';
 
-export default () => (
-  <>
-    <Metatags title={title} metatags={tags} links={[]} />
-    <Home />
-  </>
-);
+const HomePage = ({ errorCode }) => {
+  if (errorCode) return <Error statusCode={errorCode} />;
+  return (
+    <>
+      <Metatags title={title} metatags={tags} links={[]} />
+      <Home />
+    </>
+  );
+};
+
+HomePage.getInitialProps = async ({ res }) => {
+  if (res) {
+    const errorCode = res.statusCode > 200 ? res.statusCode : false;
+    return { errorCode };
+  }
+
+  return {};
+};
+
+HomePage.propTypes = {
+  errorCode: PropTypes.number
+};
+
+export default HomePage;

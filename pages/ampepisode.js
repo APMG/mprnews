@@ -2,19 +2,27 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withAmp } from 'next/amp';
 import Episode from '../endpoints/Episode/Episode';
+import Error from 'next/error';
 
 /* eslint react/display-name: 0 */
 
-const AmpEpsiode = ({ slug }) => {
+const AmpEpisode = ({ slug, errorCode }) => {
+  if (errorCode) return <Error statusCode={errorCode} />;
   return <Episode slug={slug} />;
 };
 
-AmpEpsiode.getInitialProps = async ({ query: { slug } }) => {
+AmpEpisode.getInitialProps = async ({ query: { slug }, res }) => {
+  if (res) {
+    const errorCode = res.statusCode > 200 ? res.statusCode : false;
+    return { slug: slug, layout: 'amp', errorCode };
+  }
+
   return { slug: slug, layout: 'amp' };
 };
 
-AmpEpsiode.propTypes = {
-  slug: PropTypes.string
+AmpEpisode.propTypes = {
+  slug: PropTypes.string,
+  errorCode: PropTypes.number
 };
 
-export default withAmp(AmpEpsiode, { hybrid: true });
+export default withAmp(AmpEpisode, { hybrid: true });

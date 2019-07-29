@@ -1,7 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Heading } from '@apmg/titan';
+import Error from 'next/error';
 
-const ListenPage = () => {
+const ListenPage = ({ errorCode }) => {
+  if (errorCode) return <Error statusCode={errorCode} />;
   return (
     <div className="playerWrapper playerWrapper-listenpage js-player">
       <div className="player player-listenpage">
@@ -20,8 +23,17 @@ const ListenPage = () => {
   );
 };
 
-ListenPage.getInitialProps = async () => {
+ListenPage.getInitialProps = async ({ res }) => {
+  if (res) {
+    const errorCode = res.statusCode > 200 ? res.statusCode : false;
+    return { layout: 'listen', errorCode };
+  }
+
   return { layout: 'listen' };
+};
+
+ListenPage.propTypes = {
+  errorCode: PropTypes.number
 };
 
 export default ListenPage;
