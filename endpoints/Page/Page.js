@@ -6,6 +6,7 @@ import { globals } from '../../config/globals';
 import { Loading } from '@apmg/titan';
 import { Image } from '@apmg/mimas';
 import { collectionLinkData } from '../../utils/utils';
+import QueryError from '../../components/QueryError/QueryError';
 import Content from '../../components/Content/Content';
 import Metatags from '../../components/Metatags/Metatags';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
@@ -21,8 +22,9 @@ const Page = ({ slug, previewToken }) => (
     }}
   >
     {({ loading, error, data }) => {
-      if (error) return <div>{`Error: ${error}`}</div>;
+      if (error) return <QueryError error={error.message} />;
       if (loading) return <Loading />;
+
       if (data.page === null) return <Error statusCode={404} />;
 
       return <PageInner page={data.page} />;

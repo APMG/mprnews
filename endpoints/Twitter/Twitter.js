@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
+import QueryError from '../../components/QueryError/QueryError';
 import { Loading } from '@apmg/titan';
 import query from './twitter.gql';
 import AudioPlayer from '../../components/AudioPlayer/AudioPlayer';
@@ -15,7 +16,7 @@ const Twitter = ({ slug }) => (
     }}
   >
     {({ loading, error, data }) => {
-      if (error) return <div>{`Error: ${error}`}</div>;
+      if (error) return <QueryError error={error.message} />;
       if (loading) return <Loading />;
 
       return <TwitterInner twitter={data.twitter} />;

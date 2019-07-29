@@ -6,11 +6,13 @@ import { globals } from '../../config/globals';
 import { Heading, Loading } from '@apmg/titan';
 import { Image } from '@apmg/mimas';
 import { Body } from '@apmg/amat';
-import query from './profile.gql';
 import Metatags from '../../components/Metatags/Metatags';
+import QueryError from '../../components/QueryError/QueryError';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
 import Link from 'next/link';
 import { linkByTypeAs } from '../../utils/cjsutils';
+import query from './profile.gql';
+
 const Profile = ({ slug, previewToken }) => (
   <Query
     query={query}
@@ -21,8 +23,9 @@ const Profile = ({ slug, previewToken }) => (
     }}
   >
     {({ loading, error, data }) => {
-      if (error) return <div>{`Error: ${error}`}</div>;
+      if (error) return <QueryError error={error.message} />;
       if (loading) return <Loading />;
+
       if (data.profile === null) return <Error statusCode={404} />;
 
       return <ProfileInner profile={data.profile} />;

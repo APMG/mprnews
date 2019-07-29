@@ -6,6 +6,7 @@ import { Loading, Time } from '@apmg/titan';
 import { globals } from '../../config/globals';
 import { Image } from '@apmg/mimas';
 import { collectionLinkData } from '../../utils/utils';
+import QueryError from '../../components/QueryError/QueryError';
 import Content from '../../components/Content/Content';
 import AudioPlayButton from '../../components/AudioPlayButton/AudioPlayButton';
 import Metatags from '../../components/Metatags/Metatags';
@@ -23,8 +24,9 @@ const Episode = ({ slug, previewToken }) => (
     }}
   >
     {({ loading, error, data }) => {
-      if (error) return <div>Error loading episode</div>;
+      if (error) return <QueryError error={error.message} />;
       if (loading) return <Loading />;
+
       if (data.episode === null) return <Error statusCode={404} />;
 
       return <EpisodeInner episode={data.episode} />;

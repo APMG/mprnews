@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Schedule from '../endpoints/Schedule';
+import Schedule from '../endpoints/Schedule/Schedule';
 import fetch from 'isomorphic-unfetch';
 import Error from 'next/error';
 const { getDateTimes, formatEachDateTime } = require('../utils/scheduleUtils');
 
 const SchedulePage = ({ schedule }) => {
   if (!schedule) return <Error statusCode={404} />;
+
   return <Schedule schedule={schedule} />;
 };
 

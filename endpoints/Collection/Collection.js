@@ -4,12 +4,13 @@ import { Heading, Loading } from '@apmg/titan';
 import { Body } from '@apmg/amat';
 import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
-import query from './collection.gql';
+import QueryError from '../../components/QueryError/QueryError';
 import Metatags from '../../components/Metatags/Metatags';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
 import CollectionContributors from './CollectionContributors';
 import Pagination from '../../components/Pagination/Pagination';
 import FullTeaser from '../../components/FullTeaser/FullTeaser';
+import query from './collection.gql';
 
 const Collection = ({ collectionName, pageNum }) => {
   return (
@@ -22,8 +23,9 @@ const Collection = ({ collectionName, pageNum }) => {
       }}
     >
       {({ loading, error, data }) => {
-        if (error) return <div>{`Error: ${error}`}</div>;
+        if (error) return <QueryError error={error.message} />;
         if (loading) return <Loading />;
+
         if (data.collection === null) return <Error statusCode={404} />;
 
         return (
