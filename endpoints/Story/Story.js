@@ -38,7 +38,8 @@ const StoryInner = ({ story, minimal }) => {
     authors = story.contributors.map((contributor) => {
       return {
         title: `${contributor.profile?.title}`,
-        href: `/people/${contributor.profile?.canonicalSlug}`
+        href: `/profile?slug=${contributor.profile?.canonicalSlug}`,
+        as: `/people/${contributor.profile?.canonicalSlug}`
       };
     });
   }

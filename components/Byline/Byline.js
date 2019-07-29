@@ -6,10 +6,9 @@ import ToSentence from '../ToSentence/ToSentence';
 const Byline = (props) => {
   function parseToCompLink(authors) {
     let results = [];
-    console.log('authors', authors);
     authors.forEach((author) =>
       results.push(
-        <Link href={`/people?slug=${author.href.split('/')[2]}`} as={author.as}>
+        <Link href={author.href} as={author.as}>
           <a className="link link-plain">{author.title}</a>
         </Link>
       )
