@@ -6,28 +6,27 @@ import query from './twitter.gql';
 import { Loading } from '@apmg/titan';
 import AudioPlayer from '../../components/AudioPlayer/AudioPlayer';
 import AudioPlayerContext from '../../context/AudioPlayerContext';
+import Error from 'next/error';
 
-const Twitter = ({ slug }) => {
-  console.log(slug);
+const Twitter = ({ slug }) => (
+  <Query
+    query={query}
+    variables={{
+      contentAreaSlug: process.env.CONTENT_AREA_SLUG,
+      slug: slug
+    }}
+    errorPolicy="all"
+  >
+    {({ loading, error, data }) => {
+      if (error) return <QueryError error={error.message} />;
+      if (loading) return <Loading />;
 
-  return (
-    <Query
-      query={query}
-      variables={{
-        contentAreaSlug: process.env.CONTENT_AREA_SLUG,
-        slug: slug
-      }}
-      errorPolicy="all"
-    >
-      {({ loading, error, data }) => {
-        if (error) return <QueryError error={error.message} />;
-        if (loading) return <Loading />;
+      if (data.twitter === null) return <Error statusCode={404} />;
 
-        return <TwitterInner twitter={data.twitter} />;
-      }}
-    </Query>
-  );
-};
+      return <TwitterInner twitter={data.twitter} />;
+    }}
+  </Query>
+);
 
 const TwitterInner = ({ twitter }) => {
   const context = useContext(AudioPlayerContext);
