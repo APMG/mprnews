@@ -17,7 +17,7 @@ AllNewsPage.getInitialProps = async ({ query: { pageNum } }) => {
 };
 
 AllNewsPage.propTypes = {
-  pageNum: PropTypes.number
+  pageNum: PropTypes.string
 };
 
 export default AllNewsPage;
