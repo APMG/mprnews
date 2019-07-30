@@ -1,0 +1,82 @@
+query contentList($contentAreaSlug: String!, $pageNum: Int) {
+  allNews: contentList(contentAreaSlug: $contentAreaSlug, contentTypes: [STORIES], page: $pageNum, pageSize: 10) {
+    nextPage
+    previousPage
+    currentPage
+    totalItems
+    totalPages
+    pageSize
+    items {
+      id
+      canonicalSlug
+      title
+      publishDate
+      body
+      description
+      embeddedAssetJson
+      resourceType
+      primaryVisuals {
+        thumbnail {
+          aspect_ratios: aspectRatios {
+            uncropped {
+              instances {
+                url
+                width
+                height
+              }
+            }
+            widescreen {
+              instances {
+                url
+                width
+                height
+              }
+            }
+          }
+          contentArea
+          dateTaken
+          dateline
+          fallback
+          longCaption
+          shortCaption
+          xid
+        }
+      }
+      contributors {
+        profile {
+          canonicalSlug
+          firstName
+          lastName
+          profileRelatedLinks {
+            uri
+            text
+            subtype
+          }
+          primaryVisuals {
+            thumbnail {
+              longCaption
+              shortCaption
+              fallback
+              aspect_ratios: aspectRatios {
+                uncropped {
+                  instances {
+                    url
+                    width
+                    height
+                  }
+                }
+                square {
+                  instances {
+                    url
+                    width
+                    height
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

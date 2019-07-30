@@ -14,6 +14,9 @@ exports.linkByTypeAs = (item) => {
     case 'profile':
       link = `/people/${item.canonicalSlug}`;
       break;
+    case 'story':
+      link = `/story/${item.canonicalSlug}`;
+      break;
     default:
       link = `/${item.resourceType}/${item.canonicalSlug}`;
   }
