@@ -46,7 +46,8 @@ const EpisodeInner = ({ episode }) => {
       return {
         // prettier-ignore
         title: `${thisString}`,
-        href: `/profiles/${contributor.profile?.canonicalSlug}`
+        href: `/profile?slug=${contributor.profile?.canonicalSlug}`,
+        as: `/people/${contributor.profile?.canonicalSlug}`
       };
     });
   }

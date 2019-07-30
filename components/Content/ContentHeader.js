@@ -22,7 +22,10 @@ const ContentHeader = (props) => {
           className="content_topic page-purpose"
           data-mpr-content-topic={props.tag.tagName}
         >
-          <Link href={props.tag.to}>
+          <Link
+            href={`/collection?slug=${props.tag.to}`}
+            as={`/${props.tag.to}`}
+          >
             <a className="link link-none">{props.tag.tagName}</a>
           </Link>
         </div>

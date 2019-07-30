@@ -60,7 +60,7 @@ export function collectionLinkData(collection) {
   return collection?.title && collection?.canonicalSlug
     ? {
         tagName: collection.title,
-        to: `/${collection.canonicalSlug}`
+        to: `${collection.canonicalSlug}`
       }
     : null;
 }

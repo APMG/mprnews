@@ -10,7 +10,7 @@ import Metatags from '../../components/Metatags/Metatags';
 import QueryError from '../../components/QueryError/QueryError';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
 import Link from 'next/link';
-import { linkByTypeAs } from '../../utils/cjsutils';
+import { linkByTypeHref, linkByTypeAs } from '../../utils/cjsutils';
 import query from './profile.gql';
 
 const Profile = ({ slug, previewToken }) => (
@@ -106,16 +106,16 @@ const ProfileInner = ({ profile }) => {
                   {profile &&
                     profile.contributions &&
                     profile.contributions.map((contribution) => {
+                      const linkHref = linkByTypeHref(contribution);
                       const linkAs = linkByTypeAs(contribution);
                       return (
                         <li key={contribution.id}>
-                          <Link
-                            href={`/${contribution.resourceType}/${contribution.canonicalSlug}`}
-                            as={linkAs}
-                          >
+                          <Link href={linkHref} as={linkAs}>
                             <a className="contributer">
                               {contribution.title}
-                              <div>{contribution.descriptionText}</div>
+                              {contribution.descriptionText && (
+                                <div>{contribution.descriptionText}</div>
+                              )}
                             </a>
                           </Link>
                         </li>
