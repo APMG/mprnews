@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Search from '../endpoints/Search/Search';
 import Error from 'next/error';
+import Search from '../endpoints/Search/Search';
 
 /* eslint react/display-name: 0 */
 

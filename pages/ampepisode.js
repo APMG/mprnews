@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Error from 'next/error';
 import { withAmp } from 'next/amp';
 import Episode from '../endpoints/Episode/Episode';
-import Error from 'next/error';
 
 /* eslint react/display-name: 0 */
 

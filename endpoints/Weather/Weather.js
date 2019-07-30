@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Router from 'next/router';
 import { Heading, Button, Loading } from '@apmg/titan';
+import { weatherConfig } from '../../utils/defaultData';
+import { fetchWeather } from '../../utils/fetchWeather';
 import Icon from '../../components/Icons/Icon';
 import WeatherAlert from '../../components/WeatherAlert/WeatherAlert';
 import CurrentWeather from './CurrentWeather';
 import TwoDaysChart from './TwoDaysChart';
 import WeeklyForecast from './WeeklyForecast';
-import { weatherConfig } from '../../utils/defaultData';
-import { fetchWeather } from '../../utils/fetchWeather';
 
 const Weather = (props) => {
   const [data, setData] = useState(props.data);

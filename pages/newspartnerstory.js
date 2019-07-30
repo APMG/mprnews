@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Story from '../endpoints/Story/Story';
 import Error from 'next/error';
+import Story from '../endpoints/Story/Story';
 
 const NewspartnerStory = ({ slug, errorCode }) => {
   if (errorCode) return <Error statusCode={errorCode} />;

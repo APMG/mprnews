@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Error from 'next/error';
 import Home from '../endpoints/Home/Home';
 import Metatags from '../components/Metatags/Metatags';
-import Error from 'next/error';
 
 /* eslint react/display-name: 0 */
 

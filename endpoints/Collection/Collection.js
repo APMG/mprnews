@@ -1,16 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Error from 'next/error';
+import { Query } from 'react-apollo';
+import QueryError from '../../components/QueryError/QueryError';
+import query from './collection.gql';
 import { Heading, Loading } from '@apmg/titan';
 import { Body } from '@apmg/amat';
-import { Query } from 'react-apollo';
-import PropTypes from 'prop-types';
-import QueryError from '../../components/QueryError/QueryError';
+import CollectionContributors from './CollectionContributors';
+import FullTeaser from '../../components/FullTeaser/FullTeaser';
 import Metatags from '../../components/Metatags/Metatags';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
-import CollectionContributors from './CollectionContributors';
 import Pagination from '../../components/Pagination/Pagination';
-import FullTeaser from '../../components/FullTeaser/FullTeaser';
-import query from './collection.gql';
 
 const Collection = ({ collectionName, pageNum }) => {
   return (

@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Error from 'next/error';
 import Story from '../endpoints/Story/Story';
 import ContentGrid from '../grids/ContentGrid';
 import Sidebar from '../components/Sidebar/Sidebar';
-import Error from 'next/error';
 
 const StoryPage = ({ slug, previewToken, errorCode }) => {
   if (errorCode) return <Error statusCode={errorCode} />;

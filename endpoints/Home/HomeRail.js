@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { Heading } from '@apmg/titan';
-import WeatherSidebar from '../../components/WeatherSidebar/WeatherSidebar';
 import InfoLink from '../../components/InfoLink/InfoLink';
+import WeatherSidebar from '../../components/WeatherSidebar/WeatherSidebar';
 
 const HomeRail = (props) => {
   const sections = [

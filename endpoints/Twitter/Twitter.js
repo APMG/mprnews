@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import Error from 'next/error';
 import { Query } from 'react-apollo';
 import QueryError from '../../components/QueryError/QueryError';
 import query from './twitter.gql';
 import { Loading } from '@apmg/titan';
 import AudioPlayer from '../../components/AudioPlayer/AudioPlayer';
 import AudioPlayerContext from '../../context/AudioPlayerContext';
-import Error from 'next/error';
 
 const Twitter = ({ slug }) => (
   <Query

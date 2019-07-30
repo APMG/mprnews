@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Profile from '../endpoints/Profile/Profile';
 import Error from 'next/error';
+import Profile from '../endpoints/Profile/Profile';
 
 /* eslint react/display-name: 0 */
 

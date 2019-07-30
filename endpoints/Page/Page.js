@@ -1,16 +1,16 @@
 import React from 'react';
-import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
 import Error from 'next/error';
-import { globals } from '../../config/globals';
+import { Query } from 'react-apollo';
+import QueryError from '../../components/QueryError/QueryError';
+import query from './page.gql';
 import { Loading } from '@apmg/titan';
 import { Image } from '@apmg/mimas';
+import { globals } from '../../config/globals';
 import { collectionLinkData } from '../../utils/utils';
-import QueryError from '../../components/QueryError/QueryError';
 import Content from '../../components/Content/Content';
 import Metatags from '../../components/Metatags/Metatags';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
-import query from './page.gql';
 
 const Page = ({ slug, previewToken }) => (
   <Query

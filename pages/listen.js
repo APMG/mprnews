@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Heading } from '@apmg/titan';
 import Error from 'next/error';
+import { Heading } from '@apmg/titan';
 
 const ListenPage = ({ errorCode }) => {
   if (errorCode) return <Error statusCode={errorCode} />;

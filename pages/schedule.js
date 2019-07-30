@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import fetch from 'isomorphic-unfetch';
 import Error from 'next/error';
-import Schedule from '../endpoints/Schedule/Schedule';
 import { getDateTimes, formatEachDateTime } from '../utils/scheduleUtils';
+import Schedule from '../endpoints/Schedule/Schedule';
 
 const SchedulePage = ({ schedule, errorCode }) => {
   if (!schedule || errorCode) return <Error statusCode={404} />;

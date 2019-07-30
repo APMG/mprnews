@@ -1,17 +1,17 @@
 import React from 'react';
-import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
 import Error from 'next/error';
-import { globals } from '../../config/globals';
+import Link from 'next/link';
+import { Query } from 'react-apollo';
+import QueryError from '../../components/QueryError/QueryError';
+import query from './profile.gql';
 import { Heading, Loading } from '@apmg/titan';
 import { Image } from '@apmg/mimas';
 import { Body } from '@apmg/amat';
-import Metatags from '../../components/Metatags/Metatags';
-import QueryError from '../../components/QueryError/QueryError';
-import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
-import Link from 'next/link';
+import { globals } from '../../config/globals';
 import { linkByTypeHref, linkByTypeAs } from '../../utils/cjsutils';
-import query from './profile.gql';
+import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
+import Metatags from '../../components/Metatags/Metatags';
 
 const Profile = ({ slug, previewToken }) => (
   <Query

@@ -1,19 +1,18 @@
-/* eslint-disable react/display-name */
 import React from 'react';
-import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
-import { Loading } from '@apmg/titan';
-import query from './home.gql';
-import HomeGrid from '../../grids/HomeGrid';
+import { Query } from 'react-apollo';
 import QueryError from '../../components/QueryError/QueryError';
-import Sidebar from '../../components/Sidebar/Sidebar';
-import Icon from '../../components/Icons/Icon';
+import query from './home.gql';
+import { Loading } from '@apmg/titan';
+import FullTeaser from '../../components/FullTeaser/FullTeaser';
 import HomeFooter from './HomeFooter';
+import HomeGrid from '../../grids/HomeGrid';
 import HomeRail from './HomeRail';
 import HomeTop from './HomeTop';
-import FullTeaser from '../../components/FullTeaser/FullTeaser';
+import Icon from '../../components/Icons/Icon';
 import Metatags from '../../components/Metatags/Metatags';
+import Sidebar from '../../components/Sidebar/Sidebar';
 
 const Home = () => {
   return (

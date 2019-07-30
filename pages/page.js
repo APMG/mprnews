@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Error from 'next/error';
 import Page from '../endpoints/Page/Page';
 import ContentGrid from '../grids/ContentGrid';
 import Sidebar from '../components/Sidebar/Sidebar';
-import Error from 'next/error';
 
 /* eslint react/display-name: 0 */
 
