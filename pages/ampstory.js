@@ -22,7 +22,7 @@ AmpStory.getInitialProps = async ({ query: { slug }, res }) => {
 
 AmpStory.propTypes = {
   slug: PropTypes.string,
-  errorCode: PropTypes.number
+  errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool])
 };
 
 export default withAmp(AmpStory, { hybrid: true });

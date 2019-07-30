@@ -49,7 +49,7 @@ WeatherPage.getInitialProps = async ({ req, res }) => {
 
 WeatherPage.propTypes = {
   data: PropTypes.object,
-  errorCode: PropTypes.number
+  errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool])
 };
 
 export default WeatherPage;

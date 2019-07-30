@@ -22,7 +22,7 @@ AmpPage.getInitialProps = async ({ query: { slug }, res }) => {
 
 AmpPage.propTypes = {
   slug: PropTypes.string,
-  errorCode: PropTypes.number
+  errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool])
 };
 
 export default withAmp(AmpPage, { hybrid: true });

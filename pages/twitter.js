@@ -19,7 +19,7 @@ TwitterPage.getInitialProps = async ({ query: { slug }, res }) => {
 
 TwitterPage.propTypes = {
   slug: PropTypes.string,
-  errorCode: PropTypes.number
+  errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool])
 };
 
 export default TwitterPage;

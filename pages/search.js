@@ -20,7 +20,7 @@ SearchPage.getInitialProps = async ({ query: { slug, previewToken }, res }) => {
 };
 
 SearchPage.propTypes = {
-  errorCode: PropTypes.number
+  errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool])
 };
 
 export default SearchPage;

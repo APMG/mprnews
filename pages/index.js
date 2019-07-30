@@ -41,7 +41,7 @@ HomePage.getInitialProps = async ({ res }) => {
 };
 
 HomePage.propTypes = {
-  errorCode: PropTypes.number
+  errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool])
 };
 
 export default HomePage;

@@ -19,7 +19,7 @@ NewspartnerStory.getInitialProps = async ({ query: { slug }, res }) => {
 
 NewspartnerStory.propTypes = {
   slug: PropTypes.string,
-  errorCode: PropTypes.number
+  errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool])
 };
 
 export default NewspartnerStory;

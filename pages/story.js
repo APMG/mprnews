@@ -30,7 +30,7 @@ StoryPage.getInitialProps = async ({ query: { slug, previewToken }, res }) => {
 StoryPage.propTypes = {
   slug: PropTypes.string,
   previewToken: PropTypes.string,
-  errorCode: PropTypes.number
+  errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool])
 };
 
 export default StoryPage;

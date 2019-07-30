@@ -38,7 +38,7 @@ SchedulePage.getInitialProps = async ({ query: { slug }, res }) => {
 
 SchedulePage.propTypes = {
   schedule: PropTypes.object,
-  errorCode: PropTypes.number
+  errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool])
 };
 
 export default SchedulePage;
