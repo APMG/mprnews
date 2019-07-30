@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Twitter from '../endpoints/Twitter/Twitter';
 import Error from 'next/error';
+import PropTypes from 'prop-types';
+import React from 'react';
+import Twitter from '../endpoints/Twitter/Twitter';
 
 const TwitterPage = ({ slug, errorCode }) => {
   if (errorCode) return <Error statusCode={errorCode} />;

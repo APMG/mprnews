@@ -35,7 +35,6 @@ query story($contentAreaSlug: String!, $slug: String!, $previewToken: String) {
       durationHms
       durationMs
       encodings {
-        encodingId
         format
         mediaType
         httpFilePath

@@ -59,7 +59,6 @@ query collection($contentAreaSlug: String!, $slug: String!, $pageNum: Int) {
         audio {
           id
           encodings {
-            encodingId
             httpFilePath
             durationMs
             durationHms

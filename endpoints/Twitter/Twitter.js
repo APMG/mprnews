@@ -1,29 +1,33 @@
 import React, { useContext } from 'react';
-import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
+import { Query } from 'react-apollo';
 import QueryError from '../../components/QueryError/QueryError';
-import { Loading } from '@apmg/titan';
 import query from './twitter.gql';
+import { Loading } from '@apmg/titan';
 import AudioPlayer from '../../components/AudioPlayer/AudioPlayer';
 import AudioPlayerContext from '../../context/AudioPlayerContext';
 
-const Twitter = ({ slug }) => (
-  <Query
-    query={query}
-    variables={{
-      contentAreaSlug: process.env.CONTENT_AREA_SLUG,
-      slug: slug
-    }}
-    errorPolicy="all"
-  >
-    {({ loading, error, data }) => {
-      if (error) return <QueryError error={error.message} />;
-      if (loading) return <Loading />;
+const Twitter = ({ slug }) => {
+  console.log(slug);
 
-      return <TwitterInner twitter={data.twitter} />;
-    }}
-  </Query>
-);
+  return (
+    <Query
+      query={query}
+      variables={{
+        contentAreaSlug: process.env.CONTENT_AREA_SLUG,
+        slug: slug
+      }}
+      errorPolicy="all"
+    >
+      {({ loading, error, data }) => {
+        if (error) return <QueryError error={error.message} />;
+        if (loading) return <Loading />;
+
+        return <TwitterInner twitter={data.twitter} />;
+      }}
+    </Query>
+  );
+};
 
 const TwitterInner = ({ twitter }) => {
   const context = useContext(AudioPlayerContext);

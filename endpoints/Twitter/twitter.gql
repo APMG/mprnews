@@ -9,7 +9,6 @@ query story($contentAreaSlug: String!, $slug: String!) {
       title
       durationHms
       encodings {
-        encodingId
         httpFilePath
       }
     }

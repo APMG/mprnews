@@ -40,7 +40,6 @@ query episode(
       durationHms
       durationMs
       encodings {
-        encodingId
         format
         mediaType
         httpFilePath

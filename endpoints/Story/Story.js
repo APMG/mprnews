@@ -1,17 +1,18 @@
-import React from 'react';
-import { Query } from 'react-apollo';
-import PropTypes from 'prop-types';
-import Error from 'next/error';
-import { globals } from '../../config/globals';
 import { Loading, Time } from '@apmg/titan';
-import { Image } from '@apmg/mimas';
-import { collectionLinkData } from '../../utils/utils';
-import QueryError from '../../components/QueryError/QueryError';
-import Content from '../../components/Content/Content';
+
 import AudioPlayButton from '../../components/AudioPlayButton/AudioPlayButton';
+import Content from '../../components/Content/Content';
+import Error from 'next/error';
+import { Image } from '@apmg/mimas';
 import Metatags from '../../components/Metatags/Metatags';
-import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
+import PropTypes from 'prop-types';
+import { Query } from 'react-apollo';
+import QueryError from '../../components/QueryError/QueryError';
+import React from 'react';
 import ShareSocialButtons from '../../components/ShareSocialButtons/ShareSocialButtons';
+import { collectionLinkData } from '../../utils/utils';
+import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
+import { globals } from '../../config/globals';
 import query from './story.gql';
 
 const Story = ({ slug, previewToken, minimal }) => (

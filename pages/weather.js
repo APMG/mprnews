@@ -1,9 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Weather from '../endpoints/Weather/Weather';
-import { weatherConfig } from '../utils/defaultData';
-import { fetchWeather } from '../utils/fetchWeather';
 import Error from 'next/error';
+import PropTypes from 'prop-types';
+import React from 'react';
+import Weather from '../endpoints/Weather/Weather';
+import { fetchWeather } from '../utils/fetchWeather';
+import { weatherConfig } from '../utils/defaultData';
 
 const WeatherPage = ({ data, errorCode }) => {
   if (errorCode) return <Error statusCode={errorCode} />;
@@ -17,7 +17,7 @@ WeatherPage.getInitialProps = async ({ req, res }) => {
     typeof req.params.id !== 'undefined' &&
     weatherConfig.find((config) => config.id === req.params.id);
 
-  let location = findLocation !== undefined ? findLocation : weatherConfig[0];
+  let location = findLocation ? findLocation : weatherConfig[0];
 
   const { weather, forecast, alerts } = await fetchWeather(
     location.lat,
