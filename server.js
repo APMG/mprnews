@@ -58,12 +58,22 @@ const previewToken = (req, res, next) => {
   next();
 };
 
+const logUrls = (req, res, next) => {
+  if (
+    req.originalUrl.match(/\/static/) === null &&
+    req.originalUrl.match(/\/_next/) === null
+  ) {
+    console.info(`${req.method} ${req.originalUrl}`);
+  }
+  next();
+};
+
 app
   .prepare()
   .then(() => {
     const server = express();
 
-    server.use(slug, previewSlug, previewToken, daySlug, twitterSlug);
+    server.use(slug, previewSlug, previewToken, daySlug, twitterSlug, logUrls);
 
     // gzip in prod
     if (!dev) {
