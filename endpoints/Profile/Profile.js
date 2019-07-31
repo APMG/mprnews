@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Error from 'next/error';
+import ErrorPage from 'next/error';
 import Link from 'next/link';
 import { Query } from 'react-apollo';
 import QueryError from '../../components/QueryError/QueryError';
@@ -27,7 +27,7 @@ const Profile = ({ slug, previewToken }) => (
       if (error) return <QueryError error={error.message} />;
       if (loading) return <Loading />;
 
-      if (data.profile === null) return <Error statusCode={404} />;
+      if (data.profile === null) return <ErrorPage statusCode={404} />;
 
       return <ProfileInner profile={data.profile} />;
     }}

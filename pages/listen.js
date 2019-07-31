@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Error from 'next/error';
+import ErrorPage from 'next/error';
 import { Heading } from '@apmg/titan';
 
 const ListenPage = ({ errorCode }) => {
-  if (errorCode) return <Error statusCode={errorCode} />;
+  if (errorCode) return <ErrorPage statusCode={errorCode} />;
   return (
     <div className="playerWrapper playerWrapper-listenpage js-player">
       <div className="player player-listenpage">

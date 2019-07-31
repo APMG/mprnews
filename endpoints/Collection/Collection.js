@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Error from 'next/error';
+import ErrorPage from 'next/error';
 import { Query } from 'react-apollo';
 import QueryError from '../../components/QueryError/QueryError';
 import query from './collection.gql';
@@ -27,7 +27,7 @@ const Collection = ({ collectionName, pageNum }) => {
         if (error) return <QueryError error={error.message} />;
         if (loading) return <Loading />;
 
-        if (data.collection === null) return <Error statusCode={404} />;
+        if (data.collection === null) return <ErrorPage statusCode={404} />;
 
         return (
           <CollectionInner

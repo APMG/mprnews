@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Error from 'next/error';
+import ErrorPage from 'next/error';
 import Collection from '../endpoints/Collection/Collection';
 import ContentGrid from '../grids/ContentGrid';
 import Sidebar from '../components/Sidebar/Sidebar';
@@ -8,7 +8,7 @@ import Sidebar from '../components/Sidebar/Sidebar';
 /* eslint react/display-name: 0 */
 
 const CollectionPage = ({ slug, pageNum = 1, errorCode }) => {
-  if (errorCode) return <Error statusCode={errorCode} />;
+  if (errorCode) return <ErrorPage statusCode={errorCode} />;
   return (
     <ContentGrid sidebar={<Sidebar />}>
       <Collection collectionName={slug} pageNum={parseInt(pageNum)} />

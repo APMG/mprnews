@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Error from 'next/error';
+import ErrorPage from 'next/error';
 import Profile from '../endpoints/Profile/Profile';
 
 /* eslint react/display-name: 0 */
 
 const ProfilePage = ({ slug, previewToken, errorCode }) => {
-  if (errorCode) return <Error statusCode={errorCode} />;
+  if (errorCode) return <ErrorPage statusCode={errorCode} />;
   return <Profile slug={slug} previewToken={previewToken} />;
 };
 

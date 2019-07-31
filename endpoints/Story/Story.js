@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Error from 'next/error';
+import ErrorPage from 'next/error';
 import { Query } from 'react-apollo';
 import QueryError from '../../components/QueryError/QueryError';
 import query from './story.gql';
@@ -28,7 +28,7 @@ const Story = ({ slug, previewToken, minimal }) => (
       if (error) return <QueryError error={error.message} />;
       if (loading) return <Loading />;
 
-      if (data.story === null) return <Error statusCode={404} />;
+      if (data.story === null) return <ErrorPage statusCode={404} />;
 
       return <StoryInner story={data.story} minimal={minimal} />;
     }}

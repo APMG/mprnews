@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Error from 'next/error';
+import ErrorPage from 'next/error';
 import { fetchWeather } from '../utils/fetchWeather';
 import { weatherConfig } from '../utils/defaultData';
 import Weather from '../endpoints/Weather/Weather';
 
 const WeatherPage = ({ data, errorCode }) => {
-  if (errorCode) return <Error statusCode={errorCode} />;
+  if (errorCode) return <ErrorPage statusCode={errorCode} />;
   return <Weather data={data} />;
 };
 

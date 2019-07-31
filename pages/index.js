@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Error from 'next/error';
+import ErrorPage from 'next/error';
 import Home from '../endpoints/Home/Home';
 import Metatags from '../components/Metatags/Metatags';
 
@@ -22,7 +22,7 @@ const tags = [
 const title = '';
 
 const HomePage = ({ errorCode }) => {
-  if (errorCode) return <Error statusCode={errorCode} />;
+  if (errorCode) return <ErrorPage statusCode={errorCode} />;
   return (
     <>
       <Metatags title={title} metatags={tags} links={[]} />

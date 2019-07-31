@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Error from 'next/error';
+import ErrorPage from 'next/error';
 import { Query } from 'react-apollo';
 import QueryError from '../../components/QueryError/QueryError';
 import query from './page.gql';
@@ -26,7 +26,7 @@ const Page = ({ slug, previewToken }) => (
       if (error) return <QueryError error={error.message} />;
       if (loading) return <Loading />;
 
-      if (data.page === null) return <Error statusCode={404} />;
+      if (data.page === null) return <ErrorPage statusCode={404} />;
 
       return <PageInner page={data.page} />;
     }}

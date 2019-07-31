@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import Error from 'next/error';
+import ErrorPage from 'next/error';
 import { Query } from 'react-apollo';
 import QueryError from '../../components/QueryError/QueryError';
 import query from './twitter.gql';
@@ -21,7 +21,7 @@ const Twitter = ({ slug }) => (
       if (error) return <QueryError error={error.message} />;
       if (loading) return <Loading />;
 
-      if (data.twitter === null) return <Error statusCode={404} />;
+      if (data.twitter === null) return <ErrorPage statusCode={404} />;
 
       return <TwitterInner twitter={data.twitter} />;
     }}
