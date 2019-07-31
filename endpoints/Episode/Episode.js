@@ -1,17 +1,18 @@
 import React from 'react';
-import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
-import Error from 'next/error';
-import { Loading, Time } from '@apmg/titan';
-import { globals } from '../../config/globals';
-import { Image } from '@apmg/mimas';
-import { collectionLinkData } from '../../utils/utils';
-import Content from '../../components/Content/Content';
-import AudioPlayButton from '../../components/AudioPlayButton/AudioPlayButton';
-import Metatags from '../../components/Metatags/Metatags';
-import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
-import ShareSocialButtons from '../../components/ShareSocialButtons/ShareSocialButtons';
+import ErrorPage from 'next/error';
+import { Query } from 'react-apollo';
+import QueryError from '../../components/QueryError/QueryError';
 import query from './episode.gql';
+import { Loading, Time } from '@apmg/titan';
+import { Image } from '@apmg/mimas';
+import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
+import { globals } from '../../config/globals';
+import { collectionLinkData } from '../../utils/utils';
+import AudioPlayButton from '../../components/AudioPlayButton/AudioPlayButton';
+import Content from '../../components/Content/Content';
+import Metatags from '../../components/Metatags/Metatags';
+import ShareSocialButtons from '../../components/ShareSocialButtons/ShareSocialButtons';
 
 const Episode = ({ slug, previewToken }) => (
   <Query
@@ -21,11 +22,13 @@ const Episode = ({ slug, previewToken }) => (
       slug: slug,
       previewToken: previewToken
     }}
+    errorPolicy="all"
   >
     {({ loading, error, data }) => {
-      if (error) return <div>Error loading episode</div>;
+      if (error) return <QueryError error={error.message} />;
       if (loading) return <Loading />;
-      if (data.episode === null) return <Error statusCode={404} />;
+
+      if (data.episode === null) return <ErrorPage statusCode={404} />;
 
       return <EpisodeInner episode={data.episode} />;
     }}

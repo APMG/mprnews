@@ -12,6 +12,7 @@ query PageQuery(
     title
     canonicalSlug
     primaryCollection {
+      id
       title
       canonicalSlug
     }

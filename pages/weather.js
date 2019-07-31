@@ -1,29 +1,42 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Error from 'next/error';
-import Weather from '../endpoints/Weather/Weather';
-import { weatherConfig } from '../utils/defaultData';
+import ErrorPage from 'next/error';
 import { fetchWeather } from '../utils/fetchWeather';
+import { weatherConfig } from '../utils/defaultData';
+import Weather from '../endpoints/Weather/Weather';
 
-const WeatherPage = ({ data }) => {
-  if (!data) return <Error statusCode={404} />;
+const WeatherPage = ({ data, errorCode }) => {
+  if (errorCode) return <ErrorPage statusCode={errorCode} />;
   return <Weather data={data} />;
 };
 
 WeatherPage.getInitialProps = async ({ req, res }) => {
-  let location =
+  let findLocation =
     typeof req !== 'undefined' &&
     req.params !== 'undefined' &&
-    typeof req.params.id !== 'undefined'
-      ? weatherConfig.find((config) => config.id === req.params.id)
-      : weatherConfig[0];
+    typeof req.params.id !== 'undefined' &&
+    weatherConfig.find((config) => config.id === req.params.id);
 
-  if (!location && res) return (res.statusCode = 404);
+  let location = findLocation ? findLocation : weatherConfig[0];
 
   const { weather, forecast, alerts } = await fetchWeather(
     location.lat,
     location.long
   );
+
+  if (res) {
+    const errorCode = res.statusCode > 200 ? res.statusCode : false;
+    return {
+      data: {
+        location,
+        weather,
+        forecast,
+        alerts
+      },
+      errorCode
+    };
+  }
+
   return {
     data: {
       location,
@@ -35,7 +48,8 @@ WeatherPage.getInitialProps = async ({ req, res }) => {
 };
 
 WeatherPage.propTypes = {
-  data: PropTypes.object
+  data: PropTypes.object,
+  errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool])
 };
 
 export default WeatherPage;

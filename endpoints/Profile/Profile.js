@@ -1,16 +1,18 @@
 import React from 'react';
-import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
-import Error from 'next/error';
-import { globals } from '../../config/globals';
+import ErrorPage from 'next/error';
+import Link from 'next/link';
+import { Query } from 'react-apollo';
+import QueryError from '../../components/QueryError/QueryError';
+import query from './profile.gql';
 import { Heading, Loading } from '@apmg/titan';
 import { Image } from '@apmg/mimas';
 import { Body } from '@apmg/amat';
-import query from './profile.gql';
-import Metatags from '../../components/Metatags/Metatags';
-import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
-import Link from 'next/link';
+import { globals } from '../../config/globals';
 import { linkByTypeHref, linkByTypeAs } from '../../utils/cjsutils';
+import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
+import Metatags from '../../components/Metatags/Metatags';
+
 const Profile = ({ slug, previewToken }) => (
   <Query
     query={query}
@@ -19,11 +21,13 @@ const Profile = ({ slug, previewToken }) => (
       slug: slug,
       previewToken: previewToken
     }}
+    errorPolicy="all"
   >
     {({ loading, error, data }) => {
-      if (error) return <div>{`Error: ${error}`}</div>;
+      if (error) return <QueryError error={error.message} />;
       if (loading) return <Loading />;
-      if (data.profile === null) return <Error statusCode={404} />;
+
+      if (data.profile === null) return <ErrorPage statusCode={404} />;
 
       return <ProfileInner profile={data.profile} />;
     }}
