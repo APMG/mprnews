@@ -1,39 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ErrorPage from 'next/error';
-import { Query } from 'react-apollo';
-import QueryError from '../../components/QueryError/QueryError';
-import query from './story.gql';
-import { Loading, Time } from '@apmg/titan';
+import { globals } from '../../config/globals';
 import { Image } from '@apmg/mimas';
+import { Time } from '@apmg/titan';
 import { collectionLinkData } from '../../utils/utils';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
-import { globals } from '../../config/globals';
 import AudioPlayButton from '../../components/AudioPlayButton/AudioPlayButton';
 import Content from '../../components/Content/Content';
 import Metatags from '../../components/Metatags/Metatags';
 import ShareSocialButtons from '../../components/ShareSocialButtons/ShareSocialButtons';
 
-const Story = ({ slug, previewToken, minimal }) => (
-  <Query
-    query={query}
-    variables={{
-      contentAreaSlug: process.env.CONTENT_AREA_SLUG,
-      slug: slug,
-      previewToken: previewToken
-    }}
-    errorPolicy="all"
-  >
-    {({ loading, error, data }) => {
-      if (error) return <QueryError error={error.message} />;
-      if (loading) return <Loading />;
-
-      if (data.story === null) return <ErrorPage statusCode={404} />;
-
-      return <StoryInner story={data.story} minimal={minimal} />;
-    }}
-  </Query>
-);
+const Story = ({ minimal, data }) => {
+  return <StoryInner story={data.story} minimal={minimal} />;
+};
 
 const StoryInner = ({ story, minimal }) => {
   let authors;
@@ -122,8 +101,7 @@ const StoryInner = ({ story, minimal }) => {
 };
 
 Story.propTypes = {
-  slug: PropTypes.string,
-  previewToken: PropTypes.string,
+  data: PropTypes.object,
   minimal: PropTypes.bool
 };
 

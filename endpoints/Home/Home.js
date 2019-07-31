@@ -1,10 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
-import { Query } from 'react-apollo';
-import QueryError from '../../components/QueryError/QueryError';
-import query from './home.gql';
-import { Loading } from '@apmg/titan';
 import FullTeaser from '../../components/FullTeaser/FullTeaser';
 import HomeFooter from './HomeFooter';
 import HomeGrid from '../../grids/HomeGrid';
@@ -14,24 +10,8 @@ import Icon from '../../components/Icons/Icon';
 import Metatags from '../../components/Metatags/Metatags';
 import Sidebar from '../../components/Sidebar/Sidebar';
 
-const Home = () => {
-  return (
-    <Query
-      query={query}
-      variables={{
-        contentAreaSlug: process.env.CONTENT_AREA_SLUG,
-        slug: 'homepage'
-      }}
-      errorPolicy="all"
-    >
-      {({ loading, error, data }) => {
-        if (error) return <QueryError error={error.message} />;
-        if (loading) return <Loading />;
-
-        return <HomeInner data={data} />;
-      }}
-    </Query>
-  );
+const Home = (props) => {
+  return <HomeInner data={props.data} />;
 };
 
 const HomeInner = ({ data }) => {
@@ -110,6 +90,10 @@ const HomeInner = ({ data }) => {
       </HomeGrid>
     </div>
   );
+};
+
+Home.propTypes = {
+  data: PropTypes.object
 };
 
 HomeInner.propTypes = {
