@@ -1,6 +1,6 @@
 export const globals = {
   hostnameProd: 'https://www.mprnews.org', // Used for meta tag url declarations
-  siteDescription: 'Minnesota Public Radio News',
+  siteDescription: "Minnesota's Online Source for News That Matters",
   siteName: 'MPR News',
   sizes: {
     collection: '(max-width: 590px) 95vw, (max-width: 890px) 45vw, 900px',

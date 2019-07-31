@@ -1,4 +1,8 @@
-query profile($contentAreaSlug: String!, $slug: String!, $previewToken: String) {
+query profile(
+  $contentAreaSlug: String!
+  $slug: String!
+  $previewToken: String
+) {
   profile: profile(
     contentAreaSlug: $contentAreaSlug
     slug: $slug
@@ -15,9 +19,7 @@ query profile($contentAreaSlug: String!, $slug: String!, $previewToken: String) 
     descriptionText
     resourceType
     embeddedAssetJson
-    contributions(
-      page:1
-    ) {
+    contributions(page: 1) {
       title
       description
       publishDate
@@ -30,6 +32,9 @@ query profile($contentAreaSlug: String!, $slug: String!, $previewToken: String) 
       text
     }
     primaryVisuals {
+      social {
+        fallback
+      }
       lead {
         aspect_ratios: aspectRatios {
           uncropped {

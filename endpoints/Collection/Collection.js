@@ -39,30 +39,16 @@ const Collection = ({ collectionName, pageNum }) => {
 };
 
 const CollectionInner = ({ collection, pageNum, collectionName }) => {
-  const socialImage = fishForSocialMediaImage(collection);
-  const tags = [
-    {
-      key: 'description',
-      name: 'description',
-      content: collection.descriptionText
-    },
-    { key: 'og:image', name: 'og:image', content: socialImage },
-    {
-      key: 'twitter:card',
-      name: 'twitter:card',
-      content: 'summary_large_image'
-    },
-    { key: 'twitter:image', name: 'twitter:image', content: socialImage },
-    {
-      key: 'mpr-content-topic',
-      name: 'mpr-content-topic',
-      content: collection.title
-    }
-  ];
-
   return (
     <>
-      <Metatags title={collection.title} metatags={tags} links={[]} />
+      <Metatags
+        title={collection.title}
+        fullSlug={collection.canonicalSlug}
+        description={collection.descriptionText}
+        image={fishForSocialMediaImage(collection)}
+        topic={collection.title}
+        contentType="website"
+      />
 
       <section
         className="collection page-purpose"

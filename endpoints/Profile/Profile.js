@@ -31,24 +31,16 @@ const Profile = ({ slug, previewToken }) => (
 );
 
 const ProfileInner = ({ profile }) => {
-  const socialImage = fishForSocialMediaImage(profile);
-  const tags = [
-    {
-      key: 'description',
-      name: 'description',
-      content: profile?.descriptionText
-    },
-    { key: 'og:image', name: 'og:image', content: socialImage },
-    {
-      key: 'twitter:card',
-      name: 'twitter:card',
-      content: 'summary_large_image'
-    },
-    { key: 'twitter:image', name: 'twitter:image', content: socialImage }
-  ];
   return (
     <>
-      <Metatags title={profile?.title} metatags={tags} links={[]} />
+      <Metatags
+        title={profile.title}
+        fullSlug={`people/${profile.canonicalSlug}`}
+        description={profile.descriptionText}
+        image={fishForSocialMediaImage(profile)}
+        topic={profile.primaryCollection?.title}
+      />
+
       <section className="page section">
         <div className="content">
           <div className="content_body userContent">

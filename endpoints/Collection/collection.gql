@@ -3,6 +3,12 @@ query collection($contentAreaSlug: String!, $slug: String!, $pageNum: Int) {
     id
     title
     body
+    descriptionText
+    primaryVisuals {
+      social {
+        fallback
+      }
+    }
     embeddedAssetJson
     canonicalSlug
     contributors {

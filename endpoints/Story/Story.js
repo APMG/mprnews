@@ -51,10 +51,11 @@ const StoryInner = ({ story, minimal }) => {
         fullSlug={`story/${story?.canonicalSlug}`}
         description={story.descriptionText}
         image={fishForSocialMediaImage(story)}
-        isAmp={story.supportedOutputFormats.indexOf('amp') > -1}
+        isAmp={story.supportedOutputFormats?.indexOf('amp') > -1}
         topic={story?.primaryCollection?.title}
         contentType="article"
       />
+
       <Content
         title={story.title}
         subtitle={story.subtitle}
