@@ -16,7 +16,7 @@ query contentList($contentAreaSlug: String!, $pageNum: Int) {
       descriptionText
       embeddedAssetJson
       resourceType
-        audio {
+      audio {
         encodings {
           httpFilePath
           durationMs
@@ -54,22 +54,6 @@ query contentList($contentAreaSlug: String!, $pageNum: Int) {
           longCaption
           shortCaption
           xid
-        }
-      }
-      audio {
-          title
-          durationHms
-          encodings {
-            httpFilePath
-          }
-        }
-        collectionRelatedLinks {
-          url
-          title
-          prefix
-        }
-        ... on Link {
-          destination
         }
       }
       contributors {

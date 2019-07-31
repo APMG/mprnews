@@ -71,7 +71,7 @@ const AllNewsInner = ({ allNews }) => {
           <Pagination
             hasFirstAndLast={true}
             linksToShow={3}
-            linkPrefix={'all-news'}
+            slug={'all-news'}
             resourceType={'allnews'}
             currentPage={allNews.currentPage}
             totalPages={1000} // elastic search defaults at 1000
