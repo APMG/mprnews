@@ -83,13 +83,12 @@ const AllNewsInner = ({ allNews }) => {
         </div>
         <div className="collection_pagination">
           <Pagination
-            totalElements={1000}
-            elementsPerPage={allNews.pageSize}
-            currentPage={allNews.currentPage}
-            nextPage={allNews.nextPage}
-            previousPage={allNews.previousPage}
-            linkPrefix={`all-news`}
+            hasFirstAndLast={true}
             linksToShow={3}
+            linkPrefix={'all-news'}
+            resourceType={'allnews'}
+            currentPage={allNews.currentPage}
+            totalPages={1000} // elastic search defaults at 1000
           />
         </div>
       </section>

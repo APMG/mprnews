@@ -15,6 +15,19 @@ query contentList($contentAreaSlug: String!, $pageNum: Int) {
       description
       embeddedAssetJson
       resourceType
+        audio {
+        encodings {
+          httpFilePath
+          durationMs
+          durationHms
+        }
+      }
+      contributors {
+        profile {
+          firstName
+          lastName
+        }
+      }
       primaryVisuals {
         thumbnail {
           aspect_ratios: aspectRatios {
@@ -40,6 +53,22 @@ query contentList($contentAreaSlug: String!, $pageNum: Int) {
           longCaption
           shortCaption
           xid
+        }
+      }
+      audio {
+          title
+          durationHms
+          encodings {
+            httpFilePath
+          }
+        }
+        collectionRelatedLinks {
+          url
+          title
+          prefix
+        }
+        ... on Link {
+          destination
         }
       }
       contributors {
