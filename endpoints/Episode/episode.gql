@@ -32,6 +32,7 @@ query episode(
     publishDate
     body
     description
+    descriptionText
     resourceType
     primaryAudio {
       id
@@ -48,6 +49,9 @@ query episode(
     }
     embeddedAssetJson
     primaryVisuals {
+      social {
+        fallback
+      }
       lead {
         preferredAspectRatio {
           instances {

@@ -28,6 +28,7 @@ query story($contentAreaSlug: String!, $slug: String!, $previewToken: String) {
     publishDate
     body
     description
+    descriptionText
     resourceType
     primaryAudio {
       title
@@ -43,6 +44,9 @@ query story($contentAreaSlug: String!, $slug: String!, $previewToken: String) {
     }
     embeddedAssetJson
     primaryVisuals {
+      social {
+        fallback
+      }
       lead {
         preferredAspectRatio {
           instances {

@@ -32,6 +32,9 @@ query profile(
       text
     }
     primaryVisuals {
+      social {
+        fallback
+      }
       lead {
         aspect_ratios: aspectRatios {
           uncropped {

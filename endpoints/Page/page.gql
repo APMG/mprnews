@@ -11,6 +11,13 @@ query PageQuery(
     id
     title
     canonicalSlug
+    descriptionText
+    supportedOutputFormats
+    primaryVisuals {
+      social {
+        fallback
+      }
+    }
     primaryCollection {
       id
       title
