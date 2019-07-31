@@ -44,40 +44,17 @@ const StoryInner = ({ story, minimal }) => {
     });
   }
 
-  const socialImage = fishForSocialMediaImage(story);
-  const tags = [
-    {
-      key: 'description',
-      name: 'description',
-      content: story?.descriptionText
-    },
-    { key: 'og:image', name: 'og:image', content: socialImage },
-    {
-      key: 'mpr-content-topic',
-      name: 'mpr-content-topic',
-      content: story?.primaryCollection?.title
-    },
-    {
-      key: 'twitter:card',
-      name: 'twitter:card',
-      content: 'summary_large_image'
-    },
-    { key: 'twitter:image', name: 'twitter:image', content: socialImage }
-  ];
-  const links =
-    story.supportedOutputFormats.indexOf('amp') === -1
-      ? []
-      : [
-          {
-            key: 'amphtml',
-            rel: 'amphtml',
-            href: `https://www.mprnews.org/amp/story/${story?.canonicalSlug}`
-          }
-        ];
-
   return (
     <>
-      <Metatags title={story.title} metatags={tags} links={links} />
+      <Metatags
+        title={story.title}
+        fullSlug={`story/${story?.canonicalSlug}`}
+        description={story.descriptionText}
+        image={fishForSocialMediaImage(story)}
+        isAmp={story.supportedOutputFormats.indexOf('amp') > -1}
+        topic={story?.primaryCollection?.title}
+        contentType="article"
+      />
       <Content
         title={story.title}
         subtitle={story.subtitle}
