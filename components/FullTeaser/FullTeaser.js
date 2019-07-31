@@ -54,7 +54,7 @@ const FullTeaser = ({ item, size, newspartners }) => {
         elementClass={elementClass}
         contributors={contributors(item.contributors)}
         audioPlayButton={
-          item.audio[0]?.encodings[0]?.httpFilePath ? (
+          item.audio && item.audio[0]?.encodings[0]?.httpFilePath ? (
             <AudioPlayButton
               audioSource={item.audio[0].encodings[0].httpFilePath}
               audioTitle={item.title}

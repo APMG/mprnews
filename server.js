@@ -213,6 +213,15 @@ app
       });
     });
 
+    // all-news routing
+    server.get('/all-news/:pageNum?', (req, res) => {
+      res.set('Cache-Control', `public, max-age=${TTL}`);
+      const pageNum = req.params.pageNum || 1;
+      app.render(req, res, '/allnews', {
+        pageNum: pageNum
+      });
+    });
+
     // imported RSS route
     feed(server);
 

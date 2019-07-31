@@ -83,7 +83,7 @@ const HomeInner = ({ data }) => {
         </div>
         <div className="hList home_more">
           <div>
-            <Link href="/arts">
+            <Link href="/collection?slug=arts" as={'/arts'}>
               <a className="btn btn-primary">
                 <span>More Arts </span>
                 <Icon name="chevronRight" />
@@ -91,7 +91,7 @@ const HomeInner = ({ data }) => {
             </Link>
           </div>
           <div>
-            <Link href="/environment">
+            <Link href="/collection?slug=environment" as={'/environment'}>
               <a className="btn btn-primary">
                 <span>More Environment </span>
                 <Icon name="chevronRight" />
@@ -99,7 +99,7 @@ const HomeInner = ({ data }) => {
             </Link>
           </div>
           <div>
-            <Link href="/politics">
+            <Link href="/collection?slug=politics" as={'/politics'}>
               <a className="btn btn-primary">
                 <span>More Politics </span>
                 <Icon name="chevronRight" />
