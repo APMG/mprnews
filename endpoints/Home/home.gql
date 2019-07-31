@@ -45,6 +45,7 @@ query home($contentAreaSlug: String!, $slug: String!) {
           }
         }
         audio {
+          id
           title
           durationHms
           encodings {

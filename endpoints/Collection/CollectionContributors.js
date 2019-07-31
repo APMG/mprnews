@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Link from 'next/link';
 import { Image } from '@apmg/mimas';
 import { Heading } from '@apmg/titan';
-import Link from 'next/link';
 
 const CollectionContributors = (props) => {
   return (
@@ -31,7 +31,10 @@ const CollectionContributors = (props) => {
                 </Link>
               )}
               <div className="miniBio_info">
-                <Link href={`/people/${contrib.profile.canonicalSlug}`}>
+                <Link
+                  href={`/profile?slug=${contrib.profile?.canonicalSlug}`}
+                  as={`/people/${contrib.profile?.canonicalSlug}`}
+                >
                   <a className="miniBio_name">
                     {contrib.profile.firstName} {contrib.profile.lastName}
                   </a>

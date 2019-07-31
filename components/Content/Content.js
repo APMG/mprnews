@@ -47,7 +47,6 @@ const Content = ({
         dateline={dateline}
         tag={tag}
       />
-
       {shareButtons && <div className="content_social">{shareButtons}</div>}
 
       {audioPlayButton && (

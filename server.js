@@ -13,6 +13,7 @@ const { dynamic } = require('./server/dynamic');
 const { sitemap } = require('./server/sitemap');
 const { urlset } = require('./server/urlset');
 const { ssGql } = require('./server/ssGql');
+require('console-stamp')(console, 'dd/mmm/yyyy:HH:MM:ss o');
 
 const TTL = 60;
 const ampQuery = (slug) =>
@@ -48,6 +49,10 @@ const previewSlug = (req, res, next) => {
 };
 
 const twitterSlug = (req, res, next) => {
+  if (req.path.match(/\/static/) || req.path.match(/\/_next/)) {
+    next();
+    return;
+  }
   req.twitterSlug = req.path.replace(/^(\/story|episode|page)*\/(card)\//, '');
   next();
 };
@@ -57,12 +62,22 @@ const previewToken = (req, res, next) => {
   next();
 };
 
+const logUrls = (req, res, next) => {
+  if (
+    req.originalUrl.match(/\/static/) === null &&
+    req.originalUrl.match(/\/_next/) === null
+  ) {
+    console.info(`${req.method} ${req.originalUrl}`);
+  }
+  next();
+};
+
 app
   .prepare()
   .then(() => {
     const server = express();
 
-    server.use(slug, previewSlug, previewToken, daySlug, twitterSlug);
+    server.use(slug, previewSlug, previewToken, daySlug, twitterSlug, logUrls);
 
     // gzip in prod
     if (!dev) {
@@ -108,7 +123,7 @@ app
     // Story routing
     server.get('/story/card/*', (req, res) => {
       res.set('Cache-Control', `public, max-age=${TTL}`);
-      app.render(req, res, '/twitter', req.twitterSlug);
+      app.render(req, res, '/twitter', { slug: req.twitterSlug });
     });
 
     server.get('/story/*', (req, res) => {
