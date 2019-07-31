@@ -13,6 +13,7 @@ query contentList($contentAreaSlug: String!, $pageNum: Int) {
       publishDate
       body
       description
+      descriptionText
       embeddedAssetJson
       resourceType
         audio {

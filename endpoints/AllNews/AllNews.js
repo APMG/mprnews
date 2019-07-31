@@ -31,30 +31,16 @@ const AllNews = ({ pageNum }) => {
 };
 
 const AllNewsInner = ({ allNews }) => {
-  const socialImage = fishForSocialMediaImage(allNews);
-  const tags = [
-    {
-      key: 'description',
-      name: 'description',
-      content: allNews.descriptionText
-    },
-    { key: 'og:image', name: 'og:image', content: socialImage },
-    {
-      key: 'twitter:card',
-      name: 'twitter:card',
-      content: 'summary_large_image'
-    },
-    { key: 'twitter:image', name: 'twitter:image', content: socialImage },
-    {
-      key: 'mpr-content-topic',
-      name: 'mpr-content-topic',
-      content: 'all-news'
-    }
-  ];
-
   return (
     <>
-      <Metatags title={allNews.title} metatags={tags} links={[]} />
+      <Metatags
+        title={allNews.title}
+        fullSlug={allNews.canonicalSlug}
+        description={allNews.descriptionText}
+        image={fishForSocialMediaImage(allNews)}
+        topic={allNews.title}
+        contentType="website"
+      />
 
       <section
         className="collection page-purpose"
