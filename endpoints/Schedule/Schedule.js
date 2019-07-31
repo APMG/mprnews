@@ -1,7 +1,7 @@
 /* eslint-disable react/display-name */
 import React, { useState, useEffect } from 'react';
-import Tabs from '../../components/Tabs';
 import PropTypes from 'prop-types';
+import Tabs from '../../components/Tabs';
 import ScheduleInner from './ScheduleInner';
 
 const Schedule = ({ schedule }) => {

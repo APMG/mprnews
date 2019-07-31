@@ -13,6 +13,7 @@ query collection($contentAreaSlug: String!, $slug: String!, $pageNum: Int) {
     canonicalSlug
     contributors {
       profile {
+        id
         canonicalSlug
         firstName
         lastName
@@ -23,6 +24,7 @@ query collection($contentAreaSlug: String!, $slug: String!, $pageNum: Int) {
         }
         primaryVisuals {
           thumbnail {
+            xid
             longCaption
             shortCaption
             fallback
@@ -61,6 +63,7 @@ query collection($contentAreaSlug: String!, $slug: String!, $pageNum: Int) {
         canonicalSlug
         resourceType
         audio {
+          id
           encodings {
             httpFilePath
             durationMs
@@ -101,6 +104,7 @@ query collection($contentAreaSlug: String!, $slug: String!, $pageNum: Int) {
           }
         }
         audio {
+          id
           title
           durationHms
           encodings {

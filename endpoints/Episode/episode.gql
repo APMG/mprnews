@@ -14,11 +14,13 @@ query episode(
     canonicalSlug
     supportedOutputFormats
     primaryCollection {
+      id
       title
       canonicalSlug
     }
     contributors {
       profile {
+        id
         firstName
         lastName
         canonicalSlug
@@ -33,6 +35,7 @@ query episode(
     descriptionText
     resourceType
     primaryAudio {
+      id
       title
       credit
       durationHms

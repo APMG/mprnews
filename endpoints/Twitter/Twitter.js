@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
-import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
-import { Loading } from '@apmg/titan';
+import ErrorPage from 'next/error';
+import { Query } from 'react-apollo';
+import QueryError from '../../components/QueryError/QueryError';
 import query from './twitter.gql';
+import { Loading } from '@apmg/titan';
 import AudioPlayer from '../../components/AudioPlayer/AudioPlayer';
 import AudioPlayerContext from '../../context/AudioPlayerContext';
 
@@ -13,10 +15,13 @@ const Twitter = ({ slug }) => (
       contentAreaSlug: process.env.CONTENT_AREA_SLUG,
       slug: slug
     }}
+    errorPolicy="all"
   >
     {({ loading, error, data }) => {
-      if (error) return <div>{`Error: ${error}`}</div>;
+      if (error) return <QueryError error={error.message} />;
       if (loading) return <Loading />;
+
+      if (data.twitter === null) return <ErrorPage statusCode={404} />;
 
       return <TwitterInner twitter={data.twitter} />;
     }}

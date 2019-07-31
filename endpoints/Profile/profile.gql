@@ -20,11 +20,11 @@ query profile(
     resourceType
     embeddedAssetJson
     contributions(page: 1) {
+      id
       title
       description
       publishDate
       canonicalSlug
-      id
       resourceType
     }
     profileRelatedLinks {

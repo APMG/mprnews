@@ -1,12 +1,12 @@
 import App, { Container } from 'next/app';
 import React from 'react';
-import withApolloClient from '../lib/with-apollo-client';
 import { ApolloProvider } from 'react-apollo';
+import NowPlayingClient from 'nowplaying-client';
+import { weatherConfig } from '../utils/defaultData';
 import AudioPlayerContext from '../context/AudioPlayerContext';
 import LocationContext from '../context/LocationContext';
-import NowPlayingClient from 'nowplaying-client';
+import withApolloClient from '../lib/with-apollo-client';
 import Layout from '../layouts/Layout';
-import { weatherConfig } from '../utils/defaultData';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 

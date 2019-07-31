@@ -49,6 +49,10 @@ const previewSlug = (req, res, next) => {
 };
 
 const twitterSlug = (req, res, next) => {
+  if (req.path.match(/\/static/) || req.path.match(/\/_next/)) {
+    next();
+    return;
+  }
   req.twitterSlug = req.path.replace(/^(\/story|episode|page)*\/(card)\//, '');
   next();
 };
@@ -119,7 +123,7 @@ app
     // Story routing
     server.get('/story/card/*', (req, res) => {
       res.set('Cache-Control', `public, max-age=${TTL}`);
-      app.render(req, res, '/twitter', req.twitterSlug);
+      app.render(req, res, '/twitter', { slug: req.twitterSlug });
     });
 
     server.get('/story/*', (req, res) => {

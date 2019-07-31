@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Link from 'next/link';
 import { Image } from '@apmg/mimas';
 import { Heading } from '@apmg/titan';
-import Link from 'next/link';
 
 const CollectionContributors = (props) => {
   return (

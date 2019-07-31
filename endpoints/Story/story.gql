@@ -11,11 +11,13 @@ query story($contentAreaSlug: String!, $slug: String!, $previewToken: String) {
     dateline
     canonicalSlug
     primaryCollection {
+      id
       title
       canonicalSlug
     }
     contributors {
       profile {
+        id
         title
         canonicalSlug
       }

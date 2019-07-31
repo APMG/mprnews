@@ -1,15 +1,16 @@
 import React from 'react';
-import Error from 'next/error';
+import PropTypes from 'prop-types';
+import ErrorPage from 'next/error';
+import { Query } from 'react-apollo';
+import QueryError from '../../components/QueryError/QueryError';
+import query from './collection.gql';
 import { Heading, Loading } from '@apmg/titan';
 import { Body } from '@apmg/amat';
-import { Query } from 'react-apollo';
-import PropTypes from 'prop-types';
-import query from './collection.gql';
+import CollectionContributors from './CollectionContributors';
+import FullTeaser from '../../components/FullTeaser/FullTeaser';
 import Metatags from '../../components/Metatags/Metatags';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
-import CollectionContributors from './CollectionContributors';
 import Pagination from '../../components/Pagination/Pagination';
-import FullTeaser from '../../components/FullTeaser/FullTeaser';
 
 const Collection = ({ collectionName, pageNum }) => {
   return (
@@ -20,11 +21,13 @@ const Collection = ({ collectionName, pageNum }) => {
         slug: collectionName,
         pageNum: pageNum
       }}
+      errorPolicy="all"
     >
       {({ loading, error, data }) => {
-        if (error) return <div>{`Error: ${error}`}</div>;
+        if (error) return <QueryError error={error.message} />;
         if (loading) return <Loading />;
-        if (data.collection === null) return <Error statusCode={404} />;
+
+        if (data.collection === null) return <ErrorPage statusCode={404} />;
 
         return (
           <CollectionInner
