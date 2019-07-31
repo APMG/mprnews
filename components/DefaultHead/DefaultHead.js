@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { globals } from '../../config/globals';
 import fallbackImage from '../../static/opengraph-fallback.png';
@@ -7,10 +6,8 @@ import faviconpng from '../../static/favicon.png';
 import favicon from '../../static/favicon.ico';
 import appletouch from '../../static/apple-touch-icon.png';
 
-const DefaultHead = (props) => {
-  const combinedTitle = props.title
-    ? `${props.title} | ${globals.siteName}`
-    : globals.siteName;
+const DefaultHead = () => {
+  const defaultTitle = globals.siteName;
 
   const gtmId = 'GTM-KTT2Z2';
   const gtmScriptHtml = `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push(
@@ -36,10 +33,10 @@ const DefaultHead = (props) => {
         key="httpEquiv"
       />
 
-      <title>{combinedTitle}</title>
+      <title>{defaultTitle}</title>
 
       <meta name="mpr-site" content="news" key="mpr-site" />
-      <meta name="title" content={combinedTitle} key="title" />
+      <meta name="title" content={defaultTitle} key="title" />
       <meta
         name="description"
         content={globals.siteDescription}
@@ -54,7 +51,7 @@ const DefaultHead = (props) => {
         content="summary_large_image"
         key="twitter:card"
       />
-      <meta name="twitter:title" content={combinedTitle} key="twitter:title" />
+      <meta name="twitter:title" content={defaultTitle} key="twitter:title" />
       <meta name="twitter:image" content={fallbackImage} key="twitter:image" />
 
       {/* Opengraph */}
@@ -63,7 +60,7 @@ const DefaultHead = (props) => {
         content={globals.siteName}
         key="og:site_name"
       />
-      <meta property="og:title" content={combinedTitle} key="og:title" />
+      <meta property="og:title" content={defaultTitle} key="og:title" />
       <meta property="og:image" content={fallbackImage} key="og:image" />
       <meta
         property="og:description"
@@ -90,10 +87,6 @@ const DefaultHead = (props) => {
       <script dangerouslySetInnerHTML={createScript()}></script>
     </Head>
   );
-};
-
-DefaultHead.propTypes = {
-  title: PropTypes.string
 };
 
 export default React.memo(DefaultHead);
