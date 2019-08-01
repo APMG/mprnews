@@ -10,11 +10,7 @@ import Icon from '../../components/Icons/Icon';
 import Metatags from '../../components/Metatags/Metatags';
 import Sidebar from '../../components/Sidebar/Sidebar';
 
-const Home = (props) => {
-  return <HomeInner data={props.data} />;
-};
-
-const HomeInner = ({ data }) => {
+const Home = ({ data }) => {
   const alerts = JSON.parse(data.alertConfig.json);
   const homeStoryConfig = JSON.parse(data.homeStoryConfig.json);
   const firstItem = data.homeList.results.items[0];
@@ -93,10 +89,6 @@ const HomeInner = ({ data }) => {
 };
 
 Home.propTypes = {
-  data: PropTypes.object
-};
-
-HomeInner.propTypes = {
   data: PropTypes.object
 };
 
