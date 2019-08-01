@@ -1,8 +1,8 @@
 /* eslint-disable react/display-name */
 import React from 'react';
+import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { format } from 'date-fns';
-import PropTypes from 'prop-types';
 import ContentGrid from '../../grids/ContentGrid';
 import ToSentence from '../../components/ToSentence/ToSentence';
 

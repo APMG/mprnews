@@ -1,17 +1,18 @@
 import React from 'react';
-import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
-import Error from 'next/error';
-import { globals } from '../../config/globals';
+import ErrorPage from 'next/error';
+import { Query } from 'react-apollo';
+import QueryError from '../../components/QueryError/QueryError';
+import query from './story.gql';
 import { Loading, Time } from '@apmg/titan';
 import { Image } from '@apmg/mimas';
 import { collectionLinkData } from '../../utils/utils';
-import Content from '../../components/Content/Content';
-import AudioPlayButton from '../../components/AudioPlayButton/AudioPlayButton';
-import Metatags from '../../components/Metatags/Metatags';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
+import { globals } from '../../config/globals';
+import AudioPlayButton from '../../components/AudioPlayButton/AudioPlayButton';
+import Content from '../../components/Content/Content';
+import Metatags from '../../components/Metatags/Metatags';
 import ShareSocialButtons from '../../components/ShareSocialButtons/ShareSocialButtons';
-import query from './story.gql';
 
 const Story = ({ slug, previewToken, minimal }) => (
   <Query
@@ -21,11 +22,13 @@ const Story = ({ slug, previewToken, minimal }) => (
       slug: slug,
       previewToken: previewToken
     }}
+    errorPolicy="all"
   >
     {({ loading, error, data }) => {
-      if (error) return <div>Error loading story</div>;
+      if (error) return <QueryError error={error.message} />;
       if (loading) return <Loading />;
-      if (data.story === null) return <Error statusCode={404} />;
+
+      if (data.story === null) return <ErrorPage statusCode={404} />;
 
       return <StoryInner story={data.story} minimal={minimal} />;
     }}
@@ -38,45 +41,24 @@ const StoryInner = ({ story, minimal }) => {
     authors = story.contributors.map((contributor) => {
       return {
         title: `${contributor.profile?.title}`,
-        href: `/people/${contributor.profile?.canonicalSlug}`
+        href: `/profile?slug=${contributor.profile?.canonicalSlug}`,
+        as: `/people/${contributor.profile?.canonicalSlug}`
       };
     });
   }
 
-  const socialImage = fishForSocialMediaImage(story);
-  const tags = [
-    {
-      key: 'description',
-      name: 'description',
-      content: story?.descriptionText
-    },
-    { key: 'og:image', name: 'og:image', content: socialImage },
-    {
-      key: 'mpr-content-topic',
-      name: 'mpr-content-topic',
-      content: story?.primaryCollection?.title
-    },
-    {
-      key: 'twitter:card',
-      name: 'twitter:card',
-      content: 'summary_large_image'
-    },
-    { key: 'twitter:image', name: 'twitter:image', content: socialImage }
-  ];
-  const links =
-    story.supportedOutputFormats.indexOf('amp') === -1
-      ? []
-      : [
-          {
-            key: 'amphtml',
-            rel: 'amphtml',
-            href: `https://www.mprnews.org/amp/story/${story?.canonicalSlug}`
-          }
-        ];
-
   return (
     <>
-      <Metatags title={story.title} metatags={tags} links={links} />
+      <Metatags
+        title={story.title}
+        fullSlug={`story/${story?.canonicalSlug}`}
+        description={story.descriptionText}
+        image={fishForSocialMediaImage(story)}
+        isAmp={story.supportedOutputFormats?.indexOf('amp') > -1}
+        topic={story?.primaryCollection?.title}
+        contentType="article"
+      />
+
       <Content
         title={story.title}
         subtitle={story.subtitle}

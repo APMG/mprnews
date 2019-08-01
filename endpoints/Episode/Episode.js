@@ -1,17 +1,18 @@
 import React from 'react';
-import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
-import Error from 'next/error';
-import { Loading, Time } from '@apmg/titan';
-import { globals } from '../../config/globals';
-import { Image } from '@apmg/mimas';
-import { collectionLinkData } from '../../utils/utils';
-import Content from '../../components/Content/Content';
-import AudioPlayButton from '../../components/AudioPlayButton/AudioPlayButton';
-import Metatags from '../../components/Metatags/Metatags';
-import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
-import ShareSocialButtons from '../../components/ShareSocialButtons/ShareSocialButtons';
+import ErrorPage from 'next/error';
+import { Query } from 'react-apollo';
+import QueryError from '../../components/QueryError/QueryError';
 import query from './episode.gql';
+import { Loading, Time } from '@apmg/titan';
+import { Image } from '@apmg/mimas';
+import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
+import { globals } from '../../config/globals';
+import { collectionLinkData } from '../../utils/utils';
+import AudioPlayButton from '../../components/AudioPlayButton/AudioPlayButton';
+import Content from '../../components/Content/Content';
+import Metatags from '../../components/Metatags/Metatags';
+import ShareSocialButtons from '../../components/ShareSocialButtons/ShareSocialButtons';
 
 const Episode = ({ slug, previewToken }) => (
   <Query
@@ -21,11 +22,13 @@ const Episode = ({ slug, previewToken }) => (
       slug: slug,
       previewToken: previewToken
     }}
+    errorPolicy="all"
   >
     {({ loading, error, data }) => {
-      if (error) return <div>Error loading episode</div>;
+      if (error) return <QueryError error={error.message} />;
       if (loading) return <Loading />;
-      if (data.episode === null) return <Error statusCode={404} />;
+
+      if (data.episode === null) return <ErrorPage statusCode={404} />;
 
       return <EpisodeInner episode={data.episode} />;
     }}
@@ -43,46 +46,23 @@ const EpisodeInner = ({ episode }) => {
       return {
         // prettier-ignore
         title: `${thisString}`,
-        href: `/profiles/${contributor.profile?.canonicalSlug}`
+        href: `/profile?slug=${contributor.profile?.canonicalSlug}`,
+        as: `/people/${contributor.profile?.canonicalSlug}`
       };
     });
   }
 
-  const socialImage = fishForSocialMediaImage(episode);
-  const tags = [
-    {
-      key: 'description',
-      name: 'description',
-      content: episode.descriptionText
-    },
-    {
-      key: 'mpr-content-topic',
-      name: 'mpr-content-topic',
-      content: collectionLinkData(episode.primaryCollection)
-    },
-    { key: 'og:image', name: 'og:image', content: socialImage },
-    {
-      key: 'twitter:card',
-      name: 'twitter:card',
-      content: 'summary_large_image'
-    },
-    { key: 'twitter:image', name: 'twitter:image', content: socialImage }
-  ];
-
-  const links =
-    episode.supportedOutputFormats.indexOf('amp') === -1
-      ? []
-      : [
-          {
-            key: 'amphtml',
-            rel: 'amphtml',
-            href: `https://www.mprnews.org/amp/episode/${episode?.canonicalSlug}`
-          }
-        ];
-
   return (
     <>
-      <Metatags title={episode.title} metatags={tags} links={links} />
+      <Metatags
+        title={episode.title}
+        fullSlug={`episode/${episode.canonicalSlug}`}
+        description={episode.descriptionText}
+        image={fishForSocialMediaImage(episode)}
+        isAmp={episode.supportedOutputFormats?.indexOf('amp') > -1}
+        topic={episode.primaryCollection?.title}
+        contentType="article"
+      />
 
       <Content
         title={episode.title}
