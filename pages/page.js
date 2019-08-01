@@ -38,7 +38,7 @@ StaticPage.getInitialProps = async ({ query: { slug, previewToken }, res }) => {
 };
 
 StaticPage.propTypes = {
-  data: PropTypes.object,
+  data: PropTypes.object
 };
 
 export default StaticPage;

@@ -7,11 +7,11 @@ import query from '../endpoints/Episode/episode.gql';
 
 /* eslint react/display-name: 0 */
 
-const AmpEpsiode = ({ data }) => {
+const AmpEpisode = ({ data }) => {
   return <Episode data={data} />;
 };
 
-AmpEpsiode.getInitialProps = async ({ query: { slug } }) => {
+AmpEpisode.getInitialProps = async ({ query: { slug } }) => {
   const ApolloClient = initApollo();
   let data;
   await ApolloClient.query({
@@ -30,7 +30,7 @@ AmpEpsiode.getInitialProps = async ({ query: { slug } }) => {
   };
 };
 
-AmpEpsiode.propTypes = {
+AmpEpisode.propTypes = {
   data: PropTypes.object
 };
 
