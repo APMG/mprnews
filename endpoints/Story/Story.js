@@ -10,11 +10,7 @@ import Content from '../../components/Content/Content';
 import Metatags from '../../components/Metatags/Metatags';
 import ShareSocialButtons from '../../components/ShareSocialButtons/ShareSocialButtons';
 
-const Story = ({ minimal, data }) => {
-  return <StoryInner story={data.story} minimal={minimal} />;
-};
-
-const StoryInner = ({ story, minimal }) => {
+const Story = ({ data: { story }, minimal }) => {
   let authors;
   if (story && story.contributors) {
     authors = story.contributors.map((contributor) => {
@@ -101,38 +97,35 @@ const StoryInner = ({ story, minimal }) => {
 };
 
 Story.propTypes = {
-  data: PropTypes.object,
-  minimal: PropTypes.bool
-};
-
-StoryInner.propTypes = {
-  story: PropTypes.shape({
-    canonicalSlug: PropTypes.string,
-    title: PropTypes.string,
-    subtitle: PropTypes.string,
-    dateline: PropTypes.string,
-    authors: PropTypes.arrayOf(
-      PropTypes.shape({
-        title: PropTypes.string,
-        href: PropTypes.string
+  data: PropTypes.shape({
+    story: PropTypes.shape({
+      canonicalSlug: PropTypes.string,
+      title: PropTypes.string,
+      subtitle: PropTypes.string,
+      dateline: PropTypes.string,
+      authors: PropTypes.arrayOf(
+        PropTypes.shape({
+          title: PropTypes.string,
+          href: PropTypes.string
+        })
+      ),
+      body: PropTypes.string,
+      contributors: PropTypes.array,
+      supportedOutputFormats: PropTypes.array,
+      descriptionText: PropTypes.string,
+      image: PropTypes.element,
+      imageCaption: PropTypes.string,
+      imageCredit: PropTypes.string,
+      imageCreditHref: PropTypes.string,
+      primaryAudio: PropTypes.any,
+      primaryCollection: PropTypes.any,
+      primaryVisuals: PropTypes.any,
+      publishDate: PropTypes.string,
+      embeddedAssetJson: PropTypes.string,
+      tag: PropTypes.shape({
+        tagName: PropTypes.string,
+        to: PropTypes.string
       })
-    ),
-    body: PropTypes.string,
-    contributors: PropTypes.array,
-    supportedOutputFormats: PropTypes.array,
-    descriptionText: PropTypes.string,
-    image: PropTypes.element,
-    imageCaption: PropTypes.string,
-    imageCredit: PropTypes.string,
-    imageCreditHref: PropTypes.string,
-    primaryAudio: PropTypes.any,
-    primaryCollection: PropTypes.any,
-    primaryVisuals: PropTypes.any,
-    publishDate: PropTypes.string,
-    embeddedAssetJson: PropTypes.string,
-    tag: PropTypes.shape({
-      tagName: PropTypes.string,
-      to: PropTypes.string
     })
   }),
   minimal: PropTypes.bool

@@ -5,7 +5,7 @@ import Story from '../endpoints/Story/Story';
 import ContentGrid from '../grids/ContentGrid';
 import Sidebar from '../components/Sidebar/Sidebar';
 import initApollo from '../lib/init-apollo';
-import storyQuery from '../endpoints/Story/storyQuery';
+import query from '../endpoints/Story/story.gql';
 
 const StoryPage = ({ data, previewToken, errorCode }) => {
   if (errorCode) return <ErrorPage statusCode={errorCode} />;
@@ -16,22 +16,25 @@ const StoryPage = ({ data, previewToken, errorCode }) => {
   );
 };
 
-StoryPage.getInitialProps = async ({ query: { slug, previewToken }, res }) => {
-  if (res) {
-    const errorCode = res.statusCode > 200 ? res.statusCode : false;
-    const ApolloClient = initApollo();
-    let data;
-    const query = storyQuery(slug, previewToken ? previewToken : null);
-    await ApolloClient.query({ query: query }).then((result) => {
-      data = result;
-    });
-    return {
+StoryPage.getInitialProps = async ({ query: { slug, previewToken } }) => {
+  const ApolloClient = initApollo();
+  let data;
+  // const query = storyQuery(slug, previewToken ? previewToken : null);
+  await ApolloClient.query({
+    query: query,
+    variables: {
+      contentAreaSlug: process.env.CONTENT_AREA_SLUG,
       slug: slug,
-      previewToken: previewToken || '',
-      data: data.data,
-      errorCode: errorCode
-    };
-  }
+      previewToken: previewToken
+    }
+  }).then((result) => {
+    data = result;
+  });
+  return {
+    slug: slug,
+    previewToken: previewToken || '',
+    data: data.data
+  };
 };
 
 StoryPage.propTypes = {
