@@ -1,5 +1,10 @@
-query collection($contentAreaSlug: String!, $slug: String!, $pageNum: Int) {
-  collection: collection(contentAreaSlug: $contentAreaSlug, slug: $slug) {
+import { gql } from 'apollo-boost';
+const collectionQuery = (slug, pageNum) => {
+  const q = `
+ {
+  collection: collection(contentAreaSlug: "${
+    process.env.CONTENT_AREA_SLUG
+  }", slug: "${slug}") {
     id
     title
     body
@@ -48,7 +53,7 @@ query collection($contentAreaSlug: String!, $slug: String!, $pageNum: Int) {
         }
       }
     }
-    results(page: $pageNum, pageSize: 10) {
+    results(page: ${parseInt(pageNum)}, pageSize: 10) {
       nextPage
       pageSize
       totalPages
@@ -124,4 +129,10 @@ query collection($contentAreaSlug: String!, $slug: String!, $pageNum: Int) {
       nextPage
     }
   }
-}
+}`;
+  return gql`
+    ${q}
+  `;
+};
+
+export default collectionQuery;
