@@ -4,7 +4,7 @@ import Collection from '../endpoints/Collection/Collection';
 import ContentGrid from '../grids/ContentGrid';
 import Sidebar from '../components/Sidebar/Sidebar';
 import initApollo from '../lib/init-apollo';
-import collectionQuery from '../endpoints/Collection/collectionQuery.js';
+import query from '../endpoints/Collection/collection.gql';
 
 /* eslint react/display-name: 0 */
 
@@ -17,8 +17,14 @@ const CollectionPage = ({ data, slug, pageNum }) => (
 CollectionPage.getInitialProps = async ({ query: { slug, pageNum = 1 } }) => {
   const ApolloClient = initApollo();
   let data;
-  const query = collectionQuery(slug, parseInt(pageNum));
-  await ApolloClient.query({ query: query }).then((result) => {
+  await ApolloClient.query({
+    query: query,
+    variables: {
+      contentAreaSlug: process.env.CONTENT_AREA_SLUG,
+      slug: slug,
+      pageNum: parseInt(pageNum)
+    }
+  }).then((result) => {
     data = result.data;
   });
   return { data: data.collection, slug: slug, pageNum: parseInt(pageNum) };

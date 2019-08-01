@@ -1,25 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ErrorPage from 'next/error';
 import Story from '../endpoints/Story/Story';
+import initApollo from '../lib/init-apollo';
+import query from '../endpoints/Story/story.gql';
 
-const NewspartnerStory = ({ slug, errorCode }) => {
-  if (errorCode) return <ErrorPage statusCode={errorCode} />;
-  return <Story slug={slug} minimal={true} />;
+const NewspartnerStory = ({ data }) => {
+  return <Story data={data} minimal={true} />;
 };
 
-NewspartnerStory.getInitialProps = async ({ query: { slug }, res }) => {
-  if (res) {
-    const errorCode = res.statusCode > 200 ? res.statusCode : false;
-    return { slug: slug, layout: 'newspartners', errorCode };
-  }
-
-  return { slug: slug, layout: 'newspartners' };
+NewspartnerStory.getInitialProps = async ({ query: { slug } }) => {
+  const ApolloClient = initApollo();
+  let data;
+  // const query = storyQuery(slug, previewToken ? previewToken : null);
+  await ApolloClient.query({
+    query: query,
+    variables: {
+      contentAreaSlug: process.env.CONTENT_AREA_SLUG,
+      slug: slug
+    }
+  }).then((result) => {
+    data = result;
+  });
+  return {
+    data: data.data,
+    layout: 'newspartners'
+  };
 };
 
 NewspartnerStory.propTypes = {
-  slug: PropTypes.string,
-  errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool])
+  data: PropTypes.object
 };
 
 export default NewspartnerStory;
