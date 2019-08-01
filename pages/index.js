@@ -27,7 +27,10 @@ HomePage.getInitialProps = async ({ res }) => {
   const ApolloClient = initApollo();
   await ApolloClient.query({
     query: query,
-    variables: { contentAreaSlug: 'mprnews', slug: 'homepage' }
+    variables: {
+      contentAreaSlug: process.env.CONTENT_AREA_SLUG,
+      slug: 'homepage'
+    }
   }).then((result) => {
     data = result;
   });
