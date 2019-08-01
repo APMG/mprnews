@@ -1,16 +1,18 @@
 import React from 'react';
-import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
-import Error from 'next/error';
-import { globals } from '../../config/globals';
+import ErrorPage from 'next/error';
+import Link from 'next/link';
+import { Query } from 'react-apollo';
+import QueryError from '../../components/QueryError/QueryError';
+import query from './profile.gql';
 import { Heading, Loading } from '@apmg/titan';
 import { Image } from '@apmg/mimas';
 import { Body } from '@apmg/amat';
-import query from './profile.gql';
-import Metatags from '../../components/Metatags/Metatags';
+import { globals } from '../../config/globals';
+import { linkByTypeHref, linkByTypeAs } from '../../utils/cjsutils';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
-import Link from 'next/link';
-import { linkByTypeAs } from '../../utils/cjsutils';
+import Metatags from '../../components/Metatags/Metatags';
+
 const Profile = ({ slug, previewToken }) => (
   <Query
     query={query}
@@ -19,11 +21,13 @@ const Profile = ({ slug, previewToken }) => (
       slug: slug,
       previewToken: previewToken
     }}
+    errorPolicy="all"
   >
     {({ loading, error, data }) => {
-      if (error) return <div>{`Error: ${error}`}</div>;
+      if (error) return <QueryError error={error.message} />;
       if (loading) return <Loading />;
-      if (data.profile === null) return <Error statusCode={404} />;
+
+      if (data.profile === null) return <ErrorPage statusCode={404} />;
 
       return <ProfileInner profile={data.profile} />;
     }}
@@ -31,24 +35,16 @@ const Profile = ({ slug, previewToken }) => (
 );
 
 const ProfileInner = ({ profile }) => {
-  const socialImage = fishForSocialMediaImage(profile);
-  const tags = [
-    {
-      key: 'description',
-      name: 'description',
-      content: profile?.descriptionText
-    },
-    { key: 'og:image', name: 'og:image', content: socialImage },
-    {
-      key: 'twitter:card',
-      name: 'twitter:card',
-      content: 'summary_large_image'
-    },
-    { key: 'twitter:image', name: 'twitter:image', content: socialImage }
-  ];
   return (
     <>
-      <Metatags title={profile?.title} metatags={tags} links={[]} />
+      <Metatags
+        title={profile.title}
+        fullSlug={`people/${profile.canonicalSlug}`}
+        description={profile.descriptionText}
+        image={fishForSocialMediaImage(profile)}
+        topic={profile.primaryCollection?.title}
+      />
+
       <section className="page section">
         <div className="content">
           <div className="content_body userContent">
@@ -102,16 +98,16 @@ const ProfileInner = ({ profile }) => {
                   {profile &&
                     profile.contributions &&
                     profile.contributions.map((contribution) => {
+                      const linkHref = linkByTypeHref(contribution);
                       const linkAs = linkByTypeAs(contribution);
                       return (
                         <li key={contribution.id}>
-                          <Link
-                            href={`/${contribution.resourceType}/${contribution.canonicalSlug}`}
-                            as={linkAs}
-                          >
+                          <Link href={linkHref} as={linkAs}>
                             <a className="contributer">
                               {contribution.title}
-                              <div>{contribution.descriptionText}</div>
+                              {contribution.descriptionText && (
+                                <div>{contribution.descriptionText}</div>
+                              )}
                             </a>
                           </Link>
                         </li>

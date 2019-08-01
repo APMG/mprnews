@@ -14,11 +14,13 @@ query episode(
     canonicalSlug
     supportedOutputFormats
     primaryCollection {
+      id
       title
       canonicalSlug
     }
     contributors {
       profile {
+        id
         firstName
         lastName
         canonicalSlug
@@ -30,8 +32,10 @@ query episode(
     publishDate
     body
     description
+    descriptionText
     resourceType
     primaryAudio {
+      id
       title
       credit
       durationHms
@@ -45,6 +49,9 @@ query episode(
     }
     embeddedAssetJson
     primaryVisuals {
+      social {
+        fallback
+      }
       lead {
         preferredAspectRatio {
           instances {

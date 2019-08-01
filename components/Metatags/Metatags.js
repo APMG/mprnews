@@ -1,87 +1,105 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { globals } from '../../config/globals';
 import Head from 'next/head';
-import fallback_image from '../../static/opengraph-fallback.png';
-import faviconpng from '../../static/favicon.png';
-import favicon from '../../static/favicon.ico';
-import appletouch from '../../static/apple-touch-icon.png';
 
 const Metatags = (props) => {
-  const metaDefaults = [
-    {
-      key: 'viewport',
-      name: 'viewport',
-      content: 'width=device-width,initial-scale=1.0'
-    },
-    { key: 'charSet', charSet: 'utf-8' },
-    {
-      key: 'X-UA-Compatible',
-      httpEquiv: 'X-UA-Compatible',
-      content: 'IE=edge,chrome=1'
-    },
-    { key: 'mpr-site', name: 'mpr-site', content: 'news' },
-    { key: 'twitter:site', name: 'twitter:site', content: '@mprnews' },
-    { key: 'twitter:widgets:csp', name: 'twitter:widgets:csp', content: 'on' },
-    { key: 'twitter:card', name: 'twitter:card', content: 'summary' },
-    {
-      key: 'twitter:image',
-      name: 'twitter:image',
-      content: fallback_image
-    },
-    { key: 'og:image', name: 'og:image', content: fallback_image }
-  ];
-  const favicons = [
-    { key: 'icon', rel: 'icon', type: 'image/png', href: faviconpng },
-    {
-      key: 'image/x-icon',
-      rel: 'shortcut icon',
-      href: favicon,
-      type: 'image/x-icon'
-    },
-    { key: 'apple-touch-icon', rel: 'apple-touch-icon', href: appletouch }
-  ];
-  // dedupe
-  const metatags = metaDefaults.concat(props.metatags);
-  const combinedTitle = props.title ? `${props.title} | MPR News` : 'MPR News';
-  const gtmId = 'GTM-KTT2Z2';
-  const scriptHtml = `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push(
-      {'gtm.start': new Date().getTime(),event:'gtm.js'}
-    );
-    var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;
-    j.src= 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','${gtmId}');`;
-  const createScript = () => {
-    return { __html: scriptHtml };
-  };
+  const combinedTitle = props.title
+    ? `${props.title} | ${globals.siteName}`
+    : globals.siteName;
+  const fullUrl = props.fullSlug
+    ? `${globals.hostnameProd}/${props.fullSlug}`
+    : null;
+
   return (
     <Head>
-      {metatags.map((tag) => {
-        return <meta key={tag.key} {...tag} />;
-      })}
-
-      {favicons.map((link) => {
-        return <link key={link.key} {...link} />;
-      })}
-
-      {props.links.map((link) => {
-        return <link key={link.key} {...link} />;
-      })}
-
       <title>{combinedTitle}</title>
 
-      <link
-        href="https://fonts.googleapis.com/css?family=Noto+Serif:400,400i|Roboto+Condensed:700|Roboto:400,700&display=swap&subset=latin-ext"
-        rel="stylesheet"
-      />
+      {props.topic && (
+        <meta
+          name="mpr-content-topic"
+          content={props.topic}
+          key="mpr-content-topic"
+        />
+      )}
 
-      <script dangerouslySetInnerHTML={createScript()}></script>
+      {props.title && (
+        <>
+          <meta name="title" content={props.title} key="title" />
+          <meta
+            name="twitter:title"
+            content={props.title}
+            key="twitter:title"
+          />
+          <meta property="og:title" content={props.title} key="og:title" />
+        </>
+      )}
+
+      {props.description && (
+        <>
+          <meta
+            name="description"
+            content={props.description}
+            key="description"
+          />
+          <meta
+            name="twitter:description"
+            content={props.description}
+            key="twitter:description"
+          />
+          <meta
+            property="og:description"
+            content={props.description}
+            key="og:description"
+          />
+        </>
+      )}
+
+      {props.image && (
+        <>
+          <meta
+            name="twitter:image"
+            content={props.image}
+            key="twitter:image"
+          />
+          <meta name="og:image" content={props.image} key="og:image" />
+        </>
+      )}
+
+      {props.fullSlug && (
+        <>
+          <link rel="canonical" href={fullUrl} key="canonical" />
+          <meta property="og:url" content={fullUrl} key="og:url" />
+        </>
+      )}
+
+      {props.contentType && (
+        <meta property="og:type" content={props.contentType} key="og:type" />
+      )}
+
+      {props.isAmp && props.fullSlug && (
+        <link
+          rel="amphtml"
+          href={`${globals.hostnameProd}/amp/${props.fullSlug}`}
+          key="amphtml"
+        />
+      )}
+
+      {/* Any custom meta tags */}
+      {props.children}
     </Head>
   );
 };
 
 Metatags.propTypes = {
-  metatags: PropTypes.array.isRequired,
-  links: PropTypes.array.isRequired,
-  title: PropTypes.string
+  fullSlug: PropTypes.string, // This should include any routing prefixes, e.g. '/story'
+  children: PropTypes.node,
+  contentType: PropTypes.oneOf(['article', 'profile', 'website']),
+  description: PropTypes.string,
+  image: PropTypes.string,
+  isAmp: PropTypes.bool,
+  title: PropTypes.string,
+  topic: PropTypes.string
 };
 
 export default React.memo(Metatags);

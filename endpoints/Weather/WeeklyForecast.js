@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
-import WeatherIcon from '../../components/WeatherIcons/WeatherIcon';
 import { Heading } from '@apmg/titan';
+import WeatherIcon from '../../components/WeatherIcons/WeatherIcon';
 
 const ICON_SIZE = 75;
 

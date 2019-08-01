@@ -1,15 +1,16 @@
 import React from 'react';
-import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
-import Error from 'next/error';
-import { globals } from '../../config/globals';
+import ErrorPage from 'next/error';
+import { Query } from 'react-apollo';
+import QueryError from '../../components/QueryError/QueryError';
+import query from './page.gql';
 import { Loading } from '@apmg/titan';
 import { Image } from '@apmg/mimas';
+import { globals } from '../../config/globals';
 import { collectionLinkData } from '../../utils/utils';
 import Content from '../../components/Content/Content';
 import Metatags from '../../components/Metatags/Metatags';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
-import query from './page.gql';
 
 const Page = ({ slug, previewToken }) => (
   <Query
@@ -19,11 +20,13 @@ const Page = ({ slug, previewToken }) => (
       slug: slug,
       previewToken: previewToken
     }}
+    errorPolicy="all"
   >
     {({ loading, error, data }) => {
-      if (error) return <div>{`Error: ${error}`}</div>;
+      if (error) return <QueryError error={error.message} />;
       if (loading) return <Loading />;
-      if (data.page === null) return <Error statusCode={404} />;
+
+      if (data.page === null) return <ErrorPage statusCode={404} />;
 
       return <PageInner page={data.page} />;
     }}
@@ -31,28 +34,17 @@ const Page = ({ slug, previewToken }) => (
 );
 
 const PageInner = ({ page }) => {
-  const socialImage = fishForSocialMediaImage(page);
-  const tags = [
-    { key: 'description', name: 'description', content: page.descriptionText },
-    { key: 'og:image', name: 'og:image', content: socialImage },
-    {
-      key: 'twitter:card',
-      name: 'twitter:card',
-      content: 'summary_large_image'
-    },
-    { key: 'twitter:image', name: 'twitter:image', content: socialImage }
-  ];
-  const links = [
-    {
-      key: 'amphtml',
-      rel: 'amphtml',
-      href: `https://www.mprnews.org/amp/page/${page.canonicalSlug}`
-    }
-  ];
-
   return (
     <>
-      <Metatags title={page.title} metatags={tags} links={links} />
+      <Metatags
+        title={page.title}
+        fullSlug={`episode/${page.canonicalSlug}`}
+        description={page.descriptionText}
+        image={fishForSocialMediaImage(page)}
+        isAmp={page.supportedOutputFormats?.indexOf('amp') > -1}
+        topic={page.primaryCollection?.title}
+        contentType="article"
+      />
 
       <Content
         title={page.title}
@@ -74,7 +66,7 @@ const PageInner = ({ page }) => {
         imageCreditHref={page.primaryVisuals?.lead?.credit?.url}
         embeddedAssetJson={page.embeddedAssetJson}
         tag={collectionLinkData(page.primaryCollection)}
-        elementClass="episode"
+        elementClass="page"
       />
     </>
   );
@@ -92,6 +84,7 @@ PageInner.propTypes = {
     subtitle: PropTypes.string,
     body: PropTypes.string,
     descriptionText: PropTypes.string,
+    supportedOutputFormats: PropTypes.array,
     image: PropTypes.element,
     imageCaption: PropTypes.string,
     imageCredit: PropTypes.string,
