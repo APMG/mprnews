@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Heading } from '@apmg/titan';
 import Link from 'next/link';
@@ -15,12 +15,36 @@ const ContentHeader = (props) => {
 
   const authorTosStr = JSON.stringify(authorsTag);
 
+  const contentTopicHeaderRef = useRef(null);
+  //No array passed for useEffect
+  //expected behavior is to let useEffect  run on rerender
+  useEffect(() => {
+    // console.log('content header ref', contentTopicHeaderRef);
+    if (!contentTopicHeaderRef) {
+      console.log('no topic info in content header', contentTopicHeaderRef);
+      return;
+    } else if (contentTopicHeaderRef) {
+      console.log(
+        'RELOAD ads check info in content header',
+        contentTopicHeaderRef
+      );
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'sendUWContentTopic',
+        contentTopic: props.tag.tagName
+      });
+    } else {
+      console.error('you broke something');
+    }
+  }, [props.tag.tagName]);
+
   return (
     <header className="content_header">
       {props.tag && (
         <div
           className="content_topic page-purpose"
           data-mpr-content-topic={props.tag.tagName}
+          ref={contentTopicHeaderRef}
         >
           <Link
             href={`/collection?slug=${props.tag.to}`}

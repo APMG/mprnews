@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { Query } from 'react-apollo';
@@ -35,6 +35,28 @@ const Home = () => {
 };
 
 const HomeInner = ({ data }) => {
+  const contentTopicHomepageRef = useRef(null);
+  //No array passed for useEffect
+  //expected behavior is to let useEffect  run on rerender
+  useEffect(() => {
+    // console.log('ct homepage ref', contentTopicHomepageRef);
+    if (!contentTopicHomepageRef) {
+      console.log('no topic info in content header', contentTopicHomepageRef);
+      return;
+    } else if (contentTopicHomepageRef) {
+      console.log(
+        'RELOAD ads check info in content header',
+        contentTopicHomepageRef
+      );
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'sendUWContentTopic',
+        contentTopic: 'homepage'
+      });
+    } else {
+      console.error('you broke something');
+    }
+  });
   const alerts = JSON.parse(data.alertConfig.json);
   const homeStoryConfig = JSON.parse(data.homeStoryConfig.json);
   const firstItem = data.homeList.results.items[0];
@@ -46,7 +68,12 @@ const HomeInner = ({ data }) => {
   };
 
   return (
-    <div className="page-purpose" data-mpr-content-topic="homepage">
+    <div
+      className="page-purpose"
+      data-mpr-content-topic="homepage"
+      ref={contentTopicHomepageRef}
+    >
+      {console.log('Home React DIV')}
       <Metatags
         metatags={[
           {
