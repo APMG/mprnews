@@ -44,7 +44,7 @@ const HomeInner = ({ data }) => {
       ? true
       : false;
   };
-
+  const homepageTopic = 'homepage';
   return (
     <div className="page-purpose" data-mpr-content-topic="homepage">
       <Metatags
@@ -59,7 +59,7 @@ const HomeInner = ({ data }) => {
       />
       <HomeGrid
         blowout={homeStoryConfig?.top_story_blowout}
-        sidebar={<Sidebar />}
+        sidebar={<Sidebar homepageTopic={homepageTopic} />}
         first={<FullTeaser item={firstItem} />}
         rail={<HomeRail updraft={data.updraft?.results?.items?.[0]} />}
         top={showInfoAlert() ? <HomeTop info={alerts.info} /> : null}

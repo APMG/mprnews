@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import ErrorPage from 'next/error';
 import { Query } from 'react-apollo';
@@ -42,6 +42,23 @@ const Collection = ({ collectionName, pageNum }) => {
 };
 
 const CollectionInner = ({ collection, pageNum, collectionName }) => {
+  const contentTopicCollectionRef = useRef(null);
+  let checkCollectionName = `${collection?.title}`;
+  if (!checkCollectionName) {
+    checkCollectionName = 'default';
+  }
+  //No array passed for useEffect expected behavior is to let useEffect run on rerender
+  useEffect(() => {
+    if (contentTopicCollectionRef) {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'sendUWContentTopic',
+        contentTopic: checkCollectionName
+      });
+    } else {
+      console.error('you broke the ads');
+    }
+  }, [checkCollectionName]);
   return (
     <>
       <Metatags
@@ -56,6 +73,7 @@ const CollectionInner = ({ collection, pageNum, collectionName }) => {
       <section
         className="collection page-purpose"
         data-mpr-content-topic={collection.title}
+        ref={contentTopicCollectionRef}
       >
         <div className="collection_header">
           <Heading level={1} className="hdg hdg-section">

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Heading } from '@apmg/titan';
 import Link from 'next/link';
@@ -7,13 +7,30 @@ import Byline from '../Byline/Byline';
 const ContentHeader = (props) => {
   let authorsTag = [];
 
+  let checkTagName = `${props?.tag?.tagName}`;
+
   if (props.authors?.length > 0) {
     props.authors.forEach((author) => {
       authorsTag.push(author.title);
     });
   }
-
+  if (!checkTagName) {
+    checkTagName = 'default';
+  }
   const authorTosStr = JSON.stringify(authorsTag);
+  const contentTopicHeaderRef = useRef(null);
+  //No array passed for useEffect expected behavior is to let useEffect run on rerender
+  useEffect(() => {
+    if (contentTopicHeaderRef) {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'sendUWContentTopic',
+        contentTopic: checkTagName
+      });
+    } else {
+      console.error('you broke the ads');
+    }
+  }, [checkTagName]);
 
   return (
     <header className="content_header">
@@ -21,6 +38,7 @@ const ContentHeader = (props) => {
         <div
           className="content_topic page-purpose"
           data-mpr-content-topic={props.tag.tagName}
+          ref={contentTopicHeaderRef}
         >
           <Link
             href={`/collection?slug=${props.tag.to}`}
