@@ -25,7 +25,7 @@ module.exports.dynamic = (server, app, handle) => {
       res.set('Cache-Control', 'public, max-age=60');
       return app.render(req, res, routes[data.resourceType], {
         slug: slug,
-        pageNum: pageNum
+        pageNum: pageNum.toString()
       });
     });
   });
