@@ -20,7 +20,7 @@ const StaticPage = ({ data, errorCode }) => {
 
 StaticPage.getInitialProps = async ({ query: { slug, previewToken }, res }) => {
   const ApolloClient = initApollo();
-  let data;
+  let data, errorCode;
   await ApolloClient.query({
     query: query,
     variables: {
@@ -32,10 +32,10 @@ StaticPage.getInitialProps = async ({ query: { slug, previewToken }, res }) => {
     data = result.data;
     if (!data.page) {
       res.status(404);
+      errorCode = res.statusCode > 200 ? res.statusCode : false;
     }
   });
 
-  const errorCode = res.statusCode > 200 ? res.statusCode : false;
   return {
     data: data,
     errorCode: errorCode

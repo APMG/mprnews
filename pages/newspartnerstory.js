@@ -21,14 +21,14 @@ NewspartnerStory.getInitialProps = async ({ query: { slug }, res }) => {
       slug: slug
     }
   }).then((result) => {
-    data = result;
+    data = result.data;
     if (res && !data.story) {
       res.status(404);
       errorCode = res.statusCode > 200 ? res.statusCode : false;
     }
   });
   return {
-    data: data.data,
+    data: data,
     errorCode: errorCode,
     layout: 'newspartners'
   };
