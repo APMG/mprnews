@@ -63,12 +63,14 @@ query collection($contentAreaSlug: String!, $slug: String!, $pageNum: Int) {
         }
         contributors {
           profile {
+	    id
             firstName
             lastName
           }
         }
         primaryVisuals {
           thumbnail {
+	    xid
             aspect_ratios: aspectRatios {
               uncropped {
                 instances {
@@ -110,8 +112,6 @@ query collection($contentAreaSlug: String!, $slug: String!, $pageNum: Int) {
           destination
         }
       }
-      totalItems
-      nextPage
     }
   }
 }
