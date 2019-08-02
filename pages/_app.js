@@ -1,11 +1,11 @@
 import App, { Container } from 'next/app';
 import React from 'react';
+import initApollo from '../lib/init-apollo';
 import { ApolloProvider } from 'react-apollo';
 import NowPlayingClient from 'nowplaying-client';
 import { weatherConfig } from '../utils/defaultData';
 import AudioPlayerContext from '../context/AudioPlayerContext';
 import LocationContext from '../context/LocationContext';
-import withApolloClient from '../lib/with-apollo-client';
 import Layout from '../layouts/Layout';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
@@ -208,13 +208,13 @@ class MPRNews extends App {
   };
 
   render() {
-    const { Component, pageProps, apolloClient } = this.props;
+    const { Component, pageProps } = this.props;
     const { location, handleLocationChange } = this.state;
     return (
       <AudioPlayerContext.Provider value={this.state}>
         <LocationContext.Provider value={{ location, handleLocationChange }}>
           <Container>
-            <ApolloProvider client={apolloClient}>
+            <ApolloProvider client={initApollo()}>
               <Layout layout={pageProps?.layout}>
                 <Component {...pageProps} />
               </Layout>
@@ -226,4 +226,4 @@ class MPRNews extends App {
   }
 }
 
-export default withApolloClient(MPRNews);
+export default MPRNews;

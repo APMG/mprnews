@@ -1,12 +1,24 @@
-query collection($contentAreaSlug: String!, $slug: String!, $pageNum: Int) {
-  collection: collection(contentAreaSlug: $contentAreaSlug, slug: $slug) {
+import { gql } from 'apollo-boost';
+const collectionQuery = (slug, pageNum) => {
+  const q = `
+ {
+  collection: collection(contentAreaSlug: "${
+    process.env.CONTENT_AREA_SLUG
+  }", slug: "${slug}") {
     id
     title
     body
+    descriptionText
+    primaryVisuals {
+      social {
+        fallback
+      }
+    }
     embeddedAssetJson
     canonicalSlug
     contributors {
       profile {
+        id
         canonicalSlug
         firstName
         lastName
@@ -17,6 +29,7 @@ query collection($contentAreaSlug: String!, $slug: String!, $pageNum: Int) {
         }
         primaryVisuals {
           thumbnail {
+            xid
             longCaption
             shortCaption
             fallback
@@ -40,7 +53,7 @@ query collection($contentAreaSlug: String!, $slug: String!, $pageNum: Int) {
         }
       }
     }
-    results(page: $pageNum, pageSize: 10) {
+    results(page: ${parseInt(pageNum)}, pageSize: 10) {
       nextPage
       pageSize
       totalPages
@@ -55,6 +68,7 @@ query collection($contentAreaSlug: String!, $slug: String!, $pageNum: Int) {
         canonicalSlug
         resourceType
         audio {
+          id
           encodings {
             httpFilePath
             durationMs
@@ -95,6 +109,7 @@ query collection($contentAreaSlug: String!, $slug: String!, $pageNum: Int) {
           }
         }
         audio {
+          id
           title
           durationHms
           encodings {
@@ -114,4 +129,10 @@ query collection($contentAreaSlug: String!, $slug: String!, $pageNum: Int) {
       nextPage
     }
   }
-}
+}`;
+  return gql`
+    ${q}
+  `;
+};
+
+export default collectionQuery;
