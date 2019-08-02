@@ -3,10 +3,11 @@ import Link from 'next/link';
 import { format } from 'date-fns';
 import AdBottom from '../../components/Ads/AdBottom';
 import AdTop from '../../components/Ads/AdTop';
+import PropTypes from 'prop-types';
 
-const Sidebar = () => {
+const Sidebar = (props) => {
   const programDate = format(new Date(), 'ddd');
-
+  const { homepageTopic } = props;
   return (
     <div className="sidebar">
       <div className="section section-sm">
@@ -26,10 +27,14 @@ const Sidebar = () => {
         <AdTop />
       </div>
       <div className="section-sm">
-        <AdBottom />
+        <AdBottom homepageTopic={homepageTopic} />
       </div>
     </div>
   );
+};
+
+Sidebar.propTypes = {
+  homepageTopic: PropTypes.string
 };
 
 export default React.memo(Sidebar);
