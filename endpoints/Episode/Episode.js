@@ -1,18 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Time } from '@apmg/titan';
+import ErrorPage from 'next/error';
+import { Query } from 'react-apollo';
+import QueryError from '../../components/QueryError/QueryError';
+import query from './episode.gql';
+import { Loading, Time } from '@apmg/titan';
+import { Image } from '@apmg/mimas';
+import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
 import { globals } from '../../config/globals';
 import { collectionLinkData } from '../../utils/utils';
 import AudioPlayButton from '../../components/AudioPlayButton/AudioPlayButton';
 import Content from '../../components/Content/Content';
 import Metatags from '../../components/Metatags/Metatags';
 import ShareSocialButtons from '../../components/ShareSocialButtons/ShareSocialButtons';
-import { Image } from '@apmg/mimas';
-import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
 
-const Episode = ({ data }) => {
-  return <EpisodeInner episode={data} />;
-};
+const Episode = ({ slug, previewToken }) => (
+  <Query
+    query={query}
+    variables={{
+      contentAreaSlug: process.env.CONTENT_AREA_SLUG,
+      slug: slug,
+      previewToken: previewToken
+    }}
+    errorPolicy="all"
+  >
+    {({ loading, error, data }) => {
+      if (error) return <QueryError error={error.message} />;
+      if (loading) return <Loading />;
+
+      if (data.episode === null) return <ErrorPage statusCode={404} />;
+
+      return <EpisodeInner episode={data.episode} />;
+    }}
+  </Query>
+);
 
 const EpisodeInner = ({ episode }) => {
   let authors;
@@ -87,7 +108,8 @@ const EpisodeInner = ({ episode }) => {
 };
 
 Episode.propTypes = {
-  data: PropTypes.object
+  slug: PropTypes.string,
+  previewToken: PropTypes.string
 };
 
 EpisodeInner.propTypes = {

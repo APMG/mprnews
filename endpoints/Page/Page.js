@@ -1,5 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ErrorPage from 'next/error';
+import { Query } from 'react-apollo';
+import QueryError from '../../components/QueryError/QueryError';
+import query from './page.gql';
+import { Loading } from '@apmg/titan';
 import { Image } from '@apmg/mimas';
 import { globals } from '../../config/globals';
 import { collectionLinkData } from '../../utils/utils';
@@ -7,9 +12,26 @@ import Content from '../../components/Content/Content';
 import Metatags from '../../components/Metatags/Metatags';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
 
-const Page = ({ data }) => {
-  return <PageInner page={data.page} />;
-};
+const Page = ({ slug, previewToken }) => (
+  <Query
+    query={query}
+    variables={{
+      contentAreaSlug: process.env.CONTENT_AREA_SLUG,
+      slug: slug,
+      previewToken: previewToken
+    }}
+    errorPolicy="all"
+  >
+    {({ loading, error, data }) => {
+      if (error) return <QueryError error={error.message} />;
+      if (loading) return <Loading />;
+
+      if (data.page === null) return <ErrorPage statusCode={404} />;
+
+      return <PageInner page={data.page} />;
+    }}
+  </Query>
+);
 
 const PageInner = ({ page }) => {
   return (
@@ -51,7 +73,8 @@ const PageInner = ({ page }) => {
 };
 
 Page.propTypes = {
-  data: PropTypes.object
+  slug: PropTypes.string,
+  previewToken: PropTypes.string
 };
 
 PageInner.propTypes = {

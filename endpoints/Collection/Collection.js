@@ -1,20 +1,43 @@
 import React, { useEffect, useRef } from 'react';
-import { Heading } from '@apmg/titan';
-import { Body } from '@apmg/amat';
 import PropTypes from 'prop-types';
+import ErrorPage from 'next/error';
+import { Query } from 'react-apollo';
+import QueryError from '../../components/QueryError/QueryError';
+import query from './collection.gql';
+import { Heading, Loading } from '@apmg/titan';
+import { Body } from '@apmg/amat';
 import CollectionContributors from './CollectionContributors';
 import FullTeaser from '../../components/FullTeaser/FullTeaser';
 import Metatags from '../../components/Metatags/Metatags';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
 import Pagination from '../../components/Pagination/Pagination';
 
-const Collection = ({ data, slug, pageNum }) => {
+const Collection = ({ collectionName, pageNum }) => {
   return (
-    <CollectionInner
-      collectionName={slug}
-      collection={data}
-      pageNum={parseInt(pageNum)}
-    />
+    <Query
+      query={query}
+      variables={{
+        contentAreaSlug: process.env.CONTENT_AREA_SLUG,
+        slug: collectionName,
+        pageNum: pageNum
+      }}
+      errorPolicy="all"
+    >
+      {({ loading, error, data }) => {
+        if (error) return <QueryError error={error.message} />;
+        if (loading) return <Loading />;
+
+        if (data.collection === null) return <ErrorPage statusCode={404} />;
+
+        return (
+          <CollectionInner
+            collectionName={collectionName}
+            collection={data.collection}
+            pageNum={parseInt(pageNum)}
+          />
+        );
+      }}
+    </Query>
   );
 };
 
@@ -100,13 +123,12 @@ const CollectionInner = ({ collection, pageNum, collectionName }) => {
 
 CollectionInner.propTypes = {
   collection: PropTypes.object,
-  pageNum: PropTypes.number,
-  collectionName: PropTypes.string
+  collectionName: PropTypes.string,
+  pageNum: PropTypes.number
 };
 
 Collection.propTypes = {
-  data: PropTypes.object,
-  slug: PropTypes.string,
+  collectionName: PropTypes.string,
   pageNum: PropTypes.number
 };
 
