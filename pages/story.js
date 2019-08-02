@@ -7,19 +7,19 @@ import Sidebar from '../components/Sidebar/Sidebar';
 import initApollo from '../lib/init-apollo';
 import query from '../endpoints/Story/story.gql';
 
-const StoryPage = ({ data, previewToken, errorCode }) => {
+const StoryPage = ({ data, errorCode }) => {
   if (errorCode) return <ErrorPage statusCode={errorCode} />;
   return (
     <ContentGrid sidebar={<Sidebar />}>
-      <Story minimal={false} data={data} previewToken={previewToken} />
+      <Story minimal={false} data={data} />
     </ContentGrid>
   );
 };
 
-StoryPage.getInitialProps = async ({ query: { slug, previewToken } }) => {
+StoryPage.getInitialProps = async ({ query: { slug, previewToken }, res }) => {
   const ApolloClient = initApollo();
   let data;
-  // const query = storyQuery(slug, previewToken ? previewToken : null);
+  let errorCode;
   await ApolloClient.query({
     query: query,
     variables: {
@@ -28,17 +28,19 @@ StoryPage.getInitialProps = async ({ query: { slug, previewToken } }) => {
       previewToken: previewToken
     }
   }).then((result) => {
-    data = result;
+    data = result.data;
+    if (res && !data.story) {
+      res.status(404);
+      errorCode = res.statusCode > 200 ? res.statusCode : false;
+    }
   });
   return {
-    slug: slug,
-    previewToken: previewToken || '',
-    data: data.data
+    data: data,
+    errorCode: errorCode
   };
 };
 
 StoryPage.propTypes = {
-  previewToken: PropTypes.string,
   errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
   data: PropTypes.object
 };

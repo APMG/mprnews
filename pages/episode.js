@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ErrorPage from 'next/error';
 import Episode from '../endpoints/Episode/Episode';
 import ContentGrid from '../grids/ContentGrid';
 import Sidebar from '../components/Sidebar/Sidebar';
@@ -8,13 +9,19 @@ import query from '../endpoints/Episode/episode.gql';
 
 /* eslint react/display-name: 0 */
 
-const EpisodePage = ({ data }) => (
-  <ContentGrid sidebar={<Sidebar />}>
-    <Episode data={data} />
-  </ContentGrid>
-);
+const EpisodePage = ({ data, errorCode }) => {
+  if (errorCode) return <ErrorPage statusCode={errorCode} />;
+  return (
+    <ContentGrid sidebar={<Sidebar />}>
+      <Episode data={data} />
+    </ContentGrid>
+  );
+};
 
-EpisodePage.getInitialProps = async ({ query: { slug, previewToken } }) => {
+EpisodePage.getInitialProps = async ({
+  query: { slug, previewToken },
+  res
+}) => {
   const ApolloClient = initApollo();
   let data;
   await ApolloClient.query({
@@ -26,13 +33,20 @@ EpisodePage.getInitialProps = async ({ query: { slug, previewToken } }) => {
     }
   }).then((result) => {
     data = result.data;
+    if (!data.episode) {
+      res.status(404);
+    }
   });
+
+  const errorCode = res.statusCode > 200 ? res.statusCode : false;
   return {
-    data: data.episode
+    data: data.episode,
+    errorCode: errorCode
   };
 };
 
 EpisodePage.propTypes = {
+  errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
   data: PropTypes.object
 };
 

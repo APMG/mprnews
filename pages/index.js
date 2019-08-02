@@ -8,18 +8,18 @@ import query from '../endpoints/Home/home.gql';
 
 /* eslint react/display-name: 0 */
 
-const HomePage = ({ errorCode, data }) => {
+const HomePage = ({ data, errorCode }) => {
   if (errorCode) return <ErrorPage statusCode={errorCode} />;
   return (
     <>
       <Metatags fullSlug="" topic="homepage" />
-      <Home data={data} />
+      <Home {...data} />
     </>
   );
 };
 
-HomePage.getInitialProps = async () => {
-  let data;
+HomePage.getInitialProps = async (res) => {
+  let data, errorCode;
   const ApolloClient = initApollo();
   await ApolloClient.query({
     query: query,
@@ -28,9 +28,12 @@ HomePage.getInitialProps = async () => {
       slug: 'homepage'
     }
   }).then((result) => {
-    data = result;
+    data = result.data;
+    if (res) {
+      errorCode = res.statusCode > 200 ? res.statusCode : false;
+    }
   });
-  return data;
+  return { data, errorCode };
 };
 
 HomePage.propTypes = {

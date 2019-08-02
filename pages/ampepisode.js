@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ErrorPage from 'next/error';
 import { withAmp } from 'next/amp';
 import Episode from '../endpoints/Episode/Episode';
 import initApollo from '../lib/init-apollo';
@@ -7,13 +8,14 @@ import query from '../endpoints/Episode/episode.gql';
 
 /* eslint react/display-name: 0 */
 
-const AmpEpisode = ({ data }) => {
+const AmpEpisode = ({ data, errorCode }) => {
+  if (errorCode) return <ErrorPage statusCode={errorCode} />;
   return <Episode data={data} />;
 };
 
-AmpEpisode.getInitialProps = async ({ query: { slug } }) => {
+AmpEpisode.getInitialProps = async ({ query: { slug }, res }) => {
   const ApolloClient = initApollo();
-  let data;
+  let data, errorCode;
   await ApolloClient.query({
     query: query,
     variables: {
@@ -22,15 +24,20 @@ AmpEpisode.getInitialProps = async ({ query: { slug } }) => {
     }
   }).then((result) => {
     data = result.data;
+    if (res && !data.episode) {
+      res.status(404);
+      errorCode = res.statusCode > 200 ? res.statusCode : false;
+    }
   });
   return {
-    slug: slug,
+    errorCode: errorCode,
     data: data.episode,
     layout: 'amp'
   };
 };
 
 AmpEpisode.propTypes = {
+  errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
   data: PropTypes.object
 };
 

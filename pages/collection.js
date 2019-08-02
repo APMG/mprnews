@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ErrorPage from 'next/error';
 import Collection from '../endpoints/Collection/Collection';
 import ContentGrid from '../grids/ContentGrid';
 import Sidebar from '../components/Sidebar/Sidebar';
@@ -8,15 +9,21 @@ import query from '../endpoints/Collection/collection.gql';
 
 /* eslint react/display-name: 0 */
 
-const CollectionPage = ({ data, slug, pageNum }) => (
-  <ContentGrid sidebar={<Sidebar />}>
-    <Collection data={data} slug={slug} pageNum={pageNum} />
-  </ContentGrid>
-);
+const CollectionPage = ({ data, pageNum, errorCode, slug }) => {
+  if (errorCode) return <ErrorPage statusCode={errorCode} />;
+  return (
+    <ContentGrid sidebar={<Sidebar />}>
+      <Collection data={data} pageNum={pageNum} slug={slug} />
+    </ContentGrid>
+  );
+};
 
-CollectionPage.getInitialProps = async ({ query: { slug, pageNum = 1 } }) => {
+CollectionPage.getInitialProps = async ({
+  query: { slug, pageNum = 1 },
+  res
+}) => {
   const ApolloClient = initApollo();
-  let data;
+  let data, errorCode;
   await ApolloClient.query({
     query: query,
     variables: {
@@ -26,11 +33,21 @@ CollectionPage.getInitialProps = async ({ query: { slug, pageNum = 1 } }) => {
     }
   }).then((result) => {
     data = result.data;
+    if (!data.collection) {
+      res.status(404);
+      errorCode = res.statusCode > 200 ? res.statusCode : false;
+    }
   });
-  return { data: data.collection, slug: slug, pageNum: parseInt(pageNum) };
+  return {
+    data: data.collection,
+    errorCode: errorCode,
+    pageNum: parseInt(pageNum),
+    slug: slug
+  };
 };
 
 CollectionPage.propTypes = {
+  errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
   data: PropTypes.object,
   pageNum: PropTypes.number,
   slug: PropTypes.string
