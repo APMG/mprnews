@@ -32,18 +32,19 @@ const AllNews = ({ pageNum }) => {
 
 const AllNewsInner = ({ allNews }) => {
   const contentTopicAllNewsRef = useRef(null);
+  let createAllNewsName = 'allNews';
   //No array passed for useEffect expected behavior is to let useEffect run on rerender
   useEffect(() => {
     if (contentTopicAllNewsRef) {
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
         event: 'sendUWContentTopic',
-        contentTopic: 'allNews'
+        contentTopic: createAllNewsName
       });
     } else {
       console.error('you broke the ads');
     }
-  });
+  }, [createAllNewsName]);
   return (
     <>
       <Metatags

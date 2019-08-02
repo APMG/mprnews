@@ -7,12 +7,16 @@ import Byline from '../Byline/Byline';
 const ContentHeader = (props) => {
   let authorsTag = [];
 
+  let checkTagName = `${props?.tag?.tagName}`;
+
   if (props.authors?.length > 0) {
     props.authors.forEach((author) => {
       authorsTag.push(author.title);
     });
   }
-
+  if (!checkTagName) {
+    checkTagName = 'default';
+  }
   const authorTosStr = JSON.stringify(authorsTag);
   const contentTopicHeaderRef = useRef(null);
   //No array passed for useEffect expected behavior is to let useEffect run on rerender
@@ -21,12 +25,12 @@ const ContentHeader = (props) => {
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
         event: 'sendUWContentTopic',
-        contentTopic: props.tag.tagName
+        contentTopic: checkTagName
       });
     } else {
-      console.error('you broke something');
+      console.error('you broke the ads');
     }
-  }, [props.tag.tagName]);
+  }, [checkTagName]);
 
   return (
     <header className="content_header">
