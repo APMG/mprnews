@@ -26,7 +26,6 @@ EpisodePage.getInitialProps = async ({ query: { slug, previewToken } }) => {
     }
   }).then((result) => {
     data = result.data;
-    console.log('DATA:', data);
   });
   return {
     data: data.episode
