@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Heading } from '@apmg/titan';
 import { Body } from '@apmg/amat';
 import PropTypes from 'prop-types';
@@ -19,6 +19,19 @@ const Collection = ({ data, slug, pageNum }) => {
 };
 
 const CollectionInner = ({ collection, pageNum, collectionName }) => {
+  const contentTopicCollectionRef = useRef(null);
+  //No array passed for useEffect expected behavior is to let useEffect run on rerender
+  useEffect(() => {
+    if (contentTopicCollectionRef) {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'sendUWContentTopic',
+        contentTopic: collection.title
+      });
+    } else {
+      console.error('you broke the ads');
+    }
+  }, [collection.title]);
   return (
     <>
       <Metatags
@@ -33,6 +46,7 @@ const CollectionInner = ({ collection, pageNum, collectionName }) => {
       <section
         className="collection page-purpose"
         data-mpr-content-topic={collection.title}
+        ref={contentTopicCollectionRef}
       >
         <div className="collection_header">
           <Heading level={1} className="hdg hdg-section">

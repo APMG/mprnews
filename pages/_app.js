@@ -88,7 +88,7 @@ class MPRNews extends App {
         this.state.playerInstance = new Player(
           this.state.playerRef.current
         ).init();
-        analytics.init({ audio: this.state.playerRef.current });
+        analytics.init({ audio: this.state.audioElementRef.current });
       },
       (error) => {
         /* eslint-disable-next-line no-console */

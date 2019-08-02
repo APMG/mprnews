@@ -50,12 +50,12 @@ const ShareSocialButtons = ({ contentUrl, title }) => {
       <Heading level={3} className="hdg hdg-5">
         Share story
       </Heading>
-
+      {/* Twitter class needs to stay, it triggers GA tracking */}
       <a
         href={twitterLink}
         target="_blank"
         rel="noopener noreferrer"
-        className="shareSocialButtons_twitter"
+        className="shareSocialButtons_twitter twitter"
         onClick={() => {
           pushLayerInfoForGA(dataLayerObj, shareTwitterEventGA);
         }}
@@ -63,12 +63,12 @@ const ShareSocialButtons = ({ contentUrl, title }) => {
         <Icon name="twitter" />
         <span className="invisible">Twitter</span>
       </a>
-
+      {/* Facebook class needs to stay, it triggers GA tracking */}
       <a
         href={fbLink}
         target="_blank"
         rel="noopener noreferrer"
-        className="shareSocialButtons_facebook"
+        className="shareSocialButtons_facebook facebook"
         onClick={() => {
           pushLayerInfoForGA(dataLayerObj, shareFBEventGA);
         }}
