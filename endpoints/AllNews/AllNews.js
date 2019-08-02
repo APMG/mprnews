@@ -32,25 +32,16 @@ const AllNews = ({ pageNum }) => {
 
 const AllNewsInner = ({ allNews }) => {
   const contentTopicAllNewsRef = useRef(null);
-  //No array passed for useEffect
-  //expected behavior is to let useEffect  run on rerender
+  //No array passed for useEffect expected behavior is to let useEffect run on rerender
   useEffect(() => {
-    // console.log('ct all news ref', contentTopicAllNewsRef);
-    if (!contentTopicAllNewsRef) {
-      console.log('no topic info in content header', contentTopicAllNewsRef);
-      return;
-    } else if (contentTopicAllNewsRef) {
-      console.log(
-        'RELOAD ads check info in content header',
-        contentTopicAllNewsRef
-      );
+    if (contentTopicAllNewsRef) {
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
         event: 'sendUWContentTopic',
         contentTopic: 'allNews'
       });
     } else {
-      console.error('you broke something');
+      console.error('you broke the ads');
     }
   });
   return (

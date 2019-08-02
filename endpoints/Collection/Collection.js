@@ -43,25 +43,16 @@ const Collection = ({ collectionName, pageNum }) => {
 
 const CollectionInner = ({ collection, pageNum, collectionName }) => {
   const contentTopicCollectionRef = useRef(null);
-  //No array passed for useEffect
-  //expected behavior is to let useEffect  run on rerender
+  //No array passed for useEffect expected behavior is to let useEffect run on rerender
   useEffect(() => {
-    // console.log('ct collection ref', contentTopicCollectionRef);
-    if (!contentTopicCollectionRef) {
-      console.log('no topic info in content header', contentTopicCollectionRef);
-      return;
-    } else if (contentTopicCollectionRef) {
-      console.log(
-        'RELOAD ads check info in content header',
-        contentTopicCollectionRef
-      );
+    if (contentTopicCollectionRef) {
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
         event: 'sendUWContentTopic',
         contentTopic: collection.title
       });
     } else {
-      console.error('you broke something');
+      console.error('you broke the ads');
     }
   }, [collection.title]);
   return (

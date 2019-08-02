@@ -1,13 +1,23 @@
 import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
+import PropTypes from 'prop-types';
 
-const AdBottom = () => {
+const AdBottom = (props) => {
+  const { homepageTopic } = props;
   const adBottomRef = useRef(null);
-  //No array passed for useEffect
-  //expected behavior is to let useEffect  run on rerender
+  //Only push dataLayer in ad bottom bc adslot is always a house ad
+  //Array passed in useEffect to only run once
   useEffect(() => {
-    console.log('bottom ad in useEffect', adBottomRef);
-  });
+    //do a check for the meta content
+    //this will stop the Underwriting tag to fire three times
+    if (homepageTopic === 'homepage') {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'getAdSlot',
+        contentTopic: 'homepage'
+      });
+    }
+  }, []);
   return (
     <div id="mpr-mr-ads" className="ad">
       <div id="mpr-ad-2" className="ad_slot ad_slot-mr" ref={adBottomRef} />
@@ -23,4 +33,7 @@ const AdBottom = () => {
   );
 };
 
+AdBottom.propTypes = {
+  homepageTopic: PropTypes.string
+};
 export default React.memo(AdBottom);

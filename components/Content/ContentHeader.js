@@ -14,20 +14,10 @@ const ContentHeader = (props) => {
   }
 
   const authorTosStr = JSON.stringify(authorsTag);
-
   const contentTopicHeaderRef = useRef(null);
-  //No array passed for useEffect
-  //expected behavior is to let useEffect  run on rerender
+  //No array passed for useEffect expected behavior is to let useEffect run on rerender
   useEffect(() => {
-    // console.log('content header ref', contentTopicHeaderRef);
-    if (!contentTopicHeaderRef) {
-      console.log('no topic info in content header', contentTopicHeaderRef);
-      return;
-    } else if (contentTopicHeaderRef) {
-      console.log(
-        'RELOAD ads check info in content header',
-        contentTopicHeaderRef
-      );
+    if (contentTopicHeaderRef) {
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
         event: 'sendUWContentTopic',

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { Query } from 'react-apollo';
@@ -35,28 +35,6 @@ const Home = () => {
 };
 
 const HomeInner = ({ data }) => {
-  const contentTopicHomepageRef = useRef(null);
-  //No array passed for useEffect
-  //expected behavior is to let useEffect  run on rerender
-  useEffect(() => {
-    // console.log('ct homepage ref', contentTopicHomepageRef);
-    if (!contentTopicHomepageRef) {
-      console.log('no topic info in content header', contentTopicHomepageRef);
-      return;
-    } else if (contentTopicHomepageRef) {
-      console.log(
-        'RELOAD ads check info in content header',
-        contentTopicHomepageRef
-      );
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({
-        event: 'sendUWContentTopic',
-        contentTopic: 'homepage'
-      });
-    } else {
-      console.error('you broke something');
-    }
-  });
   const alerts = JSON.parse(data.alertConfig.json);
   const homeStoryConfig = JSON.parse(data.homeStoryConfig.json);
   const firstItem = data.homeList.results.items[0];
@@ -66,14 +44,9 @@ const HomeInner = ({ data }) => {
       ? true
       : false;
   };
-
+  const homepageTopic = 'homepage';
   return (
-    <div
-      className="page-purpose"
-      data-mpr-content-topic="homepage"
-      ref={contentTopicHomepageRef}
-    >
-      {console.log('Home React DIV')}
+    <div className="page-purpose" data-mpr-content-topic="homepage">
       <Metatags
         metatags={[
           {
@@ -86,7 +59,7 @@ const HomeInner = ({ data }) => {
       />
       <HomeGrid
         blowout={homeStoryConfig?.top_story_blowout}
-        sidebar={<Sidebar />}
+        sidebar={<Sidebar homepageTopic={homepageTopic} />}
         first={<FullTeaser item={firstItem} />}
         rail={<HomeRail updraft={data.updraft?.results?.items?.[0]} />}
         top={showInfoAlert() ? <HomeTop info={alerts.info} /> : null}
