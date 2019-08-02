@@ -18,12 +18,8 @@ const HomePage = ({ errorCode, data }) => {
   );
 };
 
-HomePage.getInitialProps = async ({ res }) => {
+HomePage.getInitialProps = async () => {
   let data;
-  if (res) {
-    const errorCode = res.statusCode > 200 ? res.statusCode : false;
-    return { errorCode };
-  }
   const ApolloClient = initApollo();
   await ApolloClient.query({
     query: query,
@@ -34,7 +30,7 @@ HomePage.getInitialProps = async ({ res }) => {
   }).then((result) => {
     data = result;
   });
-  return { data };
+  return data;
 };
 
 HomePage.propTypes = {

@@ -16,11 +16,7 @@ const StaticPage = ({ data }) => {
   );
 };
 
-StaticPage.getInitialProps = async ({ query: { slug, previewToken }, res }) => {
-  if (res) {
-    const errorCode = res.statusCode > 200 ? res.statusCode : false;
-    return { slug: slug, previewToken: previewToken, errorCode };
-  }
+StaticPage.getInitialProps = async ({ query: { slug, previewToken } }) => {
   const ApolloClient = initApollo();
   let data;
   await ApolloClient.query({
@@ -34,7 +30,7 @@ StaticPage.getInitialProps = async ({ query: { slug, previewToken }, res }) => {
     data = result.data;
   });
 
-  return { slug: slug, previewToken: previewToken, data: data };
+  return { data: data };
 };
 
 StaticPage.propTypes = {

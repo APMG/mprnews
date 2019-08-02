@@ -8,9 +8,9 @@ import query from '../endpoints/Episode/episode.gql';
 
 /* eslint react/display-name: 0 */
 
-const EpisodePage = ({ slug, previewToken, data }) => (
+const EpisodePage = ({ data }) => (
   <ContentGrid sidebar={<Sidebar />}>
-    <Episode slug={slug} previewToken={previewToken} data={data} />
+    <Episode data={data} />
   </ContentGrid>
 );
 
@@ -26,17 +26,14 @@ EpisodePage.getInitialProps = async ({ query: { slug, previewToken } }) => {
     }
   }).then((result) => {
     data = result.data;
+    console.log('DATA:', data);
   });
   return {
-    slug: slug,
-    previewToken: previewToken || '',
     data: data.episode
   };
 };
 
 EpisodePage.propTypes = {
-  slug: PropTypes.string,
-  previewToken: PropTypes.string,
   data: PropTypes.object
 };
 
