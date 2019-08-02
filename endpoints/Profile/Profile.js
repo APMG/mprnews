@@ -1,7 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ErrorPage from 'next/error';
 import Link from 'next/link';
-import { Heading } from '@apmg/titan';
+import { Query } from 'react-apollo';
+import QueryError from '../../components/QueryError/QueryError';
+import query from './profile.gql';
+import { Heading, Loading } from '@apmg/titan';
 import { Image } from '@apmg/mimas';
 import { Body } from '@apmg/amat';
 import { globals } from '../../config/globals';
@@ -9,9 +13,26 @@ import { linkByTypeHref, linkByTypeAs } from '../../utils/cjsutils';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
 import Metatags from '../../components/Metatags/Metatags';
 
-const Profile = ({ data }) => {
-  return <ProfileInner profile={data.profile} />;
-};
+const Profile = ({ slug, previewToken }) => (
+  <Query
+    query={query}
+    variables={{
+      contentAreaSlug: process.env.CONTENT_AREA_SLUG,
+      slug: slug,
+      previewToken: previewToken
+    }}
+    errorPolicy="all"
+  >
+    {({ loading, error, data }) => {
+      if (error) return <QueryError error={error.message} />;
+      if (loading) return <Loading />;
+
+      if (data.profile === null) return <ErrorPage statusCode={404} />;
+
+      return <ProfileInner profile={data.profile} />;
+    }}
+  </Query>
+);
 
 const ProfileInner = ({ profile }) => {
   return (
@@ -103,7 +124,8 @@ const ProfileInner = ({ profile }) => {
 };
 
 Profile.propTypes = {
-  data: PropTypes.object
+  slug: PropTypes.string,
+  previewToken: PropTypes.string
 };
 
 ProfileInner.propTypes = {

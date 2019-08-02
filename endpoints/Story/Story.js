@@ -1,16 +1,41 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { globals } from '../../config/globals';
+import ErrorPage from 'next/error';
+import { Query } from 'react-apollo';
+import QueryError from '../../components/QueryError/QueryError';
+import query from './story.gql';
+import { Loading, Time } from '@apmg/titan';
 import { Image } from '@apmg/mimas';
-import { Time } from '@apmg/titan';
 import { collectionLinkData } from '../../utils/utils';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
+import { globals } from '../../config/globals';
 import AudioPlayButton from '../../components/AudioPlayButton/AudioPlayButton';
 import Content from '../../components/Content/Content';
 import Metatags from '../../components/Metatags/Metatags';
 import ShareSocialButtons from '../../components/ShareSocialButtons/ShareSocialButtons';
 
-const Story = ({ data: { story }, minimal }) => {
+const Story = ({ slug, previewToken, minimal }) => (
+  <Query
+    query={query}
+    variables={{
+      contentAreaSlug: process.env.CONTENT_AREA_SLUG,
+      slug: slug,
+      previewToken: previewToken
+    }}
+    errorPolicy="all"
+  >
+    {({ loading, error, data }) => {
+      if (error) return <QueryError error={error.message} />;
+      if (loading) return <Loading />;
+
+      if (data.story === null) return <ErrorPage statusCode={404} />;
+
+      return <StoryInner story={data.story} minimal={minimal} />;
+    }}
+  </Query>
+);
+
+const StoryInner = ({ story, minimal }) => {
   let authors;
   if (story && story.contributors) {
     authors = story.contributors.map((contributor) => {
@@ -97,35 +122,39 @@ const Story = ({ data: { story }, minimal }) => {
 };
 
 Story.propTypes = {
-  data: PropTypes.shape({
-    story: PropTypes.shape({
-      canonicalSlug: PropTypes.string,
-      title: PropTypes.string,
-      subtitle: PropTypes.string,
-      dateline: PropTypes.string,
-      authors: PropTypes.arrayOf(
-        PropTypes.shape({
-          title: PropTypes.string,
-          href: PropTypes.string
-        })
-      ),
-      body: PropTypes.string,
-      contributors: PropTypes.array,
-      supportedOutputFormats: PropTypes.array,
-      descriptionText: PropTypes.string,
-      image: PropTypes.element,
-      imageCaption: PropTypes.string,
-      imageCredit: PropTypes.string,
-      imageCreditHref: PropTypes.string,
-      primaryAudio: PropTypes.any,
-      primaryCollection: PropTypes.any,
-      primaryVisuals: PropTypes.any,
-      publishDate: PropTypes.string,
-      embeddedAssetJson: PropTypes.string,
-      tag: PropTypes.shape({
-        tagName: PropTypes.string,
-        to: PropTypes.string
+  slug: PropTypes.string,
+  previewToken: PropTypes.string,
+  minimal: PropTypes.bool
+};
+
+StoryInner.propTypes = {
+  story: PropTypes.shape({
+    canonicalSlug: PropTypes.string,
+    title: PropTypes.string,
+    subtitle: PropTypes.string,
+    dateline: PropTypes.string,
+    authors: PropTypes.arrayOf(
+      PropTypes.shape({
+        title: PropTypes.string,
+        href: PropTypes.string
       })
+    ),
+    body: PropTypes.string,
+    contributors: PropTypes.array,
+    supportedOutputFormats: PropTypes.array,
+    descriptionText: PropTypes.string,
+    image: PropTypes.element,
+    imageCaption: PropTypes.string,
+    imageCredit: PropTypes.string,
+    imageCreditHref: PropTypes.string,
+    primaryAudio: PropTypes.any,
+    primaryCollection: PropTypes.any,
+    primaryVisuals: PropTypes.any,
+    publishDate: PropTypes.string,
+    embeddedAssetJson: PropTypes.string,
+    tag: PropTypes.shape({
+      tagName: PropTypes.string,
+      to: PropTypes.string
     })
   }),
   minimal: PropTypes.bool
