@@ -43,18 +43,22 @@ const Collection = ({ collectionName, pageNum }) => {
 
 const CollectionInner = ({ collection, pageNum, collectionName }) => {
   const contentTopicCollectionRef = useRef(null);
+  let checkCollectionName = `${collection?.title}`;
+  if (!checkCollectionName) {
+    checkCollectionName = 'default';
+  }
   //No array passed for useEffect expected behavior is to let useEffect run on rerender
   useEffect(() => {
     if (contentTopicCollectionRef) {
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
         event: 'sendUWContentTopic',
-        contentTopic: collection.title
+        contentTopic: checkCollectionName
       });
     } else {
       console.error('you broke the ads');
     }
-  }, [collection.title]);
+  }, [checkCollectionName]);
   return (
     <>
       <Metatags
