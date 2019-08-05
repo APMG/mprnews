@@ -23,7 +23,7 @@ EpisodePage.getInitialProps = async ({
   res
 }) => {
   const ApolloClient = initApollo();
-  let data;
+  let data, errorCode;
   await ApolloClient.query({
     query: query,
     variables: {
@@ -35,10 +35,10 @@ EpisodePage.getInitialProps = async ({
     data = result.data;
     if (!data.episode) {
       res.status(404);
+      errorCode = res.statusCode > 200 ? res.statusCode : false;
     }
   });
 
-  const errorCode = res.statusCode > 200 ? res.statusCode : false;
   return {
     data: data.episode,
     errorCode: errorCode
