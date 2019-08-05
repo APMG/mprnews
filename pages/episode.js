@@ -4,14 +4,16 @@ import ErrorPage from 'next/error';
 import Episode from '../endpoints/Episode/Episode';
 import ContentGrid from '../grids/ContentGrid';
 import Sidebar from '../components/Sidebar/Sidebar';
+import initApollo from '../lib/init-apollo';
+import query from '../endpoints/Episode/episode.gql';
 
 /* eslint react/display-name: 0 */
 
-const EpisodePage = ({ slug, previewToken, errorCode }) => {
+const EpisodePage = ({ data, errorCode }) => {
   if (errorCode) return <ErrorPage statusCode={errorCode} />;
   return (
     <ContentGrid sidebar={<Sidebar />}>
-      <Episode slug={slug} previewToken={previewToken} />
+      <Episode data={data} />
     </ContentGrid>
   );
 };
@@ -20,18 +22,32 @@ EpisodePage.getInitialProps = async ({
   query: { slug, previewToken },
   res
 }) => {
-  if (res) {
-    const errorCode = res.statusCode > 200 ? res.statusCode : false;
-    return { slug: slug, previewToken: previewToken, errorCode };
-  }
+  const ApolloClient = initApollo();
+  let data, errorCode;
+  await ApolloClient.query({
+    query: query,
+    variables: {
+      contentAreaSlug: process.env.CONTENT_AREA_SLUG,
+      slug: slug,
+      previewToken: previewToken
+    }
+  }).then((result) => {
+    data = result.data;
+    if (!data.episode) {
+      res.status(404);
+      errorCode = res.statusCode > 200 ? res.statusCode : false;
+    }
+  });
 
-  return { slug: slug, previewToken: previewToken };
+  return {
+    data: data.episode,
+    errorCode: errorCode
+  };
 };
 
 EpisodePage.propTypes = {
-  slug: PropTypes.string,
-  previewToken: PropTypes.string,
-  errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool])
+  errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
+  data: PropTypes.object
 };
 
 export default EpisodePage;
