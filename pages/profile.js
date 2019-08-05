@@ -2,29 +2,45 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ErrorPage from 'next/error';
 import Profile from '../endpoints/Profile/Profile';
+import initApollo from '../lib/init-apollo';
+import query from '../endpoints/Profile/profile.gql';
 
 /* eslint react/display-name: 0 */
 
-const ProfilePage = ({ slug, previewToken, errorCode }) => {
+const ProfilePage = ({ data, errorCode }) => {
   if (errorCode) return <ErrorPage statusCode={errorCode} />;
-  return <Profile slug={slug} previewToken={previewToken} />;
+  return <Profile data={data} />;
 };
 
 ProfilePage.getInitialProps = async ({
   query: { slug, previewToken },
   res
 }) => {
-  if (res) {
-    const errorCode = res.statusCode > 200 ? res.statusCode : false;
-    return { slug: slug, previewToken: previewToken, errorCode };
-  }
+  let data, errorCode;
+  const ApolloClient = initApollo();
+  await ApolloClient.query({
+    query: query,
+    variables: {
+      contentAreaSlug: process.env.CONTENT_AREA_SLUG,
+      slug: slug,
+      previewToken: previewToken
+    }
+  }).then((result) => {
+    data = result.data;
+    if (!data.profile) {
+      res.status(404);
+      errorCode = res.statusCode > 200 ? res.statusCode : false;
+    }
+  });
 
-  return { slug: slug, previewToken: previewToken };
+  return {
+    data: data,
+    errorCode: errorCode
+  };
 };
 
 ProfilePage.propTypes = {
-  slug: PropTypes.string,
-  previewToken: PropTypes.string,
+  data: PropTypes.string,
   errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool])
 };
 
