@@ -38,10 +38,12 @@ const WeatherAlert = ({ alert }) => {
           'M/D/YYYY @ H:mm A'
         )}`}</Heading>
         <p>{alert.properties.description}</p>
-        <div className="weatherAlert_instructions">
-          <Heading level={4}>INSTRUCTIONS</Heading>
-        </div>
-        <p>{alert.properties.instruction}</p>
+        {alert.properties.instruction && (
+          <div className="weatherAlert_instructions">
+            <Heading level={4}>INSTRUCTIONS</Heading>
+          </div>
+        )}
+        {alert.properties.instruction && <p>{alert.properties.instruction}</p>}
       </div>
     </div>
   );
