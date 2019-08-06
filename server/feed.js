@@ -86,7 +86,7 @@ module.exports.feed = (server) => {
                       <pubDate>${dte}</pubDate>
                       <title>${item.title}</title>
                       <description><![CDATA[${item.descriptionText}]]></description>
-                      <content:cncoded><![CDATA[${markup}]]></content:cncoded>
+                      <content:encoded><![CDATA[${markup}]]></content:encoded>
                       <link>https://www.mprnews.org${link}</link>
                       <guid isPermaLink="true">https://www.mprnews.org${link}</guid>
                     </item>`;
