@@ -118,11 +118,14 @@ app
     server.get('/api/schedule/:day?', async (req, res) => {
       const fetchSchedule = async () => {
         try {
-          let url =
-            'https://scheduler.publicradio.org/api/v1/services/3/schedule/?datetime=2019-08-06';
-          let request = await fetch(url);
+          const daysOfThisWeek = getDateTimes();
+          const formattedDate = await formatEachDateTime(
+            daysOfThisWeek,
+            req.daySlug
+          );
+          const scheduleUrl = await `https://scheduler.publicradio.org/api/v1/services/3/schedule/?datetime=${formattedDate}`;
+          let request = await fetch(scheduleUrl);
           let response = await request.json();
-          console.log(response);
           return response;
         } catch (err) {
           console.error(err);
