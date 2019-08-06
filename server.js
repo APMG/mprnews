@@ -2,7 +2,9 @@
 const express = require('express');
 const compression = require('compression');
 const nextjs = require('next');
+const fetch = require('isomorphic-unfetch');
 const { daysofweek } = require('./server/daysofweek');
+const { getDateTimes, formatEachDateTime } = require('./utils/scheduleUtils');
 const port = parseInt(process.env.APP_PORT, 10) || 3000;
 const dev =
   process.env.RAILS_ENV !== 'stage' && process.env.RAILS_ENV !== 'production';
@@ -110,6 +112,26 @@ app
     server.get('/weather/:id?', (req, res) => {
       res.set('Cache-Control', `public, max-age=${TTL}`);
       app.render(req, res, '/weather', { id: req.params.id });
+    });
+
+    // schedule api route
+    server.get('/api/schedule/:day?', async (req, res) => {
+      const fetchSchedule = async () => {
+        try {
+          let url =
+            'https://scheduler.publicradio.org/api/v1/services/3/schedule/?datetime=2019-08-06';
+          let request = await fetch(url);
+          let response = await request.json();
+          console.log(response);
+          return response;
+        } catch (err) {
+          console.error(err);
+        }
+      };
+
+      let data = await fetchSchedule();
+      res.set('Cache-Control', 'public,max-age=60');
+      res.send(data);
     });
 
     // schedule route

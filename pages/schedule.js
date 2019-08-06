@@ -14,6 +14,7 @@ SchedulePage.getInitialProps = async ({ query: { slug }, res }) => {
   const daysOfThisWeek = getDateTimes();
   const formattedDate = await formatEachDateTime(daysOfThisWeek, slug);
   const scheduleUrl = await `https://scheduler.publicradio.org/api/v1/services/3/schedule/?datetime=${formattedDate}`;
+  //const scheduleUrl = await `/api/schedule/${formattedDate}`;
   const scheduleRes = await fetch(scheduleUrl);
   const props = await scheduleRes.json();
 
