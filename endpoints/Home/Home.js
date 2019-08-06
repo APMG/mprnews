@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Link from 'next/link';
 import FullTeaser from '../../components/FullTeaser/FullTeaser';
 import HomeFooter from './HomeFooter';
@@ -86,10 +85,6 @@ const Home = (data) => {
       </HomeGrid>
     </div>
   );
-};
-
-Home.propTypes = {
-  data: PropTypes.object
 };
 
 export default Home;
