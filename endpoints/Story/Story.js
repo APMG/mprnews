@@ -51,7 +51,8 @@ const Story = ({ data: { story }, minimal }) => {
           )
         }
         audioPlayButton={
-          story.primaryAudio && (
+          story.primaryAudio &&
+          story.primaryAudio.encodings.length > 0 && (
             <AudioPlayButton
               audioSource={story.primaryAudio.encodings[0].httpFilePath}
               audioTitle={story.primaryAudio.title}
