@@ -1,6 +1,9 @@
 const { format } = require('date-fns');
 const { linkByTypeAs } = require('../utils/cjsutils');
 const fetch = require('isomorphic-unfetch');
+const React = require('react');
+const ReactDOMServer = require('react-dom/server');
+const { Body } = require('@apmg/amat');
 
 module.exports.feed = (server) => {
   // RSS feeds for collections
@@ -19,6 +22,8 @@ module.exports.feed = (server) => {
             results(pageSize: 30) {
               items {
                 title
+                body
+                embeddedAssetJson
                 descriptionText
                 resourceType
                 canonicalSlug
@@ -71,10 +76,17 @@ module.exports.feed = (server) => {
           new Date(item.publishDate),
           'ddd, D MMM YYYY HH:mm:ss ZZ'
         );
+        const ele = React.createElement(Body, {
+          nodeData: JSON.parse(item.body),
+          embedded: JSON.parse(item.embeddedAssetJson),
+          minimal: false
+        });
+        const markup = ReactDOMServer.renderToStaticMarkup(ele);
         xml += `<item>
                       <pubDate>${dte}</pubDate>
                       <title>${item.title}</title>
                       <description><![CDATA[${item.descriptionText}]]></description>
+                      <content:cncoded><![CDATA[${markup}]]></content:cncoded>
                       <link>https://www.mprnews.org${link}</link>
                       <guid isPermaLink="true">https://www.mprnews.org${link}</guid>
                     </item>`;
