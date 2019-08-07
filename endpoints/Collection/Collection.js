@@ -1,12 +1,12 @@
 import React, { useEffect, useRef } from 'react';
-import { Heading } from '@apmg/titan';
+import { Heading, Pagination } from '@apmg/titan';
 import { Body } from '@apmg/amat';
 import PropTypes from 'prop-types';
 import CollectionContributors from './CollectionContributors';
 import FullTeaser from '../../components/FullTeaser/FullTeaser';
 import Metatags from '../../components/Metatags/Metatags';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
-import Pagination from '../../components/Pagination/Pagination';
+import Icon from '../../components/Icons/Icon';
 
 const Collection = ({ data, slug, pageNum }) => {
   return (
@@ -18,7 +18,7 @@ const Collection = ({ data, slug, pageNum }) => {
   );
 };
 
-const CollectionInner = ({ collection, pageNum, collectionName }) => {
+const CollectionInner = ({ collection }) => {
   const contentTopicCollectionRef = useRef(null);
   let checkCollectionName = `${collection?.title}`;
   if (!checkCollectionName) {
@@ -88,9 +88,29 @@ const CollectionInner = ({ collection, pageNum, collectionName }) => {
         </div>
         <div className="collection_pagination">
           <Pagination
-            collection={collection}
-            collectionName={collectionName}
-            pageNum={pageNum}
+            hasFirstAndLast={true}
+            inclusiveFirstLast={true}
+            buffer={1}
+            slug={collection.canonicalSlug}
+            resourceType={'collection'}
+            currentPage={collection.results.currentPage}
+            totalPages={collection.results.totalPages}
+            firstLastSeparator="..."
+            firstSymbol="1"
+            nextSymbol={
+              <>
+                <span>Next</span>
+                <Icon name="chevronRight" />
+              </>
+            }
+            prevSymbol={
+              <>
+                <Icon name="chevronLeft" />
+                <span>Prev</span>
+              </>
+            }
+            lastSymbol={collection.results.totalPages}
+            prevNextClass="btn btn-primary"
           />
         </div>
       </section>
@@ -99,9 +119,7 @@ const CollectionInner = ({ collection, pageNum, collectionName }) => {
 };
 
 CollectionInner.propTypes = {
-  collection: PropTypes.object,
-  pageNum: PropTypes.number,
-  collectionName: PropTypes.string
+  collection: PropTypes.object
 };
 
 Collection.propTypes = {
