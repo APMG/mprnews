@@ -9,11 +9,7 @@ import { linkByTypeHref, linkByTypeAs } from '../../utils/cjsutils';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
 import Metatags from '../../components/Metatags/Metatags';
 
-const Profile = ({ data }) => {
-  return <ProfileInner profile={data.profile} />;
-};
-
-const ProfileInner = ({ profile }) => {
+const Profile = ({ data: { profile } }) => {
   return (
     <>
       <Metatags
@@ -103,11 +99,9 @@ const ProfileInner = ({ profile }) => {
 };
 
 Profile.propTypes = {
-  data: PropTypes.object
-};
-
-ProfileInner.propTypes = {
-  profile: PropTypes.object
+  data: PropTypes.shape({
+    profile: PropTypes.object
+  })
 };
 
 export default Profile;

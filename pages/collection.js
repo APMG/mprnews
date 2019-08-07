@@ -31,13 +31,19 @@ CollectionPage.getInitialProps = async ({
       slug: slug,
       pageNum: parseInt(pageNum)
     }
-  }).then((result) => {
-    data = result.data;
-    if (!data.collection) {
+  })
+    .then((result) => {
+      data = result.data;
+      if (!data.collection) {
+        res.status(404);
+        errorCode = res.statusCode > 200 ? res.statusCode : false;
+      }
+    })
+    .catch(() => {
       res.status(404);
       errorCode = res.statusCode > 200 ? res.statusCode : false;
-    }
-  });
+    });
+
   return {
     data: data.collection,
     errorCode: errorCode,
