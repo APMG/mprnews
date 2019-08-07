@@ -4,7 +4,7 @@ npm-debug.log*
 .DS_Store
 .next
 .vscode
-.swp
+*.swp
 
 coverage
 build
