@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import query from './allNews.gql';
 import FullTeaser from '../../components/FullTeaser/FullTeaser';
 import Metatags from '../../components/Metatags/Metatags';
+import Icon from '../../components/Icons/Icon';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
 
 const AllNews = ({ pageNum }) => {
@@ -85,11 +86,28 @@ const AllNewsInner = ({ allNews }) => {
         <div className="collection_pagination">
           <Pagination
             hasFirstAndLast={true}
-            linksToShow={3}
+            inclusiveFirstLast={true}
+            buffer={1}
             slug={'all-news'}
             resourceType={'allnews'}
             currentPage={allNews.currentPage}
-            totalPages={1000} // elastic search defaults at 1000
+            totalPages={allNews.totalPages}
+            firstLastSeparator="..."
+            firstSymbol="1"
+            nextSymbol={
+              <>
+                <span>Next</span>
+                <Icon name="chevronRight" />
+              </>
+            }
+            prevSymbol={
+              <>
+                <Icon name="chevronLeft" />
+                <span>Prev</span>
+              </>
+            }
+            lastSymbol="Last"
+            prevNextClass="btn btn-primary"
           />
         </div>
       </section>
