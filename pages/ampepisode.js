@@ -22,13 +22,19 @@ AmpEpisode.getInitialProps = async ({ query: { slug }, res }) => {
       contentAreaSlug: process.env.CONTENT_AREA_SLUG,
       slug: slug
     }
-  }).then((result) => {
-    data = result.data;
-    if (res && !data.episode) {
+  })
+    .then((result) => {
+      data = result.data;
+      if (res && !data.episode) {
+        res.status(404);
+        errorCode = res.statusCode > 200 ? res.statusCode : false;
+      }
+    })
+    .catch(() => {
       res.status(404);
       errorCode = res.statusCode > 200 ? res.statusCode : false;
-    }
-  });
+    });
+
   return {
     errorCode: errorCode,
     data: data.episode,

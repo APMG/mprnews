@@ -25,13 +25,18 @@ ProfilePage.getInitialProps = async ({
       slug: slug,
       previewToken: previewToken
     }
-  }).then((result) => {
-    data = result.data;
-    if (!data.profile) {
+  })
+    .then((result) => {
+      data = result.data;
+      if (!data.profile) {
+        res.status(404);
+        errorCode = res.statusCode > 200 ? res.statusCode : false;
+      }
+    })
+    .catch(() => {
       res.status(404);
       errorCode = res.statusCode > 200 ? res.statusCode : false;
-    }
-  });
+    });
 
   return {
     data: data,

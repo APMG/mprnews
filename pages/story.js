@@ -27,13 +27,19 @@ StoryPage.getInitialProps = async ({ query: { slug, previewToken }, res }) => {
       slug: slug,
       previewToken: previewToken
     }
-  }).then((result) => {
-    data = result.data;
-    if (res && !data.story) {
+  })
+    .then((result) => {
+      data = result.data;
+      if (res && !data.story) {
+        res.status(404);
+        errorCode = res.statusCode > 200 ? res.statusCode : false;
+      }
+    })
+    .catch(() => {
       res.status(404);
       errorCode = res.statusCode > 200 ? res.statusCode : false;
-    }
-  });
+    });
+
   return {
     data: data,
     errorCode: errorCode

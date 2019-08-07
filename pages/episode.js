@@ -31,13 +31,18 @@ EpisodePage.getInitialProps = async ({
       slug: slug,
       previewToken: previewToken
     }
-  }).then((result) => {
-    data = result.data;
-    if (!data.episode) {
+  })
+    .then((result) => {
+      data = result.data;
+      if (!data.episode) {
+        res.status(404);
+        errorCode = res.statusCode > 200 ? res.statusCode : false;
+      }
+    })
+    .catch(() => {
       res.status(404);
       errorCode = res.statusCode > 200 ? res.statusCode : false;
-    }
-  });
+    });
 
   return {
     data: data.episode,
