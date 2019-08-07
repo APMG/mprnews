@@ -2,20 +2,25 @@
 
 .collection {
   grid-template-columns: minmax(180px, 30%) 1fr;
-  grid-template-areas:
-  'header header'
-  'body body'
-  'sidebar items'
-  'pager pager';
   grid-column-gap: 30px;
 
   @include media($media-small-tablet) {
     display: grid;
+    grid-template-areas:
+    'header header'
+    'body body'
+    'sidebar items'
+    'pager pager';
   }
 
   @include media($media-tablet) {
     display: block;
     margin-left: $container-edge-larger;
+    grid-template-areas:
+    'header header'
+    'body body'
+    'sidebar items'
+    'sidebar pager';
   }
 
   @include media($media-desktop) {
