@@ -4,7 +4,6 @@ import AudioPlayer from '../../components/AudioPlayer/AudioPlayer';
 import AudioPlayerContext from '../../context/AudioPlayerContext';
 
 const Twitter = ({ data: { twitter } }) => {
-  console.log(twitter);
   const context = useContext(AudioPlayerContext);
   return (
     <div className="twitter">
