@@ -8,23 +8,13 @@ import Metatags from '../../components/Metatags/Metatags';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
 import Icon from '../../components/Icons/Icon';
 
-const Collection = ({ data, slug, pageNum }) => {
-  return (
-    <CollectionInner
-      collectionName={slug}
-      collection={data}
-      pageNum={parseInt(pageNum)}
-    />
-  );
-};
-
-const CollectionInner = ({ collection }) => {
+const Collection = ({ data: { collection } }) => {
   const contentTopicCollectionRef = useRef(null);
   let checkCollectionName = `${collection?.title}`;
   if (!checkCollectionName) {
     checkCollectionName = 'default';
   }
-  //No array passed for useEffect expected behavior is to let useEffect run on rerender
+
   useEffect(() => {
     if (contentTopicCollectionRef) {
       window.dataLayer = window.dataLayer || [];
@@ -36,6 +26,7 @@ const CollectionInner = ({ collection }) => {
       console.error('you broke the ads');
     }
   }, [checkCollectionName]);
+
   return (
     <>
       <Metatags
@@ -118,14 +109,10 @@ const CollectionInner = ({ collection }) => {
   );
 };
 
-CollectionInner.propTypes = {
-  collection: PropTypes.object
-};
-
 Collection.propTypes = {
-  data: PropTypes.object,
-  slug: PropTypes.string,
-  pageNum: PropTypes.number
+  data: PropTypes.shape({
+    collection: PropTypes.object
+  })
 };
 
 export default Collection;

@@ -36,8 +36,8 @@ AmpStory.getInitialProps = async ({ query: { slug }, res }) => {
     });
 
   return {
-    data: data,
-    errorCode: errorCode,
+    data,
+    errorCode,
     layout: 'amp'
   };
 };

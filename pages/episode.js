@@ -45,7 +45,7 @@ EpisodePage.getInitialProps = async ({
     });
 
   return {
-    data: data.episode,
+    data: data,
     errorCode: errorCode
   };
 };
