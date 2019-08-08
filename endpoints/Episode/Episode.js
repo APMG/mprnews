@@ -10,8 +10,7 @@ import ShareSocialButtons from '../../components/ShareSocialButtons/ShareSocialB
 import { Image } from '@apmg/mimas';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
 
-const Episode = ({ data }) => {
-  let episode = data;
+const Episode = ({ data: { episode } }) => {
   let authors;
 
   if (episode.contributors) {

@@ -8,12 +8,7 @@ import Metatags from '../../components/Metatags/Metatags';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
 import Icon from '../../components/Icons/Icon';
 
-const Collection = ({ data }) => {
-  let collection = data;
-  //console.log(collection);
-  //return (
-  //<div>Collection</div>
-  //)
+const Collection = ({ data: { collection } }) => {
   const contentTopicCollectionRef = useRef(null);
   let checkCollectionName = `${collection?.title}`;
   if (!checkCollectionName) {
