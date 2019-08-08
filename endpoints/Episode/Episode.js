@@ -11,10 +11,7 @@ import { Image } from '@apmg/mimas';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
 
 const Episode = ({ data }) => {
-  return <EpisodeInner episode={data} />;
-};
-
-const EpisodeInner = ({ episode }) => {
+  let episode = data;
   let authors;
 
   if (episode.contributors) {
@@ -87,37 +84,35 @@ const EpisodeInner = ({ episode }) => {
 };
 
 Episode.propTypes = {
-  data: PropTypes.object
-};
-
-EpisodeInner.propTypes = {
-  episode: PropTypes.shape({
-    canonicalSlug: PropTypes.string,
-    title: PropTypes.string,
-    subtitle: PropTypes.string,
-    authors: PropTypes.arrayOf(
-      PropTypes.shape({
-        title: PropTypes.string,
-        href: PropTypes.string
+  data: PropTypes.shape({
+    episode: PropTypes.shape({
+      canonicalSlug: PropTypes.string,
+      title: PropTypes.string,
+      subtitle: PropTypes.string,
+      authors: PropTypes.arrayOf(
+        PropTypes.shape({
+          title: PropTypes.string,
+          href: PropTypes.string
+        })
+      ),
+      body: PropTypes.string,
+      contributors: PropTypes.array,
+      supportedOutputFormats: PropTypes.array,
+      description: PropTypes.string,
+      descriptionText: PropTypes.string,
+      image: PropTypes.element,
+      imageCaption: PropTypes.string,
+      imageCredit: PropTypes.string,
+      imageCreditHref: PropTypes.string,
+      primaryVisuals: PropTypes.any,
+      primaryCollection: PropTypes.any,
+      primaryAudio: PropTypes.any,
+      publishDate: PropTypes.string,
+      embeddedAssetJson: PropTypes.string,
+      tag: PropTypes.shape({
+        tagName: PropTypes.string,
+        to: PropTypes.string
       })
-    ),
-    body: PropTypes.string,
-    contributors: PropTypes.array,
-    supportedOutputFormats: PropTypes.array,
-    description: PropTypes.string,
-    descriptionText: PropTypes.string,
-    image: PropTypes.element,
-    imageCaption: PropTypes.string,
-    imageCredit: PropTypes.string,
-    imageCreditHref: PropTypes.string,
-    primaryVisuals: PropTypes.any,
-    primaryCollection: PropTypes.any,
-    primaryAudio: PropTypes.any,
-    publishDate: PropTypes.string,
-    embeddedAssetJson: PropTypes.string,
-    tag: PropTypes.shape({
-      tagName: PropTypes.string,
-      to: PropTypes.string
     })
   })
 };
