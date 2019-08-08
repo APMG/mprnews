@@ -50,31 +50,3 @@ TwitterPage.propTypes = {
 };
 
 export default TwitterPage;
-
-//const StoryPage = ({ data, errorCode }) => {
-//if (errorCode) return <ErrorPage statusCode={errorCode} />;
-//return (
-//<ContentGrid sidebar={<Sidebar />}>
-//<Story minimal={false} data={data} />
-//</ContentGrid>
-//);
-//};
-
-//})
-//.catch(() => {
-//res.status(404);
-//errorCode = res.statusCode > 200 ? res.statusCode : false;
-//});
-
-//return {
-//data: data,
-//errorCode: errorCode
-//};
-//};
-
-//StoryPage.propTypes = {
-//errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
-//data: PropTypes.object
-//};
-
-//export default StoryPage;
