@@ -1,37 +1,12 @@
 import React, { useEffect, useRef } from 'react';
-import Error from 'next/error';
-import { Pagination, Heading, Loading } from '@apmg/titan';
-import { Query } from 'react-apollo';
+import { Pagination, Heading } from '@apmg/titan';
 import PropTypes from 'prop-types';
-import query from './allNews.gql';
 import FullTeaser from '../../components/FullTeaser/FullTeaser';
 import Metatags from '../../components/Metatags/Metatags';
 import Icon from '../../components/Icons/Icon';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
 
-const AllNews = ({ pageNum }) => {
-  return (
-    <Query
-      query={query}
-      variables={{
-        contentAreaSlug: process.env.CONTENT_AREA_SLUG,
-        pageNum: pageNum
-      }}
-    >
-      {({ loading, error, data }) => {
-        if (error) return <div>{`Error: ${error}`}</div>;
-        if (loading) return <Loading />;
-        if (data.allNews === null) return <Error statusCode={404} />;
-
-        return (
-          <AllNewsInner allNews={data.allNews} pageNum={parseInt(pageNum)} />
-        );
-      }}
-    </Query>
-  );
-};
-
-const AllNewsInner = ({ allNews }) => {
+const AllNews = ({ data: { allNews } }) => {
   const contentTopicAllNewsRef = useRef(null);
   let createAllNewsName = 'allNews';
   //No array passed for useEffect expected behavior is to let useEffect run on rerender
@@ -106,7 +81,7 @@ const AllNewsInner = ({ allNews }) => {
                 <span>Prev</span>
               </>
             }
-            lastSymbol="Last"
+            lastSymbol={allNews.totalPages}
             prevNextClass="btn btn-primary"
           />
         </div>
@@ -115,12 +90,11 @@ const AllNewsInner = ({ allNews }) => {
   );
 };
 
-AllNewsInner.propTypes = {
-  allNews: PropTypes.object
-};
-
 AllNews.propTypes = {
-  pageNum: PropTypes.number
+  pageNum: PropTypes.number,
+  data: PropTypes.shape({
+    allNews: PropTypes.object
+  })
 };
 
 export default AllNews;
