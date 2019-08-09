@@ -36,8 +36,8 @@ AmpEpisode.getInitialProps = async ({ query: { slug }, res }) => {
     });
 
   return {
-    errorCode: errorCode,
-    data: data.episode,
+    errorCode,
+    data,
     layout: 'amp'
   };
 };

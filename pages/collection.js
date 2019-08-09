@@ -45,7 +45,7 @@ CollectionPage.getInitialProps = async ({
     });
 
   return {
-    data: data.collection,
+    data: data,
     errorCode: errorCode,
     pageNum: parseInt(pageNum),
     slug: slug

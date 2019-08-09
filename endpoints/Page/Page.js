@@ -7,11 +7,7 @@ import Content from '../../components/Content/Content';
 import Metatags from '../../components/Metatags/Metatags';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
 
-const Page = ({ data }) => {
-  return <PageInner page={data.page} />;
-};
-
-const PageInner = ({ page }) => {
+const Page = ({ data: { page } }) => {
   return (
     <>
       <Metatags
@@ -51,28 +47,26 @@ const PageInner = ({ page }) => {
 };
 
 Page.propTypes = {
-  data: PropTypes.object
-};
-
-PageInner.propTypes = {
-  page: PropTypes.shape({
-    canonicalSlug: PropTypes.string,
-    title: PropTypes.string,
-    subtitle: PropTypes.string,
-    body: PropTypes.string,
-    descriptionText: PropTypes.string,
-    supportedOutputFormats: PropTypes.array,
-    image: PropTypes.element,
-    imageCaption: PropTypes.string,
-    imageCredit: PropTypes.string,
-    imageCreditHref: PropTypes.string,
-    primaryVisuals: PropTypes.any,
-    primaryCollection: PropTypes.any,
-    publishDate: PropTypes.string,
-    embeddedAssetJson: PropTypes.string,
-    tag: PropTypes.shape({
-      tagName: PropTypes.string,
-      to: PropTypes.string
+  data: PropTypes.shape({
+    page: PropTypes.shape({
+      canonicalSlug: PropTypes.string,
+      title: PropTypes.string,
+      subtitle: PropTypes.string,
+      body: PropTypes.string,
+      descriptionText: PropTypes.string,
+      supportedOutputFormats: PropTypes.array,
+      image: PropTypes.element,
+      imageCaption: PropTypes.string,
+      imageCredit: PropTypes.string,
+      imageCreditHref: PropTypes.string,
+      primaryVisuals: PropTypes.any,
+      primaryCollection: PropTypes.any,
+      publishDate: PropTypes.string,
+      embeddedAssetJson: PropTypes.string,
+      tag: PropTypes.shape({
+        tagName: PropTypes.string,
+        to: PropTypes.string
+      })
     })
   })
 };

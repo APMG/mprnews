@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { globals } from '../../config/globals';
 import { Teaser, Time } from '@apmg/titan';
 import { Image } from '@apmg/mimas';
-import { Body } from '@apmg/amat';
 import { linkByTypeHref, linkByTypeAs } from '../../utils/cjsutils';
 import { secondsToHms } from '../../utils/utils';
 import AudioPlayButton from '../AudioPlayButton/AudioPlayButton';
@@ -73,7 +72,7 @@ const FullTeaser = ({ item, size, newspartners }) => {
             />
           ) : null
         }
-        description=<Body nodeData={JSON.parse(item.description)} />
+        description={item.descriptionText}
       />
       {item.collectionRelatedLinks?.length ? (
         <ul className="related related-teaser">

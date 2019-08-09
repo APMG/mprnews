@@ -41,8 +41,8 @@ StoryPage.getInitialProps = async ({ query: { slug, previewToken }, res }) => {
     });
 
   return {
-    data: data,
-    errorCode: errorCode
+    data,
+    errorCode
   };
 };
 

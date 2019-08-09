@@ -3,6 +3,7 @@ query home($contentAreaSlug: String!, $slug: String!) {
     id
     title
     description
+    descriptionText
     results(page: 1, pageSize: 20) {
       items {
         id
@@ -10,6 +11,7 @@ query home($contentAreaSlug: String!, $slug: String!) {
         canonicalSlug
         resourceType
         description
+        descriptionText
         primaryVisuals {
           thumbnail {
             aspect_ratios: aspectRatios {

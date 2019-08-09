@@ -39,8 +39,8 @@ ProfilePage.getInitialProps = async ({
     });
 
   return {
-    data: data,
-    errorCode: errorCode
+    data,
+    errorCode
   };
 };
 

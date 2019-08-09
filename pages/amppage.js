@@ -35,7 +35,7 @@ AmpPage.getInitialProps = async ({ query: { slug }, res }) => {
       errorCode = res.statusCode > 200 ? res.statusCode : false;
     });
 
-  return { data: data, errorCode: errorCode, layout: 'amp' };
+  return { data, errorCode, layout: 'amp' };
 };
 
 AmpPage.propTypes = {
