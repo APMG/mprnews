@@ -15,6 +15,7 @@ const { dynamic } = require('./server/dynamic');
 const { sitemap } = require('./server/sitemap');
 const { urlset } = require('./server/urlset');
 const { ssGql } = require('./server/ssGql');
+const { mostViewed } = require('./server/mostViewed');
 require('console-stamp')(console, 'dd/mmm/yyyy:HH:MM:ss o');
 
 const TTL = 60;
@@ -258,6 +259,9 @@ app
 
     // Dynamic Routing for collections and pages
     dynamic(server, app, handle);
+
+    // imported mostViewed from Google Analytics api route
+    mostViewed(server);
 
     server.get('*', (req, res) => {
       return handle(req, res);
