@@ -10,7 +10,6 @@ const MostViewed = () => {
       try {
         let response = await fetch(`/mostviewed`);
         let result = await response.json();
-        if (result.ok) return;
         let mostViewed = [];
 
         result.rows.map((row) => {
