@@ -7,11 +7,7 @@ const myCache = new NodeCache({
 
 module.exports.mostViewed = (server) => {
   server.get('/mostviewed', (req, res) => {
-    console.log(myCache.getStats());
-
     let analytics = myCache.get('analytics');
-    console.log('USE CACHE: success', analytics);
-
     const service_account = require('../config/google-api-keyfile.json');
     const reporting = google.analyticsreporting('v4');
     const scopes = 'https://www.googleapis.com/auth/analytics.readonly';
@@ -78,7 +74,6 @@ module.exports.mostViewed = (server) => {
               success
             ) {
               if (!err && success) {
-                console.log('INITIAL RESPONSE: success', success);
                 return res.send(response.data.reports[0].data);
               }
             });

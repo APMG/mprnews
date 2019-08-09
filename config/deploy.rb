@@ -15,6 +15,9 @@ set :user, 'mprnews'
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
+# symlink
+append :linked_files, 'config/google-api-keyfile.json'
+
 namespace :deploy do
   desc 'restart pm2'
   task :restart do
