@@ -7,12 +7,12 @@ const myCache = new NodeCache({
 
 module.exports.mostViewed = (server) => {
   server.get('/mostviewed', (req, res) => {
-    let analytics = myCache.get('analytics');
+    const analytics = myCache.get('analytics');
     const service_account = require('../config/google-api-keyfile.json');
     const reporting = google.analyticsreporting('v4');
     const scopes = 'https://www.googleapis.com/auth/analytics.readonly';
 
-    let jwt = new google.auth.JWT(
+    const jwt = new google.auth.JWT(
       service_account.client_email,
       null,
       service_account.private_key,
@@ -26,10 +26,10 @@ module.exports.mostViewed = (server) => {
     }
 
     function fetchMostViewed() {
-      let getReports = async function(reports) {
+      const getReports = async function(reports) {
         await jwt.authorize();
 
-        let request = {
+        const request = {
           headers: { 'Content-Type': 'application/json' },
           auth: jwt,
           resource: reports
@@ -37,7 +37,7 @@ module.exports.mostViewed = (server) => {
 
         return await reporting.reports.batchGet(request);
       };
-      let basic_report = {
+      const basic_report = {
         reportRequests: [
           {
             viewId: service_account.view_id,

@@ -25,7 +25,7 @@ const MostViewed = () => {
     };
 
     getData();
-  }, {});
+  }, []);
 
   function parseString(string) {
     return string.replace(' | MPR News', '');
