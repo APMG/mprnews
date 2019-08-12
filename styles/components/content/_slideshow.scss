@@ -56,9 +56,9 @@ $_button-icon-size-mobile: 15px;
   display: grid;
   z-index: $z-slideshow-container;
   margin: 0 $_button-size-neg;
-  background: rgba($color-grey-90, .75);
   overflow: hidden;
   position: relative;
+  border-bottom: 1px $color-grey-90 solid;
 
   @include media-max($media-small-tablet) {
     margin: 0 $_button-size-mobile-neg;
@@ -104,7 +104,8 @@ $_button-icon-size-mobile: 15px;
 }
 
 .slideshow_credit {
-  padding-bottom: 16px;
+  display: inline-block;
+  font-weight: bold;
 
   &::before {
     content: '';
@@ -114,6 +115,14 @@ $_button-icon-size-mobile: 15px;
     margin-right: .45em;
     border-radius: 2px;
     background: $color-blue-light;
+  }
+
+  &::after {
+    content: '|';
+    color: $color-grey-30;
+    padding: 0 4px;
+    top: -1px;
+    position: relative;
   }
 }
 
