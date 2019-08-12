@@ -28,6 +28,21 @@ module.exports.feed = (server) => {
                 resourceType
                 canonicalSlug
                 publishDate
+                primaryVisuals {
+                  thumbnail {
+                    xid
+                    aspectRatios {
+                      uncropped {
+                        instances {
+                          url
+                          width
+                          height
+                        }
+                      }
+                    }
+                    shortCaption
+                  }
+                }
               }
             }
           }}`
@@ -55,6 +70,17 @@ module.exports.feed = (server) => {
           console.error('Error: ', err);
         });
     };
+    function hasImage(item, results) {
+      let slug = results.data.collection.canonicalSlug;
+      let result;
+      if (slug.match(/outside/g) && item.primaryVisuals.thumbnail) {
+        result = `<img src="${item.primaryVisuals.thumbnail.aspectRatios.uncropped.instances[0].url}" alt="${item.primaryVisuals.thumbnail.shortCaption}" height="${item.primaryVisuals.thumbnail.aspectRatios.uncropped.instances[0].height}" width="${item.primaryVisuals.thumbnail.aspectRatios.uncropped.instances[0].width}"/>`;
+      } else {
+        result = '';
+      }
+      return result;
+    }
+
     const queryRes = fetchFeedData(query);
     queryRes.then((results) => {
       xml += `<title>${results.data.collection.title} - MPR News</title>`;
@@ -81,15 +107,30 @@ module.exports.feed = (server) => {
           embedded: JSON.parse(item.embeddedAssetJson),
           minimal: false
         });
+        const markupImg = hasImage(item, results);
         const markup = ReactDOMServer.renderToStaticMarkup(ele);
+        const img = item.primaryVisuals.thumbnail;
         xml += `<item>
-                      <pubDate>${dte}</pubDate>
-                      <title>${item.title}</title>
-                      <description><![CDATA[${item.descriptionText}]]></description>
-                      <content:encoded><![CDATA[${markup}]]></content:encoded>
-                      <link>https://www.mprnews.org${link}</link>
-                      <guid isPermaLink="true">https://www.mprnews.org${link}</guid>
-                    </item>`;
+                  <pubDate>${dte}</pubDate>
+                  <title>${item.title}</title>
+                  <description><![CDATA[${item.descriptionText}]]></description>
+                  <image>
+                  <link>https://img.apmcdn.org</link>
+                  <title>${item.title}</title>
+                  <url>${img &&
+                    img.aspectRatios.uncropped.instances[0].url}</url>
+                  <description>${img && img.shortCaption}</description>
+                  <height>${img &&
+                    img.aspectRatios.uncropped.instances[0].height}</height>
+                  <width>${img &&
+                    img.aspectRatios.uncropped.instances[0].width}</width>
+                  </image>
+                  <content:encoded><![CDATA[${
+                    item.primaryVisuals.thumbnail ? markupImg : ''
+                  }${markup}]]></content:encoded>
+                  <link>https://www.mprnews.org${link}</link>
+                  <guid isPermaLink="true">https://www.mprnews.org${link}</guid>
+                </item>`;
       });
       xml += '</channel>';
       xml += '</rss>';
