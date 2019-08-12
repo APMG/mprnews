@@ -22,7 +22,7 @@ $_button-icon-size-mobile: 15px;
   z-index: $z-slideshow-button;
   align-self: center;
   margin-top: $_button-position;
-  background-color: rgba($color-blue, .75);
+  background-color: rgba($color-blue, 0);
 
   @include media-max($media-small-tablet) {
     height: $_button-size-mobile;
