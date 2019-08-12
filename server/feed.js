@@ -72,6 +72,7 @@ module.exports.feed = (server) => {
     };
     function hasImage(item, results) {
       let slug = results.data.collection.canonicalSlug;
+
       let result;
       if (slug.match(/outside/g) && item.primaryVisuals.thumbnail) {
         result = `<img src="${item.primaryVisuals.thumbnail.aspectRatios.uncropped.instances[0].url}" alt="${item.primaryVisuals.thumbnail.shortCaption}" height="${item.primaryVisuals.thumbnail.aspectRatios.uncropped.instances[0].height}" width="${item.primaryVisuals.thumbnail.aspectRatios.uncropped.instances[0].width}"/>`;
@@ -109,13 +110,17 @@ module.exports.feed = (server) => {
         });
         const markupImg = hasImage(item, results);
         const markup = ReactDOMServer.renderToStaticMarkup(ele);
+        const parseImgUrl = item.primaryVisuals.thumbnail.aspectRatios.uncropped.instances[0].url.split(
+          '/'
+        );
+
         const img = item.primaryVisuals.thumbnail;
         xml += `<item>
                   <pubDate>${dte}</pubDate>
                   <title>${item.title}</title>
                   <description><![CDATA[${item.descriptionText}]]></description>
                   <image>
-                  <link>https://img.apmcdn.org</link>
+                  <link>https://${parseImgUrl[2]}/</link>
                   <title>${item.title}</title>
                   <url>${img &&
                     img.aspectRatios.uncropped.instances[0].url}</url>
