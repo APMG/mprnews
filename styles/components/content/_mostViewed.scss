@@ -1,0 +1,38 @@
+//--------------------------------------
+// Most Viewed
+//
+// These are the styles for MostViewed
+// component (similar to the bullet
+// styles in _related.scss)
+//--------------------------------------
+
+.mostViewed_list {
+  line-height: 1.3;
+}
+
+.mostViewed_title {
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.mostViewed_item {
+  list-style: none;
+  padding-left: 0;
+  margin-left: 25px;
+  margin-bottom: 3px;
+  position: relative;
+
+  &::before {
+    content: '';
+    display: block;
+    height: 12px;
+    width: 12px;
+    border-radius: 2px;
+    position: absolute;
+    left: -25px;
+    top: .6rem;
+    font-size: .85em;
+    background: $color-blue-light;
+  }
+}
+

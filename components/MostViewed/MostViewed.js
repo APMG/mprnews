@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import fetch from 'isomorphic-unfetch';
+import { Heading } from '@apmg/titan';
 
 const MostViewed = () => {
   const [data, setData] = useState({});
@@ -34,12 +35,15 @@ const MostViewed = () => {
   }
 
   return (
-    <div className="mostviewed">
-      <ul>
+    <div className="mostViewed">
+      <Heading className="mostViewed_title" level={3}>
+        {"Today's Top Stories"}
+      </Heading>
+      <ul className="mostViewed_list">
         {data.mostViewed &&
           data.mostViewed.map((data, i) => {
             return (
-              <li key={i}>
+              <li className="mostViewed_item" key={i}>
                 <Link
                   href={`/story?slug=${parseUrl(data.dimensions[0])}`}
                   as={`${data.dimensions[0]}`}
