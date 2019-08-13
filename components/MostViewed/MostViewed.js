@@ -36,29 +36,30 @@ const MostViewed = () => {
 
   return (
     <div className="mostViewed">
-      <Heading
-        elementClass="module_header hdg-section hdg-section-small"
-        level={3}
-      >
-        {"Today's Top Stories"}
-      </Heading>
-      <ul className="module_body bList bList-styled">
-        {data.mostViewed &&
-          data.mostViewed.map((data, i) => {
-            return (
-              <li key={i}>
-                <Link
-                  href={`/story?slug=${parseUrl(data.dimensions[0])}`}
-                  as={`${data.dimensions[0]}`}
-                >
-                  <a className="link link-plain">
-                    {parseString(data.dimensions[1])}
-                  </a>
-                </Link>
-              </li>
-            );
-          })}
-      </ul>
+      <div className="module_header">
+        <Heading elementClass="hdg-section hdg-section-small" level={3}>
+          {"Today's Top Stories"}
+        </Heading>
+      </div>
+      <div className="module_body">
+        <ul className="bList bList-styled">
+          {data.mostViewed &&
+            data.mostViewed.map((data, i) => {
+              return (
+                <li key={i}>
+                  <Link
+                    href={`/story?slug=${parseUrl(data.dimensions[0])}`}
+                    as={`${data.dimensions[0]}`}
+                  >
+                    <a className="link link-plain">
+                      {parseString(data.dimensions[1])}
+                    </a>
+                  </Link>
+                </li>
+              );
+            })}
+        </ul>
+      </div>
     </div>
   );
 };
