@@ -5,3 +5,28 @@
 .bList {
   @include bList();
 }
+
+.bList-styled {
+  line-height: 1.3;
+
+  > li {
+    list-style: none;
+    padding-left: 0;
+    margin-left: 25px;
+    margin-bottom: 3px;
+    position: relative;
+
+    &::before {
+      content: '';
+      display: block;
+      height: 12px;
+      width: 12px;
+      border-radius: 2px;
+      position: absolute;
+      left: -25px;
+      top: .6rem;
+      font-size: .85em;
+      background: $color-blue-light;
+    }
+  }
+}

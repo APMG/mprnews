@@ -36,14 +36,17 @@ const MostViewed = () => {
 
   return (
     <div className="mostViewed">
-      <Heading className="mostViewed_title" level={3}>
+      <Heading
+        elementClass="module_header hdg-section hdg-section-small"
+        level={3}
+      >
         {"Today's Top Stories"}
       </Heading>
-      <ul className="mostViewed_list">
+      <ul className="module_body bList bList-styled">
         {data.mostViewed &&
           data.mostViewed.map((data, i) => {
             return (
-              <li className="mostViewed_item" key={i}>
+              <li key={i}>
                 <Link
                   href={`/story?slug=${parseUrl(data.dimensions[0])}`}
                   as={`${data.dimensions[0]}`}
