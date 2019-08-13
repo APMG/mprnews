@@ -37,6 +37,7 @@ module.exports.mostViewed = (server) => {
 
         return await reporting.reports.batchGet(request);
       };
+
       const basic_report = {
         reportRequests: [
           {
@@ -80,7 +81,8 @@ module.exports.mostViewed = (server) => {
           }
         })
         .catch((e) => {
-          return myCache.flushAll() && console.log(e);
+          myCache.flushAll();
+          console.error(e);
         });
     }
   });
