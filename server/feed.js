@@ -68,11 +68,12 @@ module.exports.feed = (server) => {
           console.error('Error: ', err);
         });
     };
-    function hasImage(item, results) {
-      const slug = results.data.collection.canonicalSlug;
+    function getImage(item) {
       let result;
-      if (slug.match(/outside/g) && item.primaryVisuals.thumbnail) {
-        result = `<img src="${item.primaryVisuals.thumbnail.preferredAspectRatio.instances[0].url}" alt="${item.primaryVisuals.thumbnail.shortCaption}" height="${item.primaryVisuals.thumbnail.preferredAspectRatio.instances[0].height}" width="${item.primaryVisuals.thumbnail.preferredAspectRatio.instances[0].width}"/>`;
+      const primaryImg = item.primaryVisuals.thumbnail;
+
+      if (primaryImg) {
+        result = `<img src="${primaryImg.preferredAspectRatio.instances[0].url}" alt="${primaryImg.shortCaption}" height="${primaryImg.preferredAspectRatio.instances[0].height}" width="${primaryImg.preferredAspectRatio.instances[0].width}"/>`;
       } else {
         result = '';
       }
@@ -81,46 +82,49 @@ module.exports.feed = (server) => {
 
     const queryRes = fetchFeedData(query);
     queryRes.then((results) => {
-      xml += `<title>${results.data.collection.title} - MPR News</title>`;
+      const feed = results.data.collection;
+      xml += `<title>${feed &&
+        results.data.collection.title} - MPR News</title>`;
       xml += `<atom:link
-      href="https://www.mprnews.org/feed/${results.data.collection.canonicalSlug}"
+      href="https://www.mprnews.org/feed/${feed &&
+        results.data.collection.canonicalSlug}"
       rel="self"
       type="application/rss+xml"/> `;
-      xml += `<description><![CDATA[${results.data.collection.descriptionText}]]></description>`;
+      xml += `<description><![CDATA[${feed &&
+        results.data.collection.descriptionText}]]></description>`;
       xml += `<language>en-us</language>`;
       xml += `<lastBuildDate>${format(
-        new Date(results.data.collection.publishDate),
+        new Date(feed && results.data.collection.publishDate),
         'ddd, D MMM YYYY HH:mm:ss ZZ'
       )}</lastBuildDate>`;
 
-      results.data.collection.results.items.forEach((item) => {
-        if (item.resourceType === 'link') {
-          return;
-        }
-        const link = linkByTypeAs(item);
-        const dte = format(
-          new Date(item.publishDate),
-          'ddd, D MMM YYYY HH:mm:ss ZZ'
-        );
-        const ele = React.createElement(Body, {
-          nodeData: JSON.parse(item.body),
-          embedded: JSON.parse(item.embeddedAssetJson),
-          minimal: false
-        });
-        const markupImg = hasImage(item, results);
-        const markup = ReactDOMServer.renderToStaticMarkup(ele);
+      feed &&
+        results.data.collection.results.items.forEach((item) => {
+          if (item.resourceType === 'link') {
+            return;
+          }
+          const link = linkByTypeAs(item);
+          const dte = format(
+            new Date(item.publishDate),
+            'ddd, D MMM YYYY HH:mm:ss ZZ'
+          );
+          const ele = React.createElement(Body, {
+            nodeData: JSON.parse(item.body),
+            embedded: JSON.parse(item.embeddedAssetJson),
+            minimal: false
+          });
+          const markupImg = getImage(item);
+          const markup = ReactDOMServer.renderToStaticMarkup(ele);
 
-        xml += `<item>
+          xml += `<item>
                   <title>${item.title}</title>
                   <link>https://www.mprnews.org${link}</link>
                   <guid isPermaLink="true">https://www.mprnews.org${link}</guid>
                   <pubDate>${dte}</pubDate>
                   <description><![CDATA[${item.descriptionText}]]></description>
-                  <content:encoded><![CDATA[${
-                    item.primaryVisuals.thumbnail ? markupImg : ''
-                  }${markup}]]></content:encoded>
+                  <content:encoded><![CDATA[${markupImg}${markup}]]></content:encoded>
                 </item>`;
-      });
+        });
       xml += '</channel>';
       xml += '</rss>';
       res.send(xml);
