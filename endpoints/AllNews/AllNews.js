@@ -62,8 +62,8 @@ const AllNews = ({ data: { allNews } }) => {
             hasFirstAndLast={true}
             inclusiveFirstLast={true}
             buffer={1}
-            slug={'all-news'}
-            resourceType={'allnews'}
+            hrefPrefix={`collection?slug=all-news`}
+            asPrefix={`all-news`}
             currentPage={allNews.currentPage}
             totalPages={allNews.totalPages}
             firstLastSeparator="..."

@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
-import { Heading } from '@apmg/titan';
+import { Heading, Pagination } from '@apmg/titan';
 import { Image } from '@apmg/mimas';
 import { Body } from '@apmg/amat';
 import { globals } from '../../config/globals';
 import { linkByTypeHref, linkByTypeAs } from '../../utils/cjsutils';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
 import Metatags from '../../components/Metatags/Metatags';
+import Icon from '../../components/Icons/Icon';
 
 const Profile = ({ data: { profile } }) => {
   return (
@@ -71,8 +72,8 @@ const Profile = ({ data: { profile } }) => {
                 <h3>Recent Contributions</h3>
                 <ul>
                   {profile &&
-                    profile.contributions &&
-                    profile.contributions.map((contribution) => {
+                    profile.results &&
+                    profile.results.items.map((contribution) => {
                       const linkHref = linkByTypeHref(contribution);
                       const linkAs = linkByTypeAs(contribution);
                       return (
@@ -89,6 +90,33 @@ const Profile = ({ data: { profile } }) => {
                       );
                     })}
                 </ul>
+              </div>
+              <div className="profile_pagination">
+                <Pagination
+                  hasFirstAndLast={true}
+                  inclusiveFirstLast={true}
+                  buffer={1}
+                  hrefPrefix={`profile?slug=people/${profile.canonicalSlug}`}
+                  asPrefix={`people/${profile.canonicalSlug}`}
+                  currentPage={profile.results.currentPage}
+                  totalPages={profile.results.totalPages}
+                  firstLastSeparator="..."
+                  firstSymbol="1"
+                  nextSymbol={
+                    <>
+                      <span>Next</span>
+                      <Icon name="chevronRight" />
+                    </>
+                  }
+                  prevSymbol={
+                    <>
+                      <Icon name="chevronLeft" />
+                      <span>Prev</span>
+                    </>
+                  }
+                  lastSymbol={profile.results.totalPages}
+                  prevNextClass="btn btn-primary"
+                />
               </div>
             </div>
           </div>
