@@ -96,7 +96,7 @@ const Profile = ({ data: { profile } }) => {
                   hasFirstAndLast={true}
                   inclusiveFirstLast={true}
                   buffer={1}
-                  hrefPrefix={`profile?slug=people/${profile.canonicalSlug}`}
+                  hrefPrefix={`profile?slug=${profile.canonicalSlug}`}
                   asPrefix={`people/${profile.canonicalSlug}`}
                   currentPage={profile.results.currentPage}
                   totalPages={profile.results.totalPages}

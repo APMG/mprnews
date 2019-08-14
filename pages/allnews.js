@@ -7,17 +7,17 @@ import Sidebar from '../components/Sidebar/Sidebar';
 import initApollo from '../lib/init-apollo';
 import query from '../endpoints/AllNews/allNews.gql';
 
-const AllNewsPage = ({ data, errorCode, pageNum = 1 }) => {
+const AllNewsPage = ({ data, errorCode, pageNum }) => {
   if (errorCode) return <ErrorPage statusCode={errorCode} />;
   return (
     <ContentGrid sidebar={<Sidebar />}>
-      <AllNews data={data} pageNum={parseInt(pageNum)} />
+      <AllNews data={data} pageNum={pageNum} />
     </ContentGrid>
   );
 };
 
 AllNewsPage.getInitialProps = async ({
-  query: { pageNum, previewToken },
+  query: { pageNum = 1, previewToken },
   res
 }) => {
   const ApolloClient = initApollo();
@@ -27,6 +27,7 @@ AllNewsPage.getInitialProps = async ({
     query: query,
     variables: {
       contentAreaSlug: process.env.CONTENT_AREA_SLUG,
+      pageNum: parseInt(pageNum),
       previewToken: previewToken
     }
   })
@@ -42,13 +43,13 @@ AllNewsPage.getInitialProps = async ({
       errorCode = res.statusCode > 200 ? res.statusCode : false;
     });
 
-  return { data, errorCode, pageNum };
+  return { data, errorCode, pageNum: parseInt(pageNum) };
 };
 
 AllNewsPage.propTypes = {
   data: PropTypes.object,
   errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
-  pageNum: PropTypes.string
+  pageNum: PropTypes.number
 };
 
 export default AllNewsPage;

@@ -62,7 +62,7 @@ const AllNews = ({ data: { allNews } }) => {
             hasFirstAndLast={true}
             inclusiveFirstLast={true}
             buffer={1}
-            hrefPrefix={`collection?slug=all-news`}
+            hrefPrefix={`allnews`}
             asPrefix={`all-news`}
             currentPage={allNews.currentPage}
             totalPages={allNews.totalPages}
