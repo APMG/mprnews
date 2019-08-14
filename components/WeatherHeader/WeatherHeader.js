@@ -27,7 +27,7 @@ const WeatherHeader = () => {
     };
 
     getData();
-  }, {});
+  }, []);
 
   return (
     <div className="weatherHeader">
