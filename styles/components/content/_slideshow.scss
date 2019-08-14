@@ -136,7 +136,7 @@ $_button-icon-size-mobile: 15px;
   z-index: $z-slideshow-image;
 }
 
-img.slideshow_image {
+img .slideshow_image {
   display: block;
   z-index: $z-slideshow-image;
 }
@@ -209,8 +209,4 @@ img.slideshow_image {
   svg {
     fill: $color-white;
   }
-}
-
-.slideshow_fullscreen-hidden {
-  @include invisible();
 }
