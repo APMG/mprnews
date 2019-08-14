@@ -1,18 +1,12 @@
-query episode(
-  $contentAreaSlug: String!
-  $slug: String!
-  $previewToken: String
-) {
-  episode: episode(
-    contentAreaSlug: $contentAreaSlug
-    slug: $slug
-    previewToken: $previewToken
-  ) {
+query episode($contentAreaSlug: String!, $slug: String!, $previewToken: String) {
+  episode: episode(contentAreaSlug: $contentAreaSlug, slug: $slug, previewToken: $previewToken) {
     id
+    slug
     title
     subtitle
     canonicalSlug
     supportedOutputFormats
+    resourceType
     primaryCollection {
       id
       title
@@ -83,4 +77,8 @@ query episode(
       }
     }
   }
+}
+alertConfig: potlatch(slug: "mprnews/alerts") {
+  slug
+  json
 }

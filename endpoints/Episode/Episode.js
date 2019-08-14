@@ -9,8 +9,11 @@ import Metatags from '../../components/Metatags/Metatags';
 import ShareSocialButtons from '../../components/ShareSocialButtons/ShareSocialButtons';
 import { Image } from '@apmg/mimas';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
+import { showInfoAlert } from '../../utils/utils';
+import Alert from '../../components/Alert/Alert';
 
-const Episode = ({ data: { episode } }) => {
+const Episode = ({ data: { episode, alertConfig } }) => {
+  const alerts = JSON.parse(alertConfig.json);
   let authors;
 
   if (episode.contributors) {
@@ -38,7 +41,9 @@ const Episode = ({ data: { episode } }) => {
         topic={episode.primaryCollection?.title}
         contentType="article"
       />
-
+      {showInfoAlert(alerts, episode.resourceType) ? (
+        <Alert info={alerts.info} />
+      ) : null}
       <Content
         title={episode.title}
         subtitle={episode.subtitle}
@@ -84,6 +89,7 @@ const Episode = ({ data: { episode } }) => {
 
 Episode.propTypes = {
   data: PropTypes.shape({
+    alertConfig: PropTypes.object,
     episode: PropTypes.shape({
       canonicalSlug: PropTypes.string,
       title: PropTypes.string,
@@ -95,6 +101,7 @@ Episode.propTypes = {
         })
       ),
       body: PropTypes.string,
+      resourceType: PropTypes.string,
       contributors: PropTypes.array,
       supportedOutputFormats: PropTypes.array,
       description: PropTypes.string,

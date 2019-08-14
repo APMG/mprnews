@@ -4,21 +4,16 @@ import FullTeaser from '../../components/FullTeaser/FullTeaser';
 import HomeFooter from './HomeFooter';
 import HomeGrid from '../../grids/HomeGrid';
 import HomeRail from './HomeRail';
-import HomeTop from './HomeTop';
 import Icon from '../../components/Icons/Icon';
 import Metatags from '../../components/Metatags/Metatags';
 import Sidebar from '../../components/Sidebar/Sidebar';
+import { showInfoAlert } from '../../utils/utils';
+import Alert from '../../components/Alert/Alert';
 
 const Home = (data) => {
   const alerts = JSON.parse(data.alertConfig.json);
   const homeStoryConfig = JSON.parse(data.homeStoryConfig.json);
   const firstItem = data.homeList.results.items[0];
-
-  const showInfoAlert = () => {
-    return alerts?.info?.alert && alerts?.info?.show_on?.indexOf('home') > -1
-      ? true
-      : false;
-  };
   const homepageTopic = 'homepage';
   return (
     <div className="page-purpose" data-mpr-content-topic="homepage">
@@ -37,7 +32,9 @@ const Home = (data) => {
         sidebar={<Sidebar homepageTopic={homepageTopic} />}
         first={<FullTeaser item={firstItem} />}
         rail={<HomeRail updraft={data.updraft?.results?.items?.[0]} />}
-        top={showInfoAlert() ? <HomeTop info={alerts.info} /> : null}
+        top={
+          showInfoAlert(alerts, 'home') ? <Alert info={alerts.info} /> : null
+        }
         footer={<HomeFooter />}
       >
         <div className="vList vList-collection">
