@@ -4,6 +4,7 @@ query collection($contentAreaSlug: String!, $slug: String!, $pageNum: Int) {
     title
     body
     descriptionText
+    resourceType
     primaryVisuals {
       social {
         xid
@@ -125,7 +126,7 @@ query collection($contentAreaSlug: String!, $slug: String!, $pageNum: Int) {
       }
     }
   }
-  alertConfig: potlatch(slug: "mprnews/alerts1") {
+  alertConfig: potlatch(slug: "mprnews/alerts") {
     slug
     json
   }

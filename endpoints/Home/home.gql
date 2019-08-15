@@ -80,7 +80,7 @@ query home($contentAreaSlug: String!, $slug: String!) {
       }
     }
   }
-  alertConfig: potlatch(slug: "mprnews/alerts1") {
+  alertConfig: potlatch(slug: "mprnews/alerts") {
     slug
     json
   }

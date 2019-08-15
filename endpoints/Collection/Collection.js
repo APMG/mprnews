@@ -41,7 +41,7 @@ const Collection = ({ data: { collection, alertConfig } }) => {
         topic={collection.title}
         contentType="website"
       />
-      {showInfoAlert(alerts, 'collection') ? (
+      {showInfoAlert(alerts, collection.resourceType) ? (
         <Alert info={alerts.info} />
       ) : null}
       <section
@@ -89,7 +89,7 @@ const Collection = ({ data: { collection, alertConfig } }) => {
             inclusiveFirstLast={true}
             buffer={1}
             slug={collection.canonicalSlug}
-            resourceType={'collection'}
+            resourceType={collection.resourceType}
             currentPage={collection.results.currentPage}
             totalPages={collection.results.totalPages}
             firstLastSeparator="..."
