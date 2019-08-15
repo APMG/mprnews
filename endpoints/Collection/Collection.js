@@ -42,7 +42,9 @@ const Collection = ({ data: { collection, alertConfig } }) => {
         contentType="website"
       />
       {showInfoAlert(alerts, collection.resourceType) ? (
-        <Alert info={alerts.info} />
+        <div className="section section-md">
+          <Alert info={alerts.info} />
+        </div>
       ) : null}
       <section
         className="collection page-purpose"

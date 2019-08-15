@@ -33,7 +33,11 @@ const Home = (data) => {
         first={<FullTeaser item={firstItem} />}
         rail={<HomeRail updraft={data.updraft?.results?.items?.[0]} />}
         top={
-          showInfoAlert(alerts, 'home') ? <Alert info={alerts.info} /> : null
+          showInfoAlert(alerts, 'home') ? (
+            <div className="section section-md">
+              <Alert info={alerts.info} />
+            </div>
+          ) : null
         }
         footer={<HomeFooter />}
       >

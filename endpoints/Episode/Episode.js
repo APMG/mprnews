@@ -42,7 +42,9 @@ const Episode = ({ data: { episode, alertConfig } }) => {
         contentType="article"
       />
       {showInfoAlert(alerts, episode.resourceType) ? (
-        <Alert info={alerts.info} />
+        <div className="section section-md">
+          <Alert info={alerts.info} />
+        </div>
       ) : null}
       <Content
         title={episode.title}

@@ -37,7 +37,9 @@ const Story = ({ data: { story, alertConfig }, minimal }) => {
         contentType="article"
       />
       {showInfoAlert(alerts, story.resourceType) ? (
-        <Alert info={alerts.info} />
+        <div className="section section-md">
+          <Alert info={alerts.info} />
+        </div>
       ) : null}
       <Content
         title={story.title}
