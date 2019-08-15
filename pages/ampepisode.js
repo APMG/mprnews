@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ErrorPage from 'next/error';
-import { withAmp } from 'next/amp';
 import Episode from '../endpoints/Episode/Episode';
 import initApollo from '../lib/init-apollo';
 import query from '../endpoints/Episode/episode.gql';
@@ -47,4 +46,5 @@ AmpEpisode.propTypes = {
   data: PropTypes.object
 };
 
-export default withAmp(AmpEpisode, { hybrid: true });
+export default AmpEpisode;
+export const config = { amp: 'hybrid' };
