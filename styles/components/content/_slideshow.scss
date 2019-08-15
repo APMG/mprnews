@@ -10,7 +10,8 @@ $_button-icon-size: 29px;
 $_button-icon-size-mobile: 15px;
 
 
-.slideshow {
+.slideshow,
+.slideshow_bg {
   display: grid;
   position: relative;
   grid-template-columns: auto auto auto;
@@ -24,7 +25,6 @@ $_button-icon-size-mobile: 15px;
     left: 0;
     display: flex;
     align-items: center;
-    background: rgba($color-black, .875);
     z-index: $z-slideshow-fullscreen;
 
   }
@@ -35,13 +35,17 @@ $_button-icon-size-mobile: 15px;
   }
 
   &:hover {
-    .slideshow_count {
-      text-shadow: 1px 1px 2px rgba($color-black, 1);
-    }
 
     .slideshow_fullscreen {
       opacity: 1;
     }
+  }
+}
+
+.slideshow_bg {
+  &.fullscreen {
+    background: rgba($color-black, .875);
+    z-index: -1;
   }
 }
 
@@ -183,7 +187,7 @@ img .slideshow_image {
   top: 0;
   right: 0;
   color: $color-white;
-  text-shadow: 1px 1px 2px rgba($color-black, .25);
+  text-shadow: 1px 1px 2px rgba($color-black, 1);
   z-index: $z-slideshow-count;
   padding: 4px 8px;
   font-family: $font-family-sans;
@@ -199,12 +203,16 @@ img .slideshow_image {
   position: absolute;
   top: 4px;
   left: 4px;
-  opacity: 0;
+  opacity: 1;
   transition: opacity $transition;
   background: $color-black;
   border-radius: 20px;
   padding: 5px;
   margin: 5px;
+
+  @include media-max($media-small-tablet) {
+    opacity: 0;
+  }
 
   svg {
     fill: $color-white;
