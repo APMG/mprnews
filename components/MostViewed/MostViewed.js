@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import fetch from 'isomorphic-unfetch';
+import { Heading } from '@apmg/titan';
 
 const MostViewed = () => {
   const [data, setData] = useState({});
@@ -34,24 +35,31 @@ const MostViewed = () => {
   }
 
   return (
-    <div className="mostviewed">
-      <ul>
-        {data.mostViewed &&
-          data.mostViewed.map((data, i) => {
-            return (
-              <li key={i}>
-                <Link
-                  href={`/story?slug=${parseUrl(data.dimensions[0])}`}
-                  as={`${data.dimensions[0]}`}
-                >
-                  <a className="link link-plain">
-                    {parseString(data.dimensions[1])}
-                  </a>
-                </Link>
-              </li>
-            );
-          })}
-      </ul>
+    <div className="mostViewed">
+      <div className="module_header">
+        <Heading elementClass="hdg-section hdg-section-small" level={3}>
+          {'Recent Top Stories'}
+        </Heading>
+      </div>
+      <div className="module_body">
+        <ul className="bList bList-styled">
+          {data.mostViewed &&
+            data.mostViewed.map((data, i) => {
+              return (
+                <li key={i}>
+                  <Link
+                    href={`/story?slug=${parseUrl(data.dimensions[0])}`}
+                    as={`${data.dimensions[0]}`}
+                  >
+                    <a className="link link-plain">
+                      {parseString(data.dimensions[1])}
+                    </a>
+                  </Link>
+                </li>
+              );
+            })}
+        </ul>
+      </div>
     </div>
   );
 };

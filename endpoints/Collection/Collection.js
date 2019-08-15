@@ -82,8 +82,8 @@ const Collection = ({ data: { collection } }) => {
             hasFirstAndLast={true}
             inclusiveFirstLast={true}
             buffer={1}
-            slug={collection.canonicalSlug}
-            resourceType={'collection'}
+            hrefPrefix={`collection?slug=${collection.canonicalSlug}`}
+            asPrefix={`${collection.canonicalSlug}`}
             currentPage={collection.results.currentPage}
             totalPages={collection.results.totalPages}
             firstLastSeparator="..."

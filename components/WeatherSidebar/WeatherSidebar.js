@@ -23,7 +23,7 @@ const WeatherSidebar = () => {
     };
 
     getData(context.location.lat, context.location.long);
-  }, {});
+  }, []);
 
   let currentForecast, tonightsForecast;
 

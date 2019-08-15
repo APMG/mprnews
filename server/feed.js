@@ -28,6 +28,19 @@ module.exports.feed = (server) => {
                 resourceType
                 canonicalSlug
                 publishDate
+                primaryVisuals {
+                  thumbnail {
+                    xid
+                    shortCaption
+                    preferredAspectRatio {
+                      instances {
+                        url
+                        width
+                        height
+                      }
+                    }
+                  }
+                }
               }
             }
           }}`
@@ -55,42 +68,63 @@ module.exports.feed = (server) => {
           console.error('Error: ', err);
         });
     };
+    function getImage(item) {
+      let result;
+      const primaryImg = item.primaryVisuals.thumbnail;
+
+      if (primaryImg) {
+        result = `<img src="${primaryImg.preferredAspectRatio.instances[0].url}" alt="${primaryImg.shortCaption}" height="${primaryImg.preferredAspectRatio.instances[0].height}" width="${primaryImg.preferredAspectRatio.instances[0].width}"/>`;
+      } else {
+        result = '';
+      }
+      return result;
+    }
+
     const queryRes = fetchFeedData(query);
     queryRes.then((results) => {
-      xml += `<title>${results.data.collection.title} - MPR News</title>`;
-      xml += `<description><![CDATA[${results.data.collection.descriptionText}]]></description>`;
-      xml += `<pubDate>${format(
-        new Date(results.data.collection.publishDate),
-        'ddd, D MMM YYYY HH:mm:ss ZZ'
-      )}</pubDate>`;
+      const feed = results.data.collection;
+      xml += `<title>${feed &&
+        results.data.collection.title} - MPR News</title>`;
       xml += `<atom:link
-                href="https://www.mprnews.org/feed/${results.data.collection.canonicalSlug}"
-                rel="self"
-                type="application/rss+xml"/> `;
-      results.data.collection.results.items.forEach((item) => {
-        if (item.resourceType === 'link') {
-          return;
-        }
-        const link = linkByTypeAs(item);
-        const dte = format(
-          new Date(item.publishDate),
-          'ddd, D MMM YYYY HH:mm:ss ZZ'
-        );
-        const ele = React.createElement(Body, {
-          nodeData: JSON.parse(item.body),
-          embedded: JSON.parse(item.embeddedAssetJson),
-          minimal: false
+      href="https://www.mprnews.org/feed/${feed &&
+        results.data.collection.canonicalSlug}"
+      rel="self"
+      type="application/rss+xml"/> `;
+      xml += `<description><![CDATA[${feed &&
+        results.data.collection.descriptionText}]]></description>`;
+      xml += `<language>en-us</language>`;
+      xml += `<lastBuildDate>${format(
+        new Date(feed && results.data.collection.publishDate),
+        'ddd, D MMM YYYY HH:mm:ss ZZ'
+      )}</lastBuildDate>`;
+
+      feed &&
+        results.data.collection.results.items.forEach((item) => {
+          if (item.resourceType === 'link') {
+            return;
+          }
+          const link = linkByTypeAs(item);
+          const dte = format(
+            new Date(item.publishDate),
+            'ddd, D MMM YYYY HH:mm:ss ZZ'
+          );
+          const ele = React.createElement(Body, {
+            nodeData: JSON.parse(item.body),
+            embedded: JSON.parse(item.embeddedAssetJson),
+            minimal: false
+          });
+          const markupImg = getImage(item);
+          const markup = ReactDOMServer.renderToStaticMarkup(ele);
+
+          xml += `<item>
+                  <title>${item.title}</title>
+                  <link>https://www.mprnews.org${link}</link>
+                  <guid isPermaLink="true">https://www.mprnews.org${link}</guid>
+                  <pubDate>${dte}</pubDate>
+                  <description><![CDATA[${item.descriptionText}]]></description>
+                  <content:encoded><![CDATA[${markupImg}${markup}]]></content:encoded>
+                </item>`;
         });
-        const markup = ReactDOMServer.renderToStaticMarkup(ele);
-        xml += `<item>
-                      <pubDate>${dte}</pubDate>
-                      <title>${item.title}</title>
-                      <description><![CDATA[${item.descriptionText}]]></description>
-                      <content:encoded><![CDATA[${markup}]]></content:encoded>
-                      <link>https://www.mprnews.org${link}</link>
-                      <guid isPermaLink="true">https://www.mprnews.org${link}</guid>
-                    </item>`;
-      });
       xml += '</channel>';
       xml += '</rss>';
       res.send(xml);
