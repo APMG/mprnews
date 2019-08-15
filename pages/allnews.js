@@ -48,8 +48,8 @@ AllNewsPage.getInitialProps = async ({
 
 AllNewsPage.propTypes = {
   data: PropTypes.object,
-  errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
-  pageNum: PropTypes.number
+  pageNum: PropTypes.number,
+  errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool])
 };
 
 export default AllNewsPage;

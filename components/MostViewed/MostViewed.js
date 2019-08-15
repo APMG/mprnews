@@ -38,7 +38,7 @@ const MostViewed = () => {
     <div className="mostViewed">
       <div className="module_header">
         <Heading elementClass="hdg-section hdg-section-small" level={3}>
-          {"Today's Top Stories"}
+          {'Recent Top Stories'}
         </Heading>
       </div>
       <div className="module_body">

@@ -23,8 +23,8 @@ const Profile = ({ data: { profile } }) => {
 
       <section className="page section">
         <div className="content">
-          <div className="content_body userContent">
-            <div className="profile">
+          <div className="profile">
+            <div className="content_body userContent">
               <div className="profile_header">
                 {profile?.primaryVisuals?.lead && (
                   <div className="profile_image">
@@ -68,57 +68,56 @@ const Profile = ({ data: { profile } }) => {
                   />
                 )}
               </div>
-              <div className="profile_footer">
-                <h3>Recent Contributions</h3>
-                <ul>
-                  {profile &&
-                    profile.results &&
-                    profile.results.items.map((contribution) => {
-                      const linkHref = linkByTypeHref(contribution);
-                      const linkAs = linkByTypeAs(contribution);
-                      return (
-                        <li key={contribution.id}>
-                          <Link href={linkHref} as={linkAs}>
-                            <a className="contributer">
-                              {contribution.title}
-                              {contribution.descriptionText && (
-                                <div>{contribution.descriptionText}</div>
-                              )}
-                            </a>
-                          </Link>
-                        </li>
-                      );
-                    })}
-                </ul>
-              </div>
-              <div className="profile_pagination">
-                <Pagination
-                  hasFirstAndLast={true}
-                  inclusiveFirstLast={true}
-                  buffer={1}
-                  hrefPrefix={`profile?slug=${profile.canonicalSlug}`}
-                  asPrefix={`people/${profile.canonicalSlug}`}
-                  currentPage={profile.results.currentPage}
-                  totalPages={profile.results.totalPages}
-                  firstLastSeparator="..."
-                  firstSymbol="1"
-                  nextSymbol={
-                    <>
-                      <span>Next</span>
-                      <Icon name="chevronRight" />
-                    </>
-                  }
-                  prevSymbol={
-                    <>
-                      <Icon name="chevronLeft" />
-                      <span>Prev</span>
-                    </>
-                  }
-                  lastSymbol={profile.results.totalPages}
-                  prevNextClass="btn btn-primary"
-                />
-              </div>
+              <div className="profile_footer"></div>
+              <h3>Recent Contributions</h3>
+              <ul>
+                {profile &&
+                  profile.results &&
+                  profile.results.items.map((contribution) => {
+                    const linkHref = linkByTypeHref(contribution);
+                    const linkAs = linkByTypeAs(contribution);
+                    return (
+                      <li key={contribution.id}>
+                        <Link href={linkHref} as={linkAs}>
+                          <a className="contributer">
+                            {contribution.title}
+                            {contribution.descriptionText && (
+                              <div>{contribution.descriptionText}</div>
+                            )}
+                          </a>
+                        </Link>
+                      </li>
+                    );
+                  })}
+              </ul>
             </div>
+          </div>
+          <div className="profile_pagination">
+            <Pagination
+              hasFirstAndLast={true}
+              inclusiveFirstLast={true}
+              buffer={1}
+              hrefPrefix={`profile?slug=${profile.canonicalSlug}`}
+              asPrefix={`people/${profile.canonicalSlug}`}
+              currentPage={profile.results.currentPage}
+              totalPages={profile.results.totalPages}
+              firstLastSeparator="..."
+              firstSymbol="1"
+              nextSymbol={
+                <>
+                  <span>Next</span>
+                  <Icon name="chevronRight" />
+                </>
+              }
+              prevSymbol={
+                <>
+                  <Icon name="chevronLeft" />
+                  <span>Prev</span>
+                </>
+              }
+              lastSymbol={profile.results.totalPages}
+              prevNextClass="btn btn-primary"
+            />
           </div>
         </div>
       </section>
