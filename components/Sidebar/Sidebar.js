@@ -11,6 +11,9 @@ const Sidebar = (props) => {
   const { homepageTopic } = props;
   return (
     <div className="sidebar">
+      <div className="section-sm">
+        <AdTop />
+      </div>
       <div className="section section-sm">
         <div className="hList">
           <Link
@@ -26,9 +29,6 @@ const Sidebar = (props) => {
       </div>
       <div className="section-sm">
         <MostViewed />
-      </div>
-      <div className="section-sm">
-        <AdTop />
       </div>
       <div className="section-sm">
         <AdBottom homepageTopic={homepageTopic} />

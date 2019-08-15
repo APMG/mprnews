@@ -65,6 +65,18 @@ const previewToken = (req, res, next) => {
   next();
 };
 
+const pageNum = (req, res, next) => {
+  if (req.path.match(/\/static/) || req.path.match(/\/_next/)) {
+    next();
+    return;
+  }
+
+  let path = req.path.replace(/^\//, '');
+  path = path.replace(/\/$/, '');
+  req.pageNum = path.match(/\d+$/) ? path.match(/\d+$/)[0] : 1;
+  next();
+};
+
 const logUrls = (req, res, next) => {
   if (
     req.originalUrl.match(/\/static/) === null &&
@@ -80,7 +92,15 @@ app
   .then(() => {
     const server = express();
 
-    server.use(slug, previewSlug, previewToken, daySlug, twitterSlug, logUrls);
+    server.use(
+      slug,
+      previewSlug,
+      previewToken,
+      daySlug,
+      twitterSlug,
+      pageNum,
+      logUrls
+    );
 
     // gzip in prod
     if (!dev) {
@@ -167,7 +187,10 @@ app
     // Profile Routing
     server.get('/people/*', (req, res) => {
       res.set('Cache-Control', `public, max-age=${TTL}`);
-      app.render(req, res, '/profile', { slug: req.slug });
+      app.render(req, res, '/profile', {
+        slug: req.slug,
+        pageNum: req.pageNum
+      });
     });
 
     // Preview Routing

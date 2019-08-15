@@ -13,13 +13,14 @@ const AmpPage = ({ data, errorCode }) => {
   return <Page data={data} />;
 };
 
-AmpPage.getInitialProps = async ({ query: { slug }, res }) => {
+AmpPage.getInitialProps = async ({ query: { slug, pageNum = 1 }, res }) => {
   const ApolloClient = initApollo();
   let data, errorCode;
   await ApolloClient.query({
     query: query,
     variables: {
       contentAreaSlug: process.env.CONTENT_AREA_SLUG,
+      pageNum: parseInt(pageNum),
       slug: slug
     }
   })
