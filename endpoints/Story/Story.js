@@ -13,6 +13,7 @@ import { showInfoAlert } from '../../utils/utils';
 import Alert from '../../components/Alert/Alert';
 
 const Story = ({ data: { story, alertConfig }, minimal }) => {
+  console.log('story: ', alertConfig);
   const alerts = JSON.parse(alertConfig.json);
   let authors;
   if (story && story.contributors) {

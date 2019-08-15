@@ -13,6 +13,8 @@ import { showInfoAlert } from '../../utils/utils';
 import Alert from '../../components/Alert/Alert';
 
 const Episode = ({ data: { episode, alertConfig } }) => {
+  console.log('episode', episode);
+  console.log('episode: ', alertConfig);
   const alerts = JSON.parse(alertConfig.json);
   let authors;
 

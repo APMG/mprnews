@@ -6,7 +6,7 @@ query collection($contentAreaSlug: String!, $slug: String!, $pageNum: Int) {
     descriptionText
     primaryVisuals {
       social {
-	    xid
+        xid
         fallback
       }
     }
@@ -74,14 +74,14 @@ query collection($contentAreaSlug: String!, $slug: String!, $pageNum: Int) {
         }
         contributors {
           profile {
-	          id
+            id
             firstName
             lastName
           }
         }
         primaryVisuals {
           thumbnail {
-	          xid
+            xid
             aspect_ratios: aspectRatios {
               uncropped {
                 instances {
@@ -125,7 +125,7 @@ query collection($contentAreaSlug: String!, $slug: String!, $pageNum: Int) {
       }
     }
   }
-  alertConfig: potlatch(slug: "mprnews/alerts") {
+  alertConfig: potlatch(slug: "mprnews/alerts1") {
     slug
     json
   }

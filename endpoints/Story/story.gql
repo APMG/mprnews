@@ -1,5 +1,9 @@
 query story($contentAreaSlug: String!, $slug: String!, $previewToken: String) {
-  story: story(contentAreaSlug: $contentAreaSlug, slug: $slug, previewToken: $previewToken) {
+  story: story(
+    contentAreaSlug: $contentAreaSlug
+    slug: $slug
+    previewToken: $previewToken
+  ) {
     id
     title
     subtitle
@@ -78,7 +82,7 @@ query story($contentAreaSlug: String!, $slug: String!, $previewToken: String) {
       }
     }
   }
-  alertConfig: potlatch(slug: "mprnews/alerts") {
+  alertConfig: potlatch(slug: "mprnews/alerts1") {
     slug
     json
   }

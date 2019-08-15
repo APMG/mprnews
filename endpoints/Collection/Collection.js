@@ -41,7 +41,9 @@ const Collection = ({ data: { collection, alertConfig } }) => {
         topic={collection.title}
         contentType="website"
       />
-      {showInfoAlert(alerts, 'topic') ? <Alert info={alerts.info} /> : null}
+      {showInfoAlert(alerts, 'collection') ? (
+        <Alert info={alerts.info} />
+      ) : null}
       <section
         className="collection page-purpose"
         data-mpr-content-topic={collection.title}
