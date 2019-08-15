@@ -152,3 +152,11 @@ export function hrefType(item) {
 export function hrefTypeAs(item) {
   return item.hrefType === 'externalLink' ? null : `/${item.href}`;
 }
+
+// Checks potlatch alert control for resourceType
+export function showInfoAlert(alerts, resourceType) {
+  return alerts?.info?.alert &&
+    alerts?.info?.show_on?.indexOf(resourceType) > -1
+    ? true
+    : false;
+}

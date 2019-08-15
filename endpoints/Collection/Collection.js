@@ -7,10 +7,14 @@ import FullTeaser from '../../components/FullTeaser/FullTeaser';
 import Metatags from '../../components/Metatags/Metatags';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
 import Icon from '../../components/Icons/Icon';
+import { showInfoAlert } from '../../utils/utils';
+import Alert from '../../components/Alert/Alert';
 
-const Collection = ({ data: { collection } }) => {
+const Collection = ({ data: { collection, alertConfig } }) => {
+  const alerts = JSON.parse(alertConfig.json);
   const contentTopicCollectionRef = useRef(null);
   let checkCollectionName = `${collection?.title}`;
+
   if (!checkCollectionName) {
     checkCollectionName = 'default';
   }
@@ -37,7 +41,11 @@ const Collection = ({ data: { collection } }) => {
         topic={collection.title}
         contentType="website"
       />
-
+      {showInfoAlert(alerts, collection.resourceType) ? (
+        <div className="section section-md">
+          <Alert info={alerts.info} />
+        </div>
+      ) : null}
       <section
         className="collection page-purpose"
         data-mpr-content-topic={collection.title}
@@ -111,6 +119,7 @@ const Collection = ({ data: { collection } }) => {
 
 Collection.propTypes = {
   data: PropTypes.shape({
+    alertConfig: PropTypes.object,
     collection: PropTypes.object
   })
 };
