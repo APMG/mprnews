@@ -83,4 +83,8 @@ query episode(
       }
     }
   }
+  alertConfig: potlatch(slug: "mprnews/alerts") {
+    slug
+    json
+  }
 }

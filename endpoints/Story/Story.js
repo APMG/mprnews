@@ -9,8 +9,11 @@ import AudioPlayButton from '../../components/AudioPlayButton/AudioPlayButton';
 import Content from '../../components/Content/Content';
 import Metatags from '../../components/Metatags/Metatags';
 import ShareSocialButtons from '../../components/ShareSocialButtons/ShareSocialButtons';
+import { showInfoAlert } from '../../utils/utils';
+import Alert from '../../components/Alert/Alert';
 
-const Story = ({ data: { story }, minimal }) => {
+const Story = ({ data: { story, alertConfig }, minimal }) => {
+  const alerts = JSON.parse(alertConfig.json);
   let authors;
   if (story && story.contributors) {
     authors = story.contributors.map((contributor) => {
@@ -33,7 +36,11 @@ const Story = ({ data: { story }, minimal }) => {
         topic={story?.primaryCollection?.title}
         contentType="article"
       />
-
+      {showInfoAlert(alerts, story.resourceType) ? (
+        <div className="section section-md">
+          <Alert info={alerts.info} />
+        </div>
+      ) : null}
       <Content
         title={story.title}
         subtitle={story.subtitle}
@@ -99,6 +106,7 @@ const Story = ({ data: { story }, minimal }) => {
 
 Story.propTypes = {
   data: PropTypes.shape({
+    alertConfig: PropTypes.object,
     story: PropTypes.shape({
       canonicalSlug: PropTypes.string,
       title: PropTypes.string,
@@ -111,6 +119,7 @@ Story.propTypes = {
         })
       ),
       body: PropTypes.string,
+      resourceType: PropTypes.string,
       contributors: PropTypes.array,
       supportedOutputFormats: PropTypes.array,
       descriptionText: PropTypes.string,
