@@ -126,7 +126,7 @@ query collection($contentAreaSlug: String!, $slug: String!, $pageNum: Int) {
       }
     }
   }
-  alertConfig: potlatch(slug: "mprnews/alerts") {
+  alertConfig: potlatch(slug: "mprnews/info-alert") {
     slug
     json
   }

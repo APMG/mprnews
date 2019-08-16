@@ -155,6 +155,7 @@ export function hrefTypeAs(item) {
 
 // Checks potlatch alert control for resourceType
 export function showInfoAlert(alerts, resourceType) {
+  console.log(alerts, alerts?.info?.show_on?.indexOf(resourceType) > -1);
   return alerts?.info?.alert &&
     alerts?.info?.show_on?.indexOf(resourceType) > -1
     ? true
