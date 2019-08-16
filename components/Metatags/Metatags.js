@@ -62,7 +62,7 @@ const Metatags = (props) => {
             content={props.image}
             key="twitter:image"
           />
-          <meta name="og:image" content={props.image} key="og:image" />
+          <meta property="og:image" content={props.image} key="og:image" />
         </>
       )}
 
