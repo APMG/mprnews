@@ -9,12 +9,11 @@ import Metatags from '../../components/Metatags/Metatags';
 import ShareSocialButtons from '../../components/ShareSocialButtons/ShareSocialButtons';
 import { Image } from '@apmg/mimas';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
+import { showInfoAlert } from '../../utils/utils';
+import Alert from '../../components/Alert/Alert';
 
-const Episode = ({ data }) => {
-  return <EpisodeInner episode={data} />;
-};
-
-const EpisodeInner = ({ episode }) => {
+const Episode = ({ data: { episode, alertConfig } }) => {
+  const alerts = JSON.parse(alertConfig.json);
   let authors;
 
   if (episode.contributors) {
@@ -42,7 +41,11 @@ const EpisodeInner = ({ episode }) => {
         topic={episode.primaryCollection?.title}
         contentType="article"
       />
-
+      {showInfoAlert(alerts, episode.resourceType) ? (
+        <div className="section section-md">
+          <Alert info={alerts.info} />
+        </div>
+      ) : null}
       <Content
         title={episode.title}
         subtitle={episode.subtitle}
@@ -87,37 +90,37 @@ const EpisodeInner = ({ episode }) => {
 };
 
 Episode.propTypes = {
-  data: PropTypes.object
-};
-
-EpisodeInner.propTypes = {
-  episode: PropTypes.shape({
-    canonicalSlug: PropTypes.string,
-    title: PropTypes.string,
-    subtitle: PropTypes.string,
-    authors: PropTypes.arrayOf(
-      PropTypes.shape({
-        title: PropTypes.string,
-        href: PropTypes.string
+  data: PropTypes.shape({
+    alertConfig: PropTypes.object,
+    episode: PropTypes.shape({
+      canonicalSlug: PropTypes.string,
+      title: PropTypes.string,
+      subtitle: PropTypes.string,
+      authors: PropTypes.arrayOf(
+        PropTypes.shape({
+          title: PropTypes.string,
+          href: PropTypes.string
+        })
+      ),
+      body: PropTypes.string,
+      resourceType: PropTypes.string,
+      contributors: PropTypes.array,
+      supportedOutputFormats: PropTypes.array,
+      description: PropTypes.string,
+      descriptionText: PropTypes.string,
+      image: PropTypes.element,
+      imageCaption: PropTypes.string,
+      imageCredit: PropTypes.string,
+      imageCreditHref: PropTypes.string,
+      primaryVisuals: PropTypes.any,
+      primaryCollection: PropTypes.any,
+      primaryAudio: PropTypes.any,
+      publishDate: PropTypes.string,
+      embeddedAssetJson: PropTypes.string,
+      tag: PropTypes.shape({
+        tagName: PropTypes.string,
+        to: PropTypes.string
       })
-    ),
-    body: PropTypes.string,
-    contributors: PropTypes.array,
-    supportedOutputFormats: PropTypes.array,
-    description: PropTypes.string,
-    descriptionText: PropTypes.string,
-    image: PropTypes.element,
-    imageCaption: PropTypes.string,
-    imageCredit: PropTypes.string,
-    imageCreditHref: PropTypes.string,
-    primaryVisuals: PropTypes.any,
-    primaryCollection: PropTypes.any,
-    primaryAudio: PropTypes.any,
-    publishDate: PropTypes.string,
-    embeddedAssetJson: PropTypes.string,
-    tag: PropTypes.shape({
-      tagName: PropTypes.string,
-      to: PropTypes.string
     })
   })
 };

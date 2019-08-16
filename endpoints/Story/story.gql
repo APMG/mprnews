@@ -8,6 +8,7 @@ query story($contentAreaSlug: String!, $slug: String!, $previewToken: String) {
     title
     subtitle
     supportedOutputFormats
+    resourceType
     dateline
     canonicalSlug
     primaryCollection {
@@ -80,5 +81,9 @@ query story($contentAreaSlug: String!, $slug: String!, $previewToken: String) {
         xid
       }
     }
+  }
+  alertConfig: potlatch(slug: "mprnews/alerts") {
+    slug
+    json
   }
 }

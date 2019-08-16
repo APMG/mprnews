@@ -27,12 +27,18 @@ HomePage.getInitialProps = async (res) => {
       contentAreaSlug: process.env.CONTENT_AREA_SLUG,
       slug: 'homepage'
     }
-  }).then((result) => {
-    data = result.data;
-    if (res) {
+  })
+    .then((result) => {
+      data = result.data;
+      if (res) {
+        errorCode = res.statusCode > 200 ? res.statusCode : false;
+      }
+    })
+    .catch(() => {
+      res.status(404);
       errorCode = res.statusCode > 200 ? res.statusCode : false;
-    }
-  });
+    });
+
   return { data, errorCode };
 };
 

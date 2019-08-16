@@ -20,16 +20,22 @@ NewspartnerStory.getInitialProps = async ({ query: { slug }, res }) => {
       contentAreaSlug: process.env.CONTENT_AREA_SLUG,
       slug: slug
     }
-  }).then((result) => {
-    data = result.data;
-    if (res && !data.story) {
+  })
+    .then((result) => {
+      data = result.data;
+      if (res && !data.story) {
+        res.status(404);
+        errorCode = res.statusCode > 200 ? res.statusCode : false;
+      }
+    })
+    .catch(() => {
       res.status(404);
       errorCode = res.statusCode > 200 ? res.statusCode : false;
-    }
-  });
+    });
+
   return {
-    data: data,
-    errorCode: errorCode,
+    data,
+    errorCode,
     layout: 'newspartners'
   };
 };

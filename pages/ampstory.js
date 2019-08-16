@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ErrorPage from 'next/error';
-import { withAmp } from 'next/amp';
 import Story from '../endpoints/Story/Story';
 import initApollo from '../lib/init-apollo';
 import query from '../endpoints/Story/story.gql';
@@ -22,16 +21,22 @@ AmpStory.getInitialProps = async ({ query: { slug }, res }) => {
       contentAreaSlug: process.env.CONTENT_AREA_SLUG,
       slug: slug
     }
-  }).then((result) => {
-    data = result.data;
-    if (res && !data.story) {
+  })
+    .then((result) => {
+      data = result.data;
+      if (res && !data.story) {
+        res.status(404);
+        errorCode = res.statusCode > 200 ? res.statusCode : false;
+      }
+    })
+    .catch(() => {
       res.status(404);
       errorCode = res.statusCode > 200 ? res.statusCode : false;
-    }
-  });
+    });
+
   return {
-    data: data,
-    errorCode: errorCode,
+    data,
+    errorCode,
     layout: 'amp'
   };
 };
@@ -41,4 +46,5 @@ AmpStory.propTypes = {
   data: PropTypes.object
 };
 
-export default withAmp(AmpStory, { hybrid: true });
+export default AmpStory;
+export const config = { amp: 'hybrid' };

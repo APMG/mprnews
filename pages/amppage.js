@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ErrorPage from 'next/error';
-import { withAmp } from 'next/amp';
 import Page from '../endpoints/Page/Page';
 import initApollo from '../lib/init-apollo';
 import query from '../endpoints/Page/page.gql';
@@ -13,24 +12,30 @@ const AmpPage = ({ data, errorCode }) => {
   return <Page data={data} />;
 };
 
-AmpPage.getInitialProps = async ({ query: { slug }, res }) => {
+AmpPage.getInitialProps = async ({ query: { slug, pageNum = 1 }, res }) => {
   const ApolloClient = initApollo();
   let data, errorCode;
   await ApolloClient.query({
     query: query,
     variables: {
       contentAreaSlug: process.env.CONTENT_AREA_SLUG,
+      pageNum: parseInt(pageNum),
       slug: slug
     }
-  }).then((result) => {
-    data = result.data;
-    if (res && !data.page) {
+  })
+    .then((result) => {
+      data = result.data;
+      if (res && !data.page) {
+        res.status(404);
+        errorCode = res.statusCode > 200 ? res.statusCode : false;
+      }
+    })
+    .catch(() => {
       res.status(404);
       errorCode = res.statusCode > 200 ? res.statusCode : false;
-    }
-  });
+    });
 
-  return { data: data, errorCode: errorCode, layout: 'amp' };
+  return { data, errorCode, layout: 'amp' };
 };
 
 AmpPage.propTypes = {
@@ -38,4 +43,5 @@ AmpPage.propTypes = {
   data: PropTypes.object
 };
 
-export default withAmp(AmpPage, { hybrid: true });
+export default AmpPage;
+export const config = { amp: 'hybrid' };

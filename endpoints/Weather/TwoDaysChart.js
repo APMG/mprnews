@@ -6,8 +6,8 @@ import DragScroll from 'react-dragscroll';
 import { Heading } from '@apmg/titan';
 import WeatherIcon from '../../components/WeatherIcons/WeatherIcon';
 
-const BUFFER_TOP = 4;
-const BUFFER_BOTTOM = 13;
+const BUFFER_TOP = 9;
+const BUFFER_BOTTOM = 17;
 const CHART_HEIGHT = 300;
 const CHART_WIDTH = 1875;
 const GRID_WIDTH = 39;

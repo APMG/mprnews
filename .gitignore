@@ -4,6 +4,7 @@ npm-debug.log*
 .DS_Store
 .next
 .vscode
+*.swp
 
 coverage
 build
@@ -19,3 +20,6 @@ public
 # Ignore editor configs
 /.vscode/*
 tags
+
+# Ignore google analytics keyfile
+config/google-api-keyfile.json
