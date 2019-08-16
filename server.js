@@ -162,7 +162,8 @@ app
     server.get('/schedule/:day?', (req, res) => {
       res.set('Cache-Control', `public, max-age=60`);
       app.render(req, res, '/schedule', {
-        slug: req.daySlug
+        slug: req.daySlug,
+        protocol: req.protocol
       });
     });
 
