@@ -10,13 +10,9 @@ const SchedulePage = ({ schedule, errorCode }) => {
   return <Schedule schedule={schedule} />;
 };
 
-SchedulePage.getInitialProps = async ({
-  query: { slug, protocol },
-  req,
-  res
-}) => {
-  const scheduleUrl = (await protocol)
-    ? `http://${req.headers['host']}/api/schedule/${slug}`
+SchedulePage.getInitialProps = async ({ query: { slug }, req, res }) => {
+  const scheduleUrl = req
+    ? `${req.protocol}://${req.headers['host']}/api/schedule/${slug}`
     : `/api/schedule/${slug}`;
   const scheduleRes = await fetch(scheduleUrl);
   const props = await scheduleRes.json();
