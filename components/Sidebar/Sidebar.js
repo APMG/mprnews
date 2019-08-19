@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { format } from 'date-fns';
 import AdBottom from '../../components/Ads/AdBottom';
 import AdTop from '../../components/Ads/AdTop';
+import MostViewed from '../../components/MostViewed/MostViewed';
 import PropTypes from 'prop-types';
 
 const Sidebar = (props) => {
@@ -10,6 +11,9 @@ const Sidebar = (props) => {
   const { homepageTopic } = props;
   return (
     <div className="sidebar">
+      <div className="section-sm">
+        <AdTop />
+      </div>
       <div className="section section-sm">
         <div className="hList">
           <Link
@@ -24,7 +28,7 @@ const Sidebar = (props) => {
         </div>
       </div>
       <div className="section-sm">
-        <AdTop />
+        <MostViewed />
       </div>
       <div className="section-sm">
         <AdBottom homepageTopic={homepageTopic} />
@@ -37,4 +41,4 @@ Sidebar.propTypes = {
   homepageTopic: PropTypes.string
 };
 
-export default React.memo(Sidebar);
+export default Sidebar;

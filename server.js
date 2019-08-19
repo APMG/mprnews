@@ -2,7 +2,9 @@
 const express = require('express');
 const compression = require('compression');
 const nextjs = require('next');
+const fetch = require('isomorphic-unfetch');
 const { daysofweek } = require('./server/daysofweek');
+const { getDateTimes, formatEachDateTime } = require('./utils/scheduleUtils');
 const port = parseInt(process.env.APP_PORT, 10) || 3000;
 const dev =
   process.env.RAILS_ENV !== 'stage' && process.env.RAILS_ENV !== 'production';
@@ -13,6 +15,7 @@ const { dynamic } = require('./server/dynamic');
 const { sitemap } = require('./server/sitemap');
 const { urlset } = require('./server/urlset');
 const { ssGql } = require('./server/ssGql');
+const { mostViewed } = require('./server/mostViewed');
 require('console-stamp')(console, 'dd/mmm/yyyy:HH:MM:ss o');
 
 const TTL = 60;
@@ -62,6 +65,18 @@ const previewToken = (req, res, next) => {
   next();
 };
 
+const pageNum = (req, res, next) => {
+  if (req.path.match(/\/static/) || req.path.match(/\/_next/)) {
+    next();
+    return;
+  }
+
+  let path = req.path.replace(/^\//, '');
+  path = path.replace(/\/$/, '');
+  req.pageNum = path.match(/\/([0-9]+)/) ? path.match(/\/([0-9]+)/)[0] : 1;
+  next();
+};
+
 const logUrls = (req, res, next) => {
   if (
     req.originalUrl.match(/\/static/) === null &&
@@ -77,7 +92,15 @@ app
   .then(() => {
     const server = express();
 
-    server.use(slug, previewSlug, previewToken, daySlug, twitterSlug, logUrls);
+    server.use(
+      slug,
+      previewSlug,
+      previewToken,
+      daySlug,
+      twitterSlug,
+      pageNum,
+      logUrls
+    );
 
     // gzip in prod
     if (!dev) {
@@ -112,6 +135,29 @@ app
       app.render(req, res, '/weather', { id: req.params.id });
     });
 
+    // schedule api route
+    server.get('/api/schedule/:day?', async (req, res) => {
+      const fetchSchedule = async () => {
+        try {
+          const daysOfThisWeek = getDateTimes();
+          const formattedDate = await formatEachDateTime(
+            daysOfThisWeek,
+            req.daySlug
+          );
+          const scheduleUrl = await `https://scheduler.publicradio.org/api/v1/services/3/schedule/?datetime=${formattedDate}`;
+          let request = await fetch(scheduleUrl);
+          let response = await request.json();
+          return response;
+        } catch (err) {
+          console.error(err);
+        }
+      };
+
+      let data = await fetchSchedule();
+      res.set('Cache-Control', 'public,max-age=60');
+      res.send(data);
+    });
+
     // schedule route
     server.get('/schedule/:day?', (req, res) => {
       res.set('Cache-Control', `public, max-age=60`);
@@ -141,7 +187,10 @@ app
     // Profile Routing
     server.get('/people/*', (req, res) => {
       res.set('Cache-Control', `public, max-age=${TTL}`);
-      app.render(req, res, '/profile', { slug: req.slug });
+      app.render(req, res, '/profile', {
+        slug: req.slug,
+        pageNum: req.pageNum
+      });
     });
 
     // Preview Routing
@@ -233,6 +282,9 @@ app
 
     // Dynamic Routing for collections and pages
     dynamic(server, app, handle);
+
+    // imported mostViewed from Google Analytics api route
+    mostViewed(server);
 
     server.get('*', (req, res) => {
       return handle(req, res);

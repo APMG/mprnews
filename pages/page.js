@@ -28,17 +28,22 @@ StaticPage.getInitialProps = async ({ query: { slug, previewToken }, res }) => {
       slug: slug,
       previewToken: previewToken
     }
-  }).then((result) => {
-    data = result.data;
-    if (!data.page) {
+  })
+    .then((result) => {
+      data = result.data;
+      if (!data.page) {
+        res.status(404);
+        errorCode = res.statusCode > 200 ? res.statusCode : false;
+      }
+    })
+    .catch(() => {
       res.status(404);
       errorCode = res.statusCode > 200 ? res.statusCode : false;
-    }
-  });
+    });
 
   return {
-    data: data,
-    errorCode: errorCode
+    data,
+    errorCode
   };
 };
 

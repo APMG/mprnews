@@ -9,6 +9,11 @@ import LocationContext from '../context/LocationContext';
 import Layout from '../layouts/Layout';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
+import TagManager from 'react-gtm-module';
+
+const tagManagerArgs = {
+  gtmId: 'GTM-KTT2Z2'
+};
 
 class MPRNews extends App {
   constructor(props) {
@@ -73,6 +78,7 @@ class MPRNews extends App {
       this.setState({ isAudioLive: true });
       this.state.resetLivePlayer();
     });
+    TagManager.initialize(tagManagerArgs);
   }
 
   loadPlayer = () => {
