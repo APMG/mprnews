@@ -106,10 +106,7 @@ class MPRNews extends App {
   handleAudioButtonClick = (audioSource, audioTitle, audioSubtitle) => {
     if (this.state.isAudioPlaying && this.state.audioSource === audioSource) {
       this.pauseAudio(audioSource, audioTitle, audioSubtitle);
-    } else if (
-      this.state.isAudioPlaying &&
-      this.state.audioSource !== audioSource
-    ) {
+    } else if (this.state.audioSource !== audioSource) {
       this.state.playerInstance.unloadAudio();
       this.playAudio(audioSource, audioTitle, audioSubtitle);
     } else {
