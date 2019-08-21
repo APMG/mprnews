@@ -1,6 +1,5 @@
 /*eslint no-console: 0*/
 const express = require('express');
-const compression = require('compression');
 const nextjs = require('next');
 const fetch = require('isomorphic-unfetch');
 const { daysofweek } = require('./server/daysofweek');
@@ -101,11 +100,6 @@ app
       pageNum,
       logUrls
     );
-
-    // gzip in prod
-    if (!dev) {
-      server.use(compression());
-    }
 
     //Root route
     server.get('/', (req, res) => {
