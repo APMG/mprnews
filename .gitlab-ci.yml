@@ -18,9 +18,8 @@ Prettier:
     - general_cent7
 Jest:
   script:
-    - npm test
     - npm install
-    - npm run prettier
+    - npm run test:ci
   tags:
     - general_cent7
 Deploy Dev:
