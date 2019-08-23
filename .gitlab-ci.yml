@@ -16,6 +16,13 @@ Prettier:
     - npm run prettier
   tags:
     - general_cent7
+Jest:
+  script:
+    - npm test
+    - npm install
+    - npm run prettier
+  tags:
+    - general_cent7
 Deploy Dev:
   script:
     - bundle install --path ~/vendor/bundle
@@ -24,7 +31,7 @@ Deploy Dev:
   tags:
     - cap_deploy
   only:
-  - master
+    - master
 Deploy Stage:
   script:
     - bundle install --path ~/vendor/bundle
@@ -33,13 +40,13 @@ Deploy Stage:
   tags:
     - cap_deploy
   only:
-  - stage
+    - stage
 Deploy Prod:
- script:
-  - bundle install --path ~/vendor/bundle
-  - bundle exec cap prod deploy
- type: deploy
- tags:
-   - cap_deploy
- only:
- - prod
+  script:
+    - bundle install --path ~/vendor/bundle
+    - bundle exec cap prod deploy
+  type: deploy
+  tags:
+    - cap_deploy
+  only:
+    - prod
