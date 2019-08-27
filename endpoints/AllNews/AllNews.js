@@ -90,7 +90,6 @@ const AllNews = ({ data: { allNews } }) => {
 };
 
 AllNews.propTypes = {
-  pageNum: PropTypes.number,
   data: PropTypes.shape({
     allNews: PropTypes.object
   })
