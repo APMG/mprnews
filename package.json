@@ -8,7 +8,6 @@
     "debug": "RAILS_ENV=development NODE_ENV=development node --inspect server.js",
     "dev:clean": "rm -rf build .next && npm run dev",
     "build": "next build",
-    "start": "node server.js",
     "eslint": "eslint .",
     "eslint:fix": "eslint . --fix",
     "prettier": "prettier --check '**/**.js'",

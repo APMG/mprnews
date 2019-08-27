@@ -72,7 +72,9 @@ const pageNum = (req, res, next) => {
 
   let path = req.path.replace(/^\//, '');
   path = path.replace(/\/$/, '');
-  req.pageNum = path.match(/\/([0-9]+)/) ? path.match(/\/([0-9]+)/)[0] : 1;
+  req.pageNum = path.match(/\/([0-9]+)/)
+    ? path.match(/\/([0-9]+)/)[0].replace('/', '')
+    : 1;
   next();
 };
 

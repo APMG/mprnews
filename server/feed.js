@@ -84,7 +84,10 @@ module.exports.feed = (server) => {
     queryRes.then((results) => {
       const feed = results.data.collection;
       xml += `<title>${feed &&
-        results.data.collection.title} - MPR News</title>`;
+        results.data.collection.title.replace(
+          /&/,
+          '&amp;'
+        )} - MPR News</title>`;
       xml += `<atom:link
       href="https://www.mprnews.org/feed/${feed &&
         results.data.collection.canonicalSlug}"
@@ -117,7 +120,7 @@ module.exports.feed = (server) => {
           const markup = ReactDOMServer.renderToStaticMarkup(ele);
 
           xml += `<item>
-                  <title>${item.title}</title>
+                  <title>${item.title.replace(/&/, '&amp;')}</title>
                   <link>https://www.mprnews.org${link}</link>
                   <guid isPermaLink="true">https://www.mprnews.org${link}</guid>
                   <pubDate>${dte}</pubDate>
