@@ -1,16 +1,18 @@
 import fetch from 'isomorphic-unfetch';
+const https = require('https');
+const agent = new https.Agent({ keepAlive: true });
 
 export const fetchWeather = async (lat, long) => {
   try {
     const backgroundUrl = `https://api.weather.gov/points/${lat},${long}`;
-    const locationRes = await fetch(backgroundUrl);
+    const locationRes = await fetch(backgroundUrl, { agent: agent });
     const locationData = await locationRes.json();
 
     const weatherUrl = locationData.properties.forecastGridData;
-    const weatherRes = await fetch(weatherUrl);
+    const weatherRes = await fetch(weatherUrl, { agent: agent });
 
     const forecastUrl = locationData.properties.forecastHourly;
-    const forecastRes = await fetch(forecastUrl);
+    const forecastRes = await fetch(forecastUrl, { agent: agent });
 
     const alertUrl = `https://api.weather.gov/alerts/active?point=${lat},${long}`;
     const alertRes = await fetch(alertUrl);
