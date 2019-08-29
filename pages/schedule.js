@@ -4,8 +4,9 @@ import fetch from 'isomorphic-unfetch';
 import ErrorPage from 'next/error';
 // import { getDateTimes, formatEachDateTime } from '../utils/scheduleUtils';
 import Schedule from '../endpoints/Schedule/Schedule';
-const https = require('https');
-const agent = new https.Agent({ keepAlive: true });
+const client =
+  process.env.RAILS_ENV === 'development' ? require('http') : require('https');
+const agent = new client.Agent({ keepAlive: true });
 
 const SchedulePage = ({ schedule, errorCode }) => {
   if (!schedule || errorCode) return <ErrorPage statusCode={404} />;
