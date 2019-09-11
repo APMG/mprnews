@@ -7,7 +7,6 @@ import Footer from '../components/Footer/Footer';
 import '../styles/index.scss';
 
 const MainLayout = ({ children, memberDriveData }) => {
-  console.log(memberDriveData);
   return (
     <>
       <Header memberDriveData={memberDriveData} />
