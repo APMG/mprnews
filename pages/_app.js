@@ -50,8 +50,17 @@ class MPRNews extends App {
       playlist: {},
       resetLivePlayer: this.resetLivePlayer,
       location: weatherConfig[0],
-      handleLocationChange: this.handleLocationChange
+      handleLocationChange: this.handleLocationChange,
+      memberDriveData: {}
     };
+  }
+
+  static async getInitialProps(contextObj) {
+    const memberDriveData = contextObj.ctx.req.memberDriveData;
+    contextObj.ctx.memberDriveData = memberDriveData;
+    // calls page's `getInitialProps` and fills `appProps.pageProps`
+    const appProps = await App.getInitialProps(contextObj);
+    return { ...appProps };
   }
 
   componentDidMount() {
@@ -218,7 +227,10 @@ class MPRNews extends App {
         <LocationContext.Provider value={{ location, handleLocationChange }}>
           <Container>
             <ApolloProvider client={initApollo()}>
-              <Layout layout={pageProps?.layout}>
+              <Layout
+                layout={pageProps?.layout}
+                memberDriveData={pageProps.memberDriveData}
+              >
                 <Component {...pageProps} />
               </Layout>
             </ApolloProvider>

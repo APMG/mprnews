@@ -15,6 +15,7 @@ const { sitemap } = require('./server/sitemap');
 const { urlset } = require('./server/urlset');
 const { ssGql } = require('./server/ssGql');
 const { mostViewed } = require('./server/mostViewed');
+const { membershipPotlatch } = require('./server/membershipPotlatch');
 require('console-stamp')(console, 'dd/mmm/yyyy:HH:MM:ss o');
 
 const TTL = 60;
@@ -102,6 +103,9 @@ app
       pageNum,
       logUrls
     );
+
+    // middleware to check membershipPotlatch
+    membershipPotlatch(server);
 
     //Root route
     server.get('/', (req, res) => {

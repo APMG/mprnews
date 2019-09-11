@@ -20,6 +20,7 @@ AllNewsPage.getInitialProps = async ({
   query: { pageNum = 1, previewToken },
   res
 }) => {
+  const memberDriveData = res.memberDriveData;
   const ApolloClient = initApollo();
   let data;
   let errorCode;
@@ -43,7 +44,7 @@ AllNewsPage.getInitialProps = async ({
       errorCode = res.statusCode > 200 ? res.statusCode : false;
     });
 
-  return { data, errorCode, pageNum: parseInt(pageNum) };
+  return { data, errorCode, pageNum: parseInt(pageNum), memberDriveData };
 };
 
 AllNewsPage.propTypes = {

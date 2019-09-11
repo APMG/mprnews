@@ -11,6 +11,7 @@ const WeatherPage = ({ data, errorCode }) => {
 };
 
 WeatherPage.getInitialProps = async ({ req, res }) => {
+  const memberDriveData = res.memberDriveData;
   let findLocation =
     typeof req !== 'undefined' &&
     req.params !== 'undefined' &&
@@ -33,7 +34,8 @@ WeatherPage.getInitialProps = async ({ req, res }) => {
         forecast,
         alerts
       },
-      errorCode
+      errorCode,
+      memberDriveData
     };
   }
 

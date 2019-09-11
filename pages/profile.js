@@ -17,6 +17,7 @@ ProfilePage.getInitialProps = async ({
   res
 }) => {
   let data, errorCode;
+  const memberDriveData = res.memberDriveData;
   const ApolloClient = initApollo();
   await ApolloClient.query({
     query: query,
@@ -43,7 +44,8 @@ ProfilePage.getInitialProps = async ({
   return {
     data,
     pageNum: parseInt(pageNum),
-    errorCode
+    errorCode,
+    memberDriveData
   };
 };
 

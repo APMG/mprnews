@@ -11,12 +11,13 @@ const SearchPage = ({ errorCode }) => {
 };
 
 SearchPage.getInitialProps = async ({ query: { slug, previewToken }, res }) => {
+  const memberDriveData = res.memberDriveData;
   if (res) {
     const errorCode = res.statusCode > 200 ? res.statusCode : false;
     return { slug: slug, previewToken: previewToken, errorCode };
   }
 
-  return { slug: slug, previewToken: previewToken };
+  return { slug: slug, previewToken: previewToken, memberDriveData };
 };
 
 SearchPage.propTypes = {

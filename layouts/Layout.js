@@ -11,7 +11,12 @@ const Layout = (props) => {
   return (
     <>
       <DefaultHead />
-      <LayoutInner layout={props.layout}>{props.children}</LayoutInner>
+      <LayoutInner
+        layout={props.layout}
+        memberDriveData={props.memberDriveData}
+      >
+        {props.children}
+      </LayoutInner>
     </>
   );
 };
@@ -31,17 +36,23 @@ const LayoutInner = (props) => {
     return <AmpLayout>{props.children}</AmpLayout>;
   }
 
-  return <MainLayout>{props.children}</MainLayout>;
+  return (
+    <MainLayout memberDriveData={props.memberDriveData}>
+      {props.children}
+    </MainLayout>
+  );
 };
 
 Layout.propTypes = {
   children: PropTypes.node,
-  layout: PropTypes.string
+  layout: PropTypes.string,
+  memberDriveData: PropTypes.object
 };
 
 LayoutInner.propTypes = {
   children: PropTypes.node,
-  layout: PropTypes.string
+  layout: PropTypes.string,
+  memberDriveData: PropTypes.object
 };
 
 export default Layout;

@@ -19,6 +19,8 @@ const HomePage = ({ data, errorCode }) => {
 };
 
 HomePage.getInitialProps = async (res) => {
+  //  console.log('MEMBERSHIP DATA', res.memberDriveData);
+  const memberDriveData = res.memberDriveData;
   let data, errorCode;
   const ApolloClient = initApollo();
   await ApolloClient.query({
@@ -39,7 +41,7 @@ HomePage.getInitialProps = async (res) => {
       errorCode = res.statusCode > 200 ? res.statusCode : false;
     });
 
-  return { data, errorCode };
+  return { data, errorCode, memberDriveData };
 };
 
 HomePage.propTypes = {

@@ -19,6 +19,7 @@ const StaticPage = ({ data, errorCode }) => {
 };
 
 StaticPage.getInitialProps = async ({ query: { slug, previewToken }, res }) => {
+  const memberDriveData = res.memberDriveData;
   const ApolloClient = initApollo();
   let data, errorCode;
   await ApolloClient.query({
@@ -43,7 +44,8 @@ StaticPage.getInitialProps = async ({ query: { slug, previewToken }, res }) => {
 
   return {
     data,
-    errorCode
+    errorCode,
+    memberDriveData
   };
 };
 
