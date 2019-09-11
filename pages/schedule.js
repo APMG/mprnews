@@ -11,7 +11,10 @@ const SchedulePage = ({ schedule, errorCode }) => {
 };
 
 SchedulePage.getInitialProps = async ({ query: { slug }, req, res }) => {
-  const memberDriveData = res.memberDriveData;
+  let memberDriveData;
+  if (req) {
+    memberDriveData = res.memberDriveData;
+  }
   const scheduleUrl = req
     ? `${req.protocol}://${req.headers['host']}/api/schedule/${slug}`
     : `/api/schedule/${slug}`;

@@ -18,8 +18,15 @@ const StaticPage = ({ data, errorCode }) => {
   );
 };
 
-StaticPage.getInitialProps = async ({ query: { slug, previewToken }, res }) => {
-  const memberDriveData = res.memberDriveData;
+StaticPage.getInitialProps = async ({
+  query: { slug, previewToken },
+  req,
+  res
+}) => {
+  let memberDriveData;
+  if (req) {
+    memberDriveData = res.memberDriveData;
+  }
   const ApolloClient = initApollo();
   let data, errorCode;
   await ApolloClient.query({

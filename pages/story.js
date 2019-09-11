@@ -16,8 +16,15 @@ const StoryPage = ({ data, errorCode }) => {
   );
 };
 
-StoryPage.getInitialProps = async ({ query: { slug, previewToken }, res }) => {
-  const memberDriveData = res.memberDriveData;
+StoryPage.getInitialProps = async ({
+  query: { slug, previewToken },
+  req,
+  res
+}) => {
+  let memberDriveData;
+  if (req) {
+    memberDriveData = res.memberDriveData;
+  }
   const ApolloClient = initApollo();
   let data;
   let errorCode;

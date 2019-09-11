@@ -10,8 +10,15 @@ const SearchPage = ({ errorCode }) => {
   return <Search />;
 };
 
-SearchPage.getInitialProps = async ({ query: { slug, previewToken }, res }) => {
-  const memberDriveData = res.memberDriveData;
+SearchPage.getInitialProps = async ({
+  query: { slug, previewToken },
+  req,
+  res
+}) => {
+  let memberDriveData;
+  if (req) {
+    memberDriveData = req.memberDriveData;
+  }
   if (res) {
     const errorCode = res.statusCode > 200 ? res.statusCode : false;
     return { slug: slug, previewToken: previewToken, errorCode };

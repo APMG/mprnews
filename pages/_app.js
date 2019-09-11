@@ -56,8 +56,11 @@ class MPRNews extends App {
   }
 
   static async getInitialProps(contextObj) {
-    const memberDriveData = contextObj.ctx.req.memberDriveData;
-    contextObj.ctx.memberDriveData = memberDriveData;
+    let memberDriveData;
+    if (contextObj.ctx.req) {
+      memberDriveData = contextObj.ctx.req.memberDriveData;
+      contextObj.ctx.memberDriveData = memberDriveData;
+    }
     // calls page's `getInitialProps` and fills `appProps.pageProps`
     const appProps = await App.getInitialProps(contextObj);
     return { ...appProps };

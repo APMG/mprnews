@@ -18,9 +18,13 @@ const AllNewsPage = ({ data, errorCode, pageNum }) => {
 
 AllNewsPage.getInitialProps = async ({
   query: { pageNum = 1, previewToken },
+  req,
   res
 }) => {
-  const memberDriveData = res.memberDriveData;
+  let memberDriveData;
+  if (req) {
+    memberDriveData = req.memberDriveData;
+  }
   const ApolloClient = initApollo();
   let data;
   let errorCode;

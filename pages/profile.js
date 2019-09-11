@@ -14,10 +14,14 @@ const ProfilePage = ({ data, pageNum, errorCode }) => {
 
 ProfilePage.getInitialProps = async ({
   query: { slug, pageNum = 1, previewToken },
+  req,
   res
 }) => {
   let data, errorCode;
-  const memberDriveData = res.memberDriveData;
+  let memberDriveData;
+  if (req) {
+    memberDriveData = res.memberDriveData;
+  }
   const ApolloClient = initApollo();
   await ApolloClient.query({
     query: query,

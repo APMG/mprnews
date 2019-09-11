@@ -18,10 +18,12 @@ const HomePage = ({ data, errorCode }) => {
   );
 };
 
-HomePage.getInitialProps = async (res) => {
+HomePage.getInitialProps = async (req, res) => {
   //  console.log('MEMBERSHIP DATA', res.memberDriveData);
-  const memberDriveData = res.memberDriveData;
-  let data, errorCode;
+  let data, errorCode, memberDriveData;
+  if (req) {
+    memberDriveData = req.memberDriveData;
+  }
   const ApolloClient = initApollo();
   await ApolloClient.query({
     query: query,

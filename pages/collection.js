@@ -20,9 +20,13 @@ const CollectionPage = ({ data, pageNum, errorCode, slug }) => {
 
 CollectionPage.getInitialProps = async ({
   query: { slug, pageNum = 1 },
+  req,
   res
 }) => {
-  const memberDriveData = res.memberDriveData;
+  let memberDriveData;
+  if (req) {
+    memberDriveData = req.memberDriveData;
+  }
   const ApolloClient = initApollo();
   let data, errorCode;
   await ApolloClient.query({
