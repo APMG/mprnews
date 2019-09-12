@@ -104,9 +104,6 @@ app
       logUrls
     );
 
-    // middleware to check membershipPotlatch
-    membershipPotlatch(server);
-
     //Root route
     server.get('/', (req, res) => {
       res.set('Cache-Control', `public, max-age=${TTL}`);
@@ -285,6 +282,9 @@ app
 
     // imported mostViewed from Google Analytics api route
     mostViewed(server);
+
+    // api endpoint to get json from potlatch about member drive
+    membershipPotlatch(server);
 
     server.get('*', (req, res) => {
       return handle(req, res);

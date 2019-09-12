@@ -5,49 +5,41 @@ const membershipCache = new NodeCache({
 });
 
 module.exports.membershipPotlatch = (server) => {
-  server.use(async (req, res, next) => {
-    let cachedMembeDriveData;
-    const fetchMemberDriveData = async () => {
+  server.get('/api/memberdrivestatus', async (req, res) => {
+    async function fetchMemberDriveData() {
       const membershipQuery = JSON.stringify({
         query: `{ membershipConfig:potlatch(slug:"membership/mpr-news-membership") { json }}`
       });
-      await fetch(process.env.POTLATCH_API, {
+      let response = await fetch(process.env.POTLATCH_API, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: membershipQuery
-      })
-        .then((response) => {
-          if (!response.ok) {
-            next();
-          }
-          return response.json();
-        })
-        .then((response) => {
-          if (!response.data) {
-            return next();
-          }
-          req.memberDriveData = JSON.parse(response.data.membershipConfig.json);
-          res.setHeader('Set-Cookie', ['memberdrive=Flintstones']);
-          membershipCache.set('memberdrive', req.memberDriveData, (err) => {
-            if (err) {
-              console.error(err);
-            }
-          });
-        })
-        .catch((error) => {
-          // eslint-disable-next-line
-          console.error('Error:', error);
-        });
-    };
-
-    cachedMembeDriveData = membershipCache.get('memberdrive');
-    if (cachedMembeDriveData === undefined) {
-      fetchMemberDriveData();
-    } else {
-      req.memberDriveData = cachedMembeDriveData;
+      });
+      return await response.json();
     }
-    next();
+
+    let memberDriveData = membershipCache.get('memberdrive');
+    if (memberDriveData === undefined) {
+      //console.log('Cache Miss');
+      fetchMemberDriveData().then((response) => {
+        membershipCache.set('memberdrive', response, (err) => {
+          if (err) {
+            console.error(err);
+          }
+        });
+        return ret(response);
+      });
+    } else {
+      // console.log('Cache HIT');
+      return ret(memberDriveData);
+    }
+
+    function ret(config) {
+      res.set('Cache-Control', 'public, max-age=60'); // 1 minute
+      res.header('Content-Type', 'application/json');
+      res.send(JSON.parse(config.data.membershipConfig.json));
+    }
   });
 };

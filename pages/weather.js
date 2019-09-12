@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ErrorPage from 'next/error';
 import { fetchWeather } from '../utils/fetchWeather';
 import { weatherConfig } from '../utils/defaultData';
 import Weather from '../endpoints/Weather/Weather';
+import {
+  fetchMemberDriveStatus,
+  addMemberDriveElements
+} from '../utils/membershipUtils';
 
 const WeatherPage = ({ data, errorCode }) => {
   if (errorCode) return <ErrorPage statusCode={errorCode} />;
+
+  useEffect(() => {
+    fetchMemberDriveStatus().then((data) => {
+      addMemberDriveElements(data);
+    });
+  });
+
   return <Weather data={data} />;
 };
 

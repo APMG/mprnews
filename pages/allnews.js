@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ErrorPage from 'next/error';
 import ContentGrid from '../grids/ContentGrid';
@@ -6,9 +6,20 @@ import AllNews from '../endpoints/AllNews/AllNews';
 import Sidebar from '../components/Sidebar/Sidebar';
 import initApollo from '../lib/init-apollo';
 import query from '../endpoints/AllNews/allNews.gql';
+import {
+  fetchMemberDriveStatus,
+  addMemberDriveElements
+} from '../utils/membershipUtils';
 
 const AllNewsPage = ({ data, errorCode, pageNum }) => {
   if (errorCode) return <ErrorPage statusCode={errorCode} />;
+
+  useEffect(() => {
+    fetchMemberDriveStatus().then((data) => {
+      addMemberDriveElements(data);
+    });
+  });
+
   return (
     <ContentGrid sidebar={<Sidebar />}>
       <AllNews data={data} pageNum={pageNum} />
