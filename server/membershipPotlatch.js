@@ -29,6 +29,7 @@ module.exports.membershipPotlatch = (server) => {
             return next();
           }
           req.memberDriveData = JSON.parse(response.data.membershipConfig.json);
+          res.setHeader('Set-Cookie', ['memberdrive=Flintstones']);
           membershipCache.set('memberdrive', req.memberDriveData, (err) => {
             if (err) {
               console.error(err);
