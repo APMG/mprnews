@@ -15,7 +15,7 @@ const SchedulePage = ({ schedule, errorCode }) => {
     fetchMemberDriveStatus().then((data) => {
       addMemberDriveElements(data);
     });
-  });
+  }, []);
 
   return <Schedule schedule={schedule} />;
 };

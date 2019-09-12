@@ -13,7 +13,7 @@ const ScribblePage = ({ errorCode }) => {
     fetchMemberDriveStatus().then((data) => {
       addMemberDriveElements(data);
     });
-  });
+  }, []);
 
   return <div className="scribbleLive"></div>;
 };

@@ -18,7 +18,7 @@ const AllNewsPage = ({ data, errorCode, pageNum }) => {
     fetchMemberDriveStatus().then((data) => {
       addMemberDriveElements(data);
     });
-  });
+  }, []);
 
   return (
     <ContentGrid sidebar={<Sidebar />}>

@@ -18,7 +18,7 @@ const ProfilePage = ({ data, pageNum, errorCode }) => {
     fetchMemberDriveStatus().then((data) => {
       addMemberDriveElements(data);
     });
-  });
+  }, []);
 
   return <Profile data={data} pageNum={pageNum} />;
 };

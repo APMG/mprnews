@@ -19,7 +19,7 @@ const StaticPage = ({ data, errorCode }) => {
     fetchMemberDriveStatus().then((data) => {
       addMemberDriveElements(data);
     });
-  });
+  }, []);
 
   return (
     <ContentGrid sidebar={<Sidebar />}>

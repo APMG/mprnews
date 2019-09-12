@@ -16,7 +16,7 @@ const SearchPage = ({ errorCode }) => {
     fetchMemberDriveStatus().then((data) => {
       addMemberDriveElements(data);
     });
-  });
+  }, []);
 
   return <Search />;
 };

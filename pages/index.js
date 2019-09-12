@@ -19,7 +19,7 @@ const HomePage = ({ data, errorCode }) => {
     fetchMemberDriveStatus().then((data) => {
       addMemberDriveElements(data);
     });
-  });
+  }, []);
 
   return (
     <>

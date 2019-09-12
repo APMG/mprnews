@@ -20,7 +20,7 @@ const CollectionPage = ({ data, pageNum, errorCode, slug }) => {
     fetchMemberDriveStatus().then((data) => {
       addMemberDriveElements(data);
     });
-  });
+  }, []);
 
   return (
     <ContentGrid sidebar={<Sidebar />}>
