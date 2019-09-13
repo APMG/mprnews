@@ -8,6 +8,7 @@ export async function fetchMemberDriveStatus() {
 
 export function addMemberDriveElements(data) {
   const rootEle = document.getElementById('__next');
+  let adsAreRunning = false;
   if (
     data.webshowad &&
     !document.getElementById('membership-ad-frame-wrapper')
@@ -22,13 +23,30 @@ export function addMemberDriveElements(data) {
     const ad = document.createElement('div');
     ad.id = 'membership-ad';
 
-    div.append('admbl');
-    div.append('ad');
+    div.append(admbl);
+    div.append(ad);
     rootEle.append(div);
+    adsAreRunning = true;
   }
   if (data.pushdownshowad && !document.getElementById('pushdown-ad')) {
     const pddiv = document.createElement('div');
     pddiv.id = 'pushdown-ad';
     rootEle.prepend(pddiv);
+    adsAreRunning = true;
+  }
+  if (
+    data.splashshowad &&
+    !document.getElementById('membership-splash-frame-wrapper')
+  ) {
+    const splashdiv = document.createElement('div');
+    splashdiv.id = 'membership-splash-frame-wrapper';
+    rootEle.append(splashdiv);
+    adsAreRunning = true;
+  }
+  if (adsAreRunning) {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'getMembershipAdSlot'
+    });
   }
 }
