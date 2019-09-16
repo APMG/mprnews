@@ -65,22 +65,19 @@ const HomeRail = (props) => {
         </div>
         <div className="module_body">
           <ul className="vList">
-            {sections.map((section) => (
-              <li key={`${section.text}${section.href}`}>
-                <Link
-                  href={`/collection?slug=${section.href}`}
-                  as={`/${section.href}`}
-                >
-                  <a className="link link-plain">{section.text}</a>
-                </Link>
-              </li>
-            ))}
-            {/* TODO clean this up better with the one menu config to rule them all ticekt */}
-            <li key="weather">
-              <Link href={`/weather`} as={`/weather`}>
-                <a className="link link-plain">Weather</a>
-              </Link>
-            </li>
+            {sections.map((section) => {
+              const href =
+                section.href === 'weather'
+                  ? '/weather'
+                  : `/collection?slug=${section.href}`;
+              return (
+                <li key={`${section.text}${section.href}`}>
+                  <Link href={href} as={`/${section.href}`}>
+                    <a className="link link-plain">{section.text}</a>
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </div>
