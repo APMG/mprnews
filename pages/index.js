@@ -1,15 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ErrorPage from 'next/error';
 import Home from '../endpoints/Home/Home';
 import Metatags from '../components/Metatags/Metatags';
 import initApollo from '../lib/init-apollo';
 import query from '../endpoints/Home/home.gql';
+import {
+  fetchMemberDriveStatus,
+  addMemberDriveElements
+} from '../utils/membershipUtils';
 
 /* eslint react/display-name: 0 */
 
 const HomePage = ({ data, errorCode }) => {
   if (errorCode) return <ErrorPage statusCode={errorCode} />;
+
+  useEffect(() => {
+    fetchMemberDriveStatus().then((data) => {
+      addMemberDriveElements(data);
+    });
+  }, []);
+
   return (
     <>
       <Metatags fullSlug="" topic="homepage" />
@@ -18,8 +29,12 @@ const HomePage = ({ data, errorCode }) => {
   );
 };
 
-HomePage.getInitialProps = async (res) => {
-  let data, errorCode;
+HomePage.getInitialProps = async (req, res) => {
+  //  console.log('MEMBERSHIP DATA', res.memberDriveData);
+  let data, errorCode, memberDriveData;
+  if (req) {
+    memberDriveData = req.memberDriveData;
+  }
   const ApolloClient = initApollo();
   await ApolloClient.query({
     query: query,
@@ -39,7 +54,7 @@ HomePage.getInitialProps = async (res) => {
       errorCode = res.statusCode > 200 ? res.statusCode : false;
     });
 
-  return { data, errorCode };
+  return { data, errorCode, memberDriveData };
 };
 
 HomePage.propTypes = {

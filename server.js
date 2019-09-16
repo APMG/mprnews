@@ -15,6 +15,7 @@ const { sitemap } = require('./server/sitemap');
 const { urlset } = require('./server/urlset');
 const { ssGql } = require('./server/ssGql');
 const { mostViewed } = require('./server/mostViewed');
+const { membershipPotlatch } = require('./server/membershipPotlatch');
 require('console-stamp')(console, 'dd/mmm/yyyy:HH:MM:ss o');
 
 const TTL = 60;
@@ -281,6 +282,9 @@ app
 
     // imported mostViewed from Google Analytics api route
     mostViewed(server);
+
+    // api endpoint to get json from potlatch about member drive
+    membershipPotlatch(server);
 
     server.get('*', (req, res) => {
       return handle(req, res);
