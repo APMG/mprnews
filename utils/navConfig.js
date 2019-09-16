@@ -7,6 +7,12 @@ export const dropdownLists = [
       {
         linkgroup: 'MPR News Coverage',
         links: [
+          {
+            text: 'Aging',
+            class: '',
+            href: 'health/aging',
+            hrefType: 'collection'
+          },
           { text: 'Arts', class: '', href: 'arts', hrefType: 'collection' },
           {
             text: 'Books',
@@ -15,15 +21,15 @@ export const dropdownLists = [
             hrefType: 'collection'
           },
           {
-            text: 'Business',
-            class: '',
-            href: 'business',
-            hrefType: 'collection'
-          },
-          {
             text: 'Education',
             class: '',
             href: 'education',
+            hrefType: 'collection'
+          },
+          {
+            text: 'Election 2020',
+            class: '',
+            href: 'politics/election-2020',
             hrefType: 'collection'
           },
           {
@@ -34,9 +40,9 @@ export const dropdownLists = [
           },
           { text: 'Health', class: '', href: 'health', hrefType: 'collection' },
           {
-            text: 'Lifestyle',
+            text: 'Housing',
             class: '',
-            href: 'lifestyle',
+            href: 'minnesota/housing',
             hrefType: 'collection'
           },
           {

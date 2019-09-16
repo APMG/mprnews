@@ -6,7 +6,9 @@ const { daysofweek } = require('./server/daysofweek');
 const { getDateTimes, formatEachDateTime } = require('./utils/scheduleUtils');
 const port = parseInt(process.env.APP_PORT, 10) || 3000;
 const dev =
-  process.env.RAILS_ENV !== 'stage' && process.env.RAILS_ENV !== 'production';
+  process.env.RAILS_ENV !== 'common_dev' &&
+  process.env.RAILS_ENV !== 'stage' &&
+  process.env.RAILS_ENV !== 'production';
 const app = nextjs({ dev });
 const handle = app.getRequestHandler();
 const { feed } = require('./server/feed');
@@ -15,6 +17,7 @@ const { sitemap } = require('./server/sitemap');
 const { urlset } = require('./server/urlset');
 const { ssGql } = require('./server/ssGql');
 const { mostViewed } = require('./server/mostViewed');
+const { membershipPotlatch } = require('./server/membershipPotlatch');
 require('console-stamp')(console, 'dd/mmm/yyyy:HH:MM:ss o');
 require('heapdump');
 
@@ -73,7 +76,9 @@ const pageNum = (req, res, next) => {
 
   let path = req.path.replace(/^\//, '');
   path = path.replace(/\/$/, '');
-  req.pageNum = path.match(/\/([0-9]+)/) ? path.match(/\/([0-9]+)/)[0] : 1;
+  req.pageNum = path.match(/\/([0-9]+)/)
+    ? path.match(/\/([0-9]+)/)[0].replace('/', '')
+    : 1;
   next();
 };
 
@@ -280,6 +285,9 @@ app
 
     // imported mostViewed from Google Analytics api route
     mostViewed(server);
+
+    // api endpoint to get json from potlatch about member drive
+    membershipPotlatch(server);
 
     server.get('*', (req, res) => {
       return handle(req, res);

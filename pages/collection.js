@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ErrorPage from 'next/error';
 import Collection from '../endpoints/Collection/Collection';
@@ -6,11 +6,22 @@ import ContentGrid from '../grids/ContentGrid';
 import Sidebar from '../components/Sidebar/Sidebar';
 import initApollo from '../lib/init-apollo';
 import query from '../endpoints/Collection/collection.gql';
+import {
+  fetchMemberDriveStatus,
+  addMemberDriveElements
+} from '../utils/membershipUtils';
 
 /* eslint react/display-name: 0 */
 
 const CollectionPage = ({ data, pageNum, errorCode, slug }) => {
   if (errorCode) return <ErrorPage statusCode={errorCode} />;
+
+  useEffect(() => {
+    fetchMemberDriveStatus().then((data) => {
+      addMemberDriveElements(data);
+    });
+  }, []);
+
   return (
     <ContentGrid sidebar={<Sidebar />}>
       <Collection data={data} pageNum={pageNum} slug={slug} />
@@ -20,8 +31,13 @@ const CollectionPage = ({ data, pageNum, errorCode, slug }) => {
 
 CollectionPage.getInitialProps = async ({
   query: { slug, pageNum = 1 },
+  req,
   res
 }) => {
+  let memberDriveData;
+  if (req) {
+    memberDriveData = req.memberDriveData;
+  }
   const ApolloClient = initApollo();
   let data, errorCode;
   await ApolloClient.query({
@@ -48,7 +64,8 @@ CollectionPage.getInitialProps = async ({
     data,
     errorCode,
     pageNum: parseInt(pageNum),
-    slug
+    slug,
+    memberDriveData
   };
 };
 
