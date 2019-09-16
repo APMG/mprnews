@@ -4,21 +4,10 @@ import Link from 'next/link';
 import { Heading } from '@apmg/titan';
 import InfoLink from '../../components/InfoLink/InfoLink';
 import WeatherSidebar from '../../components/WeatherSidebar/WeatherSidebar';
+import { dropdownLists } from '../../utils/navConfig';
 
 const HomeRail = (props) => {
-  const sections = [
-    { text: 'Arts', href: 'arts' },
-    { text: 'Books', href: 'arts/books' },
-    { text: 'Business', href: 'business' },
-    { text: 'Education', href: 'education' },
-    { text: 'Environment', href: 'environment' },
-    { text: 'Health', href: 'health' },
-    { text: 'Lifestyle', href: 'lifestyle' },
-    { text: 'Minnesota', href: 'minnesota' },
-    { text: 'Politics', href: 'politics' },
-    { text: 'Photos', href: 'photos' }
-  ];
-
+  const sections = dropdownLists[0].groups[0].links; // D R Y
   return (
     <>
       <Link href="/weather" as="/weather">
@@ -107,4 +96,4 @@ HomeRail.propTypes = {
   })
 };
 
-export default HomeRail;
+export default React.memo(HomeRail);

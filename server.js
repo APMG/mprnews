@@ -6,7 +6,9 @@ const { daysofweek } = require('./server/daysofweek');
 const { getDateTimes, formatEachDateTime } = require('./utils/scheduleUtils');
 const port = parseInt(process.env.APP_PORT, 10) || 3000;
 const dev =
-  process.env.RAILS_ENV !== 'stage' && process.env.RAILS_ENV !== 'production';
+  process.env.RAILS_ENV !== 'common_dev' &&
+  process.env.RAILS_ENV !== 'stage' &&
+  process.env.RAILS_ENV !== 'production';
 const app = nextjs({ dev });
 const handle = app.getRequestHandler();
 const { feed } = require('./server/feed');
