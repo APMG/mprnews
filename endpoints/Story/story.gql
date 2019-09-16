@@ -82,7 +82,7 @@ query story($contentAreaSlug: String!, $slug: String!, $previewToken: String) {
       }
     }
   }
-  alertConfig: potlatch(slug: "mprnews/alerts") {
+  alertConfig: potlatch(slug: "mprnews/info-alert") {
     slug
     json
   }

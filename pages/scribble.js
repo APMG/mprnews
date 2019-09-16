@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ErrorPage from 'next/error';
+import {
+  fetchMemberDriveStatus,
+  addMemberDriveElements
+} from '../utils/membershipUtils';
 
 const ScribblePage = ({ errorCode }) => {
   if (errorCode) return <ErrorPage statusCode={errorCode} />;
+
+  useEffect(() => {
+    fetchMemberDriveStatus().then((data) => {
+      addMemberDriveElements(data);
+    });
+  }, []);
+
   return <div className="scribbleLive"></div>;
 };
 
