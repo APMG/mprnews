@@ -31,9 +31,13 @@ const EpisodePage = ({ data, errorCode }) => {
 
 EpisodePage.getInitialProps = async ({
   query: { slug, previewToken },
+  req,
   res
 }) => {
-  const memberDriveData = res.memberDriveData;
+  let memberDriveData;
+  if (req) {
+    memberDriveData = req.memberDriveData;
+  }
   const ApolloClient = initApollo();
   let data, errorCode;
   await ApolloClient.query({
