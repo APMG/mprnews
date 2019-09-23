@@ -15,7 +15,7 @@ const fishForSocialMediaImage = (content) => {
       }
     );
   } else {
-    return { src: fallback_image };
+    return { url: fallback_image };
   }
 };
 
