@@ -39,17 +39,17 @@ const Metatags = (props) => {
         <>
           <meta
             name="description"
-            content={props.description}
+            content={props.description.trim()}
             key="description"
           />
           <meta
             name="twitter:description"
-            content={props.description}
+            content={props.description.trim()}
             key="twitter:description"
           />
           <meta
             property="og:description"
-            content={props.description}
+            content={props.description.trim()}
             key="og:description"
           />
         </>

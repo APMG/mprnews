@@ -8,6 +8,7 @@ import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelper
 import AudioPlayButton from '../../components/AudioPlayButton/AudioPlayButton';
 import Content from '../../components/Content/Content';
 import Metatags from '../../components/Metatags/Metatags';
+import JsonLd from '../../components/Metatags/JsonLd';
 import ShareSocialButtons from '../../components/ShareSocialButtons/ShareSocialButtons';
 import { showInfoAlert } from '../../utils/utils';
 import Alert from '../../components/Alert/Alert';
@@ -41,6 +42,17 @@ const Story = ({ data: { story, alertConfig }, minimal }) => {
         topic={story?.primaryCollection?.title}
         contentType="article"
       />
+      <JsonLd
+        title={story.title}
+        fullSlug={`story/${story?.canonicalSlug}`}
+        description={story.descriptionText}
+        image={img?.url}
+        contentType="NewsArticle"
+        publishDate={story.publishDate}
+        modifiedDate={story.updatedAt}
+        authors={authors}
+      />
+
       {showInfoAlert(alerts, story.resourceType) ? (
         <div className="section section-md">
           <Alert info={alerts.info} />
@@ -136,6 +148,7 @@ Story.propTypes = {
       primaryCollection: PropTypes.any,
       primaryVisuals: PropTypes.any,
       publishDate: PropTypes.string,
+      updatedAt: PropTypes.string,
       embeddedAssetJson: PropTypes.string,
       tag: PropTypes.shape({
         tagName: PropTypes.string,
