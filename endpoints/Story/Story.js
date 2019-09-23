@@ -36,7 +36,7 @@ const Story = ({ data: { story, alertConfig }, minimal }) => {
         image={img?.url}
         imageHeight={img?.height}
         imageWidth={img?.width}
-        imageAlt={story.primaryVisuals.lead.shortCaption}
+        imageAlt={story?.primaryVisuals?.social?.shortCaption}
         isAmp={story.supportedOutputFormats?.indexOf('amp') > -1}
         topic={story?.primaryCollection?.title}
         contentType="article"

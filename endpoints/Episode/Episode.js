@@ -40,6 +40,7 @@ const Episode = ({ data: { episode, alertConfig } }) => {
         image={img?.url}
         imageHeight={img?.height}
         imageWidth={img?.width}
+        imageAlt={episode?.primaryVisuals?.social?.shortCaption}
         isAmp={episode.supportedOutputFormats?.indexOf('amp') > -1}
         topic={episode.primaryCollection?.title}
         contentType="article"
