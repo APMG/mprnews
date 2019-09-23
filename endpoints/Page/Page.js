@@ -8,13 +8,17 @@ import Metatags from '../../components/Metatags/Metatags';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
 
 const Page = ({ data: { page } }) => {
+  const img = fishForSocialMediaImage(page);
   return (
     <>
       <Metatags
         title={page.title}
         fullSlug={`episode/${page.canonicalSlug}`}
         description={page.descriptionText}
-        image={fishForSocialMediaImage(page)}
+        image={img?.url}
+        imageHeight={img?.height}
+        imageWidth={img?.width}
+        imageAlt={page?.primaryVisuals?.social?.shortCaption}
         isAmp={page.supportedOutputFormats?.indexOf('amp') > -1}
         topic={page.primaryCollection?.title}
         contentType="article"

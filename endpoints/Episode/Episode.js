@@ -14,6 +14,7 @@ import Alert from '../../components/Alert/Alert';
 
 const Episode = ({ data: { episode, alertConfig } }) => {
   const alerts = JSON.parse(alertConfig.json);
+  const img = fishForSocialMediaImage(episode);
   let authors;
 
   if (episode.contributors) {
@@ -36,7 +37,10 @@ const Episode = ({ data: { episode, alertConfig } }) => {
         title={episode.title}
         fullSlug={`episode/${episode.canonicalSlug}`}
         description={episode.descriptionText}
-        image={fishForSocialMediaImage(episode)}
+        image={img?.url}
+        imageHeight={img?.height}
+        imageWidth={img?.width}
+        imageAlt={episode?.primaryVisuals?.social?.shortCaption}
         isAmp={episode.supportedOutputFormats?.indexOf('amp') > -1}
         topic={episode.primaryCollection?.title}
         contentType="article"

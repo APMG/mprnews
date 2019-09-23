@@ -13,7 +13,9 @@ import { showInfoAlert } from '../../utils/utils';
 import Alert from '../../components/Alert/Alert';
 
 const Story = ({ data: { story, alertConfig }, minimal }) => {
+  //
   const alerts = JSON.parse(alertConfig.json);
+  const img = fishForSocialMediaImage(story);
   let authors;
   if (story && story.contributors) {
     authors = story.contributors.map((contributor) => {
@@ -31,7 +33,10 @@ const Story = ({ data: { story, alertConfig }, minimal }) => {
         title={story.title}
         fullSlug={`story/${story?.canonicalSlug}`}
         description={story.descriptionText}
-        image={fishForSocialMediaImage(story)}
+        image={img?.url}
+        imageHeight={img?.height}
+        imageWidth={img?.width}
+        imageAlt={story?.primaryVisuals?.social?.shortCaption}
         isAmp={story.supportedOutputFormats?.indexOf('amp') > -1}
         topic={story?.primaryCollection?.title}
         contentType="article"
