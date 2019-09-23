@@ -47,6 +47,13 @@ query story($contentAreaSlug: String!, $slug: String!, $previewToken: String) {
     primaryVisuals {
       social {
 	aspect_ratios: aspectRatios {
+	  uncropped {
+            instances {
+              url
+              width
+              height
+            }
+          }
 	  widescreen {
             instances {
               url
