@@ -67,20 +67,14 @@ const Metatags = (props) => {
       )}
 
       {props.imageWidth && (
-        <>
-          <meta property="og:image:width" content={props.imageWidth} />
-        </>
+        <meta property="og:image:width" content={props.imageWidth} />
       )}
       {props.imageHeight && (
-        <>
-          <meta property="og:image:height" content={props.imageHeight} />
-        </>
+        <meta property="og:image:height" content={props.imageHeight} />
       )}
 
       {props.imageAlt && (
-        <>
-          <meta name="twitter:image:alt" content={props.imageAlt} />
-        </>
+        <meta name="twitter:image:alt" content={props.imageAlt} />
       )}
 
       {props.fullSlug && (
@@ -103,14 +97,10 @@ const Metatags = (props) => {
       )}
 
       {/* Twitter do not track */}
-      <>
-        <meta name="twitter:dnt" content="on" />
-      </>
+      <meta name="twitter:dnt" content="on" />
 
       {/* FB app ID */}
-      <>
-        <meta property="fb:pages" content="99142348590" />
-      </>
+      <meta property="fb:pages" content="99142348590" />
 
       {/* Any custom meta tags */}
       {props.children}
