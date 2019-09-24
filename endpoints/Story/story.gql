@@ -27,6 +27,7 @@ query story($contentAreaSlug: String!, $slug: String!, $previewToken: String) {
       }
     }
     publishDate
+    updatedAt
     body
     description
     descriptionText

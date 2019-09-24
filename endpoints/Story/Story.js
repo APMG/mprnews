@@ -40,7 +40,11 @@ const Story = ({ data: { story, alertConfig }, minimal }) => {
         isAmp={story.supportedOutputFormats?.indexOf('amp') > -1}
         topic={story?.primaryCollection?.title}
         contentType="article"
+        publishDate={story.publishDate}
+        modifiedDate={story.updatedAt}
+        authors={authors}
       />
+
       {showInfoAlert(alerts, story.resourceType) ? (
         <div className="section section-md">
           <Alert info={alerts.info} />
@@ -136,6 +140,7 @@ Story.propTypes = {
       primaryCollection: PropTypes.any,
       primaryVisuals: PropTypes.any,
       publishDate: PropTypes.string,
+      updatedAt: PropTypes.string,
       embeddedAssetJson: PropTypes.string,
       tag: PropTypes.shape({
         tagName: PropTypes.string,
