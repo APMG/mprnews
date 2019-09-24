@@ -40,21 +40,22 @@ query story($contentAreaSlug: String!, $slug: String!, $previewToken: String) {
         format
         mediaType
         httpFilePath
+        filename
         playFilePath
       }
     }
     embeddedAssetJson
     primaryVisuals {
       social {
-	aspect_ratios: aspectRatios {
-	  uncropped {
+        aspect_ratios: aspectRatios {
+          uncropped {
             instances {
               url
               width
               height
             }
           }
-	  widescreen {
+          widescreen {
             instances {
               url
               width
@@ -80,7 +81,7 @@ query story($contentAreaSlug: String!, $slug: String!, $previewToken: String) {
               height
             }
           }
-	  widescreen {
+          widescreen {
             instances {
               url
               width

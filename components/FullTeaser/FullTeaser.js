@@ -4,7 +4,11 @@ import Link from 'next/link';
 import { globals } from '../../config/globals';
 import { Teaser, Time } from '@apmg/titan';
 import { Image } from '@apmg/mimas';
-import { linkByTypeHref, linkByTypeAs } from '../../utils/cjsutils';
+import {
+  linkByTypeHref,
+  linkByTypeAs,
+  audioDownloadPrefix
+} from '../../utils/cjsutils';
 import { secondsToHms } from '../../utils/utils';
 import AudioPlayButton from '../AudioPlayButton/AudioPlayButton';
 
@@ -53,9 +57,12 @@ const FullTeaser = ({ item, size, newspartners }) => {
         elementClass={elementClass}
         contributors={contributors(item.contributors)}
         audioPlayButton={
-          item.audio && item.audio[0]?.encodings[0]?.httpFilePath ? (
+          item.audio &&
+          audioDownloadPrefix(item.audio[0]?.encodings[0]?.filename) ? (
             <AudioPlayButton
-              audioSource={item.audio[0].encodings[0].httpFilePath}
+              audioSource={audioDownloadPrefix(
+                item.audio[0].encodings[0].filename
+              )}
               audioTitle={item.title}
               label={secondsToHms(item.audio[0].encodings[0].durationMs / 1000)}
             />

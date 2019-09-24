@@ -9,7 +9,7 @@ import AudioPlayButton from '../../components/AudioPlayButton/AudioPlayButton';
 import Content from '../../components/Content/Content';
 import Metatags from '../../components/Metatags/Metatags';
 import ShareSocialButtons from '../../components/ShareSocialButtons/ShareSocialButtons';
-import { showInfoAlert } from '../../utils/utils';
+import { showInfoAlert, audioDownloadPrefix } from '../../utils/utils';
 import Alert from '../../components/Alert/Alert';
 
 const Story = ({ data: { story, alertConfig }, minimal }) => {
@@ -66,7 +66,9 @@ const Story = ({ data: { story, alertConfig }, minimal }) => {
           story.primaryAudio &&
           story.primaryAudio.encodings.length > 0 && (
             <AudioPlayButton
-              audioSource={story.primaryAudio.encodings[0].httpFilePath}
+              audioSource={audioDownloadPrefix(
+                story.primaryAudio.encodings[0].filename
+              )}
               audioTitle={story.primaryAudio.title}
               label="Listen"
               elementClass="playButton-primary"
