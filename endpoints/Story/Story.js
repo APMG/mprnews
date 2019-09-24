@@ -9,11 +9,13 @@ import AudioPlayButton from '../../components/AudioPlayButton/AudioPlayButton';
 import Content from '../../components/Content/Content';
 import Metatags from '../../components/Metatags/Metatags';
 import ShareSocialButtons from '../../components/ShareSocialButtons/ShareSocialButtons';
-import { showInfoAlert } from '../../utils/utils';
+import { showInfoAlert, audioDownloadPrefix } from '../../utils/utils';
 import Alert from '../../components/Alert/Alert';
 
 const Story = ({ data: { story, alertConfig }, minimal }) => {
+  //
   const alerts = JSON.parse(alertConfig.json);
+  const img = fishForSocialMediaImage(story);
   let authors;
   if (story && story.contributors) {
     authors = story.contributors.map((contributor) => {
@@ -31,11 +33,18 @@ const Story = ({ data: { story, alertConfig }, minimal }) => {
         title={story.title}
         fullSlug={`story/${story?.canonicalSlug}`}
         description={story.descriptionText}
-        image={fishForSocialMediaImage(story)}
+        image={img?.url}
+        imageHeight={img?.height}
+        imageWidth={img?.width}
+        imageAlt={story?.primaryVisuals?.social?.shortCaption}
         isAmp={story.supportedOutputFormats?.indexOf('amp') > -1}
         topic={story?.primaryCollection?.title}
         contentType="article"
+        publishDate={story.publishDate}
+        modifiedDate={story.updatedAt}
+        authors={authors}
       />
+
       {showInfoAlert(alerts, story.resourceType) ? (
         <div className="section section-md">
           <Alert info={alerts.info} />
@@ -61,7 +70,9 @@ const Story = ({ data: { story, alertConfig }, minimal }) => {
           story.primaryAudio &&
           story.primaryAudio.encodings.length > 0 && (
             <AudioPlayButton
-              audioSource={story.primaryAudio.encodings[0].httpFilePath}
+              audioSource={audioDownloadPrefix(
+                story.primaryAudio.encodings[0].filename
+              )}
               audioTitle={story.primaryAudio.title}
               label="Listen"
               elementClass="playButton-primary"
@@ -131,6 +142,7 @@ Story.propTypes = {
       primaryCollection: PropTypes.any,
       primaryVisuals: PropTypes.any,
       publishDate: PropTypes.string,
+      updatedAt: PropTypes.string,
       embeddedAssetJson: PropTypes.string,
       tag: PropTypes.shape({
         tagName: PropTypes.string,
