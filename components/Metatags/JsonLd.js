@@ -4,15 +4,23 @@ import { globals } from '../../config/globals';
 import fallback_image from '../../static/opengraph-fallback.png';
 
 const JsonLd = (props) => {
+  const defaultAuthor = `"author": "@type": "Organization", "name": "MPR News"`;
   const fullUrl = props.fullSlug
     ? `${globals.hostnameProd}/${props.fullSlug}`
     : null;
-  let authors = props.authors.map((author) => {
-    return `"author" : {
-                "@type": "Person",
-                "name": ${author.title}
-             }`;
-  });
+  // eslint-disable-next-line
+  let authors;
+  let tmpAuthors = props.authors
+    ? props.authors.reduce((acc = [], curr) => {
+        acc.push({ '@type': 'Person', name: curr.title });
+        return acc;
+      }, [])
+    : defaultAuthor;
+  if (tmpAuthors.length === 1) {
+    authors = `"author": ${JSON.stringify(tmpAuthors[0]).replace(/\\/g, '')}`;
+  } else {
+    authors = `"author": ${JSON.stringify(tmpAuthors).replace(/\\/g, '')}`;
+  }
 
   return (
     <script
@@ -20,23 +28,23 @@ const JsonLd = (props) => {
       dangerouslySetInnerHTML={{
         __html: `{
                     "@context": "https://schema.org",
-                    "@type": ${props.contentType},
+                    "@type": "${props.contentType}",
                     "mainEntityOfPage": {
                       "@type": "WebPage",
-                      "@id": ${fullUrl}
+                      "@id": "${fullUrl}"
                     },
-                    "headline": ${props.title},
-                    "image": [ ${props.image}],
-                    "datePublished": ${props.publishDate},
-                    "dateModified": ${props.updatedAt || props.publishDate},
-                    "description": ${props.description},
+                    "headline": "${props.title}",
+                    "image": [ "${props.image}"],
+                    "datePublished": "${props.publishDate}",
+                    "dateModified": "${props.updatedAt || props.publishDate}",
+                    "description": "${props.description.replace(/"/g, '\\"')}", 
                     ${authors},
                     "publisher": {
                       "@type": "Organization",
                       "name": "MPR News",
                       "logo": {
                       "@type": "ImageObject",
-                      "url": ${globals.hostnameProd}${fallback_image}
+                      "url": "${globals.hostnameProd}${fallback_image}"
                       }
                     }
                   }`

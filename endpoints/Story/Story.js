@@ -41,13 +41,6 @@ const Story = ({ data: { story, alertConfig }, minimal }) => {
         isAmp={story.supportedOutputFormats?.indexOf('amp') > -1}
         topic={story?.primaryCollection?.title}
         contentType="article"
-      />
-      <JsonLd
-        title={story.title}
-        fullSlug={`story/${story?.canonicalSlug}`}
-        description={story.descriptionText}
-        image={img?.url}
-        contentType="NewsArticle"
         publishDate={story.publishDate}
         modifiedDate={story.updatedAt}
         authors={authors}

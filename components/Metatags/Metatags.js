@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { globals } from '../../config/globals';
 import Head from 'next/head';
+import JsonLd from './JsonLd';
 
 const Metatags = (props) => {
   const combinedTitle = props.title
@@ -104,6 +105,16 @@ const Metatags = (props) => {
 
       {/* Any custom meta tags */}
       {props.children}
+      <JsonLd
+        title={props.title}
+        fullSlug={props.fullSlug}
+        description={props.description}
+        image={props.image}
+        contentType="NewsArticle"
+        publishDate={props.publishDate}
+        modifiedDate={props.modifiedDate}
+        authors={props.authors}
+      />
     </Head>
   );
 };
@@ -115,11 +126,14 @@ Metatags.propTypes = {
   description: PropTypes.string,
   image: PropTypes.string,
   imageAlt: PropTypes.string,
-  imageWidth: PropTypes.string,
-  imageHeight: PropTypes.string,
+  imageWidth: PropTypes.number,
+  imageHeight: PropTypes.number,
   isAmp: PropTypes.bool,
   title: PropTypes.string,
-  topic: PropTypes.string
+  topic: PropTypes.string,
+  publishDate: PropTypes.string,
+  modifiedDate: PropTypes.string,
+  authors: PropTypes.array
 };
 
 export default React.memo(Metatags);
