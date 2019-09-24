@@ -105,16 +105,18 @@ const Metatags = (props) => {
 
       {/* Any custom meta tags */}
       {props.children}
-      <JsonLd
-        title={props.title}
-        fullSlug={props.fullSlug}
-        description={props.description}
-        image={props.image}
-        contentType="NewsArticle"
-        publishDate={props.publishDate}
-        modifiedDate={props.modifiedDate}
-        authors={props.authors}
-      />
+      {props.contentType === 'article' && (
+        <JsonLd
+          title={props.title}
+          fullSlug={props.fullSlug}
+          description={props.description}
+          image={props.image}
+          contentType="NewsArticle"
+          publishDate={props.publishDate}
+          modifiedDate={props.modifiedDate}
+          authors={props.authors}
+        />
+      )}
     </Head>
   );
 };
