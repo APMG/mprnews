@@ -8,7 +8,6 @@ import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelper
 import AudioPlayButton from '../../components/AudioPlayButton/AudioPlayButton';
 import Content from '../../components/Content/Content';
 import Metatags from '../../components/Metatags/Metatags';
-import JsonLd from '../../components/Metatags/JsonLd';
 import ShareSocialButtons from '../../components/ShareSocialButtons/ShareSocialButtons';
 import { showInfoAlert } from '../../utils/utils';
 import Alert from '../../components/Alert/Alert';
