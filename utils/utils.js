@@ -160,3 +160,7 @@ export function showInfoAlert(alerts, resourceType) {
     ? true
     : false;
 }
+
+export const audioDownloadPrefix = (filename) => {
+  return `https://play.publicradio.org/web/d/podcast${filename}`;
+};
