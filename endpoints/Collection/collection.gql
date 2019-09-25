@@ -69,6 +69,7 @@ query collection($contentAreaSlug: String!, $slug: String!, $pageNum: Int) {
           id
           encodings {
             httpFilePath
+            filename
             durationMs
             durationHms
           }
@@ -113,6 +114,7 @@ query collection($contentAreaSlug: String!, $slug: String!, $pageNum: Int) {
           durationHms
           encodings {
             httpFilePath
+            filename
           }
         }
         collectionRelatedLinks {
