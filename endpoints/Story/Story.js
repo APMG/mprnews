@@ -71,7 +71,7 @@ const Story = ({ data: { story, alertConfig }, minimal }) => {
           story.primaryAudio.encodings.length > 0 && (
             <AudioPlayButton
               audioSource={audioDownloadPrefix(
-                story.primaryAudio.encodings[0].filename
+                story.primaryAudio.encodings[0].playFilePath
               )}
               audioTitle={story.primaryAudio.title}
               label="Listen"
