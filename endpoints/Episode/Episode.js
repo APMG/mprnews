@@ -65,7 +65,7 @@ const Episode = ({ data: { episode, alertConfig } }) => {
           episode.primaryAudio && (
             <AudioPlayButton
               audioSource={audioDownloadPrefix(
-                episode.primaryAudio.encodings[0].filename
+                episode.primaryAudio.encodings[0].playFilePath
               )}
               audioTitle={episode.primaryAudio.title}
               label="Listen"

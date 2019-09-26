@@ -161,6 +161,6 @@ export function showInfoAlert(alerts, resourceType) {
     : false;
 }
 
-export const audioDownloadPrefix = (filename) => {
-  return `https://play.publicradio.org/web/d/podcast${filename}`;
+export const audioDownloadPrefix = (playFilePath) => {
+  return playFilePath.replace(/%user_agent/, 'web');
 };
