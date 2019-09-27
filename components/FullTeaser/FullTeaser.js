@@ -53,10 +53,10 @@ const FullTeaser = ({ item, size, newspartners }) => {
         elementClass={elementClass}
         contributors={contributors(item.contributors)}
         audioPlayButton={
-          item.audio && item.audio[0]?.encodings[0]?.filename ? (
+          item.audio && item.audio[0]?.encodings[0]?.playFilePath ? (
             <AudioPlayButton
               audioSource={audioDownloadPrefix(
-                item.audio[0].encodings[0].filename
+                item.audio[0].encodings[0].playFilePath
               )}
               audioTitle={item.title}
               label={secondsToHms(item.audio[0].encodings[0].durationMs / 1000)}

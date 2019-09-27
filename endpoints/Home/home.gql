@@ -52,6 +52,7 @@ query home($contentAreaSlug: String!, $slug: String!) {
           durationHms
           encodings {
             httpFilePath
+            playFilePath
             filename
             durationMs
           }
