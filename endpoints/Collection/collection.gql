@@ -69,6 +69,7 @@ query collection($contentAreaSlug: String!, $slug: String!, $pageNum: Int) {
           id
           encodings {
             httpFilePath
+            playFilePath
             filename
             durationMs
             durationHms
