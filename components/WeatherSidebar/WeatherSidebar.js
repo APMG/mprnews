@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useContext } from 'react';
 import fetch from 'isomorphic-unfetch';
 import LocationContext from '../../context/LocationContext';
+const https = require('https');
+const agent = new https.Agent({ keepAlive: true });
 
 const WeatherSidebar = () => {
   const [data, setData] = useState({});
@@ -10,7 +12,8 @@ const WeatherSidebar = () => {
     const getData = async (lat, long) => {
       try {
         let response = await fetch(
-          `https://api.weather.gov/points/${lat},${long}/forecast`
+          `https://api.weather.gov/points/${lat},${long}/forecast`,
+          { agent: agent }
         );
         let result = await response;
         if (!result.ok) return;

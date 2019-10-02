@@ -19,6 +19,7 @@ const { ssGql } = require('./server/ssGql');
 const { mostViewed } = require('./server/mostViewed');
 const { membershipPotlatch } = require('./server/membershipPotlatch');
 require('console-stamp')(console, 'dd/mmm/yyyy:HH:MM:ss o');
+require('heapdump');
 
 const TTL = 60;
 const ampQuery = (slug) =>
