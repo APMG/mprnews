@@ -47,7 +47,7 @@ export default {
     },
     {
       label: 'Become a Member',
-      href: 'https://contribute.publicradio.org/contribute.php'
+      href: 'https://support.mpr.org/mprnews-web'
     },
     { label: 'Volunteer', href: 'https://www.mpr.org/volunteer' },
     {

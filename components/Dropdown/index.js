@@ -119,7 +119,7 @@ const Dropdown = () => {
         })}
       </span>
       <div className="nav_item nav_item-donate">
-        <Link href="https://contribute.publicradio.org/contribute.php">
+        <Link href="https://support.mpr.org/mprnews-web">
           <a className="nav_link"> Give Now </a>
         </Link>
       </div>

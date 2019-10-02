@@ -172,7 +172,7 @@ export const dropdownLists = [
           {
             text: 'Become a member',
             class: '',
-            href: 'https://contribute.publicradio.org/contribute.php',
+            href: 'https://support.mpr.org/mprnews-web',
             hrefType: 'externalLink'
           }
         ]

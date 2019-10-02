@@ -12,7 +12,7 @@ const ListenFooter = () => (
         </Heading>
       </div>
       <Button
-        href="https://contribute.publicradio.org/contribute.php"
+        href="https://support.mpr.org/mprnews-web"
         type="primary"
         newWindow={true}
       >
