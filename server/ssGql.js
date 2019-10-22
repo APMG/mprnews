@@ -1,4 +1,4 @@
-exports.ssGql = async (query, next) => {
+const ssGql = async (query, next) => {
   const fetch = require('isomorphic-unfetch');
   return await fetch(process.env.GRAPHQL_API, {
     method: 'POST',
@@ -25,3 +25,5 @@ exports.ssGql = async (query, next) => {
       console.error('Error:', error);
     });
 };
+
+export default ssGql;

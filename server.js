@@ -297,7 +297,7 @@ app
       console.log(`\nReady on http://localhost:${port} 🚀\n`);
     });
   })
-  .catch((ex) => {
-    console.error(ex.stack);
+  .catch((e) => {
+    console.error(e.stack);
     process.exit(1);
   });
