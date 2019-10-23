@@ -11,8 +11,8 @@ module.exports.dynamic = (server, app, handle) => {
     let path = req.path.replace(/^\//, '');
     path = path.replace(/\/$/, '');
     const slug = path.replace(/\/\d+$/, '');
-    const pageNum = path.match(/\/([0-9]+)/)
-      ? path.match(/\/([0-9]+)/)[0].replace('/', '')
+    const pageNum = path.match(/\/([0-9]+)$/)
+      ? path.match(/\/([0-9]+)$/)[0].replace('/', '')
       : 1;
     const query = JSON.stringify({
       query: `{ content(slug: "${slug}",  contentAreaSlug: "${process.env.CONTENT_AREA_SLUG}") { resourceType } }`

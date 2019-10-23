@@ -100,6 +100,12 @@ const Metatags = (props) => {
       {/* Twitter do not track */}
       <meta name="twitter:dnt" content="on" />
 
+      {/* Google Search Console/Webmaster Tools Verifications */}
+      <meta
+        name="google-site-verification"
+        content="3mdQkyZQ0hy2oLHqV_shtyaKyvb-xVslxgr2kdV8RQw"
+      />
+
       {/* FB app ID */}
       <meta property="fb:pages" content="99142348590" />
 
