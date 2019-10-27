@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Link from 'next/link';
 import { globals } from '../../config/globals';
 import { Teaser, Time } from '@apmg/titan';
 import { Image } from '@apmg/mimas';
