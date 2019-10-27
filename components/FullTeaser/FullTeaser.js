@@ -85,9 +85,9 @@ const FullTeaser = ({ item, size, newspartners }) => {
                 key={`${link.url}${link.title}${link.prefix}`}
               >
                 <span className="related_prefix">{link.prefix}</span>
-                <Link href={link.url}>
-                  <a className="related_link">{link.title}</a>
-                </Link>
+                <a href={link.url} className="related_link">
+                  {link.title}
+                </a>
               </li>
             );
           })}
