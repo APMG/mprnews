@@ -95,7 +95,7 @@ const Story = ({ data: { story, alertConfig }, minimal }) => {
         publishDate={
           <Time
             dateTime={story.publishDate}
-            formatString="MMMM D, YYYY h:mm aa"
+            formatString="MMMM d, yyyy h:mm aa"
           />
         }
         embeddedAssetJson={story.embeddedAssetJson}

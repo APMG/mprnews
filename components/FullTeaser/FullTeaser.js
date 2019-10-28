@@ -45,7 +45,7 @@ const FullTeaser = ({ item, size, newspartners }) => {
             <Time
               elementClass="teaser_time"
               dateTime={item.publishDate}
-              formatString="MMMM D, YYYY h:mm aa"
+              formatString="MMMM d, yyyy h:mm aa"
             />
           )
         }

@@ -70,8 +70,8 @@ const CurrentWeather = ({ weather, forecast }) => {
           </div>
           <div className="weather_currentUpdated">
             {`Last updated at ${format(
-              weather.updateTime,
-              'h:mm A	MMM D, YYYY'
+              new Date(weather.updateTime),
+              'h:mm a	MMM d, yyyy'
             )}`}
           </div>
         </div>
