@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Link from 'next/link';
+import { Link } from '@apmg/titan';
 import ToSentence from '../ToSentence/ToSentence';
 
 const Byline = (props) => {
@@ -8,8 +8,8 @@ const Byline = (props) => {
     let results = [];
     authors.forEach((author) =>
       results.push(
-        <Link href={author.href} as={author.as}>
-          <a className="link link-plain">{author.title}</a>
+        <Link href={author.href} as={author.as} className="link link-plain">
+          {author.title}
         </Link>
       )
     );

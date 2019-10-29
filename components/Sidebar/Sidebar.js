@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'next/link';
+import { Link } from '@apmg/titan';
 import { format } from 'date-fns';
 import AdBottom from '../../components/Ads/AdBottom';
 import AdTop from '../../components/Ads/AdTop';
@@ -23,8 +23,11 @@ const Sidebar = (props) => {
           >
             Program Schedule
           </Link>
-          <Link href={`https://www.mpr.org/listen/stations`}>
-            <a className="link link-plain">Station Directory</a>
+          <Link
+            href={`https://www.mpr.org/listen/stations`}
+            className="link link-plain"
+          >
+            Station Directory
           </Link>
         </div>
       </div>

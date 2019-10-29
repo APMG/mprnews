@@ -1,20 +1,14 @@
-const {
-  startOfWeek,
-  endOfWeek,
-  eachDayOfInterval,
-  format
-} = require('date-fns');
+import { startOfWeek, endOfWeek, eachDayOfInterval, format } from 'date-fns';
 
 exports.getDateTimes = () => {
   const todaysDate = format(new Date(), 'yyyy-MM-dd');
-  const startOfWeekDate = startOfWeek(todaysDate);
-  const endOfWeekDate = endOfWeek(todaysDate);
+  const startOfWeekDate = startOfWeek(new Date(todaysDate));
+  const endOfWeekDate = endOfWeek(new Date(todaysDate));
 
   const getEachDayDate = eachDayOfInterval({
-    start: format(new Date(startOfWeekDate), 'yyyy-MM-dd'),
-    end: format(new Date(endOfWeekDate), 'yyyy-MM-dd')
+    start: new Date(startOfWeekDate),
+    end: new Date(endOfWeekDate)
   });
-
   return getEachDayDate;
 };
 
