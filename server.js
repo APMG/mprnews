@@ -54,7 +54,7 @@ const previewSlug = (req, res, next) => {
 };
 
 const twitterSlug = (req, res, next) => {
-  if (req.path.match(/\/static|public|_next/)) {
+  if (req.path.match(/\/static/) || req.path.match(/\/_next/)) {
     next();
     return;
   }
@@ -68,7 +68,7 @@ const previewToken = (req, res, next) => {
 };
 
 const pageNum = (req, res, next) => {
-  if (req.path.match(/\/static|public|_next/)) {
+  if (req.path.match(/\/static/) || req.path.match(/\/_next/)) {
     next();
     return;
   }
@@ -82,7 +82,10 @@ const pageNum = (req, res, next) => {
 };
 
 const logUrls = (req, res, next) => {
-  if (req.originalUrl.match(/\/static|public|_next/) === null) {
+  if (
+    req.originalUrl.match(/\/static/) === null &&
+    req.originalUrl.match(/\/_next/) === null
+  ) {
     console.info(`${req.method} ${req.originalUrl}`);
   }
   next();

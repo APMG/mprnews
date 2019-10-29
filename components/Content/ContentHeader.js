@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Heading } from '@apmg/titan';
-import Link from 'next/link';
+import { Link } from '@apmg/titan';
 import Byline from '../Byline/Byline';
 
 const ContentHeader = (props) => {
@@ -43,8 +43,9 @@ const ContentHeader = (props) => {
           <Link
             href={`/collection?slug=${props.tag.to}`}
             as={`/${props.tag.to}`}
+            className="link link-none"
           >
-            <a className="link link-none">{props.tag.tagName}</a>
+            {props.tag.tagName}
           </Link>
         </div>
       )}

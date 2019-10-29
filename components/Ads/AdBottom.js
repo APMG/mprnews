@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import Link from 'next/link';
+import { Link } from '@apmg/titan';
 import PropTypes from 'prop-types';
 
 const AdBottom = (props) => {
@@ -24,8 +24,12 @@ const AdBottom = (props) => {
       <div className="ad_textWrapper">
         <div className="ad_text">Providing Support for MPR.</div>
         <div className="link">
-          <Link href="https://www.mprnews.org/underwriting">
-            <a className="ad_link">Learn More</a>
+          <Link
+            href="/page?slug=underwriting"
+            as="/underwriting"
+            className="ad_link"
+          >
+            Learn More
           </Link>
         </div>
       </div>
