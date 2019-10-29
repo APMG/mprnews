@@ -6,17 +6,17 @@ import { format } from 'date-fns';
 import ContentGrid from '../../grids/ContentGrid';
 import ToSentence from '../../components/ToSentence/ToSentence';
 
-const parseUrl = (url, typeUrl) => {
+const linkType = (url, typeUrl) => {
   let result;
   let baseUrl = url.split('/');
 
   baseUrl[2] === 'www.mprnews.org'
-    ? (result = clean(baseUrl, typeUrl))
+    ? (result = parseUrl(baseUrl, typeUrl))
     : (result = typeUrl === 'href' ? url : typeUrl === 'as' ? '' : null);
   return result;
 };
 
-const clean = (url, typeUrl) => {
+const parseUrl = (url, typeUrl) => {
   let result;
   url.splice(0, 3);
   result =
@@ -41,8 +41,8 @@ const ScheduleInner = ({ schedule }) => {
                 </td>
                 {program?.shows.map((show) => {
                   let link = show.link ? show.link : show.external_link;
-                  let urlHref = parseUrl(link, 'href');
-                  let urlAs = parseUrl(link, 'as');
+                  let urlHref = linkType(link, 'href');
+                  let urlAs = linkType(link, 'as');
                   return (
                     <td key={show.id} className="schedule_rightmost">
                       <strong>
