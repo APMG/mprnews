@@ -8,22 +8,21 @@ import ToSentence from '../../components/ToSentence/ToSentence';
 
 const linkType = (url, typeUrl) => {
   let result;
-  let baseUrl = url.split('/');
-
-  baseUrl[2] === 'www.mprnews.org'
+  let baseUrl = new URL(url);
+  baseUrl.hostname === 'www.mprnews.org'
     ? (result = parseUrl(baseUrl, typeUrl))
-    : (result = typeUrl === 'href' ? url : typeUrl === 'as' ? '' : null);
+    : (result =
+        typeUrl === 'href' ? baseUrl.href : typeUrl === 'as' ? '' : null);
   return result;
 };
 
 const parseUrl = (url, typeUrl) => {
   let result;
-  url.splice(0, 3);
   result =
     typeUrl === 'href'
-      ? `/collection?slug=${url.join('/')}`
+      ? `/collection?slug=${url.pathname.replace(/\//, '')}`
       : typeUrl === 'as'
-      ? `/${url.join('/')}`
+      ? url.pathname
       : null;
   return result;
 };
