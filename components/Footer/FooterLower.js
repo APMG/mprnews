@@ -12,10 +12,7 @@ const FooterLower = (props) => {
       <div className="container">
         <div className="footer_lowerContent">
           <div className="footer_logo">
-            <img
-              src="/static/mpr-logo-footer.svg"
-              alt="Minnesota Public Radio"
-            />
+            <img src="/mpr-logo-footer.svg" alt="Minnesota Public Radio" />
           </div>
           <nav className="footer_nav">
             <ul className="footer_navList">
