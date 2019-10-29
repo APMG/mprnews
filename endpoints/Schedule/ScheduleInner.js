@@ -1,8 +1,7 @@
 /* eslint-disable react/display-name */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from '@apmg/titan';
-import { format } from 'date-fns';
+import { Link, Time } from '@apmg/titan';
 import ContentGrid from '../../grids/ContentGrid';
 import ToSentence from '../../components/ToSentence/ToSentence';
 
@@ -36,7 +35,7 @@ const ScheduleInner = ({ schedule }) => {
             schedule.map((program, i) => (
               <tr className={i % 2 !== 0 ? 'schedule_striped' : ''} key={i}>
                 <td className="schedule_leftmost">
-                  {format(new Date(program.start_dtim), 'h:mm aa')}
+                  <Time dateTime={program.start_dtim} formatString="h:mm aa" />
                 </td>
                 {program?.shows.map((show) => {
                   let link = show.link ? show.link : show.external_link;
