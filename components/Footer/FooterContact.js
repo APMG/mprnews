@@ -16,7 +16,8 @@ const FooterContact = (props) => {
         {props.links.map((link) => {
           return (
             <li key={link.href}>
-              {link.href.startsWith('mailto') || link.href.startsWith('tel') ? (
+              {link.href.startsWith('mailto:') ||
+              link.href.startsWith('tel:') ? (
                 <a href={link.href} className="link link-plain">
                   {link.icon && <Icon name={link.icon} />} {link.label}
                 </a>
