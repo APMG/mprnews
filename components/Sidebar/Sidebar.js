@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'next/link';
+import { Link } from '@apmg/titan';
 import { format } from 'date-fns';
 import AdBottom from '../../components/Ads/AdBottom';
 import AdTop from '../../components/Ads/AdTop';
@@ -7,7 +7,7 @@ import MostViewed from '../../components/MostViewed/MostViewed';
 import PropTypes from 'prop-types';
 
 const Sidebar = (props) => {
-  const programDate = format(new Date(), 'ddd');
+  const programDate = format(new Date(), 'iii');
   const { homepageTopic } = props;
   return (
     <div className="sidebar">
@@ -19,11 +19,15 @@ const Sidebar = (props) => {
           <Link
             href={`/schedule?slug=${programDate.toLowerCase()}`}
             as={`/schedule/${programDate.toLowerCase()}`}
+            className="link link-plain"
           >
-            <a className="link link-plain">Program Schedule</a>
+            Program Schedule
           </Link>
-          <Link href={`https://www.mpr.org/listen/stations`}>
-            <a className="link link-plain">Station Directory</a>
+          <Link
+            href={`https://www.mpr.org/listen/stations`}
+            className="link link-plain"
+          >
+            Station Directory
           </Link>
         </div>
       </div>

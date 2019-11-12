@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Link from 'next/link';
-import { Heading, Pagination } from '@apmg/titan';
+import { Heading, Pagination, Link } from '@apmg/titan';
 import { Image } from '@apmg/mimas';
 import { Body } from '@apmg/amat';
 import { globals } from '../../config/globals';
@@ -52,8 +51,8 @@ const Profile = ({ data: { profile } }) => {
                       profile.profileRelatedLinks &&
                       profile.profileRelatedLinks.map((link) => {
                         return (
-                          <Link href={link.uri} key={link.uri}>
-                            <a className="link">{link.text}</a>
+                          <Link href={link.uri} key={link.uri} className="link">
+                            {link.text}
                           </Link>
                         );
                       })}
@@ -78,13 +77,15 @@ const Profile = ({ data: { profile } }) => {
                     const linkAs = linkByTypeAs(contribution);
                     return (
                       <li key={contribution.id}>
-                        <Link href={linkHref} as={linkAs}>
-                          <a className="contributer">
-                            {contribution.title}
-                            {contribution.descriptionText && (
-                              <div>{contribution.descriptionText}</div>
-                            )}
-                          </a>
+                        <Link
+                          href={linkHref}
+                          as={linkAs}
+                          className="contributer"
+                        >
+                          {contribution.title}
+                          {contribution.descriptionText && (
+                            <div>{contribution.descriptionText}</div>
+                          )}
                         </Link>
                       </li>
                     );

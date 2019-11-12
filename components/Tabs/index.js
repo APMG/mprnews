@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'next/link';
+import { Link } from '@apmg/titan';
 import PropTypes from 'prop-types';
 
 const Tabs = (props) => {
@@ -11,10 +11,9 @@ const Tabs = (props) => {
             <Link
               href={`/schedule?slug=${lnk.href}`}
               as={`/schedule/${lnk.href}`}
+              className={`tabs_link ${lnk.isActive && `is-active`}`}
             >
-              <a className={`tabs_link ${lnk.isActive && `is-active`}`}>
-                {lnk.key}
-              </a>
+              {lnk.key}
             </Link>
           </li>
         );

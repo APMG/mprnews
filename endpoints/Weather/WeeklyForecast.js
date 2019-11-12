@@ -8,14 +8,14 @@ const ICON_SIZE = 75;
 
 const WeeklyForecast = ({ forecast }) => {
   let dates = new Set(
-    forecast.periods.map((period) => format(period.startTime, 'ddd'))
+    forecast.periods.map((period) => format(new Date(period.startTime), 'iii'))
   );
 
   let buckets = [];
   dates.forEach((date) => {
-    if (date === format(new Date(), 'ddd')) return;
+    if (date === format(new Date(), 'iii')) return;
     let data = forecast.periods.filter(
-      (period) => format(period.startTime, 'ddd') === date
+      (period) => format(new Date(period.startTime), 'iii') === date
     );
 
     // get the hi & lo
