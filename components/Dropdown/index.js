@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import Link from 'next/link';
+import { Link } from '@apmg/titan';
 import Icon from '../Icons/Icon';
 import DropdownMenu from './DropdownMenu';
 import DropdownMenuItem from './DropdownMenuItem';
@@ -94,17 +94,15 @@ const Dropdown = () => {
                               key={item.text + i}
                               onClick={clickItem}
                             >
-                              <Link href={hrefType(item)} as={hrefTypeAs(item)}>
-                                {/* eslint-disable-next-line */}
-                                <a
-                                  className={`dropdownMenuItem_link ${item.class}`}
-                                  onClick={(e) => {
-                                    clickItem(e);
-                                  }}
-                                >
-                                  {' '}
-                                  {item.text}{' '}
-                                </a>
+                              <Link
+                                href={hrefType(item)}
+                                as={hrefTypeAs(item)}
+                                className={`dropdownMenuItem_link ${item.class}`}
+                                onClick={(e) => {
+                                  clickItem(e);
+                                }}
+                              >
+                                {/* eslint-disable-next-line */} {item.text}{' '}
                               </Link>
                             </DropdownMenuItem>
                           )
@@ -119,8 +117,8 @@ const Dropdown = () => {
         })}
       </span>
       <div className="nav_item nav_item-donate">
-        <Link href="https://support.mpr.org/mprnews-web">
-          <a className="nav_link"> Give Now </a>
+        <Link href="https://support.mpr.org/mprnews-web" className="nav_link">
+          Give Now
         </Link>
       </div>
     </div>

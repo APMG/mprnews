@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
-import Link from 'next/link';
+import { Link } from '@apmg/titan';
 import classNames from 'classnames';
 import Logo from '../Logo/Logo';
 
@@ -10,14 +10,12 @@ const MinimalHeader = () => {
   return (
     <div className="headerContainer">
       <header className={classes}>
-        <Link href="/">
+        <Link href="/" className="header_logo">
           {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
-          <a className="header_logo">
-            <div className="header_logoImg">
-              <Logo />
-              <span className="invisible">MPR News</span>
-            </div>
-          </a>
+          <div className="header_logoImg">
+            <Logo />
+            <span className="invisible">MPR News</span>
+          </div>
         </Link>
       </header>
     </div>

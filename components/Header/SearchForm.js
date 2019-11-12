@@ -1,13 +1,11 @@
 import React from 'react';
 import Icon from '../Icons/Icon';
-import Link from 'next/link';
+import { Link } from '@apmg/titan';
 
 const SearchForm = () => {
   return (
     <Link as={'search'} href={'/search'}>
-      <a>
-        <Icon elementClass="icon-search" name="search" />
-      </a>
+      <Icon elementClass="icon-search" name="search" />
     </Link>
   );
 };

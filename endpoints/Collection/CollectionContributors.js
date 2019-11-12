@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Link from 'next/link';
 import { Image } from '@apmg/mimas';
-import { Heading } from '@apmg/titan';
+import { Heading, Link } from '@apmg/titan';
 
 const CollectionContributors = (props) => {
   return (
@@ -17,33 +16,35 @@ const CollectionContributors = (props) => {
           return (
             <div key={index} className="miniBio">
               {contrib.profile.primaryVisuals.thumbnail && (
-                <Link href={`/people/${contrib.profile.canonicalSlug}`}>
-                  <a className="miniBio_img">
-                    <Image
-                      image={contrib.profile.primaryVisuals.thumbnail}
-                      aspectRatio="square"
-                      alt={
-                        contrib.profile.primaryVisuals.thumbnail.shortCaption
-                      }
-                      sizes="50px"
-                    />
-                  </a>
+                <Link
+                  href={`/people/${contrib.profile.canonicalSlug}`}
+                  className="miniBio_img"
+                >
+                  <Image
+                    image={contrib.profile.primaryVisuals.thumbnail}
+                    aspectRatio="square"
+                    alt={contrib.profile.primaryVisuals.thumbnail.shortCaption}
+                    sizes="50px"
+                  />
                 </Link>
               )}
               <div className="miniBio_info">
                 <Link
                   href={`/profile?slug=${contrib.profile?.canonicalSlug}`}
                   as={`/people/${contrib.profile?.canonicalSlug}`}
+                  className="miniBio_name"
                 >
-                  <a className="miniBio_name">
-                    {contrib.profile.firstName} {contrib.profile.lastName}
-                  </a>
+                  {contrib.profile.firstName} {contrib.profile.lastName}
                 </Link>
                 {contrib.profile.profileRelatedLinks.length ? (
                   <>
                     {contrib.profile.profileRelatedLinks.map((link) => (
-                      <Link href={link.uri} key={link.uri}>
-                        <a className="miniBio_social">{link.text}</a>
+                      <Link
+                        href={link.uri}
+                        key={link.uri}
+                        className="miniBio_social"
+                      >
+                        {link.text}
                       </Link>
                     ))}
                   </>

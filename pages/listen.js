@@ -13,7 +13,7 @@ const ListenPage = ({ errorCode }) => {
             <Heading level={2}>Now Listening to Live Stream</Heading>
             <img
               className="listen_thumbnail"
-              src="/static/MPRnews-default-audio-thumbnail.jpg"
+              src="/MPRnews-default-audio-thumbnail.jpg"
               alt="Minnesota Public Radio Audio Stream Thumbnail"
             />
           </div>

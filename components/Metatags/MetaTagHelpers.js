@@ -1,5 +1,3 @@
-import fallback_image from '../../static/opengraph-fallback.png';
-
 // if there is  social image and  widescreen  use that
 // if not  use the uncropped version of the social image
 // If no image at all use the fallback
@@ -12,7 +10,7 @@ const fishForSocialMediaImage = (content) => {
       return acc.width > cur.width ? acc : cur;
     });
   } catch (err) {
-    return { url: fallback_image };
+    return { url: '/opengraph-fallback.png' };
   }
 };
 
