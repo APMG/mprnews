@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Link from 'next/link';
+import { Link } from '@apmg/titan';
 import { Heading } from '@apmg/titan';
 
 const FooterLower = (props) => {
@@ -12,17 +12,14 @@ const FooterLower = (props) => {
       <div className="container">
         <div className="footer_lowerContent">
           <div className="footer_logo">
-            <img
-              src="/static/mpr-logo-footer.svg"
-              alt="Minnesota Public Radio"
-            />
+            <img src="/mpr-logo-footer.svg" alt="Minnesota Public Radio" />
           </div>
           <nav className="footer_nav">
             <ul className="footer_navList">
               {props.nav.map((item) => (
                 <li key={item.href} className="footer_navItem">
-                  <Link href={item.href}>
-                    <a className="footer_navLink">{item.label}</a>
+                  <Link href={item.href} className="footer_navLink">
+                    {item.label}
                   </Link>
                 </li>
               ))}

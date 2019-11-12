@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'next/link';
+import { Link } from '@apmg/titan';
 import FullTeaser from '../../components/FullTeaser/FullTeaser';
 import HomeFooter from './HomeFooter';
 import HomeGrid from '../../grids/HomeGrid';
@@ -59,27 +59,33 @@ const Home = (data) => {
         </div>
         <div className="hList home_more">
           <div>
-            <Link href="/collection?slug=arts" as={'/arts'}>
-              <a className="btn btn-primary">
-                <span>More Arts </span>
-                <Icon name="chevronRight" />
-              </a>
+            <Link
+              href="/collection?slug=arts"
+              as={'/arts'}
+              className="btn btn-primary"
+            >
+              <span>More Arts </span>
+              <Icon name="chevronRight" />
             </Link>
           </div>
           <div>
-            <Link href="/collection?slug=environment" as={'/environment'}>
-              <a className="btn btn-primary">
-                <span>More Environment </span>
-                <Icon name="chevronRight" />
-              </a>
+            <Link
+              href="/collection?slug=environment"
+              as={'/environment'}
+              className="btn btn-primary"
+            >
+              <span>More Environment </span>
+              <Icon name="chevronRight" />
             </Link>
           </div>
           <div>
-            <Link href="/collection?slug=politics" as={'/politics'}>
-              <a className="btn btn-primary">
-                <span>More Politics </span>
-                <Icon name="chevronRight" />
-              </a>
+            <Link
+              href="/collection?slug=politics"
+              as={'/politics'}
+              className="btn btn-primary"
+            >
+              <span>More Politics </span>
+              <Icon name="chevronRight" />
             </Link>
           </div>
         </div>

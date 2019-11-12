@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import fetch from 'isomorphic-unfetch';
 import Icon from '../Icons/Icon';
+import { Link } from '@apmg/titan';
 
 const WeatherHeader = () => {
   const [data, setData] = useState({});
@@ -33,14 +34,14 @@ const WeatherHeader = () => {
     <div className="weatherHeader">
       {data.temperature ? (
         <>
-          <a href="/weather">
+          <Link href="/weather">
             <div className="weatherHeader_temp">{`${parseInt(
               data.temperature
             )}°`}</div>
             <div className="weatherHeader_text invisible">
               {data.shortForecast}
             </div>
-          </a>
+          </Link>
           <div className="weatherButton">
             <Icon elementClass="icon-weatherHeader" name="location" />
             <div className="invisible">Get Geolocation</div>

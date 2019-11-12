@@ -2,16 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Heading } from '@apmg/titan';
 import Icon from '../Icons/Icon';
-import Link from 'next/link';
+import { Link } from '@apmg/titan';
 
 const FooterPodcasts = (props) => {
   return (
     <div className="footer_podcasts">
       <div className="footer_row">
         <Heading level={3} className="hdg hdg-5">
-          <Link href={props.href}>
-            <a>{props.title}</a>
-          </Link>
+          <Link href={props.href}>{props.title}</Link>
         </Heading>
       </div>
       <div className="footer_row">
@@ -20,11 +18,9 @@ const FooterPodcasts = (props) => {
         </div>
       </div>
       <div className="footer_footer">
-        <Link href={props.href}>
-          <a className="link link-plain text-bold">
-            {props.linkLabel}
-            <Icon name="chevronRight" />
-          </a>
+        <Link href={props.href} className="link link-plain text-bold">
+          {props.linkLabel}
+          <Icon name="chevronRight" />
         </Link>
       </div>
     </div>
