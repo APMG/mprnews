@@ -1,23 +1,23 @@
-const { startOfWeek, endOfWeek, eachDay, format } = require('date-fns');
+import { startOfWeek, endOfWeek, eachDayOfInterval, format } from 'date-fns';
 
 exports.getDateTimes = () => {
-  const todaysDate = format(new Date(), 'YYYY-MM-DD');
-  const startOfWeekDate = startOfWeek(todaysDate);
-  const endOfWeekDate = endOfWeek(todaysDate);
+  const todaysDate = format(new Date(), 'yyyy-MM-dd');
+  const startOfWeekDate = startOfWeek(new Date(todaysDate));
+  const endOfWeekDate = endOfWeek(new Date(todaysDate));
 
-  const getEachDayDate = eachDay(
-    format(startOfWeekDate, 'YYYY-MM-DD'),
-    format(endOfWeekDate, 'YYYY-MM-DD')
-  );
+  const getEachDayDate = eachDayOfInterval({
+    start: new Date(startOfWeekDate),
+    end: new Date(endOfWeekDate)
+  });
   return getEachDayDate;
 };
 
 exports.formatEachDateTime = (dates, daySlug) => {
   let result;
   dates.map((date) => {
-    const formatDateWithDay = format(date, 'ddd');
+    const formatDateWithDay = format(new Date(date), 'iii');
     if (formatDateWithDay.toLowerCase() === daySlug) {
-      return (result = format(date, 'YYYY-MM-DD'));
+      return (result = format(new Date(date), 'yyyy-MM-dd'));
     }
   });
   return result;

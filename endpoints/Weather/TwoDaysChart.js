@@ -64,9 +64,11 @@ const TwoDaysChart = ({ forecast }) => {
             let xPos = i * GRID_WIDTH;
             let yPos = tempPositionScale(period.temperature);
             let date = Date.parse(period.startTime.split('/').shift());
-            let hour = format(date, 'hA');
+            let hour = format(date, 'ha');
             let dayOfWeek =
-              hour === '12AM' ? format(date, 'ddd').toUpperCase() : false;
+              hour === '12AM'
+                ? format(new Date(date), 'iii').toUpperCase()
+                : false;
 
             return (
               <g key={period.number} className="weather_chartPoint">

@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from 'react';
-import Link from 'next/link';
+import { Link } from '@apmg/titan';
 import classNames from 'classnames';
 import Dropdown from '../Dropdown';
 import Logo from '../Logo/Logo';
@@ -41,14 +41,13 @@ const Header = () => {
           </div>
           <span className="invisible">Menu</span>
         </button>
-        <Link href="/">
+        <Link href="/" className="header_logo" onClick={closeMenu}>
           {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
-          <a className="header_logo" onClick={closeMenu}>
-            <div className="header_logoImg">
-              <Logo />
-              <span className="invisible">MPR News</span>
-            </div>
-          </a>
+
+          <div className="header_logoImg">
+            <Logo />
+            <span className="invisible">MPR News</span>
+          </div>
         </Link>
 
         {/* disabling these eslint jsx-a11y features because this element is for convenience; the menu can still be closed through other means */}
@@ -63,12 +62,10 @@ const Header = () => {
           <nav className="nav">
             <div className="nav_header">
               <Link href="/">
-                <a>
-                  <div className="header_logoImg">
-                    <Logo />
-                    <span className="invisible">MPR News</span>
-                  </div>
-                </a>
+                <div className="header_logoImg">
+                  <Logo />
+                  <span className="invisible">MPR News</span>
+                </div>
               </Link>
               <button
                 type="button"

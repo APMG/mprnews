@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
+import { Link } from '@apmg/titan';
 import fetch from 'isomorphic-unfetch';
 import { Heading } from '@apmg/titan';
 
@@ -50,10 +50,9 @@ const MostViewed = () => {
                   <Link
                     href={`/story?slug=${parseUrl(data.dimensions[0])}`}
                     as={`${data.dimensions[0]}`}
+                    className="link link-plain"
                   >
-                    <a className="link link-plain">
-                      {parseString(data.dimensions[1])}
-                    </a>
+                    {parseString(data.dimensions[1])}
                   </Link>
                 </li>
               );

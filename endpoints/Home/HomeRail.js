@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Link from 'next/link';
-import { Heading } from '@apmg/titan';
+import { Heading, Link } from '@apmg/titan';
 import InfoLink from '../../components/InfoLink/InfoLink';
 import WeatherSidebar from '../../components/WeatherSidebar/WeatherSidebar';
 import { dropdownLists } from '../../utils/navConfig';
@@ -10,17 +9,15 @@ const HomeRail = (props) => {
   const sections = dropdownLists[0].groups[0].links; // D R Y
   return (
     <>
-      <Link href="/weather" as="/weather">
-        <a className="infoLink">
-          <div className="infoLink_title">
-            <Heading level={2} className="hdg hdg-4">
-              Forecast
-            </Heading>
-          </div>
-          <div className="infoLink_description">
-            <WeatherSidebar />
-          </div>
-        </a>
+      <Link href="/weather" as="/weather" className="infoLink">
+        <div className="infoLink_title">
+          <Heading level={2} className="hdg hdg-4">
+            Forecast
+          </Heading>
+        </div>
+        <div className="infoLink_description">
+          <WeatherSidebar />
+        </div>
       </Link>
       <div className="home_railLinks">
         <div className="section section-md">
@@ -72,8 +69,12 @@ const HomeRail = (props) => {
                   : `/collection?slug=${section.href}`;
               return (
                 <li key={`${section.text}${section.href}`}>
-                  <Link href={href} as={`/${section.href}`}>
-                    <a className="link link-plain">{section.text}</a>
+                  <Link
+                    href={href}
+                    as={`/${section.href}`}
+                    className="link link-plain"
+                  >
+                    {section.text}
                   </Link>
                 </li>
               );
