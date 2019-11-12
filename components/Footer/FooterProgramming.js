@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Link from 'next/link';
+import { Link } from '@apmg/titan';
 import { Heading, Button } from '@apmg/titan';
 import { hrefType } from '../../utils/utils';
 
@@ -32,8 +32,12 @@ const FooterProgramming = (props) => {
           {props.links.map((link) => {
             return (
               <li key={link.href}>
-                <Link href={hrefType(link)} as={link.href}>
-                  <a className="link link-plain">{link.label}</a>
+                <Link
+                  href={hrefType(link)}
+                  as={link.href}
+                  className="link link-plain"
+                >
+                  {link.label}
                 </Link>
               </li>
             );

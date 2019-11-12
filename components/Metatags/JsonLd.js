@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { globals } from '../../config/globals';
-import fallback_image from '../../static/opengraph-fallback.png';
 
 const JsonLd = (props) => {
   const defaultAuthor = `"author": "@type": "Organization", "name": "MPR News"`;
@@ -44,7 +43,7 @@ const JsonLd = (props) => {
                       "name": "MPR News",
                       "logo": {
                       "@type": "ImageObject",
-                      "url": "${globals.hostnameProd}${fallback_image}"
+                      "url": "/opengraph-fallback.png"
                       }
                     }
                   }`
