@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Heading } from '@apmg/titan';
-import Link from 'next/link';
+import { Link } from '@apmg/titan';
 import Icon from '../Icons/Icon';
 
 const FooterContact = (props) => {
@@ -16,11 +16,16 @@ const FooterContact = (props) => {
         {props.links.map((link) => {
           return (
             <li key={link.href}>
-              <Link href={link.href}>
-                <a className="link link-plain">
+              {link.href.startsWith('mailto:') ||
+              link.href.startsWith('tel:') ? (
+                <a href={link.href} className="link link-plain">
                   {link.icon && <Icon name={link.icon} />} {link.label}
                 </a>
-              </Link>
+              ) : (
+                <Link href={link.href} className="link link-plain">
+                  {link.icon && <Icon name={link.icon} />} {link.label}
+                </Link>
+              )}
             </li>
           );
         })}
