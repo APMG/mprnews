@@ -98,7 +98,7 @@ module.exports.feed = (server) => {
       xml += `<language>en-us</language>`;
       xml += `<lastBuildDate>${format(
         new Date(feed && results.data.collection.publishDate),
-        'ddd, d MMM yyyy HH:mm:ss ZZ'
+        "yyyy-MM-dd-'T'HH:mm:ssxx"
       )}</lastBuildDate>`;
 
       feed &&
@@ -109,7 +109,7 @@ module.exports.feed = (server) => {
           const link = linkByTypeAs(item);
           const dte = format(
             new Date(item.publishDate),
-            'ddd, d MMM yyyy HH:mm:ss ZZ'
+            "yyyy-MM-dd-'T'HH:mm:ssxx"
           );
           const ele = React.createElement(Body, {
             nodeData: JSON.parse(item.body),
