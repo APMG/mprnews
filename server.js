@@ -1,4 +1,5 @@
 /*eslint no-console: 0*/
+require('newrelic');
 const express = require('express');
 const nextjs = require('next');
 const fetch = require('isomorphic-unfetch');
@@ -19,7 +20,6 @@ const { ssGql } = require('./server/ssGql');
 const { mostViewed } = require('./server/mostViewed');
 const { membershipPotlatch } = require('./server/membershipPotlatch');
 require('console-stamp')(console, 'dd/mmm/yyyy:HH:MM:ss o');
-require('newrelic');
 
 const TTL = 60;
 const ampQuery = (slug) =>
