@@ -19,6 +19,7 @@ const { ssGql } = require('./server/ssGql');
 const { mostViewed } = require('./server/mostViewed');
 const { membershipPotlatch } = require('./server/membershipPotlatch');
 require('console-stamp')(console, 'dd/mmm/yyyy:HH:MM:ss o');
+require('newrelic');
 
 const TTL = 60;
 const ampQuery = (slug) =>
@@ -107,7 +108,7 @@ app
     );
 
     //Root route
-    server.get('/', (req, res) => {
+    server.get('/', function homeRequest(req, res) {
       res.set('Cache-Control', `public, max-age=${TTL}`);
       app.render(req, res, '/index');
     });
@@ -301,3 +302,9 @@ app
     console.error(e.stack);
     process.exit(1);
   });
+
+process.on('SIGINT', (msg) => {
+  console.log(`Received SIGINT with message ${msg}.`);
+  // by default, you have 1600ms
+  process.exit(0);
+});
