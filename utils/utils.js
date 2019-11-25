@@ -116,10 +116,7 @@ export function getValueOfMostRecent(weather, arr) {
 }
 
 export function getClosestHourMatch(arr) {
-  let i = closestIndexTo(
-    Date.now(),
-    arr.map((i) => Date.parse(i.endTime))
-  );
+  let i = closestIndexTo(Date.now(), arr.map((i) => Date.parse(i.endTime)));
 
   return arr[i];
 }
