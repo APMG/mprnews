@@ -15,11 +15,11 @@ const Footer = () => {
         About MPR News
       </Heading>
       <div className="footer_upper">
-        <FooterApps
-          title={config.appsTitle}
-          imageSrc={config.appsImg}
-          links={config.apps}
-        />
+        //<FooterApps
+        //  title={config.appsTitle}
+        //  imageSrc={config.appsImg}
+        //  links={config.apps}
+        ///> // Redmine #40645
         <FooterPodcasts
           title={config.podcastTitle}
           href={config.podcastLinkHref}
