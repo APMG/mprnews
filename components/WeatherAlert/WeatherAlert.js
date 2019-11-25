@@ -31,10 +31,10 @@ const WeatherAlert = ({ alert }) => {
           ';',
           ' &'
         )} at ${format(
-          alert.properties.effective,
+          new Date(alert.properties.effective),
           'M/d/yyyy @ H:mm a'
         )} until ${format(
-          alert.properties.ends,
+          new Date(alert.properties.ends),
           'M/d/yyyy @ H:mm a'
         )}`}</Heading>
         <p>{alert.properties.description}</p>
