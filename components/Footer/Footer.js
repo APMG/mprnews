@@ -1,7 +1,6 @@
 import React from 'react';
 import config from './footerConfig';
 import { Heading } from '@apmg/titan';
-import FooterApps from './FooterApps';
 import FooterContact from './FooterContact';
 import FooterLower from './FooterLower';
 import FooterPodcasts from './FooterPodcasts';
@@ -15,11 +14,6 @@ const Footer = () => {
         About MPR News
       </Heading>
       <div className="footer_upper">
-        <FooterApps
-          title={config.appsTitle}
-          imageSrc={config.appsImg}
-          links={config.apps}
-        />
         <FooterPodcasts
           title={config.podcastTitle}
           href={config.podcastLinkHref}

@@ -29,7 +29,7 @@ export const fetchWeather = async (lat, long) => {
       relativeHumidity
     } = weatherData.properties;
 
-    return {
+    let data = {
       weather: {
         updateTime,
         temperature,
@@ -42,6 +42,8 @@ export const fetchWeather = async (lat, long) => {
       forecast: forecastData.properties,
       alerts: alertData.features
     };
+
+    return data;
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error(error);
