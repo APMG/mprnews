@@ -1,5 +1,5 @@
 /*eslint no-console: 0*/
-require('newrelic');
+// require('newrelic');
 const express = require('express');
 const nextjs = require('next');
 const fetch = require('isomorphic-unfetch');
