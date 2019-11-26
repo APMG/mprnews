@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "RAILS_ENV=development NODE_ENV=development node -r esm server.js",
     "debug": "RAILS_ENV=development NODE_ENV=development node -r esm --inspect server.js",
-    "dev:clean": "rm -rf build .next && npm run dev",
+    "dev:clean": "rm -rf build .next && yarn dev",
     "build": "NODE_OPTIONS='-r esm' next build",
     "start": "RAILS_ENV=production NODE_ENV=production node -r esm server.js",
     "eslint": "eslint .",
@@ -20,7 +20,7 @@
     "test:ci": "jest",
     "test:coverage": "jest --coverage",
     "test:update": "jest -u",
-    "blast": "rm -rf node_modules .next package-lock.json && npm cache verify"
+    "blast": "rm -rf node_modules .next package-lock.json && yarn check"
   },
   "dependencies": {
     "@apmg/amat": "^0.3.7",
@@ -79,7 +79,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run sasslint && npm run prettier"
+      "pre-commit": "yarn sasslint && yarn prettier"
     }
   },
   "eslintConfig": {

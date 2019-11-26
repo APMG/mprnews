@@ -32,18 +32,18 @@ namespace :deploy do
   after :finished, :restart
 end
 
-namespace :npm do
-  desc 'Run npm install'
+namespace :yarn do
+  desc 'Run yarn install'
   task :install do
     on roles(:app) do
       within release_path do
-        execute :npm, 'cache clean --force'
+        execute :yarn, 'cache clean --force'
         execute :rm, '-rf ./node_modules'
-        execute :npm, :install
-        execute :npm, :run, :build
+        execute :yarn, :install
+        execute :yarn, :run, :build
         execute :ln, '-s build _next'
       end
     end
   end
-  after 'deploy:published', 'npm:install'
+  after 'deploy:published', 'yarn:install'
 end
