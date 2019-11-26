@@ -1,25 +1,25 @@
 ESLint:
   script:
-    - npm install
-    - npm run eslint
+    - yarn install
+    - yarn eslint
   tags:
     - general_cent7
 SassLint:
   script:
-    - npm install
-    - npm run sasslint
+    - yarn install
+    - yarn sasslint
   tags:
     - general_cent7
 Prettier:
   script:
-    - npm install
-    - npm run prettier
+    - yarn install
+    - yarn prettier
   tags:
     - general_cent7
 Jest:
   script:
-    - npm install
-    - npm run test:ci
+    - yarn install
+    - yarn test:ci
   tags:
     - general_cent7
 Deploy Dev:
