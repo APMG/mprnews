@@ -45,7 +45,7 @@
   }
 
   @include media($media-desktop) {
-    -ms-grid-columns: 210px 1fr 300px;
+    -ms-grid-columns: 200px 10px 5% 1fr 5% 300px;
     grid-template-columns: 210px 1fr 300px;
     grid-template-areas:
     'top top sidebar'
@@ -99,7 +99,7 @@
 
   @include media($media-desktop) {
     -ms-grid-row: 1;
-    -ms-grid-row-span: 3;
+    -ms-grid-row-span: 6;
     -ms-grid-column: 1;
   }
 }
@@ -116,7 +116,7 @@
 
   @include media($media-desktop) {
     -ms-grid-row: 2;
-    -ms-grid-column: 2;
+    -ms-grid-column: 4;
   }
 
   &::after {
@@ -186,7 +186,7 @@
 
   @include media($media-desktop) {
     -ms-grid-row: 3;
-    -ms-grid-column: 2;
+    -ms-grid-column: 4;
   }
 }
 
@@ -201,7 +201,7 @@
 
   @include media($media-desktop) {
     -ms-grid-row: 2;
-    -ms-grid-column: 3;
+    -ms-grid-column: 6;
     -ms-grid-column-span: 2;
   }
 }
@@ -209,5 +209,6 @@
 .home_footer {
   -ms-grid-row: 6;
   -ms-grid-column: 1;
+  -ms-grid-row-span: 6;
   grid-area: footer;
 }
