@@ -5,6 +5,7 @@ npm-debug.log*
 .next
 .vscode
 .clinic
+..bfg-report
 *.swp
 
 coverage
