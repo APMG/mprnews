@@ -74,7 +74,9 @@ const Dropdown = () => {
               <ul
                 role="menu"
                 className={
-                  'dropdownMenu dropdownMenu-expand' + (open ? ' active' : '')
+                  'dropdownMenu dropdownMenu-expand dropdownMenu-' +
+                  [i] +
+                  (open ? ' active' : '')
                 }
               >
                 {dropdownList.groups.map((group, index) =>
