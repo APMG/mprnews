@@ -1,4 +1,5 @@
 /*eslint no-console: 0*/
+// require('newrelic');
 const express = require('express');
 const nextjs = require('next');
 const fetch = require('isomorphic-unfetch');
@@ -107,7 +108,7 @@ app
     );
 
     //Root route
-    server.get('/', (req, res) => {
+    server.get('/', function homeRequest(req, res) {
       res.set('Cache-Control', `public, max-age=${TTL}`);
       app.render(req, res, '/index');
     });
@@ -301,3 +302,9 @@ app
     console.error(e.stack);
     process.exit(1);
   });
+
+process.on('SIGINT', (msg) => {
+  console.log(`Received SIGINT with message ${msg}.`);
+  // by default, you have 1600ms
+  process.exit(0);
+});
