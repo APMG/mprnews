@@ -4,7 +4,7 @@ MPR News is, in many ways, our flagship website. It was redesigned and developed
 
 ## Installation
 
-Pull down (this repository)[https://gitlab.mpr.org/sites/v2-mpr-news] from our GitLab. This should bring down a project folder named `v2-mpr-news`. Navigate into that directory (from here on referred to as `/` or root) via terminal and run the command `npm i` to install all the necessary packages. Then, to run the site in development mode, simply run `npm run dev`. You can check it out at (localhost:3000)(http://localhost:3000).
+Pull down (this repository)[https://gitlab.mpr.org/sites/v2-mpr-news] from our GitLab. This should bring down a project folder named `v2-mpr-news`. Navigate into that directory (from here on referred to as `/` or root) via terminal and run the command `yarn` to install all the necessary packages. Then, to run the site in development mode, simply run `yarn dev`. You can check it out at (localhost:3000)(http://localhost:3000).
 
 ## Google Analytics Set-Up
 Login in to LastPass and navigate to Shared-SWAG\Google and locate Google Analytics API - MPR NEWS. In the notes, copy the json. Then create a new file, called google-api-keyfile.json in /config and paste the json from LastPass. 
