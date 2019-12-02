@@ -1,7 +1,12 @@
 // Homepage template/layout
 
 .home {
+  // sass-lint:disable no-vendor-prefixes
+  display: -ms-grid;
+  // sass-lint:disable no-duplicate-properties
   display: grid;
+
+  -ms-grid-columns: 1fr;
   grid-template-areas:
   'top'
   'first'
@@ -17,6 +22,7 @@
   }
 
   @include media($media-small-tablet) {
+    -ms-grid-columns: 1fr 5% 180px;
     grid-template-columns: 1fr 180px;
     grid-template-areas:
     'top top'
@@ -28,6 +34,7 @@
   }
 
   @include media($media-tablet) {
+    -ms-grid-columns: 1fr 5% 300px;
     grid-template-columns: 1fr 300px;
     grid-template-areas:
     'top top'
@@ -38,6 +45,7 @@
   }
 
   @include media($media-desktop) {
+    -ms-grid-columns: 200px 10px 5% 1fr 5% 300px;
     grid-template-columns: 210px 1fr 300px;
     grid-template-areas:
     'top top sidebar'
@@ -50,6 +58,85 @@
   &.is-blowout {
     .home_first .hdg {
       @include hdg-1();
+    }
+
+    .home_top,
+    .home_footer {
+      -ms-grid-column: 1;
+      -ms-grid-row: 1;
+
+      @include media($media-small-tablet) {
+        -ms-grid-column-span: 3;
+      }
+
+      @include media($media-desktop) {
+        -ms-grid-column-span: 6;
+      }
+    }
+
+    .home_first {
+      -ms-grid-column: 1;
+      -ms-grid-row: 2;
+
+      @include media($media-small-tablet) {
+        -ms-grid-column-span: 3;
+      }
+
+      @include media($media-tablet) {
+        -ms-grid-column-span: 1;
+      }
+
+      @include media($media-desktop) {
+        -ms-grid-column-span: 4;
+      }
+    }
+
+    .home_rail {
+      -ms-grid-row: 3;
+      -ms-grid-column: 1;
+
+      @include media($media-small-tablet) {
+        -ms-grid-column: 3;
+      }
+
+      @include media($media-desktop) {
+        -ms-grid-row: 3;
+        -ms-grid-column: 1;
+      }
+    }
+
+    .home_main {
+      -ms-grid-row: 4;
+      -ms-grid-column: 1;
+
+      @include media($media-small-tablet) {
+        -ms-grid-row: 3;
+      }
+
+      @include media($media-desktop) {
+        -ms-grid-row: 3;
+        -ms-grid-column: 4;
+      }
+    }
+
+    .home_sidebar {
+      -ms-grid-column: 1;
+      -ms-grid-row: 5;
+
+      @include media($media-small-tablet) {
+        -ms-grid-row: 4;
+      }
+
+      @include media($media-tablet) {
+        -ms-grid-row: 2;
+        -ms-grid-column: 3;
+        -ms-grid-column-span: 3;
+      }
+
+      @include media($media-desktop) {
+        -ms-grid-row: 2;
+        -ms-grid-column: 6;
+      }
     }
 
     @include media($media-small-tablet) {
@@ -71,6 +158,7 @@
     }
 
     @include media($media-desktop) {
+      -ms-grid-columns: 200px 10px 5% 1fr 5% 300px;
       grid-template-areas:
       'top top sidebar'
       'first first sidebar'
@@ -82,11 +170,35 @@
 
 .home_top {
   grid-area: top;
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+
+  @include media($media-small-tablet) {
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 3;
+    -ms-grid-column: 1;
+  }
+
+  @include media($media-desktop) {
+    -ms-grid-row-span: 6;
+  }
 }
 
 .home_first {
   grid-area: first;
   margin-bottom: 0;
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+
+  @include media($media-small-tablet) {
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
+  }
+
+  @include media($media-desktop) {
+    -ms-grid-row: 2;
+    -ms-grid-column: 4;
+  }
 
   &::after {
     content: '';
@@ -100,6 +212,24 @@
 
 .home_rail {
   grid-area: rail;
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
+
+  @include media($media-small-tablet) {
+    -ms-grid-row: 2;
+    -ms-grid-column: 3;
+  }
+
+  @include media($media-tablet) {
+    -ms-grid-row: 3;
+    -ms-grid-column: 1;
+  }
+
+  @include media($media-desktop) {
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+  }
 }
 
 .home_railLinks {
@@ -130,6 +260,21 @@
 
 .home_main {
   grid-area: main;
+  -ms-grid-row: 4;
+  -ms-grid-column: 1;
+
+  @include media($media-small-tablet) {
+    -ms-grid-row: 3;
+  }
+
+  @include media($media-tablet) {
+    -ms-grid-row: 4;
+  }
+
+  @include media($media-desktop) {
+    -ms-grid-row: 3;
+    -ms-grid-column: 4;
+  }
 }
 
 .home_more {
@@ -137,9 +282,29 @@
 }
 
 .home_sidebar {
+  -ms-grid-row: 5;
+  -ms-grid-column: 1;
   grid-area: sidebar;
+
+  @include media($media-small-tablet) {
+    -ms-grid-row: 4;
+  }
+
+  @include media($media-tablet) {
+    -ms-grid-row: 2;
+    -ms-grid-column: 3;
+  }
+
+  @include media($media-desktop) {
+    -ms-grid-row: 2;
+    -ms-grid-column: 6;
+    -ms-grid-column-span: 2;
+  }
 }
 
 .home_footer {
+  -ms-grid-row: 6;
+  -ms-grid-column: 1;
+  -ms-grid-row-span: 6;
   grid-area: footer;
 }
