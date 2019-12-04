@@ -2,7 +2,6 @@
 
 .collection {
   display: block;
-
   @include media($media-small-tablet) {
     // sass-lint:disable no-vendor-prefixes
     display: -ms-grid;
@@ -41,10 +40,9 @@
   margin-bottom: 40px;
   display: flex;
   // sass-lint:disable no-vendor-prefixes
-  display: -ms-grid;
   justify-content: center;
 
-  @include media($media-desktop) {
+  @include media($media-small-tablet) {
     -ms-grid-row: 1;
     -ms-grid-column: 1;
     -ms-grid-column-span: 3;
@@ -55,7 +53,7 @@
   grid-area: body;
   margin-bottom: 40px;
 
-  @include media($media-desktop) {
+  @include media($media-small-tablet) {
     -ms-grid-row: 2;
     -ms-grid-column: 1;
     -ms-grid-column-span: 3;
@@ -65,9 +63,15 @@
 .collection_sidebar {
   grid-area: sidebar;
 
-  @include media($media-desktop) {
+  @include media($media-small-tablet) {
     -ms-grid-column: 1;
-    -ms-grid-row: 2;
+    -ms-grid-column-span: 1;
+    -ms-grid-row: 3;
+  }
+
+  @include media($media-tablet) {
+    -ms-grid-column: 1;
+    -ms-grid-row: 4;
   }
 }
 
@@ -117,12 +121,28 @@
     margin-bottom: 6rem;
   }
 
-  @include media($media-desktop) {
+  @include media($media-small-tablet) {
     -ms-grid-column: 3;
-    -ms-grid-row: 2;
+    -ms-grid-row: 3;
+  }
+
+  @include media($media-desktop) {
+    -ms-grid-row: 4;
   }
 }
 
 .collection_pagination {
   grid-area: pager;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  -ms-grid-row: 5;
+  padding-bottom: 2em;
+
+  @include media($media-tablet) {
+    -ms-grid-row: 5;
+  }
+
+  @include media($media-desktop) {
+    -ms-grid-row: 5;
+  }
 }
