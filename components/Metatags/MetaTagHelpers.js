@@ -10,7 +10,7 @@ const fishForSocialMediaImage = (content) => {
       return acc.width > cur.width ? acc : cur;
     });
   } catch (err) {
-    return { url: '/opengraph-fallback.png' };
+    return { url: 'https://www.mprnews.org/opengraph-fallback.png' };
   }
 };
 
