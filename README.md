@@ -43,6 +43,11 @@ I learned some stuff from porting the Podcast site to this system that we should
 - [ ] Split all of the regex slug functions in `server.js` into a separate file for easier reading and reusability
 - [ ] Write some gosh darn tests
 
+## Running Docker
+To build `docker build -t mprnews:first .`
+To run `docker run -d --name foobars -p 3001:3000 mprnews:first`
+View logs `docker logs foobars -f`
+
 ## Credits
 
 The whole front end team at MPR!
