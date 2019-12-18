@@ -7,7 +7,6 @@ services:
       - nodemodules:/opt/mprnews/node_modules
     ports:
       - "3001:3000"
-    command: bash -c "npm install && node -r esm server.js"
 
 volumes:
   nodemodules:
