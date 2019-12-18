@@ -15,7 +15,7 @@ COPY ./package*.json ${APP_PATH}/
 
 WORKDIR ${APP_PATH}
 
-RUN npm install
+RUN npm install . --no-optional && npm cache clean --force
 
 EXPOSE 3000
 
