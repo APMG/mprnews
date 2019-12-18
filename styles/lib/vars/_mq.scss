@@ -1,14 +1,14 @@
 // Media Queries
-$media-mobile: 20em;
-$media-medium-mobile: 22em;
-$media-large-mobile: 24em;
-$media-small-tablet: 32em;
-$media-st-t: 40em;
-$media-tablet: 48em;
-$media-t-d: 56em;
-$media-desktop: 64em;
-$media-large-desktop: 68em;
-$media-wide: 75em;
+$media-mobile: 20em; //320px
+$media-medium-mobile: 22em; //352px
+$media-large-mobile: 24em; // 384px
+$media-small-tablet: 32em; //512px
+$media-st-t: 40em; //640px
+$media-tablet: 48em; //768px
+$media-t-d: 56em; //896px
+$media-desktop: 64em; //1024px
+$media-large-desktop: 68em; //1088px
+$media-wide: 75em; //1200px
 
 // The point at which the nav/header switches from
 // hamburger menu to sidebar
