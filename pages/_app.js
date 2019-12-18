@@ -159,7 +159,7 @@ class MPRNews extends App {
   setNowPlayingTitle(schedule) {
     let title = schedule[0].shows[0].name;
     if (schedule[0].people[0]) {
-      title += ` with ${schedule.people[0].name}`;
+      title += ` with ${schedule[0].people[0].name}`;
     }
     return title;
   }
