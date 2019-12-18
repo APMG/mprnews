@@ -1,7 +1,13 @@
 version: '3'
 services:
   web:
-    build: .
+    build: 
+      context: .
+      args:
+        - APP_USER=${APP_USER}
+        - APP_GROUP=${APP_GROUP}
+        - APP_USER_UID=${APP_USER_UID}
+        - APP_GROUP_GID=${APP_GROUP_GID}
     volumes:
       - .:/opt/mprnews
       - nodemodules:/opt/mprnews/node_modules
