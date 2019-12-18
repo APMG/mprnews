@@ -15,10 +15,6 @@ COPY ./package*.json ${APP_PATH}/
 
 WORKDIR ${APP_PATH}
 
-COPY ./container-entrypoint.sh /usr/bin
-
-RUN chmod +x /usr/bin/container-entrypoint.sh
-
 RUN npm install
 
 EXPOSE 3000
