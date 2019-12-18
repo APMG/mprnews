@@ -43,6 +43,15 @@ I learned some stuff from porting the Podcast site to this system that we should
 - [ ] Split all of the regex slug functions in `server.js` into a separate file for easier reading and reusability
 - [ ] Write some gosh darn tests
 
+## Running Docker
+To build `docker build -t mprnews:first .`
+To run `docker run -d --name foobars -p 3001:3000 mprnews:first`
+To run with the local folder mounted into the container `docker run -d --name foobars -p 3001:3000 -v ${PWD}:/opt/mprnews/app mprnews:first`
+To run with different parameters passed to node and in attached mode `docker run --name foobars -p 3001:3000 -v ${PWD}:/opt/mprnews/app mprnews:first --max-old-space-size 480 -r esm server.js`
+View logs `docker logs foobars -f`
+To gracefull shut down the container `docker stop foobars`
+To remove the container `docker rm foobars`
+
 ## Credits
 
 The whole front end team at MPR!
