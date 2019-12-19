@@ -3,9 +3,8 @@ services:
   web:
     build: 
       context: .
+      #      dockerfile: Dockerfile.stretch
       args:
-        - APP_USER=${APP_USER}
-        - APP_GROUP=${APP_GROUP}
         - APP_USER_UID=${APP_USER_UID}
         - APP_GROUP_GID=${APP_GROUP_GID}
     volumes:
