@@ -8,9 +8,9 @@ services:
         - APP_USER_UID=${APP_USER_UID}
         - APP_GROUP_GID=${APP_GROUP_GID}
     volumes:
-      - .:/opt/mprnews
       - nodemodules:/opt/mprnews/node_modules
       - nodebuild:/opt/mprnews/build
+      - .:/opt/mprnews
     ports:
       - "3001:3000"
 
