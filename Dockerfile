@@ -16,8 +16,7 @@ RUN apk add --update --no-cache \
     shadow \
     git && \
     deluser --remove-home node && \
-    addgroup -S ${APP_GROUP} -g ${APP_GROUP_GID} && \
-    adduser -S -G ${APP_GROUP} -u ${APP_USER_UID} ${APP_USER} && \
+    groupadd -g ${APP_GROUP_GID} ${APP_GROUP} && useradd -m -l -u ${APP_USER_UID} -g ${APP_GROUP_GID} ${APP_USER} && \
     mkdir --parents ${APP_PATH} && \
     chown ${APP_USER}:${APP_GROUP} ${APP_PATH} 
 
