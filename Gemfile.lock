@@ -30,4 +30,4 @@ DEPENDENCIES
   capistrano-apm (~> 2.4)!
 
 BUNDLED WITH
-   2.0.1
+   2.1.0
