@@ -13,10 +13,12 @@ import { showInfoAlert, audioDownloadPrefix } from '../../utils/utils';
 import Alert from '../../components/Alert/Alert';
 
 const Story = ({ data: { story, alertConfig }, minimal }) => {
-  //
   const alerts = JSON.parse(alertConfig.json);
-  const img = fishForSocialMediaImage(story);
+  const redistributable = story?.primaryVisuals?.lead?.rights?.redistributable;
+  const displayableImage = !(minimal && !redistributable);
+  const img = fishForSocialMediaImage(story, displayableImage);
   let authors;
+
   if (story && story.contributors) {
     authors = story.contributors.map((contributor) => {
       return {
@@ -57,7 +59,7 @@ const Story = ({ data: { story, alertConfig }, minimal }) => {
         authors={authors}
         body={story.body}
         minimal={minimal}
-        redistributable={story.primaryVisuals?.lead?.rights?.redistributable}
+        redistributable={redistributable}
         shareButtons={
           !minimal && (
             <ShareSocialButtons
@@ -80,7 +82,7 @@ const Story = ({ data: { story, alertConfig }, minimal }) => {
           )
         }
         image={
-          story.primaryVisuals?.lead && (
+          displayableImage && (
             <Image
               key={story.primaryVisuals.lead.fallback}
               image={story.primaryVisuals.lead}
