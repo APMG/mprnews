@@ -36,14 +36,14 @@ const JsonLd = (props) => {
                     "image": [ "${props.image}"],
                     "datePublished": "${props.publishDate}",
                     "dateModified": "${props.updatedAt || props.publishDate}",
-                    "description": "${props.description.replace(/"/g, '\\"')}", 
+                    "description": "${props.description.replace(/"/g, '\\"')}",
                     ${authors},
                     "publisher": {
                       "@type": "Organization",
                       "name": "MPR News",
                       "logo": {
                       "@type": "ImageObject",
-                      "url": "/opengraph-fallback.png"
+                      "url": "https://www.mprnews.org/opengraph-fallback.png"
                       }
                     }
                   }`
