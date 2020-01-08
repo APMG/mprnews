@@ -9,7 +9,7 @@
 .dropdownMenu-expand {
   z-index: $z-dropdown-menu;
   display: flex;
-  width: auto;
+  // width: auto;
   margin: 0 0 0 -18px;
   padding: 1em 1.4em 1.4em;
   position: absolute;
@@ -17,6 +17,18 @@
   background: $color-white;
   border: 2px solid $color-grey-70;
   box-shadow: -8px 14px 71px -49px rgba($color-black, .75);
+}
+
+.dropdownMenu-0 {
+  width: 680px;
+}
+
+.dropdownMenu-1 {
+  width: 455px;
+}
+
+.dropdownMenu-2 {
+  width: 455px;
 }
 
 .dropdownMenu_items {

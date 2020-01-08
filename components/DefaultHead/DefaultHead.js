@@ -34,7 +34,7 @@ const DefaultHead = () => {
       <meta name="twitter:title" content={defaultTitle} key="twitter:title" />
       <meta
         name="twitter:image"
-        content="/opengraph-fallback.png"
+        content="https://www.mprnews.org/opengraph-fallback.png"
         key="twitter:image"
       />
 
@@ -47,7 +47,7 @@ const DefaultHead = () => {
       <meta property="og:title" content={defaultTitle} key="og:title" />
       <meta
         property="og:image"
-        content="/opengraph-fallback.png"
+        content="https://www.mprnews.org/opengraph-fallback.png"
         key="og:image"
       />
       <meta
