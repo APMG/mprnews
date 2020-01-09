@@ -15,7 +15,8 @@ import Alert from '../../components/Alert/Alert';
 const Story = ({ data: { story, alertConfig }, minimal }) => {
   const alerts = JSON.parse(alertConfig.json);
   const redistributable = story?.primaryVisuals?.lead?.rights?.redistributable;
-  const displayableImage = !(minimal && !redistributable);
+  const displayableImage =
+    story?.primaryVisuals?.lead && !(minimal && !redistributable); //  an image exists and not a newspartner story with non-distributable image
   const img = fishForSocialMediaImage(story, displayableImage);
   let authors;
 
