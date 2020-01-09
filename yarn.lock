@@ -33,10 +33,10 @@
   resolved "https://registry.yarnpkg.com/@ampproject/toolbox-script-csp/-/toolbox-script-csp-1.1.1.tgz#0b049a1c86c99f300162a10e1b9ce83c6e354a45"
   integrity sha512-gACGfsVKinCy/977FSrlVgo6jxTZ0lcTCvCnRlNwvSOcxJVm+jJR3sP7/F43fpak9Gsq/EwFaatfnNMbunPc+w==
 
-"@apmg/amat@^0.3.14":
-  version "0.3.14"
-  resolved "https://registry.yarnpkg.com/@apmg/amat/-/amat-0.3.14.tgz#a7fa0c10879d2730f4399007d6c1c53b3efa1964"
-  integrity sha512-+KpJEP7JoRbAf5Ix8gxuzWpAtLCZpoOjtI5aq0Rn9cod61FAWG1q0uGDe1hdD6DK2JToQxloeMSy+8IIebQtwQ==
+"@apmg/amat@^0.3.7":
+  version "0.3.7"
+  resolved "https://registry.yarnpkg.com/@apmg/amat/-/amat-0.3.7.tgz#aadab584bd61290f4bc7738b592f332cfcc8d4ed"
+  integrity sha512-KZCAYNsLKzMKAjMjjJEfCvFvrz9bk/mFbRNCTmhTtnW3REqDmIAxm7U5WMFYiKfaNhZLEJQMjjwPqyiGuMCIXw==
   dependencies:
     "@apmg/enceladus" "^0.5.3"
     "@apmg/mimas" "^0.2.0"

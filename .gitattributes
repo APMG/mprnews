@@ -1,3 +1,1 @@
 *.clinic-bubbleprof-stacktrace filter=lfs diff=lfs merge=lfs -text
-.clinic/* filter=lfs diff=lfs merge=lfs -text
-.clinic-bubbleprof-stacktrace filter=lfs diff=lfs merge=lfs -text
