@@ -106,7 +106,7 @@ Content.propTypes = {
     tagName: PropTypes.string,
     to: PropTypes.string
   }),
-  image: PropTypes.element,
+  image: PropTypes.node,
   imageCaption: PropTypes.string,
   imageCredit: PropTypes.string,
   imageCreditHref: PropTypes.string,
