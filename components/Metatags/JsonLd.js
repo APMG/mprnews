@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { globals } from '../../config/globals';
 
 const JsonLd = (props) => {
-  const defaultAuthor = `"author": "@type": "Organization", "name": "MPR News"`;
+  const defaultAuthor = { '@type': 'Organization', name: 'MPR News' };
   const fullUrl = props.fullSlug
     ? `${globals.hostnameProd}/${props.fullSlug}`
     : null;
@@ -14,7 +14,7 @@ const JsonLd = (props) => {
         acc.push({ '@type': 'Person', name: curr.title });
         return acc;
       }, [])
-    : defaultAuthor;
+    : [defaultAuthor];
   if (tmpAuthors.length === 1) {
     authors = `"author": ${JSON.stringify(tmpAuthors[0]).replace(/\\/g, '')}`;
   } else {

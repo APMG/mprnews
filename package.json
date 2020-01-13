@@ -24,7 +24,7 @@
     "nothing": "ls -l"
   },
   "dependencies": {
-    "@apmg/amat": "^0.3.7",
+    "@apmg/amat": "^0.3.16",
     "@apmg/mimas": "^0.3.0",
     "@apmg/titan": "^0.7.2",
     "acorn": "^6.2.0",

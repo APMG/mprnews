@@ -33,16 +33,17 @@ ProfilePage.getInitialProps = async ({
   if (req) {
     memberDriveData = res.memberDriveData;
   }
-  const ApolloClient = initApollo();
-  await ApolloClient.query({
-    query: query,
-    variables: {
-      contentAreaSlug: process.env.CONTENT_AREA_SLUG,
-      slug: slug,
-      pageNum: parseInt(pageNum),
-      previewToken: previewToken
-    }
-  })
+  const apolloClient = initApollo();
+  await apolloClient
+    .query({
+      query: query,
+      variables: {
+        contentAreaSlug: process.env.CONTENT_AREA_SLUG,
+        slug: slug,
+        pageNum: parseInt(pageNum),
+        previewToken: previewToken
+      }
+    })
     .then((result) => {
       data = result.data;
       if (!data.profile) {
