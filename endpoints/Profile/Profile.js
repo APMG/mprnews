@@ -1,22 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Heading, Pagination, Link } from '@apmg/titan';
+import { Heading, Link } from '@apmg/titan';
 import { Image } from '@apmg/mimas';
 import { Body } from '@apmg/amat';
 import { globals } from '../../config/globals';
-import { linkByTypeHref, linkByTypeAs } from '../../utils/cjsutils';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
 import Metatags from '../../components/Metatags/Metatags';
-import Icon from '../../components/Icons/Icon';
+import ContributionsContainer from './ContributionsContainer';
 
-const Profile = ({ data: { profile } }) => {
+const Profile = ({ data: { profile }, pageNum }) => {
   return (
     <>
       <Metatags
         title={profile.title}
         fullSlug={`people/${profile.canonicalSlug}`}
         description={profile.descriptionText}
-        image={fishForSocialMediaImage(profile)}
+        image={fishForSocialMediaImage(profile)?.url}
         topic={profile.primaryCollection?.title}
       />
 
@@ -67,58 +66,12 @@ const Profile = ({ data: { profile } }) => {
                   />
                 )}
               </div>
-              <div className="profile_footer"></div>
-              <h3>Recent Contributions</h3>
-              <ul>
-                {profile &&
-                  profile.results &&
-                  profile.results.items.map((contribution) => {
-                    const linkHref = linkByTypeHref(contribution);
-                    const linkAs = linkByTypeAs(contribution);
-                    return (
-                      <li key={contribution.id}>
-                        <Link
-                          href={linkHref}
-                          as={linkAs}
-                          className="contributer"
-                        >
-                          {contribution.title}
-                          {contribution.descriptionText && (
-                            <div>{contribution.descriptionText}</div>
-                          )}
-                        </Link>
-                      </li>
-                    );
-                  })}
-              </ul>
+              <ContributionsContainer
+                initialCollection={profile.results}
+                initialPage={pageNum}
+                slug={profile.canonicalSlug}
+              />
             </div>
-          </div>
-          <div className="profile_pagination">
-            <Pagination
-              hasFirstAndLast={true}
-              inclusiveFirstLast={true}
-              buffer={1}
-              hrefPrefix={`profile?slug=${profile.canonicalSlug}`}
-              asPrefix={`people/${profile.canonicalSlug}`}
-              currentPage={profile.results.currentPage}
-              totalPages={profile.results.totalPages}
-              firstLastSeparator="..."
-              firstSymbol="1"
-              nextSymbol={
-                <>
-                  <span>Next</span>
-                  <Icon name="chevronRight" />
-                </>
-              }
-              prevSymbol={
-                <>
-                  <Icon name="chevronLeft" />
-                  <span>Prev</span>
-                </>
-              }
-              lastSymbol={profile.results.totalPages}
-              prevNextClass="btn btn-primary"
-            />
           </div>
         </div>
       </section>
@@ -129,7 +82,8 @@ const Profile = ({ data: { profile } }) => {
 Profile.propTypes = {
   data: PropTypes.shape({
     profile: PropTypes.object
-  })
+  }),
+  pageNum: PropTypes.number
 };
 
 export default Profile;
