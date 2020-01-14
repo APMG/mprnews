@@ -1,0 +1,18 @@
+query contributions($contentAreaSlug: String!, $slug: String!, $pageNum: Int) {
+  profile: profile(contentAreaSlug: $contentAreaSlug, slug: $slug) {
+    collection: contributionResults(page: $pageNum, pageSize: 10) {
+      totalPages
+      currentPage
+      previousPage
+      nextPage
+      items {
+        id
+        title
+        description
+        publishDate
+        canonicalSlug
+        resourceType
+      }
+    }
+  }
+}
