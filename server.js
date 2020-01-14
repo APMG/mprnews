@@ -185,12 +185,9 @@ app
     });
 
     // Profile Routing
-    server.get('/people/*', (req, res) => {
+    server.get('/people/:slug/:pageNum?', (req, res) => {
       res.set('Cache-Control', `public, max-age=${TTL}`);
-      app.render(req, res, '/profile', {
-        slug: req.slug,
-        pageNum: req.pageNum
-      });
+      app.render(req, res, '/profile', req.params);
     });
 
     // Preview Routing
