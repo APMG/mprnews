@@ -175,17 +175,10 @@ img .slideshow_image {
     width: 10px;
     height: 10px;
     display: inline-block;
+    margin-left: .45em;
     margin-right: .45em;
     border-radius: 2px;
     background: $color-blue-light;
-  }
-
-  &::after {
-    content: '|';
-    color: $color-grey-30;
-    padding: 0 4px;
-    top: -1px;
-    position: relative;
   }
 }
 
