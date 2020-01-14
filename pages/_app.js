@@ -156,10 +156,10 @@ class MPRNews extends App {
     );
   };
 
-  setNowPlayingTitle(songdata) {
-    let title = songdata.title;
-    if (songdata.artist) {
-      title += ` with ${songdata.artist}`;
+  setNowPlayingTitle(schedule) {
+    let title = schedule[0].shows[0].name;
+    if (schedule[0].people[0]) {
+      title += ` with ${schedule[0].people[0].name}`;
     }
     return title;
   }
@@ -181,15 +181,14 @@ class MPRNews extends App {
     const service = 'mpr-news';
 
     // Register the callback for a playlist change.
-    const playlist_registration = client.register_callback(
+    const schedule_registration = client.register_callback(
       service,
-      'playlist',
+      'schedule',
       function(data) {
         if (self.state.isAudioLive) {
           self.setState(
             {
-              nowPlayingTitle: self.setNowPlayingTitle(data.songs[0]),
-              nowPlayingThumbnail: self.setNowPlayingThumbnail(data.songs[0])
+              nowPlayingTitle: self.setNowPlayingTitle(data.schedule)
             },
             () => {
               self.setState({ audioTitle: self.state.nowPlayingTitle });
@@ -199,7 +198,7 @@ class MPRNews extends App {
       }
     );
     // Add the registration object to the array of registrations.
-    registrations.push(playlist_registration);
+    registrations.push(schedule_registration);
   };
 
   handleLocationChange = (locationName) => {
