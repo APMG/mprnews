@@ -53,6 +53,13 @@ StoryPage.getInitialProps = async ({
         res.status(404);
         errorCode = res.statusCode > 200 ? res.statusCode : false;
       }
+      if (
+        res &&
+        data?.story?.canonicalSlug &&
+        data.story.canonicalSlug !== slug
+      ) {
+        res.redirect(`/story/${data.story.canonicalSlug}`);
+      }
     })
     .catch(() => {
       res.status(404);
