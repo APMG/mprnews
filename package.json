@@ -20,8 +20,7 @@
     "test:ci": "jest",
     "test:coverage": "jest --coverage",
     "test:update": "jest -u",
-    "blast": "rm -rf node_modules .next package-lock.json && yarn check",
-    "nothing": "ls -l"
+    "blast": "rm -rf node_modules .next package-lock.json && yarn check"
   },
   "dependencies": {
     "@apmg/amat": "^0.3.16",
