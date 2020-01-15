@@ -34,32 +34,39 @@ const ScheduleInner = ({ schedule }) => {
                 <td className="schedule_leftmost">
                   <Time dateTime={program.start_dtim} formatString="h:mm aa" />
                 </td>
-                {program?.shows.map((show) => {
-                  let link = show.link ? show.link : show.external_link;
-                  let urlHref = linkType(link, 'href');
-                  let urlAs = linkType(link, 'as');
-                  return (
-                    <td key={show.id} className="schedule_rightmost">
-                      <strong>
-                        {link && (
-                          <Link
-                            href={`${urlHref}`}
-                            as={`${urlAs}`}
-                            className="link link-plain"
-                          >
-                            {show.name}
-                          </Link>
+                {program?.shows
+                  .filter((show) => {
+                    if (!show.link && !show.external_link) {
+                      return false;
+                    }
+                    return true;
+                  })
+                  .map((show) => {
+                    let link = show.link ? show.link : show.external_link;
+                    let urlHref = linkType(link, 'href');
+                    let urlAs = linkType(link, 'as');
+                    return (
+                      <td key={show.id} className="schedule_rightmost">
+                        <strong>
+                          {link && (
+                            <Link
+                              href={`${urlHref}`}
+                              as={`${urlAs}`}
+                              className="link link-plain"
+                            >
+                              {show.name}
+                            </Link>
+                          )}
+                        </strong>{' '}
+                        {program?.people.length > 0 && (
+                          <>
+                            <span>with </span>
+                            <ToSentence items={program?.people} />
+                          </>
                         )}
-                      </strong>{' '}
-                      {program?.people.length > 0 && (
-                        <>
-                          <span>with </span>
-                          <ToSentence items={program?.people} />
-                        </>
-                      )}
-                    </td>
-                  );
-                })}
+                      </td>
+                    );
+                  })}
               </tr>
             ))}
         </tbody>
