@@ -36,10 +36,7 @@ const ScheduleInner = ({ schedule }) => {
                 </td>
                 {program?.shows
                   .filter((show) => {
-                    if (!show.link && !show.external_link) {
-                      return false;
-                    }
-                    return true;
+                    return show.link || show.external_link; //if neither exists, skip
                   })
                   .map((show) => {
                     let link = show.link ? show.link : show.external_link;
