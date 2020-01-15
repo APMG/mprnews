@@ -1,5 +1,10 @@
-query contributions($contentAreaSlug: String!, $slug: String!, $pageNum: Int) {
-  profile: profile(contentAreaSlug: $contentAreaSlug, slug: $slug) {
+query contributions(
+  $contentAreaSlug: String!
+  $slug: String!
+  $pageNum: Int
+  $id: String!
+) {
+  profile(contentAreaSlug: $contentAreaSlug, slug: $slug, id: $id) {
     collection: contributionResults(page: $pageNum, pageSize: 10) {
       totalPages
       currentPage
