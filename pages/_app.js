@@ -1,4 +1,4 @@
-import App, { Container } from 'next/app';
+import App from 'next/app';
 import React from 'react';
 import initApollo from '../lib/init-apollo';
 import { ApolloProvider } from 'react-apollo';
@@ -215,13 +215,11 @@ class MPRNews extends App {
     return (
       <AudioPlayerContext.Provider value={this.state}>
         <LocationContext.Provider value={{ location, handleLocationChange }}>
-          <Container>
-            <ApolloProvider client={initApollo()}>
-              <Layout layout={pageProps?.layout}>
-                <Component {...pageProps} />
-              </Layout>
-            </ApolloProvider>
-          </Container>
+          <ApolloProvider client={initApollo()}>
+            <Layout layout={pageProps?.layout}>
+              <Component {...pageProps} />
+            </Layout>
+          </ApolloProvider>
         </LocationContext.Provider>
       </AudioPlayerContext.Provider>
     );
