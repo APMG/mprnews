@@ -116,7 +116,10 @@ export function getValueOfMostRecent(weather, arr) {
 }
 
 export function getClosestHourMatch(arr) {
-  let i = closestIndexTo(Date.now(), arr.map((i) => Date.parse(i.endTime)));
+  let i = closestIndexTo(
+    Date.now(),
+    arr.map((i) => Date.parse(i.endTime))
+  );
 
   return arr[i];
 }
@@ -164,3 +167,7 @@ export function showInfoAlert(alerts, resourceType) {
 export const audioDownloadPrefix = (playFilePath) => {
   return playFilePath.replace(/%user_agent/, 'web');
 };
+
+export function isNumeric(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
+}
