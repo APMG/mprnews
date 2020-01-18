@@ -1,6 +1,6 @@
 import { startOfWeek, endOfWeek, eachDayOfInterval, format } from 'date-fns';
 
-exports.getDateTimes = () => {
+export const getDateTimes = () => {
   const todaysDate = format(new Date(), 'yyyy-MM-dd');
   const startOfWeekDate = startOfWeek(new Date(todaysDate));
   const endOfWeekDate = endOfWeek(new Date(todaysDate));
@@ -12,7 +12,7 @@ exports.getDateTimes = () => {
   return getEachDayDate;
 };
 
-exports.formatEachDateTime = (dates, daySlug) => {
+export const formatEachDateTime = (dates, daySlug) => {
   let result;
   dates.map((date) => {
     const formatDateWithDay = format(new Date(date), 'iii');
