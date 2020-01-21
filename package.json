@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "RAILS_ENV=development NODE_ENV=development next",
-    "debug": "RAILS_ENV=development NODE_ENV=development node -r esm --inspect server.js",
+    "debug": "RAILS_ENV=development NODE_ENV=development NODE_OPTIONS=--inspect next",
     "dev:clean": "rm -rf build .next && yarn dev",
     "build": "next build",
     "start": "RAILS_ENV=production NODE_ENV=production next start",

@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ErrorPage from 'next/error';
-import Twitter from '../endpoints/Twitter/Twitter';
-import initApollo from '../lib/init-apollo';
-import query from '../endpoints/Twitter/twitter.gql';
+import Twitter from '../../../endpoints/Twitter/Twitter';
+import initApollo from '../../../lib/init-apollo';
+import query from '../../../endpoints/Twitter/twitter.gql';
 
 const TwitterPage = ({ data, errorCode }) => {
   if (errorCode) return <ErrorPage statuscode={errorCode} />;
@@ -21,19 +21,19 @@ TwitterPage.getInitialProps = async ({
     query: query,
     variables: {
       contentAreaSlug: process.env.CONTENT_AREA_SLUG,
-      slug: slug,
+      slug: slug.join('/'),
       previewToken: previewToken
     }
   })
     .then((result) => {
       data = result.data;
-      if (res && !data.twitter) {
-        res.status(404);
+      if (data && !data.twitter) {
+        res.statusCode = 404;
         errorCode = res.statusCode > 200 ? res.statusCode : false;
       }
     })
     .catch(() => {
-      res.status(404);
+      res.statusCode = 404;
       errorCode = res.statusCode > 200 ? res.statusCode : false;
     });
 
