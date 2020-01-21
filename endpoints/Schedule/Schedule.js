@@ -17,8 +17,8 @@ const Schedule = ({ schedule }) => {
     { key: 'Sat', href: 'sat', isActive: false }
   ];
 
-  if (schedule.slug) {
-    const curDay = days.find((dy) => dy.key.toLowerCase() === schedule.slug);
+  if (schedule.day) {
+    const curDay = days.find((dy) => dy.key.toLowerCase() === schedule.day);
     curDay.isActive = true;
   } else {
     days[new Date().getDay()].isActive = true;

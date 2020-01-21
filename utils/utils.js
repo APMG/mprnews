@@ -171,3 +171,7 @@ export const audioDownloadPrefix = (playFilePath) => {
 export function isNumeric(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
 }
+
+export function protocol() {
+  return process.env.PROTOCOL;
+}
