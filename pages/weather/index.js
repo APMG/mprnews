@@ -31,7 +31,6 @@ WeatherPage.getInitialProps = async ({ res }) => {
 
   if (res) {
     const errorCode = res.statusCode > 200 ? res.statusCode : false;
-    const memberDriveData = res.memberDriveData;
     return {
       data: {
         location,
@@ -39,8 +38,7 @@ WeatherPage.getInitialProps = async ({ res }) => {
         forecast,
         alerts
       },
-      errorCode,
-      memberDriveData
+      errorCode
     };
   }
 
