@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ErrorPage from 'next/error';
-import { fetchWeather } from '../utils/fetchWeather';
-import { weatherConfig } from '../utils/defaultData';
-import Weather from '../endpoints/Weather/Weather';
+import { fetchWeather } from '../../utils/fetchWeather';
+import { weatherConfig } from '../../utils/defaultData';
+import Weather from '../../endpoints/Weather/Weather';
 import {
   fetchMemberDriveStatus,
   addMemberDriveElements
-} from '../utils/membershipUtils';
+} from '../../utils/membershipUtils';
 
 const WeatherPage = ({ data, errorCode }) => {
   if (errorCode) return <ErrorPage statusCode={errorCode} />;
@@ -21,15 +21,8 @@ const WeatherPage = ({ data, errorCode }) => {
   return <Weather data={data} />;
 };
 
-WeatherPage.getInitialProps = async ({ req, res }) => {
-  let findLocation =
-    typeof req !== 'undefined' &&
-    req.params !== 'undefined' &&
-    typeof req.params.id !== 'undefined' &&
-    weatherConfig.find((config) => config.id === req.params.id);
-
-  let location = findLocation ? findLocation : weatherConfig[0];
-
+WeatherPage.getInitialProps = async ({ query: { city }, res }) => {
+  const location = weatherConfig.find((config) => config.id === city);
   const { weather, forecast, alerts } = await fetchWeather(
     location.lat,
     location.long
