@@ -8,12 +8,18 @@ const myCache = new NodeCache({
 module.exports.mostViewed = (server) => {
   server.get('/mostviewed', (req, res) => {
     const analytics = myCache.get('analytics');
-    const service_account = {
-      type: 'service_account',
-      client_email: process.env.client_email,
-      private_key: process.env.private_key,
-      view_id: process.env.view_id
-    };
+    const analytics = myCache.get('analytics');
+    let service_account;
+    try {
+      service_account = require('../config/google-api-keyfile.json');
+    } catch {
+      service_account = {
+        type: 'service_account',
+        client_email: process.env.client_email,
+        private_key: process.env.private_key,
+        view_id: process.env.view_id
+      };
+    }
     const reporting = google.analyticsreporting('v4');
     const scopes = 'https://www.googleapis.com/auth/analytics.readonly';
 
