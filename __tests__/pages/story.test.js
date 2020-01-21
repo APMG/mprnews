@@ -36,7 +36,7 @@ describe('Story.getInitialProps', () => {
     };
     await Story.getInitialProps({ query, req, res });
     expect(res.writeHead).toHaveBeenCalledWith(301, {
-      Location: '/story/canonicalUrl'
+      Location: '/preview/story/canonicalUrl?token=wow!'
     });
   });
 
