@@ -14,7 +14,8 @@ RUN apk add --update --no-cache \
     bash \
     build-base \
     shadow \
-    git && \
+    git \
+    yarn && \
     deluser --remove-home node && \
     groupadd -g ${APP_GROUP_GID} ${APP_GROUP} && useradd -m -l -u ${APP_USER_UID} -g ${APP_GROUP_GID} ${APP_USER} && \
     mkdir --parents ${APP_PATH} && \
@@ -28,8 +29,7 @@ USER $APP_USER
 
 # Need to make node_modules and build to ensure that 
 # mount points are owned by current user (node).
-RUN mkdir ${APP_PATH}/node_modules $APP_PATH/build && \
-    npm install . --no-optional && npm cache clean --force
+RUN mkdir ${APP_PATH}/node_modules $APP_PATH/build && yarn
 
 EXPOSE 3000
 
