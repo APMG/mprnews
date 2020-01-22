@@ -21,7 +21,8 @@ RUN apk add --update --no-cache \
     mkdir --parents ${APP_PATH} && \
     chown ${APP_USER}:${APP_GROUP} ${APP_PATH} 
 
-COPY --chown=${APP_USER}:${APP_GROUP} ./package*.json ${APP_PATH}/
+COPY --chown=${APP_USER}:${APP_GROUP} ./package.json ${APP_PATH}/
+COPY --chown=${APP_USER}:${APP_GROUP} ./yarn.lock ${APP_PATH}/
 
 WORKDIR ${APP_PATH}
 
