@@ -70,6 +70,7 @@ const Profile = ({ data: { profile }, pageNum }) => {
                 initialCollection={profile.results}
                 initialPage={pageNum}
                 slug={profile.canonicalSlug}
+                id={profile.id}
               />
             </div>
           </div>

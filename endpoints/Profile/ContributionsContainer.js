@@ -10,7 +10,8 @@ export default class ContributionsContainer extends Component {
   static propTypes = {
     initialCollection: PropTypes.object,
     initialPage: PropTypes.number,
-    slug: PropTypes.string
+    slug: PropTypes.string,
+    id: PropTypes.string
   };
 
   constructor(props) {
@@ -28,13 +29,14 @@ export default class ContributionsContainer extends Component {
 
   async handleQuery(pageNum) {
     pageNum = parseInt(pageNum);
-    const { slug } = this.props;
+    const { slug, id } = this.props;
     const result = await this.client.query({
       query,
       variables: {
         contentAreaSlug: process.env.CONTENT_AREA_SLUG,
         slug,
-        pageNum
+        pageNum,
+        id
       }
     });
     this.setState({
