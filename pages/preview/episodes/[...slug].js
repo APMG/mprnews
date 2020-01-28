@@ -1,18 +1,18 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ErrorPage from 'next/error';
-import Story from '../../../endpoints/Story/Story';
+import Episode from '../../../endpoints/Episode/Episode';
 import ContentGrid from '../../../grids/ContentGrid';
 import Sidebar from '../../../components/Sidebar/Sidebar';
 import initApollo from '../../../lib/init-apollo';
-import gql from '../../../endpoints/Story/story.gql';
+import gql from '../../../endpoints/Episode/episode.gql';
 
 import {
   fetchMemberDriveStatus,
   addMemberDriveElements
 } from '../../../utils/membershipUtils';
 
-const PreviewPage = ({ data, errorCode }) => {
+const EpisodePage = ({ data, errorCode }) => {
   if (errorCode) return <ErrorPage statusCode={errorCode} />;
 
   useEffect(() => {
@@ -23,12 +23,12 @@ const PreviewPage = ({ data, errorCode }) => {
 
   return (
     <ContentGrid sidebar={<Sidebar />}>
-      <Story minimal={false} data={data} />
+      <Episode minimal={false} data={data} />
     </ContentGrid>
   );
 };
 
-PreviewPage.getInitialProps = async ({ query: { slug, token }, res }) => {
+EpisodePage.getInitialProps = async ({ query: { slug, token }, res }) => {
   const ApolloClient = initApollo();
   let data;
   let errorCode;
@@ -43,7 +43,7 @@ PreviewPage.getInitialProps = async ({ query: { slug, token }, res }) => {
   })
     .then((result) => {
       data = result.data;
-      if (!data.story) {
+      if (!data.episode) {
         res.statusCode = 404;
         errorCode = res.statusCode > 200 ? res.statusCode : false;
       }
@@ -68,9 +68,9 @@ PreviewPage.getInitialProps = async ({ query: { slug, token }, res }) => {
   };
 };
 
-PreviewPage.propTypes = {
+EpisodePage.propTypes = {
   errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
   data: PropTypes.object
 };
 
-export default PreviewPage;
+export default EpisodePage;
