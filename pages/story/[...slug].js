@@ -40,10 +40,6 @@ StoryPage.getInitialProps = async ({
   let data;
   let errorCode;
 
-  console.log('slug', slug);
-  console.log('preview', previewToken);
-  console.log('request.url', res.url);
-
   await ApolloClient.query({
     query: query,
     variables: {
