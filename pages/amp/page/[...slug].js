@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ErrorPage from 'next/error';
-import Page from '../endpoints/Page/Page';
-import initApollo from '../lib/init-apollo';
-import query from '../endpoints/Page/page.gql';
+import Page from '../../../endpoints/Page/Page';
+import initApollo from '../../../lib/init-apollo';
+import query from '../../../endpoints/Page/page.gql';
 
 /* eslint react/display-name: 0 */
 
@@ -20,18 +20,18 @@ AmpPage.getInitialProps = async ({ query: { slug, pageNum = 1 }, res }) => {
     variables: {
       contentAreaSlug: process.env.CONTENT_AREA_SLUG,
       pageNum: parseInt(pageNum),
-      slug: slug
+      slug: slug.join('/')
     }
   })
     .then((result) => {
       data = result.data;
       if (res && !data.page) {
-        res.status(404);
+        res.statusCode = 404;
         errorCode = res.statusCode > 200 ? res.statusCode : false;
       }
     })
     .catch(() => {
-      res.status(404);
+      res.statusCode = 404;
       errorCode = res.statusCode > 200 ? res.statusCode : false;
     });
 

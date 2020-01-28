@@ -1,17 +1,16 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ErrorPage from 'next/error';
-import Episode from '../endpoints/Episode/Episode';
-import ContentGrid from '../grids/ContentGrid';
-import Sidebar from '../components/Sidebar/Sidebar';
-import initApollo from '../lib/init-apollo';
-import query from '../endpoints/Episode/episode.gql';
+import Episode from '../../../endpoints/Episode/Episode';
+import ContentGrid from '../../../grids/ContentGrid';
+import Sidebar from '../../../components/Sidebar/Sidebar';
+import initApollo from '../../../lib/init-apollo';
+import gql from '../../../endpoints/Episode/episode.gql';
+
 import {
   fetchMemberDriveStatus,
   addMemberDriveElements
-} from '../utils/membershipUtils';
-
-/* eslint react/display-name: 0 */
+} from '../../../utils/membershipUtils';
 
 const EpisodePage = ({ data, errorCode }) => {
   if (errorCode) return <ErrorPage statusCode={errorCode} />;
@@ -24,46 +23,48 @@ const EpisodePage = ({ data, errorCode }) => {
 
   return (
     <ContentGrid sidebar={<Sidebar />}>
-      <Episode data={data} />
+      <Episode minimal={false} data={data} />
     </ContentGrid>
   );
 };
 
-EpisodePage.getInitialProps = async ({
-  query: { slug, previewToken },
-  req,
-  res
-}) => {
-  let memberDriveData;
-  if (req) {
-    memberDriveData = req.memberDriveData;
-  }
+EpisodePage.getInitialProps = async ({ query: { slug, token }, res }) => {
   const ApolloClient = initApollo();
-  let data, errorCode;
+  let data;
+  let errorCode;
+
   await ApolloClient.query({
-    query: query,
+    query: gql,
     variables: {
       contentAreaSlug: process.env.CONTENT_AREA_SLUG,
-      slug: slug,
-      previewToken: previewToken
+      slug: slug.join('/'),
+      previewToken: token
     }
   })
     .then((result) => {
       data = result.data;
       if (!data.episode) {
-        res.status(404);
+        res.statusCode = 404;
         errorCode = res.statusCode > 200 ? res.statusCode : false;
+      }
+      if (
+        res &&
+        data?.story?.canonicalSlug &&
+        data.story.canonicalSlug !== slug.join('/')
+      ) {
+        res.writeHead(301, {
+          Location: `/story/${data.story.canonicalSlug}`
+        });
       }
     })
     .catch(() => {
-      res.status(404);
+      res.statusCode = 404;
       errorCode = res.statusCode > 200 ? res.statusCode : false;
     });
 
   return {
-    data: data,
-    errorCode: errorCode,
-    memberDriveData
+    data,
+    errorCode
   };
 };
 

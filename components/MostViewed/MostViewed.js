@@ -9,7 +9,7 @@ const MostViewed = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        let response = await fetch(`/mostviewed`);
+        let response = await fetch(`/api/mostviewed`);
         let result = await response.json();
         let mostViewed = [];
 
