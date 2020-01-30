@@ -268,6 +268,12 @@ app
       });
     });
 
+    // election calendar route
+    server.get('/election2020/calendar', (req, res) => {
+      res.set('Cache-Control', `public, max-age=${TTL}`);
+      app.render(req, res, '/electioncalendar');
+    });
+
     // imported RSS route
     feed(server);
 
