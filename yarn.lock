@@ -33,14 +33,15 @@
   resolved "https://registry.yarnpkg.com/@ampproject/toolbox-script-csp/-/toolbox-script-csp-1.1.1.tgz#0b049a1c86c99f300162a10e1b9ce83c6e354a45"
   integrity sha512-gACGfsVKinCy/977FSrlVgo6jxTZ0lcTCvCnRlNwvSOcxJVm+jJR3sP7/F43fpak9Gsq/EwFaatfnNMbunPc+w==
 
-"@apmg/amat@^0.3.17":
-  version "0.3.17"
-  resolved "https://registry.yarnpkg.com/@apmg/amat/-/amat-0.3.17.tgz#a5ba0bbd45bc75b862dcb7f3eab56223a5165409"
-  integrity sha512-BOxZbdfcw+mJM6At3K4RIj74XPJA0vFiNhWENUs6RR/ppccqrFgESb+GAM8y7540kP8S/ERuSPs6SEMt1TSYDg==
+"@apmg/amat@^0.3.19":
+  version "0.3.19"
+  resolved "https://registry.yarnpkg.com/@apmg/amat/-/amat-0.3.19.tgz#33d022f2ff41979d16ffdc3f140b6f417242f112"
+  integrity sha512-Z7wCsRrX9fT8pemehwT56hWEIc2YPWblWUTGU+7ayq2wHwCqIKjepqBQjzjs7pnESGI5hXbyMkIW/eizAgUq9g==
   dependencies:
     "@apmg/enceladus" "^0.5.4"
     "@apmg/mimas" "^0.2.0"
     "@apmg/react-oembed-container" "git://github.com/APMG/react-oembed-container.git#twitter-load-fix"
+    "@nprapps/sidechain" "^1.0.12"
     react-html-parser "^2.0.2"
     rollup "^1.17.0"
     rollup-plugin-babel "^4.3.3"
@@ -1267,6 +1268,11 @@
     "@types/istanbul-lib-coverage" "^2.0.0"
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^13.0.0"
+
+"@nprapps/sidechain@^1.0.12":
+  version "1.0.12"
+  resolved "https://registry.yarnpkg.com/@nprapps/sidechain/-/sidechain-1.0.12.tgz#3169084759a714fe5de90c690c7b394e49d09c19"
+  integrity sha512-6BpTCTu/a4T5ue0kFVV7eRWBwpWLX7mrFl2VlH56Gbk/qDO1zWr/HfBLVxQRP+lM+T5jAcSoJVlOaGUWmuvpJg==
 
 "@popmotion/easing@^1.0.1":
   version "1.0.2"
