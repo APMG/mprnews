@@ -144,7 +144,6 @@ app
             daysOfThisWeek,
             req.daySlug
           );
-          debugger;
           const scheduleUrl = await `${process.env.SCHEDULER_API}?datetime=${formattedDate}`;
           let request = await fetch(scheduleUrl);
           let response = await request.json();
