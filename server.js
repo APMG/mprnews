@@ -144,7 +144,7 @@ app
             daysOfThisWeek,
             req.daySlug
           );
-          const scheduleUrl = await `https://scheduler.publicradio.org/api/v1/services/3/schedule/?datetime=${formattedDate}`;
+          const scheduleUrl = await `${process.env.SCHEDULER_API}?datetime=${formattedDate}`;
           let request = await fetch(scheduleUrl);
           let response = await request.json();
           return response;
@@ -188,30 +188,6 @@ app
     server.get('/people/:slug/:pageNum?', (req, res) => {
       res.set('Cache-Control', `public, max-age=${TTL}`);
       app.render(req, res, '/profile', req.params);
-    });
-
-    // Preview Routing
-    server.get('/preview/pages/*', (req, res) => {
-      app.render(req, res, '/page', {
-        slug: req.previewSlug,
-        previewToken: req.previewToken
-      });
-    });
-
-    server.get('/preview/stories/*', (req, res) => {
-      res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
-      app.render(req, res, '/story', {
-        slug: req.previewSlug,
-        previewToken: req.previewToken
-      });
-    });
-
-    server.get('/preview/episodes/*', (req, res) => {
-      res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
-      app.render(req, res, '/episode', {
-        slug: req.previewSlug,
-        previewToken: req.previewToken
-      });
     });
 
     // AMP Routing
@@ -266,6 +242,12 @@ app
       app.render(req, res, '/allnews', {
         pageNum: pageNum
       });
+    });
+
+    // election calendar route
+    server.get('/election2020/calendar', (req, res) => {
+      res.set('Cache-Control', `public, max-age=${TTL}`);
+      app.render(req, res, '/electioncalendar');
     });
 
     // imported RSS route
