@@ -144,7 +144,8 @@ app
             daysOfThisWeek,
             req.daySlug
           );
-          const scheduleUrl = await `https://scheduler.publicradio.org/api/v1/services/3/schedule/?datetime=${formattedDate}`;
+          debugger;
+          const scheduleUrl = await `${process.env.SCHEDULER_API}?datetime=${formattedDate}`;
           let request = await fetch(scheduleUrl);
           let response = await request.json();
           return response;
