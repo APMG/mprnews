@@ -33,7 +33,7 @@ RUN mkdir ${APP_PATH}/node_modules $APP_PATH/build && yarn install --production=
 
 COPY --chown=${APP_USER}:${APP_GROUP} . ${APP_PATH}
 
-RUN yarn run build && yarn cache clean
+RUN yarn run build && yarn cache clean && rm -rf ${APP_PATH}/.env.production
 
 ENV NODE_ENV=${NODE_ENV} RAILS_ENV=${RAILS_ENV}
 
