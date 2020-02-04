@@ -87,6 +87,10 @@ AWS Tag and Push:
     - docker tag mprnews:latest ${AWS_ECR_HOST}/mprnews:${CI_COMMIT_REF_NAME}_${CI_COMMIT_SHORT_SHA}
     - docker push ${AWS_ECR_HOST}/mprnews:latest
     - docker push ${AWS_ECR_HOST}/mprnews:${CI_COMMIT_REF_NAME}_${CI_COMMIT_SHORT_SHA}
+  tags:
+    - 'cap_deploy'
+  only:
+  - awc-ci 
   dependencies:
   - Build Docker Image
 # Starts a rollout on Kubernetes to grab the latest new image and start new containers
@@ -95,5 +99,9 @@ K8s Rollout Restart:
   script:
     - aws eks update-kubeconfig --name ${EKS_CLUSTER_NAME} --region ${AWS_REGION}
     - kubectl rollout restart -n apmg deployment mprnews-deployment
+  tags:
+    - 'cap_deploy'
+  only:
+  - awc-ci
   dependencies:
   - AWS Tag and Push
