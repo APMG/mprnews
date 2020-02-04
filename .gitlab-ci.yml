@@ -1,27 +1,55 @@
+# Split deploy into stages
+stages:
+  - build
+  - lint
+  - test
+  - deploy
+  - restart
+# Builds the docker container image and saves it to a build artifact for use by
+# other steps.  TO save time on dev / stage builds, we run this only in prod.
+# Once we start running lint / test in containers, we'll want to build on every
+# run.
+Build Docker Image:
+  stage: build
+  script:
+  - docker build --build-arg RAILS_ENV=production --build-arg NODE_ENV=production -t mprnews .
+  - docker save mprnews:latest | gzip > mprnews.tar.gz
+  tags:
+  - general_cent7
+  only:
+  - prod
+  artifacts:
+    paths:
+    - mprnews.tar.gz
+    expire_in: 2 hours
 ESLint:
   script:
     - yarn install
     - yarn eslint
   tags:
     - general_cent7
+  stage: lint
 SassLint:
   script:
     - yarn install
     - yarn sasslint
   tags:
     - general_cent7
+  stage: lint
 Prettier:
   script:
     - yarn install
     - yarn prettier
   tags:
     - general_cent7
+  stage: lint
 Jest:
   script:
     - yarn install
     - yarn test:ci
   tags:
     - general_cent7
+  stage: test
 Deploy Dev:
   script:
     - bundle install --path ~/vendor/bundle
@@ -31,6 +59,7 @@ Deploy Dev:
     - cap_deploy
   only:
     - master
+  stage: deploy
 Deploy Stage:
   script:
     - bundle install --path ~/vendor/bundle
@@ -40,6 +69,7 @@ Deploy Stage:
     - cap_deploy
   only:
     - stage
+  stage: deploy
 Deploy Prod:
   script:
     - bundle install --path ~/vendor/bundle
@@ -49,3 +79,33 @@ Deploy Prod:
     - cap_deploy
   only:
     - prod
+  stage: deploy
+# Loads the image we built earlier and pushes it to AWS as tag 'latest,' as well
+# as a reference tag that points to this branch and commit SHA.
+AWS Tag and Push:
+  stage: deploy
+  script:
+    - docker load < mprnews.tar.gz
+    - $(aws ecr get-login --no-include-email --region us-east-1)
+    - docker tag mprnews:latest ${AWS_ECR_HOST}/mprnews:latest
+    - docker tag mprnews:latest ${AWS_ECR_HOST}/mprnews:${CI_COMMIT_REF_NAME}_${CI_COMMIT_SHORT_SHA}
+    - docker push ${AWS_ECR_HOST}/mprnews:latest
+    - docker push ${AWS_ECR_HOST}/mprnews:${CI_COMMIT_REF_NAME}_${CI_COMMIT_SHORT_SHA}
+  tags:
+    - 'cap_deploy'
+  only:
+  - prod 
+  dependencies:
+  - Build Docker Image
+# Starts a rollout on Kubernetes to grab the latest new image and start new containers
+K8s Rollout Restart:
+  stage: restart
+  script:
+    - aws eks update-kubeconfig --name ${EKS_CLUSTER_NAME} --region ${AWS_REGION}
+    - kubectl rollout restart -n apmg deployment mprnews-deployment
+  tags:
+    - 'cap_deploy'
+  only:
+  - prod
+  dependencies:
+  - AWS Tag and Push
