@@ -6,7 +6,9 @@ stages:
   - deploy
   - restart
 # Builds the docker container image and saves it to a build artifact for use by
-# other steps
+# other steps.  TO save time on dev / stage builds, we run this only in prod.
+# Once we start running lint / test in containers, we'll want to build on every
+# run.
 Build Docker Image:
   stage: build
   script:
@@ -14,6 +16,8 @@ Build Docker Image:
   - docker save mprnews:latest | gzip > mprnews.tar.gz
   tags:
   - general_cent7
+  only:
+  - prod
   artifacts:
     paths:
     - mprnews.tar.gz
@@ -90,7 +94,7 @@ AWS Tag and Push:
   tags:
     - 'cap_deploy'
   only:
-  - awc-ci 
+  - prod 
   dependencies:
   - Build Docker Image
 # Starts a rollout on Kubernetes to grab the latest new image and start new containers
@@ -102,6 +106,6 @@ K8s Rollout Restart:
   tags:
     - 'cap_deploy'
   only:
-  - awc-ci
+  - prod
   dependencies:
   - AWS Tag and Push
