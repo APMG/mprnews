@@ -8,7 +8,7 @@ import ToSentence from '../../components/ToSentence/ToSentence';
 const linkType = (url, typeUrl) => {
   let result;
   let baseUrl = new URL(url);
-  baseUrl.hostname.includes('mprnews.org')
+  baseUrl.hostname.includes('www.mprnews.org')
     ? (result = parseUrl(baseUrl, typeUrl))
     : (result =
         typeUrl === 'href' ? baseUrl.href : typeUrl === 'as' ? '' : null);
