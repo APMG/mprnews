@@ -12,6 +12,11 @@ export default async (req, res) => {
 
   async function fetchEvents() {
     const electionEvents = await getCalendarEvents();
+    electionEvents.items.sort((a, b) => {
+      if (a.start?.date < b.start?.date) return -1;
+      if (a.start?.date > b.start?.date) return 1;
+      return 0;
+    });
     cache.set('electionEvents', electionEvents);
 
     return electionEvents;
