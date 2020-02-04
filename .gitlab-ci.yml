@@ -93,14 +93,15 @@ AWS Tag and Push:
   - aws-ci 
   dependencies:
   - Build Docker Image
+# Starts a rollout on Kubernetes to grab the latest new image and start new containers
 K8s Rollout Restart:
   stage: restart
   script:
     - aws eks update-kubeconfig --name ${EKS_CLUSTER_NAME} --region ${AWS_REGION}
-    - kubectl rollout restart -n apmg deployment oembed-deployment
+    - kubectl rollout restart -n apmg deployment mprnews-deployment
   tags:
     - 'cap_deploy'
   only:
-  - prod
+  - aws-ci
   dependencies:
   - AWS Tag and Push
