@@ -8,6 +8,10 @@ ARG APP_USER=node
 ARG APP_GROUP=node
 ARG APP_USER_UID=1000
 ARG APP_GROUP_GID=1000
+ARG GRAPHQL_API=https://cmsapi-lab.publicradio.org/graphql
+ARG POTLATCH_API=https://cmsapi-lab.publicradio.org/graphql
+ARG SCHEDULER_API=https://scheduler-lab.publicradio.org/api/v1/services/3/schedule/
+ARG CONTENT_AREA_SLUG=mprnews
 
 RUN apk add --update --no-cache \
     bash \
@@ -33,9 +37,9 @@ RUN mkdir ${APP_PATH}/node_modules $APP_PATH/build && yarn install --production=
 
 COPY --chown=${APP_USER}:${APP_GROUP} . ${APP_PATH}
 
-RUN yarn run build && yarn cache clean && rm -rf ${APP_PATH}/.env.production
+ENV NODE_ENV=${NODE_ENV} RAILS_ENV=${RAILS_ENV} GRAPHQL_API=${GRAPHQL_API} POTLATCH_API=${POTLATCH_API} SCHEDULER_API=${SCHEDULER_API} CONTENT_AREA_SLUG=${CONTENT_AREA_SLUG}
 
-ENV NODE_ENV=${NODE_ENV} RAILS_ENV=${RAILS_ENV}
+RUN rm -rf ${APP_PATH}/.env.production && yarn run build && yarn cache clean
 
 EXPOSE 3000
 
