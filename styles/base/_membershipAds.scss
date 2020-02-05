@@ -1,0 +1,62 @@
+// sass-lint:disable-all
+#pushdown-ad {
+	iframe {
+		width: 100% !important;
+		transition: height 0.75s cubic-bezier(0.33, 0, 0.5, 0.99);
+		z-index: 1000;
+
+		&.stickyIframe {
+			position: fixed;
+			top: 0;
+			margin: 0 auto;
+		}
+	}
+}
+
+#membership-content-ad {
+  div {
+    width: 100% !important;
+  }
+
+  iframe {
+    width: 100% !important;
+    transition: height .75s cubic-bezier(.33, 0, .5, .99);
+  }
+}
+
+#membership-ad-frame-wrapper {
+  position: relative;
+  display: block;
+  /*padding-top: 16%;*/
+  padding-top:40%;
+}
+
+@media only screen and (min-width: 26.250em) {  //420px
+  #membership-ad-frame-wrapper {
+    padding-top: 14%;
+  }
+}
+
+#membership-ad-frame-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#membership-splash-frame-wrapper {
+  position: relative;
+  padding-top: 0;
+  height: 0;
+}
+
+#membership-splash-frame-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: $z-membership-splash;
+}
+// sass-lint:enable-all

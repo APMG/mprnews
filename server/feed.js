@@ -84,7 +84,10 @@ module.exports.feed = (server) => {
     queryRes.then((results) => {
       const feed = results.data.collection;
       xml += `<title>${feed &&
-        results.data.collection.title} - MPR News</title>`;
+        results.data.collection.title.replace(
+          /&/,
+          '&amp;'
+        )} - MPR News</title>`;
       xml += `<atom:link
       href="https://www.mprnews.org/feed/${feed &&
         results.data.collection.canonicalSlug}"
@@ -95,7 +98,7 @@ module.exports.feed = (server) => {
       xml += `<language>en-us</language>`;
       xml += `<lastBuildDate>${format(
         new Date(feed && results.data.collection.publishDate),
-        'ddd, D MMM YYYY HH:mm:ss ZZ'
+        "yyyy-MM-dd-'T'HH:mm:ssxx"
       )}</lastBuildDate>`;
 
       feed &&
@@ -106,7 +109,7 @@ module.exports.feed = (server) => {
           const link = linkByTypeAs(item);
           const dte = format(
             new Date(item.publishDate),
-            'ddd, D MMM YYYY HH:mm:ss ZZ'
+            "yyyy-MM-dd-'T'HH:mm:ssxx"
           );
           const ele = React.createElement(Body, {
             nodeData: JSON.parse(item.body),
@@ -117,7 +120,7 @@ module.exports.feed = (server) => {
           const markup = ReactDOMServer.renderToStaticMarkup(ele);
 
           xml += `<item>
-                  <title>${item.title}</title>
+                  <title>${item.title.replace(/&/, '&amp;')}</title>
                   <link>https://www.mprnews.org${link}</link>
                   <guid isPermaLink="true">https://www.mprnews.org${link}</guid>
                   <pubDate>${dte}</pubDate>

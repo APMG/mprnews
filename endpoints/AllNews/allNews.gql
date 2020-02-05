@@ -1,5 +1,10 @@
 query contentList($contentAreaSlug: String!, $pageNum: Int) {
-  allNews: contentList(contentAreaSlug: $contentAreaSlug, contentTypes: [STORIES], page: $pageNum, pageSize: 10) {
+  allNews: contentList(
+    contentAreaSlug: $contentAreaSlug
+    contentTypes: [STORIES]
+    page: $pageNum
+    pageSize: 10
+  ) {
     nextPage
     previousPage
     currentPage
@@ -19,6 +24,7 @@ query contentList($contentAreaSlug: String!, $pageNum: Int) {
       audio {
         encodings {
           httpFilePath
+          filename
           durationMs
           durationHms
         }

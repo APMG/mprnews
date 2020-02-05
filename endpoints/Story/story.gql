@@ -27,6 +27,7 @@ query story($contentAreaSlug: String!, $slug: String!, $previewToken: String) {
       }
     }
     publishDate
+    updatedAt
     body
     description
     descriptionText
@@ -40,12 +41,29 @@ query story($contentAreaSlug: String!, $slug: String!, $previewToken: String) {
         format
         mediaType
         httpFilePath
+        filename
         playFilePath
       }
     }
     embeddedAssetJson
     primaryVisuals {
       social {
+        aspect_ratios: aspectRatios {
+          uncropped {
+            instances {
+              url
+              width
+              height
+            }
+          }
+          widescreen {
+            instances {
+              url
+              width
+              height
+            }
+          }
+        }
         fallback
       }
       lead {
@@ -58,6 +76,13 @@ query story($contentAreaSlug: String!, $slug: String!, $previewToken: String) {
         }
         aspect_ratios: aspectRatios {
           uncropped {
+            instances {
+              url
+              width
+              height
+            }
+          }
+          widescreen {
             instances {
               url
               width
@@ -82,7 +107,7 @@ query story($contentAreaSlug: String!, $slug: String!, $previewToken: String) {
       }
     }
   }
-  alertConfig: potlatch(slug: "mprnews/alerts") {
+  alertConfig: potlatch(slug: "mprnews/info-alert") {
     slug
     json
   }

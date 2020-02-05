@@ -15,6 +15,22 @@ query PageQuery(
     supportedOutputFormats
     primaryVisuals {
       social {
+	aspect_ratios: aspectRatios {
+	  uncropped {
+            instances {
+              url
+              width
+              height
+            }
+          }
+	  widescreen {
+            instances {
+              url
+              width
+              height
+            }
+          }
+        }
         fallback
       }
     }

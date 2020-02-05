@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { globals } from '../../config/globals';
 import Head from 'next/head';
+import JsonLd from './JsonLd';
 
 const Metatags = (props) => {
   const combinedTitle = props.title
@@ -39,17 +40,17 @@ const Metatags = (props) => {
         <>
           <meta
             name="description"
-            content={props.description}
+            content={props.description.trim()}
             key="description"
           />
           <meta
             name="twitter:description"
-            content={props.description}
+            content={props.description.trim()}
             key="twitter:description"
           />
           <meta
             property="og:description"
-            content={props.description}
+            content={props.description.trim()}
             key="og:description"
           />
         </>
@@ -64,6 +65,17 @@ const Metatags = (props) => {
           />
           <meta property="og:image" content={props.image} key="og:image" />
         </>
+      )}
+
+      {props.imageWidth && (
+        <meta property="og:image:width" content={props.imageWidth} />
+      )}
+      {props.imageHeight && (
+        <meta property="og:image:height" content={props.imageHeight} />
+      )}
+
+      {props.imageAlt && (
+        <meta name="twitter:image:alt" content={props.imageAlt} />
       )}
 
       {props.fullSlug && (
@@ -85,8 +97,32 @@ const Metatags = (props) => {
         />
       )}
 
+      {/* Twitter do not track */}
+      <meta name="twitter:dnt" content="on" />
+
+      {/* Google Search Console/Webmaster Tools Verifications */}
+      <meta
+        name="google-site-verification"
+        content="3mdQkyZQ0hy2oLHqV_shtyaKyvb-xVslxgr2kdV8RQw"
+      />
+
+      {/* FB app ID */}
+      <meta property="fb:pages" content="99142348590" />
+
       {/* Any custom meta tags */}
       {props.children}
+      {props.contentType === 'article' && (
+        <JsonLd
+          title={props.title}
+          fullSlug={props.fullSlug}
+          description={props.description}
+          image={props.image}
+          contentType="NewsArticle"
+          publishDate={props.publishDate}
+          modifiedDate={props.modifiedDate}
+          authors={props.authors}
+        />
+      )}
     </Head>
   );
 };
@@ -97,9 +133,15 @@ Metatags.propTypes = {
   contentType: PropTypes.oneOf(['article', 'profile', 'website']),
   description: PropTypes.string,
   image: PropTypes.string,
+  imageAlt: PropTypes.string,
+  imageWidth: PropTypes.number,
+  imageHeight: PropTypes.number,
   isAmp: PropTypes.bool,
   title: PropTypes.string,
-  topic: PropTypes.string
+  topic: PropTypes.string,
+  publishDate: PropTypes.string,
+  modifiedDate: PropTypes.string,
+  authors: PropTypes.array
 };
 
 export default React.memo(Metatags);

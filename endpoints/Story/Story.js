@@ -9,12 +9,22 @@ import AudioPlayButton from '../../components/AudioPlayButton/AudioPlayButton';
 import Content from '../../components/Content/Content';
 import Metatags from '../../components/Metatags/Metatags';
 import ShareSocialButtons from '../../components/ShareSocialButtons/ShareSocialButtons';
-import { showInfoAlert } from '../../utils/utils';
+import { showInfoAlert, audioDownloadPrefix } from '../../utils/utils';
 import Alert from '../../components/Alert/Alert';
 
 const Story = ({ data: { story, alertConfig }, minimal }) => {
   const alerts = JSON.parse(alertConfig.json);
+  const redistributable = story?.primaryVisuals?.lead?.rights?.redistributable;
+  const displayableImage =
+    story?.primaryVisuals?.lead && !(minimal && !redistributable); //  an image exists and not a newspartner story with non-distributable image
+
+  const socialMediaImage =
+    story?.primaryVisuals?.lead ||
+    (story?.primaryVisuals?.social && !(minimal && !redistributable)); //  an image exists and not a newspartner story with non-distributable image
+
+  const img = fishForSocialMediaImage(story, socialMediaImage);
   let authors;
+
   if (story && story.contributors) {
     authors = story.contributors.map((contributor) => {
       return {
@@ -31,11 +41,18 @@ const Story = ({ data: { story, alertConfig }, minimal }) => {
         title={story.title}
         fullSlug={`story/${story?.canonicalSlug}`}
         description={story.descriptionText}
-        image={fishForSocialMediaImage(story)}
+        image={img?.url}
+        imageHeight={img?.height}
+        imageWidth={img?.width}
+        imageAlt={story?.primaryVisuals?.social?.shortCaption}
         isAmp={story.supportedOutputFormats?.indexOf('amp') > -1}
         topic={story?.primaryCollection?.title}
         contentType="article"
+        publishDate={story.publishDate}
+        modifiedDate={story.updatedAt}
+        authors={authors}
       />
+
       {showInfoAlert(alerts, story.resourceType) ? (
         <div className="section section-md">
           <Alert info={alerts.info} />
@@ -48,7 +65,7 @@ const Story = ({ data: { story, alertConfig }, minimal }) => {
         authors={authors}
         body={story.body}
         minimal={minimal}
-        redistributable={story.primaryVisuals?.lead?.rights?.redistributable}
+        redistributable={redistributable}
         shareButtons={
           !minimal && (
             <ShareSocialButtons
@@ -61,7 +78,9 @@ const Story = ({ data: { story, alertConfig }, minimal }) => {
           story.primaryAudio &&
           story.primaryAudio.encodings.length > 0 && (
             <AudioPlayButton
-              audioSource={story.primaryAudio.encodings[0].httpFilePath}
+              audioSource={audioDownloadPrefix(
+                story.primaryAudio.encodings[0].playFilePath
+              )}
               audioTitle={story.primaryAudio.title}
               label="Listen"
               elementClass="playButton-primary"
@@ -69,12 +88,12 @@ const Story = ({ data: { story, alertConfig }, minimal }) => {
           )
         }
         image={
-          story.primaryVisuals?.lead && (
+          displayableImage && (
             <Image
-              key={story.primaryVisuals.lead.fallback}
-              image={story.primaryVisuals.lead}
-              sizes={globals.sizes.primaryVisuals}
-              alt={story.primaryVisuals.lead.shortCaption}
+              key={story.primaryVisuals?.lead.fallback}
+              image={story.primaryVisuals?.lead}
+              sizes={globals.sizes?.primaryVisuals}
+              alt={story.primaryVisuals?.lead?.shortCaption}
             />
           )
         }
@@ -84,7 +103,7 @@ const Story = ({ data: { story, alertConfig }, minimal }) => {
         publishDate={
           <Time
             dateTime={story.publishDate}
-            formatString="MMMM D, YYYY h:mm aa"
+            formatString="MMMM d, yyyy h:mm aaaa"
           />
         }
         embeddedAssetJson={story.embeddedAssetJson}
@@ -131,6 +150,7 @@ Story.propTypes = {
       primaryCollection: PropTypes.any,
       primaryVisuals: PropTypes.any,
       publishDate: PropTypes.string,
+      updatedAt: PropTypes.string,
       embeddedAssetJson: PropTypes.string,
       tag: PropTypes.shape({
         tagName: PropTypes.string,

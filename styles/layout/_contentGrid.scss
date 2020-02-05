@@ -2,7 +2,11 @@
 
 .contentGrid {
   @include media($media-full-layout) {
+    // sass-lint:disable no-vendor-prefixes
+    display: -ms-grid;
+    // sass-lint:disable no-duplicate-properties
     display: grid;
+    -ms-grid-columns: 1fr 5% 310px;
     grid-template-columns: 1fr 310px;
     grid-template-areas: 'main sidebar';
     grid-column-gap: 5%;
@@ -15,4 +19,5 @@
 
 .contentGrid_sidebar {
   grid-area: sidebar;
+  -ms-grid-column: 3;
 }

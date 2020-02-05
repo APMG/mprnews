@@ -1,11 +1,15 @@
 // Collection Pages
 
 .collection {
-  grid-template-columns: minmax(180px, 30%) 1fr;
-  grid-column-gap: 30px;
-
+  display: block;
   @include media($media-small-tablet) {
+    // sass-lint:disable no-vendor-prefixes
+    display: -ms-grid;
+    // sass-lint:disable no-duplicate-properties
     display: grid;
+    -ms-grid-columns: 180px 30px 1fr;
+    grid-template-columns: minmax(180px, 30%) 1fr;
+    grid-column-gap: 30px;
     grid-template-areas:
     'header header'
     'body body'
@@ -16,15 +20,18 @@
   @include media($media-tablet) {
     display: block;
     margin-left: $container-edge-larger;
+  }
+
+  @include media($media-desktop) {
+    // sass-lint:disable no-vendor-prefixes
+    display: -ms-grid;
+    // sass-lint:disable no-duplicate-properties
+    display: grid;
     grid-template-areas:
     'header header'
     'body body'
     'sidebar items'
     'sidebar pager';
-  }
-
-  @include media($media-desktop) {
-    display: grid;
   }
 }
 
@@ -32,16 +39,40 @@
   grid-area: header;
   margin-bottom: 40px;
   display: flex;
+  // sass-lint:disable no-vendor-prefixes
   justify-content: center;
+
+  @include media($media-small-tablet) {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 3;
+  }
 }
 
 .collection_body {
   grid-area: body;
   margin-bottom: 40px;
+
+  @include media($media-small-tablet) {
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 3;
+  }
 }
 
 .collection_sidebar {
   grid-area: sidebar;
+
+  @include media($media-small-tablet) {
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 1;
+    -ms-grid-row: 3;
+  }
+
+  @include media($media-tablet) {
+    -ms-grid-column: 1;
+    -ms-grid-row: 4;
+  }
 }
 
 .collection_sidebarHeader {
@@ -89,8 +120,29 @@
   > * {
     margin-bottom: 6rem;
   }
+
+  @include media($media-small-tablet) {
+    -ms-grid-column: 3;
+    -ms-grid-row: 3;
+  }
+
+  @include media($media-desktop) {
+    -ms-grid-row: 4;
+  }
 }
 
 .collection_pagination {
   grid-area: pager;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  -ms-grid-row: 5;
+  padding-bottom: 2em;
+
+  @include media($media-tablet) {
+    -ms-grid-row: 5;
+  }
+
+  @include media($media-desktop) {
+    -ms-grid-row: 5;
+  }
 }

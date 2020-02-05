@@ -4,3 +4,4 @@ styles/**/*
 dist/**/*
 build/**/*
 .next
+utils/**/*

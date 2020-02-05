@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Link from 'next/link';
+import { Link } from '@apmg/titan';
 import { globals } from '../../config/globals';
 import { Teaser, Time } from '@apmg/titan';
 import { Image } from '@apmg/mimas';
 import { linkByTypeHref, linkByTypeAs } from '../../utils/cjsutils';
-import { secondsToHms } from '../../utils/utils';
+import { secondsToHms, audioDownloadPrefix } from '../../utils/utils';
 import AudioPlayButton from '../AudioPlayButton/AudioPlayButton';
 
 const FullTeaser = ({ item, size, newspartners }) => {
@@ -45,7 +45,7 @@ const FullTeaser = ({ item, size, newspartners }) => {
             <Time
               elementClass="teaser_time"
               dateTime={item.publishDate}
-              formatString="MMMM D, YYYY h:mm aa"
+              formatString="MMMM d, yyyy h:mm aaaa"
             />
           )
         }
@@ -53,9 +53,11 @@ const FullTeaser = ({ item, size, newspartners }) => {
         elementClass={elementClass}
         contributors={contributors(item.contributors)}
         audioPlayButton={
-          item.audio && item.audio[0]?.encodings[0]?.httpFilePath ? (
+          item.audio && item.audio[0]?.encodings[0]?.playFilePath ? (
             <AudioPlayButton
-              audioSource={item.audio[0].encodings[0].httpFilePath}
+              audioSource={audioDownloadPrefix(
+                item.audio[0].encodings[0].playFilePath
+              )}
               audioTitle={item.title}
               label={secondsToHms(item.audio[0].encodings[0].durationMs / 1000)}
             />
@@ -83,8 +85,8 @@ const FullTeaser = ({ item, size, newspartners }) => {
                 key={`${link.url}${link.title}${link.prefix}`}
               >
                 <span className="related_prefix">{link.prefix}</span>
-                <Link href={link.url}>
-                  <a className="related_link">{link.title}</a>
+                <Link href={link.url} className="related_link">
+                  {link.title}
                 </Link>
               </li>
             );

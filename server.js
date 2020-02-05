@@ -1,4 +1,5 @@
 /*eslint no-console: 0*/
+// require('newrelic');
 const express = require('express');
 const nextjs = require('next');
 const fetch = require('isomorphic-unfetch');
@@ -6,7 +7,9 @@ const { daysofweek } = require('./server/daysofweek');
 const { getDateTimes, formatEachDateTime } = require('./utils/scheduleUtils');
 const port = parseInt(process.env.APP_PORT, 10) || 3000;
 const dev =
-  process.env.RAILS_ENV !== 'stage' && process.env.RAILS_ENV !== 'production';
+  process.env.RAILS_ENV !== 'common_dev' &&
+  process.env.RAILS_ENV !== 'stage' &&
+  process.env.RAILS_ENV !== 'production';
 const app = nextjs({ dev });
 const handle = app.getRequestHandler();
 const { feed } = require('./server/feed');
@@ -15,6 +18,7 @@ const { sitemap } = require('./server/sitemap');
 const { urlset } = require('./server/urlset');
 const { ssGql } = require('./server/ssGql');
 const { mostViewed } = require('./server/mostViewed');
+const { membershipPotlatch } = require('./server/membershipPotlatch');
 require('console-stamp')(console, 'dd/mmm/yyyy:HH:MM:ss o');
 
 const TTL = 60;
@@ -72,7 +76,9 @@ const pageNum = (req, res, next) => {
 
   let path = req.path.replace(/^\//, '');
   path = path.replace(/\/$/, '');
-  req.pageNum = path.match(/\/([0-9]+)/) ? path.match(/\/([0-9]+)/)[0] : 1;
+  req.pageNum = path.match(/\/([0-9]+)$/)
+    ? path.match(/\/([0-9]+)$/)[0].replace('/', '')
+    : 1;
   next();
 };
 
@@ -102,7 +108,7 @@ app
     );
 
     //Root route
-    server.get('/', (req, res) => {
+    server.get('/', function homeRequest(req, res) {
       res.set('Cache-Control', `public, max-age=${TTL}`);
       app.render(req, res, '/index');
     });
@@ -138,7 +144,7 @@ app
             daysOfThisWeek,
             req.daySlug
           );
-          const scheduleUrl = await `https://scheduler.publicradio.org/api/v1/services/3/schedule/?datetime=${formattedDate}`;
+          const scheduleUrl = await `${process.env.SCHEDULER_API}?datetime=${formattedDate}`;
           let request = await fetch(scheduleUrl);
           let response = await request.json();
           return response;
@@ -179,36 +185,9 @@ app
     });
 
     // Profile Routing
-    server.get('/people/*', (req, res) => {
+    server.get('/people/:slug/:pageNum?', (req, res) => {
       res.set('Cache-Control', `public, max-age=${TTL}`);
-      app.render(req, res, '/profile', {
-        slug: req.slug,
-        pageNum: req.pageNum
-      });
-    });
-
-    // Preview Routing
-    server.get('/preview/pages/*', (req, res) => {
-      app.render(req, res, '/page', {
-        slug: req.previewSlug,
-        previewToken: req.previewToken
-      });
-    });
-
-    server.get('/preview/stories/*', (req, res) => {
-      res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
-      app.render(req, res, '/story', {
-        slug: req.previewSlug,
-        previewToken: req.previewToken
-      });
-    });
-
-    server.get('/preview/episodes/*', (req, res) => {
-      res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
-      app.render(req, res, '/episode', {
-        slug: req.previewSlug,
-        previewToken: req.previewToken
-      });
+      app.render(req, res, '/profile', req.params);
     });
 
     // AMP Routing
@@ -265,6 +244,12 @@ app
       });
     });
 
+    // election calendar route
+    server.get('/election2020/calendar', (req, res) => {
+      res.set('Cache-Control', `public, max-age=${TTL}`);
+      app.render(req, res, '/electioncalendar');
+    });
+
     // imported RSS route
     feed(server);
 
@@ -280,6 +265,9 @@ app
     // imported mostViewed from Google Analytics api route
     mostViewed(server);
 
+    // api endpoint to get json from potlatch about member drive
+    membershipPotlatch(server);
+
     server.get('*', (req, res) => {
       return handle(req, res);
     });
@@ -289,7 +277,13 @@ app
       console.log(`\nReady on http://localhost:${port} 🚀\n`);
     });
   })
-  .catch((ex) => {
-    console.error(ex.stack);
+  .catch((e) => {
+    console.error(e.stack);
     process.exit(1);
   });
+
+process.on('SIGINT', (msg) => {
+  console.log(`Received SIGINT with message ${msg}.`);
+  // by default, you have 1600ms
+  process.exit(0);
+});

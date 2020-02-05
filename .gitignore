@@ -4,18 +4,19 @@ npm-debug.log*
 .DS_Store
 .next
 .vscode
+.clinic
+..bfg-report
 *.swp
 
 coverage
 build
 .env.local
-.env.development.local
+.env.development
 .env.test.local
 .env.production.local
 
 node_modules
 .DS_Store
-public
 
 # Ignore editor configs
 /.vscode/*
@@ -23,3 +24,6 @@ tags
 
 # Ignore google analytics keyfile
 config/google-api-keyfile.json
+
+# Ignore google calendar api keyfile
+config/google-calendar-keyfile.json

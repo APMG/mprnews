@@ -1,14 +1,14 @@
 export default {
   appsTitle: 'MPR News mobile apps',
-  appsImg: '/static/app-news.jpg',
+  appsImg: '/app-news.jpg',
   apps: [
     {
-      image: '/static/badge-app-store.svg',
+      image: '/badge-app-store.svg',
       href: 'https://itunes.apple.com/us/app/mpr-news/id400286612',
       label: 'Download MPR News on the App Store'
     },
     {
-      image: '/static/badge-google-play.svg',
+      image: '/badge-google-play.svg',
       href: 'https://play.google.com/store/apps/details?id=org.mpr.mprnews',
       label: 'Get MPR News on Google Play'
     },
@@ -47,7 +47,7 @@ export default {
     },
     {
       label: 'Become a Member',
-      href: 'https://contribute.publicradio.org/contribute.php'
+      href: 'https://support.mpr.org/mprnews-web'
     },
     { label: 'Volunteer', href: 'https://www.mpr.org/volunteer' },
     {

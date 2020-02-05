@@ -125,7 +125,7 @@ export function getClosestHourMatch(arr) {
 import { format } from 'date-fns';
 
 export function hrefType(item) {
-  const programDate = format(new Date(), 'ddd');
+  const programDate = format(new Date(), 'iii');
   let link;
   switch (item.hrefType) {
     case 'internalLink':
@@ -135,7 +135,7 @@ export function hrefType(item) {
       link = `/collection?slug=${item.href}`;
       break;
     case 'schedule':
-      link = `/schedule?slug=${programDate.toLowerCase()}`;
+      link = `/schedule?day=${programDate.toLowerCase()}`;
       break;
     case 'externalLink':
       link = `${item.href}`;
@@ -160,3 +160,7 @@ export function showInfoAlert(alerts, resourceType) {
     ? true
     : false;
 }
+
+export const audioDownloadPrefix = (playFilePath) => {
+  return playFilePath.replace(/%user_agent/, 'web');
+};

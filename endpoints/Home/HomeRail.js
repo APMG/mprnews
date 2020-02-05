@@ -1,37 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Link from 'next/link';
-import { Heading } from '@apmg/titan';
+import { Heading, Link } from '@apmg/titan';
 import InfoLink from '../../components/InfoLink/InfoLink';
 import WeatherSidebar from '../../components/WeatherSidebar/WeatherSidebar';
+import { dropdownLists } from '../../utils/navConfig';
 
 const HomeRail = (props) => {
-  const sections = [
-    { text: 'Arts', href: 'arts' },
-    { text: 'Books', href: 'arts/books' },
-    { text: 'Business', href: 'business' },
-    { text: 'Education', href: 'education' },
-    { text: 'Environment', href: 'environment' },
-    { text: 'Health', href: 'health' },
-    { text: 'Lifestyle', href: 'lifestyle' },
-    { text: 'Minnesota', href: 'minnesota' },
-    { text: 'Politics', href: 'politics' },
-    { text: 'Photos', href: 'photos' }
-  ];
-
+  const sections = dropdownLists[0].groups[0].links; // D R Y
   return (
     <>
-      <Link href="/weather" as="/weather">
-        <a className="infoLink">
-          <div className="infoLink_title">
-            <Heading level={2} className="hdg hdg-4">
-              Forecast
-            </Heading>
-          </div>
-          <div className="infoLink_description">
-            <WeatherSidebar />
-          </div>
-        </a>
+      <Link href="/weather" as="/weather" className="infoLink">
+        <div className="infoLink_title">
+          <Heading level={2} className="hdg hdg-4">
+            Forecast
+          </Heading>
+        </div>
+        <div className="infoLink_description">
+          <WeatherSidebar />
+        </div>
       </Link>
       <div className="home_railLinks">
         <div className="section section-md">
@@ -76,22 +62,23 @@ const HomeRail = (props) => {
         </div>
         <div className="module_body">
           <ul className="vList">
-            {sections.map((section) => (
-              <li key={`${section.text}${section.href}`}>
-                <Link
-                  href={`/collection?slug=${section.href}`}
-                  as={`/${section.href}`}
-                >
-                  <a className="link link-plain">{section.text}</a>
-                </Link>
-              </li>
-            ))}
-            {/* TODO clean this up better with the one menu config to rule them all ticekt */}
-            <li key="weather">
-              <Link href={`/weather`} as={`/weather`}>
-                <a className="link link-plain">Weather</a>
-              </Link>
-            </li>
+            {sections.map((section) => {
+              const href =
+                section.href === 'weather'
+                  ? '/weather'
+                  : `/collection?slug=${section.href}`;
+              return (
+                <li key={`${section.text}${section.href}`}>
+                  <Link
+                    href={href}
+                    as={`/${section.href}`}
+                    className="link link-plain"
+                  >
+                    {section.text}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </div>
@@ -107,4 +94,4 @@ HomeRail.propTypes = {
   })
 };
 
-export default HomeRail;
+export default React.memo(HomeRail);

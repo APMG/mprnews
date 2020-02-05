@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Link from 'next/link';
+import { Link } from '@apmg/titan';
 import { prevIndex, nextIndex } from '../../utils/utils';
 import Icon from '../Icons/Icon';
 
@@ -16,11 +16,10 @@ const Pagination = ({ collection, collectionName, pageNum }) => {
                 href={`/collection?slug=${collectionName}&pageNum=${prevIndex(
                   pageNum
                 )}`}
+                className="btn btn-secondary"
               >
-                <a className="btn btn-secondary">
-                  <Icon name="chevronLeft" />
-                  Previous page
-                </a>
+                <Icon name="chevronLeft" />
+                Previous page
               </Link>
             )}
             {collection.results.currentPage < collection.results.totalPages && (
@@ -33,11 +32,10 @@ const Pagination = ({ collection, collectionName, pageNum }) => {
                   pageNum,
                   collection.results.totalPages
                 )}`}
+                className="btn btn-secondary"
               >
-                <a className="btn btn-secondary">
-                  Next page
-                  <Icon name="chevronRight" />
-                </a>
+                Next page
+                <Icon name="chevronRight" />
               </Link>
             )}
           </div>

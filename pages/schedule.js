@@ -1,16 +1,30 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import fetch from 'isomorphic-unfetch';
 import ErrorPage from 'next/error';
 // import { getDateTimes, formatEachDateTime } from '../utils/scheduleUtils';
 import Schedule from '../endpoints/Schedule/Schedule';
+import {
+  fetchMemberDriveStatus,
+  addMemberDriveElements
+} from '../utils/membershipUtils';
 
 const SchedulePage = ({ schedule, errorCode }) => {
   if (!schedule || errorCode) return <ErrorPage statusCode={404} />;
+  useEffect(() => {
+    fetchMemberDriveStatus().then((data) => {
+      addMemberDriveElements(data);
+    });
+  }, []);
+
   return <Schedule schedule={schedule} />;
 };
 
 SchedulePage.getInitialProps = async ({ query: { slug }, req, res }) => {
+  let memberDriveData;
+  if (req) {
+    memberDriveData = res.memberDriveData;
+  }
   const scheduleUrl = req
     ? `${req.protocol}://${req.headers['host']}/api/schedule/${slug}`
     : `/api/schedule/${slug}`;
@@ -31,7 +45,8 @@ SchedulePage.getInitialProps = async ({ query: { slug }, req, res }) => {
   return {
     schedule: {
       props,
-      slug
+      slug,
+      memberDriveData
     }
   };
 };

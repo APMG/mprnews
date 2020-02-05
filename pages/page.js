@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ErrorPage from 'next/error';
 import Page from '../endpoints/Page/Page';
@@ -6,11 +6,21 @@ import ContentGrid from '../grids/ContentGrid';
 import Sidebar from '../components/Sidebar/Sidebar';
 import initApollo from '../lib/init-apollo';
 import query from '../endpoints/Page/page.gql';
+import {
+  fetchMemberDriveStatus,
+  addMemberDriveElements
+} from '../utils/membershipUtils';
 
 /* eslint react/display-name: 0 */
 
 const StaticPage = ({ data, errorCode }) => {
   if (errorCode) return <ErrorPage statusCode={errorCode} />;
+  useEffect(() => {
+    fetchMemberDriveStatus().then((data) => {
+      addMemberDriveElements(data);
+    });
+  }, []);
+
   return (
     <ContentGrid sidebar={<Sidebar />}>
       <Page data={data} />
@@ -18,7 +28,15 @@ const StaticPage = ({ data, errorCode }) => {
   );
 };
 
-StaticPage.getInitialProps = async ({ query: { slug, previewToken }, res }) => {
+StaticPage.getInitialProps = async ({
+  query: { slug, previewToken },
+  req,
+  res
+}) => {
+  let memberDriveData;
+  if (req) {
+    memberDriveData = res.memberDriveData;
+  }
   const ApolloClient = initApollo();
   let data, errorCode;
   await ApolloClient.query({
@@ -43,7 +61,8 @@ StaticPage.getInitialProps = async ({ query: { slug, previewToken }, res }) => {
 
   return {
     data,
-    errorCode
+    errorCode,
+    memberDriveData
   };
 };
 

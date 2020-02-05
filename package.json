@@ -4,11 +4,11 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "dev": "RAILS_ENV=development NODE_ENV=development node server.js",
-    "debug": "RAILS_ENV=development NODE_ENV=development node --inspect server.js",
-    "dev:clean": "rm -rf build .next && npm run dev",
-    "build": "next build",
-    "start": "node server.js",
+    "dev": "RAILS_ENV=development NODE_ENV=development node -r esm server.js",
+    "debug": "RAILS_ENV=development NODE_ENV=development node -r esm --inspect server.js",
+    "dev:clean": "rm -rf build .next && yarn dev",
+    "build": "NODE_OPTIONS='-r esm' next build",
+    "start": "RAILS_ENV=production NODE_ENV=production node -r esm server.js",
     "eslint": "eslint .",
     "eslint:fix": "eslint . --fix",
     "prettier": "prettier --check '**/**.js'",
@@ -20,12 +20,12 @@
     "test:ci": "jest",
     "test:coverage": "jest --coverage",
     "test:update": "jest -u",
-    "blast": "rm -rf node_modules .next package-lock.json && npm cache verify"
+    "blast": "rm -rf node_modules .next package-lock.json && yarn check"
   },
   "dependencies": {
-    "@apmg/amat": "^0.3.3",
+    "@apmg/amat": "^0.3.19",
     "@apmg/mimas": "^0.3.0",
-    "@apmg/titan": "^0.6.3",
+    "@apmg/titan": "^0.7.2",
     "acorn": "^6.2.0",
     "apm-html5-player": "^1.0.0-rc.2",
     "apollo-boost": "^0.1.16",
@@ -34,14 +34,16 @@
     "console-stamp": "^0.2.9",
     "core-js": "^3.1.4",
     "d3-scale": "^3.0.0",
-    "date-fns": "^1.30.1",
+    "date-fns": "^2.2.1",
     "dotenv": "^8.0.0",
+    "esm": "^3.2.25",
     "express": "^4.17.1",
     "googleapis": "^42.0.0",
     "graphql": "^14.3.1",
     "http": "0.0.0",
     "isomorphic-unfetch": "^3.0.0",
-    "next": "9.0.3",
+    "next": "^9.1.1",
+    "next-absolute-url": "^1.2.0",
     "node-cache": "^4.2.1",
     "node-sass": "^4.12.0",
     "nowplaying-client": "git+https://gitlab+deploy-token-1:ykGvZaPj9yncv8X4MAsK@gitlab.mpr.org/js-libraries/nowplaying-client.git",
@@ -77,7 +79,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run sasslint && npm run prettier"
+      "pre-commit": "yarn sasslint && yarn prettier"
     }
   },
   "eslintConfig": {

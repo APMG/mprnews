@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'next/link';
+import { Link } from '@apmg/titan';
 import { Heading, Button } from '@apmg/titan';
 import FooterSubscribe from '../Footer/FooterSubscribe';
 
@@ -12,7 +12,7 @@ const ListenFooter = () => (
         </Heading>
       </div>
       <Button
-        href="https://contribute.publicradio.org/contribute.php"
+        href="https://support.mpr.org/mprnews-web"
         type="primary"
         newWindow={true}
       >
@@ -32,13 +32,16 @@ const ListenFooter = () => (
       </div>
       <ul className="vList">
         <li>
-          <Link href="/schedule">
-            <a className="link link-plain">Program Schedule</a>
+          <Link href="/schedule" className="link link-plain">
+            Program Schedule
           </Link>
         </li>
         <li>
-          <Link href="https://www.mpr.org/listen/stations">
-            <a className="link link-plain">Station Directory</a>
+          <Link
+            href="https://www.mpr.org/listen/stations"
+            className="link link-plain"
+          >
+            Station Directory
           </Link>
         </li>
       </ul>
