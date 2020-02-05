@@ -33,15 +33,17 @@
   resolved "https://registry.yarnpkg.com/@ampproject/toolbox-script-csp/-/toolbox-script-csp-1.1.1.tgz#0b049a1c86c99f300162a10e1b9ce83c6e354a45"
   integrity sha512-gACGfsVKinCy/977FSrlVgo6jxTZ0lcTCvCnRlNwvSOcxJVm+jJR3sP7/F43fpak9Gsq/EwFaatfnNMbunPc+w==
 
-"@apmg/amat@^0.3.19":
-  version "0.3.19"
-  resolved "https://registry.yarnpkg.com/@apmg/amat/-/amat-0.3.19.tgz#33d022f2ff41979d16ffdc3f140b6f417242f112"
-  integrity sha512-Z7wCsRrX9fT8pemehwT56hWEIc2YPWblWUTGU+7ayq2wHwCqIKjepqBQjzjs7pnESGI5hXbyMkIW/eizAgUq9g==
+"@apmg/amat@^0.3.21":
+  version "0.3.21"
+  resolved "https://registry.yarnpkg.com/@apmg/amat/-/amat-0.3.21.tgz#36dc1e094588a5c5b774adafe538d3e5b15db686"
+  integrity sha512-1TTipoWV/ucOIv904k2pRn6D3L6Wg6R5LFU2ZJvQXqtRkGdeGLn59JJ6c/h5RAEMwzAPOHF0RXDNhvzPteujrA==
   dependencies:
     "@apmg/enceladus" "^0.5.4"
     "@apmg/mimas" "^0.2.0"
     "@apmg/react-oembed-container" "git://github.com/APMG/react-oembed-container.git#twitter-load-fix"
     "@nprapps/sidechain" "^1.0.12"
+    react "^16.12.0"
+    react-dom "^16.12.0"
     react-html-parser "^2.0.2"
     rollup "^1.17.0"
     rollup-plugin-babel "^4.3.3"
@@ -10257,7 +10259,7 @@ react-apollo@^2.5.6:
     ts-invariant "^0.4.2"
     tslib "^1.9.3"
 
-react-dom@^16.8.6:
+react-dom@^16.12.0, react-dom@^16.8.6:
   version "16.12.0"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.12.0.tgz#0da4b714b8d13c2038c9396b54a92baea633fe11"
   integrity sha512-LMxFfAGrcS3kETtQaCkTKjMiifahaMySFDn71fZUNpPHZQEzmk/GiAeIT8JSOrHB23fnuCOMruL2a8NYlw+8Gw==
@@ -10322,7 +10324,7 @@ react-transition-group@^1.2.0, react-transition-group@^1.2.1:
     prop-types "^15.5.6"
     warning "^3.0.0"
 
-react@^16.1.1, react@^16.8.6:
+react@^16.1.1, react@^16.12.0, react@^16.8.6:
   version "16.12.0"
   resolved "https://registry.yarnpkg.com/react/-/react-16.12.0.tgz#0c0a9c6a142429e3614834d5a778e18aa78a0b83"
   integrity sha512-fglqy3k5E+81pA8s+7K0/T3DBCF0ZDOher1elBFzF7O6arXJgzyu/FW+COxFvAWXJoJN9KIZbT2LXlukwphYTA==

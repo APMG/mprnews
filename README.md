@@ -58,4 +58,4 @@ The whole front end team at MPR!
 - Matt Aho (developer and designer)
 - Andrea Edstrom (developer and designer)
 - Jason Phan (developer)
-- Philip Koistra (developer)
+- Philip Kooistra (developer)
