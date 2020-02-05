@@ -43,6 +43,7 @@ StoryPage.getInitialProps = async ({ query: { slug, token }, res }) => {
   })
     .then((result) => {
       data = result.data;
+      res.setHeader('Cache-Control', 'no-store, must-revalidate');
       if (!data.page) {
         res.statusCode = 404;
         errorCode = res.statusCode > 200 ? res.statusCode : false;

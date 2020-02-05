@@ -19,7 +19,15 @@ const { urlset } = require('./server/urlset');
 const { ssGql } = require('./server/ssGql');
 const { mostViewed } = require('./server/mostViewed');
 const { membershipPotlatch } = require('./server/membershipPotlatch');
-require('console-stamp')(console, 'dd/mmm/yyyy:HH:MM:ss o');
+const { format } = require('date-fns');
+
+const logUrls = (req, res, next) => {
+  const timestamp = format(new Date(), 'dd/MMM/yyyy:H:mm:ss xxxx');
+  console.info(
+    ` - - [${timestamp}] "${req.method} ${req.headers.host}${req.originalUrl} ${req.protocol}" ${res.statusCode}  "-"  "${req.connection.remoteAddress}" -`
+  );
+  next();
+};
 
 const TTL = 60;
 const ampQuery = (slug) =>
@@ -79,16 +87,6 @@ const pageNum = (req, res, next) => {
   req.pageNum = path.match(/\/([0-9]+)$/)
     ? path.match(/\/([0-9]+)$/)[0].replace('/', '')
     : 1;
-  next();
-};
-
-const logUrls = (req, res, next) => {
-  if (
-    req.originalUrl.match(/\/static/) === null &&
-    req.originalUrl.match(/\/_next/) === null
-  ) {
-    console.info(`${req.method} ${req.originalUrl}`);
-  }
   next();
 };
 
