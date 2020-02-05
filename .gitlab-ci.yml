@@ -12,15 +12,15 @@ stages:
 Build Docker Image:
   stage: build
   script:
-  - docker build --build-arg RAILS_ENV=production --build-arg NODE_ENV=production -t mprnews .
-  - docker save mprnews:latest | gzip > mprnews.tar.gz
+    - docker build --build-arg RAILS_ENV=production --build-arg NODE_ENV=production -t mprnews .
+    - docker save mprnews:latest | gzip > mprnews.tar.gz
   tags:
-  - general_cent7
+    - general_cent7
   only:
-  - prod
+    - prod
   artifacts:
     paths:
-    - mprnews.tar.gz
+      - mprnews.tar.gz
     expire_in: 2 hours
 ESLint:
   script:
@@ -94,9 +94,13 @@ AWS Tag and Push:
   tags:
     - 'cap_deploy'
   only:
-  - prod 
+    - prod 
+  needs:
+    - Build Docker Image
   dependencies:
-  - Build Docker Image
+    - Build Docker Image
+  when: manual
+
 # Starts a rollout on Kubernetes to grab the latest new image and start new containers
 K8s Rollout Restart:
   stage: restart
@@ -106,6 +110,6 @@ K8s Rollout Restart:
   tags:
     - 'cap_deploy'
   only:
-  - prod
-  dependencies:
-  - AWS Tag and Push
+    - prod
+  needs:
+    - AWS Tag and Push

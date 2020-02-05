@@ -46,6 +46,8 @@ EpisodePage.getInitialProps = async ({ query: { slug, token }, res }) => {
       if (!data.episode) {
         res.statusCode = 404;
         errorCode = res.statusCode > 200 ? res.statusCode : false;
+      } else {
+        res.setHeader('Cache-Control', 'no-store, must-revalidate');
       }
     })
     .catch(() => {
