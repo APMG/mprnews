@@ -6,10 +6,19 @@ const myCache = new NodeCache({
 });
 
 export default async (req, res) => {
+  let service_account;
   const analytics = myCache.get('analytics');
-  const service_account = require('../../config/google-api-keyfile.json');
   const reporting = google.analyticsreporting('v4');
   const scopes = 'https://www.googleapis.com/auth/analytics.readonly';
+  try {
+    service_account = require('../config/google-api-keyfile.json');
+  } catch {
+    service_account = {
+      client_email: process.env.client_email,
+      private_key: process.env.private_key,
+      view_id: process.env.view_id
+    };
+  }
 
   const jwt = new google.auth.JWT(
     service_account.client_email,
