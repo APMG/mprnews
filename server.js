@@ -28,15 +28,28 @@ const logUrls = (req, res, next) => {
 };
 
 const logLine = (req, res) => {
-  const timestamp = format(new Date(), 'dd/MMM/yyyy:H:mm:ss xxxx');
-  const line = ` - - [${timestamp}] "${req.method} ${req.headers.host}${req.originalUrl} ${req.protocol}" ${res.statusCode}  "-"  "${req.connection.remoteAddress}" -`;
+  const line = ` - - [${timestamp()}] "${req.method} ${req.headers.host}${
+    req.originalUrl
+  } ${req.protocol}" ${res.statusCode}  "-"  "${
+    req.connection.remoteAddress
+  }" -`;
   return line;
 };
 
+const timestamp = () => {
+  return format(new Date(), 'dd/MMM/yyyy:H:mm:ss xxxx');
+};
+
 const logError = (err, req, res, next) => {
-  const line = logLine(req, res);
+  const line = ` - - [${timestamp()}] "${req.method} ${req.originalUrl} ${
+    req.protocol
+  }" ${res.statusCode}  "-"  "${req.connection.remoteAddress}" -`;
   console.error(`ERROR: ${line} \n${err}`);
-  next();
+  if (res.headersSent) {
+    return next(err);
+  }
+  res.status(500);
+  res.render('error', { error: err });
 };
 
 const TTL = 60;
