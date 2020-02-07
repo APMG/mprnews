@@ -35,7 +35,7 @@ const logLine = (req, res) => {
 
 const logError = (err, req, res, next) => {
   const line = logLine(req, res);
-  console.error(`${line} \n${err}`);
+  console.error(`ERROR: ${line} \n${err}`);
   next();
 };
 
