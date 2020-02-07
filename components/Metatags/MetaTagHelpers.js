@@ -7,9 +7,9 @@ const fallback = {
 // if there is  social image and  widescreen  use that
 // if not  use the uncropped version of the social image
 // If no image at all use the fallback
-const fishForSocialMediaImage = (content, displayableImage = true) => {
+const fishForSocialMediaImage = (content, socialMediaImage = true) => {
   try {
-    if (!displayableImage) {
+    if (!socialMediaImage) {
       return fallback;
     }
     let img = content?.primaryVisuals?.social?.aspect_ratios?.widescreen

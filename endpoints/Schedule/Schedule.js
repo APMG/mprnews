@@ -35,11 +35,9 @@ const Schedule = ({ schedule }) => {
     </>
   );
 };
+
 Schedule.propTypes = {
   schedule: PropTypes.object
-};
-ScheduleInner.propTypes = {
-  schedule: PropTypes.array
 };
 
 export default Schedule;

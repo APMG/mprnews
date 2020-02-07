@@ -17,7 +17,12 @@ const Story = ({ data: { story, alertConfig }, minimal }) => {
   const redistributable = story?.primaryVisuals?.lead?.rights?.redistributable;
   const displayableImage =
     story?.primaryVisuals?.lead && !(minimal && !redistributable); //  an image exists and not a newspartner story with non-distributable image
-  const img = fishForSocialMediaImage(story, displayableImage);
+
+  const socialMediaImage =
+    story?.primaryVisuals?.lead ||
+    (story?.primaryVisuals?.social && !(minimal && !redistributable)); //  an image exists and not a newspartner story with non-distributable image
+
+  const img = fishForSocialMediaImage(story, socialMediaImage);
   let authors;
 
   if (story && story.contributors) {
@@ -85,10 +90,10 @@ const Story = ({ data: { story, alertConfig }, minimal }) => {
         image={
           displayableImage && (
             <Image
-              key={story.primaryVisuals.lead.fallback}
-              image={story.primaryVisuals.lead}
-              sizes={globals.sizes.primaryVisuals}
-              alt={story.primaryVisuals.lead.shortCaption}
+              key={story.primaryVisuals?.lead.fallback}
+              image={story.primaryVisuals?.lead}
+              sizes={globals.sizes?.primaryVisuals}
+              alt={story.primaryVisuals?.lead?.shortCaption}
             />
           )
         }

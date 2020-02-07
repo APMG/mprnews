@@ -8,7 +8,7 @@ import ToSentence from '../../components/ToSentence/ToSentence';
 const linkType = (url, typeUrl) => {
   let result;
   let baseUrl = new URL(url);
-  baseUrl.hostname.includes('mprnews.org')
+  baseUrl.hostname.includes('www.mprnews.org')
     ? (result = parseUrl(baseUrl, typeUrl))
     : (result =
         typeUrl === 'href' ? baseUrl.href : typeUrl === 'as' ? '' : null);
@@ -16,11 +16,18 @@ const linkType = (url, typeUrl) => {
 };
 
 const parseUrl = (url, typeUrl) => {
-  return typeUrl === 'href'
-    ? `/collection?slug=${url.pathname.replace(/^\//, '')}`
-    : typeUrl === 'as'
-    ? url.pathname
-    : null;
+  let storyRegex = new RegExp('/story/');
+  if (
+    typeUrl === 'as' ||
+    storyRegex.test(url.pathname) ||
+    url.pathname.split('/').length === 2
+  ) {
+    return url.pathname;
+  } else if (typeUrl === 'href') {
+    return `/collection?slug=${url.pathname.replace(/^\//, '')}`;
+  } else {
+    return null;
+  }
 };
 
 const ScheduleInner = ({ schedule }) => {
