@@ -23,11 +23,17 @@ const WeatherPage = ({ data, errorCode }) => {
 
 WeatherPage.getInitialProps = async ({ res }) => {
   let location = weatherConfig[0];
+  let weather, forecast, alerts;
 
-  const { weather, forecast, alerts } = await fetchWeather(
-    location.lat,
-    location.long
-  );
+  try {
+    ({ weather, forecast, alerts } = await fetchWeather(
+      location.lat,
+      location.long
+    ));
+  } catch (err) {
+    console.error(err);
+    res.end('Unable to retrieve the weather');
+  }
 
   if (res) {
     const errorCode = res.statusCode > 200 ? res.statusCode : false;

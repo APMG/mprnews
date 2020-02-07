@@ -44,5 +44,4 @@ RUN rm -rf ${APP_PATH}/.env.production && yarn run build && yarn cache clean
 EXPOSE 3000
 
 # CMD is for default parameters that can be overridden
-CMD  ["node", "-r",  "esm", "server.js"]
-
+CMD  ["yarn", "start"]
