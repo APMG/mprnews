@@ -22,10 +22,20 @@ const { membershipPotlatch } = require('./server/membershipPotlatch');
 const { format } = require('date-fns');
 
 const logUrls = (req, res, next) => {
+  const line = logLine(req, res);
+  console.info(line);
+  next();
+};
+
+const logLine = (req, res) => {
   const timestamp = format(new Date(), 'dd/MMM/yyyy:H:mm:ss xxxx');
-  console.info(
-    ` - - [${timestamp}] "${req.method} ${req.headers.host}${req.originalUrl} ${req.protocol}" ${res.statusCode}  "-"  "${req.connection.remoteAddress}" -`
-  );
+  const line = ` - - [${timestamp}] "${req.method} ${req.headers.host}${req.originalUrl} ${req.protocol}" ${res.statusCode}  "-"  "${req.connection.remoteAddress}" -`;
+  return line;
+};
+
+const logError = (err, req, res, next) => {
+  const line = logLine(req, res);
+  console.error(`${line} \n${err}`);
   next();
 };
 
@@ -102,7 +112,8 @@ app
       daySlug,
       twitterSlug,
       pageNum,
-      logUrls
+      logUrls,
+      logError
     );
 
     //Root route
