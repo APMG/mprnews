@@ -72,6 +72,8 @@ Deploy Stage:
   stage: deploy
 Deploy Prod:
   script:
+    - bundle install --path ~/vendor/bundle
+    - bundle exec cap prod deploy
   type: deploy
   tags:
     - cap_deploy
