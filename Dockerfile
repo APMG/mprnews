@@ -2,7 +2,6 @@ FROM node:lts-alpine3.11
 LABEL maintainer="ghankerson@mpr.org"
 
 ARG NODE_ENV="development"
-ARG RAILS_ENV="development"
 ARG APP_PATH=/opt/mprnews
 ARG APP_USER=node
 ARG APP_GROUP=node
