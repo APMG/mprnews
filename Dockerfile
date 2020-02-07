@@ -2,15 +2,14 @@ FROM node:lts-alpine3.11
 LABEL maintainer="ghankerson@mpr.org"
 
 ARG NODE_ENV="development"
-ARG RAILS_ENV="development"
 ARG APP_PATH=/opt/mprnews
 ARG APP_USER=node
 ARG APP_GROUP=node
 ARG APP_USER_UID=1000
 ARG APP_GROUP_GID=1000
-ARG GRAPHQL_API=https://cmsapi-lab.publicradio.org/graphql
-ARG POTLATCH_API=https://cmsapi-lab.publicradio.org/graphql
-ARG SCHEDULER_API=https://scheduler-lab.publicradio.org/api/v1/services/3/schedule/
+ARG GRAPHQL_API=https://cmsapi.publicradio.org/graphql
+ARG POTLATCH_API=https://cmsapi.publicradio.org/graphql
+ARG SCHEDULER_API=https://scheduler.publicradio.org/api/v1/services/3/schedule/
 ARG CONTENT_AREA_SLUG=mprnews
 
 RUN apk add --update --no-cache \
