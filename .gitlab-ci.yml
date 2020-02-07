@@ -71,6 +71,7 @@ Deploy Stage:
     - stage
   stage: deploy
 Deploy Prod:
+  script:
   type: deploy
   tags:
     - cap_deploy
