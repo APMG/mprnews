@@ -125,20 +125,18 @@ export function getClosestHourMatch(arr) {
 }
 
 // Checks hrefType and return next/link path
-import { format } from 'date-fns';
 
 export function hrefType(item) {
-  const programDate = format(new Date(), 'iii');
   let link;
   switch (item.hrefType) {
     case 'internalLink':
       link = `/${item.href}`;
       break;
     case 'collection':
-      link = `/collection?slug=${item.href}`;
+      link = `/[...slug]`;
       break;
     case 'schedule':
-      link = `/schedule?day=${programDate.toLowerCase()}`;
+      link = `/schedule/[day]`;
       break;
     case 'externalLink':
       link = `${item.href}`;

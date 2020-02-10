@@ -29,7 +29,7 @@ const FullTeaser = ({ item, size, newspartners }) => {
         } ${contributor.profile?.lastName ? contributor.profile.lastName : ''}`;
       });
     } else {
-      return null;
+      return '';
     }
   };
 
