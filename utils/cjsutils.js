@@ -36,6 +36,9 @@ exports.linkByTypeHref = (item) => {
     case 'page':
       href = `/[..slug]`;
       break;
+    case 'schedule':
+      href = `/schedule/[day]`;
+      break;
     case 'profile':
       href = `/people/[..slug]`;
       break;

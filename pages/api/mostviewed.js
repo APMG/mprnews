@@ -11,7 +11,7 @@ export default async (req, res) => {
   const reporting = google.analyticsreporting('v4');
   const scopes = 'https://www.googleapis.com/auth/analytics.readonly';
   try {
-    service_account = require('../config/google-api-keyfile.json');
+    service_account = require('../../config/google-api-keyfile.json');
   } catch {
     service_account = {
       client_email: process.env.client_email,
