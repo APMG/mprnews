@@ -46,7 +46,7 @@ HomePage.getInitialProps = async (res) => {
       }
     })
     .catch(() => {
-      res.status(404);
+      res.statusCode = 404;
       errorCode = res.statusCode > 200 ? res.statusCode : false;
     });
 
