@@ -11,8 +11,6 @@ import AudioPlayButton from '../AudioPlayButton/AudioPlayButton';
 const FullTeaser = ({ item, size, newspartners }) => {
   let link = linkByTypeHref(item);
   let linkAs = linkByTypeAs(item);
-  console.log('Href', link);
-  console.log('As', linkAs);
 
   if (newspartners) {
     link = link.replace(/story/, 'newspartnerstory');
