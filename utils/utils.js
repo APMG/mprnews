@@ -171,5 +171,5 @@ export function isNumeric(n) {
 }
 
 export function protocol() {
-  return process.env.PROTOCOL;
+  return process.env.SCHEDULER_PROTOCOL || 'https';
 }
