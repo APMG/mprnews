@@ -9,7 +9,7 @@ ARG APP_USER_UID=1000
 ARG APP_GROUP_GID=1000
 ARG GRAPHQL_API=https://cmsapi.publicradio.org/graphql
 ARG POTLATCH_API=https://cmsapi.publicradio.org/graphql
-ARG SCHEDULER_API=https://scheduler-service.apmg.svc.cluster.local/api/v1/services/3/schedule/
+ARG SCHEDULER_API=http://scheduler-service/api/v1/services/3/schedule/
 ARG CONTENT_AREA_SLUG=mprnews
 
 RUN apk add --update --no-cache \
