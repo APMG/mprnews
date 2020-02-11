@@ -19,6 +19,9 @@ CalendarPage.getInitialProps = async ({ req, res }) => {
   const xhr = await fetch(`${origin}/api/calendar/events`);
   const data = await xhr.json();
 
+  if (res) {
+    res.setHeader('Cache-Control', 'public, max-age=60');
+  }
   if (!data.items) {
     res.status(404);
     errorCode = res.statusCode > 200 ? res.statusCode : false;

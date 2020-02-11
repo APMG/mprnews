@@ -37,6 +37,7 @@ WeatherPage.getInitialProps = async ({ res }) => {
 
   if (res) {
     const errorCode = res.statusCode > 200 ? res.statusCode : false;
+    res.setHeader('Cache-Control', 'public, max-age=300');
     return {
       data: {
         location,

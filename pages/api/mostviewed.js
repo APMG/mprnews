@@ -30,6 +30,7 @@ export default async (req, res) => {
   if (analytics == undefined) {
     return fetchMostViewed();
   } else {
+    res.setHeader('Cache-Control', 'public, max-age=60');
     res.send(analytics);
   }
 
@@ -81,6 +82,7 @@ export default async (req, res) => {
             success
           ) {
             if (!err && success) {
+              res.setHeader('Cache-Control', 'public, max-age=60');
               return res.send(response.data.reports[0].data);
             }
           });

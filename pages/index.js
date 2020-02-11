@@ -42,7 +42,7 @@ HomePage.getInitialProps = async ({ res }) => {
     .then((result) => {
       data = result.data;
       if (res) {
-        res.setHeader('Cache-Control', 'public, max-age: 60');
+        res.setHeader('Cache-Control', 'public, max-age=60');
         errorCode = res.statusCode > 200 ? res.statusCode : false;
       }
     })

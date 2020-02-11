@@ -50,6 +50,9 @@ EpisodePage.getInitialProps = async ({
   })
     .then((result) => {
       data = result.data;
+      if (res) {
+        res.setHeader('Cache-Control', 'public, max-age=60');
+      }
       if (!data.episode) {
         res.statusCode = 404;
         errorCode = res.statusCode > 200 ? res.statusCode : false;

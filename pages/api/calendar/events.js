@@ -8,6 +8,7 @@ const cache = new NodeCache({
 
 export default async (req, res) => {
   const electionEvents = cache.get('electionEvents') || (await fetchEvents());
+  res.setHeader('Cache-Control', 'public, max-age=60');
   res.send(electionEvents);
 
   async function fetchEvents() {

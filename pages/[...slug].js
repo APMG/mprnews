@@ -88,6 +88,9 @@ VariableComponent.getInitialProps = async ({ query: { slug }, res }) => {
     }
   })
     .then(async (result) => {
+      if (res) {
+        res.setHeader('Cache-Control', 'public, max-age=60');
+      }
       if (!result.data.content) {
         res.statusCode = 404;
         errorCode = res.statusCode > 200 ? res.statusCode : false;

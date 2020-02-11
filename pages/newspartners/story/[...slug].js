@@ -13,7 +13,6 @@ const NewspartnerStory = ({ data, errorCode }) => {
 NewspartnerStory.getInitialProps = async ({ query: { slug }, res }) => {
   const ApolloClient = initApollo();
   let data, errorCode;
-  // const query = storyQuery(slug, previewToken ? previewToken : null);
   await ApolloClient.query({
     query: query,
     variables: {
@@ -23,6 +22,9 @@ NewspartnerStory.getInitialProps = async ({ query: { slug }, res }) => {
   })
     .then((result) => {
       data = result.data;
+      if (res) {
+        res.setHeader('Cache-Control', 'public, max-age=60');
+      }
       if (!data.story) {
         res.statusCode = 404;
         errorCode = res.statusCode > 200 ? res.statusCode : false;

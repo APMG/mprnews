@@ -7,7 +7,7 @@
     "dev": "RAILS_ENV=development NODE_ENV=development next",
     "debug": "RAILS_ENV=development NODE_ENV=development NODE_OPTIONS=--inspect next",
     "dev:clean": "rm -rf build .next && yarn dev",
-    "build": "next build",
+    "build": "RAILS_ENV=production NODE_ENV=production next build",
     "start": "RAILS_ENV=production NODE_ENV=production next start",
     "eslint": "eslint .",
     "eslint:fix": "eslint . --fix",

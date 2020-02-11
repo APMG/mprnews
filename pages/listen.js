@@ -25,6 +25,7 @@ const ListenPage = ({ errorCode }) => {
 
 ListenPage.getInitialProps = async ({ res }) => {
   if (res) {
+    res.setHeader('Cache-Control', 'public, max-age=3600');
     const errorCode = res.statusCode > 200 ? res.statusCode : false;
     return { layout: 'listen', errorCode };
   }
