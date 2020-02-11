@@ -8,7 +8,6 @@ import {
   fetchMemberDriveStatus,
   addMemberDriveElements
 } from '../../utils/membershipUtils';
-import { protocol } from '../../utils/utils';
 
 const SchedulePage = ({ schedule, errorCode }) => {
   if (!schedule || errorCode) return <ErrorPage statusCode={404} />;
@@ -22,9 +21,14 @@ const SchedulePage = ({ schedule, errorCode }) => {
 };
 
 SchedulePage.getInitialProps = async ({ query: { day }, req, res }) => {
-  const scheduleUrl = req
-    ? `${protocol()}://${req.headers['host']}/api/schedule/${day}`
-    : `/api/schedule/${day}`;
+  const protocol =
+    typeof window === 'undefined'
+      ? process.env.SCHEDULER_API.split('://')[0]
+      : window.location.protocol;
+  const scheduleUrl =
+    typeof window === 'undefined'
+      ? `${protocol}://${req.headers['host']}/api/schedule/${day}`
+      : `/api/schedule/${day}`;
   const scheduleRes = await fetch(scheduleUrl);
   const props = await scheduleRes.json();
 
