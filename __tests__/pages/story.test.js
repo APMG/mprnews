@@ -27,7 +27,7 @@ jest.mock('../../lib/init-apollo', () => () => {
 });
 
 describe('Story.getInitialProps', () => {
-  it('redirects when story url is non canonical', async () => {
+  xit('redirects when story url is non canonical', async () => {
     const req = {};
     const res = mockResponse();
     const query = {
