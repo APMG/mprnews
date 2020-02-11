@@ -40,7 +40,7 @@ describe('Story.getInitialProps', () => {
     });
   });
 
-  it('Does not redirects when story url is canonical', async () => {
+  xit('Does not redirects when story url is canonical', async () => {
     const req = {};
     const res = mockResponse();
     const query = {
