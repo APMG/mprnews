@@ -1,9 +1,9 @@
-import Story from '../../pages/story';
+import Story from '../../pages/story/[...slug]';
 
 const mockResponse = () => {
   const res = {
     status: jest.fn().mockReturnThis(),
-    redirect: jest.fn((url) => `Redirected to ${url}`),
+    writeHead: jest.fn((url) => `Redirected to ${url}`),
     statusCode: jest.fn(() => 200),
     memberDriveData: 'such data'
   };
@@ -31,18 +31,20 @@ describe('Story.getInitialProps', () => {
     const req = {};
     const res = mockResponse();
     const query = {
-      slug: 'Non-CanonicalUrl',
+      slug: ['Non-CanonicalUrl'],
       previewToken: 'wow!'
     };
     await Story.getInitialProps({ query, req, res });
-    expect(res.redirect).toHaveBeenCalledWith('/story/canonicalUrl');
+    expect(res.writeHead).toHaveBeenCalledWith(301, {
+      Location: '/preview/story/canonicalUrl?token=wow!'
+    });
   });
 
   it('Does not redirects when story url is canonical', async () => {
     const req = {};
     const res = mockResponse();
     const query = {
-      slug: 'canonicalUrl',
+      slug: ['canonicalUrl'],
       previewToken: 'wow!'
     };
     const { data, errorCode, memberDriveData } = await Story.getInitialProps({
@@ -51,7 +53,7 @@ describe('Story.getInitialProps', () => {
       res
     });
 
-    expect(res.redirect).not.toHaveBeenCalled();
+    expect(res.writeHead).not.toHaveBeenCalled();
     expect(data).toEqual({
       story: {
         canonicalSlug: 'canonicalUrl'

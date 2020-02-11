@@ -2,12 +2,13 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import fetch from 'isomorphic-unfetch';
 import ErrorPage from 'next/error';
-// import { getDateTimes, formatEachDateTime } from '../utils/scheduleUtils';
-import Schedule from '../endpoints/Schedule/Schedule';
+import Schedule from '../../endpoints/Schedule/Schedule';
 import {
   fetchMemberDriveStatus,
   addMemberDriveElements
-} from '../utils/membershipUtils';
+} from '../../utils/membershipUtils';
+import { daysofweek } from '../../server/daysofweek';
+import { protocol } from '../../utils/utils';
 
 const SchedulePage = ({ schedule, errorCode }) => {
   if (!schedule || errorCode) return <ErrorPage statusCode={404} />;
@@ -20,14 +21,14 @@ const SchedulePage = ({ schedule, errorCode }) => {
   return <Schedule schedule={schedule} />;
 };
 
-SchedulePage.getInitialProps = async ({ query: { slug }, req, res }) => {
-  let memberDriveData;
-  if (req) {
-    memberDriveData = res.memberDriveData;
-  }
+SchedulePage.getInitialProps = async ({ req, res }) => {
+  const dte = new Date();
+  const dayofweekIdx = dte.getDay();
+  const day = daysofweek()[dayofweekIdx];
+
   const scheduleUrl = req
-    ? `${req.protocol}://${req.headers['host']}/api/schedule/${slug}`
-    : `/api/schedule/${slug}`;
+    ? `${protocol()}://${req.headers['host']}/api/schedule/${day}`
+    : `/api/schedule/${day}`;
   const scheduleRes = await fetch(scheduleUrl);
   const props = await scheduleRes.json();
 
@@ -36,7 +37,7 @@ SchedulePage.getInitialProps = async ({ query: { slug }, req, res }) => {
     return {
       schedule: {
         props,
-        slug
+        day
       },
       errorCode
     };
@@ -45,8 +46,7 @@ SchedulePage.getInitialProps = async ({ query: { slug }, req, res }) => {
   return {
     schedule: {
       props,
-      slug,
-      memberDriveData
+      day
     }
   };
 };

@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ErrorPage from 'next/error';
-import Episode from '../endpoints/Episode/Episode';
-import ContentGrid from '../grids/ContentGrid';
-import Sidebar from '../components/Sidebar/Sidebar';
-import initApollo from '../lib/init-apollo';
-import query from '../endpoints/Episode/episode.gql';
+import Episode from '../../endpoints/Episode/Episode';
+import ContentGrid from '../../grids/ContentGrid';
+import Sidebar from '../../components/Sidebar/Sidebar';
+import initApollo from '../../lib/init-apollo';
+import query from '../../endpoints/Episode/episode.gql';
 import {
   fetchMemberDriveStatus,
   addMemberDriveElements
-} from '../utils/membershipUtils';
+} from '../../utils/membershipUtils';
 
 /* eslint react/display-name: 0 */
 
@@ -44,19 +44,19 @@ EpisodePage.getInitialProps = async ({
     query: query,
     variables: {
       contentAreaSlug: process.env.CONTENT_AREA_SLUG,
-      slug: slug,
+      slug: slug.join('/'),
       previewToken: previewToken
     }
   })
     .then((result) => {
       data = result.data;
       if (!data.episode) {
-        res.status(404);
+        res.statusCode = 404;
         errorCode = res.statusCode > 200 ? res.statusCode : false;
       }
     })
     .catch(() => {
-      res.status(404);
+      res.statusCode = 404;
       errorCode = res.statusCode > 200 ? res.statusCode : false;
     });
 

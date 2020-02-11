@@ -9,7 +9,7 @@ const Tabs = (props) => {
         return (
           <li key={lnk.key} className="tabs_item">
             <Link
-              href={`/schedule?slug=${lnk.href}`}
+              href={`/schedule/[day]`}
               as={`/schedule/${lnk.href}`}
               className={`tabs_link ${lnk.isActive && `is-active`}`}
             >

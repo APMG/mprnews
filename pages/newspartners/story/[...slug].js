@@ -1,50 +1,48 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ErrorPage from 'next/error';
-import Episode from '../endpoints/Episode/Episode';
-import initApollo from '../lib/init-apollo';
-import query from '../endpoints/Episode/episode.gql';
+import Story from '../../../endpoints/Story/Story';
+import initApollo from '../../../lib/init-apollo';
+import query from '../../../endpoints/Story/story.gql';
 
-/* eslint react/display-name: 0 */
-
-const AmpEpisode = ({ data, errorCode }) => {
+const NewspartnerStory = ({ data, errorCode }) => {
   if (errorCode) return <ErrorPage statusCode={errorCode} />;
-  return <Episode data={data} />;
+  return <Story data={data} minimal={true} />;
 };
 
-AmpEpisode.getInitialProps = async ({ query: { slug }, res }) => {
+NewspartnerStory.getInitialProps = async ({ query: { slug }, res }) => {
   const ApolloClient = initApollo();
   let data, errorCode;
+  // const query = storyQuery(slug, previewToken ? previewToken : null);
   await ApolloClient.query({
     query: query,
     variables: {
       contentAreaSlug: process.env.CONTENT_AREA_SLUG,
-      slug: slug
+      slug: slug.join('/')
     }
   })
     .then((result) => {
       data = result.data;
-      if (res && !data.episode) {
-        res.status(404);
+      if (!data.story) {
+        res.statusCode = 404;
         errorCode = res.statusCode > 200 ? res.statusCode : false;
       }
     })
     .catch(() => {
-      res.status(404);
+      res.statusCode = 404;
       errorCode = res.statusCode > 200 ? res.statusCode : false;
     });
 
   return {
-    errorCode,
     data,
-    layout: 'amp'
+    errorCode,
+    layout: 'newspartners'
   };
 };
 
-AmpEpisode.propTypes = {
+NewspartnerStory.propTypes = {
   errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
   data: PropTypes.object
 };
 
-export default AmpEpisode;
-export const config = { amp: 'hybrid' };
+export default NewspartnerStory;

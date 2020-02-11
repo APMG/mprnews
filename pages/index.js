@@ -29,12 +29,8 @@ const HomePage = ({ data, errorCode }) => {
   );
 };
 
-HomePage.getInitialProps = async (req, res) => {
-  //  console.log('MEMBERSHIP DATA', res.memberDriveData);
+HomePage.getInitialProps = async (res) => {
   let data, errorCode, memberDriveData;
-  if (req) {
-    memberDriveData = req.memberDriveData;
-  }
   const ApolloClient = initApollo();
   await ApolloClient.query({
     query: query,
@@ -50,7 +46,7 @@ HomePage.getInitialProps = async (req, res) => {
       }
     })
     .catch(() => {
-      res.status(404);
+      res.statusCode = 404;
       errorCode = res.statusCode > 200 ? res.statusCode : false;
     });
 

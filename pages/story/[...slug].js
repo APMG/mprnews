@@ -1,20 +1,19 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ErrorPage from 'next/error';
-import Page from '../endpoints/Page/Page';
-import ContentGrid from '../grids/ContentGrid';
-import Sidebar from '../components/Sidebar/Sidebar';
-import initApollo from '../lib/init-apollo';
-import query from '../endpoints/Page/page.gql';
+import Story from '../../endpoints/Story/Story';
+import ContentGrid from '../../grids/ContentGrid';
+import Sidebar from '../../components/Sidebar/Sidebar';
+import initApollo from '../../lib/init-apollo';
+import query from '../../endpoints/Story/story.gql';
 import {
   fetchMemberDriveStatus,
   addMemberDriveElements
-} from '../utils/membershipUtils';
+} from '../../utils/membershipUtils';
 
-/* eslint react/display-name: 0 */
-
-const StaticPage = ({ data, errorCode }) => {
+const StoryPage = ({ data, errorCode }) => {
   if (errorCode) return <ErrorPage statusCode={errorCode} />;
+
   useEffect(() => {
     fetchMemberDriveStatus().then((data) => {
       addMemberDriveElements(data);
@@ -23,12 +22,12 @@ const StaticPage = ({ data, errorCode }) => {
 
   return (
     <ContentGrid sidebar={<Sidebar />}>
-      <Page data={data} />
+      <Story minimal={false} data={data} />
     </ContentGrid>
   );
 };
 
-StaticPage.getInitialProps = async ({
+StoryPage.getInitialProps = async ({
   query: { slug, previewToken },
   req,
   res
@@ -38,24 +37,35 @@ StaticPage.getInitialProps = async ({
     memberDriveData = res.memberDriveData;
   }
   const ApolloClient = initApollo();
-  let data, errorCode;
+  let data;
+  let errorCode;
+
   await ApolloClient.query({
     query: query,
     variables: {
       contentAreaSlug: process.env.CONTENT_AREA_SLUG,
-      slug: slug,
+      slug: slug.join('/'),
       previewToken: previewToken
     }
   })
     .then((result) => {
       data = result.data;
-      if (!data.page) {
-        res.status(404);
+      if (!data.story) {
+        res.statusCode = 404;
         errorCode = res.statusCode > 200 ? res.statusCode : false;
+      }
+      if (
+        res &&
+        data?.story?.canonicalSlug &&
+        data.story.canonicalSlug !== slug.join('/')
+      ) {
+        res.writeHead(301, {
+          Location: `/preview/story/${data.story.canonicalSlug}?token=${previewToken}`
+        });
       }
     })
     .catch(() => {
-      res.status(404);
+      res.statusCode = 404;
       errorCode = res.statusCode > 200 ? res.statusCode : false;
     });
 
@@ -66,9 +76,9 @@ StaticPage.getInitialProps = async ({
   };
 };
 
-StaticPage.propTypes = {
+StoryPage.propTypes = {
   errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
   data: PropTypes.object
 };
 
-export default StaticPage;
+export default StoryPage;

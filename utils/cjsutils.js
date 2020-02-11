@@ -17,6 +17,10 @@ exports.linkByTypeAs = (item) => {
     case 'story':
       link = `/story/${item.canonicalSlug}`;
       break;
+    case 'episode':
+      link = `/episode/${item.canonicalSlug}`;
+      break;
+
     default:
       link = `/${item.resourceType}/${item.canonicalSlug}`;
   }
@@ -25,7 +29,29 @@ exports.linkByTypeAs = (item) => {
 
 // Returns either external link or resourceType/slug
 exports.linkByTypeHref = (item) => {
-  return item.resourceType === 'link'
-    ? item.destination
-    : `/${item.resourceType}?slug=${item.canonicalSlug}`;
+  let href;
+  switch (item.resourceType) {
+    case 'link':
+      href = item.destination;
+      break;
+    case 'collection':
+      href = `/[...slug]`;
+      break;
+    case 'page':
+      href = `/[..slug]`;
+      break;
+    case 'schedule':
+      href = `/schedule/[day]`;
+      break;
+    case 'profile':
+      href = `/people/[..slug]`;
+      break;
+    case 'story':
+      href = `/story/[...slug]`;
+      break;
+    case 'episode':
+      href = `/episode/[...slug]`;
+      break;
+  }
+  return href;
 };
