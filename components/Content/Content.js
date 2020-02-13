@@ -23,7 +23,8 @@ const Content = ({
   imageCredit,
   imageCreditHref,
   minimal,
-  redistributable
+  redistributable,
+  isAmp
 }) => {
   const classes = classNames({
     content: true,
@@ -78,6 +79,7 @@ const Content = ({
             nodeData={JSON.parse(body)}
             embedded={JSON.parse(embeddedAssetJson)}
             minimal={minimal}
+            isAmp={isAmp}
           />
         </div>
       )}
@@ -111,7 +113,8 @@ Content.propTypes = {
   imageCredit: PropTypes.string,
   imageCreditHref: PropTypes.string,
   minimal: PropTypes.bool,
-  redistributable: PropTypes.bool
+  redistributable: PropTypes.bool,
+  isAmp: PropTypes.bool
 };
 
 export default Content;

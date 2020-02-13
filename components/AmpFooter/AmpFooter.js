@@ -5,9 +5,9 @@ import classNames from 'classnames';
 import Logo from '../Logo/Logo';
 import Icon from '../Icons/Icon';
 import config from '../Footer/footerConfig';
-import FooterLower from '../Footer/FooterLower';
+import AmpFooterLower from './AmpFooterLower';
 
-const MinimalFooter = () => {
+const AmpFooter = () => {
   const classes = classNames('footer', 'footer-minimal');
   return (
     <footer className={classes}>
@@ -25,12 +25,12 @@ const MinimalFooter = () => {
           </Link>
         </div>
       </div>
-      <FooterLower nav={config.nav} />
+      <AmpFooterLower nav={config.nav} />
     </footer>
   );
 };
 
-export default MinimalFooter;
+export default AmpFooter;
 
 {
   /* <div className="footer_button">

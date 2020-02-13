@@ -64,10 +64,10 @@
   resolved "https://registry.yarnpkg.com/@apmg/mimas/-/mimas-0.2.0.tgz#57bdd9f40ec2e4a78babb0ee33535c24e48165d6"
   integrity sha512-9x3RCo0SQgIE0yrAuWCxLNa1Beh7mNTs12c//V/JpNKQPkBNz2GGbKdrTFCYn7DBlcHUYhDAf9FCyVk9CAulfQ==
 
-"@apmg/mimas@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@apmg/mimas/-/mimas-0.3.0.tgz#d69d2e896f8cc0ce2f2666e87383a8d122d14fd1"
-  integrity sha512-+ZvuCsoDN6n1SRgUXHJWicW9UPNYSFaSCkgSxq7jRjANnHTOqCskPPfq1v6VAsNTbWqu+B3yyHq7q3jYa2MLCg==
+"@apmg/mimas@^0.3.2":
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/@apmg/mimas/-/mimas-0.3.2.tgz#12ff687ced4828413b9b857953d5911a51b931fa"
+  integrity sha512-qoqhi5qH4lQK0ATIfuw6cq7qRLGORo4+p1OI2hcpBm27y/azAPPXd+NuQWALIeU4xlcmqM8IF/ac8lcjaEjeiA==
 
 "@apmg/react-oembed-container@git://github.com/APMG/react-oembed-container.git#twitter-load-fix":
   version "0.3.1"

@@ -1,18 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ErrorPage from 'next/error';
+import AmpStory from '../endpoints/AmpStory/AmpStory';
 import Story from '../endpoints/Story/Story';
 import initApollo from '../lib/init-apollo';
 import query from '../endpoints/Story/story.gql';
 
 /* eslint react/display-name: 0 */
 
-const AmpStory = ({ data, errorCode }) => {
+const AmpStoryPage = ({ data, errorCode }) => {
   if (errorCode) return <ErrorPage statusCode={errorCode} />;
-  return <Story data={data} />;
+  return <AmpStory data={data} />;
 };
 
-AmpStory.getInitialProps = async ({ query: { slug }, res }) => {
+AmpStoryPage.getInitialProps = async ({ query: { slug }, res }) => {
   const ApolloClient = initApollo();
   let data, errorCode;
   await ApolloClient.query({
@@ -41,10 +42,10 @@ AmpStory.getInitialProps = async ({ query: { slug }, res }) => {
   };
 };
 
-AmpStory.propTypes = {
+AmpStoryPage.propTypes = {
   errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
   data: PropTypes.object
 };
 
-export default AmpStory;
-export const config = { amp: 'hybrid' };
+export default AmpStoryPage;
+export const config = { amp: true };

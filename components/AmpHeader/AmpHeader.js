@@ -4,14 +4,13 @@ import { Link } from '@apmg/titan';
 import classNames from 'classnames';
 import Logo from '../Logo/Logo';
 
-const MinimalHeader = () => {
+const AmpHeader = () => {
   const classes = classNames('header', 'header-minimal');
 
   return (
     <div className="headerContainer">
       <header className={classes}>
         <Link href="/" className="header_logo">
-          {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
           <div className="header_logoImg">
             <Logo />
             <span className="invisible">MPR News</span>
@@ -22,4 +21,4 @@ const MinimalHeader = () => {
   );
 };
 
-export default MinimalHeader;
+export default AmpHeader;
