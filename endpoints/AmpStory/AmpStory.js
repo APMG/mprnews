@@ -45,7 +45,7 @@ const AmpStory = ({ data: { story, alertConfig }, minimal }) => {
         imageHeight={img?.height}
         imageWidth={img?.width}
         imageAlt={story?.primaryVisuals?.social?.shortCaption}
-        isAmp={false}
+        isAmp={false} // Poorly named variable. Set to false so no link is made to self
         topic={story?.primaryCollection?.title}
         contentType="article"
         publishDate={story.publishDate}
