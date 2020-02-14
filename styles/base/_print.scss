@@ -85,6 +85,15 @@
     display: none;
   }
 
+  // Sidebars: category index
+  .container .collection {
+    display: block;
+    margin: 0;
+  }
+  .collection_sidebar {
+    display: none;
+  }
+
   // Footers
   .footer .footer_upper {
     display: none;
@@ -172,6 +181,35 @@
     }
     .teaser_body {
       font-size: 1.6rem;
+    }
+  }
+
+  // Collection columns
+  .collection_items {
+    display: block;
+    column-count: 3;
+    column-width: 1.75in;
+    column-gap: 0.5in;
+    .teaserContainer {
+      clear: both;
+      break-inside: avoid;
+    }
+    .teaser_contributors {
+      color: black;
+    }
+    .teaser_contributors::before {
+      content: none;
+    }
+  }
+  .collection_pagination {
+    margin: 1rem 0 0;
+    .pagination_page-prev,
+    .pagination_page-next {
+      display: none;
+    }
+    .pagination_page-current {
+      border: 1px solid $color-grey-50;
+      border-radius: 0.5em;
     }
   }
 
