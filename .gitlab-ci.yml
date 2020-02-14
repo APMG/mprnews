@@ -107,6 +107,7 @@ K8s Rollout Restart:
   script:
     - aws eks update-kubeconfig --name ${EKS_CLUSTER_NAME} --region ${AWS_REGION}
     - kubectl rollout restart -n apmg deployment mprnews-deployment
+    - kubectl rollout status -n apmg deployment mprnews-deployment
   tags:
     - 'cap_deploy'
   only:
