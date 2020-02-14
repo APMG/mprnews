@@ -76,6 +76,15 @@
     display: none;
   }
 
+  // Sidebars: ToC
+  .container .home {
+    display: block;
+  }
+  .home .home_rail,
+  .home .home_sidebar {
+    display: none;
+  }
+
   // Footers
   .footer .footer_upper {
     display: none;
@@ -96,7 +105,10 @@
   .content .content_audio {
     display: none;
   }
-  .apm-related-list {
+  .apm-related-list,
+  .related-teaser,
+  .teaser_button,
+  .home_more {
     display: none;
   }
 
@@ -110,20 +122,57 @@
     column-count: 2;
     column-width: 2.5in;
     column-gap: 0.5in;
-  }
-  .content.story .content_header {
-    column-span: all;
+    .content_header {
+      column-span: all;
+    }
+    figure,
+    blockquote {
+      break-inside: avoid;
+    }
+    h2,
+    h3,
+    h4 {
+      break-after: avoid;
+    }
   }
 
-  // Some elements should not span columns!
-  .content.story figure,
-  .content.story blockquote {
-    break-inside: avoid;
-  } 
-  .content.story h2,
-  .content.story h3,
-  .content.story h4 {
-    break-after: avoid;
+  // ToC columns
+  .home_main .vList-collection {
+    display: block;
+    column-count: 3;
+    column-width: 1.75in;
+    column-gap: 0.5in;
+    .teaserContainer {
+      clear: both;
+      break-inside: avoid;
+    }
+    .teaser-condensed .teaser_image {
+      max-width: 30%;
+    }
+    & > *:not(:last-child)::after {
+      margin: 1em auto;
+    }
+  }
+  .home_first .teaser_link {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    .teaser_image {
+      order: 2;
+      flex-basis: 0.5in;
+      flex-grow: 2;
+      margin-left: 0.25in;
+    }
+    .teaser_content {
+      order: 1;
+      flex-basis: 0;
+      flex-grow: 1;
+      margin-right: 0.25in;
+    }
+    .teaser_body {
+      font-size: 1.6rem;
+    }
   }
 
 }
