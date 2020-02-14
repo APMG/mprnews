@@ -42,9 +42,11 @@
   }
 
   body {
+    // prevent pages being cut off in Firefox
     display: block;
-    // prevents pages being cut off in Firefox
+    // use actual black text in print
     color: $color-black;
+    background-color: $color-white;
   }
 
   // Global Header
@@ -74,6 +76,7 @@
   // Player
 
   .playerWrapper {
+    // hide the audio player
     display: none;
   }
 
@@ -148,6 +151,8 @@
   // Story columns
 
   .content.story {
+    // when printed, move the story body into two columns
+    // for better readability and less wasted paper
     display: block;
     column-count: 2;
     column-width: 2.5in;
@@ -157,6 +162,7 @@
       column-span: all;
     }
 
+    // but make sure column breaks don't create confusion
     figure,
     blockquote {
       break-inside: avoid;
@@ -172,31 +178,38 @@
   // ToC columns
 
   .home_main .vList-collection {
+    // move all stories (except the top story)
+    // into a three-column layout 
     display: block;
     column-count: 3;
     column-width: 1.75in;
     column-gap: 0.5in;
 
+    // don't split a story over a column break
     .teaserContainer {
       clear: both;
       break-inside: avoid;
     }
 
+    // keep the images to scale with the text
     .teaser-condensed .teaser_image {
       max-width: 30%;
     }
 
+    // shrink the gap between stories a bit
     & > *:not(:last-child)::after {
       margin: 1em auto;
     }
   }
 
   .home_first .teaser_link {
+    // split the feature story to align with the columns
     display: flex;
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-between;
 
+    // these settings align w/ 2 columns + 1 gutter 
     .teaser_image {
       order: 2;
       flex-basis: 0.5in;
@@ -204,6 +217,7 @@
       margin-left: 0.25in;
     }
 
+    // these settings align w/ 1 column + no gutter
     .teaser_content {
       order: 1;
       flex-basis: 0;
@@ -211,6 +225,7 @@
       margin-right: 0.25in;
     }
 
+    // boost the font size a little for the feature 
     .teaser_body {
       font-size: 1.6rem;
     }
@@ -219,16 +234,19 @@
   // Collection columns
 
   .collection_items {
+    // move all story teasers into 3 columns
     display: block;
     column-count: 3;
     column-width: 1.75in;
     column-gap: 0.5in;
 
+    // don't split a story over a column break
     .teaserContainer {
       clear: both;
       break-inside: avoid;
     }
 
+    // make the author line visually consistent
     .teaser_contributors {
       color: $color-black;
     }
@@ -239,13 +257,16 @@
   }
 
   .collection_pagination {
+    // tighten the spacing around the pagination
     margin: 1rem 0 0;
 
+    // don't show the navigation buttons
     .pagination_page-prev,
     .pagination_page-next {
       display: none;
     }
 
+    // visually emphasize the current page
     .pagination_page-current {
       border: 1px solid $color-grey-50;
       border-radius: 0.5em;
