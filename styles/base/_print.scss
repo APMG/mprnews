@@ -34,7 +34,7 @@
   //--------------------------------------------------
 
   html {
-    font-size: 9pt;
+    font-size: 50%;
     // Sets global font size
   }
   body {
@@ -58,13 +58,17 @@
   div.headerContainer {
     border-bottom: none;
   }
+  main.main {
+    margin: 0;
+    padding: 0;
+  }
 
   // Player
   .playerWrapper {
     display: none;
   }
 
-  // Sidebar
+  // Sidebar: article
   .container .contentGrid {
     display: block;
   }
@@ -79,6 +83,8 @@
   .footer .footer_lower {
     color: black;
     background-color: white;
+    margin: 0;
+    padding: 0;
   }
   .footer .footer_lowerContent,
   .footer_disclaimer {
@@ -86,11 +92,38 @@
   }
 
   // Clutter
-  .content .content_social {
+  .content .content_social,
+  .content .content_audio {
     display: none;
   }
   .apm-related-list {
     display: none;
+  }
+
+  //--------------------------------------------------
+  // COLUMNS
+  //--------------------------------------------------
+
+  // Story columns
+  .content.story {
+    display: block;
+    column-count: 2;
+    column-width: 2.5in;
+    column-gap: 0.5in;
+  }
+  .content.story .content_header {
+    column-span: all;
+  }
+
+  // Some elements should not span columns!
+  .content.story figure,
+  .content.story blockquote {
+    break-inside: avoid;
+  } 
+  .content.story h2,
+  .content.story h3,
+  .content.story h4 {
+    break-after: avoid;
   }
 
 }
