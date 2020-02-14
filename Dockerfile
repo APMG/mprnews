@@ -32,7 +32,7 @@ COPY --chown=${APP_USER}:${APP_GROUP} ./yarn.lock ${APP_PATH}/
 
 # Need to make node_modules and build to ensure that
 # mount points are owned by current user (node).
-RUN mkdir ${APP_PATH}/node_modules $APP_PATH/build && yarn install --production=false
+RUN mkdir ${APP_PATH}/node_modules $APP_PATH/build && yarn install --frozen-lockfile --production=false
 
 COPY --chown=${APP_USER}:${APP_GROUP} . ${APP_PATH}
 
