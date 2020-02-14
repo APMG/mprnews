@@ -1,0 +1,182 @@
+//--------------------------------------------------
+// Print CSS Styles
+//
+// Override existing styles; try to match
+// the non-print selector as closely as possible.
+//--------------------------------------------------
+
+@media only print {
+  //--------------------------------------------------
+  // DEBUGGING STYLES
+  // These should be commented out or removed
+  // before merging to production.
+  //--------------------------------------------------
+
+
+
+  //--------------------------------------------------
+  // PRINT UTILITY CLASSES
+  //--------------------------------------------------
+
+  .print-hide {
+    display: none;
+  }
+  .print-show {
+    display: block;
+  }
+  .print-showInline {
+    display: inline;
+  }
+  .print-showInlineBlock {
+    display: inline-block;
+  }
+
+  // //--------------------------------------------------
+  // // MAIN STYLE OVERRIDES
+  // //--------------------------------------------------
+
+  // html { font-size: 50%; } // Reduce global font size
+  // body { display: block; } // prevents pages being cut off in Firefox
+
+  // // Global Header
+  // .header_secondary { display: none; }
+  // .header_main_nav { display: none; }
+  // .header_main_search { display: none; }
+
+  // // Columns
+  // .col-content {
+  //   margin-left: 20px;
+  //   margin-right: 20px;
+  // }
+
+  // .col-title {
+  //   max-width: $max-width + 20px;
+  //   padding-left: 10px;
+  //   padding-right: 10px;
+  //   margin: 0 auto;
+  // }
+
+  // // Section
+  // .section-printCollapse {
+  //   margin-bottom: 10px;
+  // }
+
+  // // Feature Hero
+  // .featureHero { display: none; padding: 0 0 30px; }
+  // .featureHero_media { padding: 0; }
+  // .featureHero_aside { display: none; }
+
+  // // Ads
+  // .ad { display: none; }
+
+  // // Sharing sidebar
+  // .sharing { display: none; }
+
+  // // Stories
+  // .hdg-1 { font-size: 3.2rem; }
+
+  // .title {
+  //   margin-left: 20px;
+  //   margin-right: 20px;
+  // }
+
+  // .title-overlay {
+  //   margin-top: 0;
+  // }
+
+  // .title_headline-overlay {
+  //   background-color: transparent;
+  //   color: $color-default;
+  //   padding: 0;
+  //   margin: 0;
+  // }
+
+  // .print-mainPhoto {
+  //   float: left;
+  //   width: 30%;
+  //   margin: 0 20px 20px 0;
+  // }
+
+  // .border-medium-photo,
+  // .figure-right,
+  // .figure-left {
+  //   display: none;
+  // }
+
+  // .figure-right {
+  //   margin-right: 30px;
+  // }
+
+  // .border-medium-photo,
+  // .figure-right {
+  //   float: right;
+  //   margin-left: 30px;
+  // }
+
+  // .story_body {
+  //   line-height: 1.5;
+
+  //   ul li {
+  //     margin-bottom: 0;
+
+  //     &:before {
+  //       // scss-lint:disable PropertyUnits
+  //       content: '\25a0';
+  //       top: .75em;
+  //       line-height: 3px;
+  //       font-size: 13px;
+  //       text-indent: -1px;
+  //       color: $color-red;
+  //     }
+  //   }
+  // }
+
+  // // Comments
+  // // scss-lint:disable IdSelector
+  // #comments { display: none; }
+  // // scss-lint:enable IdSelector
+
+  // // Global Footer
+  // .footer {
+  //   background-color: transparent;
+  //   margin-top: 10px;
+  //   margin-left: 30px;
+  //   margin-right: 30px;
+  //   padding-top: 10px;
+  //   border-top: 1px solid $color-default;
+  // }
+
+  // .footer_interact { display: none; }
+
+  // .footer_apm {
+  //   background-color: transparent;
+  //   color: $color-default;
+  //   padding-top: 10px;
+  //   padding-bottom: 10px;
+
+  //   > .container {
+  //     padding: 0;
+  //   }
+  // }
+
+  // .footer_apm_logo {
+  //   padding-top: 0;
+  //   float: left;
+  //   text-align: left;
+  // }
+
+  // .footer_apm_small {
+  //   float: right;
+  //   text-align: right;
+  // }
+
+  // .footer_logo {
+  //   height: 20px;
+  //   width: 20px;
+  // }
+
+  // .footer_apmLogo {
+  //   fill: $color-default;
+  //   width: 150px;
+  // }
+}
