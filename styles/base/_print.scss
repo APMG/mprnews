@@ -180,6 +180,7 @@
   .home_main .vList-collection {
     // move all stories (except the top story)
     // into a three-column layout 
+    clear: both;
     display: block;
     column-count: 3;
     column-width: 1.75in;
@@ -233,8 +234,27 @@
 
   // Collection columns
 
+  .collection_body {
+    // don't let floating headshots escape…
+    @include clearfix();
+
+    // and line them up with the right column
+    .figure {
+      width: calc(33.3% - 0.333in);
+    }
+    .figure.figure-right {
+      float: right;
+      margin-left: 0.5in;
+    }
+    .figure.figure-right {
+      float: left;
+      margin-right: 0.5in;
+    }
+  }
+
   .collection_items {
     // move all story teasers into 3 columns
+    clear: both;
     display: block;
     column-count: 3;
     column-width: 1.75in;
@@ -272,4 +292,6 @@
       border-radius: 0.5em;
     }
   }
-}
+
+
+} // end print media query
