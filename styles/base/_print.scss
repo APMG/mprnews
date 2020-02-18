@@ -238,7 +238,7 @@
     // don't let floating headshots escape…
     @include clearfix();
 
-    // and line them up with the right column
+    // and line them up with the appropriate column
     .figure {
       width: calc(33.3% - 0.333in);
     }
@@ -246,7 +246,7 @@
       float: right;
       margin-left: 0.5in;
     }
-    .figure.figure-right {
+    .figure.figure-left {
       float: left;
       margin-right: 0.5in;
     }
@@ -293,5 +293,35 @@
     }
   }
 
+  .collection[data-mpr-content-topic="MPR News Podcasts"] {
+    // Podcast list needs a little extra love
+    h3 {
+      clear: both;
+      break-after: avoid;
+      margin-top: 2em;
+    }
+
+    figure,
+    p {
+      // Everything is a sibling, but try not to split them up
+      // (Browser support is not great here)
+      break-before: avoid;
+      break-inside: avoid;
+    }
+
+    .figure {
+      width: calc(16.6% - 0.333in);
+      margin-bottom: 2em;
+    }
+
+    h3+p,
+    figure+p,
+    .figure_caption {
+      // these are all irrelevant (links to podcast subscription)
+      // or redundant (image captions) in print
+      display: none;
+    }
+
+  }
 
 } // end print media query
