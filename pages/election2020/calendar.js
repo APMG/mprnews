@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import fetch from 'isomorphic-unfetch';
-import Calendar from '../endpoints/Calendar/Calendar';
+import Calendar from '../../endpoints/Calendar/Calendar';
 import absoluteUrl from 'next-absolute-url';
 
 const CalendarPage = ({ events }) => {
