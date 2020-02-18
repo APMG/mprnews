@@ -33,6 +33,46 @@
     'sidebar items'
     'sidebar pager';
   }
+
+  &.twoColumn {
+    display: block;
+
+    @include media($media-small-tablet) {
+      // sass-lint:disable no-vendor-prefixes
+      display: -ms-grid;
+      // sass-lint:disable no-duplicate-properties
+      display: grid;
+      -ms-grid-columns: 180px 30px 1fr;
+      grid-template-columns: minmax(180px, 30%) 1fr;
+      grid-column-gap: 30px;
+      grid-template-areas:
+      'header header'
+      'body body'
+      'section section'
+      'sectionItems sectionItems'
+      'pager pager';
+    }
+
+    @include media($media-tablet) {
+      display: block;
+      margin-left: $container-edge-larger;
+    }
+
+    @include media($media-desktop) {
+      // sass-lint:disable no-vendor-prefixes
+      display: -ms-grid;
+      // sass-lint:disable no-duplicate-properties
+      display: grid;
+      grid-template-columns: minmax(30%, 180px) 1fr;
+      grid-column-gap: 30px;
+      grid-template-areas:
+      'header header'
+      'body body'
+      'section section'
+      'sectionItems sectionItems'
+      'pager pager';
+    }
+  }
 }
 
 .collection_header {
@@ -60,6 +100,209 @@
   }
 }
 
+.collection_section {
+  grid-area: section;
+  padding: 2rem 0 1em;
+  margin-bottom: 1em;
+}
+
+.collection_sectionBody {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  > * {
+    margin-right: 1rem;
+  }
+
+  @include media($media-small-tablet) {
+    flex-direction: row;
+
+    > * {
+      margin-right: 0;
+    }
+  }
+
+  @include media($media-tablet) {
+    flex-direction: row;
+
+    > * {
+      margin-right: 1rem;
+    }
+  }
+
+  @include media($media-desktop) {
+
+    > * {
+      margin-right: 1.5rem;
+    }
+
+    > &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.collection_teaserSection {
+  grid-area: sectionItems;
+
+  > * {
+    margin-bottom: 6rem;
+  }
+
+  @include media($media-small-tablet) {
+    -ms-grid-column: 3;
+    -ms-grid-row: 3;
+  }
+
+  @include media($media-desktop) {
+    -ms-grid-row: 4;
+  }
+}
+
+.collection_teaserSection-twoColumn {
+  > * {
+    margin-bottom: 6rem;
+  }
+
+  @include media($media-small-tablet) {
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 3;
+    -ms-grid-row: 3;
+  }
+
+  @include media($media-desktop) {
+    -ms-grid-row: 4;
+  }
+}
+
+.collection_teaserTwoColumn {
+  display: block;
+  margin-bottom: 2em;
+
+  @include media($media-small-tablet) {
+    // sass-lint:disable no-vendor-prefixes
+    display: -ms-grid;
+    // sass-lint:disable no-duplicate-properties
+    display: grid;
+    grid-template-columns: 1fr 40%;
+    grid-column-gap: 40px;
+    grid-row-gap: 20px;
+    -ms-grid-columns: 45% 10% 45%;
+  }
+
+  @include media($media-desktop) {
+    grid-column-gap: 50px;
+    grid-row-gap: 30px;
+  }
+
+  > * {
+    margin-bottom: 2em;
+
+    @include media($media-small-tablet) {
+      margin-bottom: 0;
+    }
+
+    &::after {
+      content: '';
+      display: block;
+      height: 1px;
+      width: 80%;
+      margin: 3rem auto;
+      background: $color-blue-tint;
+
+      @include media($media-small-tablet) {
+        content: '';
+        margin: 1rem auto;
+        background: transparent;
+      }
+    }
+  }
+
+  > :first-child {
+    @include media($media-small-tablet) {
+      order: 1;
+      -ms-flex-order: 1;
+      -ms-grid-column: 1;
+      -ms-grid-row: 1;
+    }
+  }
+
+  > :nth-child(2) {
+    @include media($media-small-tablet) {
+      order: 3;
+      -ms-flex-order: 3;
+      -ms-grid-column: 3;
+      -ms-grid-row: 1;
+    }
+  }
+
+  > :nth-child(3) {
+    @include media($media-small-tablet) {
+      order: 2;
+      -ms-flex-order: 2;
+      -ms-grid-column: 1;
+      -ms-grid-row: 2;
+    }
+  }
+
+  > :nth-child(4) {
+    @include media($media-small-tablet) {
+      order: 4;
+      -ms-flex-order: 4;
+      -ms-grid-column: 3;
+      -ms-grid-row: 2;
+    }
+  }
+
+  > :nth-child(1),
+  > :nth-child(2)  {
+
+    .teaser_image {
+      @include media($media-small-tablet) {
+        float: left;
+        margin: 5px 20px 15px 0;
+        width: 100%;
+
+        &:empty {
+          display: none;
+        }
+      }
+
+      @include media($media-wide) {
+        width: 220px;
+      }
+    }
+  }
+
+  > :nth-child(3),
+  > :nth-child(4) {
+
+
+    .teaser_image {
+      @include media($media-small-tablet) {
+        float: left;
+        margin: 5px 20px 15px 0;
+        width: 100%;
+
+        &:empty {
+          display: none;
+        }
+      }
+
+      @include media($media-wide) {
+        width: 120px;
+      }
+    }
+
+    .hdg-2 {
+      @include hdg-3();
+    }
+  }
+}
+
+// Styles below are fpr default collection template
+// Collection is in the sidebar in the default collection template
 .collection_sidebar {
   grid-area: sidebar;
 
@@ -85,8 +328,8 @@
   flex-wrap: wrap;
 
   > * {
-    margin-bottom: 1rem;
     margin-right: 1rem;
+    margin-bottom: 1rem;
   }
 
   @include media($media-small-tablet) {
