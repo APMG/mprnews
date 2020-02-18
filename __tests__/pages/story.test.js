@@ -5,7 +5,8 @@ const mockResponse = () => {
     status: jest.fn().mockReturnThis(),
     writeHead: jest.fn((url) => `Redirected to ${url}`),
     statusCode: jest.fn(() => 200),
-    memberDriveData: 'such data'
+    memberDriveData: 'such data',
+    setHeader: jest.fn()
   };
   return res;
 };
@@ -27,25 +28,23 @@ jest.mock('../../lib/init-apollo', () => () => {
 });
 
 describe('Story.getInitialProps', () => {
-  xit('redirects when story url is non canonical', async () => {
+  it('redirects when story url is non canonical', async () => {
     const req = {};
     const res = mockResponse();
     const query = {
-      slug: ['Non-CanonicalUrl'],
-      previewToken: 'wow!'
+      slug: ['Non-CanonicalUrl']
     };
     await Story.getInitialProps({ query, req, res });
     expect(res.writeHead).toHaveBeenCalledWith(301, {
-      Location: '/preview/story/canonicalUrl?token=wow!'
+      Location: '/story/canonicalUrl'
     });
   });
 
-  xit('Does not redirects when story url is canonical', async () => {
+  it('Does not redirects when story url is canonical', async () => {
     const req = {};
     const res = mockResponse();
     const query = {
-      slug: ['canonicalUrl'],
-      previewToken: 'wow!'
+      slug: ['canonicalUrl']
     };
     const { data, errorCode, memberDriveData } = await Story.getInitialProps({
       query,

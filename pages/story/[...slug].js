@@ -50,9 +50,11 @@ StoryPage.getInitialProps = async ({
   })
     .then((result) => {
       data = result.data;
+
       if (res) {
         res.setHeader('Cache-Control', 'public, max-age=60');
       }
+
       if (!data.story) {
         res.statusCode = 404;
         errorCode = res.statusCode > 200 ? res.statusCode : false;
@@ -63,8 +65,9 @@ StoryPage.getInitialProps = async ({
         data.story.canonicalSlug !== slug.join('/')
       ) {
         res.writeHead(301, {
-          Location: `/preview/story/${data.story.canonicalSlug}?token=${previewToken}`
+          Location: `/story/${data.story.canonicalSlug}`
         });
+        res.end();
       }
     })
     .catch(() => {
