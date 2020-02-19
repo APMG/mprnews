@@ -185,7 +185,7 @@
     display: -ms-grid;
     // sass-lint:disable no-duplicate-properties
     display: grid;
-    grid-template-columns: 1fr 40%;
+    grid-template-columns: 1fr 1fr;
     grid-column-gap: 40px;
     grid-row-gap: 20px;
     -ms-grid-columns: 45% 10% 45%;
@@ -268,10 +268,6 @@
           display: none;
         }
       }
-
-      @include media($media-wide) {
-        width: 220px;
-      }
     }
   }
 
@@ -288,10 +284,6 @@
         &:empty {
           display: none;
         }
-      }
-
-      @include media($media-wide) {
-        width: 120px;
       }
     }
 
