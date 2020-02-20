@@ -17,7 +17,7 @@ const CollectionContributors = (props) => {
             <div key={index} className="miniBio">
               {contrib.profile.primaryVisuals.thumbnail && (
                 <Link
-                  href={`/people/${contrib.profile.canonicalSlug}`}
+                  href={`/profile?slug=${contrib.profile?.canonicalSlug}`}
                   as={`/people/[...slug]`}
                   className="miniBio_img"
                 >
