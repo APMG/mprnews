@@ -63,10 +63,7 @@ const Collection = ({ data: { collection, alertConfig } }) => {
             />
           </div>
         )}
-        <div
-          className="collection_teaserSection collection_teaserSection-twoColumn"
-          data-testid="twocolumn"
-        >
+        <div className="collection_teaserSection collection_teaserSection-twoColumn">
           <div className="collection_teaserTwoColumn">
             {collection?.results.items.slice(0, 4).map((item) => {
               let isNewspartners = false;

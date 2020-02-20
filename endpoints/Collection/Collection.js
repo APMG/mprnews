@@ -66,7 +66,7 @@ const Collection = ({ data: { collection, alertConfig } }) => {
             />
           </div>
         )}
-        <aside className="collection_sidebar" data-testid="default">
+        <aside className="collection_sidebar">
           {collection?.contributors?.length ? (
             <CollectionContributors contributors={collection.contributors} />
           ) : null}
