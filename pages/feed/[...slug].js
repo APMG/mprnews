@@ -1,9 +1,9 @@
 import { format } from 'date-fns';
-// import React from 'react';
-// import ReactDOMServer from 'react-dom/server';
+import React from 'react';
+import ReactDOMServer from 'react-dom/server';
 import fetch from 'isomorphic-unfetch';
 import { linkByTypeAs } from '../../utils/cjsutils';
-// import { Body } from '@apmg/amat';
+import { Body } from '@apmg/amat';
 
 const Rss = () => {};
 
@@ -65,17 +65,17 @@ Rss.getInitialProps = async ({ query: { slug }, res }) => {
       });
   };
 
-  // function getImage(item) {
-  //   let result;
-  //   const primaryImg = item.primaryVisuals.thumbnail;
+  function getImage(item) {
+    let result;
+    const primaryImg = item.primaryVisuals.thumbnail;
 
-  //   if (primaryImg) {
-  //     result = `<img src="${primaryImg.preferredAspectRatio.instances[0].url}" alt="${primaryImg.shortCaption}" height="${primaryImg.preferredAspectRatio.instances[0].height}" width="${primaryImg.preferredAspectRatio.instances[0].width}"/>`;
-  //   } else {
-  //     result = '';
-  //   }
-  //   return result;
-  // }
+    if (primaryImg) {
+      result = `<img src="${primaryImg.preferredAspectRatio.instances[0].url}" alt="${primaryImg.shortCaption}" height="${primaryImg.preferredAspectRatio.instances[0].height}" width="${primaryImg.preferredAspectRatio.instances[0].width}"/>`;
+    } else {
+      result = '';
+    }
+    return result;
+  }
 
   if (!res) {
     return;
@@ -113,13 +113,13 @@ Rss.getInitialProps = async ({ query: { slug }, res }) => {
         new Date(item.publishDate),
         "yyyy-MM-dd-'T'HH:mm:ssxx"
       );
-      // const ele = React.createElement(Body, {
-      //   nodeData: JSON.parse(item.body),
-      //   embedded: JSON.parse(item.embeddedAssetJson),
-      //   minimal: false
-      // });
-      // const markupImg = getImage(item);
-      // const markup = ReactDOMServer.renderToStaticMarkup(ele);
+      const ele = React.createElement(Body, {
+        nodeData: JSON.parse(item.body),
+        embedded: JSON.parse(item.embeddedAssetJson),
+        minimal: false
+      });
+      const markupImg = getImage(item);
+      const markup = ReactDOMServer.renderToStaticMarkup(ele);
 
       xml += `<item>
                   <title>${item.title.replace(/&/, '&amp;')}</title>
@@ -127,6 +127,7 @@ Rss.getInitialProps = async ({ query: { slug }, res }) => {
                   <guid isPermaLink="true">https://www.mprnews.org${link}</guid>
                   <pubDate>${dte}</pubDate>
                   <description><![CDATA[${item.descriptionText}]]></description>
+                  <content:encoded><![CDATA[${markupImg}${markup}]]></content:encoded>
                 </item>`;
     });
 
