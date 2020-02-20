@@ -17,8 +17,8 @@ const CollectionContributors = (props) => {
             <div key={index} className="miniBio">
               {contrib.profile.primaryVisuals.thumbnail && (
                 <Link
-                  href={`/profile?slug=${contrib.profile?.canonicalSlug}`}
-                  as={`/people/[...slug]`}
+                  as={`/people/${contrib.profile?.canonicalSlug}`}
+                  href={`/people/[...slug]`}
                   className="miniBio_img"
                 >
                   <Image
@@ -31,8 +31,8 @@ const CollectionContributors = (props) => {
               )}
               <div className="miniBio_info">
                 <Link
-                  href={`/profile?slug=${contrib.profile?.canonicalSlug}`}
-                  as={`/people/[...slug]`}
+                  as={`/people/${contrib.profile?.canonicalSlug}`}
+                  href={`/people/[...slug]`}
                   className="miniBio_name"
                 >
                   {contrib.profile.firstName} {contrib.profile.lastName}
