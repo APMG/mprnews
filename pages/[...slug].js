@@ -7,6 +7,7 @@ import collectionQuery from '../endpoints/Collection/collection.gql';
 import pageQuery from '../endpoints/Page/page.gql';
 import Page from '../endpoints/Page/Page';
 import Collection from '../endpoints/Collection/Collection';
+import CollectionTwoColumn from '../endpoints/Collection/CollectionTwoColumn';
 import ContentGrid from '../grids/ContentGrid';
 import Sidebar from '../components/Sidebar/Sidebar';
 import { isNumeric } from '../utils/utils';
@@ -15,9 +16,22 @@ const VariableComponent = (obj) => {
   const { data, slug, type, pageNum } = obj;
   if (obj.errorCode) return <ErrorPage statusCode={obj.errorCode} />;
   if (type === 'collection') {
+    let layoutTemplate;
+    if (data) {
+      layoutTemplate = data.collection.templateName;
+    }
+
+    //Two column name in CMS is twocolumn
+    if (layoutTemplate === 'twocolumn') {
+      return (
+        <ContentGrid sidebar={<Sidebar />}>
+          <CollectionTwoColumn data={data} pageNum={pageNum} slug={slug} />
+        </ContentGrid>
+      );
+    }
     return (
       <ContentGrid sidebar={<Sidebar />}>
-        <Collection data={data} slug={slug} pageNum={pageNum} />
+        <Collection data={data} pageNum={pageNum} slug={slug} />
       </ContentGrid>
     );
   }
