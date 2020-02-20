@@ -46,9 +46,10 @@ HomePage.getInitialProps = async ({ res }) => {
         errorCode = res.statusCode > 200 ? res.statusCode : false;
       }
     })
-    .catch(() => {
-      res.statusCode = 404;
+    .catch((err) => {
+      res.statusCode = 500;
       errorCode = res.statusCode > 200 ? res.statusCode : false;
+      console.error(err);
     });
 
   return { data, errorCode, memberDriveData };
