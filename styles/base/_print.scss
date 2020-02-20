@@ -179,7 +179,7 @@
 
   .home_main .vList-collection {
     // move all stories (except the top story)
-    // into a three-column layout 
+    // into a three-column layout
     clear: both;
     display: block;
     column-count: 3;
@@ -210,7 +210,7 @@
     align-items: flex-start;
     justify-content: space-between;
 
-    // these settings align w/ 2 columns + 1 gutter 
+    // these settings align w/ 2 columns + 1 gutter
     .teaser_image {
       order: 2;
       flex-basis: 0.5in;
@@ -226,7 +226,7 @@
       margin-right: 0.25in;
     }
 
-    // boost the font size a little for the feature 
+    // boost the font size a little for the feature
     .teaser_body {
       font-size: 1.6rem;
     }
@@ -277,20 +277,8 @@
   }
 
   .collection_pagination {
-    // tighten the spacing around the pagination
-    margin: 1rem 0 0;
-
-    // don't show the navigation buttons
-    .pagination_page-prev,
-    .pagination_page-next {
-      display: none;
-    }
-
-    // visually emphasize the current page
-    .pagination_page-current {
-      border: 1px solid $color-grey-50;
-      border-radius: 0.5em;
-    }
+    // hide pagination controls
+    display: none;
   }
 
   .collection[data-mpr-content-topic="MPR News Podcasts"] {
@@ -314,14 +302,12 @@
       margin-bottom: 2em;
     }
 
-    h3+p,
-    figure+p,
+    h3 + p,
+    figure + p,
     .figure_caption {
       // these are all irrelevant (links to podcast subscription)
       // or redundant (image captions) in print
       display: none;
     }
-
   }
-
 } // end print media query
