@@ -11,7 +11,7 @@ const CollectionContributors = (props) => {
           Contributors
         </Heading>
       </div>
-      <div className="collection_sidebarBody">
+      <div className="collection_sectionBody">
         {props.contributors.map((contrib, index) => {
           return (
             <div key={index} className="miniBio">
