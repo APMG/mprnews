@@ -6,10 +6,14 @@ import classNames from 'classnames';
 class AudioPlayer extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      mounted: false
+    };
   }
 
   componentDidMount() {
     this.props.loadPlayer();
+    this.setState({ mounted: true });
   }
 
   render() {
@@ -17,6 +21,7 @@ class AudioPlayer extends React.Component {
       playerWrapper: true,
       'is-sticky': this.props.isAudioPlaying
     });
+    const { mounted } = this.state;
     return (
       <div className={playerClasses}>
         <div
@@ -29,13 +34,17 @@ class AudioPlayer extends React.Component {
           data-src={this.props.audioSource}
           ref={this.props.playerRef}
         >
-          <audio
-            id="main-audio"
-            preload="metadata"
-            ref={this.props.audioElementRef}
-          />
+          {mounted && (
+            <>
+              <audio
+                id="main-audio"
+                preload="metadata"
+                ref={this.props.audioElementRef}
+              />
 
-          <AudioPlayerUI {...this.props} />
+              <AudioPlayerUI {...this.props} />
+            </>
+          )}
         </div>
       </div>
     );
