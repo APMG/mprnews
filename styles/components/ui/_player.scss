@@ -13,10 +13,12 @@ $_timeline-mobile-width: 12em;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   box-shadow: 0 14px 32px 0 rgba($color-black, .75);
+  min-height: $player-height;
   width: 100%;
 
   @include media($media-tablet) {
     box-shadow: none;
+    min-height: $player-height-desktop;
   }
 
   &.is-live {
