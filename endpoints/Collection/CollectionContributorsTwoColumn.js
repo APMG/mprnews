@@ -18,6 +18,7 @@ const CollectionContributors = (props) => {
               {contrib.profile.primaryVisuals.thumbnail && (
                 <Link
                   href={`/people/${contrib.profile.canonicalSlug}`}
+                  as={`/people/[...slug]`}
                   className="miniBio_img"
                 >
                   <Image
