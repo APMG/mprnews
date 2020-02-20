@@ -13,6 +13,7 @@ import Alert from '../../components/Alert/Alert';
 const Home = (data) => {
   const alerts = JSON.parse(data.alertConfig.json);
   const homeStoryConfig = JSON.parse(data.homeStoryConfig.json);
+  JSON.parse(data.electionConfig.json); //@TODO use this for election widget
   const firstItem = data.homeList.results.items[0];
   const homepageTopic = 'homepage';
   return (
