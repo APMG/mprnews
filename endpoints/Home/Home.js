@@ -9,11 +9,15 @@ import Metatags from '../../components/Metatags/Metatags';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import { showInfoAlert } from '../../utils/utils';
 import Alert from '../../components/Alert/Alert';
+import PresidentialPrimaryWidget from '../../components/PresidentialPrimaryWidget/PresidentialPrimaryWidget';
 
 const Home = (data) => {
   const alerts = JSON.parse(data.alertConfig.json);
   const homeStoryConfig = JSON.parse(data.homeStoryConfig.json);
-  JSON.parse(data.electionConfig.json); //@TODO use this for election widget
+  const electionConfig = data.electionConfig?.json
+    ? JSON.parse(data.electionConfig.json)
+    : null;
+
   const firstItem = data.homeList.results.items[0];
   const homepageTopic = 'homepage';
   return (
@@ -38,6 +42,14 @@ const Home = (data) => {
             <div className="section section-md">
               <Alert info={alerts.info} />
             </div>
+          ) : null
+        }
+        widget={
+          electionConfig ? (
+            <PresidentialPrimaryWidget
+              states={electionConfig.states}
+              showDelegateCount={electionConfig.show_delegate_count}
+            />
           ) : null
         }
         footer={<HomeFooter />}
