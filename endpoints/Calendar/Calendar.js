@@ -6,7 +6,7 @@ import { Link, Button } from '@apmg/titan';
 
 const Calendar = ({ events }) => {
   const formatDate = (date) => {
-    return <Time dateTime={date} formatString="MMM d, yyyy" />;
+    return <Time dateTime={`${date} 00:00:00`} formatString="MMM d, yyyy" />;
   };
 
   const buildDescription = (event) => {
