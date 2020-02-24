@@ -45,7 +45,9 @@ const Home = (data) => {
           ) : null
         }
         widget={
-          electionConfig ? (
+          electionConfig &&
+          (electionConfig.states?.length ||
+            electionConfig.show_delegate_count) ? (
             <PresidentialPrimaryWidget
               states={electionConfig.states}
               showDelegateCount={electionConfig.show_delegate_count}

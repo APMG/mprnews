@@ -9,11 +9,18 @@ const PresidentialPrimaryResults = ({ states, api }) => {
     `${process.env.ELECTIONS_API}/2020/presidential_primary_races?party=Dem`;
 
   const data = useData(api);
+
   if (data === undefined) {
     return <Loading />;
   } else if (typeof data !== 'object') {
     return <div>{data}</div>;
   }
+
+  const MNFirst = (a, b) => {
+    if (a.state_postal == 'MN') return -1;
+    if (b.state_postal == 'MN') return 1;
+    return 0;
+  };
 
   return (
     <div className="section">
@@ -28,6 +35,7 @@ const PresidentialPrimaryResults = ({ states, api }) => {
           ?.filter((state) => {
             return states.includes(state.state_postal);
           })
+          .sort(MNFirst)
           .map((state) => {
             return <StateRow {...state} key={state.state_postal} />;
           })}
