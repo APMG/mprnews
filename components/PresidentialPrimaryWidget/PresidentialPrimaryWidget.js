@@ -5,7 +5,10 @@ import { Link } from '@apmg/titan';
 import Icon from '../Icons/Icon';
 import PropTypes from 'prop-types';
 
-const PresidentialPrimaryWidget = ({ states, showDelegateCount = true }) => {
+const PresidentialPrimaryWidget = ({ states, showDelegateCount }) => {
+  if (!states?.length && !showDelegateCount) {
+    return null;
+  }
   return (
     <div className="PresidentialPrimary">
       {showDelegateCount && (
@@ -16,7 +19,7 @@ const PresidentialPrimaryWidget = ({ states, showDelegateCount = true }) => {
           <PresidentialPrimaryDelegates />
         </>
       )}
-      <PresidentialPrimaryResults states={states} />
+      {states?.length && <PresidentialPrimaryResults states={states} />}
       <div className="more-election-results">
         <Link href="https://elections.mpr.org/2020-03-03">
           <span>VIEW MORE RESULTS</span>
@@ -28,7 +31,7 @@ const PresidentialPrimaryWidget = ({ states, showDelegateCount = true }) => {
 };
 
 PresidentialPrimaryWidget.propTypes = {
-  states: PropTypes.arrayOf(PropTypes.string).isRequired,
+  states: PropTypes.arrayOf(PropTypes.string),
   showDelegateCount: PropTypes.bool
 };
 
