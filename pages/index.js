@@ -4,7 +4,7 @@ import ErrorPage from 'next/error';
 import Home from '../endpoints/Home/Home';
 import Metatags from '../components/Metatags/Metatags';
 import initApollo from '../lib/init-apollo';
-import query from '../endpoints/Home/home.gql';
+import homeQuery from '../endpoints/Home/home.gql';
 import {
   fetchMemberDriveStatus,
   addMemberDriveElements
@@ -29,15 +29,11 @@ const HomePage = ({ data, errorCode }) => {
   );
 };
 
-HomePage.getInitialProps = async (req, res) => {
-  //  console.log('MEMBERSHIP DATA', res.memberDriveData);
+HomePage.getInitialProps = async ({ res }) => {
   let data, errorCode, memberDriveData;
-  if (req) {
-    memberDriveData = req.memberDriveData;
-  }
   const ApolloClient = initApollo();
   await ApolloClient.query({
-    query: query,
+    query: homeQuery,
     variables: {
       contentAreaSlug: process.env.CONTENT_AREA_SLUG,
       slug: 'homepage'
@@ -46,12 +42,14 @@ HomePage.getInitialProps = async (req, res) => {
     .then((result) => {
       data = result.data;
       if (res) {
+        res.setHeader('Cache-Control', 'public, max-age=60');
         errorCode = res.statusCode > 200 ? res.statusCode : false;
       }
     })
-    .catch(() => {
-      res.status(404);
+    .catch((err) => {
+      res.statusCode = 500;
       errorCode = res.statusCode > 200 ? res.statusCode : false;
+      console.error(err);
     });
 
   return { data, errorCode, memberDriveData };

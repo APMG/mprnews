@@ -116,26 +116,27 @@ export function getValueOfMostRecent(weather, arr) {
 }
 
 export function getClosestHourMatch(arr) {
-  let i = closestIndexTo(Date.now(), arr.map((i) => Date.parse(i.endTime)));
+  let i = closestIndexTo(
+    Date.now(),
+    arr.map((i) => Date.parse(i.endTime))
+  );
 
   return arr[i];
 }
 
 // Checks hrefType and return next/link path
-import { format } from 'date-fns';
 
 export function hrefType(item) {
-  const programDate = format(new Date(), 'iii');
   let link;
   switch (item.hrefType) {
     case 'internalLink':
       link = `/${item.href}`;
       break;
     case 'collection':
-      link = `/collection?slug=${item.href}`;
+      link = `/[...slug]`;
       break;
     case 'schedule':
-      link = `/schedule?day=${programDate.toLowerCase()}`;
+      link = `/schedule/[day]`;
       break;
     case 'externalLink':
       link = `${item.href}`;
@@ -164,3 +165,11 @@ export function showInfoAlert(alerts, resourceType) {
 export const audioDownloadPrefix = (playFilePath) => {
   return playFilePath.replace(/%user_agent/, 'web');
 };
+
+export function isNumeric(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
+export function protocol() {
+  return process.env.SCHEDULER_PROTOCOL || 'https';
+}

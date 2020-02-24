@@ -273,8 +273,28 @@ const icons = [
     icon: WeatherIconTornado
   },
   {
+    code: 'tornado',
+    time: 'day',
+    icon: WeatherIconTornado
+  },
+  {
+    code: 'tornado',
+    time: 'night',
+    icon: WeatherIconTornado
+  },
+  {
     code: 'hurricane',
     time: 'both',
+    icon: WeatherIconHurricane
+  },
+  {
+    code: 'hurricane',
+    time: 'day',
+    icon: WeatherIconHurricane
+  },
+  {
+    code: 'hurricane',
+    time: 'night',
     icon: WeatherIconHurricane
   },
   {
@@ -283,8 +303,28 @@ const icons = [
     icon: WeatherIconHurricane
   },
   {
+    code: 'tropical_storm',
+    time: 'day',
+    icon: WeatherIconHurricane
+  },
+  {
+    code: 'tropical_storm',
+    time: 'night',
+    icon: WeatherIconHurricane
+  },
+  {
     code: 'dust',
     time: 'both',
+    icon: WeatherIconSandstorm
+  },
+  {
+    code: 'dust',
+    time: 'day',
+    icon: WeatherIconSandstorm
+  },
+  {
+    code: 'dust',
+    time: 'night',
     icon: WeatherIconSandstorm
   },
   {
@@ -293,14 +333,46 @@ const icons = [
     icon: WeatherIconSmoke
   },
   {
+    code: 'smoke',
+    time: 'day',
+    icon: WeatherIconSmoke
+  },
+  {
+    code: 'smoke',
+    time: 'night',
+    icon: WeatherIconSmoke
+  },
+  {
     code: 'haze',
     time: 'both',
     icon: WeatherIconHaze
   },
+  {
+    code: 'haze',
+    time: 'day',
+    icon: WeatherIconHaze
+  },
+  {
+    code: 'haze',
+    time: 'night',
+    icon: WeatherIconHaze
+  },
   { code: 'hot', time: 'both', icon: WeatherIconHot },
+  { code: 'hot', time: 'day', icon: WeatherIconHot },
+  { code: 'hot', time: 'night', icon: WeatherIconHot },
   {
     code: 'cold',
     time: 'both',
+    icon: WeatherIconSnowflake
+  },
+  {
+    code: 'cold',
+    time: 'day',
+    icon: WeatherIconSnowflake
+  },
+  {
+    code: 'cold',
+    time: 'night',
     icon: WeatherIconSnowflake
   },
   {

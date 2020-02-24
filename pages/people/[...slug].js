@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ErrorPage from 'next/error';
-import Profile from '../endpoints/Profile/Profile';
-import initApollo from '../lib/init-apollo';
-import query from '../endpoints/Profile/profile.gql';
+import Profile from '../../endpoints/Profile/Profile';
+import initApollo from '../../lib/init-apollo';
+import query from '../../endpoints/Profile/profile.gql';
 import {
   fetchMemberDriveStatus,
   addMemberDriveElements
-} from '../utils/membershipUtils';
+} from '../../utils/membershipUtils';
+import { isNumeric } from '../../utils/utils';
 
 /* eslint react/display-name: 0 */
 
@@ -24,12 +25,13 @@ const ProfilePage = ({ data, pageNum, errorCode }) => {
 };
 
 ProfilePage.getInitialProps = async ({
-  query: { slug, pageNum = 1, previewToken },
+  query: { slug, previewToken },
   req,
   res
 }) => {
   let data, errorCode;
   let memberDriveData;
+  const pageNum = isNumeric(slug[slug.length - 1]) ? slug.pop() : 1;
   if (req) {
     memberDriveData = res.memberDriveData;
   }
@@ -39,21 +41,24 @@ ProfilePage.getInitialProps = async ({
       query: query,
       variables: {
         contentAreaSlug: process.env.CONTENT_AREA_SLUG,
-        slug: slug,
+        slug: slug.join('/'),
         pageNum: parseInt(pageNum),
         previewToken: previewToken
       }
     })
     .then((result) => {
       data = result.data;
+      if (res) {
+        res.setHeader('Cache-Control', 'public, max-age=60');
+      }
       if (!data.profile) {
-        res.status(404);
+        res.statusCode = 404;
         errorCode = res.statusCode > 200 ? res.statusCode : false;
       }
     })
     .catch((err) => {
       console.error(err);
-      res.status(404);
+      res.statusCode = 404;
       errorCode = res.statusCode > 200 ? res.statusCode : false;
     });
 

@@ -1,20 +1,21 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ErrorPage from 'next/error';
-import Page from '../endpoints/Page/Page';
-import ContentGrid from '../grids/ContentGrid';
-import Sidebar from '../components/Sidebar/Sidebar';
-import initApollo from '../lib/init-apollo';
-import query from '../endpoints/Page/page.gql';
+import Episode from '../../endpoints/Episode/Episode';
+import ContentGrid from '../../grids/ContentGrid';
+import Sidebar from '../../components/Sidebar/Sidebar';
+import initApollo from '../../lib/init-apollo';
+import query from '../../endpoints/Episode/episode.gql';
 import {
   fetchMemberDriveStatus,
   addMemberDriveElements
-} from '../utils/membershipUtils';
+} from '../../utils/membershipUtils';
 
 /* eslint react/display-name: 0 */
 
-const StaticPage = ({ data, errorCode }) => {
+const EpisodePage = ({ data, errorCode }) => {
   if (errorCode) return <ErrorPage statusCode={errorCode} />;
+
   useEffect(() => {
     fetchMemberDriveStatus().then((data) => {
       addMemberDriveElements(data);
@@ -23,19 +24,19 @@ const StaticPage = ({ data, errorCode }) => {
 
   return (
     <ContentGrid sidebar={<Sidebar />}>
-      <Page data={data} />
+      <Episode data={data} />
     </ContentGrid>
   );
 };
 
-StaticPage.getInitialProps = async ({
+EpisodePage.getInitialProps = async ({
   query: { slug, previewToken },
   req,
   res
 }) => {
   let memberDriveData;
   if (req) {
-    memberDriveData = res.memberDriveData;
+    memberDriveData = req.memberDriveData;
   }
   const ApolloClient = initApollo();
   let data, errorCode;
@@ -43,32 +44,35 @@ StaticPage.getInitialProps = async ({
     query: query,
     variables: {
       contentAreaSlug: process.env.CONTENT_AREA_SLUG,
-      slug: slug,
+      slug: slug.join('/'),
       previewToken: previewToken
     }
   })
     .then((result) => {
       data = result.data;
-      if (!data.page) {
-        res.status(404);
+      if (res) {
+        res.setHeader('Cache-Control', 'public, max-age=60');
+      }
+      if (!data.episode) {
+        res.statusCode = 404;
         errorCode = res.statusCode > 200 ? res.statusCode : false;
       }
     })
     .catch(() => {
-      res.status(404);
+      res.statusCode = 404;
       errorCode = res.statusCode > 200 ? res.statusCode : false;
     });
 
   return {
-    data,
-    errorCode,
+    data: data,
+    errorCode: errorCode,
     memberDriveData
   };
 };
 
-StaticPage.propTypes = {
+EpisodePage.propTypes = {
   errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
   data: PropTypes.object
 };
 
-export default StaticPage;
+export default EpisodePage;

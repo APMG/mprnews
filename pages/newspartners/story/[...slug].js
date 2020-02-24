@@ -1,51 +1,50 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ErrorPage from 'next/error';
-import AmpStory from '../endpoints/AmpStory/AmpStory';
-import Story from '../endpoints/Story/Story';
-import initApollo from '../lib/init-apollo';
-import query from '../endpoints/Story/story.gql';
+import Story from '../../../endpoints/Story/Story';
+import initApollo from '../../../lib/init-apollo';
+import query from '../../../endpoints/Story/story.gql';
 
-/* eslint react/display-name: 0 */
-
-const AmpStoryPage = ({ data, errorCode }) => {
+const NewspartnerStory = ({ data, errorCode }) => {
   if (errorCode) return <ErrorPage statusCode={errorCode} />;
-  return <AmpStory data={data} />;
+  return <Story data={data} minimal={true} />;
 };
 
-AmpStoryPage.getInitialProps = async ({ query: { slug }, res }) => {
+NewspartnerStory.getInitialProps = async ({ query: { slug }, res }) => {
   const ApolloClient = initApollo();
   let data, errorCode;
   await ApolloClient.query({
     query: query,
     variables: {
       contentAreaSlug: process.env.CONTENT_AREA_SLUG,
-      slug: slug
+      slug: slug.join('/')
     }
   })
     .then((result) => {
       data = result.data;
-      if (res && !data.story) {
-        res.status(404);
+      if (res) {
+        res.setHeader('Cache-Control', 'public, max-age=60');
+      }
+      if (!data.story) {
+        res.statusCode = 404;
         errorCode = res.statusCode > 200 ? res.statusCode : false;
       }
     })
     .catch(() => {
-      res.status(404);
+      res.statusCode = 404;
       errorCode = res.statusCode > 200 ? res.statusCode : false;
     });
 
   return {
     data,
     errorCode,
-    layout: 'amp'
+    layout: 'newspartners'
   };
 };
 
-AmpStoryPage.propTypes = {
+NewspartnerStory.propTypes = {
   errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
   data: PropTypes.object
 };
 
-export default AmpStoryPage;
-export const config = { amp: true };
+export default NewspartnerStory;

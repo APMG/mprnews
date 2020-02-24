@@ -13,7 +13,7 @@ const Page = ({ data: { page } }) => {
     <>
       <Metatags
         title={page.title}
-        fullSlug={`episode/${page.canonicalSlug}`}
+        fullSlug={page.canonicalSlug}
         description={page.descriptionText}
         image={img?.url}
         imageHeight={img?.height}

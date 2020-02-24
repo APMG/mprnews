@@ -13,7 +13,7 @@ const FullTeaser = ({ item, size, newspartners }) => {
   let linkAs = linkByTypeAs(item);
 
   if (newspartners) {
-    link = link.replace(/story/, 'newspartnerstory');
+    link = link.replace(/story/, 'newspartners/story');
     linkAs = linkAs.replace(/story/, 'newspartners/story');
   }
 
@@ -29,7 +29,7 @@ const FullTeaser = ({ item, size, newspartners }) => {
         } ${contributor.profile?.lastName ? contributor.profile.lastName : ''}`;
       });
     } else {
-      return null;
+      return '';
     }
   };
 

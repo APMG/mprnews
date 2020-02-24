@@ -1,0 +1,5 @@
+query variable($slug: String!,  $contentAreaSlug: String!) {
+  content: content(slug: $slug, contentAreaSlug: $contentAreaSlug) {
+   resourceType
+  } 
+}

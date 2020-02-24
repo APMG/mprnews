@@ -31,6 +31,7 @@ SearchPage.getInitialProps = async ({
     memberDriveData = req.memberDriveData;
   }
   if (res) {
+    res.setHeader('Cache-Control', 'public, max-age= 3600');
     const errorCode = res.statusCode > 200 ? res.statusCode : false;
     return { slug: slug, previewToken: previewToken, errorCode };
   }

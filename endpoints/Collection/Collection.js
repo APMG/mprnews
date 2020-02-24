@@ -11,7 +11,9 @@ import { showInfoAlert } from '../../utils/utils';
 import Alert from '../../components/Alert/Alert';
 
 const Collection = ({ data: { collection, alertConfig } }) => {
-  const alerts = JSON.parse(alertConfig.json);
+  const alerts = () => {
+    if (alertConfig) return JSON.parse(alertConfig.json);
+  };
   const contentTopicCollectionRef = useRef(null);
   let checkCollectionName = `${collection?.title}`;
 
@@ -38,7 +40,7 @@ const Collection = ({ data: { collection, alertConfig } }) => {
         fullSlug={collection.canonicalSlug}
         description={collection.descriptionText}
         image={fishForSocialMediaImage(collection)}
-        topic={collection.title}
+        topic={collection?.title}
         contentType="website"
       />
       {showInfoAlert(alerts, collection.resourceType) ? (
@@ -53,10 +55,10 @@ const Collection = ({ data: { collection, alertConfig } }) => {
       >
         <div className="collection_header">
           <Heading level={1} className="hdg hdg-section">
-            {collection.title}
+            {collection?.title}
           </Heading>
         </div>
-        {collection.body && (
+        {collection?.body && (
           <div className="collection_body userContent">
             <Body
               nodeData={JSON.parse(collection.body)}
@@ -65,7 +67,7 @@ const Collection = ({ data: { collection, alertConfig } }) => {
           </div>
         )}
         <aside className="collection_sidebar">
-          {collection.contributors?.length ? (
+          {collection?.contributors?.length ? (
             <CollectionContributors contributors={collection.contributors} />
           ) : null}
         </aside>
