@@ -89,3 +89,9 @@
   color: $color-text;
   align-self: flex-end;
 }
+
+.hdg.hidden {
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
