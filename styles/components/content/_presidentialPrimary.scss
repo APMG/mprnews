@@ -8,6 +8,7 @@
   $color-election-dark: #004d71;
   $color-light: #eeeeee;
   $color-black-30: rgba(0, 0, 0, .3);
+  $color-green: #62a92f;
   $media-md: 40em; // Tablet, 640px
 
   font-family: $font-family-heading;
@@ -60,7 +61,16 @@
     display: inline-block;
     padding: 0 .25em;
     background: $color-election-dark;
-    color: $color-white;
+    color: $color-light;
+
+    &.winner {
+      background-color: $color-green;
+      color: $color-light;
+
+      .icon-checkmark {
+        fill: $color-light;
+      }
+    }
   }
 
   .results-legend {
