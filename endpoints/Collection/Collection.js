@@ -54,7 +54,12 @@ const Collection = ({ data: { collection, alertConfig } }) => {
         ref={contentTopicCollectionRef}
       >
         <div className="collection_header">
-          <Heading level={1} className="hdg hdg-section">
+          <Heading
+            level={1}
+            className={`hdg hdg-section ${
+              collection.title === 'Election 2020' ? 'hidden' : ''
+            }`}
+          >
             {collection?.title}
           </Heading>
         </div>
