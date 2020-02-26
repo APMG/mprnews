@@ -16,6 +16,9 @@ const Collection = ({ data: { collection, alertConfig } }) => {
   };
   const contentTopicCollectionRef = useRef(null);
   let checkCollectionName = `${collection?.title}`;
+  let collectionClassName = checkCollectionName
+    .toLowerCase()
+    .replace(/\s/g, '');
 
   if (!checkCollectionName) {
     checkCollectionName = 'default';
@@ -56,9 +59,7 @@ const Collection = ({ data: { collection, alertConfig } }) => {
         <div className="collection_header">
           <Heading
             level={1}
-            className={`hdg hdg-section ${
-              collection.title === 'Election 2020' ? 'hidden' : ''
-            }`}
+            className={`hdg hdg-section ${collectionClassName}`}
           >
             {collection?.title}
           </Heading>
