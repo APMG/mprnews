@@ -156,7 +156,7 @@
     display: block;
     column-count: 2;
     column-width: 2.5in;
-    column-gap: 0.5in;
+    column-gap: .5in;
 
     .content_header {
       column-span: all;
@@ -184,7 +184,7 @@
     display: block;
     column-count: 3;
     column-width: 1.75in;
-    column-gap: 0.5in;
+    column-gap: .5in;
 
     // don't split a story over a column break
     .teaserContainer {
@@ -213,9 +213,9 @@
     // these settings align w/ 2 columns + 1 gutter
     .teaser_image {
       order: 2;
-      flex-basis: 0.5in;
+      flex-basis: .5in;
       flex-grow: 2;
-      margin-left: 0.25in;
+      margin-left: .25in;
     }
 
     // these settings align w/ 1 column + no gutter
@@ -223,7 +223,7 @@
       order: 1;
       flex-basis: 0;
       flex-grow: 1;
-      margin-right: 0.25in;
+      margin-right: .25in;
     }
 
     // boost the font size a little for the feature
@@ -240,15 +240,17 @@
 
     // and line them up with the appropriate column
     .figure {
-      width: calc(33.3% - 0.333in);
+      width: calc(33.3% - .333in);
     }
+
     .figure.figure-right {
       float: right;
-      margin-left: 0.5in;
+      margin-left: .5in;
     }
+
     .figure.figure-left {
       float: left;
-      margin-right: 0.5in;
+      margin-right: .5in;
     }
   }
 
@@ -258,7 +260,7 @@
     display: block;
     column-count: 3;
     column-width: 1.75in;
-    column-gap: 0.5in;
+    column-gap: .5in;
 
     // don't split a story over a column break
     .teaserContainer {
@@ -281,7 +283,8 @@
     display: none;
   }
 
-  .collection[data-mpr-content-topic="MPR News Podcasts"] {
+  // sass-lint:disable-block no-qualifying-elements force-attribute-nesting
+  .collection[data-mpr-content-topic='MPR News Podcasts'] {
     // Podcast list needs a little extra love
     h3 {
       clear: both;
@@ -298,7 +301,7 @@
     }
 
     .figure {
-      width: calc(16.6% - 0.333in);
+      width: calc(16.6% - .333in);
       margin-bottom: 2em;
     }
 

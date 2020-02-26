@@ -13,7 +13,9 @@ const Collection = ({ data: { collection, alertConfig } }) => {
   let alerts = alertConfig ? JSON.parse(alertConfig.json) : null;
   const contentTopicCollectionRef = useRef(null);
   let checkCollectionName = `${collection?.title}`;
-
+  let collectionClassName = checkCollectionName
+    .toLowerCase()
+    .replace(/\s/g, '');
   if (!checkCollectionName) {
     checkCollectionName = 'default';
   }
@@ -51,7 +53,10 @@ const Collection = ({ data: { collection, alertConfig } }) => {
         ref={contentTopicCollectionRef}
       >
         <div className="collection_header">
-          <Heading level={1} className="hdg hdg-section">
+          <Heading
+            level={1}
+            className={`hdg hdg-section ${collectionClassName}`}
+          >
             {collection?.title}
           </Heading>
         </div>
