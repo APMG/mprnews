@@ -136,7 +136,7 @@ export function hrefType(item) {
       link = `/[...slug]`;
       break;
     case 'schedule':
-      link = `/schedule/[day]`;
+      link = `/schedule`;
       break;
     case 'externalLink':
       link = `${item.href}`;
