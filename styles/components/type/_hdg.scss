@@ -59,6 +59,13 @@
     border-radius: 3px;
     background: $color-blue-tint;
   }
+
+  //hide collections title but keep text for SEO
+  &.election2020 {
+    visibility: hidden;
+    width: 0;
+    height: 0;
+  }
 }
 
 .hdg-section-small {
@@ -88,11 +95,4 @@
   margin: 0 0 34px 5px;
   color: $color-text;
   align-self: flex-end;
-}
-
-//hide collections title but keep text for SEO
-.hdg.hidden {
-  visibility: hidden;
-  width: 0;
-  height: 0;
 }
