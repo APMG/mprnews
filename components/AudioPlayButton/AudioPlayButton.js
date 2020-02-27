@@ -64,6 +64,9 @@ const AudioPlayButton = (props) => {
                 : props.label}
             </span>
           )}
+          {props.showTitle && props.audioTitle && (
+            <span className="playButton_title">{props.audioTitle}</span>
+          )}
         </button>
       )}
     </AudioPlayerContext.Consumer>
@@ -76,7 +79,8 @@ AudioPlayButton.propTypes = {
   audioTitle: PropTypes.string,
   elementClass: PropTypes.string,
   label: PropTypes.string,
-  size: PropTypes.string
+  size: PropTypes.string,
+  showTitle: PropTypes.bool
 };
 
 export default AudioPlayButton;
