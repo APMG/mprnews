@@ -5,7 +5,11 @@ query contributions(
   $id: String!
 ) {
   profile(contentAreaSlug: $contentAreaSlug, slug: $slug, id: $id) {
-    collection: contributionResults(page: $pageNum, pageSize: 10) {
+    collection: contributionResults(
+      page: $pageNum
+      pageSize: 10
+      contentTypes: [STORIES, EPISODES]
+    ) {
       totalPages
       currentPage
       previousPage
