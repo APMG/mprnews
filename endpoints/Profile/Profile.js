@@ -7,6 +7,9 @@ import { globals } from '../../config/globals';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
 import Metatags from '../../components/Metatags/Metatags';
 import ContributionsContainer from './ContributionsContainer';
+import ApmRelatedLinkListItemOverride from '../../components/AmatOverrides/ApmRelatedLinkListItemOverride';
+import ApmRelatedLinkOverride from '../../components/AmatOverrides/ApmRelatedLinkOverride';
+import LinkOverride from '../../components/AmatOverrides/LinkOverride';
 
 const Profile = ({ data: { profile }, pageNum }) => {
   return (
@@ -63,6 +66,11 @@ const Profile = ({ data: { profile }, pageNum }) => {
                   <Body
                     nodeData={JSON.parse(profile?.body)}
                     embedded={JSON.parse(profile?.embeddedAssetJson)}
+                    overrides={{
+                      link: LinkOverride,
+                      apm_related_link: ApmRelatedLinkOverride,
+                      apm_related_link_list_item: ApmRelatedLinkListItemOverride
+                    }}
                   />
                 )}
               </div>
