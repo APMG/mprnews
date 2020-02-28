@@ -26,7 +26,7 @@ const PresidentialPrimaryResults = ({ states, api }) => {
     if (b.state_postal == 'MN') return 1;
     return 0;
   };
-  console.log(data.meta.election_data_source);
+
   return (
     <div className="section section-sm">
       <div className="presidentialPrimaryResults">
@@ -35,7 +35,7 @@ const PresidentialPrimaryResults = ({ states, api }) => {
           <div className="results-key">Percent and Votes</div>
         </div>
         <div className="results_source">
-          Data Source:{' '}
+          Data Source:
           {data.meta.election_data_source === 'mn_oss' ? 'MN OSS' : 'AP'}
         </div>
         {data.states?.sort(MNFirst).map((state) => {
