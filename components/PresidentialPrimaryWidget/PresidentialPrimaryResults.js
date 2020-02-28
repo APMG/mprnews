@@ -32,9 +32,7 @@ const PresidentialPrimaryResults = ({ states, api }) => {
     <div className="section section-sm">
       <div className="presidentialPrimaryResults">
         <div className="results-legend">
-          <h3 className="results-header">
-            Democratic primary results by state
-          </h3>
+          <h3 className="results-header">Primary results by state</h3>
           <div className="results-key">Percent and Votes</div>
         </div>
         <div className="results_source">Data Source: {dataSource}</div>
