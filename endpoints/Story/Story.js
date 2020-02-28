@@ -84,6 +84,7 @@ const Story = ({ data: { story, alertConfig }, minimal }) => {
               audioTitle={story.primaryAudio.title}
               label="Listen"
               elementClass="playButton-primary"
+              showTitle={true}
             />
           )
         }

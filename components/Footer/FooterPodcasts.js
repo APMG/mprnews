@@ -9,7 +9,9 @@ const FooterPodcasts = (props) => {
     <div className="footer_podcasts">
       <div className="footer_row">
         <Heading level={3} className="hdg hdg-5">
-          <Link href={props.href}>{props.title}</Link>
+          <Link href="/[...slug]" as={props.href}>
+            {props.title}
+          </Link>
         </Heading>
       </div>
       <div className="footer_row">
@@ -18,7 +20,11 @@ const FooterPodcasts = (props) => {
         </div>
       </div>
       <div className="footer_footer">
-        <Link href={props.href} className="link link-plain text-bold">
+        <Link
+          href="/[...slug]"
+          as={props.href}
+          className="link link-plain text-bold"
+        >
           {props.linkLabel}
           <Icon name="chevronRight" />
         </Link>

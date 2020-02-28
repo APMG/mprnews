@@ -8,7 +8,11 @@ const Byline = (props) => {
     let results = [];
     authors.forEach((author) =>
       results.push(
-        <Link href={author.href} as={author.as} className="link link-plain">
+        <Link
+          href="/people/[...slug]"
+          as={author.as}
+          className="link link-plain"
+        >
           {author.title}
         </Link>
       )
