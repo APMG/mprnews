@@ -1,0 +1,29 @@
+query department($contentAreaSlug: String!, $slug: String!) {
+  department: collection(contentAreaSlug: $contentAreaSlug, slug: $slug) {
+    title
+    descriptionText
+    resourceType
+    body
+    embeddedAssetJson
+    canonicalSlug
+    primaryVisuals {
+      social {
+        xid
+        fallback
+      }
+    }
+    results(page: 1, pageSize: 100) {
+      items {
+        title
+        descriptionText
+        canonicalSlug
+        resourceType
+        ... on Profile {
+          email
+          jobTitle
+          phone
+        }
+      }
+    }
+  }
+}
