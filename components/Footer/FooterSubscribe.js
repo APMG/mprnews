@@ -4,7 +4,7 @@ import Link from 'next/link';
 const FooterSubscribe = () => {
   return (
     <div className="footer_subscribe">
-      <Link href="/newsletter" as="/newlsetter">
+      <Link href="/newsletter" as="/newsletter">
         <a className="link link-plain text-bold">
           Subscribe to email newsletters
         </a>
