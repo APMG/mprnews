@@ -1,13 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const IconCheckmark = ({ width = 17, height = 14 }) => {
+const IconCheckmark = ({ width = 12, height = 10 }) => {
   return (
     <svg className="icon icon-checkmark" width={width} height={height}>
-      <path
-        d="M493.139,358.594l2.828,2.829L485.36,372.029l-2.828-2.828-3.624-3.624,2.834-2.793,3.618,3.589Z"
-        transform="translate(-478.906 -358.594)"
-      />
+      <path d="M10.1,0L4.5,5.6L1.9,3L0,4.8l4.5,4.5l7.4-7.4L10.1,0z" />
     </svg>
   );
 };
