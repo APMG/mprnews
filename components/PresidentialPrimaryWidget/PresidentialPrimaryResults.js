@@ -35,7 +35,7 @@ const PresidentialPrimaryResults = ({ states, api }) => {
           <div className="results-key">Percent and Votes</div>
         </div>
         <div className="results_source">
-          Data Source:
+          Data Source:{' '}
           {data.meta.election_data_source === 'mn_oss' ? 'MN OSS' : 'AP'}
         </div>
         {data.states?.sort(MNFirst).map((state) => {
