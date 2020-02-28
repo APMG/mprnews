@@ -16,10 +16,14 @@ const Calendar = ({ events }) => {
     return (
       <>
         :<br />
-        {event.description}
+        <div dangerouslySetInnerHTML={createMarkup(event.description)} />
       </>
     );
   };
+
+  function createMarkup(markup) {
+    return { __html: markup };
+  }
   // className="btn btn-small"
   const downloadLinks = () => {
     return (
