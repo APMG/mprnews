@@ -14,14 +14,14 @@ const PresidentialPrimaryWidget = ({ states, showDelegateCount }) => {
       {showDelegateCount && (
         <>
           <div className="section_header">
-            <h2 className="hdg hdg-2">Super Tuesday 2020 Results</h2>
+            <h2 className="hdg hdg-2">Election Results</h2>
           </div>
           <PresidentialPrimaryDelegates />
         </>
       )}
       {states?.length && <PresidentialPrimaryResults states={states} />}
       <div className="resultsLink">
-        <Link href="https://elections.mpr.org/2020-03-03">
+        <Link href="[...slug]" as="/politics/election-2020">
           View More Results
           <Icon name="chevronRight" />
         </Link>

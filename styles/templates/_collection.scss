@@ -230,8 +230,8 @@
 
   > :nth-child(2) {
     @include media($media-small-tablet) {
-      order: 3;
-      -ms-flex-order: 3;
+      order: 2;
+      -ms-flex-order: 2;
       -ms-grid-column: 3;
       -ms-grid-row: 1;
     }
@@ -239,8 +239,8 @@
 
   > :nth-child(3) {
     @include media($media-small-tablet) {
-      order: 2;
-      -ms-flex-order: 2;
+      order: 3;
+      -ms-flex-order: 3;
       -ms-grid-column: 1;
       -ms-grid-row: 2;
     }
