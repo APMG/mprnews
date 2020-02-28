@@ -20,9 +20,9 @@ const PresidentialPrimaryWidget = ({ states, showDelegateCount }) => {
         </>
       )}
       {states?.length && <PresidentialPrimaryResults states={states} />}
-      <div className="more-election-results">
+      <div className="resultsLink">
         <Link href="https://elections.mpr.org/2020-03-03">
-          <span>VIEW MORE RESULTS</span>
+          View More Results
           <Icon name="chevronRight" />
         </Link>
       </div>
