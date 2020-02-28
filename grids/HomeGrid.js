@@ -10,6 +10,7 @@ const HomeGrid = (props) => {
 
   return (
     <div className={classes}>
+      {props.widget && <div className="home_top">{props.widget}</div>}
       {props.top && <div className="home_top">{props.top}</div>}
       <div className="home_first">{props.first}</div>
       <div className="home_main">{props.children}</div>
@@ -27,7 +28,8 @@ HomeGrid.propTypes = {
   footer: PropTypes.node,
   rail: PropTypes.node,
   sidebar: PropTypes.node,
-  top: PropTypes.node
+  top: PropTypes.node,
+  widget: PropTypes.node
 };
 
 export default HomeGrid;

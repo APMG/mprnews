@@ -70,6 +70,7 @@ const Episode = ({ data: { episode, alertConfig } }) => {
               audioTitle={episode.primaryAudio.title}
               label="Listen"
               elementClass="playButton-primary"
+              showTitle={true}
             />
           )
         }

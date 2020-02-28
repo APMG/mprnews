@@ -74,9 +74,7 @@ const HomeRail = (props) => {
               <ul className="vList">
                 {sections.map((section) => {
                   const href =
-                    section.href === 'weather'
-                      ? '/weather'
-                      : `/collection?slug=${section.href}`;
+                    section.href === 'weather' ? '/weather' : `/[...slug]`;
                   return (
                     <li key={`${section.text}${section.href}`}>
                       <Link

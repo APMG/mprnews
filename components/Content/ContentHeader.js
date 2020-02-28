@@ -41,7 +41,7 @@ const ContentHeader = (props) => {
           ref={contentTopicHeaderRef}
         >
           <Link
-            href={`/collection?slug=${props.tag.to}`}
+            href={props.tag.href}
             as={`/${props.tag.to}`}
             className="link link-none"
           >
@@ -100,6 +100,7 @@ ContentHeader.propTypes = {
   dateline: PropTypes.string,
   tag: PropTypes.shape({
     to: PropTypes.string,
+    href: PropTypes.string,
     tagName: PropTypes.string
   }),
   title: PropTypes.string.isRequired

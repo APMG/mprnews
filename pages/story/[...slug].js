@@ -71,8 +71,10 @@ StoryPage.getInitialProps = async ({
       }
     })
     .catch(() => {
-      res.statusCode = 404;
-      errorCode = res.statusCode > 200 ? res.statusCode : false;
+      if (res) {
+        res.statusCode = 404;
+        errorCode = res.statusCode > 200 ? res.statusCode : false;
+      }
     });
 
   return {

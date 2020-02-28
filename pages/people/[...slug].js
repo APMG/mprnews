@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ErrorPage from 'next/error';
 import Profile from '../../endpoints/Profile/Profile';
 import initApollo from '../../lib/init-apollo';
-import query from '../../endpoints/Profile/profile.gql';
+import profileQuery from '../../endpoints/Profile/profile.gql';
 import {
   fetchMemberDriveStatus,
   addMemberDriveElements
@@ -38,7 +38,7 @@ ProfilePage.getInitialProps = async ({
   const apolloClient = initApollo();
   await apolloClient
     .query({
-      query: query,
+      query: profileQuery,
       variables: {
         contentAreaSlug: process.env.CONTENT_AREA_SLUG,
         slug: slug.join('/'),

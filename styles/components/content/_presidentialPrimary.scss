@@ -1,0 +1,105 @@
+//----------------------------------
+// PresidentialPrimary
+//----------------------------------
+
+.PresidentialPrimary {
+  $border-color: #aaaaaa;
+  $color-mpr-primary: #00334e;
+  $color-election-dark: #004d71;
+  $color-light: #eeeeee;
+  $color-black-30: rgba(0, 0, 0, .3);
+  $color-green: #62a92f;
+  $media-md: 40em; // Tablet, 640px
+
+  font-family: $font-family-heading;
+
+  .row {
+    border-bottom: 1px solid $border-color;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+  }
+
+  .cell {
+    position: relative;
+    width: 100%;
+    flex-basis: 25%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    padding: 10px 10px 10px 3rem;
+  }
+
+  .cell:first-child {
+    padding-left: 10px;
+  }
+
+  .cell:last-child {
+    flex-grow: 1;
+  }
+
+  .cell_icon {
+    position: absolute;
+    left: .5rem;
+    height: 2rem;
+    width: 2rem;
+    border: 2px solid $color-mpr-primary;
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+
+  .cell_name,
+  .cell_vote {
+    white-space: nowrap;
+  }
+
+  .cell_votePercent {
+    display: inline-block;
+    margin-right: .5em;
+  }
+
+  .cell_voteCount {
+    display: inline-block;
+    padding: 0 .25em;
+    background: $color-election-dark;
+    color: $color-light;
+
+    &.winner {
+      background-color: $color-green;
+      color: $color-light;
+
+      .icon-checkmark {
+        fill: $color-light;
+      }
+    }
+  }
+
+  .results-legend {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px solid $border-color;
+    color: $color-mpr-primary;
+  }
+
+  .results-header,
+  .results-key {
+    padding: 10px;
+  }
+
+  .results-minnesota-first + .section {
+    margin-bottom: 10px;
+
+    .row {
+      background-color: $color-light;
+      box-shadow: 0 2px 4px $color-black-30;
+    }
+  }
+
+  @include media-max($media-md) {
+    .row,
+    .results-legend {
+      flex-direction: column;
+    }
+  }
+}

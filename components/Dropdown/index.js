@@ -9,35 +9,28 @@ import { hrefType, hrefTypeAs } from '../../utils/utils';
 
 const Dropdown = () => {
   const ref = useRef();
-  const initialMenuState = { 0: false, 1: false, 2: false };
+  const initialMenuState = [false, false, false];
   OutsideClick(ref, () => {
-    setOpen(initialMenuState);
+    closeMenus();
   });
 
   let [open, setOpen] = useState(initialMenuState);
 
-  const closeItem = (id) => {
-    setOpen(initialMenuState, getToggle);
-    open[id] = false;
+  const closeMenus = () => {
+    setOpen(initialMenuState);
   };
 
   const toggle = (id) => {
     if (open[id] === true) {
-      open = initialMenuState;
-      setOpen({
-        ...open
-      });
-      return;
+      return closeMenus();
     }
-    open = initialMenuState;
-    open[id] = !open[id];
-    setOpen({
-      ...open
-    });
+    let newOpen = [...initialMenuState];
+    newOpen[id] = true;
+    setOpen(newOpen);
   };
 
-  const clickItem = (id) => {
-    closeItem(id);
+  const clickItem = () => {
+    closeMenus();
   };
 
   const getToggle = (text, onClick, isOpen) => {
@@ -100,9 +93,7 @@ const Dropdown = () => {
                                 href={hrefType(item)}
                                 as={hrefTypeAs(item)}
                                 className={`dropdownMenuItem_link ${item.class}`}
-                                onClick={(e) => {
-                                  clickItem(e);
-                                }}
+                                onClick={clickItem}
                               >
                                 {/* eslint-disable-next-line */} {item.text}{' '}
                               </Link>

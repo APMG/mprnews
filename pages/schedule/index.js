@@ -8,7 +8,6 @@ import {
   addMemberDriveElements
 } from '../../utils/membershipUtils';
 import { daysofweek } from '../../server/daysofweek';
-import { protocol } from '../../utils/utils';
 
 const SchedulePage = ({ schedule, errorCode }) => {
   if (!schedule || errorCode) return <ErrorPage statusCode={404} />;
@@ -25,16 +24,20 @@ SchedulePage.getInitialProps = async ({ req, res }) => {
   const dte = new Date();
   const dayofweekIdx = dte.getDay();
   const day = daysofweek()[dayofweekIdx];
-
-  const scheduleUrl = req
-    ? `${protocol()}://${req.headers['host']}/api/schedule/${day}`
-    : `/api/schedule/${day}`;
+  const protocol =
+    typeof window === 'undefined'
+      ? process.env.SCHEDULER_API.split('://')[0]
+      : window.location.protocol;
+  const scheduleUrl =
+    typeof window === 'undefined'
+      ? `${protocol}://${req.headers['host']}/api/schedule/${day}`
+      : `/api/schedule/${day}`;
   const scheduleRes = await fetch(scheduleUrl);
   const props = await scheduleRes.json();
 
   if (res) {
     const errorCode = res.statusCode > 200 ? res.statusCode : false;
-    //  res.setHeader('Cache-Control', 'public, max-age=60');
+    res.setHeader('Cache-Control', 'public, max-age=60');
     return {
       schedule: {
         props,
