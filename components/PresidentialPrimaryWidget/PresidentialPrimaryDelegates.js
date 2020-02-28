@@ -34,9 +34,7 @@ const DelegateRow = ({ results, meta }) => {
   return (
     <div className="delegate-count">
       <div className="results-legend">
-        <h3 className="results-header">
-          Overview of democratic delegate count results
-        </h3>
+        <h3 className="results-header">Democratic delegate count results</h3>
         <div className="results-key">
           {results.total_delegates_needed.toLocaleString('en-US')} to win
         </div>
