@@ -1,0 +1,316 @@
+//--------------------------------------------------
+// Print CSS Styles
+//
+// Override existing styles; try to match
+// the non-print selector as closely as possible.
+//--------------------------------------------------
+
+@media only print {
+  //--------------------------------------------------
+  // DEBUGGING STYLES
+  // These should be commented out or removed
+  // before merging to production.
+  //--------------------------------------------------
+
+  //--------------------------------------------------
+  // PRINT UTILITY CLASSES
+  //--------------------------------------------------
+
+  .print-hide {
+    display: none;
+  }
+
+  .print-show {
+    display: block;
+  }
+
+  .print-showInline {
+    display: inline;
+  }
+
+  .print-showInlineBlock {
+    display: inline-block;
+  }
+
+  //--------------------------------------------------
+  // MAIN STYLE OVERRIDES
+  //--------------------------------------------------
+
+  html {
+    font-size: 50%;
+    // Sets global font size
+  }
+
+  body {
+    // prevent pages being cut off in Firefox
+    display: block;
+    // use actual black text in print
+    color: $color-black;
+    background-color: $color-white;
+  }
+
+  // Global Header
+
+  .header > .header_navButton,
+  .header > .header_navBg,
+  .header > .header_nav,
+  .header > .weatherHeader,
+  .header > .header_search,
+  .header > * {
+    display: none;
+  }
+
+  .header > .header_logo {
+    display: block;
+  }
+
+  div.headerContainer {
+    border-bottom: 0;
+  }
+
+  main.main {
+    margin: 0;
+    padding: 0;
+  }
+
+  // Player
+
+  .playerWrapper {
+    // hide the audio player
+    display: none;
+  }
+
+  // Sidebar: article
+
+  .container .contentGrid {
+    display: block;
+  }
+
+  .contentGrid_sidebar {
+    display: none;
+  }
+
+  // Sidebars: ToC
+
+  .container .home {
+    display: block;
+  }
+
+  .home .home_rail,
+  .home .home_sidebar {
+    display: none;
+  }
+
+  // Sidebars: category index
+
+  .container .collection {
+    display: block;
+    margin: 0;
+  }
+
+  .collection_sidebar {
+    display: none;
+  }
+
+  // Footers
+
+  .footer .footer_upper {
+    display: none;
+  }
+
+  .footer .footer_lower {
+    color: $color-black;
+    background-color: $color-white;
+    margin: 0;
+    padding: 0;
+  }
+
+  .footer .footer_lowerContent,
+  .footer_disclaimer {
+    display: none;
+  }
+
+  // Clutter
+
+  .content .content_social,
+  .content .content_audio {
+    display: none;
+  }
+
+  .apm-related-list,
+  .related-teaser,
+  .teaser_button,
+  .home_more {
+    display: none;
+  }
+
+  //--------------------------------------------------
+  // COLUMNS
+  //--------------------------------------------------
+
+  // Story columns
+
+  .content.story {
+    // when printed, move the story body into two columns
+    // for better readability and less wasted paper
+    display: block;
+    column-count: 2;
+    column-width: 2.5in;
+    column-gap: .5in;
+
+    .content_header {
+      column-span: all;
+    }
+
+    // but make sure column breaks don't create confusion
+    figure,
+    blockquote {
+      break-inside: avoid;
+    }
+
+    h2,
+    h3,
+    h4 {
+      break-after: avoid;
+    }
+  }
+
+  // ToC columns
+
+  .home_main .vList-collection {
+    // move all stories (except the top story)
+    // into a three-column layout
+    clear: both;
+    display: block;
+    column-count: 3;
+    column-width: 1.75in;
+    column-gap: .5in;
+
+    // don't split a story over a column break
+    .teaserContainer {
+      clear: both;
+      break-inside: avoid;
+    }
+
+    // keep the images to scale with the text
+    .teaser-condensed .teaser_image {
+      max-width: 30%;
+    }
+
+    // shrink the gap between stories a bit
+    & > *:not(:last-child)::after {
+      margin: 1em auto;
+    }
+  }
+
+  .home_first .teaser_link {
+    // split the feature story to align with the columns
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    // these settings align w/ 2 columns + 1 gutter
+    .teaser_image {
+      order: 2;
+      flex-basis: .5in;
+      flex-grow: 2;
+      margin-left: .25in;
+    }
+
+    // these settings align w/ 1 column + no gutter
+    .teaser_content {
+      order: 1;
+      flex-basis: 0;
+      flex-grow: 1;
+      margin-right: .25in;
+    }
+
+    // boost the font size a little for the feature
+    .teaser_body {
+      font-size: 1.6rem;
+    }
+  }
+
+  // Collection columns
+
+  .collection_body {
+    // don't let floating headshots escape…
+    @include clearfix();
+
+    // and line them up with the appropriate column
+    .figure {
+      width: calc(33.3% - .333in);
+    }
+
+    .figure.figure-right {
+      float: right;
+      margin-left: .5in;
+    }
+
+    .figure.figure-left {
+      float: left;
+      margin-right: .5in;
+    }
+  }
+
+  .collection_items {
+    // move all story teasers into 3 columns
+    clear: both;
+    display: block;
+    column-count: 3;
+    column-width: 1.75in;
+    column-gap: .5in;
+
+    // don't split a story over a column break
+    .teaserContainer {
+      clear: both;
+      break-inside: avoid;
+    }
+
+    // make the author line visually consistent
+    .teaser_contributors {
+      color: $color-black;
+    }
+
+    .teaser_contributors::before {
+      content: none;
+    }
+  }
+
+  .collection_pagination {
+    // hide pagination controls
+    display: none;
+  }
+
+  // sass-lint:disable-block no-qualifying-elements force-attribute-nesting
+  .collection[data-mpr-content-topic='MPR News Podcasts'] {
+    // Podcast list needs a little extra love
+    h3 {
+      clear: both;
+      break-after: avoid;
+      margin-top: 2em;
+    }
+
+    figure,
+    p {
+      // Everything is a sibling, but try not to split them up
+      // (Browser support is not great here)
+      break-before: avoid;
+      break-inside: avoid;
+    }
+
+    .figure {
+      width: calc(16.6% - .333in);
+      margin-bottom: 2em;
+    }
+
+    h3 + p,
+    figure + p,
+    .figure_caption {
+      // these are all irrelevant (links to podcast subscription)
+      // or redundant (image captions) in print
+      display: none;
+    }
+  }
+} // end print media query

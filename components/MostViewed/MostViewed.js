@@ -30,10 +30,6 @@ const MostViewed = () => {
     return string.replace(' | MPR News', '');
   }
 
-  function parseUrl(url) {
-    return url.replace(`/story/`, '');
-  }
-
   return (
     <div className="mostViewed">
       <div className="module_header">
@@ -48,7 +44,7 @@ const MostViewed = () => {
               return (
                 <li key={i}>
                   <Link
-                    href={`/story?slug=${parseUrl(data.dimensions[0])}`}
+                    href={`/story/[...slug]`}
                     as={`${data.dimensions[0]}`}
                     className="link link-plain"
                   >

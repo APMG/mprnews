@@ -44,7 +44,7 @@ exports.linkByTypeHref = (item) => {
       href = `/schedule/[day]`;
       break;
     case 'profile':
-      href = `/people/[..slug]`;
+      href = `/people/[...slug]`;
       break;
     case 'story':
       href = `/story/[...slug]`;
@@ -54,4 +54,37 @@ exports.linkByTypeHref = (item) => {
       break;
   }
   return href;
+};
+
+exports.analyzeUrl = (url) => {
+  const regex = /^https:\/\/www.mprnews.org(\/story|\/people|\/episode|\/schedule)?(\/.+)?/i;
+  const match = regex.exec(url);
+  if (match) {
+    const [, specialType, slug] = match;
+    let href, as;
+    if (specialType && slug) {
+      href = specialType === '/schedule' ? `${specialType}/[day]` : `${specialType}/[...slug]`;
+      as = `${specialType}${slug}`;
+    } else if (specialType) {
+      href = `${specialType}`;
+      as = `${specialType}`;
+    } else if (slug) {
+      href = '/[...slug]';
+      as = slug;
+    } else {
+      href = '/';
+      as = '/';
+    }
+
+    return {
+      isInternal: true,
+      href: href,
+      as: as
+    }
+  }
+
+  return {
+    isInternal: false,
+    href: url
+  }
 };

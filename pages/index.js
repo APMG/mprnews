@@ -4,7 +4,7 @@ import ErrorPage from 'next/error';
 import Home from '../endpoints/Home/Home';
 import Metatags from '../components/Metatags/Metatags';
 import initApollo from '../lib/init-apollo';
-import query from '../endpoints/Home/home.gql';
+import homeQuery from '../endpoints/Home/home.gql';
 import {
   fetchMemberDriveStatus,
   addMemberDriveElements
@@ -33,7 +33,7 @@ HomePage.getInitialProps = async ({ res }) => {
   let data, errorCode, memberDriveData;
   const ApolloClient = initApollo();
   await ApolloClient.query({
-    query: query,
+    query: homeQuery,
     variables: {
       contentAreaSlug: process.env.CONTENT_AREA_SLUG,
       slug: 'homepage'

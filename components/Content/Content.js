@@ -4,6 +4,9 @@ import classNames from 'classnames';
 import { Figure } from '@apmg/titan';
 import { Body } from '@apmg/amat';
 import ContentHeader from './ContentHeader';
+import ApmRelatedLinkListItemOverride from '../AmatOverrides/ApmRelatedLinkListItemOverride';
+import LinkOverride from '../AmatOverrides/LinkOverride';
+import ApmRelatedLinkOverride from '../AmatOverrides/ApmRelatedLinkOverride';
 
 const Content = ({
   elementClass,
@@ -78,6 +81,11 @@ const Content = ({
             nodeData={JSON.parse(body)}
             embedded={JSON.parse(embeddedAssetJson)}
             minimal={minimal}
+            overrides={{
+              link: LinkOverride,
+              apm_related_link: ApmRelatedLinkOverride,
+              apm_related_link_list_item: ApmRelatedLinkListItemOverride
+            }}
           />
         </div>
       )}

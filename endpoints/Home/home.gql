@@ -90,4 +90,8 @@ query home($contentAreaSlug: String!, $slug: String!) {
     slug
     json
   }
+  electionConfig: potlatch(slug: "mprnews/election-widget-2020") {
+    slug
+    json
+  }
 }

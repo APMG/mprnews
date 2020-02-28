@@ -20,7 +20,11 @@ query profile(
     descriptionText
     resourceType
     embeddedAssetJson
-    results: contributionResults(page: $pageNum, pageSize: 10) {
+    results: contributionResults(
+      page: $pageNum
+      pageSize: 10
+      contentTypes: [STORIES, EPISODES]
+    ) {
       totalPages
       currentPage
       previousPage
