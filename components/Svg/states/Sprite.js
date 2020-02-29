@@ -10,6 +10,7 @@ import MN from './MN';
 import NC from './NC';
 import NH from './NH';
 import OK from './OK';
+import SC from './SC';
 import TN from './TN';
 import TX from './TX';
 import UT from './UT';
@@ -30,6 +31,7 @@ class Svg extends React.Component {
         <NC />
         <NH />
         <OK />
+        <SC />
         <TN />
         <TX />
         <UT />
