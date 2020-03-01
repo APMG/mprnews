@@ -224,13 +224,11 @@
   -ms-grid-column: 1;
 
   @include media($media-small-tablet) {
-    // -ms-grid-row: 2;
     -ms-grid-row: 3;
     -ms-grid-column: 1;
   }
 
   @include media($media-desktop) {
-    // -ms-grid-row: 2;
     -ms-grid-row: 3;
     -ms-grid-column: 4;
   }
@@ -247,7 +245,6 @@
 
 .home_rail {
   grid-area: rail;
-  // -ms-grid-row: 3;
   -ms-grid-row: 4;
   -ms-grid-column: 1;
 
@@ -257,7 +254,6 @@
   }
 
   @include media($media-tablet) {
-    // -ms-grid-row: 3;
     -ms-grid-row: 4;
     -ms-grid-column: 1;
   }
@@ -297,22 +293,18 @@
 
 .home_main {
   grid-area: main;
-  // -ms-grid-row: 4;
   -ms-grid-row: 5;
   -ms-grid-column: 1;
 
   @include media($media-small-tablet) {
-    // -ms-grid-row: 3;
     -ms-grid-row: 4;
   }
 
   @include media($media-tablet) {
-    // -ms-grid-row: 4;
     -ms-grid-row: 5;
   }
 
   @include media($media-desktop) {
-    // -ms-grid-row: 3;
     -ms-grid-row: 4;
     -ms-grid-column: 4;
   }
@@ -323,13 +315,11 @@
 }
 
 .home_sidebar {
-  // -ms-grid-row: 5;
   -ms-grid-row: 7;
   -ms-grid-column: 1;
   grid-area: sidebar;
 
   @include media($media-small-tablet) {
-    // -ms-grid-row: 4;
     -ms-grid-row: 6;
   }
 
@@ -346,7 +336,7 @@
 }
 
 .home_footer {
-  -ms-grid-row: 7;
+  -ms-grid-row: 6;
   -ms-grid-column: 1;
   -ms-grid-row-span: 6;
   grid-area: footer;
