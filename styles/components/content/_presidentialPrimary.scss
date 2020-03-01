@@ -336,13 +336,13 @@ $font-size-default-lg-elections: 18px;
   }
 }
 
-[data-party="GOP"] .stateSvg {
+[data-party='GOP'] .stateSvg {
   svg {
     fill: $color-gop;
   }
 }
 
-[data-party="Dem"] .stateSvg {
+[data-party='Dem'] .stateSvg {
   svg {
     fill: $color-dem;
   }
