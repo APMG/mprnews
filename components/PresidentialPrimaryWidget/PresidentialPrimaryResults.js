@@ -28,7 +28,7 @@ const PresidentialPrimaryResults = ({ states, api }) => {
   };
 
   return (
-    <div className="section section-sm">
+    <div className="section section-sm section-borderBottom">
       <div className="presidentialPrimaryResults">
         <div className="results-legend">
           <h3 className="results-header">Primary results by state</h3>

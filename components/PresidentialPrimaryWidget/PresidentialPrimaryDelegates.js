@@ -18,7 +18,7 @@ const PresidentialPrimaryDelegates = ({ api }) => {
   }
   // console.log(data);
   return (
-    <div className="section section-sm">
+    <div className="section section-sm section-borderBottom">
       <div className="presidentialPrimaryDelegates">
         <DelegateRow results={data.results[0]} meta={data.meta} />
       </div>
@@ -46,7 +46,7 @@ const DelegateRow = ({ results, meta }) => {
         <div className="column column-state">
           <div className="state state-wrapper">
             <div className="state_flex state_marginRight">
-              <div className="stateSvg">
+              <div className="stateSvg stateSvg-national">
                 <Svg statesvg="US" />
               </div>
               <div className="cell cell-national">National</div>

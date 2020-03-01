@@ -38,7 +38,6 @@ $font-size-default-lg-elections: 18px;
 
   .row {
     border-top: 1px solid $border-color;
-    border-bottom: 1px solid $border-color;
     display: flex;
     flex-direction: row;
     align-content: center;
@@ -51,6 +50,7 @@ $font-size-default-lg-elections: 18px;
       border: 0;
     }
   }
+
 
   .row-candidate {
     padding: 10px 0;
@@ -315,9 +315,12 @@ $font-size-default-lg-elections: 18px;
   margin: 4px 8px;
   display: flex;
   align-items: center;
+  position: relative;
+  top: 0;
 
   @include media(64em) {
     margin: 0 8px;
+    top: 7px;
   }
 
   svg {
@@ -333,14 +336,19 @@ $font-size-default-lg-elections: 18px;
   }
 }
 
-[data-party='GOP'] .stateSvg {
+[data-party="GOP"] .stateSvg {
   svg {
     fill: $color-gop;
   }
 }
 
-[data-party='Dem'] .stateSvg {
+[data-party="Dem"] .stateSvg {
   svg {
     fill: $color-dem;
   }
 }
+
+.stateSvg-national {
+  top: 0;
+}
+
