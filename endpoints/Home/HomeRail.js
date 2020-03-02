@@ -20,17 +20,19 @@ const HomeRail = (props) => {
     <>
       {isMounted && (
         <>
-          <div className="home_railLinks">
-            <div className="section section-md">
-              <Link href="politics/election-2020" className="infoLink">
-                <div className="infoLink_title" aria-label="2020 Elections">
-                  <Heading level={2} className="hdg hdg-4">
-                    <Elections2020 elementClass="logo-election-2020" />
-                  </Heading>
-                </div>
-              </Link>
+          {props.showElectionLink && (
+            <div className="home_railLinks">
+              <div className="section section-md">
+                <Link href="politics/election-2020" className="infoLink">
+                  <div className="infoLink_title" aria-label="2020 Elections">
+                    <Heading level={2} className="hdg hdg-4">
+                      <Elections2020 elementClass="logo-election-2020" />
+                    </Heading>
+                  </div>
+                </Link>
+              </div>
             </div>
-          </div>
+          )}
           <Link href="/weather" as="/weather" className="infoLink">
             <div className="infoLink_title">
               <Heading level={2} className="hdg hdg-4">
