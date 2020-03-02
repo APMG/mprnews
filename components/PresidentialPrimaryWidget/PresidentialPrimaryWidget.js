@@ -15,6 +15,14 @@ const PresidentialPrimaryWidget = ({ states, showDelegateCount }) => {
         <>
           <div className="section_header">
             <h2 className="hdg hdg-2">Election Results</h2>
+            <div className="live">
+              {/* We don't yet have a way to determine live vs. final data. Switch these commented sections before/after an election until we figure it out. */}
+              {/* <span className="live_text">Final Results</span> */}
+              <span className="live_text">Updating Live</span>
+              <span className="live_icon">
+                <Icon name="live" />
+              </span>
+            </div>
           </div>
           <PresidentialPrimaryDelegates />
         </>
