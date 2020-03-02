@@ -23,6 +23,11 @@
     width: 32px;
     fill: $color-text;
   }
+
+  > .hdg svg {
+    max-width: 100%;
+    height: auto;
+  }
 }
 
 .infoLink_description {
