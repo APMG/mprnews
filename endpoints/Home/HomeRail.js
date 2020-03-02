@@ -115,7 +115,8 @@ HomeRail.propTypes = {
     canonicalSlug: PropTypes.string,
     resourceType: PropTypes.string,
     title: PropTypes.string
-  })
+  }),
+  showElectionLink: PropTypes.bool
 };
 
 export default React.memo(HomeRail);
