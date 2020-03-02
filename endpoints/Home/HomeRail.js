@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Heading, Link } from '@apmg/titan';
 import InfoLink from '../../components/InfoLink/InfoLink';
+import Elections2020 from '../../components/Logo/Elections2020';
 import WeatherSidebar from '../../components/WeatherSidebar/WeatherSidebar';
 import { dropdownLists } from '../../utils/navConfig';
 
@@ -19,6 +20,17 @@ const HomeRail = (props) => {
     <>
       {isMounted && (
         <>
+          <div className="home_railLinks">
+            <div className="section section-md">
+              <Link href="politics/election-2020" className="infoLink">
+                <div className="infoLink_title" aria-label="2020 Elections">
+                  <Heading level={2} className="hdg hdg-4">
+                    <Elections2020 elementClass="logo-election-2020" />
+                  </Heading>
+                </div>
+              </Link>
+            </div>
+          </div>
           <Link href="/weather" as="/weather" className="infoLink">
             <div className="infoLink_title">
               <Heading level={2} className="hdg hdg-4">
