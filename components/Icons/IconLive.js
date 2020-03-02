@@ -3,7 +3,16 @@ import PropTypes from 'prop-types';
 
 const IconLive = (props) => {
   return (
-    <symbol id="icon-live" width="100" height="100" viewBox="0 0 100 100">
+    <svg
+      width="100"
+      height="100"
+      className={`icon icon-live ${
+        props.elementClass ? props.elementClass : ''
+      }`}
+      viewBox="0 0 100 100"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+    >
       <g fill="#E84B37" fillRule="evenodd">
         <path
           d="M50 70C61 70 70 61 70 50 70 39 61 30 50 30 39 30 30 39 30 50 30 61 39 70 50 70L50 70Z"
@@ -26,7 +35,7 @@ const IconLive = (props) => {
           className="icon-live-wave-2 left"
         />
       </g>
-    </symbol>
+    </svg>
   );
 };
 
