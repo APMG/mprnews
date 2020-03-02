@@ -7,6 +7,7 @@ import IconChevronRight from './IconChevronRight';
 import IconChevronUp from './IconChevronUp';
 import IconEmpty from './IconEmpty';
 import IconFacebook from './IconFacebook';
+import IconLive from './IconLive';
 import IconLocation from './IconLocation';
 import IconMail from './IconMail';
 import IconPause from './IconPause';
@@ -29,6 +30,7 @@ const icons = {
   chevronRight: IconChevronRight,
   chevronUp: IconChevronUp,
   facebook: IconFacebook,
+  live: IconLive,
   location: IconLocation,
   mail: IconMail,
   pause: IconPause,
