@@ -4,6 +4,8 @@ import AL from './AL';
 import AR from './AR';
 import CA from './CA';
 import CO from './CO';
+import IA from './IA';
+import NV from './NV';
 import MA from './MA';
 import ME from './ME';
 import MN from './MN';
@@ -25,6 +27,8 @@ class Svg extends React.Component {
         <AR />
         <CA />
         <CO />
+        <IA />
+        <NV />
         <MA />
         <ME />
         <MN />
