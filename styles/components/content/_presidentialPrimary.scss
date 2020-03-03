@@ -46,13 +46,13 @@ $font-size-default-lg-elections: 18px;
       font-family: $font-family-body-elections;
       font-size: $font-size-default-elections;
       font-style: italic;
-      letter-spacing: -0.03em; // just enough to prevent a collision with the header at all sizes
+      letter-spacing: -.03em; // just enough to prevent a collision with the header at all sizes
     }
 
     .icon-live {
       height: 1.5em;
       width: 1.5em;
-      margin-left: 0.3em;
+      margin-left: .3em;
       vertical-align: text-top;
     }
   }
