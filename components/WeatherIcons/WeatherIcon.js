@@ -398,26 +398,23 @@ const icons = [
 ];
 
 const WeatherIcon = ({ iconUrl, dayOnly, ...rest }) => {
-  let timeRegex = /(\w*day|night\w*)/g;
-  let time = iconUrl.match(timeRegex)[0];
+  const timeRegex = /(\w*day|night\w*)/g;
+  const codeRegex = /(\w*(skc|few|sct|bkn|ovc|snow|rain|sleet|fzra|showers|tsra|hi|tornado|hurricane|tropical|storm|dust|smoke|haze|hot|cold|blizzard|fog)\w*)/g;
+  let icon, time, code;
+  try {
+    time = dayOnly ? 'day' : iconUrl.match(timeRegex)[0];
+    // They will often stick other codes in the URL too and give a sort of split icon for a 20% chance of thunderstorms, but it looks bad and isn't clear so I'm simply going with their first prediction: the one they've called most likely for this hour. The other information (like chance of rain or storm) can be read more clearly in the text accompanying this icon.
+    code = iconUrl.match(codeRegex)[0];
 
-  let codeRegex = /(\w*(skc|few|sct|bkn|ovc|snow|rain|sleet|fzra|showers|tsra|hi|tornado|hurricane|tropical|storm|dust|smoke|haze|hot|cold|blizzard|fog)\w*)/g;
-  // They will often stick other codes in the URL too and give a sort of split icon for a 20% chance of thunderstorms, but it looks bad and isn't clear so I'm simply going with their first prediction: the one they've called most likely for this hour. The other information (like chance of rain or storm) can be read more clearly in the text accompanying this icon.
-  let code = iconUrl.match(codeRegex)[0];
-
-  let icon;
-
-  if (dayOnly) {
-    icon = icons.find((icon) => icon.code === code && icon.time === 'day');
-  } else {
     icon = icons.find((icon) => icon.code === code && icon.time === time);
-  }
-
-  if (icon === undefined) {
-    return <WeatherIconEmpty />;
-  } else {
-    const Element = icon.icon;
-    return <Element {...rest} />;
+    if (icon === undefined) {
+      return <WeatherIconEmpty {...rest} />;
+    } else {
+      const Element = icon.icon;
+      return <Element {...rest} />;
+    }
+  } catch (err) {
+    return <WeatherIconEmpty {...rest} />;
   }
 };
 
