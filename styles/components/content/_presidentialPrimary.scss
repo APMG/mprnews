@@ -36,9 +36,29 @@ $font-size-default-lg-elections: 18px;
     margin-bottom: 20px;
   }
 
+  .section_header {
+    position: relative;
+
+    .live {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      font-family: $font-family-body-elections;
+      font-size: $font-size-default-elections;
+      font-style: italic;
+      letter-spacing: -0.03em; // just enough to prevent a collision with the header at all sizes
+    }
+
+    .icon-live {
+      height: 1.5em;
+      width: 1.5em;
+      margin-left: 0.3em;
+      vertical-align: text-top;
+    }
+  }
+
   .row {
     border-top: 1px solid $border-color;
-    border-bottom: 1px solid $border-color;
     display: flex;
     flex-direction: row;
     align-content: center;
@@ -51,6 +71,7 @@ $font-size-default-lg-elections: 18px;
       border: 0;
     }
   }
+
 
   .row-candidate {
     padding: 10px 0;
@@ -154,7 +175,7 @@ $font-size-default-lg-elections: 18px;
 
   .cell_reporting {
     font-style: italic;
-    font-size: .65em;
+    font-size: .6em;
     position: relative;
     color: $color-mpr-primary;
     align-self: center;
@@ -315,9 +336,12 @@ $font-size-default-lg-elections: 18px;
   margin: 4px 8px;
   display: flex;
   align-items: center;
+  position: relative;
+  top: 0;
 
   @include media(64em) {
     margin: 0 8px;
+    top: 7px;
   }
 
   svg {
@@ -344,3 +368,8 @@ $font-size-default-lg-elections: 18px;
     fill: $color-dem;
   }
 }
+
+.stateSvg-national {
+  top: 0;
+}
+
