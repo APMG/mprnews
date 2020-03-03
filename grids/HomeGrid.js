@@ -10,8 +10,8 @@ const HomeGrid = (props) => {
 
   return (
     <div className={classes}>
-      {props.widget && <div className="home_top">{props.widget}</div>}
       {props.top && <div className="home_top">{props.top}</div>}
+      {props.widget && <div className="home_widget">{props.widget}</div>}
       <div className="home_first">{props.first}</div>
       <div className="home_main">{props.children}</div>
       <div className="home_rail">{props.rail}</div>

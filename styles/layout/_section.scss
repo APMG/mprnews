@@ -2,6 +2,8 @@
 // Section - for vertical spacing
 //----------------------------------------------
 
+$color-mid: #aaaaaa;
+
 .section {
   margin-bottom: 40px;
 
@@ -29,4 +31,8 @@
 .section-page {
   margin-top: 80px;
   margin-bottom: 80px;
+}
+
+.section-borderBottom {
+  border-bottom: 1px solid $color-mid;
 }
