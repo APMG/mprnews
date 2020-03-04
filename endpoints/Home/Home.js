@@ -42,7 +42,7 @@ const Home = (data) => {
             showElectionLink={
               electionConfig &&
               (electionConfig.states?.length ||
-                electionConfig.show_delegate_count)
+                electionConfig.show_election_logo)
                 ? true
                 : false
             }

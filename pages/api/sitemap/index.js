@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-unfetch';
+import absoluteUrl from 'next-absolute-url';
 
 export default async (req, res) => {
   const pageSize = 100;
@@ -12,7 +13,7 @@ export default async (req, res) => {
         }
       `
   });
-  xml += '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`';
+  xml += '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
   const fetchFeedData = async (query) => {
     return await fetch(process.env.GRAPHQL_API, {
       method: 'POST',
@@ -32,13 +33,14 @@ export default async (req, res) => {
         console.error('Error: ', err);
       });
   };
+  const { protocol } = absoluteUrl(req);
   const queryRes = fetchFeedData(query);
   queryRes.then(() => {
     // graphql limited to 100 for now
     // when that limit is solved,  use  results.data.sitemap.totalPages
     for (let page = 1; page <= 100; page++) {
       xml += '<sitemap>';
-      xml += `<loc>${process.env.PROTOCOL}://${req.headers.host}/sitemap/urlset/${page}</loc>`;
+      xml += `<loc>${protocol}//${req.headers.host}/api/sitemap/urlset/${page}</loc>`;
       xml += '</sitemap>';
     }
     xml += '</sitemapindex>';
