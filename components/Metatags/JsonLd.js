@@ -36,7 +36,9 @@ const JsonLd = (props) => {
                     "image": [ "${props.image}"],
                     "datePublished": "${props.publishDate}",
                     "dateModified": "${props.updatedAt || props.publishDate}",
-                    "description": "${props.description.replace(/"/g, '\\"')}",
+                    "description": "${props.description
+                      .trim()
+                      .replace(/"/g, '\\"')}",
                     ${authors},
                     "publisher": {
                       "@type": "Organization",
