@@ -44,20 +44,21 @@
   dependencies:
     cross-fetch "3.0.4"
 
-"@apmg/amat@^0.3.23":
-  version "0.3.23"
-  resolved "https://registry.yarnpkg.com/@apmg/amat/-/amat-0.3.23.tgz#34772ddd9a5fa5955233958d8eee5a30239a07ca"
-  integrity sha512-D59ZIZKR9WGhVvPODccJNpx4Kl/zfWg7sIhgq3ZmujQICdUmVbXudHmvbKtvxagdMdXI2tgrRnEl4zUSNX+/Xg==
+"@apmg/amat@^0.3.25":
+  version "0.3.25"
+  resolved "https://registry.yarnpkg.com/@apmg/amat/-/amat-0.3.25.tgz#9b10552aa3e7e0199947988fab69ca5ada2076d3"
+  integrity sha512-m6CPxu5n6O85ezp818+aYcmapGn/O+4WBv2G+q1+tcUZbQl4y1daWbdEan9XTewHsSaXGYbBocPkF5JZl1+qMw==
   dependencies:
     "@apmg/enceladus" "^0.5.4"
-    "@apmg/mimas" "^0.2.0"
+    "@apmg/mimas" "^0.3.2"
     "@apmg/react-oembed-container" "git://github.com/APMG/react-oembed-container.git#twitter-load-fix"
     "@nprapps/sidechain" "^1.0.12"
-    react "^16.12.0"
-    react-dom "^16.12.0"
+    classnames "^2.2.6"
+    prop-types "^15.7.2"
     react-html-parser "^2.0.2"
     rollup "^1.17.0"
     rollup-plugin-babel "^4.3.3"
+    uuid "^7.0.2"
 
 "@apmg/enceladus@^0.5.4":
   version "0.5.4"
@@ -69,11 +70,6 @@
     "@emotion/styled" "^10.0.15"
     focus-trap-react "^6.0.0"
     react-pose "^4.0.8"
-
-"@apmg/mimas@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@apmg/mimas/-/mimas-0.2.0.tgz#57bdd9f40ec2e4a78babb0ee33535c24e48165d6"
-  integrity sha512-9x3RCo0SQgIE0yrAuWCxLNa1Beh7mNTs12c//V/JpNKQPkBNz2GGbKdrTFCYn7DBlcHUYhDAf9FCyVk9CAulfQ==
 
 "@apmg/mimas@^0.3.2":
   version "0.3.2"
@@ -10344,7 +10340,7 @@ react-apollo@^2.5.6:
     ts-invariant "^0.4.2"
     tslib "^1.9.3"
 
-react-dom@^16.12.0, react-dom@^16.8.6:
+react-dom@^16.8.6:
   version "16.12.0"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.12.0.tgz#0da4b714b8d13c2038c9396b54a92baea633fe11"
   integrity sha512-LMxFfAGrcS3kETtQaCkTKjMiifahaMySFDn71fZUNpPHZQEzmk/GiAeIT8JSOrHB23fnuCOMruL2a8NYlw+8Gw==
@@ -10409,7 +10405,7 @@ react-transition-group@^1.2.0, react-transition-group@^1.2.1:
     prop-types "^15.5.6"
     warning "^3.0.0"
 
-react@^16.1.1, react@^16.12.0, react@^16.8.6:
+react@^16.1.1, react@^16.8.6:
   version "16.12.0"
   resolved "https://registry.yarnpkg.com/react/-/react-16.12.0.tgz#0c0a9c6a142429e3614834d5a778e18aa78a0b83"
   integrity sha512-fglqy3k5E+81pA8s+7K0/T3DBCF0ZDOher1elBFzF7O6arXJgzyu/FW+COxFvAWXJoJN9KIZbT2LXlukwphYTA==
@@ -12534,6 +12530,11 @@ uuid@^3.3.2:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.4.0.tgz#b23e4358afa8a202fe7a100af1f5f883f02007ee"
   integrity sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==
+
+uuid@^7.0.2:
+  version "7.0.2"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-7.0.2.tgz#7ff5c203467e91f5e0d85cfcbaaf7d2ebbca9be6"
+  integrity sha512-vy9V/+pKG+5ZTYKf+VcphF5Oc6EFiu3W8Nv3P3zIh0EqVI80ZxOzuPfe9EHjkFNvf8+xuTHVeei4Drydlx4zjw==
 
 v8-compile-cache@2.0.3:
   version "2.0.3"
