@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from '@apmg/titan';
 import Icon from '../../components/Icons/Icon';
 import { linkByTypeHref, linkByTypeAs } from '../../utils/cjsutils';
-import query from './contributions.gql';
+import contributionsQuery from './contributions.gql';
 import initApollo from '../../lib/init-apollo';
 
 export default class ContributionsContainer extends Component {
@@ -31,7 +31,7 @@ export default class ContributionsContainer extends Component {
     pageNum = parseInt(pageNum);
     const { slug, id } = this.props;
     const result = await this.client.query({
-      query,
+      query: contributionsQuery,
       variables: {
         contentAreaSlug: process.env.CONTENT_AREA_SLUG,
         slug,

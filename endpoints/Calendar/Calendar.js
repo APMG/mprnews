@@ -6,7 +6,7 @@ import { Link, Button } from '@apmg/titan';
 
 const Calendar = ({ events }) => {
   const formatDate = (date) => {
-    return <Time dateTime={date} formatString="MMM d, yyyy" />;
+    return <Time dateTime={`${date} 00:00:00`} formatString="MMM d, yyyy" />;
   };
 
   const buildDescription = (event) => {
@@ -16,10 +16,14 @@ const Calendar = ({ events }) => {
     return (
       <>
         :<br />
-        {event.description}
+        <div dangerouslySetInnerHTML={createMarkup(event.description)} />
       </>
     );
   };
+
+  function createMarkup(markup) {
+    return { __html: markup };
+  }
   // className="btn btn-small"
   const downloadLinks = () => {
     return (

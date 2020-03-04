@@ -2,65 +2,238 @@
 // PresidentialPrimary
 //----------------------------------
 
-.PresidentialPrimary {
-  $border-color: #aaaaaa;
-  $color-mpr-primary: #00334e;
-  $color-election-dark: #004d71;
-  $color-light: #eeeeee;
-  $color-black-30: rgba(0, 0, 0, .3);
-  $media-md: 40em; // Tablet, 640px
+// Media query breakpoints
+$media-md: 40em; // Tablet, 640px
+$media-lg: 52.5625em; // Desktop, 841px
+$media-xl: 70em; // Large Desktop, 1120px
+$color-mpr-primary: #00334e;
+$color-election-dark: #004d71;
+$color-bg: #ffffff;
+$color-light: #eeeeee;
+$color-mid: #aaaaaa;
+$color-text-default: #333333;
+$color-dark: #555555;
+$color-dem: #3584c2;
+$color-gop: #cc0000;
+$color-black-30: rgba(0, 0, 0, .3);
 
-  font-family: $font-family-heading;
+
+// Font Sizes
+$font-family-default-elections: 'Noto Serif', Georgia, serif;
+$font-family-heading-elections: 'Roboto Condensed', 'Arial Narrow', sans-serif;
+$font-family-body-elections: 'Noto Serif', Georgia, serif;
+
+// Font Sizes
+$font-size-default-elections: 14px;
+$font-size-default-lg-elections: 18px;
+
+.PresidentialPrimary {
+  $border-color: $color-mid;
+  font-family: $font-family-heading-elections;
+  margin-bottom: 8px;
+
+  @include media($media-tablet) {
+    margin-bottom: 20px;
+  }
+
+  .section_header {
+    position: relative;
+
+    .live {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      font-family: $font-family-body-elections;
+      font-size: $font-size-default-elections;
+      font-style: italic;
+      letter-spacing: -.03em; // just enough to prevent a collision with the header at all sizes
+    }
+
+    .icon-live {
+      height: 1.5em;
+      width: 1.5em;
+      margin-left: .3em;
+      vertical-align: text-top;
+    }
+  }
 
   .row {
-    border-bottom: 1px solid $border-color;
+    border-top: 1px solid $border-color;
     display: flex;
     flex-direction: row;
     align-content: center;
+
+    @include media($media-lg) {
+      align-items: center;
+    }
+
+    .row {
+      border: 0;
+    }
+  }
+
+
+  .row-candidate {
+    padding: 10px 0;
+  }
+
+  .row-wrap {
+    flex-wrap: wrap;
+  }
+
+  .column-state {
+    width: 100%;
+    min-width: 135px;
+    align-self: start;
+    margin-left: 8px;
+
+    @include media(64em) {
+      width: 10%;
+    }
+  }
+
+  .column-candidate {
+    width: 100%;
+    margin-left: 12px;
+
+    @include media(64em) {
+      width: 77%;
+    }
   }
 
   .cell {
-    position: relative;
+    width: 200px;
+    padding: 0 0 0 2px;
+    font-size: 14px;
+
+    &.cell-candidate {
+      width: 178px;
+    }
+  }
+
+  .cell_row {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .cell-national,
+  .cell-state {
     width: 100%;
-    flex-basis: 25%;
-    flex-grow: 0;
-    flex-shrink: 0;
-    padding: 10px 10px 10px 3rem;
+    display: flex;
+    align-items: center;
+    letter-spacing: -.25px;
+
+    @include media(64em) {
+      width: 90px;
+    }
   }
 
-  .cell:first-child {
-    padding-left: 10px;
-  }
-
-  .cell:last-child {
-    flex-grow: 1;
+  .cell-candidate {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 5px 0 10px;
   }
 
   .cell_icon {
-    position: absolute;
-    left: .5rem;
-    height: 2rem;
-    width: 2rem;
+    height: 36px;
+    width: 36px;
     border: 2px solid $color-mpr-primary;
-    border-radius: 1rem;
+    border-radius: 2rem;
     overflow: hidden;
+    margin: 0 10px 0 0;
+
+    img {
+      display: block;
+      // width: 100%;
+      // height: auto;
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  // add party-specific background colors
+  [data-party='Dem'] .cell_icon {
+    background-color: mix($color-white, $color-dem, 85%);
+  }
+
+  [data-party='GOP'] .cell_icon {
+    background-color: mix($color-white, $color-gop, 85%);
   }
 
   .cell_name,
   .cell_vote {
+    // Keep lines together at the awkward sizes
+    // that are still too big for vertical layout
     white-space: nowrap;
+    display: flex;
   }
+
+  .cell_vote-em {
+    font-style: italic;
+  }
+
+  .cell_reporting {
+    font-style: italic;
+    font-size: .6em;
+    position: relative;
+    color: $color-mpr-primary;
+    align-self: center;
+
+    @include media(64em) {
+      top: -5px;
+      margin-left: 49px;
+    }
+  }
+
+  .cell_name {
+    letter-spacing: -.25px;
+
+    &.roquedelafuente,
+    .totalwrite-ins {
+      letter-spacing: -1px;
+    }
+
+    &.elizabethwarren {
+      letter-spacing: -.65px;
+    }
+  }
+
 
   .cell_votePercent {
     display: inline-block;
-    margin-right: .5em;
+    margin-right: 3px;
+    background: $color-white;
+    padding: 0 1px;
   }
 
   .cell_voteCount {
-    display: inline-block;
+    display: flex;
+    align-items: center;
     padding: 0 .25em;
     background: $color-election-dark;
     color: $color-white;
+
+    &.winner {
+      background-color: darken($color-green, 10%);
+      color: $color-white;
+      font-weight: 700;
+
+      .cell_voteNumber {
+        padding-left: 3px;
+      }
+
+      .icon-checkmark {
+        fill: $color-white;
+      }
+
+      svg {
+        height: 12px;
+        width: 12px;
+        position: relative;
+        top: 1px;
+      }
+    }
   }
 
   .results-legend {
@@ -68,28 +241,135 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: baseline;
-    border-bottom: 1px solid $border-color;
     color: $color-mpr-primary;
+  }
+
+  .results_source {
+    text-transform: uppercase;
+    font-size: .625em;
+    padding: 0 4px 10px;
+  }
+
+  .results-header {
+    font-size: .9em;
+  }
+
+  .resultsLink {
+    a {
+      display: flex;
+      align-items: center;
+      font-family: $font-family-heading-elections;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: $color-mpr-primary;
+    }
+  }
+
+  .results-key {
+    font-size: .8em;
   }
 
   .results-header,
   .results-key {
-    padding: 10px;
+    padding: 10px 4px;
+    font-weight: 700;
+    color: $color-dark;
   }
 
   .results-minnesota-first + .section {
+    // Kind of a workaround to add Minnesota to the top
+    // of the state list and style it differently,
+    // but still look like part of the same list
     margin-bottom: 10px;
 
     .row {
       background-color: $color-light;
       box-shadow: 0 2px 4px $color-black-30;
-    }
-  }
 
-  @include media-max($media-md) {
-    .row,
-    .results-legend {
-      flex-direction: column;
+      .row {
+        box-shadow: none;
+      }
     }
   }
 }
+
+
+
+//----------------------------------
+// State SVGs
+//----------------------------------
+
+.state {
+  display: flex;
+
+  @include media(64em) {
+    display: block;
+  }
+
+  &.state-wrapper {
+    width: 100%;
+    border-bottom: 1px solid $color-light;
+    margin-bottom: 10px;
+
+    @include media(64em) {
+      width: 135px;
+      border: 0;
+    }
+  }
+}
+
+.state_flex {
+  display: flex;
+}
+
+.state_marginRight {
+  margin: 0 10px 0 0;
+}
+
+//----------------------------------
+// State SVGs
+//----------------------------------
+
+.stateSvg {
+  width: 32px;
+  height: 32px;
+  margin: 4px 8px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  top: 0;
+
+  @include media(64em) {
+    margin: 0 8px;
+    top: 7px;
+  }
+
+  svg {
+    display: block;
+    height: 32px;
+    width: 32px;
+    fill: $color-dark;
+
+    @include media(64em) {
+      height: 38px;
+      width: 38px;
+    }
+  }
+}
+
+[data-party='GOP'] .stateSvg {
+  svg {
+    fill: $color-gop;
+  }
+}
+
+[data-party='Dem'] .stateSvg {
+  svg {
+    fill: $color-dem;
+  }
+}
+
+.stateSvg-national {
+  top: 0;
+}
+

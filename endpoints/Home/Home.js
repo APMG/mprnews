@@ -36,7 +36,18 @@ const Home = (data) => {
         blowout={homeStoryConfig?.top_story_blowout}
         sidebar={<Sidebar homepageTopic={homepageTopic} />}
         first={<FullTeaser item={firstItem} />}
-        rail={<HomeRail updraft={data.updraft?.results?.items?.[0]} />}
+        rail={
+          <HomeRail
+            updraft={data.updraft?.results?.items?.[0]}
+            showElectionLink={
+              electionConfig &&
+              (electionConfig.states?.length ||
+                electionConfig.show_delegate_count)
+                ? true
+                : false
+            }
+          />
+        }
         top={
           showInfoAlert(alerts, 'home') ? (
             <div className="section section-md">
@@ -45,7 +56,9 @@ const Home = (data) => {
           ) : null
         }
         widget={
-          electionConfig ? (
+          electionConfig &&
+          (electionConfig.states?.length ||
+            electionConfig.show_delegate_count) ? (
             <PresidentialPrimaryWidget
               states={electionConfig.states}
               showDelegateCount={electionConfig.show_delegate_count}

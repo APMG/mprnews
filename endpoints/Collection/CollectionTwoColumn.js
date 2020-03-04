@@ -8,12 +8,17 @@ import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelper
 import Icon from '../../components/Icons/Icon';
 import { showInfoAlert } from '../../utils/utils';
 import Alert from '../../components/Alert/Alert';
+import ApmRelatedLinkListItemOverride from '../../components/AmatOverrides/ApmRelatedLinkListItemOverride';
+import ApmRelatedLinkOverride from '../../components/AmatOverrides/ApmRelatedLinkOverride';
+import LinkOverride from '../../components/AmatOverrides/LinkOverride';
 
 const Collection = ({ data: { collection, alertConfig } }) => {
   let alerts = alertConfig ? JSON.parse(alertConfig.json) : null;
   const contentTopicCollectionRef = useRef(null);
   let checkCollectionName = `${collection?.title}`;
-
+  let collectionClassName = checkCollectionName
+    .toLowerCase()
+    .replace(/\s/g, '');
   if (!checkCollectionName) {
     checkCollectionName = 'default';
   }
@@ -51,7 +56,10 @@ const Collection = ({ data: { collection, alertConfig } }) => {
         ref={contentTopicCollectionRef}
       >
         <div className="collection_header">
-          <Heading level={1} className="hdg hdg-section">
+          <Heading
+            level={1}
+            className={`hdg hdg-section ${collectionClassName}`}
+          >
             {collection?.title}
           </Heading>
         </div>
@@ -60,6 +68,11 @@ const Collection = ({ data: { collection, alertConfig } }) => {
             <Body
               nodeData={JSON.parse(collection?.body)}
               embedded={JSON.parse(collection?.embeddedAssetJson)}
+              overrides={{
+                link: LinkOverride,
+                apm_related_link: ApmRelatedLinkOverride,
+                apm_related_link_list_item: ApmRelatedLinkListItemOverride
+              }}
             />
           </div>
         )}

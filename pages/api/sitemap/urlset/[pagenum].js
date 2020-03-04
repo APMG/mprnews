@@ -1,5 +1,6 @@
 const { linkByTypeAs } = require('../../../../utils/cjsutils');
 import fetch from 'isomorphic-unfetch';
+import absoluteUrl from 'next-absolute-url';
 
 export default async (req, res) => {
   const pageSize = 100;
@@ -43,12 +44,13 @@ export default async (req, res) => {
         console.error('Error: ', err);
       });
   };
+  const { protocol } = absoluteUrl(req);
   const queryRes = fetchFeedData(query);
   queryRes.then((results) => {
     results.data.sitemap.items.forEach((item) => {
       const path = linkByTypeAs(item);
       xml += '<url>';
-      xml += `<loc>${process.env.PROTOCOL}://${req.headers.host}${path}</loc>`;
+      xml += `<loc>${protocol}//${req.headers.host}${path}</loc>`;
       xml += '</url>';
     });
     xml += '</urlset>';

@@ -60,7 +60,8 @@ export function collectionLinkData(collection) {
   return collection?.title && collection?.canonicalSlug
     ? {
         tagName: collection.title,
-        to: `${collection.canonicalSlug}`
+        to: `${collection.canonicalSlug}`,
+        href: '/[...slug]'
       }
     : null;
 }
@@ -136,7 +137,7 @@ export function hrefType(item) {
       link = `/[...slug]`;
       break;
     case 'schedule':
-      link = `/schedule/[day]`;
+      link = `/schedule`;
       break;
     case 'externalLink':
       link = `${item.href}`;
