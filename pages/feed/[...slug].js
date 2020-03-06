@@ -96,14 +96,16 @@ Rss.getInitialProps = async ({ query: { slug }, req, res }) => {
 
     if (primaryImg) {
       result = `
-        <media:content
-          url="${primaryImg.preferredAspectRatio.instances[0].url}"
-          medium="image"
-          type="image/jpeg"
-          height="${primaryImg.preferredAspectRatio.instances[0].height}"
-          width="${primaryImg.preferredAspectRatio.instances[0].width}"
-        />
-        <media:description type="plain">${primaryImg.shortCaption}</media:description>
+        <media:group>
+          <media:content
+            url="${primaryImg.preferredAspectRatio.instances[0].url}"
+            medium="image"
+            type="image/jpeg"
+            height="${primaryImg.preferredAspectRatio.instances[0].height}"
+            width="${primaryImg.preferredAspectRatio.instances[0].width}"
+          />
+          <media:description type="plain">${primaryImg.shortCaption}</media:description>
+        </media:group>
         `;
     } else {
       result = '';
