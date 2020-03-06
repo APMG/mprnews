@@ -8,8 +8,63 @@ query collection($contentAreaSlug: String!, $slug: String!, $pageNum: Int) {
     resourceType
     primaryVisuals {
       social {
-        xid
+        shortCaption
+        aspect_ratios: aspectRatios {
+          uncropped {
+            instances {
+              url
+              width
+              height
+            }
+          }
+          widescreen {
+            instances {
+              url
+              width
+              height
+            }
+          }
+        }
         fallback
+      }
+      lead {
+        preferredAspectRatio {
+          instances {
+            url
+            width
+            height
+          }
+        }
+        aspect_ratios: aspectRatios {
+          uncropped {
+            instances {
+              url
+              width
+              height
+            }
+          }
+          widescreen {
+            instances {
+              url
+              width
+              height
+            }
+          }
+        }
+        contentArea
+        credit {
+          name
+          url
+        }
+        dateTaken
+        dateline
+        fallback
+        longCaption
+        rights {
+          redistributable
+        }
+        shortCaption
+        xid
       }
     }
     embeddedAssetJson
