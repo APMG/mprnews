@@ -22,6 +22,7 @@ query department($contentAreaSlug: String!, $slug: String!) {
           email
           jobTitle
           phone
+          lastName
         }
       }
     }

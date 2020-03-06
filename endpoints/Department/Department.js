@@ -51,6 +51,11 @@ const Department = ({ data: { department } }) => {
         <div className="content_body userContent">
           {department?.results.items
             .filter((item) => item.resourceType == 'profile')
+            .sort((a, b) => {
+              if (a.lastName < b.lastName) return -1;
+              if (a.lastName > b.lastName) return 1;
+              return 0;
+            })
             .map((item) => {
               return (
                 <p>
