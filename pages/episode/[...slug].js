@@ -39,7 +39,8 @@ EpisodePage.getInitialProps = async ({
     memberDriveData = req.memberDriveData;
   }
   const ApolloClient = initApollo();
-  let data, errorCode;
+  let data,
+    errorCode = false;
   await ApolloClient.query({
     query: query,
     variables: {
@@ -54,13 +55,13 @@ EpisodePage.getInitialProps = async ({
         res.setHeader('Cache-Control', 'public, max-age=60');
       }
       if (!data.episode) {
-        res.statusCode = 404;
-        errorCode = res.statusCode > 200 ? res.statusCode : false;
+        if (res) res.statusCode = 404;
+        errorCode = 404;
       }
     })
     .catch(() => {
-      res.statusCode = 404;
-      errorCode = res.statusCode > 200 ? res.statusCode : false;
+      if (res) res.statusCode = 500;
+      errorCode = 500;
     });
 
   return {

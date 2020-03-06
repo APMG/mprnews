@@ -7,12 +7,12 @@ import AudioPlayButton from '../../components/AudioPlayButton/AudioPlayButton';
 import Content from '../../components/Content/Content';
 import Metatags from '../../components/Metatags/Metatags';
 import ShareSocialButtons from '../../components/ShareSocialButtons/ShareSocialButtons';
-import { Image } from '@apmg/mimas';
+import { AmpImage } from '@apmg/mimas';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
 import { showInfoAlert, audioDownloadPrefix } from '../../utils/utils';
 import Alert from '../../components/Alert/Alert';
 
-const Episode = ({ data: { episode, alertConfig } }) => {
+const AmpEpisode = ({ data: { episode, alertConfig } }) => {
   const alerts = JSON.parse(alertConfig.json);
   const img = fishForSocialMediaImage(episode);
   let authors;
@@ -41,7 +41,7 @@ const Episode = ({ data: { episode, alertConfig } }) => {
         imageHeight={img?.height}
         imageWidth={img?.width}
         imageAlt={episode?.primaryVisuals?.social?.shortCaption}
-        isAmp={episode.supportedOutputFormats?.indexOf('amp') > -1}
+        isAmp={false} // Poorly named variable. Set to false so no link is made to self
         topic={episode.primaryCollection?.title}
         contentType="article"
         publishDate={episode.publishDate}
@@ -53,6 +53,7 @@ const Episode = ({ data: { episode, alertConfig } }) => {
         </div>
       ) : null}
       <Content
+        isAmp={true}
         title={episode.title}
         subtitle={episode.subtitle}
         authors={authors}
@@ -78,7 +79,7 @@ const Episode = ({ data: { episode, alertConfig } }) => {
         }
         image={
           episode.primaryVisuals?.lead && (
-            <Image
+            <AmpImage
               key={episode.primaryVisuals.lead.fallback}
               image={episode.primaryVisuals.lead}
               sizes={globals.sizes.primaryVisuals}
@@ -98,7 +99,7 @@ const Episode = ({ data: { episode, alertConfig } }) => {
   );
 };
 
-Episode.propTypes = {
+AmpEpisode.propTypes = {
   data: PropTypes.shape({
     alertConfig: PropTypes.object,
     episode: PropTypes.shape({
@@ -135,4 +136,4 @@ Episode.propTypes = {
   })
 };
 
-export default Episode;
+export default AmpEpisode;

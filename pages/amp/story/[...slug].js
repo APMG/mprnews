@@ -14,7 +14,8 @@ const AmpStoryPage = ({ data, errorCode }) => {
 
 AmpStoryPage.getInitialProps = async ({ query: { slug }, res }) => {
   const ApolloClient = initApollo();
-  let data, errorCode;
+  let data,
+    errorCode = false;
   await ApolloClient.query({
     query: query,
     variables: {
@@ -24,14 +25,14 @@ AmpStoryPage.getInitialProps = async ({ query: { slug }, res }) => {
   })
     .then((result) => {
       data = result.data;
-      if (res && !data.story) {
-        res.statusCode = 404;
-        errorCode = res.statusCode > 200 ? res.statusCode : false;
+      if (!data.story) {
+        if (res) res.statusCode = 404;
+        errorCode = 404;
       }
     })
     .catch(() => {
-      res.statusCode = 404;
-      errorCode = res.statusCode > 200 ? res.statusCode : false;
+      if (res) res.statusCode = 500;
+      errorCode = 500;
     });
 
   return {
