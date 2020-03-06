@@ -27,16 +27,16 @@ const Department = ({ data: { department } }) => {
         contentType="website"
       />
       <section
-        className="collection page-purpose"
+        className="department department_section"
         data-mpr-content-topic={department.title}
       >
-        <div className="collection_header">
+        <div className="department_header">
           <Heading level={1} className="hdg hdg-section department">
             {department?.title}
           </Heading>
         </div>
         {department?.body && (
-          <div className="collection_body userContent">
+          <div className="department_body userContent">
             <Body
               nodeData={JSON.parse(department.body)}
               embedded={JSON.parse(department.embeddedAssetJson)}
@@ -46,52 +46,52 @@ const Department = ({ data: { department } }) => {
                 apm_related_link_list_item: ApmRelatedLinkListItemOverride
               }}
             />
+            <div className="department_items userContent">
+              {department?.results.items
+                .filter((item) => item.resourceType == 'profile')
+                .sort((a, b) => {
+                  if (a.lastName < b.lastName) return -1;
+                  if (a.lastName > b.lastName) return 1;
+                  return 0;
+                })
+                .map((item) => {
+                  return (
+                    <p>
+                      <Link
+                        href="/people/[...slug]"
+                        as={`/people/${item.canonicalSlug}`}
+                        className="default"
+                      >
+                        <strong>{item.title}</strong>
+                      </Link>
+                      {item.jobTitle && (
+                        <>
+                          <br />
+                          {item.jobTitle}
+                        </>
+                      )}
+                      {item.email && (
+                        <>
+                          <br />
+                          <a href={`mailto:${item.email}`} className="default">
+                            {item.email}
+                          </a>
+                        </>
+                      )}
+                      {item.phone && (
+                        <>
+                          <br />
+                          <a href={`tel:${item.phone}`}>
+                            {formatPhone(item.phone)}
+                          </a>
+                        </>
+                      )}
+                    </p>
+                  );
+                })}
+            </div>
           </div>
         )}
-        <div className="content_body userContent">
-          {department?.results.items
-            .filter((item) => item.resourceType == 'profile')
-            .sort((a, b) => {
-              if (a.lastName < b.lastName) return -1;
-              if (a.lastName > b.lastName) return 1;
-              return 0;
-            })
-            .map((item) => {
-              return (
-                <p>
-                  <Link
-                    href="/people/[...slug]"
-                    as={`/people/${item.canonicalSlug}`}
-                    className="default"
-                  >
-                    <strong>{item.title}</strong>
-                  </Link>
-                  {item.jobTitle && (
-                    <>
-                      <br />
-                      {item.jobTitle}
-                    </>
-                  )}
-                  {item.email && (
-                    <>
-                      <br />
-                      <a href={`mailto:${item.email}`} className="default">
-                        {item.email}
-                      </a>
-                    </>
-                  )}
-                  {item.phone && (
-                    <>
-                      <br />
-                      <a href={`tel:${item.phone}`}>
-                        {formatPhone(item.phone)}
-                      </a>
-                    </>
-                  )}
-                </p>
-              );
-            })}
-        </div>
       </section>
     </>
   );
