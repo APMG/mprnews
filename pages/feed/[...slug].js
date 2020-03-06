@@ -7,7 +7,7 @@ import { Body } from '@apmg/amat';
 
 const Rss = () => {};
 
-Rss.getInitialProps = async ({ query: { slug }, res }) => {
+Rss.getInitialProps = async ({ query: { slug }, req, res }) => {
   const query = () => {
     return JSON.stringify({
       query: `{collection(contentAreaSlug: "${
@@ -26,6 +26,18 @@ Rss.getInitialProps = async ({ query: { slug }, res }) => {
                 resourceType
                 canonicalSlug
                 publishDate
+                audio {
+                  title
+                  credit
+                  encodings {
+                    format
+                    mediaType
+                    httpFilePath
+                    filename
+                    playFilePath
+                    durationMs
+                  }
+                }
                 primaryVisuals {
                   thumbnail {
                     xid
@@ -41,7 +53,8 @@ Rss.getInitialProps = async ({ query: { slug }, res }) => {
                 }
               }
             }
-          }}`
+          }
+        }`
     });
   };
 
@@ -77,12 +90,36 @@ Rss.getInitialProps = async ({ query: { slug }, res }) => {
     return result;
   }
 
+  function getImageXml(item) {
+    let result;
+    const primaryImg = item.primaryVisuals.thumbnail;
+
+    if (primaryImg) {
+      result = `
+        <media:group>
+          <media:content
+            url="${primaryImg.preferredAspectRatio.instances[0].url}"
+            medium="image"
+            type="image/jpeg"
+            height="${primaryImg.preferredAspectRatio.instances[0].height}"
+            width="${primaryImg.preferredAspectRatio.instances[0].width}"
+          />
+          <media:description type="plain">${primaryImg.shortCaption}</media:description>
+        </media:group>
+        `;
+    } else {
+      result = '';
+    }
+    return result;
+  }
+
   if (!res) {
     return;
   }
   let xml = '<?xml version="1.0" encoding="UTF-8"?>';
+  const url = req.url.replace(/\/feed/, '');
   xml +=
-    '<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom">';
+    '<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">';
   xml += '<channel>';
 
   const results = await fetchFeedData(query);
@@ -90,6 +127,7 @@ Rss.getInitialProps = async ({ query: { slug }, res }) => {
   const feed = results.data.collection;
   xml += `<title>${feed &&
     results.data.collection.title.replace(/&/, '&amp;')} - MPR News</title>`;
+  xml += `<link>https://www.mprnews.org${url}</link>`;
   xml += `<atom:link
       href="https://www.mprnews.org/feed/${feed &&
         results.data.collection.canonicalSlug}"
@@ -100,7 +138,7 @@ Rss.getInitialProps = async ({ query: { slug }, res }) => {
   xml += `<language>en-us</language>`;
   xml += `<lastBuildDate>${format(
     new Date(feed && results.data.collection.publishDate),
-    "yyyy-MM-dd-'T'HH:mm:ssxx"
+    'E, dd LLL yyyy hh:mm:ss XXXX'
   )}</lastBuildDate>`;
 
   feed &&
@@ -111,7 +149,7 @@ Rss.getInitialProps = async ({ query: { slug }, res }) => {
       const link = linkByTypeAs(item);
       const dte = format(
         new Date(item.publishDate),
-        "yyyy-MM-dd-'T'HH:mm:ssxx"
+        'E, dd LLL yyyy hh:mm:ss XXXX'
       );
       const ele = React.createElement(Body, {
         nodeData: JSON.parse(item.body),
@@ -120,15 +158,29 @@ Rss.getInitialProps = async ({ query: { slug }, res }) => {
       });
       const markupImg = getImage(item);
       const markup = ReactDOMServer.renderToStaticMarkup(ele);
+      let audio, enclosure;
+      const hasAdio = item.audio.length > 0 && item.audio[0].encodings;
 
+      if (hasAdio) {
+        audio = item.audio[0].encodings[0];
+        enclosure = audio.playFilePath
+          .split('?')[0]
+          .replace(/%user_agent/, 'web');
+      }
       xml += `<item>
                   <title>${item.title.replace(/&/, '&amp;')}</title>
                   <link>https://www.mprnews.org${link}</link>
                   <guid isPermaLink="true">https://www.mprnews.org${link}</guid>
                   <pubDate>${dte}</pubDate>
                   <description><![CDATA[${item.descriptionText}]]></description>
-                  <content:encoded><![CDATA[${markupImg}${markup}]]></content:encoded>
-                </item>`;
+                  <content:encoded><![CDATA[${markupImg}${markup}]]></content:encoded>`;
+      if (markupImg) {
+        xml += getImageXml(item);
+      }
+      if (hasAdio) {
+        xml += `<enclosure url="${enclosure}" length="${audio.durationMs}" type="${audio.mediaType}" />`;
+      }
+      xml += `</item>`;
     });
 
   xml += '</channel>';

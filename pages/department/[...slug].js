@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ErrorPage from 'next/error';
 import initApollo from '../../lib/init-apollo';
-import departmentQuery from '../../endpoints/Department/department.gql';
+import query from '../../endpoints/Department/department.gql';
 import Department from '../../endpoints/Department/Department';
 import ContentGrid from '../../grids/ContentGrid';
 import Sidebar from '../../components/Sidebar/Sidebar';
@@ -26,9 +26,8 @@ DepartmentPage.getInitialProps = async ({ query: { slug }, res }) => {
   }
 
   try {
-    console.log(slug, process.env.CONTENT_AREA_SLUG, departmentQuery);
     result = await apolloClient.query({
-      query: departmentQuery,
+      query: query,
       variables: {
         contentAreaSlug: process.env.CONTENT_AREA_SLUG,
         slug: slug.join('/')
