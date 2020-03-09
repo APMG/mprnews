@@ -57,7 +57,7 @@ const Episode = ({ data: { episode, alertConfig } }) => {
         body={episode.body}
         shareButtons={
           <ShareSocialButtons
-            contentUrl={episode.canonicalSlug}
+            contentUrl={`episode/${episode.canonicalSlug}`}
             title={episode.title}
           />
         }
