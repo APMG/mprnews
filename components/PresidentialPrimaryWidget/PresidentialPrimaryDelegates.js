@@ -40,7 +40,7 @@ const DelegateRow = ({ results, meta }) => {
         </div>
       </div>
       <div className="results_source">
-        Data Source: {meta.election_data_source === 'mn_oss' ? 'MN SOS' : 'AP'}
+        Data Source: {meta.election_data_source === 'mn_oss' ? 'MN OSS' : 'AP'}
       </div>
       <div className="row row-candidate row-wrap" data-party={results.party}>
         <div className="column column-state">
