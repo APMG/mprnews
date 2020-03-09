@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Heading } from '@apmg/titan';
 import { Body } from '@apmg/amat';
 import PropTypes from 'prop-types';
@@ -10,11 +10,20 @@ import LinkOverride from '../../components/AmatOverrides/LinkOverride';
 import { Link } from '@apmg/titan';
 
 const Department = ({ data: { department } }) => {
+  const img = fishForSocialMediaImage(department);
   const formatPhone = (phone) => {
     const match = /^(\d{3})(\d{3})(\d{4})/.exec(phone);
     if (match) return `${match[1]}-${match[2]}-${match[3]}`;
     return phone;
   };
+
+  useEffect(() => {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'sendUWContentTopic',
+      contentTopic: 'personnel'
+    });
+  }, []);
 
   return (
     <>
@@ -22,7 +31,9 @@ const Department = ({ data: { department } }) => {
         title={department.title}
         fullSlug={department.canonicalSlug}
         description={department.descriptionText}
-        image={fishForSocialMediaImage(department)}
+        image={img?.url}
+        imageHeight={img?.height}
+        imageWidth={img?.width}
         topic={department?.title}
         contentType="website"
       />
@@ -56,7 +67,7 @@ const Department = ({ data: { department } }) => {
                 })
                 .map((item) => {
                   return (
-                    <p>
+                    <p key={item.canonicalSlug}>
                       <Link
                         href="/people/[...slug]"
                         as={`/people/${item.canonicalSlug}`}
