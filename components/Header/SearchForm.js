@@ -4,7 +4,7 @@ import { Link } from '@apmg/titan';
 
 const SearchForm = () => {
   return (
-    <Link as={'search'} href={'/search'}>
+    <Link as={'/search'} href={'/search'}>
       <Icon elementClass="icon-search" name="search" />
     </Link>
   );

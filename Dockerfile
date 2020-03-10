@@ -10,6 +10,7 @@ ARG APP_GROUP_GID=1000
 ARG PROTOCOL=https
 ARG ELECTIONS_API=https://electionsapi.publicradio.org
 ARG GRAPHQL_API=https://cmsapi.publicradio.org/graphql
+ARG PRIVATE_GRAPHQL_API=https://cmsapi.publicradio.org/graphql
 ARG POTLATCH_API=https://cmsapi.publicradio.org/graphql
 ARG SCHEDULER_API=http://scheduler-service/api/v1/services/3/schedule/
 ARG CONTENT_AREA_SLUG=mprnews
@@ -38,7 +39,7 @@ RUN mkdir ${APP_PATH}/node_modules $APP_PATH/build && yarn install --frozen-lock
 
 COPY --chown=${APP_USER}:${APP_GROUP} . ${APP_PATH}
 
-ENV NODE_ENV=${NODE_ENV} RAILS_ENV=${NODE_ENV} PROTOCOL=${PROTOCOL} ELECTIONS_API=${ELECTIONS_API} GRAPHQL_API=${GRAPHQL_API} POTLATCH_API=${POTLATCH_API} SCHEDULER_API=${SCHEDULER_API} CONTENT_AREA_SLUG=${CONTENT_AREA_SLUG}
+ENV NODE_ENV=${NODE_ENV} RAILS_ENV=${NODE_ENV} PROTOCOL=${PROTOCOL} ELECTIONS_API=${ELECTIONS_API} GRAPHQL_API=${GRAPHQL_API} PRIVATE_GRAPHQL_API=${PRIVATE_GRAPHQL_API} POTLATCH_API=${POTLATCH_API} SCHEDULER_API=${SCHEDULER_API} CONTENT_AREA_SLUG=${CONTENT_AREA_SLUG}
 
 RUN rm -rf ${APP_PATH}/.env.production && yarn run build && yarn cache clean
 
