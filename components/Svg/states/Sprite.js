@@ -18,7 +18,12 @@ import TX from './TX';
 import UT from './UT';
 import VA from './VA';
 import VT from './VT';
-
+import ID from './ID';
+import MI from './MI';
+import MO from './MO';
+import MS from './MS';
+import ND from './ND';
+import WA from './WA';
 class Svg extends React.Component {
   render() {
     return (
@@ -28,11 +33,16 @@ class Svg extends React.Component {
         <CA />
         <CO />
         <IA />
+        <ID />
         <NV />
         <MA />
         <ME />
         <MN />
+        <MI />
+        <MO />
+        <MS />
         <NC />
+        <ND />
         <NH />
         <OK />
         <SC />
@@ -41,6 +51,7 @@ class Svg extends React.Component {
         <UT />
         <VA />
         <VT />
+        <WA />
         <US />
       </svg>
     );
