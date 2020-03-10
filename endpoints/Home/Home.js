@@ -85,18 +85,14 @@ const Home = (data) => {
         </div>
         <div className="hList home_more">
           <div>
-            <Link
-              href="/collection?slug=arts"
-              as={'/arts'}
-              className="btn btn-primary"
-            >
+            <Link href="/[...slug]" as={'/arts'} className="btn btn-primary">
               <span>More Arts </span>
               <Icon name="chevronRight" />
             </Link>
           </div>
           <div>
             <Link
-              href="/collection?slug=environment"
+              href="/[...slug]"
               as={'/environment'}
               className="btn btn-primary"
             >
@@ -106,7 +102,7 @@ const Home = (data) => {
           </div>
           <div>
             <Link
-              href="/collection?slug=politics"
+              href="/[...slug]"
               as={'/politics'}
               className="btn btn-primary"
             >

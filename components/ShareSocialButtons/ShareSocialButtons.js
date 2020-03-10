@@ -12,7 +12,7 @@ const ShareSocialButtons = ({ contentUrl, title }) => {
   const via = 'mprnews';
   const twitterLink =
     'http://twitter.com/share?url=' +
-    'https://www.mprnews.org/story/' +
+    'https://www.mprnews.org/' +
     contentUrl +
     '&text=' +
     title +
@@ -20,7 +20,7 @@ const ShareSocialButtons = ({ contentUrl, title }) => {
     via;
   const fbLink =
     'http://www.facebook.com/sharer.php?u=' +
-    'https://www.mprnews.org/story/' +
+    'https://www.mprnews.org/' +
     contentUrl +
     '&text=' +
     title +

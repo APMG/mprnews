@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Router from 'next/router';
-import { Heading, Button, Loading } from '@apmg/titan';
+import { Heading, Loading } from '@apmg/titan';
 import { weatherConfig } from '../../utils/defaultData';
 import { fetchWeather } from '../../utils/fetchWeather';
-import Icon from '../../components/Icons/Icon';
 import WeatherAlert from '../../components/WeatherAlert/WeatherAlert';
 import CurrentWeather from './CurrentWeather';
 import TwoDaysChart from './TwoDaysChart';
 import WeeklyForecast from './WeeklyForecast';
+import ShareSocialButtons from '../../components/ShareSocialButtons/ShareSocialButtons';
 
 const Weather = (props) => {
   const [data, setData] = useState(props.data);
@@ -52,13 +52,10 @@ const Weather = (props) => {
             {location.name}
           </Heading>
           <div className="weather_share">
-            {/* TODO: ask how we do click-to-share content and how we want to do it for this. */}
-            <Button elementClass="btn-shareWeather">
-              <Icon name="twitter" />
-            </Button>
-            <Button elementClass="btn-shareWeather">
-              <Icon name="facebook" />
-            </Button>
+            <ShareSocialButtons
+              contentUrl={'weather'}
+              title={`Weather Forecast for ${location.name}`}
+            />
           </div>
         </div>
 

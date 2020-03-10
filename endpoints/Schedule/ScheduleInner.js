@@ -4,46 +4,17 @@ import PropTypes from 'prop-types';
 import { Link, Time } from '@apmg/titan';
 import ContentGrid from '../../grids/ContentGrid';
 import ToSentence from '../../components/ToSentence/ToSentence';
-
-const linkType = (url, typeUrl) => {
-  let result;
-  let baseUrl = new URL(url);
-  baseUrl.hostname.includes('www.mprnews.org')
-    ? (result = parseUrl(baseUrl, typeUrl))
-    : (result =
-        typeUrl === 'href' ? baseUrl.href : typeUrl === 'as' ? '' : null);
-  return result;
-};
-
-const parseUrl = (url, typeUrl) => {
-  let storyRegex = new RegExp('/story/');
-  if (
-    typeUrl === 'as' ||
-    storyRegex.test(url.pathname) ||
-    url.pathname.split('/').length === 2
-  ) {
-    return url.pathname;
-  } else if (typeUrl === 'href') {
-    return `/collection?slug=${url.pathname.replace(/^\//, '')}`;
-  } else {
-    return null;
-  }
-};
+import { analyzeUrl } from '../../utils/cjsutils';
 
 const ScheduleInner = ({ schedule }) => {
   const getLink = (show) => {
     const link = show.link ? show.link : show.external_link;
     if (link) {
-      const urlHref = linkType(link, 'href');
-      const urlAs = linkType(link, 'as');
+      const { href, as } = analyzeUrl(link);
       return (
         <strong>
           {link && (
-            <Link
-              href={`${urlHref}`}
-              as={`${urlAs}`}
-              className="link link-plain"
-            >
+            <Link href={href} as={as || href} className="link link-plain">
               {show.name}
             </Link>
           )}
