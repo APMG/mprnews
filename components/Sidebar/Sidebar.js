@@ -17,7 +17,7 @@ const Sidebar = (props) => {
       <div className="section section-sm">
         <div className="hList">
           <Link
-            href={`/schedule?slug=${programDate.toLowerCase()}`}
+            href={`/schedule/[day]`}
             as={`/schedule/${programDate.toLowerCase()}`}
             className="link link-plain"
           >
