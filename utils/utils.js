@@ -144,7 +144,7 @@ export function hrefType(item) {
       break;
     default:
       console.error(
-        'link is not a type of internal link, collection link or external link.  Probably a typo.'
+        item, 'link is not a type of internal link, collection link or external link.  Probably a typo.'
       );
   }
   return link;

@@ -5,6 +5,7 @@ import InfoLink from '../../components/InfoLink/InfoLink';
 import Elections2020 from '../../components/Logo/Elections2020';
 import WeatherSidebar from '../../components/WeatherSidebar/WeatherSidebar';
 import { dropdownLists } from '../../utils/navConfig';
+import { hrefType } from '../../utils/utils';
 
 function useMounted() {
   const [mounted, setMounted] = useState(false);
@@ -23,7 +24,11 @@ const HomeRail = (props) => {
           {props.showElectionLink && (
             <div className="home_railLinks">
               <div className="section section-md">
-                <Link href="politics/election-2020" className="infoLink">
+                <Link
+                  href="/[...slug]"
+                  as="/politics/election-2020"
+                  className="infoLink"
+                >
                   <div className="infoLink_title" aria-label="2020 Elections">
                     <Heading level={2} className="hdg hdg-4">
                       <Elections2020 elementClass="logo-election-2020" />
@@ -87,12 +92,10 @@ const HomeRail = (props) => {
             <div className="module_body">
               <ul className="vList">
                 {sections.map((section) => {
-                  const href =
-                    section.href === 'weather' ? '/weather' : `/[...slug]`;
                   return (
                     <li key={`${section.text}${section.href}`}>
                       <Link
-                        href={href}
+                        href={hrefType(section)}
                         as={`/${section.href}`}
                         className="link link-plain"
                       >

@@ -110,7 +110,7 @@ const Collection = ({ data: { collection, alertConfig } }) => {
             hasFirstAndLast={true}
             inclusiveFirstLast={true}
             buffer={1}
-            hrefPrefix={`collection?slug=${collection.canonicalSlug}`}
+            hrefPrefix={`[...slug]`}
             asPrefix={`${collection.canonicalSlug}`}
             currentPage={collection.results.currentPage}
             totalPages={collection.results.totalPages}
