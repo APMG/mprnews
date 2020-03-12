@@ -52,6 +52,7 @@ const Collection = ({ data: { collection, alertConfig } }) => {
         imageAlt={collection?.primaryVisuals?.social?.shortCaption}
         topic={collection?.title}
         contentType="website"
+        noFollow={true}
       />
       {showInfoAlert(alerts, collection.resourceType) ? (
         <div className="section section-md">
