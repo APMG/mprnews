@@ -29,6 +29,7 @@ const AllNews = ({ data: { allNews } }) => {
         image={fishForSocialMediaImage(allNews)}
         topic={allNews.title}
         contentType="website"
+        noFollow={true}
       />
 
       <section

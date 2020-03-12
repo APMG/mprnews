@@ -15,7 +15,7 @@ const Metatags = (props) => {
   return (
     <Head>
       <title>{combinedTitle}</title>
-
+      {props.noFollow && <meta name="robots" content="noindex,nofollow" />}
       {props.topic && (
         <meta
           name="mpr-content-topic"
@@ -141,7 +141,8 @@ Metatags.propTypes = {
   topic: PropTypes.string,
   publishDate: PropTypes.string,
   modifiedDate: PropTypes.string,
-  authors: PropTypes.array
+  authors: PropTypes.array,
+  noFollow: PropTypes.bool
 };
 
 export default React.memo(Metatags);
