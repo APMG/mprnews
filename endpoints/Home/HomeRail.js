@@ -38,6 +38,20 @@ const HomeRail = (props) => {
               </div>
             </div>
           )}
+          <div className="section section-md">
+            <Link href="[...slug]" as="/health/covid-19" className="infoLink">
+              <div className="infoLink_title">
+                <Heading level={2} className="hdg hdg-4">
+                  COVID-19
+                </Heading>
+              </div>
+            </Link>
+            <div className="infoLink_description">
+              <a href="https://live.mprnews.org/Event/Your_COVID-19_questions_answered">
+                Your questions answered
+              </a>
+            </div>
+          </div>
           <Link href="/weather" as="/weather" className="infoLink">
             <div className="infoLink_title">
               <Heading level={2} className="hdg hdg-4">
