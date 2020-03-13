@@ -46,9 +46,24 @@ const HomeRail = (props) => {
                 </div>
               </Link>
               <div className="infoLink_description">
-                <a href="https://live.mprnews.org/Event/Your_COVID-19_questions_answered">
-                  Your questions answered
-                </a>
+                <ul className="bList bList-styled">
+                  <li>
+                    <a
+                      className="link link-plain hdg-6"
+                      href="https://live.mprnews.org/Event/Your_COVID-19_questions_answered"
+                    >
+                      Your questions answered
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      className="link link-plain hdg-6"
+                      href="https://www.mprnews.org/story/2020/03/12/cancellations-increase-as-coronavirus-spreads"
+                    >
+                      Cancellations
+                    </a>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
