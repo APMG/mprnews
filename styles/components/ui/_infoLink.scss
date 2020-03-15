@@ -53,3 +53,22 @@
     vertical-align: top;
   }
 }
+
+.infoLink_liveHeadline {
+  display: block;
+  margin: .5rem 0;
+
+  .hdg::before {
+    content: 'Live';
+    display: inline-block;
+    border-radius: 3px;
+    padding: 2px 5px;
+    margin-right: .5rem;
+    font-size: 1.2rem;
+    font-family: $font-family-default;
+    font-weight: normal;
+    color: $color-white;
+    background: $color-red;
+    vertical-align: top;
+  }
+}
