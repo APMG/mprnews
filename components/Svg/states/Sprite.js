@@ -2,15 +2,19 @@ import React from 'react';
 import US from './US';
 import AL from './AL';
 import AR from './AR';
+import AZ from './AZ';
 import CA from './CA';
 import CO from './CO';
+import FL from './FL';
 import IA from './IA';
+import IL from './IL';
 import NV from './NV';
 import MA from './MA';
 import ME from './ME';
 import MN from './MN';
 import NC from './NC';
 import NH from './NH';
+import OH from './OH';
 import OK from './OK';
 import SC from './SC';
 import TN from './TN';
@@ -30,10 +34,13 @@ class Svg extends React.Component {
       <svg style={{ display: 'none' }}>
         <AL />
         <AR />
+        <AZ />
         <CA />
         <CO />
+        <FL />
         <IA />
         <ID />
+        <IL />
         <NV />
         <MA />
         <ME />
@@ -44,6 +51,7 @@ class Svg extends React.Component {
         <NC />
         <ND />
         <NH />
+        <OH />
         <OK />
         <SC />
         <TN />
