@@ -21,7 +21,7 @@ import IconVolumeOff from './IconVolumeOff';
 import IconVolumeUp from './IconVolumeUp';
 import IconHeadphones from './IconHeadphones';
 import IconPopOut from './IconPopOut';
-
+import IconVirus from './IconVirus';
 const icons = {
   empty: IconEmpty,
   car: IconCar,
@@ -43,7 +43,8 @@ const icons = {
   volumeOff: IconVolumeOff,
   volumeUp: IconVolumeUp,
   headphones: IconHeadphones,
-  popout: IconPopOut
+  popout: IconPopOut,
+  covid19: IconVirus
 };
 
 const Icon = (props) => {

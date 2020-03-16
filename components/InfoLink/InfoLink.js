@@ -32,6 +32,19 @@ const InfoLink = (props) => {
     }
   };
 
+  const liveHeadlineLinkObj = () => {
+    if (props.liveHeadlineHrefType) {
+      return {
+        canonicalSlug: props.liveHeadlineHref,
+        resourceType: props.liveHeadlineHrefType
+      };
+    } else {
+      return {
+        canonicalSlug: props.liveHeadlineHref
+      };
+    }
+  };
+
   return (
     <>
       <Link
@@ -64,6 +77,20 @@ const InfoLink = (props) => {
           </Heading>
         </Link>
       )}
+      {props.headline && props.liveHeadlineHref && (
+        <Link
+          href={linkByTypeHref(liveHeadlineLinkObj())}
+          as={linkByTypeAs(liveHeadlineLinkObj())}
+          className="infoLink_liveHeadline link link-plain"
+        >
+          <Heading
+            level={props.headingLevel + 1}
+            className="hdg hdg-5 hdg-headline"
+          >
+            {props.headline}
+          </Heading>
+        </Link>
+      )}
     </>
   );
 };
@@ -74,6 +101,8 @@ InfoLink.propTypes = {
   headline: PropTypes.string,
   headlineHref: PropTypes.string,
   headlineHrefType: PropTypes.string,
+  liveHeadlineHref: PropTypes.string,
+  liveHeadlineHrefType: PropTypes.string,
   href: PropTypes.string.isRequired,
   hrefType: PropTypes.string,
   icon: PropTypes.string,
