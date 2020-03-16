@@ -38,29 +38,24 @@ const HomeRail = (props) => {
               </div>
             )}
             <div className="section section-md">
-              <Link href="[...slug]" as="/health/covid-19" className="infoLink">
-                <div className="infoLink_title">
-                  <Heading level={2} className="hdg hdg-4">
-                    COVID-19
-                  </Heading>
-                </div>
-              </Link>
+              <InfoLink
+                title="COVID-19"
+                href="health/covid-19"
+                hrefType="collection"
+                icon="covid19"
+                headingLevel={2}
+                headline="Your COVID-19 questions, answered live"
+                liveHeadlineHref="https://live.mprnews.org/Event/Your_COVID-19_questions_answered"
+                liveHeadlineHrefType="live"
+              />
               <div className="infoLink_description">
                 <ul className="bList bList-styled">
                   <li>
                     <a
-                      className="link link-plain hdg-6"
-                      href="https://live.mprnews.org/Event/Your_COVID-19_questions_answered"
+                      className="link link-plain hdg hdg-5 hdg-headline"
+                      href="https://www.facebook.com/groups/mprnewsparents/"
                     >
-                      Your questions answered
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      className="link link-plain hdg-6"
-                      href="https://www.mprnews.org/story/2020/03/12/cancellations-increase-as-coronavirus-spreads"
-                    >
-                      Cancellations
+                      Parent Tips
                     </a>
                   </li>
                 </ul>

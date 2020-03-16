@@ -1,5 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
+import NewRelic from '../NewRelic/NewRelic';
 import { globals } from '../../config/globals';
 
 const DefaultHead = () => {
@@ -7,6 +8,7 @@ const DefaultHead = () => {
 
   return (
     <Head>
+      <NewRelic />
       <meta
         httpEquiv="X-UA-Compatible"
         content="IE=edge,chrome=1"

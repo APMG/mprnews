@@ -20,6 +20,9 @@ exports.linkByTypeAs = (item) => {
     case 'episode':
       link = `/episode/${item.canonicalSlug}`;
       break;
+    case 'live':
+      link = `${item.canonicalSlug}`;
+      break;
 
     default:
       link = `/${item.resourceType}/${item.canonicalSlug}`;
@@ -51,6 +54,9 @@ exports.linkByTypeHref = (item) => {
       break;
     case 'episode':
       href = `/episode/[...slug]`;
+      break;
+    case 'live':
+      href = `[...slug]`;
       break;
   }
   return href;
