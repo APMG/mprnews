@@ -16,6 +16,7 @@ function useMounted() {
 const HomeRail = (props) => {
   const sections = dropdownLists[0].groups[0].links; // D R Y
   const isMounted = useMounted();
+  const liveLink = props.covid.links.find((link) => link.isLive === true);
 
   return (
     <>
@@ -37,30 +38,39 @@ const HomeRail = (props) => {
                 </Link>
               </div>
             )}
-            <div className="section section-md">
-              <InfoLink
-                title="COVID-19"
-                href="health/covid-19"
-                hrefType="collection"
-                icon="covid19"
-                headingLevel={2}
-                headline="Your COVID-19 questions, answered live"
-                liveHeadlineHref="https://live.mprnews.org/Event/Your_COVID-19_questions_answered"
-                liveHeadlineHrefType="live"
-              />
-              <div className="infoLink_description">
-                <ul className="bList bList-styled">
-                  <li>
-                    <a
-                      className="link link-plain hdg hdg-5 hdg-headline"
-                      href="https://www.facebook.com/groups/mprnewsparents/"
-                    >
-                      Parent Tips
-                    </a>
-                  </li>
-                </ul>
+            {props.covid.links && (
+              <div className="section section-md">
+                <InfoLink
+                  title="COVID-19"
+                  href="health/covid-19"
+                  hrefType="collection"
+                  icon="covid19"
+                  headingLevel={2}
+                  headline={liveLink && liveLink.title}
+                  liveHeadlineHref={liveLink && liveLink.href}
+                  liveHeadlineHrefType="live"
+                />
+                {props.covid.links.map((link) => {
+                  if (link.isLive) {
+                    return null;
+                  }
+                  return (
+                    <div key={link.href} className="infoLink_description">
+                      <ul className="bList bList-styled">
+                        <li>
+                          <a
+                            className="link link-plain hdg hdg-5 hdg-headline"
+                            href={link.href}
+                          >
+                            {link.title}
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  );
+                })}
               </div>
-            </div>
+            )}
           </div>
           <Link href="/weather" as="/weather" className="infoLink">
             <div className="infoLink_title">
@@ -143,7 +153,10 @@ HomeRail.propTypes = {
     resourceType: PropTypes.string,
     title: PropTypes.string
   }),
-  showElectionLink: PropTypes.bool
+  showElectionLink: PropTypes.bool,
+  covid: PropTypes.shape({
+    links: PropTypes.array
+  })
 };
 
 export default React.memo(HomeRail);

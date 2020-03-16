@@ -94,4 +94,8 @@ query home($contentAreaSlug: String!, $slug: String!) {
     slug
     json
   }
+  covidConfig: potlatch(slug: "mprnews/covid-19-sidebar-links") {
+    slug
+    json
+  }
 }
