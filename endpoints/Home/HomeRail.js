@@ -21,13 +21,6 @@ const HomeRail = (props) => {
     <>
       {isMounted && (
         <>
-          {' '}
-          {console.log(
-            'href',
-            props.updraft?.canonicalSlug,
-            'type',
-            props.updraft?.resourceType
-          )}
           <div className="home_railLinks">
             {props.showElectionLink && (
               <div className="section section-md">
@@ -60,9 +53,9 @@ const HomeRail = (props) => {
                   <li>
                     <a
                       className="link link-plain hdg hdg-5 hdg-headline"
-                      href="/story/2020/03/12/cancellations-increase-as-coronavirus-spreads"
+                      href="https://www.facebook.com/groups/mprnewsparents/"
                     >
-                      Cancellations
+                      Parent Tips
                     </a>
                   </li>
                 </ul>
