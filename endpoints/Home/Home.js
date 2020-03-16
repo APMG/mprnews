@@ -17,6 +17,7 @@ const Home = (data) => {
   const electionConfig = data.electionConfig?.json
     ? JSON.parse(data.electionConfig.json)
     : null;
+  const covidConfig = JSON.parse(data.covidConfig.json);
 
   const firstItem = data.homeList.results.items[0];
   const homepageTopic = 'homepage';
@@ -46,6 +47,7 @@ const Home = (data) => {
                 ? true
                 : false
             }
+            covid={covidConfig}
           />
         }
         top={
