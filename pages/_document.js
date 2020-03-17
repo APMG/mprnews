@@ -1,6 +1,6 @@
+import newrelic from 'newrelic';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import React from 'react';
-import newrelic from 'newrelic';
 
 class MPRNewsDocument extends Document {
   static async getInitialProps(ctx) {
