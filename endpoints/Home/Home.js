@@ -17,6 +17,7 @@ const Home = (data) => {
   const electionConfig = data.electionConfig?.json
     ? JSON.parse(data.electionConfig.json)
     : null;
+  const covidConfig = JSON.parse(data.covidConfig.json);
 
   const firstItem = data.homeList.results.items[0];
   const homepageTopic = 'homepage';
@@ -42,10 +43,11 @@ const Home = (data) => {
             showElectionLink={
               electionConfig &&
               (electionConfig.states?.length ||
-                electionConfig.show_delegate_count)
+                electionConfig.show_election_logo)
                 ? true
                 : false
             }
+            covid={covidConfig}
           />
         }
         top={
@@ -85,18 +87,14 @@ const Home = (data) => {
         </div>
         <div className="hList home_more">
           <div>
-            <Link
-              href="/collection?slug=arts"
-              as={'/arts'}
-              className="btn btn-primary"
-            >
+            <Link href="/[...slug]" as={'/arts'} className="btn btn-primary">
               <span>More Arts </span>
               <Icon name="chevronRight" />
             </Link>
           </div>
           <div>
             <Link
-              href="/collection?slug=environment"
+              href="/[...slug]"
               as={'/environment'}
               className="btn btn-primary"
             >
@@ -106,7 +104,7 @@ const Home = (data) => {
           </div>
           <div>
             <Link
-              href="/collection?slug=politics"
+              href="/[...slug]"
               as={'/politics'}
               className="btn btn-primary"
             >

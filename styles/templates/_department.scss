@@ -1,0 +1,77 @@
+// Department Pages
+
+.department {
+  display: block;
+  @include media($media-small-tablet) {
+    // sass-lint:disable no-vendor-prefixes
+    display: -ms-grid;
+    // sass-lint:disable no-duplicate-properties
+    display: grid;
+    -ms-grid-columns: 300 30px 1fr;
+    grid-template-columns: minmax(300px, 40%) 1fr;
+    grid-column-gap: 30px;
+    grid-template-areas:
+    'header header'
+    'body body'
+    'items items';
+  }
+
+  @include media($media-tablet) {
+    display: block;
+    margin-left: $container-edge-larger;
+  }
+
+  @include media($media-desktop) {
+    // sass-lint:disable no-vendor-prefixes
+    display: -ms-grid;
+    // sass-lint:disable no-duplicate-properties
+    display: grid;
+    grid-template-areas:
+    'header header'
+    'body body'
+    'sidebar items';
+  }
+}
+
+.department_header {
+  grid-area: header;
+  margin-bottom: 40px;
+  display: flex;
+  // sass-lint:disable no-vendor-prefixes
+  justify-content: center;
+
+  @include media($media-small-tablet) {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 3;
+  }
+}
+
+.department_body {
+  grid-area: body;
+  margin-bottom: 40px;
+
+  @include media($media-small-tablet) {
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 3;
+  }
+}
+
+.department_section {
+  grid-area: section;
+  padding: 2rem 0 1em;
+  margin-bottom: 1em;
+}
+
+.department_items {
+  grid-area: items;
+  margin-bottom: 40px;
+  line-height: 1.5;
+
+  @include media($media-small-tablet) {
+    -ms-grid-row: 3;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 3;
+  }
+}

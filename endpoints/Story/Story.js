@@ -69,7 +69,7 @@ const Story = ({ data: { story, alertConfig }, minimal }) => {
         shareButtons={
           !minimal && (
             <ShareSocialButtons
-              contentUrl={story.canonicalSlug}
+              contentUrl={`story/${story.canonicalSlug}`}
               title={story.title}
             />
           )

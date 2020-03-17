@@ -64,6 +64,19 @@ const InfoLink = (props) => {
           </Heading>
         </Link>
       )}
+      {props.headline && props.liveHeadlineHref && (
+        <a
+          href={props.liveHeadlineHref}
+          className="infoLink_liveHeadline link link-plain"
+        >
+          <Heading
+            level={props.headingLevel + 1}
+            className="hdg hdg-5 hdg-headline"
+          >
+            {props.headline}
+          </Heading>
+        </a>
+      )}
     </>
   );
 };
@@ -74,6 +87,7 @@ InfoLink.propTypes = {
   headline: PropTypes.string,
   headlineHref: PropTypes.string,
   headlineHrefType: PropTypes.string,
+  liveHeadlineHref: PropTypes.string,
   href: PropTypes.string.isRequired,
   hrefType: PropTypes.string,
   icon: PropTypes.string,

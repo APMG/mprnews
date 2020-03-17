@@ -17,6 +17,7 @@ const Collection = ({ data: { collection, alertConfig } }) => {
   const alerts = () => {
     if (alertConfig) return JSON.parse(alertConfig.json);
   };
+  const img = fishForSocialMediaImage(collection);
   const contentTopicCollectionRef = useRef(null);
   let checkCollectionName = `${collection?.title}`;
   let collectionClassName = checkCollectionName
@@ -45,9 +46,13 @@ const Collection = ({ data: { collection, alertConfig } }) => {
         title={collection.title}
         fullSlug={collection.canonicalSlug}
         description={collection.descriptionText}
-        image={fishForSocialMediaImage(collection)}
+        image={img?.url}
+        imageHeight={img?.height}
+        imageWidth={img?.width}
+        imageAlt={collection?.primaryVisuals?.social?.shortCaption}
         topic={collection?.title}
         contentType="website"
+        noFollow={true}
       />
       {showInfoAlert(alerts, collection.resourceType) ? (
         <div className="section section-md">
@@ -106,7 +111,7 @@ const Collection = ({ data: { collection, alertConfig } }) => {
             hasFirstAndLast={true}
             inclusiveFirstLast={true}
             buffer={1}
-            hrefPrefix={`collection?slug=${collection.canonicalSlug}`}
+            hrefPrefix={`[...slug]`}
             asPrefix={`${collection.canonicalSlug}`}
             currentPage={collection.results.currentPage}
             totalPages={collection.results.totalPages}

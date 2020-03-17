@@ -13,9 +13,7 @@ const Pagination = ({ collection, collectionName, pageNum }) => {
             {pageNum > 1 && (
               <Link
                 as={`/${collectionName}/${prevIndex(pageNum)}`}
-                href={`/collection?slug=${collectionName}&pageNum=${prevIndex(
-                  pageNum
-                )}`}
+                href={`/[...slug]`}
                 className="btn btn-secondary"
               >
                 <Icon name="chevronLeft" />
@@ -28,10 +26,7 @@ const Pagination = ({ collection, collectionName, pageNum }) => {
                   pageNum,
                   collection.results.totalPages
                 )}`}
-                href={`/collection?slug=${collectionName}&pageNum=${nextIndex(
-                  pageNum,
-                  collection.results.totalPages
-                )}`}
+                href={`/[...slug]`}
                 className="btn btn-secondary"
               >
                 Next page
