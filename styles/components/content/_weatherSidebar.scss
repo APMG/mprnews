@@ -2,19 +2,7 @@
 
 .weatherSidebar {
   font-size: .9em;
-  display: none;
-
-  @include media($media-small-tablet) {
-    display: block;
-  }
-
-  @include media($media-tablet) {
-    display: none;
-  }
-
-  @include media($media-desktop) {
-    display: block;
-  }
+  display: block;
 
   > * {
     break-inside: avoid;
