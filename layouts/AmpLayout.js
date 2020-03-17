@@ -3,13 +3,17 @@ import PropTypes from 'prop-types';
 import AmpHeader from '../components/AmpHeader/AmpHeader';
 import AmpFooter from '../components/AmpFooter/AmpFooter';
 
-import '../styles/index.scss';
+const ampStyles = {
+  ampContainer: {
+    margin: '25px'
+  }
+};
 
 const AmpLayout = ({ children }) => (
   <>
     <AmpHeader />
-    <main className="main">
-      <div className="container container-amp">{children}</div>
+    <main>
+      <div style={ampStyles.ampContainer}>{children}</div>
     </main>
     <AmpFooter />
   </>

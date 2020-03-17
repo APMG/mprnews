@@ -44,7 +44,6 @@ const ShareSocialButtons = ({ contentUrl, title }) => {
       }
     }
   };
-
   return (
     <div className="shareSocialButtons hList">
       <Heading level={3} className="hdg hdg-5">

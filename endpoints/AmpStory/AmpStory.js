@@ -5,10 +5,10 @@ import { AmpImage } from '@apmg/mimas';
 import { Time } from '@apmg/titan';
 import { collectionLinkData } from '../../utils/utils';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
-import AudioPlayButton from '../../components/AudioPlayButton/AudioPlayButton';
-import Content from '../../components/Content/Content';
+import AmpAudioPlayButton from '../../components/AmpAudioPlayButton/AmpAudioPlayButton';
+import AmpContent from '../../components/AmpContent/AmpContent';
 import Metatags from '../../components/Metatags/Metatags';
-import ShareSocialButtons from '../../components/ShareSocialButtons/ShareSocialButtons';
+import AmpShareSocialButtons from '../../components/AmpShareSocialButtons/AmpShareSocialButtons';
 import { showInfoAlert, audioDownloadPrefix } from '../../utils/utils';
 import Alert from '../../components/Alert/Alert';
 
@@ -58,8 +58,7 @@ const AmpStory = ({ data: { story, alertConfig }, minimal }) => {
           <Alert info={alerts.info} />
         </div>
       ) : null}
-      <Content
-        isAmp={true}
+      <AmpContent
         title={story.title}
         subtitle={story.subtitle}
         dateline={story.dateline}
@@ -69,7 +68,7 @@ const AmpStory = ({ data: { story, alertConfig }, minimal }) => {
         redistributable={redistributable}
         shareButtons={
           !minimal && (
-            <ShareSocialButtons
+            <AmpShareSocialButtons
               contentUrl={story.canonicalSlug}
               title={story.title}
             />
@@ -78,13 +77,11 @@ const AmpStory = ({ data: { story, alertConfig }, minimal }) => {
         audioPlayButton={
           story.primaryAudio &&
           story.primaryAudio.encodings.length > 0 && (
-            <AudioPlayButton
+            <AmpAudioPlayButton
               audioSource={audioDownloadPrefix(
                 story.primaryAudio.encodings[0].playFilePath
               )}
               audioTitle={story.primaryAudio.title}
-              label="Listen"
-              elementClass="playButton-primary"
             />
           )
         }
@@ -140,7 +137,7 @@ AmpStory.propTypes = {
       ),
       body: PropTypes.string,
       resourceType: PropTypes.string,
-      contributors: PropTypes.array,
+      contributors: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
       supportedOutputFormats: PropTypes.array,
       descriptionText: PropTypes.string,
       image: PropTypes.element,

@@ -1,23 +1,25 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import { Link } from '@apmg/titan';
-import classNames from 'classnames';
 import Logo from '../Logo/Logo';
 
-const AmpHeader = () => {
-  const classes = classNames('header', 'header-minimal');
+const ampStyles = {
+  header: {
+    padding: '15px',
+    borderBottom: '2px solid gray'
+  },
+  invisible: { display: 'none' }
+};
 
+const AmpHeader = () => {
   return (
-    <div className="headerContainer">
-      <header className={classes}>
-        <Link href="/" className="header_logo">
-          <div className="header_logoImg">
-            <Logo />
-            <span className="invisible">MPR News</span>
-          </div>
-        </Link>
-      </header>
-    </div>
+    <header style={ampStyles.header}>
+      <Link href="/">
+        <div>
+          <Logo />
+          <span style={ampStyles.invisible}>MPR News</span>
+        </div>
+      </Link>
+    </header>
   );
 };
 

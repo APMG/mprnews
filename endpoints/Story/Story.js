@@ -140,7 +140,7 @@ Story.propTypes = {
       ),
       body: PropTypes.string,
       resourceType: PropTypes.string,
-      contributors: PropTypes.array,
+      contributors: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
       supportedOutputFormats: PropTypes.array,
       descriptionText: PropTypes.string,
       image: PropTypes.element,

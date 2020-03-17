@@ -1,17 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from '@apmg/titan';
-import { Heading } from '@apmg/titan';
+
+const ampStyles = {
+  lowerFooter: {
+    backgroundColor: '#4298b5',
+    padding: '15px',
+    textAlign: 'center'
+  },
+  flexItem: {
+    minWidth: '300px'
+  },
+  footerFlex: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  footerNav: {
+    listStyle: 'none',
+    marginLeft: '-30px'
+  },
+  invisible: { display: 'none' }
+};
 
 const AmpFooterLower = (props) => {
   return (
-    <div className="footer_lower">
-      <Heading level={3} className="invisible">
-        Additional Information
-      </Heading>
-      <div className="container">
-        <div className="footer_lowerContent">
-          <div className="footer_logo">
+    <div style={ampStyles.lowerFooter}>
+      <div>
+        <div style={ampStyles.footerFlex}>
+          <div style={ampStyles.flexItem}>
             <amp-img
               src="/mpr-logo-footer.svg"
               alt="Minnesota Public Radio"
@@ -19,26 +36,22 @@ const AmpFooterLower = (props) => {
               height="81"
             />
           </div>
-          <nav className="footer_nav">
-            <ul className="footer_navList">
+          <nav style={ampStyles.flexItem}>
+            <ul style={ampStyles.footerNav}>
               {props.nav.map((item) => (
-                <li key={item.href} className="footer_navItem">
-                  <Link href={item.href} className="footer_navLink">
-                    {item.label}
-                  </Link>
+                <li key={item.href}>
+                  <Link href={item.href}>{item.label}</Link>
                 </li>
               ))}
             </ul>
           </nav>
         </div>
-        <div className="footer_lowerSmall">
-          <small className="footer_copyright">
+        <div>
+          <small>
             &copy; {new Date().getFullYear()} Minnesota Public Radio. All rights
             reserved.
           </small>{' '}
-          <small className="footer_disclaimer">
-            Weather data provided by the National Weather Service
-          </small>
+          <small>Weather data provided by the National Weather Service</small>
         </div>
       </div>
     </div>

@@ -4,7 +4,13 @@ import { Heading } from '@apmg/titan';
 import { Link } from '@apmg/titan';
 import Byline from '../Byline/Byline';
 
-const ContentHeader = (props) => {
+const ampStyles = {
+  authors: {
+    display: 'flex'
+  }
+};
+
+const AmpContentHeader = (props) => {
   let authorsTag = [];
 
   let checkTagName = `${props?.tag?.tagName}`;
@@ -19,7 +25,7 @@ const ContentHeader = (props) => {
   }
   const authorTosStr = JSON.stringify(authorsTag);
   const contentTopicHeaderRef = useRef(null);
-  //No array passed for useEffect expected behavior is to let useEffect run on rerender
+
   useEffect(() => {
     if (contentTopicHeaderRef) {
       window.dataLayer = window.dataLayer || [];
@@ -33,59 +39,40 @@ const ContentHeader = (props) => {
   }, [checkTagName]);
 
   return (
-    <header className="content_header">
+    <header>
       {props.tag && (
         <div
-          className="content_topic page-purpose"
           data-mpr-content-topic={props.tag.tagName}
           ref={contentTopicHeaderRef}
         >
-          <Link
-            href={props.tag.href}
-            as={`/${props.tag.to}`}
-            className="link link-none"
-          >
+          <Link href={props.tag.href} as={`/${props.tag.to}`}>
             {props.tag.tagName}
           </Link>
         </div>
       )}
 
-      <Heading
-        level={props.headingLevel ? props.headingLevel : 1}
-        className="hdg hdg-1 hdg-headline"
-      >
+      <Heading level={props.headingLevel ? props.headingLevel : 1}>
         {props.title}
       </Heading>
 
-      {props.subtitle && (
-        <p className="content_subtitle" data-testid="contentSubtitle">
-          {props.subtitle}
-        </p>
-      )}
+      {props.subtitle && <p data-testid="contentSubtitle">{props.subtitle}</p>}
 
-      <div className="content_meta">
+      <div style={ampStyles.authors}>
         {props.authors?.length && (
-          <div
-            className="content_byline"
-            data-testid="contentByline"
-            data-mpr-authors={authorTosStr}
-          >
+          <div data-testid="contentByline" data-mpr-authors={authorTosStr}>
             <Byline authors={props.authors} />
           </div>
         )}
 
-        {props.dateline && (
-          <div className="content_dateline">{props.dateline} </div>
-        )}
-        {props.publishDate && (
-          <div className="content_pubdate">{props.publishDate}</div>
-        )}
+        {props.dateline && <div>{props.dateline}</div>}
+
+        {props.publishDate && <div>{props.publishDate}</div>}
       </div>
     </header>
   );
 };
 
-ContentHeader.propTypes = {
+AmpContentHeader.propTypes = {
   authors: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string,
@@ -104,4 +91,4 @@ ContentHeader.propTypes = {
   title: PropTypes.string.isRequired
 };
 
-export default ContentHeader;
+export default AmpContentHeader;

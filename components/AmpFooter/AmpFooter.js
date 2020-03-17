@@ -1,29 +1,87 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
-import { Link } from '@apmg/titan';
-import classNames from 'classnames';
-import Logo from '../Logo/Logo';
-import Icon from '../Icons/Icon';
+import { Heading, Link } from '@apmg/titan';
 import config from '../Footer/footerConfig';
 import AmpFooterLower from './AmpFooterLower';
+import AmpFooterProgramming from './AmpFooterProgramming';
+
+const ampStyles = {
+  header: {
+    padding: '15px',
+    borderBottom: '2px solid gray'
+  },
+  footerPodcasts: {
+    maxWidth: '400px'
+  },
+  footerConnect: {
+    minWidth: '300px'
+  },
+  footerProgramming: {
+    minWidth: '300px'
+  },
+  footerUpper: {
+    backgroundColor: '#c2f2ff',
+    padding: '15px',
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around'
+  },
+  list: {
+    listStyle: 'none',
+    marginLeft: '-45px'
+  },
+  invisible: { display: 'none' },
+  icon: { height: '15px' }
+};
 
 const AmpFooter = () => {
-  const classes = classNames('footer', 'footer-minimal');
   return (
-    <footer className={classes}>
-      <div className="footer_upper">
-        <div className="footer_button">
-          <Link href="/" className="btn btn-footer">
-            <div className="footer_buttonText">
-              <div>For more news, visit</div>
-              <Logo elementClass="footerButtonLogo" />
-              <span className="invisible">MPR News</span>
+    <footer>
+      <div style={ampStyles.footerUpper}>
+        <div style={ampStyles.footerPodcasts}>
+          <div>
+            <Heading level={3}>
+              <Link href="/[...slug]" as={config.podcastLinkHref}>
+                {config.podcastTitle}
+              </Link>
+            </Heading>
+          </div>
+          <div>
+            <div>
+              <p>{config.podcastText}</p>
             </div>
-            <div className="footer_buttonIcon">
-              <Icon name="chevronRight" />
-            </div>
+          </div>
+        </div>
+        <div style={ampStyles.footerConnect}>
+          <div>
+            <Heading level={3} elementClass="hdg hdg-5">
+              Connect with us
+            </Heading>
+          </div>
+          <ul style={ampStyles.list}>
+            {config.contact.map((link) => {
+              return (
+                <li key={link.href}>
+                  {link.href.startsWith('mailto:') ||
+                  link.href.startsWith('tel:') ? (
+                    <a href={link.href}>{link.label}</a>
+                  ) : (
+                    <Link href={link.href}>{link.label}</Link>
+                  )}
+                </li>
+              );
+            })}
+          </ul>
+          <Link href="/newsletter">
+            <a href="/newsletter">Subscribe to email newsletters</a>
           </Link>
         </div>
+        <AmpFooterProgramming
+          listenText={config.listenText}
+          listenHref={config.listenHref}
+          links={config.programmingLinks}
+          title={config.programmingTitle}
+        />
       </div>
       <AmpFooterLower nav={config.nav} />
     </footer>
@@ -31,20 +89,3 @@ const AmpFooter = () => {
 };
 
 export default AmpFooter;
-
-{
-  /* <div className="footer_button">
-  <Link href="/">
-    <a className="btn btn-footer">
-      <div className="footer_buttonText">
-        <div>For more news, visit</div>
-        <Logo elementClass="footerButtonLogo" />
-        <span className="invisible">MPR News</span>
-      </div>
-      <div className="footer_buttonIcon">
-        <Icon name="chevronRight" />
-      </div>
-    </a>
-  </Link>
-</div> */
-}

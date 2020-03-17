@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { Time } from '@apmg/titan';
 import { globals } from '../../config/globals';
 import { collectionLinkData } from '../../utils/utils';
-import AudioPlayButton from '../../components/AudioPlayButton/AudioPlayButton';
+import AmpAudioPlayButton from '../../components/AmpAudioPlayButton/AmpAudioPlayButton';
 import Content from '../../components/Content/Content';
 import Metatags from '../../components/Metatags/Metatags';
-import ShareSocialButtons from '../../components/ShareSocialButtons/ShareSocialButtons';
+import AmpShareSocialButtons from '../../components/AmpShareSocialButtons/AmpShareSocialButtons';
 import { AmpImage } from '@apmg/mimas';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
 import { showInfoAlert, audioDownloadPrefix } from '../../utils/utils';
@@ -59,21 +59,18 @@ const AmpEpisode = ({ data: { episode, alertConfig } }) => {
         authors={authors}
         body={episode.body}
         shareButtons={
-          <ShareSocialButtons
+          <AmpShareSocialButtons
             contentUrl={episode.canonicalSlug}
             title={episode.title}
           />
         }
         audioPlayButton={
           episode.primaryAudio && (
-            <AudioPlayButton
+            <AmpAudioPlayButton
               audioSource={audioDownloadPrefix(
                 episode.primaryAudio.encodings[0].playFilePath
               )}
               audioTitle={episode.primaryAudio.title}
-              label="Listen"
-              elementClass="playButton-primary"
-              showTitle={true}
             />
           )
         }
@@ -114,7 +111,7 @@ AmpEpisode.propTypes = {
       ),
       body: PropTypes.string,
       resourceType: PropTypes.string,
-      contributors: PropTypes.array,
+      contributors: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
       supportedOutputFormats: PropTypes.array,
       description: PropTypes.string,
       descriptionText: PropTypes.string,

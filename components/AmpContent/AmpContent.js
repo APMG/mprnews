@@ -1,15 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { Figure } from '@apmg/titan';
 import { Body } from '@apmg/amat';
-import ContentHeader from './ContentHeader';
+import AmpContentHeader from './AmpContentHeader';
 import ApmRelatedLinkListItemOverride from '../AmatOverrides/ApmRelatedLinkListItemOverride';
 import LinkOverride from '../AmatOverrides/LinkOverride';
 import ApmRelatedLinkOverride from '../AmatOverrides/ApmRelatedLinkOverride';
 
-const Content = ({
-  elementClass,
+const AmpContent = ({
   title,
   subtitle,
   dateline,
@@ -28,10 +26,6 @@ const Content = ({
   minimal,
   redistributable
 }) => {
-  const classes = classNames({
-    content: true,
-    [elementClass]: elementClass
-  });
   let largest;
   if (image && redistributable) {
     const instances = image?.props.image.aspect_ratios.uncropped.instances;
@@ -41,8 +35,8 @@ const Content = ({
   }
 
   return (
-    <article className={classes}>
-      <ContentHeader
+    <article>
+      <AmpContentHeader
         title={title}
         authors={authors}
         headingLevel={headingLevel}
@@ -82,7 +76,7 @@ const Content = ({
             nodeData={JSON.parse(body)}
             embedded={JSON.parse(embeddedAssetJson)}
             minimal={minimal}
-            isAmp={false}
+            isAmp={true}
             overrides={{
               link: LinkOverride,
               apm_related_link: ApmRelatedLinkOverride,
@@ -95,8 +89,7 @@ const Content = ({
   );
 };
 
-Content.propTypes = {
-  elementClass: PropTypes.string,
+AmpContent.propTypes = {
   title: PropTypes.string,
   subtitle: PropTypes.string,
   dateline: PropTypes.string,
@@ -124,4 +117,4 @@ Content.propTypes = {
   redistributable: PropTypes.bool
 };
 
-export default Content;
+export default AmpContent;
