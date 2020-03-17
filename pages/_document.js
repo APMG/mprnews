@@ -5,7 +5,7 @@ import newrelic from 'newrelic';
 class MPRNewsDocument extends Document {
   static async getInitialProps(ctx) {
     const initialProps = await Document.getInitialProps(ctx);
-    newrelic.setTransactionName(`${ctx.req.method}${ctx.req.url}`);
+    newrelic.setTransactionName(ctx.pathname); // e.g. /story/[...slug]
     return { ...initialProps };
   }
 

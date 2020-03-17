@@ -16,7 +16,7 @@ function useMounted() {
 const HomeRail = (props) => {
   const sections = dropdownLists[0].groups[0].links; // D R Y
   const isMounted = useMounted();
-  const liveLink = props.covid.links.find((link) => link.isLive === true);
+  const liveLink = props?.covid?.links?.find((link) => link.isLive === true);
 
   return (
     <>
@@ -38,7 +38,7 @@ const HomeRail = (props) => {
                 </Link>
               </div>
             )}
-            {props.covid.links && (
+            {props.covid?.links && (
               <div className="section section-md">
                 <InfoLink
                   title="COVID-19"
@@ -50,7 +50,7 @@ const HomeRail = (props) => {
                   liveHeadlineHref={liveLink && liveLink.href}
                   liveHeadlineHrefType="live"
                 />
-                {props.covid.links.map((link) => {
+                {props.covid?.links?.map((link) => {
                   if (link.isLive) {
                     return null;
                   }
