@@ -44,13 +44,13 @@
   dependencies:
     cross-fetch "3.0.4"
 
-"@apmg/amat@^0.4.6-beta.0":
-  version "0.4.6-beta.0"
-  resolved "https://registry.yarnpkg.com/@apmg/amat/-/amat-0.4.6-beta.0.tgz#f8772ba42327c66c75f47acc4c12d9736b994df9"
-  integrity sha512-sdqBYLVvu/arH0P0GdlbUgdlffD9n5uOAod4nyyoN4enMW2O0d2SL2juAxv89V9E3F5pB+sBlzmASgj1+FQE+w==
+"@apmg/amat@0.4.6":
+  version "0.4.6"
+  resolved "https://registry.yarnpkg.com/@apmg/amat/-/amat-0.4.6.tgz#7f54cecf76096d1c05ed4ee68309ab2320ab16a1"
+  integrity sha512-eOmWGubwwcOee/ja9vWJH4gjiRaCALN5YFe/JJq0b20R4DtuHFmf+a2KbaTgiXWaL7LdqPNU8HUDLxIDxo15Xg==
   dependencies:
     "@apmg/enceladus" "^0.5.4"
-    "@apmg/mimas" "^0.3.2"
+    "@apmg/mimas" "0.3.3"
     "@apmg/react-oembed-container" "git://github.com/APMG/react-oembed-container.git#twitter-load-fix"
     "@nprapps/sidechain" "^1.0.13"
     classnames "^2.2.6"
@@ -71,10 +71,10 @@
     focus-trap-react "^6.0.0"
     react-pose "^4.0.8"
 
-"@apmg/mimas@^0.3.2":
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/@apmg/mimas/-/mimas-0.3.2.tgz#12ff687ced4828413b9b857953d5911a51b931fa"
-  integrity sha512-qoqhi5qH4lQK0ATIfuw6cq7qRLGORo4+p1OI2hcpBm27y/azAPPXd+NuQWALIeU4xlcmqM8IF/ac8lcjaEjeiA==
+"@apmg/mimas@0.3.3":
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/@apmg/mimas/-/mimas-0.3.3.tgz#38cdb69e4c71b30b6cbda89d24a14dd5f6e4014b"
+  integrity sha512-CQxZFDTGj8eRyHLLngatLCgyyOgGALSn8hT1wTAlNBs2KS7yhn3KEq9dLMairooNvTk3sk2uxTB0qMQ1sqj7XA==
 
 "@apmg/react-oembed-container@git://github.com/APMG/react-oembed-container.git#twitter-load-fix":
   version "0.3.1"
