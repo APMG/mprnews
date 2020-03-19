@@ -2,87 +2,57 @@
 import React from 'react';
 import { Heading, Link } from '@apmg/titan';
 import config from '../Footer/footerConfig';
+import Logo from '../Logo/Logo';
+import Icon from '../Icons/Icon';
 import AmpFooterLower from './AmpFooterLower';
 import AmpFooterProgramming from './AmpFooterProgramming';
 
 const ampStyles = {
-  header: {
-    padding: '15px',
-    borderBottom: '2px solid gray'
-  },
-  footerPodcasts: {
-    maxWidth: '400px'
-  },
-  footerConnect: {
-    minWidth: '300px'
-  },
-  footerProgramming: {
-    minWidth: '300px'
-  },
   footerUpper: {
-    backgroundColor: '#c2f2ff',
-    padding: '15px',
     display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around'
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
-  list: {
-    listStyle: 'none',
-    marginLeft: '-45px'
+  footerButton: {
+    display: 'flex',
+    padding: '15px',
+    backgroundColor: '#e5e6e6',
+    border: '2px solid #cacdce',
+    borderRadius: '3px',
+    marginBottom: '25px',
+    fontFamily: '"Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif',
+    color: '#4a4e4f',
+    fontWeight: 'bold',
+    cursor: 'pointer',
+    outline: '0',
+    transition:
+      'background-color 0.2s, border 0.2s, color 0.2s, box-shadow 0.2s'
   },
-  invisible: { display: 'none' },
-  icon: { height: '15px' }
+  footerLeft: {
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  footerLink: {
+    textDecoration: 'none'
+  },
+  invisible: { display: 'none' }
 };
 
 const AmpFooter = () => {
   return (
     <footer>
-      <div style={ampStyles.footerUpper}>
-        <div style={ampStyles.footerPodcasts}>
-          <div>
-            <Heading level={3}>
-              <Link href="/[...slug]" as={config.podcastLinkHref}>
-                {config.podcastTitle}
-              </Link>
-            </Heading>
-          </div>
-          <div>
-            <div>
-              <p>{config.podcastText}</p>
+      <Link style={ampStyles.footerLink} href="/">
+        <div style={ampStyles.footerUpper}>
+          <div style={ampStyles.footerButton}>
+            <div style={ampStyles.footerLeft}>
+              <span>For more news, visit</span>
+              <Logo width="175px" />
             </div>
+            <Icon name="chevronRight" />
           </div>
         </div>
-        <div style={ampStyles.footerConnect}>
-          <div>
-            <Heading level={3} elementClass="hdg hdg-5">
-              Connect with us
-            </Heading>
-          </div>
-          <ul style={ampStyles.list}>
-            {config.contact.map((link) => {
-              return (
-                <li key={link.href}>
-                  {link.href.startsWith('mailto:') ||
-                  link.href.startsWith('tel:') ? (
-                    <a href={link.href}>{link.label}</a>
-                  ) : (
-                    <Link href={link.href}>{link.label}</Link>
-                  )}
-                </li>
-              );
-            })}
-          </ul>
-          <Link href="/newsletter">
-            <a href="/newsletter">Subscribe to email newsletters</a>
-          </Link>
-        </div>
-        <AmpFooterProgramming
-          listenText={config.listenText}
-          listenHref={config.listenHref}
-          links={config.programmingLinks}
-          title={config.programmingTitle}
-        />
-      </div>
+      </Link>
       <AmpFooterLower nav={config.nav} />
     </footer>
   );

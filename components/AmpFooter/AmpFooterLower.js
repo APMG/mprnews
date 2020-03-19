@@ -6,7 +6,12 @@ const ampStyles = {
   lowerFooter: {
     backgroundColor: '#4298b5',
     padding: '15px',
-    textAlign: 'center'
+    textAlign: 'center',
+    color: 'white',
+    fontWeight: '500',
+    fontSize: '1.1em',
+    lineHeight: '1.4em',
+    fontFamily: '"Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif'
   },
   flexItem: {
     minWidth: '300px'
@@ -14,16 +19,28 @@ const ampStyles = {
   footerFlex: {
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'flex-start',
+    textAlign: 'left'
   },
   footerNav: {
     listStyle: 'none',
     marginLeft: '-30px'
   },
+  footerLink: {
+    textDecoration: 'none',
+    color: 'white'
+  },
+  footerItem: {
+    width: '275px'
+  },
   invisible: { display: 'none' }
 };
 
 const AmpFooterLower = (props) => {
+  let firstNav = props.nav.slice(0, 3);
+  let secondNav = props.nav.slice(3, 6);
+  let thirdNav = props.nav.slice(6, 9);
+
   return (
     <div style={ampStyles.lowerFooter}>
       <div>
@@ -37,13 +54,35 @@ const AmpFooterLower = (props) => {
             />
           </div>
           <nav style={ampStyles.flexItem}>
-            <ul style={ampStyles.footerNav}>
-              {props.nav.map((item) => (
-                <li key={item.href}>
-                  <Link href={item.href}>{item.label}</Link>
-                </li>
-              ))}
-            </ul>
+            <div style={ampStyles.footerFlex}>
+              <ul style={ampStyles.footerNav}>
+                {firstNav.map((item) => (
+                  <li style={ampStyles.footerItem} key={item.href}>
+                    <Link style={ampStyles.footerLink} href={item.href}>
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              <ul style={ampStyles.footerNav}>
+                {secondNav.map((item) => (
+                  <li style={ampStyles.footerItem} key={item.href}>
+                    <Link style={ampStyles.footerLink} href={item.href}>
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              <ul style={ampStyles.footerNav}>
+                {thirdNav.map((item) => (
+                  <li style={ampStyles.footerItem} key={item.href}>
+                    <Link style={ampStyles.footerLink} href={item.href}>
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </nav>
         </div>
         <div>
