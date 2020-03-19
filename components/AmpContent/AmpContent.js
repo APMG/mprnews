@@ -7,6 +7,23 @@ import ApmRelatedLinkListItemOverride from '../AmatOverrides/ApmRelatedLinkListI
 import LinkOverride from '../AmatOverrides/LinkOverride';
 import ApmRelatedLinkOverride from '../AmatOverrides/ApmRelatedLinkOverride';
 
+const ampStyles = {
+  article: {
+    fontFamily: '"Noto Serif", Georgia, serif',
+    fontSize: '.9375em',
+    lineHeight: '1.5',
+    color: '#191a1a',
+    maxWidth: '40em',
+    margin: '1em auto'
+  },
+  sharing: {
+    margin: '2em 1em 1em',
+    fontFamily: '"Roboto", system-ui, -apple-system, sans-serif',
+    fontSize: '0.85em'
+  },
+  invisible: { display: 'none' }
+};
+
 const AmpContent = ({
   title,
   subtitle,
@@ -35,7 +52,7 @@ const AmpContent = ({
   }
 
   return (
-    <article>
+    <article style={ampStyles.article}>
       <AmpContentHeader
         title={title}
         authors={authors}
@@ -45,7 +62,11 @@ const AmpContent = ({
         dateline={dateline}
         tag={tag}
       />
-      {shareButtons && <div className="content_social">{shareButtons}</div>}
+      {shareButtons && (
+        <div className="content_social" style={ampStyles.sharing}>
+          {shareButtons}
+        </div>
+      )}
 
       {audioPlayButton && (
         <div className="content_audio">{audioPlayButton}</div>
