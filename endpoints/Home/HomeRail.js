@@ -23,21 +23,6 @@ const HomeRail = (props) => {
       {isMounted && (
         <>
           <div className="home_railLinks">
-            {props.showElectionLink && (
-              <div className="section section-md">
-                <Link
-                  href="/[...slug]"
-                  as="/politics/election-2020"
-                  className="infoLink"
-                >
-                  <div className="infoLink_title" aria-label="2020 Elections">
-                    <Heading level={2} className="hdg hdg-4">
-                      <Elections2020 elementClass="logo-election-2020" />
-                    </Heading>
-                  </div>
-                </Link>
-              </div>
-            )}
             {props.covid?.links && (
               <div className="section section-md">
                 <InfoLink
@@ -71,6 +56,22 @@ const HomeRail = (props) => {
                 })}
               </div>
             )}
+            {props.showElectionLink && (
+              <div className="section section-md">
+                <Link
+                  href="/[...slug]"
+                  as="/politics/election-2020"
+                  className="infoLink"
+                >
+                  <div className="infoLink_title" aria-label="2020 Elections">
+                    <Heading level={2} className="hdg hdg-4">
+                      <Elections2020 elementClass="logo-election-2020" />
+                    </Heading>
+                  </div>
+                </Link>
+              </div>
+            )}
+
             <div className="section section-md">
               <Link href="/weather" as="/weather" className="infoLink">
                 <div className="infoLink_title">
