@@ -1,11 +1,10 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
-import { Heading, Link } from '@apmg/titan';
+import { Link } from '@apmg/titan';
 import config from '../Footer/footerConfig';
 import Logo from '../Logo/Logo';
 import Icon from '../Icons/Icon';
 import AmpFooterLower from './AmpFooterLower';
-import AmpFooterProgramming from './AmpFooterProgramming';
 
 const ampStyles = {
   footerUpper: {
