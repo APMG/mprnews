@@ -10,6 +10,10 @@
   flex-direction: row;
   align-items: flex-end;
 
+  &.dark_red {
+    color: $color-darkred;
+  }
+
   > .icon {
     margin-left: .5rem;
     height: 28px;

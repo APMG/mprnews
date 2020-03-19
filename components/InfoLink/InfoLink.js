@@ -41,7 +41,7 @@ const InfoLink = (props) => {
       >
         <Heading
           level={props.headingLevel}
-          className="hdg hdg-4 infoLink_title"
+          className={`hdg hdg-4 infoLink_title ${props.classes}`}
         >
           {props.title}
           <Icon name={props.icon} />
@@ -91,7 +91,8 @@ InfoLink.propTypes = {
   href: PropTypes.string.isRequired,
   hrefType: PropTypes.string,
   icon: PropTypes.string,
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
+  classes: PropTypes.string
 };
 
 export default InfoLink;
