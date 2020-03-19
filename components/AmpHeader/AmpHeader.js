@@ -7,6 +7,11 @@ const ampStyles = {
     padding: '15px',
     borderBottom: '2px solid gray'
   },
+  logo: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   invisible: { display: 'none' }
 };
 
@@ -14,8 +19,8 @@ const AmpHeader = () => {
   return (
     <header style={ampStyles.header}>
       <Link href="/">
-        <div>
-          <Logo />
+        <div style={ampStyles.logo}>
+          <Logo width="171px" height="24px" />
           <span style={ampStyles.invisible}>MPR News</span>
         </div>
       </Link>
