@@ -4,7 +4,7 @@ import { Time } from '@apmg/titan';
 import { globals } from '../../config/globals';
 import { collectionLinkData } from '../../utils/utils';
 import AmpAudioPlayButton from '../../components/AmpAudioPlayButton/AmpAudioPlayButton';
-import Content from '../../components/Content/Content';
+import AmpContent from '../../components/AmpContent/AmpContent';
 import Metatags from '../../components/Metatags/Metatags';
 import AmpShareSocialButtons from '../../components/AmpShareSocialButtons/AmpShareSocialButtons';
 import { AmpImage } from '@apmg/mimas';
@@ -52,8 +52,7 @@ const AmpEpisode = ({ data: { episode, alertConfig } }) => {
           <Alert info={alerts.info} />
         </div>
       ) : null}
-      <Content
-        isAmp={true}
+      <AmpContent
         title={episode.title}
         subtitle={episode.subtitle}
         authors={authors}
