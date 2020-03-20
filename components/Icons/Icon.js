@@ -22,10 +22,9 @@ import IconVolumeUp from './IconVolumeUp';
 import IconHeadphones from './IconHeadphones';
 import IconPopOut from './IconPopOut';
 import IconVirus from './IconVirus';
-import IconBallotBox from './IconBallotBox';
+import IconElectionBox from './IconElectionBox';
 
 const icons = {
-  ballotbox: IconBallotBox,
   car: IconCar,
   chevronDown: IconChevronDown,
   chevronLeft: IconChevronLeft,
@@ -47,7 +46,8 @@ const icons = {
   volumeUp: IconVolumeUp,
   headphones: IconHeadphones,
   popout: IconPopOut,
-  covid19: IconVirus
+  covid19: IconVirus,
+  ballotbox: IconElectionBox
 };
 
 const Icon = (props) => {
