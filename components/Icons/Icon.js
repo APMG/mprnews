@@ -22,13 +22,15 @@ import IconVolumeUp from './IconVolumeUp';
 import IconHeadphones from './IconHeadphones';
 import IconPopOut from './IconPopOut';
 import IconVirus from './IconVirus';
+import IconElectionBox from './IconElectionBox';
+
 const icons = {
-  empty: IconEmpty,
   car: IconCar,
   chevronDown: IconChevronDown,
   chevronLeft: IconChevronLeft,
   chevronRight: IconChevronRight,
   chevronUp: IconChevronUp,
+  empty: IconEmpty,
   facebook: IconFacebook,
   live: IconLive,
   location: IconLocation,
@@ -44,7 +46,8 @@ const icons = {
   volumeUp: IconVolumeUp,
   headphones: IconHeadphones,
   popout: IconPopOut,
-  covid19: IconVirus
+  covid19: IconVirus,
+  ballotbox: IconElectionBox
 };
 
 const Icon = (props) => {
