@@ -20,6 +20,10 @@
     width: 28px;
     vertical-align: -5px;
     fill: $color-link;
+
+    &.dark_red {
+      fill: $color-darkred;
+    }
   }
 
   > .icon-updraft {

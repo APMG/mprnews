@@ -22,13 +22,16 @@ import IconVolumeUp from './IconVolumeUp';
 import IconHeadphones from './IconHeadphones';
 import IconPopOut from './IconPopOut';
 import IconVirus from './IconVirus';
+import IconBallotBox from './IconBallotBox';
+
 const icons = {
-  empty: IconEmpty,
+  ballotbox: IconBallotBox,
   car: IconCar,
   chevronDown: IconChevronDown,
   chevronLeft: IconChevronLeft,
   chevronRight: IconChevronRight,
   chevronUp: IconChevronUp,
+  empty: IconEmpty,
   facebook: IconFacebook,
   live: IconLive,
   location: IconLocation,

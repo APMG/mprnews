@@ -33,7 +33,7 @@ const HomeRail = (props) => {
                   headline={liveLink && liveLink.title}
                   liveHeadlineHref={liveLink && liveLink.href}
                   liveHeadlineHrefType="live"
-                  classes="dark_red"
+                  elementClass="dark_red"
                 />
                 {props.covid?.links?.map((link) => {
                   if (link.isLive) {
@@ -88,7 +88,7 @@ const HomeRail = (props) => {
                   title="2020 Elections"
                   href="politics/election-2020"
                   hrefType="collection"
-                  icon="checkmark"
+                  icon="ballotbox"
                   description="Complete Election Coverage"
                   headingLevel={2}
                 />
