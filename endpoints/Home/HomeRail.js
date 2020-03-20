@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Heading, Link } from '@apmg/titan';
 import InfoLink from '../../components/InfoLink/InfoLink';
-import Elections2020 from '../../components/Logo/Elections2020';
 import WeatherSidebar from '../../components/WeatherSidebar/WeatherSidebar';
 import { dropdownLists } from '../../utils/navConfig';
 import { hrefType } from '../../utils/utils';
@@ -23,21 +22,6 @@ const HomeRail = (props) => {
       {isMounted && (
         <>
           <div className="home_railLinks">
-            {props.showElectionLink && (
-              <div className="section section-md">
-                <Link
-                  href="/[...slug]"
-                  as="/politics/election-2020"
-                  className="infoLink"
-                >
-                  <div className="infoLink_title" aria-label="2020 Elections">
-                    <Heading level={2} className="hdg hdg-4">
-                      <Elections2020 elementClass="logo-election-2020" />
-                    </Heading>
-                  </div>
-                </Link>
-              </div>
-            )}
             {props.covid?.links && (
               <div className="section section-md">
                 <InfoLink
@@ -49,6 +33,7 @@ const HomeRail = (props) => {
                   headline={liveLink && liveLink.title}
                   liveHeadlineHref={liveLink && liveLink.href}
                   liveHeadlineHrefType="live"
+                  elementClass="dark_red"
                 />
                 {props.covid?.links?.map((link) => {
                   if (link.isLive) {
@@ -71,6 +56,7 @@ const HomeRail = (props) => {
                 })}
               </div>
             )}
+
             <div className="section section-md">
               <Link href="/weather" as="/weather" className="infoLink">
                 <div className="infoLink_title">
@@ -96,6 +82,18 @@ const HomeRail = (props) => {
                 headlineHrefType={props.updraft?.resourceType}
               />
             </div>
+            {props.showElectionLink && (
+              <div className="section section-md">
+                <InfoLink
+                  title="2020 Elections"
+                  href="politics/election-2020"
+                  hrefType="collection"
+                  icon="ballotbox"
+                  description="Complete Election Coverage"
+                  headingLevel={2}
+                />
+              </div>
+            )}
             <div className="section section-md">
               <InfoLink
                 title="Traffic"

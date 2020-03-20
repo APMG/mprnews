@@ -116,7 +116,7 @@ const Story = ({ data: { story, alertConfig }, minimal }) => {
           This story originally appeared at:{' '}
           {`https://www.mprnews.org/story/${story.canonicalSlug}`} of story
           Questions or requests? Contact MPR News editor Meg Martin at
-          newspartners@mpr.org © 2019 Minnesota Public Radio. All rights
+          newspartners@mpr.org © 2020 Minnesota Public Radio. All rights
           reserved.
         </div>
       )}

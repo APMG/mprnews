@@ -23,8 +23,8 @@
     "blast": "rm -rf node_modules .next package-lock.json && yarn check"
   },
   "dependencies": {
-    "@apmg/mimas": "0.3.3-beta.2",
-    "@apmg/amat": "0.4.6-beta.2",
+    "@apmg/amat": "0.4.6",
+    "@apmg/mimas": "0.3.3",
     "@apmg/titan": "^0.7.2",
     "acorn": "^6.2.0",
     "apm-html5-player": "^1.0.0-rc.2",
@@ -62,6 +62,7 @@
     "@babel/plugin-proposal-class-properties": "^7.5.0",
     "@babel/plugin-proposal-optional-chaining": "^7.2.0",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/runtime-corejs2": "^7.8.7",
     "babel-eslint": "^10.0.2",
     "babel-plugin-import-graphql": "^2.7.0",
     "eslint": "^6.0.1",

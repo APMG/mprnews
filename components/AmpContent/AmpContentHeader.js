@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Heading } from '@apmg/titan';
 import { Link } from '@apmg/titan';
@@ -43,18 +43,6 @@ const AmpContentHeader = (props) => {
   }
   const authorTosStr = JSON.stringify(authorsTag);
   const contentTopicHeaderRef = useRef(null);
-
-  useEffect(() => {
-    if (contentTopicHeaderRef) {
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({
-        event: 'sendUWContentTopic',
-        contentTopic: checkTagName
-      });
-    } else {
-      console.error('you broke the ads');
-    }
-  }, [checkTagName]);
 
   return (
     <header style={ampStyles.header}>

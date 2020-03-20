@@ -8,44 +8,46 @@ const ampStyles = {
     padding: '15px',
     textAlign: 'center',
     color: 'white',
-    fontWeight: '500',
     fontSize: '1.1em',
     lineHeight: '1.4em',
-    fontFamily: '"Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif'
+    fontFamily: 'Roboto, system-ui, -apple-system, sans-serif'
   },
-  flexItem: {
-    minWidth: '300px'
+  footerColumns: {
+    display: 'block',
+    margin: '1em auto',
+    columnCount: '4',
+    columnWidth: '15em',
+    columnGap: '1em'
   },
-  footerFlex: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'flex-start',
-    textAlign: 'left'
+  footerLogo: {
+    breakAfter: 'column'
   },
   footerNav: {
     listStyle: 'none',
-    marginLeft: '-30px'
+    margin: '0',
+    padding: '0'
   },
   footerLink: {
     textDecoration: 'none',
     color: 'white'
   },
   footerItem: {
-    width: '275px'
+    fontSize: '90%',
+    lineHeight: '1',
+    margin: '0 0 1em',
+    fontWeight: '700',
+    textAlign: 'left',
+    breakInside: 'avoid'
   },
   invisible: { display: 'none' }
 };
 
 const AmpFooterLower = (props) => {
-  let firstNav = props.nav.slice(0, 3);
-  let secondNav = props.nav.slice(3, 6);
-  let thirdNav = props.nav.slice(6, 9);
-
   return (
     <div style={ampStyles.lowerFooter}>
       <div>
-        <div style={ampStyles.footerFlex}>
-          <div style={ampStyles.flexItem}>
+        <div style={ampStyles.footerColumns}>
+          <div style={ampStyles.footerLogo}>
             <amp-img
               src="/mpr-logo-footer.svg"
               alt="Minnesota Public Radio"
@@ -53,36 +55,16 @@ const AmpFooterLower = (props) => {
               height="81"
             />
           </div>
-          <nav style={ampStyles.flexItem}>
-            <div style={ampStyles.footerFlex}>
-              <ul style={ampStyles.footerNav}>
-                {firstNav.map((item) => (
-                  <li style={ampStyles.footerItem} key={item.href}>
-                    <Link style={ampStyles.footerLink} href={item.href}>
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-              <ul style={ampStyles.footerNav}>
-                {secondNav.map((item) => (
-                  <li style={ampStyles.footerItem} key={item.href}>
-                    <Link style={ampStyles.footerLink} href={item.href}>
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-              <ul style={ampStyles.footerNav}>
-                {thirdNav.map((item) => (
-                  <li style={ampStyles.footerItem} key={item.href}>
-                    <Link style={ampStyles.footerLink} href={item.href}>
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <nav>
+            <ul style={ampStyles.footerNav}>
+              {props.nav.map((item) => (
+                <li style={ampStyles.footerItem} key={item.href}>
+                  <Link style={ampStyles.footerLink} href={item.href}>
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </nav>
         </div>
         <div>
