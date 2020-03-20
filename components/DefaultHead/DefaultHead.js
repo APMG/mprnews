@@ -78,17 +78,6 @@ const DefaultHead = () => {
         href="https://fonts.googleapis.com/css?family=Noto+Serif:400,400i|Roboto+Condensed:400,700|Roboto:400,700&display=swap&subset=latin-ext"
         rel="stylesheet"
       />
-
-      {/* AMP styles
-      <style amp-custom>{
-        `.headerContainer {
-          margin: 15px;
-        }
-
-        .invisible {
-          display: none;
-        }`
-      }</style> */}
     </Head>
   );
 };
