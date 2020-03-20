@@ -10,12 +10,20 @@
   flex-direction: row;
   align-items: flex-end;
 
+  &.dark_red {
+    color: $color-darkred;
+  }
+
   > .icon {
     margin-left: .5rem;
     height: 28px;
     width: 28px;
     vertical-align: -5px;
     fill: $color-link;
+
+    &.dark_red {
+      fill: $color-darkred;
+    }
   }
 
   > .icon-updraft {
