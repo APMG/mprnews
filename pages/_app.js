@@ -213,6 +213,7 @@ class MPRNews extends App {
   render() {
     const { Component, pageProps } = this.props;
     const { location, handleLocationChange } = this.state;
+
     return (
       <AudioPlayerContext.Provider value={this.state}>
         <LocationContext.Provider value={{ location, handleLocationChange }}>
