@@ -1,18 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import MinimalHeader from '../components/MinimalHeader/MinimalHeader';
-import MinimalFooter from '../components/MinimalFooter/MinimalFooter';
-// import Footer from '../components/Footer/Footer';
+import AmpHeader from '../components/AmpHeader/AmpHeader';
+import AmpFooter from '../components/AmpFooter/AmpFooter';
 
-import '../styles/index.scss';
+const ampStyles = {
+  ampContainer: {
+    margin: '25px'
+  }
+};
 
 const AmpLayout = ({ children }) => (
   <>
-    <MinimalHeader />
-    <main className="main">
-      <div className="container container-amp">{children}</div>
+    <AmpHeader />
+    <main>
+      <div style={ampStyles.ampContainer}>{children}</div>
     </main>
-    <MinimalFooter />
+    <AmpFooter />
   </>
 );
 

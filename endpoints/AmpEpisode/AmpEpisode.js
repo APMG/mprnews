@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 import { Time } from '@apmg/titan';
 import { globals } from '../../config/globals';
 import { collectionLinkData } from '../../utils/utils';
-import AudioPlayButton from '../../components/AudioPlayButton/AudioPlayButton';
-import Content from '../../components/Content/Content';
+import AmpAudioPlayButton from '../../components/AmpAudioPlayButton/AmpAudioPlayButton';
+import AmpContent from '../../components/AmpContent/AmpContent';
 import Metatags from '../../components/Metatags/Metatags';
-import ShareSocialButtons from '../../components/ShareSocialButtons/ShareSocialButtons';
-import { Image } from '@apmg/mimas';
+import AmpShareSocialButtons from '../../components/AmpShareSocialButtons/AmpShareSocialButtons';
+import { AmpImage } from '@apmg/mimas';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
 import { showInfoAlert, audioDownloadPrefix } from '../../utils/utils';
 import Alert from '../../components/Alert/Alert';
 
-const Episode = ({ data: { episode, alertConfig } }) => {
+const AmpEpisode = ({ data: { episode, alertConfig } }) => {
   const alerts = JSON.parse(alertConfig.json);
   const img = fishForSocialMediaImage(episode);
   let authors;
@@ -41,7 +41,7 @@ const Episode = ({ data: { episode, alertConfig } }) => {
         imageHeight={img?.height}
         imageWidth={img?.width}
         imageAlt={episode?.primaryVisuals?.social?.shortCaption}
-        isAmp={episode.supportedOutputFormats?.indexOf('amp') > -1}
+        isAmp={false} // Poorly named variable. Set to false so no link is made to self
         topic={episode.primaryCollection?.title}
         contentType="article"
         publishDate={episode.publishDate}
@@ -52,33 +52,30 @@ const Episode = ({ data: { episode, alertConfig } }) => {
           <Alert info={alerts.info} />
         </div>
       ) : null}
-      <Content
+      <AmpContent
         title={episode.title}
         subtitle={episode.subtitle}
         authors={authors}
         body={episode.body}
         shareButtons={
-          <ShareSocialButtons
-            contentUrl={`episode/${episode.canonicalSlug}`}
+          <AmpShareSocialButtons
+            contentUrl={episode.canonicalSlug}
             title={episode.title}
           />
         }
         audioPlayButton={
           episode.primaryAudio && (
-            <AudioPlayButton
+            <AmpAudioPlayButton
               audioSource={audioDownloadPrefix(
                 episode.primaryAudio.encodings[0].playFilePath
               )}
               audioTitle={episode.primaryAudio.title}
-              label="Listen"
-              elementClass="playButton-primary"
-              showTitle={true}
             />
           )
         }
         image={
           episode.primaryVisuals?.lead && (
-            <Image
+            <AmpImage
               key={episode.primaryVisuals.lead.fallback}
               image={episode.primaryVisuals.lead}
               sizes={globals.sizes.primaryVisuals}
@@ -98,7 +95,7 @@ const Episode = ({ data: { episode, alertConfig } }) => {
   );
 };
 
-Episode.propTypes = {
+AmpEpisode.propTypes = {
   data: PropTypes.shape({
     alertConfig: PropTypes.object,
     episode: PropTypes.shape({
@@ -135,4 +132,4 @@ Episode.propTypes = {
   })
 };
 
-export default Episode;
+export default AmpEpisode;

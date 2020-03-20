@@ -10,6 +10,7 @@ import Layout from '../layouts/Layout';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import TagManager from 'react-gtm-module';
+import '../styles/index.scss';
 
 const tagManagerArgs = {
   gtmId: 'GTM-KTT2Z2'

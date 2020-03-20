@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import '../styles/index.scss';
 import ListenHeader from '../components/ListenHeader/ListenHeader';
 import ListenFooter from '../components/ListenFooter/ListenFooter';
-import AudioPlayer from '../components/AudioPlayer/index';
+import AudioPlayer from '../components/AudioPlayer';
 
 const ListenLayout = ({ children }) => (
   <div className="listenLayout">
