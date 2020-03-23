@@ -1,20 +1,59 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import MinimalHeader from '../components/MinimalHeader/MinimalHeader';
-import MinimalFooter from '../components/MinimalFooter/MinimalFooter';
-// import Footer from '../components/Footer/Footer';
+import AmpHeader from '../components/AmpHeader/AmpHeader';
+import AmpFooter from '../components/AmpFooter/AmpFooter';
+import AmpHead from '../components/AmpHead/AmpHead';
 
-import '../styles/index.scss';
+const ampStyles = {
+  ampContainer: {
+    margin: '25px'
+  }
+};
 
-const AmpLayout = ({ children }) => (
-  <>
-    <MinimalHeader />
-    <main className="main">
-      <div className="container container-amp">{children}</div>
-    </main>
-    <MinimalFooter />
-  </>
-);
+const chartbeatObj = {
+  vars: {
+    uid: '33583',
+    domain: 'mprnews.org'
+  }
+};
+
+const googleAnalytics = {
+  vars: {
+    gtag_id: 'UA-2958380-25',
+    config: {
+      'UA-2958380-25': { groups: 'default' }
+    }
+  }
+};
+
+const AmpLayout = ({ children }) => {
+  return (
+    <>
+      <AmpHead />
+      <AmpHeader />
+      <main>
+        <amp-analytics type="chartbeat">
+          <script
+            type="application/json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(chartbeatObj)
+            }}
+          />
+        </amp-analytics>
+        <amp-analytics type="gtag" data-credentials="include">
+          <script
+            type="application/json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(googleAnalytics)
+            }}
+          />
+        </amp-analytics>
+        <div style={ampStyles.ampContainer}>{children}</div>
+      </main>
+      <AmpFooter />
+    </>
+  );
+};
 
 AmpLayout.propTypes = {
   children: PropTypes.any

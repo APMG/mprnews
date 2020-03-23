@@ -101,6 +101,7 @@ FullTeaser.propTypes = {
   // TODO: define item object proptypes better
   item: PropTypes.object,
   newspartners: PropTypes.bool,
+  contributors: PropTypes.oneOf([PropTypes.string, PropTypes.array]),
   size: PropTypes.string
 };
 
