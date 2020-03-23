@@ -10,7 +10,7 @@ import AmpContent from '../../components/AmpContent/AmpContent';
 import Metatags from '../../components/Metatags/Metatags';
 import AmpShareSocialButtons from '../../components/AmpShareSocialButtons/AmpShareSocialButtons';
 import { showInfoAlert, audioDownloadPrefix } from '../../utils/utils';
-import Alert from '../../components/Alert/Alert';
+import AmpAlert from '../../components/AmpAlert/AmpAlert';
 
 const AmpStory = ({ data: { story, alertConfig }, minimal }) => {
   const alerts = JSON.parse(alertConfig.json);
@@ -55,7 +55,7 @@ const AmpStory = ({ data: { story, alertConfig }, minimal }) => {
 
       {showInfoAlert(alerts, story.resourceType) ? (
         <div className="section section-md">
-          <Alert info={alerts.info} />
+          <AmpAlert info={alerts.info} />
         </div>
       ) : null}
       <AmpContent
