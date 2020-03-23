@@ -57,6 +57,12 @@ const AmpHead = () => {
       />
       <meta property="og:type" content="website" key="og:type" />
 
+      <script
+        async
+        custom-element="amp-analytics"
+        src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"
+      ></script>
+
       {/* Favicons */}
       <link rel="icon" type="image/png" href="/favicon.png" key="icon" />
       <link

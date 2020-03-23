@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import AmpHeader from '../components/AmpHeader/AmpHeader';
 import AmpFooter from '../components/AmpFooter/AmpFooter';
-import Head from 'next/head';
+import AmpHead from '../components/AmpHead/AmpHead';
 
 const ampStyles = {
   ampContainer: {
@@ -29,13 +29,7 @@ const googleAnalytics = {
 const AmpLayout = ({ children }) => {
   return (
     <>
-      <Head>
-        <script
-          async
-          custom-element="amp-analytics"
-          src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"
-        ></script>
-      </Head>
+      <AmpHead />
       <AmpHeader />
       <main>
         <amp-analytics type="chartbeat">
