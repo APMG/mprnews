@@ -4,7 +4,7 @@ import { Link } from '@apmg/titan';
 import { analyzeUrl } from '../../utils/cjsutils';
 
 const LinkOverride = (props) => {
-  const { href, title, inner, className } = props;
+  const { href, title, inner, className, isAmp } = props;
   const { isInternal, href: internalHref, as } = analyzeUrl(href);
   let attrs = { href: href };
 
@@ -13,6 +13,9 @@ const LinkOverride = (props) => {
   }
   if (className) {
     attrs.className = className;
+  }
+  if (isAmp) {
+    attrs.style = 'color: #00334e';
   }
 
   if (isInternal) {
@@ -29,6 +32,7 @@ const LinkOverride = (props) => {
 LinkOverride.propTypes = {
   inner: PropTypes.object,
   href: PropTypes.string,
+  isAmp: PropTypes.bool,
   title: PropTypes.string,
   className: PropTypes.string
 };
