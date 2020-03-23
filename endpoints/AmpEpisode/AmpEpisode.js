@@ -10,7 +10,7 @@ import AmpShareSocialButtons from '../../components/AmpShareSocialButtons/AmpSha
 import { AmpImage } from '@apmg/mimas';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
 import { showInfoAlert, audioDownloadPrefix } from '../../utils/utils';
-import Alert from '../../components/Alert/Alert';
+import AmpAlert from '../../components/AmpAlert/AmpAlert';
 
 const AmpEpisode = ({ data: { episode, alertConfig } }) => {
   const alerts = JSON.parse(alertConfig.json);
@@ -49,7 +49,7 @@ const AmpEpisode = ({ data: { episode, alertConfig } }) => {
       />
       {showInfoAlert(alerts, episode.resourceType) ? (
         <div className="section section-md">
-          <Alert info={alerts.info} />
+          <AmpAlert info={alerts.info} />
         </div>
       ) : null}
       <AmpContent
