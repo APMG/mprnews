@@ -17,6 +17,15 @@ const chartbeatObj = {
   }
 };
 
+const googleAnalytics = {
+  vars: {
+    gtag_id: 'UA-2958380-25',
+    config: {
+      'UA-2958380-25': { groups: 'default' }
+    }
+  }
+};
+
 const AmpLayout = ({ children }) => {
   return (
     <>
@@ -37,7 +46,14 @@ const AmpLayout = ({ children }) => {
             }}
           />
         </amp-analytics>
-
+        <amp-analytics type="gtag" data-credentials="include">
+          <script
+            type="application/json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(googleAnalytics)
+            }}
+          />
+        </amp-analytics>
         <div style={ampStyles.ampContainer}>{children}</div>
       </main>
       <AmpFooter />
