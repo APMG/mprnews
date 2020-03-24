@@ -44,7 +44,7 @@
   dependencies:
     cross-fetch "3.0.4"
 
-"@apmg/amat@0.4.8":
+"@apmg/amat@^0.4.8":
   version "0.4.8"
   resolved "https://registry.yarnpkg.com/@apmg/amat/-/amat-0.4.8.tgz#51a04187d13edc0d97047d2b0e55f420c7f4bd97"
   integrity sha512-Cb2utQCtM53nX2AdjVBEKFbJrKgEOeBbcvgrtuaKHpb7zF+NTmfJvmWe7xaKjKSF2UOj+LIDNvTXmhL3TMPExQ==
