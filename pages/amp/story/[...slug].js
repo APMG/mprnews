@@ -25,6 +25,10 @@ AmpStoryPage.getInitialProps = async ({ query: { slug }, res }) => {
   })
     .then((result) => {
       data = result.data;
+      if (res) {
+        res.setHeader('Cache-Control', 'public, max-age=60');
+      }
+
       if (!data.story) {
         if (res) res.statusCode = 404;
         errorCode = 404;

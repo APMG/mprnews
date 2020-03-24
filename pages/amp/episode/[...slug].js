@@ -25,6 +25,10 @@ AmpEpisodePage.getInitialProps = async ({ query: { slug }, res }) => {
   })
     .then((result) => {
       data = result.data;
+      if (res) {
+        res.setHeader('Cache-Control', 'public, max-age=60');
+      }
+
       if (res && !data.episode) {
         if (res) res.statusCode = 404;
         errorCode = 404;
