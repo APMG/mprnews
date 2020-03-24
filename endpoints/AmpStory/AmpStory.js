@@ -25,7 +25,7 @@ const AmpStory = ({ data: { story, alertConfig }, minimal }) => {
   const img = fishForSocialMediaImage(story, socialMediaImage);
   let authors;
 
-  if (story && story.contributors) {
+  if (story?.contributors && story.contributors.length > 0) {
     authors = story.contributors.map((contributor) => {
       return {
         title: `${contributor.profile?.title}`,

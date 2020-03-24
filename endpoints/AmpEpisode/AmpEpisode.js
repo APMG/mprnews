@@ -17,7 +17,7 @@ const AmpEpisode = ({ data: { episode, alertConfig } }) => {
   const img = fishForSocialMediaImage(episode);
   let authors;
 
-  if (episode.contributors) {
+  if (episode?.contributors && episode?.contributors?.length > 0) {
     authors = episode.contributors.map((contributor) => {
       let thisString = `${
         contributor.profile?.firstName ? contributor.profile.firstName : ''
