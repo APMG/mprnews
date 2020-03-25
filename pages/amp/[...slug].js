@@ -6,43 +6,14 @@ import query from '../../endpoints/Collection/variable.gql';
 import collectQuery from '../../endpoints/Collection/collection.gql';
 import pageQuery from '../../endpoints/Page/page.gql';
 import AmpPage from '../../endpoints/AmpPage/AmpPage';
-import AmpCollection from '../../endpoints/Collection/AmpCollection';
-import AmpCollectionTwoColumn from '../../endpoints/Collection/AmpCollectionTwoColumn';
-import ContentGrid from '../../grids/ContentGrid';
-import Sidebar from '../../components/Sidebar/Sidebar';
 import { isNumeric } from '../../utils/utils';
 
 const VariableAmpPage = (obj) => {
-  const { data, slug, type, pageNum } = obj;
+  const { data, type } = obj;
 
   if (obj.errorCode) return <ErrorPage statusCode={obj.errorCode} />;
-  if (type === 'collection') {
-    let layoutTemplate;
-    if (data) {
-      layoutTemplate = data.collection.templateName;
-    }
-
-    //Two column name in CMS is twocolumn
-    if (layoutTemplate === 'twocolumn') {
-      return (
-        <ContentGrid sidebar={<Sidebar />}>
-          <AmpCollectionTwoColumn data={data} pageNum={pageNum} slug={slug} />
-        </ContentGrid>
-      );
-    }
-    return (
-      <ContentGrid sidebar={<Sidebar />}>
-        <AmpCollection data={data} pageNum={pageNum} slug={slug} />
-      </ContentGrid>
-    );
-  }
-  if (type === 'page') {
-    return (
-      <ContentGrid sidebar={<Sidebar />}>
-        <AmpPage data={data} />
-      </ContentGrid>
-    );
-  }
+  if (type === 'collection') return <ErrorPage statusCode={404} />;
+  if (type === 'page') return <AmpPage data={data} />;
 };
 
 VariableAmpPage.getInitialProps = async ({ query: { slug }, res }) => {
