@@ -1,51 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ErrorPage from 'next/error';
-import initApollo from '../lib/init-apollo';
-import query from '../endpoints/Collection/variable.gql';
-import collectQuery from '../endpoints/Collection/collection.gql';
-import pageQuery from '../endpoints/Page/page.gql';
-import Page from '../endpoints/Page/Page';
-import Collection from '../endpoints/Collection/Collection';
-import CollectionTwoColumn from '../endpoints/Collection/CollectionTwoColumn';
-import ContentGrid from '../grids/ContentGrid';
-import Sidebar from '../components/Sidebar/Sidebar';
-import { isNumeric } from '../utils/utils';
+import initApollo from '../../lib/init-apollo';
+import query from '../../endpoints/Collection/variable.gql';
+import collectQuery from '../../endpoints/Collection/collection.gql';
+import pageQuery from '../../endpoints/Page/page.gql';
+import AmpPage from '../../endpoints/AmpPage/AmpPage';
+import { isNumeric } from '../../utils/utils';
 
-const VariablePage = (obj) => {
-  const { data, slug, type, pageNum } = obj;
+const VariableAmpPage = (obj) => {
+  const { data, type } = obj;
 
   if (obj.errorCode) return <ErrorPage statusCode={obj.errorCode} />;
-  if (type === 'collection') {
-    let layoutTemplate;
-    if (data) {
-      layoutTemplate = data.collection.templateName;
-    }
-
-    //Two column name in CMS is twocolumn
-    if (layoutTemplate === 'twocolumn') {
-      return (
-        <ContentGrid sidebar={<Sidebar />}>
-          <CollectionTwoColumn data={data} pageNum={pageNum} slug={slug} />
-        </ContentGrid>
-      );
-    }
-    return (
-      <ContentGrid sidebar={<Sidebar />}>
-        <Collection data={data} pageNum={pageNum} slug={slug} />
-      </ContentGrid>
-    );
-  }
-  if (type === 'page') {
-    return (
-      <ContentGrid sidebar={<Sidebar />}>
-        <Page data={data} />
-      </ContentGrid>
-    );
-  }
+  if (type === 'collection') return <ErrorPage statusCode={404} />;
+  if (type === 'page') return <AmpPage data={data} />;
 };
 
-VariablePage.getInitialProps = async ({ query: { slug }, res }) => {
+VariableAmpPage.getInitialProps = async ({ query: { slug }, res }) => {
   const ApolloClient = initApollo();
   let data;
   let type;
@@ -129,14 +100,15 @@ VariablePage.getInitialProps = async ({ query: { slug }, res }) => {
     data,
     type,
     pageNum,
-    errorCode
+    errorCode,
+    layout: 'amp'
   };
 };
 
-VariablePage.propTypes = {
+VariableAmpPage.propTypes = {
   errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
   data: PropTypes.object,
   slug: PropTypes.array
 };
 
-export default VariablePage;
+export default VariableAmpPage;

@@ -1,15 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { Figure } from '@apmg/titan';
 import { Body } from '@apmg/amat';
-import ContentHeader from './ContentHeader';
+import AmpContentHeader from './AmpContentHeader';
 import ApmRelatedLinkListItemOverride from '../AmatOverrides/ApmRelatedLinkListItemOverride';
 import LinkOverride from '../AmatOverrides/LinkOverride';
 import ApmRelatedLinkOverride from '../AmatOverrides/ApmRelatedLinkOverride';
 
-const Content = ({
-  elementClass,
+const ampStyles = {
+  article: {
+    fontFamily: '"Noto Serif", Georgia, serif',
+    fontSize: '.9375em',
+    lineHeight: '1.5',
+    color: '#191a1a',
+    maxWidth: '40em',
+    margin: '1em auto'
+  },
+  sharing: {
+    margin: '2em 1em 1em',
+    fontFamily: '"Roboto", system-ui, -apple-system, sans-serif',
+    fontSize: '0.85em'
+  },
+  invisible: { display: 'none' }
+};
+
+const AmpContent = ({
   title,
   subtitle,
   dateline,
@@ -28,10 +43,6 @@ const Content = ({
   minimal,
   redistributable
 }) => {
-  const classes = classNames({
-    content: true,
-    [elementClass]: elementClass
-  });
   let largest;
   if (image && redistributable) {
     const instances = image?.props.image.aspect_ratios.uncropped.instances;
@@ -41,8 +52,8 @@ const Content = ({
   }
 
   return (
-    <article className={classes}>
-      <ContentHeader
+    <article style={ampStyles.article}>
+      <AmpContentHeader
         title={title}
         authors={authors}
         headingLevel={headingLevel}
@@ -51,7 +62,11 @@ const Content = ({
         dateline={dateline}
         tag={tag}
       />
-      {shareButtons && <div className="content_social">{shareButtons}</div>}
+      {shareButtons && (
+        <div className="content_social" style={ampStyles.sharing}>
+          {shareButtons}
+        </div>
+      )}
 
       {audioPlayButton && (
         <div className="content_audio">{audioPlayButton}</div>
@@ -82,7 +97,7 @@ const Content = ({
             nodeData={JSON.parse(body)}
             embedded={JSON.parse(embeddedAssetJson)}
             minimal={minimal}
-            isAmp={false}
+            isAmp={true}
             overrides={{
               link: LinkOverride,
               apm_related_link: ApmRelatedLinkOverride,
@@ -95,8 +110,7 @@ const Content = ({
   );
 };
 
-Content.propTypes = {
-  elementClass: PropTypes.string,
+AmpContent.propTypes = {
   title: PropTypes.string,
   subtitle: PropTypes.string,
   dateline: PropTypes.string,
@@ -124,4 +138,4 @@ Content.propTypes = {
   redistributable: PropTypes.bool
 };
 
-export default Content;
+export default AmpContent;

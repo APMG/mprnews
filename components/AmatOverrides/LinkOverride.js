@@ -14,6 +14,9 @@ const LinkOverride = (props) => {
   if (className) {
     attrs.className = className;
   }
+  if (inner.props.isAmp) {
+    attrs.style = { color: '#00334e' };
+  }
 
   if (isInternal) {
     return (
@@ -29,6 +32,7 @@ const LinkOverride = (props) => {
 LinkOverride.propTypes = {
   inner: PropTypes.object,
   href: PropTypes.string,
+  isAmp: PropTypes.bool,
   title: PropTypes.string,
   className: PropTypes.string
 };

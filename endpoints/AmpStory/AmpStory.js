@@ -1,18 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { globals } from '../../config/globals';
-import { Image } from '@apmg/mimas';
+import { AmpImage } from '@apmg/mimas';
 import { Time } from '@apmg/titan';
 import { collectionLinkData } from '../../utils/utils';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
-import AudioPlayButton from '../../components/AudioPlayButton/AudioPlayButton';
-import Content from '../../components/Content/Content';
+import AmpAudioPlayButton from '../../components/AmpAudioPlayButton/AmpAudioPlayButton';
+import AmpContent from '../../components/AmpContent/AmpContent';
 import Metatags from '../../components/Metatags/Metatags';
-import ShareSocialButtons from '../../components/ShareSocialButtons/ShareSocialButtons';
+import AmpShareSocialButtons from '../../components/AmpShareSocialButtons/AmpShareSocialButtons';
 import { showInfoAlert, audioDownloadPrefix } from '../../utils/utils';
-import Alert from '../../components/Alert/Alert';
+import AmpAlert from '../../components/AmpAlert/AmpAlert';
 
-const Story = ({ data: { story, alertConfig }, minimal }) => {
+const AmpStory = ({ data: { story, alertConfig }, minimal }) => {
   const alerts = JSON.parse(alertConfig.json);
   const redistributable = story?.primaryVisuals?.lead?.rights?.redistributable;
   const displayableImage =
@@ -25,7 +25,7 @@ const Story = ({ data: { story, alertConfig }, minimal }) => {
   const img = fishForSocialMediaImage(story, socialMediaImage);
   let authors;
 
-  if (story && story.contributors) {
+  if (story?.contributors && story.contributors.length > 0) {
     authors = story.contributors.map((contributor) => {
       return {
         title: `${contributor.profile?.title}`,
@@ -45,7 +45,7 @@ const Story = ({ data: { story, alertConfig }, minimal }) => {
         imageHeight={img?.height}
         imageWidth={img?.width}
         imageAlt={story?.primaryVisuals?.social?.shortCaption}
-        isAmp={story.supportedOutputFormats?.indexOf('amp') > -1}
+        isAmp={false} // Poorly named variable. Set to false so no link is made to self
         topic={story?.primaryCollection?.title}
         contentType="article"
         publishDate={story.publishDate}
@@ -55,10 +55,10 @@ const Story = ({ data: { story, alertConfig }, minimal }) => {
 
       {showInfoAlert(alerts, story.resourceType) ? (
         <div className="section section-md">
-          <Alert info={alerts.info} />
+          <AmpAlert info={alerts.info} />
         </div>
       ) : null}
-      <Content
+      <AmpContent
         title={story.title}
         subtitle={story.subtitle}
         dateline={story.dateline}
@@ -68,8 +68,8 @@ const Story = ({ data: { story, alertConfig }, minimal }) => {
         redistributable={redistributable}
         shareButtons={
           !minimal && (
-            <ShareSocialButtons
-              contentUrl={`story/${story.canonicalSlug}`}
+            <AmpShareSocialButtons
+              contentUrl={story.canonicalSlug}
               title={story.title}
             />
           )
@@ -77,20 +77,17 @@ const Story = ({ data: { story, alertConfig }, minimal }) => {
         audioPlayButton={
           story.primaryAudio &&
           story.primaryAudio.encodings.length > 0 && (
-            <AudioPlayButton
+            <AmpAudioPlayButton
               audioSource={audioDownloadPrefix(
                 story.primaryAudio.encodings[0].playFilePath
               )}
               audioTitle={story.primaryAudio.title}
-              label="Listen"
-              elementClass="playButton-primary"
-              showTitle={true}
             />
           )
         }
         image={
           displayableImage && (
-            <Image
+            <AmpImage
               key={story.primaryVisuals?.lead.fallback}
               image={story.primaryVisuals?.lead}
               sizes={globals.sizes?.primaryVisuals}
@@ -124,7 +121,7 @@ const Story = ({ data: { story, alertConfig }, minimal }) => {
   );
 };
 
-Story.propTypes = {
+AmpStory.propTypes = {
   data: PropTypes.shape({
     alertConfig: PropTypes.object,
     story: PropTypes.shape({
@@ -162,4 +159,4 @@ Story.propTypes = {
   minimal: PropTypes.bool
 };
 
-export default Story;
+export default AmpStory;

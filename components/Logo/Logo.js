@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 const Logo = (props) => {
   return (
     <svg
-      width="235px"
-      height="32px"
+      width={props.width ? props.width : '235px'}
+      height={props.height ? props.height : '32px'}
       className={props.elementClass ? props.elementClass : ''}
       viewBox="0 0 235 32"
       xmlns="http://www.w3.org/2000/svg"
@@ -63,7 +63,9 @@ const Logo = (props) => {
 };
 
 Logo.propTypes = {
-  elementClass: PropTypes.string
+  elementClass: PropTypes.string,
+  height: PropTypes.string,
+  width: PropTypes.string
 };
 
 export default Logo;
