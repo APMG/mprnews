@@ -129,7 +129,8 @@ VariableAmpPage.getInitialProps = async ({ query: { slug }, res }) => {
     data,
     type,
     pageNum,
-    errorCode
+    errorCode,
+    layout: 'amp'
   };
 };
 

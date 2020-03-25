@@ -23,7 +23,7 @@
     "blast": "rm -rf node_modules .next package-lock.json && yarn check"
   },
   "dependencies": {
-    "@apmg/amat": "^0.4.9-beta.2",
+    "@apmg/amat": "^0.4.9",
     "@apmg/mimas": "0.3.3",
     "@apmg/titan": "^0.7.2",
     "acorn": "^6.2.0",
