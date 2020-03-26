@@ -1,0 +1,14 @@
+.donateAsk {
+  max-width: 50rem;
+  line-height: 1.5;
+  font-family: $font-family-copy;
+  background-color: $color-blue-tint;
+  padding: 3rem 2.5rem;
+  margin: 3rem auto;
+  border-radius: 3px;
+}
+
+.donateAsk_header,
+.donateAsk_body  {
+  margin-bottom: 2rem;
+}
