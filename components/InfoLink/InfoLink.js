@@ -39,13 +39,15 @@ const InfoLink = (props) => {
         as={linkByTypeAs(linkObj())}
         className="infoLink"
       >
-        <Heading
-          level={props.headingLevel}
-          className={`hdg hdg-4 infoLink_title ${props.elementClass}`}
-        >
-          {props.title}
-          <Icon name={props.icon} elementClass={props.elementClass} />
-        </Heading>
+        <div className="infoLink_wrapper">
+          <Heading
+            level={props.headingLevel}
+            className={`hdg hdg-4 infoLink_title ${props.elementClass}`}
+          >
+            {props.title}
+            <Icon name={props.icon} elementClass={props.elementClass} />
+          </Heading>
+        </div>
         {props.description && (
           <div className="infoLink_description">{props.description}</div>
         )}
