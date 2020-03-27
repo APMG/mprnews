@@ -13,3 +13,7 @@
 .link-none {
   @include link-none();
 }
+
+.link-small {
+  font-size: 1.4rem;
+}

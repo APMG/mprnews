@@ -341,3 +341,14 @@
   -ms-grid-row-span: 6;
   grid-area: footer;
 }
+
+.home_railsLinks_specialSection {
+  width: 90%;
+
+  @include media($media-tablet) {
+    width: 95%;
+  }
+  @include media($media-desktop) {
+    width: 100%;
+  }
+}
