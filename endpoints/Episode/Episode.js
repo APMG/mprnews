@@ -5,6 +5,7 @@ import { globals } from '../../config/globals';
 import { collectionLinkData } from '../../utils/utils';
 import AudioPlayButton from '../../components/AudioPlayButton/AudioPlayButton';
 import Content from '../../components/Content/Content';
+import DonateAsk from '../../components/DonateAsk/DonateAsk';
 import Metatags from '../../components/Metatags/Metatags';
 import ShareSocialButtons from '../../components/ShareSocialButtons/ShareSocialButtons';
 import { Image } from '@apmg/mimas';
@@ -94,6 +95,7 @@ const Episode = ({ data: { episode, alertConfig } }) => {
         tag={collectionLinkData(episode.primaryCollection)}
         elementClass="episode"
       />
+      <DonateAsk />
     </>
   );
 };

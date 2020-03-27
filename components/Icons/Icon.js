@@ -23,6 +23,7 @@ import IconHeadphones from './IconHeadphones';
 import IconPopOut from './IconPopOut';
 import IconVirus from './IconVirus';
 import IconElectionBox from './IconElectionBox';
+import IconHeart from './IconHeart';
 
 const icons = {
   car: IconCar,
@@ -47,7 +48,8 @@ const icons = {
   headphones: IconHeadphones,
   popout: IconPopOut,
   covid19: IconVirus,
-  ballotbox: IconElectionBox
+  ballotbox: IconElectionBox,
+  heart: IconHeart
 };
 
 const Icon = (props) => {

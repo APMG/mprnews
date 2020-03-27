@@ -7,6 +7,7 @@ import { collectionLinkData } from '../../utils/utils';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
 import AudioPlayButton from '../../components/AudioPlayButton/AudioPlayButton';
 import Content from '../../components/Content/Content';
+import DonateAsk from '../../components/DonateAsk/DonateAsk';
 import Metatags from '../../components/Metatags/Metatags';
 import ShareSocialButtons from '../../components/ShareSocialButtons/ShareSocialButtons';
 import { showInfoAlert, audioDownloadPrefix } from '../../utils/utils';
@@ -120,6 +121,7 @@ const Story = ({ data: { story, alertConfig }, minimal }) => {
           reserved.
         </div>
       )}
+      <DonateAsk />
     </>
   );
 };
