@@ -18,7 +18,7 @@ const DonateAsk = () => {
         </p>
         <p>
           <Link
-            href="https://support.mpr.org/mprnews-web"
+            href="https://support.mpr.org/mprnews-instory"
             className="link"
             id="donate-ask-link"
           >
@@ -30,7 +30,7 @@ const DonateAsk = () => {
       </div>
       <div className="donateAsk_footer">
         <Link
-          href="https://support.mpr.org/mprnews-web"
+          href="https://support.mpr.org/mprnews-instory"
           className="btn btn-primary"
           id="donate-ask-button"
         >
