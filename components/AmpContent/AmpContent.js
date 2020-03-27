@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import { Figure } from '@apmg/titan';
 import { Body } from '@apmg/amat';
 import AmpContentHeader from './AmpContentHeader';
-import ApmRelatedLinkListItemOverride from '../AmatOverrides/ApmRelatedLinkListItemOverride';
 import LinkOverride from '../AmatOverrides/LinkOverride';
+import ApmImageOverride from '../AmatOverrides/ApmImageOverride';
 import ApmRelatedLinkOverride from '../AmatOverrides/ApmRelatedLinkOverride';
+import ApmRelatedLinkListItemOverride from '../AmatOverrides/ApmRelatedLinkListItemOverride';
 
 const ampStyles = {
   article: {
@@ -100,6 +101,7 @@ const AmpContent = ({
             isAmp={true}
             overrides={{
               link: LinkOverride,
+              apm_image: ApmImageOverride,
               apm_related_link: ApmRelatedLinkOverride,
               apm_related_link_list_item: ApmRelatedLinkListItemOverride
             }}
