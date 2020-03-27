@@ -1,7 +1,6 @@
 // Weather widget in sidebar
 
 .weatherSidebar {
-  font-size: .9em;
   display: block;
 
   > * {
@@ -23,7 +22,7 @@
 
 .weatherSidebar_desc {
   color: $color-text-dark;
-  font-size: 1.5rem;
+  // font-size: 1.4rem;
   text-transform: lowercase;
 }
 

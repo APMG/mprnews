@@ -58,6 +58,12 @@ $_btn-color-default: $color-grey-10;
       margin-left: 0;
       margin-right: 6px;
     }
+
+    &.icon-heart {
+      left: 2px;
+      position: relative;
+      vertical-align: -.5px;
+    }
   }
 }
 

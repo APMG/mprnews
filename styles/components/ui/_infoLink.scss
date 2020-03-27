@@ -9,6 +9,7 @@
   display: flex;
   flex-direction: row;
   align-items: flex-end;
+  margin-bottom: .275rem;
 
   &.dark_red {
     color: $color-darkred;
@@ -39,7 +40,7 @@
 }
 
 .infoLink_description {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: $color-text-dark;
 }
 
