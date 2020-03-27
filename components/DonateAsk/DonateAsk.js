@@ -10,10 +10,11 @@ const DonateAsk = () => {
       </div>
       <div className="donateAsk_body">
         <p>
-          MPR News brings you stories that inform you on national and regional
-          Minnesota stories. We rely on you to do this. You have the power to
-          keep us writing, sharing these stories, and helping you get the
-          information you care about.
+          MPR News is dedicated to bringing you clarity in coverage from our
+          reporters across the state, stories that connect us, and conversations
+          that provide perspectives when we need it most. We rely on your help
+          to do this. You have the power to keep MPR News strong and accessible
+          to all during this crisis and beyond.
         </p>
         <p>
           <Link
@@ -24,7 +25,7 @@ const DonateAsk = () => {
             Donate today for as little as $5.00 a month.
           </Link>{' '}
           Your gift only takes a few minutes and has a lasting impact on MPR
-          News
+          News.
         </p>
       </div>
       <div className="donateAsk_footer">
