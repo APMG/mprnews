@@ -22,40 +22,43 @@ const HomeRail = (props) => {
       {isMounted && (
         <>
           <div className="home_railLinks">
-            {props.covid?.links && (
-              <div className="section section-md">
-                <InfoLink
-                  title="COVID-19"
-                  href="health/covid-19"
-                  hrefType="collection"
-                  icon="covid19"
-                  headingLevel={2}
-                  headline={liveLink && liveLink.title}
-                  liveHeadlineHref={liveLink && liveLink.href}
-                  liveHeadlineHrefType="live"
-                  elementClass="dark_red"
-                />
-                {props.covid?.links?.map((link) => {
-                  if (link.isLive) {
-                    return null;
-                  }
-                  return (
-                    <div key={link.href} className="infoLink_description">
-                      <ul className="bList bList-styled">
-                        <li>
-                          <a
-                            className="link link-plain hdg hdg-5 hdg-headline"
-                            href={link.href}
-                          >
-                            {link.title}
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  );
-                })}
-              </div>
-            )}
+            <div className="home_railsLinks_specialSection ">
+              {props.covid?.links && (
+                <div className="section section-md">
+                  <InfoLink
+                    title="COVID-19"
+                    href="health/covid-19"
+                    hrefType="collection"
+                    icon="covid19"
+                    headingLevel={2}
+                    headline={liveLink && liveLink.title}
+                    liveHeadlineHref={liveLink && liveLink.href}
+                    liveHeadlineHrefType="live"
+                    elementClass="dark_red"
+                  />
+
+                  {props.covid?.links?.map((link) => {
+                    if (link.isLive) {
+                      return null;
+                    }
+                    return (
+                      <div key={link.href} className="infoLink_description">
+                        <ul className="vList vList-condensed vList-styled">
+                          <li>
+                            <a
+                              className="link link-plain hdg hdg-5 hdg-headline"
+                              href={link.href}
+                            >
+                              {link.title}
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
 
             <div className="section section-md">
               <Link href="/weather" as="/weather" className="infoLink">
@@ -80,6 +83,7 @@ const HomeRail = (props) => {
                 headline={props.updraft?.title}
                 headlineHref={props.updraft?.canonicalSlug}
                 headlineHrefType={props.updraft?.resourceType}
+                elementClass=""
               />
             </div>
             {props.showElectionLink && (
@@ -91,6 +95,7 @@ const HomeRail = (props) => {
                   icon="ballotbox"
                   description="Complete Election Coverage"
                   headingLevel={2}
+                  elementClass=""
                 />
               </div>
             )}
@@ -102,6 +107,7 @@ const HomeRail = (props) => {
                 hrefType="page"
                 icon="car"
                 headingLevel={2}
+                elementClass=""
               />
             </div>
             <div className="section section-md">
@@ -112,6 +118,7 @@ const HomeRail = (props) => {
                 hrefType="page"
                 icon="mail"
                 headingLevel={2}
+                elementClass=""
               />
             </div>
           </div>
@@ -129,7 +136,7 @@ const HomeRail = (props) => {
                       <Link
                         href={hrefType(section)}
                         as={`/${section.href}`}
-                        className="link link-plain"
+                        className="link link-plain link-small"
                       >
                         {section.text}
                       </Link>
