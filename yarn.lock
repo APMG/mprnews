@@ -44,10 +44,10 @@
   dependencies:
     cross-fetch "3.0.4"
 
-"@apmg/amat@^0.4.10":
-  version "0.4.10"
-  resolved "https://registry.yarnpkg.com/@apmg/amat/-/amat-0.4.10.tgz#e956f9295cad1e008c20ff4ee7a91855e7424635"
-  integrity sha512-2LNXeD7avXRE4EJN69TOZBAPskOcQBunkINoT+dwXMxNSLPGjWWBNiZreiw1HQSfkGYeFWhPL6loAI9RMr9HIQ==
+"@apmg/amat@^0.4.11":
+  version "0.4.11"
+  resolved "https://registry.yarnpkg.com/@apmg/amat/-/amat-0.4.11.tgz#3bfa99d63b50e1184d206e7b3dd3b6ddf0d79e36"
+  integrity sha512-n2p9nuPtMzua2uymOURIc6qU28i00EgSkVOyM8QKRQHU5stfPdm3rotfEo+djjKWk42hBGwyd+jxHU1a4NK8Iw==
   dependencies:
     "@apmg/enceladus" "^0.5.5"
     "@apmg/mimas" "0.3.3"
