@@ -19,7 +19,7 @@ const ampStyles = {
   }
 };
 
-const ApmImage = ({ minimal, image, embedded, isAmp }) => {
+const ApmImageOverride = ({ minimal, image, embedded, isAmp }) => {
   if (minimal) {
     return null;
   }
@@ -33,9 +33,21 @@ const ApmImage = ({ minimal, image, embedded, isAmp }) => {
   function captionCredit() {
     if (image?.credit && image.credit_url) {
       return (
+        <a href={image.credit_url} className="figure_credit">
+          {image.credit}
+        </a>
+      );
+    } else if (image?.credit) {
+      return <div className="figure_credit">{image.credit}</div>;
+    }
+  }
+
+  function ampCaptionCredit() {
+    if (image?.credit && image.credit_url) {
+      return (
         <a
+          style={ampStyles.credit}
           href={image.credit_url}
-          style={isAmp ? ampStyles.credit : null} 
           className="figure_credit"
         >
           {image.credit}
@@ -43,17 +55,14 @@ const ApmImage = ({ minimal, image, embedded, isAmp }) => {
       );
     } else if (image?.credit) {
       return (
-        <div
-          style={isAmp ? ampStyles.credit : null} 
-          className="figure_credit"
-        >
+        <div style={ampStyles.credit} className="figure_credit">
           {image.credit}
         </div>
       );
     }
   }
 
-  function chooseImage(embedded, isAmp = false) {
+  function chooseImage(embedded) {
     const embeddedImage = embedded?.images?.find(
       (image) => image?.id && image?.id === image?.id
     );
@@ -79,15 +88,13 @@ const ApmImage = ({ minimal, image, embedded, isAmp }) => {
 
   return (
     <figure className={classes()}>
-      {chooseImage(embedded, isAmp)}
+      {chooseImage(embedded)}
       {image?.long_caption || image?.credit ? (
-        <figcaption style={isAmp ? ampStyles.figure : null} className="figure_caption">
+        <figcaption className="figure_caption">
           {image.long_caption && (
-            <div style={isAmp ? ampStyles.text : null} className="figure_text">
-              {image.long_caption}
-            </div>
+            <div className="figure_text">{image.long_caption}</div>
           )}
-          {captionCredit()}
+          {isAmp ? ampCaptionCredit() : captionCredit()}
         </figcaption>
       ) : (
         ''
@@ -96,11 +103,11 @@ const ApmImage = ({ minimal, image, embedded, isAmp }) => {
   );
 };
 
-ApmImage.propTypes = {
+ApmImageOverride.propTypes = {
   image: PropTypes.object,
   embedded: PropTypes.object,
   minimal: PropTypes.bool,
   isAmp: PropTypes.bool // for AMP html
 };
 
-export default ApmImage;
+export default ApmImageOverride;

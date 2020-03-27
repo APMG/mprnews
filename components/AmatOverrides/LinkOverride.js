@@ -7,7 +7,7 @@ let ampStyles = {
   link: {
     color: '#00334e'
   }
-}
+};
 
 const LinkOverride = (props) => {
   const { isInternal, href: internalHref, as } = analyzeUrl(props.href);
@@ -36,7 +36,7 @@ const LinkOverride = (props) => {
     >
       {props.inner}
     </a>
-  )
+  );
 };
 
 LinkOverride.propTypes = {

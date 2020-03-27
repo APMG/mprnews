@@ -9,7 +9,7 @@ const ampStyles = {
 };
 
 const ApmCustomHtmlOverride = ({ nodeData, minimal, isAmp }) => {
-  const [html, setHtml] = useState('')
+  const [html, setHtml] = useState('');
 
   if (minimal) return null;
   if (isAmp) {
@@ -17,17 +17,17 @@ const ApmCustomHtmlOverride = ({ nodeData, minimal, isAmp }) => {
       <a style={ampStyles.link} href={nodeData.attrs.fallback_url}>
         {nodeData.attrs.fallback_text}
       </a>
-    )
+    );
   }
 
   useEffect(() => {
-    setHtml(cleanHtml(nodeData.attrs))
-  }, [])
+    setHtml(cleanHtml(nodeData.attrs));
+  }, []);
 
   const markup = { __html: html };
 
   return <div className="customHtml" dangerouslySetInnerHTML={markup} />;
-}
+};
 
 ApmCustomHtmlOverride.propTypes = {
   nodeData: PropTypes.object,
@@ -38,18 +38,18 @@ ApmCustomHtmlOverride.propTypes = {
 export default ApmCustomHtmlOverride;
 
 let whitelist = {
-  "approved": [
-    "datawrapper",
-    "hearken",
-    "typeform",
-    "gitlab.mpr.org",
-    "documentcloud",
-    "cloudfront",
-    "quizz",
-    "qzzr",
-    "tableau"
+  approved: [
+    'datawrapper',
+    'hearken',
+    'typeform',
+    'gitlab.mpr.org',
+    'documentcloud',
+    'cloudfront',
+    'quizz',
+    'qzzr',
+    'tableau'
   ]
-}
+};
 
 function cleanHtml(attrs) {
   let doc = new DOMParser().parseFromString(attrs.html, 'text/html');

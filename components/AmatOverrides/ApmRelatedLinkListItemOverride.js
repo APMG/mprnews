@@ -25,10 +25,7 @@ const ApmRelatedLinkListItemOverride = ({ nodeData, isAmp }) => {
 
   if (isInternal) {
     return (
-      <li
-        className="apm-related-link"
-        style={isAmp ? ampStyles.related : null}
-      >
+      <li className="apm-related-link" style={isAmp ? ampStyles.related : null}>
         <span
           className="apm-related-link-prefix"
           style={isAmp ? ampStyles.prefix : null}
@@ -43,10 +40,7 @@ const ApmRelatedLinkListItemOverride = ({ nodeData, isAmp }) => {
   }
 
   return (
-    <li
-      className="apm-related-link"
-      style={isAmp ? ampStyles.related : null}
-    >
+    <li className="apm-related-link" style={isAmp ? ampStyles.related : null}>
       <span
         className="apm-related-link-prefix"
         style={isAmp ? ampStyles.prefix : null}

@@ -32,8 +32,16 @@ const ApmRelatedList = (props) => {
   const { title } = props.nodeData.attrs;
 
   return (
-    <div style={props.isAmp ? ampStyles.relatedList : null} className="apm-related-list">
-      <div style={props.isAmp ? ampStyles.relatedListTitle : null} className="apm-related-list-title">{title}</div>
+    <div
+      style={props.isAmp ? ampStyles.relatedList : null}
+      className="apm-related-list"
+    >
+      <div
+        style={props.isAmp ? ampStyles.relatedListTitle : null}
+        className="apm-related-list-title"
+      >
+        {title}
+      </div>
       <ul className="apm-related-list-body">{Traverse(enlistify(props))}</ul>
     </div>
   );
