@@ -13,27 +13,26 @@ const ampStyles = {
     fontWeight: '700'
   },
   link: {
-    color: '#00334e'
+    color: '#00334e',
+    fontWeight: '700',
+    margin: '0 0 0.5em'
   }
 };
 
-const ApmRelatedLinkListItemOverride = (props) => {
-  const { prefix, title, url } = props.nodeData.attrs;
+const ApmRelatedLinkListItemOverride = ({ nodeData, isAmp }) => {
+  const { prefix, title, url } = nodeData.attrs;
   const { isInternal, href, as } = analyzeUrl(url);
 
   if (isInternal) {
     return (
-      <li
-        className="apm-related-link"
-        style={props.isAmp ? ampStyles.related : null}
-      >
+      <li className="apm-related-link" style={isAmp ? ampStyles.related : null}>
         <span
           className="apm-related-link-prefix"
-          style={props.isAmp ? ampStyles.prefix : null}
+          style={isAmp ? ampStyles.prefix : null}
         >
           {prefix}
         </span>
-        <Link href={href} as={as} style={props.isAmp ? ampStyles.link : null}>
+        <Link href={href} as={as} style={isAmp ? ampStyles.link : null}>
           {title}
         </Link>
       </li>
@@ -41,17 +40,14 @@ const ApmRelatedLinkListItemOverride = (props) => {
   }
 
   return (
-    <li
-      className="apm-related-link"
-      style={props.isAmp ? ampStyles.related : null}
-    >
+    <li className="apm-related-link" style={isAmp ? ampStyles.related : null}>
       <span
         className="apm-related-link-prefix"
-        style={props.isAmp ? ampStyles.prefix : null}
+        style={isAmp ? ampStyles.prefix : null}
       >
         {prefix}
       </span>
-      <a href={url} style={props.isAmp ? ampStyles.link : null}>
+      <a href={url} style={isAmp ? ampStyles.link : null}>
         {title}
       </a>
     </li>

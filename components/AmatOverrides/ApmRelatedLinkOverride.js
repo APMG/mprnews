@@ -15,8 +15,8 @@ const ampStyles = {
   }
 };
 
-const ApmRelatedLinkOverride = (props) => {
-  const { prefix, title, url } = props.nodeData.attrs;
+const ApmRelatedLinkOverride = ({ nodeData, isAmp }) => {
+  const { prefix, title, url } = nodeData.attrs;
   const { isInternal, href, as } = analyzeUrl(url);
 
   if (isInternal) {
@@ -25,11 +25,11 @@ const ApmRelatedLinkOverride = (props) => {
         className="apm-related-link"
         href={href}
         as={as}
-        style={props.isAmp ? ampStyles.link : null}
+        style={isAmp ? ampStyles.link : null}
       >
         <span
           className="apm-related-link-prefix"
-          style={props.isAmp ? ampStyles.prefix : null}
+          style={isAmp ? ampStyles.prefix : null}
         >
           {prefix}
         </span>{' '}
@@ -42,11 +42,11 @@ const ApmRelatedLinkOverride = (props) => {
     <a
       className="apm-related-link"
       href={url}
-      style={props.isAmp ? ampStyles.link : null}
+      style={isAmp ? ampStyles.link : null}
     >
       <span
         className="apm-related-link-prefix"
-        style={props.isAmp ? ampStyles.prefix : null}
+        style={isAmp ? ampStyles.prefix : null}
       >
         {prefix}
       </span>{' '}

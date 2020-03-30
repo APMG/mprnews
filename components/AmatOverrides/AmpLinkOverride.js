@@ -3,12 +3,19 @@ import PropTypes from 'prop-types';
 import { Link } from '@apmg/titan';
 import { analyzeUrl } from '../../utils/cjsutils';
 
-const LinkOverride = (props) => {
+let ampStyles = {
+  link: {
+    color: '#00334e'
+  }
+};
+
+const AmpLinkOverride = (props) => {
   const { isInternal, href: internalHref, as } = analyzeUrl(props.href);
 
   if (isInternal) {
     return (
       <Link
+        style={ampStyles.link}
         title={props.title}
         className={`apm-link ${props.className}`}
         href={internalHref}
@@ -21,6 +28,7 @@ const LinkOverride = (props) => {
 
   return (
     <a
+      style={ampStyles.link}
       title={props.title}
       className={`apm-link ${props.className}`}
       href={props.href}
@@ -31,11 +39,11 @@ const LinkOverride = (props) => {
   );
 };
 
-LinkOverride.propTypes = {
+AmpLinkOverride.propTypes = {
   inner: PropTypes.object,
   href: PropTypes.string,
   title: PropTypes.string,
   className: PropTypes.string
 };
 
-export default LinkOverride;
+export default AmpLinkOverride;
