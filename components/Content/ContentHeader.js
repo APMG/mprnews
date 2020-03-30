@@ -64,7 +64,7 @@ const ContentHeader = (props) => {
       )}
 
       <div className="content_meta">
-        {props.authors?.length && (
+        {props.authors?.length !== 0 && (
           <div
             className="content_byline"
             data-testid="contentByline"
