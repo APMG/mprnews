@@ -79,13 +79,20 @@ const FullTeaser = ({ item, size, newspartners }) => {
       {item.collectionRelatedLinks?.length ? (
         <ul className="related related-teaser">
           {item.collectionRelatedLinks.map((link) => {
+            const match = link.url.match(/^https:\/\/www.mprnews.org\/story/);
+            const short_url = link.url.split('https://www.mprnews.org')[1];
+
             return (
               <li
                 className="related_item"
                 key={`${link.url}${link.title}${link.prefix}`}
               >
                 <span className="related_prefix">{link.prefix}</span>
-                <Link href={link.url} className="related_link">
+                <Link
+                  href={match.length > 0 ? '/story/[...slug]' : short_url}
+                  as={match.length > 0 ? short_url : link.url}
+                  className="related_link"
+                >
                   {link.title}
                 </Link>
               </li>
