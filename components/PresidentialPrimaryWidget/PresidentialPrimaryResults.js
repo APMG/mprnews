@@ -11,7 +11,7 @@ const PresidentialPrimaryResults = ({ states, api }) => {
 
   api =
     api ||
-    `${process.env.ELECTIONS_API}/2020/presidential_primary_races?party=Dem`;
+    `https://electionsapi.publicradio.org/2020/presidential_primary_races?party=Dem`;
   api += `&state_postal=${states.join(',')}`;
 
   const data = useData(api);
