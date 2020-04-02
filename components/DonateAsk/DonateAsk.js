@@ -22,7 +22,7 @@ const DonateAsk = () => {
             className="link"
             id="donate-ask-link"
           >
-            Donate today. As little as $5 makes a difference.
+            Donate today. A gift of $25 makes a difference.
           </Link>{' '}
         </p>
       </div>
