@@ -42,7 +42,7 @@ const MostViewed = () => {
         </Heading>
       </div>
       <div className="module_body">
-        <ul className="bList bList-styled">
+        <ul className="vList vList-styled">
           {data.mostViewed &&
             data.mostViewed.map((data, i) => {
               return (
