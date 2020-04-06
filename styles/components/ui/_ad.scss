@@ -13,8 +13,8 @@
 }
 
 .ad_link {
-  margin-bottom: .5rem;
   font-size: 1rem;
+  line-height: 2;
   text-transform: uppercase;
   color: $color-text-light;
   transition: $transition;
@@ -28,6 +28,7 @@
   text-transform: uppercase;
   color: $color-text-light;
   font-size: 1rem;
+  line-height: 2;
 }
 
 .ad_slot {
