@@ -83,7 +83,11 @@ Rss.getInitialProps = async ({ query: { slug }, req, res }) => {
     const primaryImg = item.primaryVisuals.thumbnail;
 
     if (primaryImg) {
-      result = `<img src="${primaryImg.preferredAspectRatio.instances[0].url}" alt="${primaryImg.shortCaption}" height="${primaryImg.preferredAspectRatio.instances[0].height}" width="${primaryImg.preferredAspectRatio.instances[0].width}"/>`;
+      result = `<img src="${
+        primaryImg.preferredAspectRatio.instances[0].url
+      }" alt="${encodeURIComponent(primaryImg.shortCaption)}" height="${
+        primaryImg.preferredAspectRatio.instances[0].height
+      }" width="${primaryImg.preferredAspectRatio.instances[0].width}"/>`;
     } else {
       result = '';
     }
@@ -103,7 +107,9 @@ Rss.getInitialProps = async ({ query: { slug }, req, res }) => {
           height="${primaryImg.preferredAspectRatio.instances[0].height}"
           width="${primaryImg.preferredAspectRatio.instances[0].width}"
         />
-        <media:description type="plain">${primaryImg.shortCaption}</media:description>
+        <media:description type="plain">${encodeURIComponent(
+          primaryImg.shortCaption
+        )}</media:description>
         `;
     } else {
       result = '';

@@ -14,7 +14,11 @@ const MostViewed = () => {
         let mostViewed = [];
 
         result.rows.map((row) => {
-          mostViewed.push(row);
+          const re = /^404/;
+          const bool = re.test(row.dimensions[1]);
+          if (!bool) {
+            mostViewed.push(row);
+          }
         });
         setData({ mostViewed });
       } catch (err) {
@@ -38,7 +42,7 @@ const MostViewed = () => {
         </Heading>
       </div>
       <div className="module_body">
-        <ul className="bList bList-styled">
+        <ul className="vList vList-styled">
           {data.mostViewed &&
             data.mostViewed.map((data, i) => {
               return (

@@ -8,7 +8,7 @@ import Svg from '../Svg/states';
 const PresidentialPrimaryDelegates = ({ api }) => {
   api =
     api ||
-    `${process.env.ELECTIONS_API}/2020/presidential_primary_delegates?party=Dem`;
+    `https://electionsapi.publicradio.org/2020/presidential_primary_delegates?party=Dem`;
 
   const data = useData(api);
   if (data === undefined) {
