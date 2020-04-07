@@ -80,16 +80,21 @@ const FullTeaser = ({ item, size, newspartners }) => {
         <ul className="related related-teaser">
           {item.collectionRelatedLinks.map((link) => {
             const match = link.url.match(
-              /^https:\/\/[www.]*mprnews\.org\/(story|episode|people|.*)/
+              /^https?:\/\/(www.)?mprnews\.org\/(story|episode|people|.*)/
             );
             let type;
             if (match) {
+              // url is https://www.mprnews.org/story
+              type = ['story', 'episode', 'people'].indexOf(RegExp.$2)
+                ? RegExp.$2
+                : null;
+
+              // url is https://mprnews.org/story
               type = ['story', 'episode', 'people'].indexOf(RegExp.$1)
                 ? RegExp.$1
-                : '';
+                : null;
             }
             const short_url = link.url.split('https://www.mprnews.org')[1];
-            console.log('Match is:', match);
 
             return (
               <li
