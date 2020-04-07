@@ -4,7 +4,7 @@ import { Link } from '@apmg/titan';
 import { globals } from '../../config/globals';
 import { Teaser, Time } from '@apmg/titan';
 import { Image } from '@apmg/mimas';
-import { linkByTypeHref, linkByTypeAs } from '../../utils/cjsutils';
+import { linkByTypeHref, linkByTypeAs, analyzeUrl } from '../../utils/cjsutils';
 import { secondsToHms, audioDownloadPrefix } from '../../utils/utils';
 import AudioPlayButton from '../AudioPlayButton/AudioPlayButton';
 
@@ -79,13 +79,15 @@ const FullTeaser = ({ item, size, newspartners }) => {
       {item.collectionRelatedLinks?.length ? (
         <ul className="related related-teaser">
           {item.collectionRelatedLinks.map((link) => {
+            const { href, as } = analyzeUrl(link.url);
+
             return (
               <li
                 className="related_item"
                 key={`${link.url}${link.title}${link.prefix}`}
               >
                 <span className="related_prefix">{link.prefix}</span>
-                <Link href={link.url} className="related_link">
+                <Link href={href} as={as || link.url} className="related_link">
                   {link.title}
                 </Link>
               </li>
