@@ -79,20 +79,15 @@ const FullTeaser = ({ item, size, newspartners }) => {
       {item.collectionRelatedLinks?.length ? (
         <ul className="related related-teaser">
           {item.collectionRelatedLinks.map((link) => {
-            const match = link.url.match(
-              /^https?:\/\/(www.)?mprnews\.org\/(story|episode|people|.*)/
-            );
+            const re = /^https?:\/\/(www.)?mprnews\.org\/(story|episode|people|.*)/;
+            const match = link.url.match(re);
             let type;
             if (match) {
-              // url is https://www.mprnews.org/story
-              type = ['story', 'episode', 'people'].indexOf(RegExp.$2)
-                ? RegExp.$2
-                : null;
-
-              // url is https://mprnews.org/story
-              type = ['story', 'episode', 'people'].indexOf(RegExp.$1)
-                ? RegExp.$1
-                : null;
+              // url is https://www.mprnews.org/story/...
+              type =
+                ['story', 'episode', 'people'].indexOf(RegExp.$2) > -1
+                  ? RegExp.$2
+                  : null;
             }
             const short_url = link.url.split('https://www.mprnews.org')[1];
 
@@ -103,8 +98,8 @@ const FullTeaser = ({ item, size, newspartners }) => {
               >
                 <span className="related_prefix">{link.prefix}</span>
                 <Link
-                  href={match ? short_url : link.url}
-                  as={type ? `/${type}/[...slug]` : null}
+                  as={match ? short_url : link.url}
+                  href={type ? `/${type}/[...slug]` : null}
                   className="related_link"
                 >
                   {link.title}
