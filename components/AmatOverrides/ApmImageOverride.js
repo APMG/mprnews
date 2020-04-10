@@ -19,26 +19,26 @@ const ampStyles = {
   }
 };
 
-const ApmImageOverride = ({ minimal, image, embedded, isAmp }) => {
-  if (minimal) {
+const ApmImageOverride = (props) => {
+  if (props.minimal) {
     return null;
   }
 
   function classes() {
-    const position = image?.float ? `figure-${image.float}` : '';
-    const size = `figure-${image?.width ? image.width : 'full'}`;
+    const position = props?.image?.float ? `figure-${props.image.float}` : '';
+    const size = `figure-${props?.image?.width ? props.image.width : 'full'}`;
     return `figure ${position} ${size}`;
   }
 
   function captionCredit() {
-    if (image?.credit && image.credit_url) {
+    if (props?.image?.credit && props.image.credit_url) {
       return (
-        <a href={image.credit_url} className="figure_credit">
-          {image.credit}
+        <a href={props.image.credit_url} className="figure_credit">
+          {props.image.credit}
         </a>
       );
-    } else if (image?.credit) {
-      return <div className="figure_credit">{image.credit}</div>;
+    } else if (props?.image?.credit) {
+      return <div className="figure_credit">{props.image.credit}</div>;
     }
   }
 
@@ -62,16 +62,16 @@ const ApmImageOverride = ({ minimal, image, embedded, isAmp }) => {
     }
   }
 
-  function chooseImage(embedded) {
+  function image(embedded, isAmp = false) {
     const embeddedImage = embedded?.images?.find(
-      (image) => image?.id && image?.id === image?.id
+      (image) => image?.id && image?.id === props?.image?.id
     );
 
     if (isAmp) {
       return (
         <AmpImage
           image={embeddedImage}
-          aspectRatio={image?.preferred_aspect_ratio_slug}
+          aspectRatio={props?.image?.preferred_aspect_ratio_slug}
           sizes="(max-width: 47.999em) 99vw, 66vw"
         />
       );
@@ -80,7 +80,7 @@ const ApmImageOverride = ({ minimal, image, embedded, isAmp }) => {
     return (
       <Image
         image={embeddedImage}
-        aspectRatio={image?.preferred_aspect_ratio_slug}
+        aspectRatio={props?.image?.preferred_aspect_ratio_slug}
         sizes="(max-width: 47.999em) 99vw, 66vw"
       />
     );
@@ -88,13 +88,13 @@ const ApmImageOverride = ({ minimal, image, embedded, isAmp }) => {
 
   return (
     <figure className={classes()}>
-      {chooseImage(embedded)}
-      {image?.long_caption || image?.credit ? (
+      {image(props.embedded, props.isAmp)}
+      {props?.image?.long_caption || props?.image?.credit ? (
         <figcaption className="figure_caption">
-          {image.long_caption && (
-            <div className="figure_text">{image.long_caption}</div>
+          {props.image.long_caption && (
+            <div className="figure_text">{props.image.long_caption}</div>
           )}
-          {isAmp ? ampCaptionCredit() : captionCredit()}
+          {props.isAmp ? ampCaptionCredit() : captionCredit()}
         </figcaption>
       ) : (
         ''
