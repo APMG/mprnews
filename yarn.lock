@@ -82,15 +82,16 @@
   dependencies:
     prop-types "^15.6.0"
 
-"@apmg/titan@^0.7.2":
-  version "0.7.5"
-  resolved "https://registry.yarnpkg.com/@apmg/titan/-/titan-0.7.5.tgz#8f9dc2501192c545fb75904d03e82b01fbef9c79"
-  integrity sha512-CM0BNd+tqyPcet/GSAF9dQBHTPU3TvXIGkRqEt56TXMzgeE9pIT3vF4oeLobNjTDoey8YT/fQvoAq9Do/FSUNQ==
+"@apmg/titan@^0.7.6":
+  version "0.7.6"
+  resolved "https://registry.yarnpkg.com/@apmg/titan/-/titan-0.7.6.tgz#32f93d570a28f2548b230493898a655183aae91d"
+  integrity sha512-x2pNcX5eeKODMZHVRtGY2tIsPc2RYwjsEfN1GqQnW6L+ceOyT1sfqyumlhqpF9S4iV3+fetZjq03x19f99gkzA==
   dependencies:
     apm-html5-player "^0.4.1"
     apm-mimas "^0.1.9"
     date-fns "^2.2.1"
     storybook "^1.0.0"
+    uuid "^7.0.2"
 
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.5.5", "@babel/code-frame@^7.8.3":
   version "7.8.3"
