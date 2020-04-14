@@ -7,8 +7,9 @@ import AmpContent from '../../components/AmpContent/AmpContent';
 import Metatags from '../../components/Metatags/Metatags';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
 
-const Page = ({ data: { page } }) => {
+const AmpPage = ({ data: { page } }) => {
   const img = fishForSocialMediaImage(page);
+
   return (
     <>
       <Metatags
@@ -50,7 +51,7 @@ const Page = ({ data: { page } }) => {
   );
 };
 
-Page.propTypes = {
+AmpPage.propTypes = {
   data: PropTypes.shape({
     page: PropTypes.shape({
       canonicalSlug: PropTypes.string,
@@ -75,4 +76,4 @@ Page.propTypes = {
   })
 };
 
-export default Page;
+export default AmpPage;
