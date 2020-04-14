@@ -2,11 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from '@apmg/titan';
 import ToSentence from '../ToSentence/ToSentence';
+import { sortByOrder } from '../../utils/utils';
 
 const Byline = (props) => {
   function parseToCompLink(authors) {
     let results = [];
-    authors.forEach((author) =>
+    let sortedAuthors = sortByOrder(authors);
+    sortedAuthors.forEach((author) =>
       results.push(
         <Link
           href="/people/[...slug]"
