@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import { Image } from '@apmg/mimas';
 import { globals } from '../../config/globals';
 import { collectionLinkData } from '../../utils/utils';
-import AmpContent from '../../components/AmpContent/AmpContent';
+import Content from '../../components/Content/Content';
 import Metatags from '../../components/Metatags/Metatags';
 import { fishForSocialMediaImage } from '../../components/Metatags/MetaTagHelpers';
 
 const Page = ({ data: { page } }) => {
   const img = fishForSocialMediaImage(page);
+
   return (
     <>
       <Metatags
@@ -24,7 +25,7 @@ const Page = ({ data: { page } }) => {
         contentType="article"
       />
 
-      <AmpContent
+      <Content
         title={page.title}
         subtitle={page.subtitle}
         body={page.body}

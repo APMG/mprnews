@@ -25,6 +25,7 @@ query story($contentAreaSlug: String!, $slug: String!, $previewToken: String) {
       roles {
         name
       }
+      order
     }
     publishDate
     updatedAt
