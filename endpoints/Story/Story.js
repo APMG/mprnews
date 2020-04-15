@@ -31,11 +31,11 @@ const Story = ({ data: { story, alertConfig }, minimal }) => {
       return {
         title: `${contributor.profile?.title}`,
         href: `/profile?slug=${contributor.profile?.canonicalSlug}`,
-        as: `/people/${contributor.profile?.canonicalSlug}`
+        as: `/people/${contributor.profile?.canonicalSlug}`,
+        order: `${contributor.order}`
       };
     });
   }
-
   return (
     <>
       <Metatags
