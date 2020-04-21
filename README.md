@@ -60,4 +60,3 @@ The whole front end team at MPR!
 - Jason Phan (developer)
 - Philip Kooistra (developer)
 - Lilith Bentley (designer/developer)
-
