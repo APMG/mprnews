@@ -174,3 +174,13 @@ export function isNumeric(n) {
 export function protocol() {
   return process.env.SCHEDULER_PROTOCOL || 'https';
 }
+
+// sorts author by numeric order
+export function sortByOrder(authors) {
+  if (authors) {
+    authors.sort((a, b) => {
+      return a.order - b.order;
+    })
+  }
+  return authors
+}
