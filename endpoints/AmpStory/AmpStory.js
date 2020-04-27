@@ -48,7 +48,12 @@ const AmpStory = ({ data: { story, alertConfig }, minimal }) => {
         isAmp={false} // Poorly named variable. Set to false so no link is made to self
         topic={story?.primaryCollection?.title}
         contentType="article"
-        publishDate={story.publishDate}
+        publishDate={
+          <Time
+            dateTime={story.publishDate}
+            formatString="MMMM d, yyyy h:mm aaaa"
+          />
+        }
         modifiedDate={story.updatedAt}
         authors={authors}
       />
