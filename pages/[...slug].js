@@ -72,7 +72,6 @@ VariablePage.getInitialProps = async ({ query: { slug }, res }) => {
       .catch((err) => {
         console.error(err);
       });
-
     return data;
   };
 
