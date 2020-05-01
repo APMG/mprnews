@@ -56,6 +56,15 @@ const Metatags = (props) => {
         </>
       )}
 
+      {props.rssUrl && (
+        <link
+          title={props.title}
+          href={props.rssUrl}
+          rel="alternate"
+          type="application/rss+xml"
+        />
+      )}
+
       {props.image && (
         <>
           <meta
@@ -142,6 +151,7 @@ Metatags.propTypes = {
   imageHeight: PropTypes.number,
   isAmp: PropTypes.bool,
   title: PropTypes.string,
+  rssUrl: PropTypes.string,
   topic: PropTypes.string,
   publishDate: PropTypes.string,
   modifiedDate: PropTypes.string,

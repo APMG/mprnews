@@ -3,6 +3,7 @@ query collection($contentAreaSlug: String!, $slug: String!, $pageNum: Int) {
     id
     title
     originalSourceUrl
+    rssUrl
     templateName
     body
     descriptionText
