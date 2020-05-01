@@ -12,6 +12,7 @@ query profile(
     id
     title
     jobTitle
+    originalSourceUrl
     canonicalSlug
     publishDate
     body

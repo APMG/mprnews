@@ -14,6 +14,8 @@ import { isNumeric } from '../utils/utils';
 
 const VariablePage = (obj) => {
   const { data, slug, type, pageNum } = obj;
+  console.log('⛽️ data', data);
+  console.log('⛽️ SLUG', slug);
 
   if (obj.errorCode) return <ErrorPage statusCode={obj.errorCode} />;
   if (type === 'collection') {

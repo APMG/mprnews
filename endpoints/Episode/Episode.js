@@ -47,6 +47,7 @@ const Episode = ({ data: { episode, alertConfig } }) => {
         contentType="article"
         publishDate={episode.publishDate}
         modifiedDate={episode.updatedAt}
+        originalSourceUrl={episode.originalSourceUrl}
       />
       {showInfoAlert(alerts, episode.resourceType) ? (
         <div className="section section-md">
@@ -129,6 +130,7 @@ Episode.propTypes = {
       publishDate: PropTypes.string,
       updatedAt: PropTypes.string,
       embeddedAssetJson: PropTypes.string,
+      originalSourceUrl: PropTypes.string,
       tag: PropTypes.shape({
         tagName: PropTypes.string,
         to: PropTypes.string

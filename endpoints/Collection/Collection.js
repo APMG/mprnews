@@ -14,6 +14,7 @@ import ApmRelatedLinkOverride from '../../components/AmatOverrides/ApmRelatedLin
 import LinkOverride from '../../components/AmatOverrides/LinkOverride';
 
 const Collection = ({ data: { collection, alertConfig } }) => {
+  console.log('✈️🚆 COLLECTION PAGE HIT');
   const alerts = () => {
     if (alertConfig) return JSON.parse(alertConfig.json);
   };
@@ -53,6 +54,7 @@ const Collection = ({ data: { collection, alertConfig } }) => {
         topic={collection?.title}
         contentType="website"
         noFollow={true}
+        originalSourceUrl={collection.originalSourceUrl}
       />
       {showInfoAlert(alerts, collection.resourceType) ? (
         <div className="section section-md">

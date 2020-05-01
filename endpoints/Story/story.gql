@@ -7,6 +7,7 @@ query story($contentAreaSlug: String!, $slug: String!, $previewToken: String) {
     id
     title
     subtitle
+    originalSourceUrl
     supportedOutputFormats
     resourceType
     dateline

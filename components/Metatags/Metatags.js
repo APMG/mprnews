@@ -78,6 +78,10 @@ const Metatags = (props) => {
         <meta name="twitter:image:alt" content={props.imageAlt} />
       )}
 
+      {props.originalSourceUrl && (
+        <link rel="canonical" href={props.originalSourceUrl} />
+      )}
+
       {props.fullSlug && (
         <>
           <link rel="canonical" href={fullUrl} key="canonical" />
@@ -142,7 +146,8 @@ Metatags.propTypes = {
   publishDate: PropTypes.string,
   modifiedDate: PropTypes.string,
   authors: PropTypes.array,
-  noFollow: PropTypes.bool
+  noFollow: PropTypes.bool,
+  originalSourceUrl: PropTypes.string
 };
 
 export default React.memo(Metatags);

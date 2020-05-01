@@ -10,20 +10,21 @@ query PageQuery(
   ) {
     id
     title
+    originalSourceUrl
     canonicalSlug
     descriptionText
     supportedOutputFormats
     primaryVisuals {
       social {
-	aspect_ratios: aspectRatios {
-	  uncropped {
+        aspect_ratios: aspectRatios {
+          uncropped {
             instances {
               url
               width
               height
             }
           }
-	  widescreen {
+          widescreen {
             instances {
               url
               width
