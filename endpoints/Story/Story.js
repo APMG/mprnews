@@ -52,6 +52,7 @@ const Story = ({ data: { story, alertConfig }, minimal }) => {
         publishDate={story.publishDate}
         modifiedDate={story.updatedAt}
         authors={authors}
+        originalSourceUrl={story.originalSourceUrl}
       />
 
       {showInfoAlert(alerts, story.resourceType) ? (
@@ -155,6 +156,7 @@ Story.propTypes = {
       publishDate: PropTypes.string,
       updatedAt: PropTypes.string,
       embeddedAssetJson: PropTypes.string,
+      originalSourceUrl: PropTypes.string,
       tag: PropTypes.shape({
         tagName: PropTypes.string,
         to: PropTypes.string

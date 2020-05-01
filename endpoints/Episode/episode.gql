@@ -11,6 +11,7 @@ query episode(
     id
     title
     subtitle
+    originalSourceUrl
     canonicalSlug
     supportedOutputFormats
     primaryCollection {

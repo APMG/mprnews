@@ -58,6 +58,7 @@ VariablePage.getInitialProps = async ({ query: { slug }, res }) => {
 
   const getCollectionData = async () => {
     let data;
+
     await ApolloClient.query({
       query: collectQuery,
       variables: {

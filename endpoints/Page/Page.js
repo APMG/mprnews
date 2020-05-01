@@ -23,6 +23,7 @@ const Page = ({ data: { page } }) => {
         isAmp={page.supportedOutputFormats?.indexOf('amp') > -1}
         topic={page.primaryCollection?.title}
         contentType="article"
+        originalSourceUrl={page.originalSourceUrl}
       />
 
       <Content
@@ -68,6 +69,7 @@ Page.propTypes = {
       primaryCollection: PropTypes.any,
       publishDate: PropTypes.string,
       embeddedAssetJson: PropTypes.string,
+      originalSourceUrl: PropTypes.string,
       tag: PropTypes.shape({
         tagName: PropTypes.string,
         to: PropTypes.string
