@@ -14,7 +14,6 @@ import ApmRelatedLinkOverride from '../../components/AmatOverrides/ApmRelatedLin
 import LinkOverride from '../../components/AmatOverrides/LinkOverride';
 
 const Collection = ({ data: { collection, alertConfig } }) => {
-  console.log(collection);
   const alerts = () => {
     if (alertConfig) return JSON.parse(alertConfig.json);
   };
