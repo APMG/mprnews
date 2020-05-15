@@ -36,6 +36,7 @@ const Story = ({ data: { story, alertConfig }, minimal }) => {
       };
     });
   }
+
   return (
     <>
       <Metatags
