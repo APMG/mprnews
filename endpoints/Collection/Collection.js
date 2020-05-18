@@ -53,6 +53,8 @@ const Collection = ({ data: { collection, alertConfig } }) => {
         topic={collection?.title}
         contentType="website"
         noFollow={true}
+        rssUrl={collection.rssUrl}
+        originalSourceUrl={collection.originalSourceUrl}
       />
       {showInfoAlert(alerts, collection.resourceType) ? (
         <div className="section section-md">
