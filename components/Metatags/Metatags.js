@@ -11,6 +11,9 @@ const Metatags = (props) => {
   const fullUrl = props.fullSlug
     ? `${globals.hostnameProd}/${props.fullSlug}`
     : null;
+  const canonicalUrl = props.originalSourceUrl
+    ? props.originalSourceUrl
+    : fullUrl;
 
   return (
     <Head>
@@ -56,6 +59,15 @@ const Metatags = (props) => {
         </>
       )}
 
+      {props.rssUrl && (
+        <link
+          title={props.title}
+          href={props.rssUrl}
+          rel="alternate"
+          type="application/rss+xml"
+        />
+      )}
+
       {props.image && (
         <>
           <meta
@@ -78,10 +90,10 @@ const Metatags = (props) => {
         <meta name="twitter:image:alt" content={props.imageAlt} />
       )}
 
-      {props.fullSlug && (
+      {canonicalUrl && (
         <>
-          <link rel="canonical" href={fullUrl} key="canonical" />
-          <meta property="og:url" content={fullUrl} key="og:url" />
+          <link rel="canonical" href={canonicalUrl} />
+          <meta property="og:url" content={canonicalUrl} key="og:url" />
         </>
       )}
 
@@ -138,11 +150,13 @@ Metatags.propTypes = {
   imageHeight: PropTypes.number,
   isAmp: PropTypes.bool,
   title: PropTypes.string,
+  rssUrl: PropTypes.string,
   topic: PropTypes.string,
   publishDate: PropTypes.string,
   modifiedDate: PropTypes.string,
   authors: PropTypes.array,
-  noFollow: PropTypes.bool
+  noFollow: PropTypes.bool,
+  originalSourceUrl: PropTypes.string
 };
 
 export default React.memo(Metatags);

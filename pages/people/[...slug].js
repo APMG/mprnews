@@ -48,6 +48,7 @@ ProfilePage.getInitialProps = async ({
     })
     .then((result) => {
       data = result.data;
+
       if (res) {
         res.setHeader('Cache-Control', 'public, max-age=60');
       }

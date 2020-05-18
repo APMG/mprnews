@@ -20,6 +20,7 @@ const Profile = ({ data: { profile }, pageNum }) => {
         description={profile.descriptionText}
         image={fishForSocialMediaImage(profile)?.url}
         topic={profile.primaryCollection?.title}
+        originalSourceUrl={profile.originalSourceUrl}
       />
 
       <section className="page section">
@@ -92,7 +93,8 @@ Profile.propTypes = {
   data: PropTypes.shape({
     profile: PropTypes.object
   }),
-  pageNum: PropTypes.number
+  pageNum: PropTypes.number,
+  originalSourceUrl: PropTypes.string
 };
 
 export default Profile;
