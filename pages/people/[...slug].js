@@ -9,6 +9,7 @@ import {
   addMemberDriveElements
 } from '../../utils/membershipUtils';
 import { isNumeric } from '../../utils/utils';
+import adCleanup from '../../utils/adCleanup';
 
 /* eslint react/display-name: 0 */
 
@@ -63,6 +64,7 @@ ProfilePage.getInitialProps = async ({
       errorCode = res.statusCode > 200 ? res.statusCode : false;
     });
 
+  adCleanup();
   return {
     data,
     pageNum: parseInt(pageNum),

@@ -10,6 +10,7 @@ import {
   fetchMemberDriveStatus,
   addMemberDriveElements
 } from '../../utils/membershipUtils';
+import adCleanup from '../../utils/adCleanup';
 
 const StoryPage = ({ data, errorCode }) => {
   if (errorCode) return <ErrorPage statusCode={errorCode} />;
@@ -77,6 +78,7 @@ StoryPage.getInitialProps = async ({
       }
     });
 
+  adCleanup();
   return {
     data,
     errorCode,

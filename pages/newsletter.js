@@ -6,6 +6,7 @@ import {
   fetchMemberDriveStatus,
   addMemberDriveElements
 } from '../utils/membershipUtils';
+import adCleanup from '../utils/adCleanup';
 
 /* eslint react/display-name: 0 */
 
@@ -32,6 +33,7 @@ NewsletterPage.getInitialProps = async ({ query: { slug }, req, res }) => {
     return { slug: slug, errorCode };
   }
 
+  adCleanup();
   return { slug: slug, memberDriveData };
 };
 
