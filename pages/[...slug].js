@@ -11,6 +11,7 @@ import CollectionTwoColumn from '../endpoints/Collection/CollectionTwoColumn';
 import ContentGrid from '../grids/ContentGrid';
 import Sidebar from '../components/Sidebar/Sidebar';
 import { isNumeric } from '../utils/utils';
+import adCleanup from '../utils/adCleanup';
 
 const VariablePage = (obj) => {
   const { data, slug, type, pageNum } = obj;
@@ -125,6 +126,7 @@ VariablePage.getInitialProps = async ({ query: { slug }, res }) => {
       errorCode = res.statusCode > 200 ? res.statusCode : false;
     });
 
+  adCleanup();
   return {
     data,
     type,

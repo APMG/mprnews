@@ -10,6 +10,7 @@ import {
   fetchMemberDriveStatus,
   addMemberDriveElements
 } from '../../utils/membershipUtils';
+import adCleanup from '../../utils/adCleanup';
 
 /* eslint react/display-name: 0 */
 
@@ -65,6 +66,7 @@ EpisodePage.getInitialProps = async ({
       errorCode = 500;
     });
 
+  adCleanup();
   return {
     data: data,
     errorCode: errorCode,

@@ -6,6 +6,7 @@ import query from '../../endpoints/Department/department.gql';
 import Department from '../../endpoints/Department/Department';
 import ContentGrid from '../../grids/ContentGrid';
 import Sidebar from '../../components/Sidebar/Sidebar';
+import adCleanup from '../../utils/adCleanup';
 
 const DepartmentPage = ({ data, errorCode }) => {
   if (errorCode) return <ErrorPage statusCode={errorCode} />;
@@ -46,6 +47,7 @@ DepartmentPage.getInitialProps = async ({ query: { slug }, res }) => {
     errorCode = 404;
   }
 
+  adCleanup();
   return {
     data: result?.data || {},
     errorCode

@@ -9,6 +9,7 @@ import {
   fetchMemberDriveStatus,
   addMemberDriveElements
 } from '../utils/membershipUtils';
+import adCleanup from '../utils/adCleanup';
 
 /* eslint react/display-name: 0 */
 
@@ -52,6 +53,7 @@ HomePage.getInitialProps = async ({ res }) => {
       console.error(err);
     });
 
+  adCleanup();
   return { data, errorCode, memberDriveData };
 };
 

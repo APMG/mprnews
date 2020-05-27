@@ -6,6 +6,7 @@ import {
   fetchMemberDriveStatus,
   addMemberDriveElements
 } from '../utils/membershipUtils';
+import adCleanup from '../utils/adCleanup';
 
 /* eslint react/display-name: 0 */
 
@@ -36,6 +37,7 @@ SearchPage.getInitialProps = async ({
     return { slug: slug, previewToken: previewToken, errorCode };
   }
 
+  adCleanup();
   return { slug: slug, previewToken: previewToken, memberDriveData };
 };
 

@@ -8,6 +8,7 @@ import {
   fetchMemberDriveStatus,
   addMemberDriveElements
 } from '../../utils/membershipUtils';
+import adCleanup from '../../utils/adCleanup';
 
 const WeatherPage = ({ data, errorCode }) => {
   if (errorCode) return <ErrorPage statusCode={errorCode} />;
@@ -42,6 +43,7 @@ WeatherPage.getInitialProps = async ({ query: { city }, res }) => {
     };
   }
 
+  adCleanup();
   return {
     data: {
       location,
