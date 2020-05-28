@@ -163,7 +163,10 @@ Rss.getInitialProps = async ({ query: { slug }, req, res }) => {
       const markupImg = getImage(item);
       const markup = ReactDOMServer.renderToStaticMarkup(ele);
       let audio, enclosure;
-      const hasAdio = item.audio.length > 0 && item.audio[0].encodings;
+      const hasAdio =
+        item.audio.length > 0 &&
+        item.audio[0].encodings.length > 0 &&
+        item.audio[0].encodings[0].playFilePath;
 
       if (hasAdio) {
         audio = item.audio[0].encodings[0];
