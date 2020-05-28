@@ -10,6 +10,7 @@ import {
   fetchMemberDriveStatus,
   addMemberDriveElements
 } from '../utils/membershipUtils';
+import adCleanup from '../utils/adCleanup';
 
 const AllNewsPage = ({ data, errorCode, pageNum }) => {
   if (errorCode) return <ErrorPage statusCode={errorCode} />;
@@ -59,6 +60,7 @@ AllNewsPage.getInitialProps = async ({
       errorCode = res.statusCode > 200 ? res.statusCode : false;
     });
 
+  adCleanup();
   return { data, errorCode, pageNum: parseInt(pageNum), memberDriveData };
 };
 

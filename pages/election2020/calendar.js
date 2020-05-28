@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import fetch from 'isomorphic-unfetch';
 import Calendar from '../../endpoints/Calendar/Calendar';
 import absoluteUrl from 'next-absolute-url';
+import adCleanup from '../../utils/adCleanup';
 
 const CalendarPage = ({ events }) => {
   return (
@@ -27,6 +28,7 @@ CalendarPage.getInitialProps = async ({ req, res }) => {
     errorCode = res.statusCode > 200 ? res.statusCode : false;
   }
 
+  adCleanup();
   return {
     events: data.items,
     errorCode
