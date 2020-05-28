@@ -8,6 +8,7 @@ import {
   fetchMemberDriveStatus,
   addMemberDriveElements
 } from '../../utils/membershipUtils';
+import adCleanup from '../../utils/adCleanup';
 
 const SchedulePage = ({ schedule, errorCode }) => {
   if (!schedule || errorCode) return <ErrorPage statusCode={404} />;
@@ -44,6 +45,7 @@ SchedulePage.getInitialProps = async ({ query: { day }, req, res }) => {
     };
   }
 
+  adCleanup();
   return {
     schedule: {
       props,

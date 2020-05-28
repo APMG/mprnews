@@ -9,6 +9,7 @@ import {
   fetchMemberDriveStatus,
   addMemberDriveElements
 } from '../../utils/membershipUtils';
+import adCleanup from '../../utils/adCleanup';
 
 const WeatherPage = ({ errorCode }) => {
   const [data, setData] = useState({});
@@ -49,6 +50,7 @@ const WeatherPage = ({ errorCode }) => {
 };
 
 WeatherPage.getInitialProps = async ({ res }) => {
+  adCleanup();
   if (res) {
     const errorCode = res.statusCode > 200 ? res.statusCode : false;
     res.setHeader('Cache-Control', 'public, max-age=60');
