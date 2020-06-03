@@ -14,6 +14,7 @@ const Metatags = (props) => {
   const canonicalUrl = props.originalSourceUrl
     ? props.originalSourceUrl
     : fullUrl;
+  const socialTitle = props.shortTitle ? props.shortTitle : props.title;
 
   return (
     <Head>
@@ -27,15 +28,15 @@ const Metatags = (props) => {
         />
       )}
 
-      {props.title && (
+      {socialTitle && (
         <>
-          <meta name="title" content={props.title} key="title" />
+          <meta name="title" content={socialTitle} key="title" />
           <meta
             name="twitter:title"
-            content={props.title}
+            content={socialTitle}
             key="twitter:title"
           />
-          <meta property="og:title" content={props.title} key="og:title" />
+          <meta property="og:title" content={socialTitle} key="og:title" />
         </>
       )}
 
@@ -150,6 +151,7 @@ Metatags.propTypes = {
   imageHeight: PropTypes.number,
   isAmp: PropTypes.bool,
   title: PropTypes.string,
+  shortTitle: PropTypes.string,
   rssUrl: PropTypes.string,
   topic: PropTypes.string,
   publishDate: PropTypes.string,
