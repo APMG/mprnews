@@ -9,6 +9,7 @@ import ApmRelatedLinkOverride from '../AmatOverrides/ApmRelatedLinkOverride';
 import ApmRelatedListOverride from '../AmatOverrides/ApmRelatedListOverride';
 import ApmImageOverride from '../AmatOverrides/ApmImageOverride';
 import ApmCustomHtmlOverride from '../AmatOverrides/ApmCustomHtmlOverride';
+import AmpOembedFactory from '../AmpOembed/AmpOembedFactory';
 
 const ampStyles = {
   article: {
@@ -107,7 +108,8 @@ const AmpContent = ({
               apm_related_link_list_item: ApmRelatedLinkListItemOverride,
               apm_related_list: ApmRelatedListOverride,
               apm_image: ApmImageOverride,
-              apm_custom_html: ApmCustomHtmlOverride
+              apm_custom_html: ApmCustomHtmlOverride,
+              apm_oembed: AmpOembedFactory
             }}
           />
         </div>
