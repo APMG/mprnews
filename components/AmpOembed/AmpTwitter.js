@@ -5,7 +5,7 @@ const AmpTwitter = (props) => {
   const defaultWidth = 550;
   const defaultHeight = 550;
   const tweetIdMatch = props.embed.url.match(/\d+$/);
-  if (!tweetIdMatch || props.minimal) return;
+  if (!tweetIdMatch || props.minimal) return null;
 
   return (
     <amp-twitter
