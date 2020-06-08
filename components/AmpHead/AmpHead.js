@@ -62,6 +62,12 @@ const AmpHead = () => {
         custom-element="amp-analytics"
         src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"
       ></script>
+      {/* Twitter oembeds */}
+      <script
+        async
+        custom-element="amp-twitter"
+        src="https://cdn.ampproject.org/v0/amp-twitter-0.1.js"
+      ></script>
 
       {/* Favicons */}
       <link rel="icon" type="image/png" href="/favicon.png" key="icon" />
