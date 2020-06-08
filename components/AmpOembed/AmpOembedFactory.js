@@ -11,12 +11,12 @@ const AmpOembedFactory = (props) => {
   }
 
   if (props.minimal) {
-    return;
+    return null;
   }
 
   const embed = findEmbedded();
   if (!embed) {
-    return;
+    return null;
   }
 
   switch (embed.provider_name) {
