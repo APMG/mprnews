@@ -6,6 +6,7 @@ query story($contentAreaSlug: String!, $slug: String!, $previewToken: String) {
   ) {
     id
     title
+    shortTitle
     subtitle
     originalSourceUrl
     supportedOutputFormats
