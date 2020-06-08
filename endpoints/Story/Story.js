@@ -41,6 +41,7 @@ const Story = ({ data: { story, alertConfig }, minimal }) => {
     <>
       <Metatags
         title={story.title}
+        shortTitle={story.shortTitle}
         fullSlug={`story/${story?.canonicalSlug}`}
         description={story.descriptionText}
         image={img?.url}
@@ -134,6 +135,7 @@ Story.propTypes = {
     story: PropTypes.shape({
       canonicalSlug: PropTypes.string,
       title: PropTypes.string,
+      shortTitle: PropTypes.string,
       subtitle: PropTypes.string,
       dateline: PropTypes.string,
       authors: PropTypes.arrayOf(
