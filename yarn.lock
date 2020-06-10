@@ -45,12 +45,12 @@
   dependencies:
     cross-fetch "3.0.4"
 
-"@apmg/amat@^0.6.0":
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/@apmg/amat/-/amat-0.6.0.tgz#ebae5a25a1bbb4648bc2de0b673d593df7a3a8a6"
-  integrity sha512-JVDAkMbU+cyfeYYCLHq9IPd1ZkAFIKbMSPvlGBI7ztHrJOv7x0paIAcCSwUxfXSD5qdX5Vkbm8ymx5YARB3rNQ==
+"@apmg/amat@^0.6.3":
+  version "0.6.3"
+  resolved "https://registry.yarnpkg.com/@apmg/amat/-/amat-0.6.3.tgz#6697a69fda79354a53f8f0ec2015fa07fadb55aa"
+  integrity sha512-n1zjAn9+sQE1/1qAkNaWKCg6DHRM1m8KP/IFCKDpqjcHg7DS0fPON6tjGSaqlO5xfTeq+dZbFL+v5U027lEyJw==
   dependencies:
-    "@apmg/enceladus" "^0.5.5"
+    "@apmg/enceladus" "^0.5.6"
     "@apmg/mimas" "0.3.3"
     "@apmg/react-oembed-container" "git://github.com/APMG/react-oembed-container.git#twitter-load-fix"
     "@nprapps/sidechain" "^1.0.13"
@@ -61,10 +61,10 @@
     rollup-plugin-babel "^4.3.3"
     uuid "^7.0.2"
 
-"@apmg/enceladus@^0.5.5":
-  version "0.5.5"
-  resolved "https://registry.yarnpkg.com/@apmg/enceladus/-/enceladus-0.5.5.tgz#ae3ac15598578dcbe9600b7603316cc8c35a5b18"
-  integrity sha512-/Ztzeue0jr5Yzbq+kOEOa2A72Wp1O0TTcevFhSyiC+oBBfceP79d9OmiTZOchB8Oj4juv6t9fF3PMOgb88ByRQ==
+"@apmg/enceladus@^0.5.6":
+  version "0.5.6"
+  resolved "https://registry.yarnpkg.com/@apmg/enceladus/-/enceladus-0.5.6.tgz#8c5432ecb540a33725acd5a6626df2a48f81a24d"
+  integrity sha512-Av9ai11ylXoYZ2lCv5LPk7tGBA31dKmvkGqsj3CFLYVN+6fLNCxNazAjOVbLND/mHusUeFbxhkO0CX6d1vHPbQ==
   dependencies:
     "@emotion/babel-preset-css-prop" "^10.0.14"
     "@emotion/core" "^10.0.16"
