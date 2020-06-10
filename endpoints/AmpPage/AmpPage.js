@@ -20,7 +20,7 @@ const AmpPage = ({ data: { page } }) => {
         imageHeight={img?.height}
         imageWidth={img?.width}
         imageAlt={page?.primaryVisuals?.social?.shortCaption}
-        isAmp={page.supportedOutputFormats?.indexOf('amp') > -1}
+        isAmp={false}
         topic={page.primaryCollection?.title}
         contentType="article"
       />
