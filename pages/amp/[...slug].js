@@ -112,3 +112,4 @@ VariableAmpPage.propTypes = {
 };
 
 export default VariableAmpPage;
+export const config = { amp: true };
