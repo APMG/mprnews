@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { AmpOembed } from '@apmg/amat';
+import { Body as ApmOembed } from '@apmg/amat';
 import AmpTwitter from './AmpTwitter';
 
 const AmpOembedFactory = (props) => {
@@ -23,7 +23,7 @@ const AmpOembedFactory = (props) => {
     case 'Twitter':
       return <AmpTwitter {...props} embed={embed} />;
     default:
-      return <AmpOembed {...props} />;
+      return <ApmOembed {...props} />;
   }
 };
 
