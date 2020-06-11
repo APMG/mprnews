@@ -19,6 +19,9 @@ query episode(
       title
       canonicalSlug
     }
+    collections {
+      rssUrl
+    }
     contributors {
       profile {
         id

@@ -24,6 +24,8 @@ const Story = ({ data: { story, alertConfig }, minimal }) => {
     (story?.primaryVisuals?.social && !(minimal && !redistributable)); //  an image exists and not a newspartner story with non-distributable image
 
   const img = fishForSocialMediaImage(story, socialMediaImage);
+  const rssUrl = story?.collections?.find((item) => item.rssUrl?.length)
+    ?.rssUrl;
   let authors;
 
   if (story && story.contributors) {
@@ -55,6 +57,7 @@ const Story = ({ data: { story, alertConfig }, minimal }) => {
         modifiedDate={story.updatedAt}
         authors={authors}
         originalSourceUrl={story.originalSourceUrl}
+        rssUrl={rssUrl}
       />
 
       {showInfoAlert(alerts, story.resourceType) ? (
@@ -155,6 +158,7 @@ Story.propTypes = {
       imageCreditHref: PropTypes.string,
       primaryAudio: PropTypes.any,
       primaryCollection: PropTypes.any,
+      collections: PropTypes.array,
       primaryVisuals: PropTypes.any,
       publishDate: PropTypes.string,
       updatedAt: PropTypes.string,
