@@ -5,7 +5,7 @@ import Episode from '../../endpoints/Episode/Episode';
 import ContentGrid from '../../grids/ContentGrid';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import initApollo from '../../lib/init-apollo';
-import query from '../../endpoints/Episode/episode.gql';
+import episodeQuery from '../../endpoints/Episode/episode.gql';
 import {
   fetchMemberDriveStatus,
   addMemberDriveElements
@@ -43,7 +43,7 @@ EpisodePage.getInitialProps = async ({
   let data,
     errorCode = false;
   await ApolloClient.query({
-    query: query,
+    query: episodeQuery,
     variables: {
       contentAreaSlug: process.env.CONTENT_AREA_SLUG,
       slug: slug.join('/'),

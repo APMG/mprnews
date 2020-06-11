@@ -16,6 +16,8 @@ import Alert from '../../components/Alert/Alert';
 const Episode = ({ data: { episode, alertConfig } }) => {
   const alerts = JSON.parse(alertConfig.json);
   const img = fishForSocialMediaImage(episode);
+  const rssUrl = episode?.collections?.find((item) => item.rssUrl?.length)
+    ?.rssUrl;
   let authors;
 
   if (episode.contributors) {
@@ -48,6 +50,7 @@ const Episode = ({ data: { episode, alertConfig } }) => {
         publishDate={episode.publishDate}
         modifiedDate={episode.updatedAt}
         originalSourceUrl={episode.originalSourceUrl}
+        rssUrl={rssUrl}
       />
       {showInfoAlert(alerts, episode.resourceType) ? (
         <div className="section section-md">
@@ -126,6 +129,7 @@ Episode.propTypes = {
       imageCreditHref: PropTypes.string,
       primaryVisuals: PropTypes.any,
       primaryCollection: PropTypes.any,
+      collections: PropTypes.array,
       primaryAudio: PropTypes.any,
       publishDate: PropTypes.string,
       updatedAt: PropTypes.string,

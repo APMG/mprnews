@@ -18,6 +18,9 @@ query story($contentAreaSlug: String!, $slug: String!, $previewToken: String) {
       title
       canonicalSlug
     }
+    collections {
+      rssUrl
+    }
     contributors {
       profile {
         id
