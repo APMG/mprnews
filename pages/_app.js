@@ -117,9 +117,15 @@ class MPRNews extends App {
 
   playAudio(audioSource, audioTitle, audioSubtitle) {
     if (this.state.playerInstance === null) return;
-
+    const isAudioLive = audioSource == this.defaultAudioSource;
     this.setState(
-      { isAudioPlaying: true, audioSource, audioTitle, audioSubtitle },
+      {
+        isAudioPlaying: true,
+        audioSource,
+        audioTitle,
+        audioSubtitle,
+        isAudioLive
+      },
       () => {
         this.state.playerInstance.handlePlay();
       }

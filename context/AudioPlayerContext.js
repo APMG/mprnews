@@ -7,6 +7,7 @@ const AudioPlayerContext = React.createContext({
   audioSubtitle: '',
   isAudioPlaying: false,
   isPlayerVisible: false,
+  isAudioLive: true,
   handleAudioButtonClick() {},
   loadPlayer() {},
   playerInstance: {},
