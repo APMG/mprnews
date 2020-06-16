@@ -19,6 +19,9 @@ Rss.getInitialProps = async ({ query: { slug }, req, res }) => {
             publishDate
             results(pageSize: 30) {
               items {
+                ... on Story {
+                  shortTitle
+                }
                 title
                 body
                 embeddedAssetJson
@@ -155,6 +158,7 @@ Rss.getInitialProps = async ({ query: { slug }, req, res }) => {
         new Date(item.publishDate),
         'E, dd LLL yyyy hh:mm:ss XXXX'
       );
+      const title = item.shortTitle ? item.shortTitle : item.title;
       const ele = React.createElement(Body, {
         nodeData: JSON.parse(item.body),
         embedded: JSON.parse(item.embeddedAssetJson),
@@ -175,7 +179,7 @@ Rss.getInitialProps = async ({ query: { slug }, req, res }) => {
           .replace(/%user_agent/, 'web');
       }
       xml += `<item>
-                  <title>${item.title.replace(/&/, '&amp;')}</title>
+                  <title>${title.replace(/&/, '&amp;')}</title>
                   <link>https://www.mprnews.org${link}</link>
                   <guid isPermaLink="true">https://www.mprnews.org${link}</guid>
                   <pubDate>${dte}</pubDate>
