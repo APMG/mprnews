@@ -10,7 +10,8 @@
 }
 
 .shareSocialButtons_twitter,
-.shareSocialButtons_facebook {
+.shareSocialButtons_facebook,
+.shareSocialButtons_email {
   cursor: pointer;
   height: 32px;
   width: 32px;
@@ -39,5 +40,16 @@
     margin: auto;
     height: 25px;
     width: 13px;
+  }
+}
+
+.shareSocialButtons_email {
+  background-color: $color-email;
+  display: flex;
+
+  svg {
+    margin: auto;
+    height: 28px;
+    width: 28px;
   }
 }

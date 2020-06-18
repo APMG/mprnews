@@ -25,6 +25,9 @@ const ShareSocialButtons = ({ contentUrl, title }) => {
     '&text=' +
     title +
     'sharer';
+  const mailLink =
+    `mailto:?subject=MPR News: ${title}` +
+    `&body=Check out this article from MPR News: https://www.mprnews.org/${contentUrl}`;
 
   const dataLayerObj = {
     event: 'GAevent',
@@ -74,6 +77,15 @@ const ShareSocialButtons = ({ contentUrl, title }) => {
       >
         <Icon name="facebook" />
         <span className="invisible">Facebook</span>
+      </a>
+      <a
+        href={mailLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="shareSocialButtons_email email"
+      >
+        <Icon name="mail" />
+        <span className="invisible">Email</span>
       </a>
     </div>
   );
