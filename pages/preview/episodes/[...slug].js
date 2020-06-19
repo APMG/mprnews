@@ -6,6 +6,7 @@ import ContentGrid from '../../../grids/ContentGrid';
 import Sidebar from '../../../components/Sidebar/Sidebar';
 import initApollo from '../../../lib/init-apollo';
 import gql from '../../../endpoints/Episode/episode.gql';
+import { parseEmbeddedAssets } from '../../../utils/utils';
 
 import {
   fetchMemberDriveStatus,
@@ -43,6 +44,10 @@ EpisodePage.getInitialProps = async ({ query: { slug, token }, res }) => {
   })
     .then((result) => {
       data = result.data;
+      if (data?.episode?.embeddedAssets) {
+        parseEmbeddedAssets(data.episode.embeddedAssets);
+      }
+
       res.setHeader('Cache-Control', 'no-store, must-revalidate');
       if (!data.episode) {
         res.statusCode = 404;

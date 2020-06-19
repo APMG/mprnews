@@ -51,7 +51,12 @@ query story($contentAreaSlug: String!, $slug: String!, $previewToken: String) {
         playFilePath
       }
     }
-    embeddedAssetJson
+    embeddedAssets {
+      audio
+      attachments
+      images
+      oembeds
+    }
     primaryVisuals {
       social {
         aspect_ratios: aspectRatios {

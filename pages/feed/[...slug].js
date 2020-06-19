@@ -4,6 +4,7 @@ import ReactDOMServer from 'react-dom/server';
 import fetch from 'isomorphic-unfetch';
 import { linkByTypeAs } from '../../utils/cjsutils';
 import { Body } from '@apmg/amat';
+import { parseEmbeddedAssets } from '../../utils/utils';
 
 const Rss = () => {};
 
@@ -24,7 +25,12 @@ Rss.getInitialProps = async ({ query: { slug }, req, res }) => {
                 }
                 title
                 body
-                embeddedAssetJson
+                embeddedAssets {
+                  audio
+                  attachments
+                  images
+                  oembeds
+                }
                 descriptionText
                 resourceType
                 canonicalSlug
@@ -161,7 +167,7 @@ Rss.getInitialProps = async ({ query: { slug }, req, res }) => {
       const title = item.shortTitle ? item.shortTitle : item.title;
       const ele = React.createElement(Body, {
         nodeData: JSON.parse(item.body),
-        embedded: JSON.parse(item.embeddedAssetJson),
+        embedded: parseEmbeddedAssets(item.embeddedAssets),
         minimal: false
       });
       const markupImg = getImage(item);

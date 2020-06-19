@@ -50,7 +50,7 @@ const Department = ({ data: { department } }) => {
           <div className="department_body userContent">
             <Body
               nodeData={JSON.parse(department.body)}
-              embedded={JSON.parse(department.embeddedAssetJson)}
+              embedded={department.embeddedAssets}
               overrides={{
                 link: LinkOverride,
                 apm_related_link: ApmRelatedLinkOverride,

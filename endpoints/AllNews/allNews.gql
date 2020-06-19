@@ -19,7 +19,12 @@ query contentList($contentAreaSlug: String!, $pageNum: Int) {
       body
       description
       descriptionText
-      embeddedAssetJson
+      embeddedAssets {
+        audio
+        attachments
+        images
+        oembeds
+      }
       resourceType
       audio {
         encodings {

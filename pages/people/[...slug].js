@@ -10,6 +10,7 @@ import {
 } from '../../utils/membershipUtils';
 import { isNumeric } from '../../utils/utils';
 import adCleanup from '../../utils/adCleanup';
+import { parseEmbeddedAssets } from '../../utils/utils';
 
 /* eslint react/display-name: 0 */
 
@@ -49,6 +50,9 @@ ProfilePage.getInitialProps = async ({
     })
     .then((result) => {
       data = result.data;
+      if (data?.profile?.embeddedAssets) {
+        parseEmbeddedAssets(data.profile.embeddedAssets);
+      }
 
       if (res) {
         res.setHeader('Cache-Control', 'public, max-age=60');

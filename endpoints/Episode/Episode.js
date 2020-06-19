@@ -95,7 +95,7 @@ const Episode = ({ data: { episode, alertConfig } }) => {
         imageCredit={episode.primaryVisuals?.lead?.credit?.name}
         imageCreditHref={episode.primaryVisuals?.lead?.credit?.url}
         publishDate={<Time dateTime={episode.publishDate} />}
-        embeddedAssetJson={episode.embeddedAssetJson}
+        embeddedAssets={episode.embeddedAssets}
         tag={collectionLinkData(episode.primaryCollection)}
         elementClass="episode"
       />
@@ -133,7 +133,7 @@ Episode.propTypes = {
       primaryAudio: PropTypes.any,
       publishDate: PropTypes.string,
       updatedAt: PropTypes.string,
-      embeddedAssetJson: PropTypes.string,
+      embeddedAssets: PropTypes.object,
       originalSourceUrl: PropTypes.string,
       tag: PropTypes.shape({
         tagName: PropTypes.string,

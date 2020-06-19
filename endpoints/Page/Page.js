@@ -44,7 +44,7 @@ const Page = ({ data: { page } }) => {
         imageCaption={page.primaryVisuals?.lead?.longCaption}
         imageCredit={page.primaryVisuals?.lead?.credit?.name}
         imageCreditHref={page.primaryVisuals?.lead?.credit?.url}
-        embeddedAssetJson={page.embeddedAssetJson}
+        embeddedAssets={page.embeddedAssets}
         tag={collectionLinkData(page.primaryCollection)}
         elementClass="page"
       />
@@ -68,7 +68,7 @@ Page.propTypes = {
       primaryVisuals: PropTypes.any,
       primaryCollection: PropTypes.any,
       publishDate: PropTypes.string,
-      embeddedAssetJson: PropTypes.string,
+      embeddedAssets: PropTypes.object,
       originalSourceUrl: PropTypes.string,
       tag: PropTypes.shape({
         tagName: PropTypes.string,

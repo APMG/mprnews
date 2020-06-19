@@ -6,6 +6,7 @@ import ContentGrid from '../../../grids/ContentGrid';
 import Sidebar from '../../../components/Sidebar/Sidebar';
 import initApollo from '../../../lib/init-apollo';
 import gql from '../../../endpoints/Page/page.gql';
+import { parseEmbeddedAssets } from '../../../utils/utils';
 
 import {
   fetchMemberDriveStatus,
@@ -43,6 +44,10 @@ StoryPage.getInitialProps = async ({ query: { slug, token }, res }) => {
   })
     .then((result) => {
       data = result.data;
+      if (data?.page?.embeddedAssets) {
+        parseEmbeddedAssets(data.page.embeddedAssets);
+      }
+
       res.setHeader('Cache-Control', 'no-store, must-revalidate');
       if (!data.page) {
         res.statusCode = 404;

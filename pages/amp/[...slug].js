@@ -6,7 +6,7 @@ import query from '../../endpoints/Collection/variable.gql';
 import collectQuery from '../../endpoints/Collection/collection.gql';
 import pageQuery from '../../endpoints/Page/page.gql';
 import AmpPage from '../../endpoints/AmpPage/AmpPage';
-import { isNumeric } from '../../utils/utils';
+import { isNumeric, parseEmbeddedAssets } from '../../utils/utils';
 
 const VariableAmpPage = (obj) => {
   const { data, type } = obj;
@@ -39,6 +39,9 @@ VariableAmpPage.getInitialProps = async ({ query: { slug }, res }) => {
     })
       .then((result) => {
         data = result.data;
+        if (data?.collection?.embeddedAssets) {
+          parseEmbeddedAssets(data.collection.embeddedAssets);
+        }
       })
       .catch((err) => {
         console.error(err);
@@ -58,6 +61,9 @@ VariableAmpPage.getInitialProps = async ({ query: { slug }, res }) => {
     })
       .then((result) => {
         data = result.data;
+        if (data?.page?.embeddedAssets) {
+          parseEmbeddedAssets(data.page.embeddedAssets);
+        }
       })
       .catch((err) => {
         console.error(err);

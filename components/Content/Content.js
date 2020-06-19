@@ -22,7 +22,7 @@ const Content = ({
   shareButtons,
   audioPlayButton,
   body,
-  embeddedAssetJson,
+  embeddedAssets,
   tag,
   image,
   imageCaption,
@@ -83,7 +83,7 @@ const Content = ({
         <div className="content_body userContent">
           <Body
             nodeData={JSON.parse(body)}
-            embedded={JSON.parse(embeddedAssetJson)}
+            embedded={embeddedAssets}
             minimal={minimal}
             isAmp={false}
             overrides={{
@@ -117,7 +117,7 @@ Content.propTypes = {
   audioPlayButton: PropTypes.node,
   shareButtons: PropTypes.node,
   body: PropTypes.string,
-  embeddedAssetJson: PropTypes.string,
+  embeddedAssets: PropTypes.object,
   tag: PropTypes.shape({
     tagName: PropTypes.string,
     to: PropTypes.string
