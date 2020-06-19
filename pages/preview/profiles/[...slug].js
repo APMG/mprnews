@@ -6,6 +6,7 @@ import ContentGrid from '../../../grids/ContentGrid';
 import Sidebar from '../../../components/Sidebar/Sidebar';
 import initApollo from '../../../lib/init-apollo';
 import gql from '../../../endpoints/Profile/profile.gql';
+import { parseEmbeddedAssets } from '../../../utils/utils';
 
 import {
   fetchMemberDriveStatus,
@@ -43,6 +44,10 @@ ProfilePage.getInitialProps = async ({ query: { slug, token }, res }) => {
   })
     .then((result) => {
       data = result.data;
+      if (data?.profile?.parseEmbeddedAssets) {
+        parseEmbeddedAssets(data.profile.parseEmbeddedAssets);
+      }
+
       res.setHeader('Cache-Control', 'no-store, must-revalidate');
       if (!data.profile) {
         if (res) res.statusCode = 404;

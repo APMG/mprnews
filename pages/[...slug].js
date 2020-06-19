@@ -10,7 +10,7 @@ import Collection from '../endpoints/Collection/Collection';
 import CollectionTwoColumn from '../endpoints/Collection/CollectionTwoColumn';
 import ContentGrid from '../grids/ContentGrid';
 import Sidebar from '../components/Sidebar/Sidebar';
-import { isNumeric } from '../utils/utils';
+import { isNumeric, parseEmbeddedAssets } from '../utils/utils';
 import adCleanup from '../utils/adCleanup';
 
 const VariablePage = (obj) => {
@@ -70,6 +70,9 @@ VariablePage.getInitialProps = async ({ query: { slug }, res }) => {
     })
       .then((result) => {
         data = result.data;
+        if (data?.collection?.embeddedAssets) {
+          parseEmbeddedAssets(data.collection.embeddedAssets);
+        }
       })
       .catch((err) => {
         console.error(err);
@@ -88,6 +91,9 @@ VariablePage.getInitialProps = async ({ query: { slug }, res }) => {
     })
       .then((result) => {
         data = result.data;
+        if (data?.page?.embeddedAssets) {
+          parseEmbeddedAssets(data.page.embeddedAssets);
+        }
       })
       .catch((err) => {
         console.error(err);

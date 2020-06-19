@@ -5,12 +5,13 @@ import Story from '../../endpoints/Story/Story';
 import ContentGrid from '../../grids/ContentGrid';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import initApollo from '../../lib/init-apollo';
-import storyQuery from '../../endpoints/Story/story.gql';
+import query from '../../endpoints/Story/story.gql';
 import {
   fetchMemberDriveStatus,
   addMemberDriveElements
 } from '../../utils/membershipUtils';
 import adCleanup from '../../utils/adCleanup';
+import { parseEmbeddedAssets } from '../../utils/utils';
 
 const StoryPage = ({ data, errorCode }) => {
   if (errorCode) return <ErrorPage statusCode={errorCode} />;
@@ -42,7 +43,7 @@ StoryPage.getInitialProps = async ({
   let errorCode;
 
   await ApolloClient.query({
-    query: storyQuery,
+    query: query,
     variables: {
       contentAreaSlug: process.env.CONTENT_AREA_SLUG,
       slug: slug.join('/'),
@@ -51,6 +52,9 @@ StoryPage.getInitialProps = async ({
   })
     .then((result) => {
       data = result.data;
+      if (data?.story?.embeddedAssets) {
+        parseEmbeddedAssets(data.story.embeddedAssets);
+      }
 
       if (res) {
         res.setHeader('Cache-Control', 'public, max-age=60');

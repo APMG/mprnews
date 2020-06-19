@@ -7,6 +7,7 @@ import Department from '../../endpoints/Department/Department';
 import ContentGrid from '../../grids/ContentGrid';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import adCleanup from '../../utils/adCleanup';
+import { parseEmbeddedAssets } from '../../utils/utils';
 
 const DepartmentPage = ({ data, errorCode }) => {
   if (errorCode) return <ErrorPage statusCode={errorCode} />;
@@ -34,6 +35,9 @@ DepartmentPage.getInitialProps = async ({ query: { slug }, res }) => {
         slug: slug.join('/')
       }
     });
+    if (result?.data?.department?.embeddedAssets) {
+      parseEmbeddedAssets(result.data.department.embeddedAssets);
+    }
   } catch (err) {
     if (res) res.statusCode = 500;
     return {

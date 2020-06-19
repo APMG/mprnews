@@ -4,6 +4,7 @@ import ErrorPage from 'next/error';
 import Story from '../../../endpoints/Story/Story';
 import initApollo from '../../../lib/init-apollo';
 import query from '../../../endpoints/Story/story.gql';
+import { parseEmbeddedAssets } from '../../../utils/utils';
 
 const NewspartnerStory = ({ data, errorCode }) => {
   if (errorCode) return <ErrorPage statusCode={errorCode} />;
@@ -22,6 +23,10 @@ NewspartnerStory.getInitialProps = async ({ query: { slug }, res }) => {
   })
     .then((result) => {
       data = result.data;
+      if (data?.story?.embeddedAssets) {
+        parseEmbeddedAssets(data.story.embeddedAssets);
+      }
+
       if (res) {
         res.setHeader('Cache-Control', 'public, max-age=60');
       }

@@ -4,7 +4,12 @@ query department($contentAreaSlug: String!, $slug: String!) {
     descriptionText
     resourceType
     body
-    embeddedAssetJson
+    embeddedAssets {
+      audio
+      attachments
+      images
+      oembeds
+    }
     canonicalSlug
     primaryVisuals {
       social {

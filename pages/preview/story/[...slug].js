@@ -11,6 +11,7 @@ import {
   fetchMemberDriveStatus,
   addMemberDriveElements
 } from '../../../utils/membershipUtils';
+import { parseEmbeddedAssets } from '../../../utils/utils';
 
 const PreviewPage = ({ data, errorCode }) => {
   if (errorCode) return <ErrorPage statusCode={errorCode} />;
@@ -43,6 +44,10 @@ PreviewPage.getInitialProps = async ({ query: { slug, token }, res }) => {
   })
     .then((result) => {
       data = result.data;
+      if (data?.story?.embeddedAssets) {
+        parseEmbeddedAssets(data.story.embeddedAssets);
+      }
+
       if (!data.story) {
         res.statusCode = 404;
         errorCode = res.statusCode > 200 ? res.statusCode : false;

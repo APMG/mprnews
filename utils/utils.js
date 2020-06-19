@@ -184,3 +184,35 @@ export function sortByOrder(authors) {
   }
   return authors
 }
+
+export function parseEmbeddedAssets(embeddedAssets) {
+  try {
+    if (typeof embeddedAssets === 'object') {
+      for (let [key, value] of Object.entries(embeddedAssets)) {
+        if (key !== '__typename') {
+          embeddedAssets[key] = JSON.parse(value);
+        }
+      }
+    }
+    return embeddedAssets;
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+export function parseGraphqlResponse(data) {
+  if (typeof data === 'object') {
+    for (let key in data) {
+      if (key === 'embeddedAssets') {
+        try {
+          parseEmbeddedAssets(data[key]);
+        } catch (e) {
+          console.error(e);
+        }
+      } else if (typeof data[key] === 'object' && data[key] != null) {
+        parseGraphqlResponse(data[key]);
+      } 
+    }
+  }  
+  return data;
+}

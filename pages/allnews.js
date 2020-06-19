@@ -11,6 +11,7 @@ import {
   addMemberDriveElements
 } from '../utils/membershipUtils';
 import adCleanup from '../utils/adCleanup';
+import { parseEmbeddedAssets } from '../utils/utils';
 
 const AllNewsPage = ({ data, errorCode, pageNum }) => {
   if (errorCode) return <ErrorPage statusCode={errorCode} />;
@@ -50,13 +51,18 @@ AllNewsPage.getInitialProps = async ({
   })
     .then((result) => {
       data = result.data;
+
+      data?.allNews?.items?.forEach((item) =>
+        parseEmbeddedAssets(item.embeddedAssets)
+      );
+
       if (res && !data.allNews) {
-        res.status(404);
+        res.statusCode = 404;
         errorCode = res.statusCode > 200 ? res.statusCode : false;
       }
     })
     .catch(() => {
-      res.status(404);
+      res.statusCode = 404;
       errorCode = res.statusCode > 200 ? res.statusCode : false;
     });
 

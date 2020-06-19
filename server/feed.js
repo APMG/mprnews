@@ -4,6 +4,7 @@ const fetch = require('isomorphic-unfetch');
 const React = require('react');
 const ReactDOMServer = require('react-dom/server');
 const { Body } = require('@apmg/amat');
+const { parseEmbeddedAssets } = require('../utils/utils');
 
 module.exports.feed = (server) => {
   // RSS feeds for collections
@@ -23,7 +24,12 @@ module.exports.feed = (server) => {
               items {
                 title
                 body
-                embeddedAssetJson
+                embeddedAssets {
+                  audio
+                  attachments
+                  images
+                  oembeds
+                }
                 descriptionText
                 resourceType
                 canonicalSlug
@@ -113,7 +119,7 @@ module.exports.feed = (server) => {
           );
           const ele = React.createElement(Body, {
             nodeData: JSON.parse(item.body),
-            embedded: JSON.parse(item.embeddedAssetJson),
+            embedded: parseEmbeddedAssets(item.embeddedAssets),
             minimal: false
           });
           const markupImg = getImage(item);
