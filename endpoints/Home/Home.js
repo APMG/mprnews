@@ -89,28 +89,42 @@ const Home = (data) => {
         </div>
         <div className="hList home_more">
           <div>
-            <Link href="/[...slug]" as={'/arts'} className="btn btn-primary">
-              <span>More Arts </span>
+            <Link
+              href="/[...slug]"
+              as="/health/covid-19"
+              className="btn btn-primary"
+            >
+              <span>COVID-19 </span>
               <Icon name="chevronRight" />
             </Link>
           </div>
           <div>
             <Link
               href="/[...slug]"
-              as={'/environment'}
+              as={'/politics/election-2020'}
               className="btn btn-primary"
             >
-              <span>More Environment </span>
+              <span>Elections 2020 </span>
               <Icon name="chevronRight" />
             </Link>
           </div>
           <div>
             <Link
               href="/[...slug]"
-              as={'/politics'}
+              as={'/crime-law-and-justice/killing-of-george-floyd'}
               className="btn btn-primary"
             >
-              <span>More Politics </span>
+              <span>Floyd killing </span>
+              <Icon name="chevronRight" />
+            </Link>
+          </div>
+          <div>
+            <Link
+              href="/[...slug]"
+              as={'/social-issues/race'}
+              className="btn btn-primary"
+            >
+              <span>Race </span>
               <Icon name="chevronRight" />
             </Link>
           </div>
