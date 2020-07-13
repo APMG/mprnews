@@ -64,6 +64,12 @@ export const dropdownLists = [
             hrefType: 'collection'
           },
           {
+            text: 'Race',
+            class: '',
+            href: 'social-issues/race',
+            hrefType: 'collection'
+          },
+          {
             text: 'Weather',
             class: '',
             href: 'weather',
