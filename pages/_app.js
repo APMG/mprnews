@@ -5,7 +5,7 @@ import { ApolloProvider } from 'react-apollo';
 import NowPlayingClient from 'nowplaying-client';
 import { weatherConfig } from '../utils/defaultData';
 import AudioPlayerContext from '../context/AudioPlayerContext';
-import LocationContext from '../context/LocationContext';
+import WeatherContext from '../context/WeatherContext';
 import Layout from '../layouts/Layout';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
@@ -51,7 +51,8 @@ class MPRNews extends App {
       playlist: {},
       resetLivePlayer: this.resetLivePlayer,
       location: weatherConfig[0],
-      handleLocationChange: this.handleLocationChange
+      handleLocationChange: this.handleLocationChange,
+      weatherData: {}
     };
   }
 
@@ -80,6 +81,8 @@ class MPRNews extends App {
       this.state.resetLivePlayer();
     });
     TagManager.initialize(tagManagerArgs);
+
+    this.getData(this.state.location.lat, this.state.location.long);
   }
 
   loadPlayer = () => {
@@ -212,23 +215,43 @@ class MPRNews extends App {
     let newLocation = weatherConfig.find((item) => item.name === locationName);
 
     this.setState({
-      location: newLocation
+      location: newLocation,
+      weatherData: this.getData(newLocation.lat, newLocation.long)
     });
+  };
+
+  getData = async (lat, long) => {
+    try {
+      let response = await fetch(
+        `https://api.weather.gov/points/${lat},${long}/forecast`
+      );
+      let result = await response;
+      if (!result.ok) return;
+      result.json().then((data) => {
+        this.setState({
+          weatherData: data
+        });
+      });
+    } catch (err) {
+      return;
+    }
   };
 
   render() {
     const { Component, pageProps } = this.props;
-    const { location, handleLocationChange } = this.state;
+    const { location, handleLocationChange, weatherData } = this.state;
 
     return (
       <AudioPlayerContext.Provider value={this.state}>
-        <LocationContext.Provider value={{ location, handleLocationChange }}>
+        <WeatherContext.Provider
+          value={{ location, handleLocationChange, weatherData }}
+        >
           <ApolloProvider client={initApollo()}>
             <Layout layout={pageProps?.layout}>
               <Component {...pageProps} />
             </Layout>
           </ApolloProvider>
-        </LocationContext.Provider>
+        </WeatherContext.Provider>
       </AudioPlayerContext.Provider>
     );
   }
