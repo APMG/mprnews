@@ -1,4 +1,4 @@
-import { showInfoAlert, sortByOrder } from './utils';
+import { showInfoAlert, sortByOrder, parseEmbeddedAssets } from './utils';
 
 describe('showInfoAlert', () => {
   test('if info.alert is true and resouceType equals story, expect true', () => {
@@ -120,4 +120,46 @@ describe('sortByOrder', () => {
   test('if authors is false and has zero authors, expect empty string.', () => {
     expect(sortByOrder('')).toEqual("");
   });
+});
+
+describe('parseEmbedAssets', () => {
+  let data = {
+    embededAssets: {
+      "audio": "[]",
+      "attachments": "[]",
+      "images": "[{\"image\":\"image1\"}, {\"image\":\"image2\"}]",
+      "oembeds": "[{\"url\":\"https://twitter.com/Twins/status/1273964897219555328\",\"author_name\":\"Minnesota Twins\",\"author_url\":\"https://twitter.com/Twins\",\"html\":\"\\u003cblockquote class=\\\"twitter-tweet\\\"\\u003e\\u003cp lang=\\\"en\\\" dir=\\\"ltr\\\"\\u003eThe \\u003ca href=\\\"https://twitter.com/hashtag/MNTwins?src=hash\\u0026amp;ref_src=twsrc%5Etfw\\\"\\u003e#MNTwins\\u003c/a\\u003e removed the Calvin Griffith statue from Target Field this morning. \\u003ca href=\\\"https://t.co/K044WNP7Ys\\\"\\u003epic.twitter.com/K044WNP7Ys\\u003c/a\\u003e\\u003c/p\\u003e\\u0026mdash; Minnesota Twins (@Twins) \\u003ca href=\\\"https://twitter.com/Twins/status/1273964897219555328?ref_src=twsrc%5Etfw\\\"\\u003eJune 19, 2020\\u003c/a\\u003e\\u003c/blockquote\\u003e\\n\\u003cscript async src=\\\"https://platform.twitter.com/widgets.js\\\" charset=\\\"utf-8\\\"\\u003e\\u003c/script\\u003e\\n\",\"width\":550,\"height\":null,\"type\":\"rich\",\"cache_age\":\"3153600000\",\"provider_name\":\"Twitter\",\"provider_url\":\"https://twitter.com\",\"version\":\"1.0\"}]"
+    }
+  }
+
+  test('return the correct object and modifies the original argument', () => {
+    const expected = {
+      audio: [],
+      attachments: [],
+      images: [{
+        image: "image1"
+      }, {
+        image: "image2"
+      }],
+      oembeds: [{
+        url: "https://twitter.com/Twins/status/1273964897219555328",
+        author_name: "Minnesota Twins",
+        author_url: "https://twitter.com/Twins",
+        html: "<blockquote class=\"twitter-tweet\"><p lang=\"en\" dir=\"ltr\">The <a href=\"https://twitter.com/hashtag/MNTwins?src=hash&amp;ref_src=twsrc%5Etfw\">#MNTwins</a> removed the Calvin Griffith statue from Target Field this morning. <a href=\"https://t.co/K044WNP7Ys\">pic.twitter.com/K044WNP7Ys</a></p>&mdash; Minnesota Twins (@Twins) <a href=\"https://twitter.com/Twins/status/1273964897219555328?ref_src=twsrc%5Etfw\">June 19, 2020</a></blockquote>\n<script async src=\"https://platform.twitter.com/widgets.js\" charset=\"utf-8\"></script>\n",
+        width: 550,
+        height: null,
+        type: "rich",
+        cache_age: "3153600000",
+        provider_name: "Twitter",
+        provider_url: "https://twitter.com",
+        version: "1.0"
+      }]
+    };
+
+    const result = parseEmbeddedAssets(data.embededAssets);
+    expect(result).toEqual(expected);
+    expect(data.embededAssets).toEqual(result);
+  });
+  
+  	
 });

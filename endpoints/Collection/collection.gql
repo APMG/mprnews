@@ -78,7 +78,12 @@ query collection($contentAreaSlug: String!, $slug: String!, $pageNum: Int) {
         xid
       }
     }
-    embeddedAssetJson
+    embeddedAssets {
+      audio
+      attachments
+      images
+      oembeds
+    }
     canonicalSlug
     contributors {
       profile {

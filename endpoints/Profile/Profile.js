@@ -67,7 +67,7 @@ const Profile = ({ data: { profile }, pageNum }) => {
                 {profile && profile.body && (
                   <Body
                     nodeData={JSON.parse(profile?.body)}
-                    embedded={JSON.parse(profile?.embeddedAssetJson)}
+                    embedded={profile?.embeddedAssets}
                     overrides={{
                       link: LinkOverride,
                       apm_related_link: ApmRelatedLinkOverride,

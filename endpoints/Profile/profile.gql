@@ -20,7 +20,12 @@ query profile(
     description
     descriptionText
     resourceType
-    embeddedAssetJson
+    embeddedAssets {
+      audio
+      attachments
+      images
+      oembeds
+    }
     results: contributionResults(
       page: $pageNum
       pageSize: 10

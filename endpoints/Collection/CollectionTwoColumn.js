@@ -72,7 +72,7 @@ const Collection = ({ data: { collection, alertConfig } }) => {
           <div className="collection_body userContent">
             <Body
               nodeData={JSON.parse(collection?.body)}
-              embedded={JSON.parse(collection?.embeddedAssetJson)}
+              embedded={collection?.embeddedAssets}
               overrides={{
                 link: LinkOverride,
                 apm_related_link: ApmRelatedLinkOverride,

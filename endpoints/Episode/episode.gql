@@ -53,7 +53,12 @@ query episode(
         playFilePath
       }
     }
-    embeddedAssetJson
+    embeddedAssets {
+      audio
+      attachments
+      images
+      oembeds
+    }
     primaryVisuals {
       video {
         url

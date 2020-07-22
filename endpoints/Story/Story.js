@@ -114,7 +114,7 @@ const Story = ({ data: { story, alertConfig }, minimal }) => {
             formatString="MMMM d, yyyy h:mm aaaa"
           />
         }
-        embeddedAssetJson={story.embeddedAssetJson}
+        embeddedAssets={story.embeddedAssets}
         tag={collectionLinkData(story.primaryCollection)}
         elementClass="story"
       />
@@ -162,7 +162,7 @@ Story.propTypes = {
       primaryVisuals: PropTypes.any,
       publishDate: PropTypes.string,
       updatedAt: PropTypes.string,
-      embeddedAssetJson: PropTypes.string,
+      embeddedAssets: PropTypes.object,
       originalSourceUrl: PropTypes.string,
       tag: PropTypes.shape({
         tagName: PropTypes.string,

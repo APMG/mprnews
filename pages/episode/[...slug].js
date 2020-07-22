@@ -11,6 +11,7 @@ import {
   addMemberDriveElements
 } from '../../utils/membershipUtils';
 import adCleanup from '../../utils/adCleanup';
+import { parseEmbeddedAssets } from '../../utils/utils';
 
 /* eslint react/display-name: 0 */
 
@@ -52,6 +53,9 @@ EpisodePage.getInitialProps = async ({
   })
     .then((result) => {
       data = result.data;
+      if (data?.episode?.embeddedAssets) {
+        parseEmbeddedAssets(data.episode.embeddedAssets);
+      }
 
       if (res) {
         res.setHeader('Cache-Control', 'public, max-age=60');

@@ -42,6 +42,11 @@ query PageQuery(
     }
     publishDate
     body
-    embeddedAssetJson
+    embeddedAssets {
+      audio
+      attachments
+      images
+      oembeds
+    }
   }
 }

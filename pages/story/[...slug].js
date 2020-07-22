@@ -11,6 +11,7 @@ import {
   addMemberDriveElements
 } from '../../utils/membershipUtils';
 import adCleanup from '../../utils/adCleanup';
+import { parseEmbeddedAssets } from '../../utils/utils';
 
 const StoryPage = ({ data, errorCode }) => {
   if (errorCode) return <ErrorPage statusCode={errorCode} />;
@@ -51,6 +52,9 @@ StoryPage.getInitialProps = async ({
   })
     .then((result) => {
       data = result.data;
+      if (data?.story?.embeddedAssets) {
+        parseEmbeddedAssets(data.story.embeddedAssets);
+      }
 
       if (res) {
         res.setHeader('Cache-Control', 'public, max-age=60');

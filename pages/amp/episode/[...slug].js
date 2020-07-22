@@ -4,6 +4,7 @@ import ErrorPage from 'next/error';
 import AmpEpisode from '../../../endpoints/AmpEpisode/AmpEpisode';
 import initApollo from '../../../lib/init-apollo';
 import query from '../../../endpoints/Episode/episode.gql';
+import { parseEmbeddedAssets } from '../../../utils/utils';
 
 /* eslint react/display-name: 0 */
 
@@ -25,6 +26,10 @@ AmpEpisodePage.getInitialProps = async ({ query: { slug }, res }) => {
   })
     .then((result) => {
       data = result.data;
+      if (data?.episode?.embeddedAssets) {
+        parseEmbeddedAssets(data.episode.embeddedAssets);
+      }
+
       if (res) {
         res.setHeader('Cache-Control', 'public, max-age=60');
       }
