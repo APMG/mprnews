@@ -4,6 +4,7 @@ import initApollo from '../lib/init-apollo';
 import { ApolloProvider } from 'react-apollo';
 import NowPlayingClient from 'nowplaying-client';
 import { weatherConfig } from '../utils/defaultData';
+import { CtoF } from '../utils/utils';
 import AudioPlayerContext from '../context/AudioPlayerContext';
 import WeatherContext from '../context/WeatherContext';
 import Layout from '../layouts/Layout';
@@ -221,30 +222,48 @@ class MPRNews extends App {
   };
 
   getWeatherData = async ({ lat, long }) => {
-    let high;
-    let low;
-    let shortForecast;
+    let dataObj = {
+      high: undefined,
+      low: undefined,
+      shortForecast: undefined
+    };
 
     try {
-      let response = await fetch(
+      let descResponse = await fetch(
         `https://api.weather.gov/points/${lat},${long}/forecast`
       );
-      let result = await response;
-      if (!result.ok) return;
-      result.json().then((data) => {
+      let statsUrl = descResponse.url.replace('/forecast', '');
+      let statsResponse = await fetch(statsUrl);
+
+      let descResult = await descResponse;
+      let statsResult = await statsResponse;
+
+      if (!statsResult.ok || !descResult.ok) return;
+
+      descResult.json().then((data) => {
         if (data.properties?.periods) {
-          high = data.properties?.periods[0].temperature;
-          low = data.properties?.periods.find((n) => n.name === 'Tonight')
-            .temperature;
-          shortForecast = data.properties?.periods[0].shortForecast;
+          dataObj.shortForecast = data.properties?.periods[0].shortForecast;
         }
 
         this.setState({
-          weatherData: { high, low, shortForecast }
+          weatherData: dataObj
+        });
+      });
+
+      statsResult.json().then((data) => {
+        if (data.properties?.maxTemperature?.values?.length > 0) {
+          dataObj.high = CtoF(data.properties?.maxTemperature.values[0].value);
+        }
+        if (data.properties?.minTemperature?.values?.length > 0) {
+          dataObj.low = CtoF(data.properties?.minTemperature.values[0].value);
+        }
+
+        this.setState({
+          weatherData: dataObj
         });
       });
     } catch (err) {
-      return;
+      console.error(err);
     }
   };
 
