@@ -1,66 +1,32 @@
-import React, { useEffect, useState, useContext } from 'react';
-import fetch from 'isomorphic-unfetch';
-import LocationContext from '../../context/LocationContext';
+import React, { useContext } from 'react';
+import WeatherContext from '../../context/WeatherContext';
 
 const WeatherSidebar = () => {
-  const [data, setData] = useState({});
-  const context = useContext(LocationContext);
-
-  useEffect(() => {
-    const getData = async (lat, long) => {
-      try {
-        let response = await fetch(
-          `https://api.weather.gov/points/${lat},${long}/forecast`
-        );
-        let result = await response;
-        if (!result.ok) return;
-        result.json().then((data) => {
-          setData(data);
-        });
-      } catch (err) {
-        return;
-      }
-    };
-
-    getData(context.location.lat, context.location.long);
-  }, []);
-
-  let currentForecast, tonightsForecast;
-
-  if (data.properties) {
-    currentForecast = data.properties.periods[0];
-    tonightsForecast = data.properties.periods.find(
-      (period) => period.name === 'Tonight'
-    );
-  }
+  const context = useContext(WeatherContext);
 
   return (
     <div className="weatherSidebar">
-      {data.properties ? (
+      {context.weatherData && (
         <>
           <div className="section section-md">
-            {currentForecast && (
+            {context.weatherData.high && (
               <div className="weatherSidebar_label weatherSidebar_label-high">
-                High of
-                {currentForecast.temperature &&
-                  ` ${currentForecast.temperature}°`}
+                {`High of ${context.weatherData.high}°`}
               </div>
             )}
-            {tonightsForecast && (
+            {context.weatherData.low && (
               <div className="weatherSidebar_label weatherSidebar_label-low">
-                Low of
-                {tonightsForecast.temperature &&
-                  ` ${tonightsForecast.temperature}°`}
+                {`Low of ${context.weatherData.low}°`}
               </div>
             )}
-            {currentForecast && (
+            {context.weatherData.shortForecast && (
               <div className="weatherSidebar_desc">
-                {currentForecast.shortForecast}
+                {context.weatherData.shortForecast}
               </div>
             )}
           </div>
         </>
-      ) : null}
+      )}
     </div>
   );
 };

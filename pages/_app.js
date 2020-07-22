@@ -4,8 +4,9 @@ import initApollo from '../lib/init-apollo';
 import { ApolloProvider } from 'react-apollo';
 import NowPlayingClient from 'nowplaying-client';
 import { weatherConfig } from '../utils/defaultData';
+import { CtoF } from '../utils/utils';
 import AudioPlayerContext from '../context/AudioPlayerContext';
-import LocationContext from '../context/LocationContext';
+import WeatherContext from '../context/WeatherContext';
 import Layout from '../layouts/Layout';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
@@ -51,7 +52,8 @@ class MPRNews extends App {
       playlist: {},
       resetLivePlayer: this.resetLivePlayer,
       location: weatherConfig[0],
-      handleLocationChange: this.handleLocationChange
+      handleLocationChange: this.handleLocationChange,
+      weatherData: {}
     };
   }
 
@@ -80,6 +82,8 @@ class MPRNews extends App {
       this.state.resetLivePlayer();
     });
     TagManager.initialize(tagManagerArgs);
+
+    this.getWeatherData(this.state.location);
   }
 
   loadPlayer = () => {
@@ -212,23 +216,72 @@ class MPRNews extends App {
     let newLocation = weatherConfig.find((item) => item.name === locationName);
 
     this.setState({
-      location: newLocation
+      location: newLocation,
+      weatherData: this.getWeatherData(newLocation)
     });
+  };
+
+  getWeatherData = async ({ lat, long }) => {
+    let dataObj = {
+      high: undefined,
+      low: undefined,
+      shortForecast: undefined
+    };
+
+    try {
+      let descResponse = await fetch(
+        `https://api.weather.gov/points/${lat},${long}/forecast`
+      );
+      let statsUrl = descResponse.url.replace('/forecast', '');
+      let statsResponse = await fetch(statsUrl);
+
+      let descResult = await descResponse;
+      let statsResult = await statsResponse;
+
+      if (!statsResult.ok || !descResult.ok) return;
+
+      descResult.json().then((data) => {
+        if (data.properties?.periods) {
+          dataObj.shortForecast = data.properties?.periods[0].shortForecast;
+        }
+
+        this.setState({
+          weatherData: dataObj
+        });
+      });
+
+      statsResult.json().then((data) => {
+        if (data.properties?.maxTemperature?.values?.length > 0) {
+          dataObj.high = CtoF(data.properties?.maxTemperature.values[0].value);
+        }
+        if (data.properties?.minTemperature?.values?.length > 0) {
+          dataObj.low = CtoF(data.properties?.minTemperature.values[0].value);
+        }
+
+        this.setState({
+          weatherData: dataObj
+        });
+      });
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   render() {
     const { Component, pageProps } = this.props;
-    const { location, handleLocationChange } = this.state;
+    const { location, handleLocationChange, weatherData } = this.state;
 
     return (
       <AudioPlayerContext.Provider value={this.state}>
-        <LocationContext.Provider value={{ location, handleLocationChange }}>
+        <WeatherContext.Provider
+          value={{ location, handleLocationChange, weatherData }}
+        >
           <ApolloProvider client={initApollo()}>
             <Layout layout={pageProps?.layout}>
               <Component {...pageProps} />
             </Layout>
           </ApolloProvider>
-        </LocationContext.Provider>
+        </WeatherContext.Provider>
       </AudioPlayerContext.Provider>
     );
   }
