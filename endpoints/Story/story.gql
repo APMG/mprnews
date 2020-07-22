@@ -53,6 +53,15 @@ query story($contentAreaSlug: String!, $slug: String!, $previewToken: String) {
     }
     embeddedAssetJson
     primaryVisuals {
+      video {
+        url
+        caption
+        background
+        credit {
+          name
+          url
+        }
+      }
       social {
         aspect_ratios: aspectRatios {
           uncropped {

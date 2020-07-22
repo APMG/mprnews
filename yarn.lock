@@ -83,10 +83,10 @@
   dependencies:
     prop-types "^15.6.0"
 
-"@apmg/titan@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@apmg/titan/-/titan-1.0.0.tgz#95695068bfd9ab8a11f72ddd5484446f9d916486"
-  integrity sha512-JtKl9Xyn4Rp1CBpPpjtiPMq/LTxw+Acu5kvWZzDemsTOIxsCpte50dQtxOFAIkPT8/3QpcBUfk+jxeDld0tBWQ==
+"@apmg/titan@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@apmg/titan/-/titan-1.0.5.tgz#4b394c2dada00a769d12ef9226fa4ba23772ba1a"
+  integrity sha512-uX0l6WRR+m/fItxP+kBT6Kt2wO2qwGGlbIBVfUS6wVhI7aghQ+8zI0jTBolt1ka+SxPIQXA6Q0bkaR9QN6Zn/w==
   dependencies:
     "@storybook/cli" "^5.3.18"
     apm-html5-player "^0.4.1"

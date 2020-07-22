@@ -38,7 +38,6 @@ const Story = ({ data: { story, alertConfig }, minimal }) => {
       };
     });
   }
-
   return (
     <>
       <Metatags
@@ -108,6 +107,7 @@ const Story = ({ data: { story, alertConfig }, minimal }) => {
         imageCaption={story.primaryVisuals?.lead?.longCaption}
         imageCredit={story.primaryVisuals?.lead?.credit?.name}
         imageCreditHref={story.primaryVisuals?.lead?.credit?.url}
+        video={story.primaryVisuals?.video}
         publishDate={
           <Time
             dateTime={story.publishDate}

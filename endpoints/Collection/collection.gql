@@ -9,6 +9,15 @@ query collection($contentAreaSlug: String!, $slug: String!, $pageNum: Int) {
     descriptionText
     resourceType
     primaryVisuals {
+      video {
+        url
+        caption
+        background
+        credit {
+          url
+          name
+        }
+      }
       social {
         shortCaption
         aspect_ratios: aspectRatios {
@@ -141,6 +150,15 @@ query collection($contentAreaSlug: String!, $slug: String!, $pageNum: Int) {
           }
         }
         primaryVisuals {
+          video {
+            url
+            caption
+            background
+            credit {
+              name
+              url
+            }
+          }
           thumbnail {
             xid
             aspect_ratios: aspectRatios {
