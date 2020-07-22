@@ -4,37 +4,24 @@ import WeatherContext from '../../context/WeatherContext';
 const WeatherSidebar = () => {
   const context = useContext(WeatherContext);
 
-  let currentForecast, tonightsForecast;
-
-  if (context.weatherData.properties) {
-    currentForecast = context.weatherData.properties.periods[0];
-    tonightsForecast = context.weatherData.properties.periods.find(
-      (period) => period.name === 'Tonight'
-    );
-  }
-
   return (
     <div className="weatherSidebar">
-      {context.weatherData.properties && (
+      {context.weatherData && (
         <>
           <div className="section section-md">
-            {currentForecast && (
+            {context.weatherData.high && (
               <div className="weatherSidebar_label weatherSidebar_label-high">
-                High of
-                {currentForecast.temperature &&
-                  ` ${currentForecast.temperature}°`}
+                {`High of ${context.weatherData.high}°`}
               </div>
             )}
-            {tonightsForecast && (
+            {context.weatherData.low && (
               <div className="weatherSidebar_label weatherSidebar_label-low">
-                Low of
-                {tonightsForecast.temperature &&
-                  ` ${tonightsForecast.temperature}°`}
+                {`Low of ${context.weatherData.low}°`}
               </div>
             )}
-            {currentForecast && (
+            {context.weatherData.shortForecast && (
               <div className="weatherSidebar_desc">
-                {currentForecast.shortForecast}
+                {context.weatherData.shortForecast}
               </div>
             )}
           </div>

@@ -82,7 +82,7 @@ class MPRNews extends App {
     });
     TagManager.initialize(tagManagerArgs);
 
-    this.getData(this.state.location.lat, this.state.location.long);
+    this.getWeatherData(this.state.location);
   }
 
   loadPlayer = () => {
@@ -216,11 +216,15 @@ class MPRNews extends App {
 
     this.setState({
       location: newLocation,
-      weatherData: this.getData(newLocation.lat, newLocation.long)
+      weatherData: this.getWeatherData(newLocation)
     });
   };
 
-  getData = async (lat, long) => {
+  getWeatherData = async ({ lat, long }) => {
+    let high;
+    let low;
+    let shortForecast;
+
     try {
       let response = await fetch(
         `https://api.weather.gov/points/${lat},${long}/forecast`
@@ -228,8 +232,15 @@ class MPRNews extends App {
       let result = await response;
       if (!result.ok) return;
       result.json().then((data) => {
+        if (data.properties?.periods) {
+          high = data.properties?.periods[0].temperature;
+          low = data.properties?.periods.find((n) => n.name === 'Tonight')
+            .temperature;
+          shortForecast = data.properties?.periods[0].shortForecast;
+        }
+
         this.setState({
-          weatherData: data
+          weatherData: { high, low, shortForecast }
         });
       });
     } catch (err) {
