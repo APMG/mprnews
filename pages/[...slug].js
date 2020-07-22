@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ErrorPage from 'next/error';
 import initApollo from '../lib/init-apollo';
 import query from '../endpoints/Collection/variable.gql';
-import collectQuery from '../endpoints/Collection/collection.gql';
+import cQuery from '../endpoints/Collection/collection.gql';
 import pageQuery from '../endpoints/Page/page.gql';
 import Page from '../endpoints/Page/Page';
 import Collection from '../endpoints/Collection/Collection';
@@ -61,7 +61,7 @@ VariablePage.getInitialProps = async ({ query: { slug }, res }) => {
     let data;
 
     await ApolloClient.query({
-      query: collectQuery,
+      query: cQuery,
       variables: {
         contentAreaSlug: process.env.CONTENT_AREA_SLUG,
         slug: slug.join('/'),

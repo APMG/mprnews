@@ -94,6 +94,7 @@ const Episode = ({ data: { episode, alertConfig } }) => {
         imageCaption={episode.primaryVisuals?.lead?.longCaption}
         imageCredit={episode.primaryVisuals?.lead?.credit?.name}
         imageCreditHref={episode.primaryVisuals?.lead?.credit?.url}
+        video={episode.primaryVisuals?.video}
         publishDate={<Time dateTime={episode.publishDate} />}
         embeddedAssets={episode.embeddedAssets}
         tag={collectionLinkData(episode.primaryCollection)}

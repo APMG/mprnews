@@ -13,6 +13,15 @@ query home($contentAreaSlug: String!, $slug: String!) {
         description
         descriptionText
         primaryVisuals {
+          video {
+            url
+            caption
+            background
+            credit {
+              name
+              url
+            }
+          }
           thumbnail {
             aspect_ratios: aspectRatios {
               thumbnail {

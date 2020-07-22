@@ -32,7 +32,6 @@ const FullTeaser = ({ item, size, newspartners }) => {
       return '';
     }
   };
-
   return (
     <div className="teaserContainer">
       <Teaser
@@ -74,6 +73,7 @@ const FullTeaser = ({ item, size, newspartners }) => {
             />
           ) : null
         }
+        video={item.primaryVisuals?.video}
         description={item.descriptionText}
       />
       {item.collectionRelatedLinks?.length ? (

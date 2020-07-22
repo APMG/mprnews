@@ -60,6 +60,15 @@ query episode(
       oembeds
     }
     primaryVisuals {
+      video {
+        url
+        caption
+        background
+        credit {
+          name
+          url
+        }
+      }
       social {
         aspect_ratios: aspectRatios {
           uncropped {

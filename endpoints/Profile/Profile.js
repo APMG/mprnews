@@ -21,6 +21,7 @@ const Profile = ({ data: { profile }, pageNum }) => {
         image={fishForSocialMediaImage(profile)?.url}
         topic={profile.primaryCollection?.title}
         originalSourceUrl={profile.originalSourceUrl}
+        noFollow={true}
       />
 
       <section className="page section">
