@@ -35,7 +35,7 @@ const WeatherPage = (props, { errorCode }) => {
 
 WeatherPage.getInitialProps = async ({ query: { city }, res }) => {
   const ApolloClient = initApollo();
-  let updraft, errorCode;
+  let updraft;
 
   await ApolloClient.query({
     query: query,
@@ -48,10 +48,9 @@ WeatherPage.getInitialProps = async ({ query: { city }, res }) => {
   })
     .then((result) => {
       updraft = result.data;
+
       if (!updraft.collection) {
         res.statusCode = 404;
-
-        errorCode = res.statusCode > 200 ? res.statusCode : false;
       }
 
       if (res) {
@@ -60,7 +59,6 @@ WeatherPage.getInitialProps = async ({ query: { city }, res }) => {
     })
     .catch(() => {
       if (res) res.statusCode = 500;
-      errorCode = res.statusCode > 200 ? res.statusCode : false;
     });
   const location = weatherConfig.find((config) => config.id === city);
   const { weather, forecast, alerts } = await fetchWeather(
@@ -96,8 +94,7 @@ WeatherPage.propTypes = {
   weather: PropTypes.object,
   alerts: PropTypes.array,
   updraft: PropTypes.object,
-  forecast: PropTypes.object,
-  errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool])
+  forecast: PropTypes.object
 };
 
 export default WeatherPage;

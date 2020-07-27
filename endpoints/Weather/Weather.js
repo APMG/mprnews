@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import Router from 'next/router';
 import { Heading, Loading } from '@apmg/titan';
 import { weatherConfig } from '../../utils/defaultData';
@@ -11,15 +10,9 @@ import WeeklyForecast from './WeeklyForecast';
 import Updraft from './Updraft';
 import ShareSocialButtons from '../../components/ShareSocialButtons/ShareSocialButtons';
 
-const Weather = ({ location, weather, alerts, updraft, forecast }) => {
-  const [weatherData, setWeatherData] = useState({
-    location,
-    weather,
-    alerts,
-    updraft,
-    forecast
-  });
-
+const Weather = (props) => {
+  const [weatherData, setWeatherData] = useState(props);
+  const { location, weather, alerts, updraft, forecast } = weatherData;
   const [loading, setLoading] = useState(false);
 
   const handleChange = async (e) => {
@@ -89,15 +82,6 @@ const Weather = ({ location, weather, alerts, updraft, forecast }) => {
       {updraft && <Updraft item={updraft.collection.results.items[0]} />}
     </section>
   );
-};
-
-Weather.propTypes = {
-  location: PropTypes.object,
-  weather: PropTypes.object,
-  alerts: PropTypes.array,
-  updraft: PropTypes.object,
-  forecast: PropTypes.object,
-  name: PropTypes.string
 };
 
 export default Weather;
