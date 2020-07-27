@@ -19,24 +19,30 @@ const Weather = ({ location, weather, alerts, updraft, forecast }) => {
     updraft,
     forecast
   });
-  console.log(weatherData);
+  console.log('weather', weatherData);
   const [loading, setLoading] = useState(false);
 
   const handleChange = async (e) => {
     let newLocation = weatherConfig.find(
       (item) => item.name === e.target.value
     );
-
+    console.log('newlocation', newLocation);
     setLoading(true);
 
     const href = `/weather/${newLocation.id}`;
     const as = href;
     Router.push(href, as, { shallow: true });
 
-    const { location } = await fetchWeather(newLocation.lat, newLocation.long);
-
-    setWeatherData({
-      location: newLocation
+    // const { location } = await fetchWeather(newLocation.lat, newLocation.long);
+    console.log('dropdown', weatherData);
+    // setWeatherData({
+    //   location: newLocation
+    // });
+    setWeatherData((prevState) => {
+      return {
+        ...prevState,
+        location: newLocation
+      };
     });
     setLoading(false);
   };

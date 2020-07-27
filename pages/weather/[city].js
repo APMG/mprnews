@@ -12,16 +12,25 @@ import {
 import adCleanup from '../../utils/adCleanup';
 import initApollo from '../../lib/init-apollo';
 
-const WeatherPage = ({ data, errorCode }) => {
+const WeatherPage = (props, { errorCode }) => {
   if (errorCode) return <ErrorPage statusCode={errorCode} />;
-
+  const { location, weather, alerts, updraft, forecast } = props;
+  console.log('city props', props);
   useEffect(() => {
     fetchMemberDriveStatus().then((data) => {
       addMemberDriveElements(data);
     });
   });
 
-  return <Weather data={data} />;
+  return (
+    <Weather
+      location={location}
+      weather={weather}
+      alerts={alerts}
+      updraft={updraft}
+      forecast={forecast}
+    />
+  );
 };
 
 WeatherPage.getInitialProps = async ({ query: { city }, res }) => {
@@ -63,26 +72,22 @@ WeatherPage.getInitialProps = async ({ query: { city }, res }) => {
     const errorCode = res.statusCode > 200 ? res.statusCode : false;
     res.setHeader('Cache-Control', 'public, max-age=300');
     return {
-      data: {
-        updraft,
-        location,
-        weather,
-        forecast,
-        alerts
-      },
+      updraft,
+      location,
+      weather,
+      forecast,
+      alerts,
       errorCode
     };
   }
 
   adCleanup();
   return {
-    data: {
-      updraft,
-      location,
-      weather,
-      forecast,
-      alerts
-    }
+    updraft,
+    location,
+    weather,
+    forecast,
+    alerts
   };
 };
 
