@@ -16,7 +16,7 @@ import initApollo from '../../lib/init-apollo';
 const WeatherPage = ({ data, errorCode }) => {
   const [weatherData, setWeatherData] = useState(data);
   const [loading, setLoading] = useState(true);
-  console.log('index weatherData', weatherData);
+
   if (errorCode) return <ErrorPage statusCode={errorCode} />;
 
   const fetchTheWeather = async () => {
@@ -115,7 +115,7 @@ WeatherPage.getInitialProps = async ({ res }) => {
 
 WeatherPage.propTypes = {
   errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
-  updraft: PropTypes.object
+  data: PropTypes.object
 };
 
 export default WeatherPage;

@@ -19,25 +19,22 @@ const Weather = ({ location, weather, alerts, updraft, forecast }) => {
     updraft,
     forecast
   });
-  console.log('weather', weatherData);
+
   const [loading, setLoading] = useState(false);
 
   const handleChange = async (e) => {
     let newLocation = weatherConfig.find(
       (item) => item.name === e.target.value
     );
-    console.log('newlocation', newLocation);
+
     setLoading(true);
 
     const href = `/weather/${newLocation.id}`;
     const as = href;
     Router.push(href, as, { shallow: true });
 
-    // const { location } = await fetchWeather(newLocation.lat, newLocation.long);
-    console.log('dropdown', weatherData);
-    // setWeatherData({
-    //   location: newLocation
-    // });
+    await fetchWeather(newLocation.lat, newLocation.long);
+
     setWeatherData((prevState) => {
       return {
         ...prevState,
@@ -47,6 +44,8 @@ const Weather = ({ location, weather, alerts, updraft, forecast }) => {
     setLoading(false);
   };
 
+  const { name } = location;
+
   return loading ? (
     <Loading />
   ) : (
@@ -54,12 +53,12 @@ const Weather = ({ location, weather, alerts, updraft, forecast }) => {
       <div className="weather_location">
         <div className="weather_heading">
           <Heading level={1} elementClass="hdg-2">
-            {location.name}
+            {name}
           </Heading>
           <div className="weather_share">
             <ShareSocialButtons
               contentUrl={'weather'}
-              title={`Weather Forecast for ${location.name}`}
+              title={`Weather Forecast for ${name}`}
             />
           </div>
         </div>
@@ -93,7 +92,12 @@ const Weather = ({ location, weather, alerts, updraft, forecast }) => {
 };
 
 Weather.propTypes = {
-  // data: PropTypes.object
+  location: PropTypes.object,
+  weather: PropTypes.object,
+  alerts: PropTypes.array,
+  updraft: PropTypes.object,
+  forecast: PropTypes.object,
+  name: PropTypes.string
 };
 
 export default Weather;

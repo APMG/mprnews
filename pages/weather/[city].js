@@ -15,7 +15,7 @@ import initApollo from '../../lib/init-apollo';
 const WeatherPage = (props, { errorCode }) => {
   if (errorCode) return <ErrorPage statusCode={errorCode} />;
   const { location, weather, alerts, updraft, forecast } = props;
-  console.log('city props', props);
+
   useEffect(() => {
     fetchMemberDriveStatus().then((data) => {
       addMemberDriveElements(data);
@@ -92,7 +92,11 @@ WeatherPage.getInitialProps = async ({ query: { city }, res }) => {
 };
 
 WeatherPage.propTypes = {
-  data: PropTypes.object,
+  location: PropTypes.object,
+  weather: PropTypes.object,
+  alerts: PropTypes.array,
+  updraft: PropTypes.object,
+  forecast: PropTypes.object,
   errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool])
 };
 
