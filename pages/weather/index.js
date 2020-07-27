@@ -15,54 +15,51 @@ import initApollo from '../../lib/init-apollo';
 
 const WeatherPage = ({ data, errorCode }) => {
   const [weatherData, setWeatherData] = useState(data);
+  const [loading, setLoading] = useState(true);
   console.log('index weatherData', weatherData);
   if (errorCode) return <ErrorPage statusCode={errorCode} />;
 
+  const fetchTheWeather = async () => {
+    const location = weatherConfig[0];
+    let weather, forecast, alerts;
+
+    try {
+      ({ weather, forecast, alerts } = await fetchWeather(
+        location.lat,
+        location.long
+      ));
+    } catch (err) {
+      console.error(err);
+    }
+
+    setWeatherData((prevState) => {
+      return {
+        ...prevState,
+        location,
+        weather,
+        forecast,
+        alerts
+      };
+    });
+    setLoading(false);
+  };
   useEffect(() => {
-    const fetchTheWeather = async () => {
-      const location = weatherConfig[0];
-      let weather, forecast, alerts;
-
-      try {
-        ({ weather, forecast, alerts } = await fetchWeather(
-          location.lat,
-          location.long
-        ));
-      } catch (err) {
-        console.error(err);
-      }
-
-      setWeatherData((prevState) => {
-        return {
-          ...prevState,
-          location,
-          weather,
-          forecast,
-          alerts
-        };
-      });
-    };
-
     fetchTheWeather();
     fetchMemberDriveStatus().then((data) => {
       addMemberDriveElements(data);
     });
   }, []);
 
-  return (
-    <>
-      {Object.keys(weatherData).length > 0 ? (
-        <Weather
-          updraft={weatherData.updraft}
-          alerts={weatherData.alerts}
-          location={weatherData.location}
-          forecast={weatherData.forecast}
-          weather={weatherData.weather}
-        />
-      ) : (
-        <Loading />
-      )}
-    </>
+  return loading ? (
+    <Loading />
+  ) : (
+    <Weather
+      updraft={weatherData.updraft}
+      alerts={weatherData.alerts}
+      location={weatherData.location}
+      forecast={weatherData.forecast}
+      weather={weatherData.weather}
+    />
   );
 };
 
