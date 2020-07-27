@@ -8,45 +8,45 @@ import WeatherAlert from '../../components/WeatherAlert/WeatherAlert';
 import CurrentWeather from './CurrentWeather';
 import TwoDaysChart from './TwoDaysChart';
 import WeeklyForecast from './WeeklyForecast';
+import Updraft from './Updraft';
 import ShareSocialButtons from '../../components/ShareSocialButtons/ShareSocialButtons';
 
-const Weather = (props) => {
-  const [data, setData] = useState(props.data);
-  const [loading, setLoading] = useState(false);
+const Weather = ({ updraft }) => {
+  console.log('props in weather page', updraft);
+  // const [data, setData] = useState(props.data);
+  // const [loading, setLoading] = useState(false);
 
-  const handleChange = async (e) => {
-    let newLocation = weatherConfig.find(
-      (item) => item.name === e.target.value
-    );
+  // const handleChange = async (e) => {
+  //   let newLocation = weatherConfig.find(
+  //     (item) => item.name === e.target.value
+  //   );
 
-    setLoading(true);
+  //   setLoading(true);
 
-    const href = `/weather/${newLocation.id}`;
-    const as = href;
-    Router.push(href, as, { shallow: true });
+  //   const href = `/weather/${newLocation.id}`;
+  //   const as = href;
+  //   Router.push(href, as, { shallow: true });
 
-    const { weather, forecast, weekly, alerts } = await fetchWeather(
-      newLocation.lat,
-      newLocation.long
-    );
+  //   const { weather, forecast, weekly, alerts } = await fetchWeather(
+  //     newLocation.lat,
+  //     newLocation.long
+  //   );
 
-    setData({
-      location: newLocation,
-      weather: weather,
-      forecast: forecast,
-      weekly: weekly,
-      alerts: alerts
-    });
-    setLoading(false);
-  };
+  //   setData({
+  //     location: newLocation,
+  //     weather: weather,
+  //     forecast: forecast,
+  //     weekly: weekly,
+  //     alerts: alerts
+  //   });
+  //   setLoading(false);
+  // };
 
-  const { location, alerts } = data;
+  // const { location, alerts } = data;
 
-  return loading ? (
-    <Loading />
-  ) : (
+  return (
     <section className="weather section">
-      <div className="weather_location">
+      {/* <div className="weather_location">
         <div className="weather_heading">
           <Heading level={1} elementClass="hdg-2">
             {location.name}
@@ -82,6 +82,9 @@ const Weather = (props) => {
       <WeeklyForecast forecast={data.forecast} />
 
       <TwoDaysChart forecast={data.forecast} />
+      {data.updraft && (
+        <Updraft item={data.updraft.collection.results.items[0]} />
+      )} */}
     </section>
   );
 };

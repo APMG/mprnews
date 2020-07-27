@@ -1,0 +1,61 @@
+query collection(
+  $contentAreaSlug: String!
+  $slug: String!
+  $pageNum: Int
+  $pageSize: Int
+) {
+  collection: collection(contentAreaSlug: $contentAreaSlug, slug: $slug) {
+    id
+    title
+    body
+    descriptionText
+    resourceType
+    embeddedAssetJson
+    canonicalSlug
+    contributors {
+      profile {
+        id
+        canonicalSlug
+        firstName
+        lastName
+        profileRelatedLinks {
+          uri
+          text
+          subtype
+        }
+      }
+    }
+    results(page: $pageNum, pageSize: $pageSize) {
+      nextPage
+      pageSize
+      totalPages
+      totalItems
+      previousPage
+      currentPage
+      items {
+        id
+        title
+        publishDate
+        description
+        descriptionText
+        canonicalSlug
+        resourceType
+        contributors {
+          profile {
+            id
+            firstName
+            lastName
+          }
+        }
+        collectionRelatedLinks {
+          url
+          title
+          prefix
+        }
+        ... on Link {
+          destination
+        }
+      }
+    }
+  }
+}

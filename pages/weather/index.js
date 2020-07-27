@@ -10,9 +10,12 @@ import {
   addMemberDriveElements
 } from '../../utils/membershipUtils';
 import adCleanup from '../../utils/adCleanup';
+import query from '../../endpoints/Weather/weather.gql';
+import initApollo from '../../lib/init-apollo';
 
-const WeatherPage = ({ errorCode }) => {
-  const [data, setData] = useState({});
+const WeatherPage = ({ data, errorCode }) => {
+  const [weatherData, setWeatherData] = useState(data);
+  console.log('index weatherData', weatherData);
   if (errorCode) return <ErrorPage statusCode={errorCode} />;
 
   useEffect(() => {
@@ -29,7 +32,15 @@ const WeatherPage = ({ errorCode }) => {
         console.error(err);
       }
 
-      setData({ data: { location, weather, forecast, alerts } });
+      setWeatherData((prevState) => {
+        return {
+          ...prevState,
+          location,
+          weather,
+          forecast,
+          alerts
+        };
+      });
     };
 
     fetchTheWeather();
@@ -40,8 +51,14 @@ const WeatherPage = ({ errorCode }) => {
 
   return (
     <>
-      {Object.keys(data).length > 0 ? (
-        <Weather data={data.data} />
+      {Object.keys(weatherData).length > 0 ? (
+        <Weather
+          updraft={weatherData.updraft}
+          alerts={weatherData.alerts}
+          location={weatherData.location}
+          forecast={weatherData.forecast}
+          weather={weatherData.weather}
+        />
       ) : (
         <Loading />
       )}
@@ -50,18 +67,58 @@ const WeatherPage = ({ errorCode }) => {
 };
 
 WeatherPage.getInitialProps = async ({ res }) => {
+  const ApolloClient = initApollo();
+  let updraft, errorCode;
+  await ApolloClient.query({
+    query: query,
+    variables: {
+      contentAreaSlug: process.env.CONTENT_AREA_SLUG,
+      slug: 'weather-and-climate',
+      pageNum: parseInt(1),
+      pageSize: parseInt(10)
+    }
+  }).then((result) => {
+    updraft = result.data;
+    if (!updraft.collection) {
+      res.statusCode = 404;
+
+      errorCode = res.statusCode > 200 ? res.statusCode : false;
+    }
+
+    if (res) {
+      res.setHeader('Cache-Control', 'public, max-age=60');
+
+      return {
+        data: {
+          updraft
+        },
+        errorCode
+      };
+    }
+  });
+
   adCleanup();
   if (res) {
     const errorCode = res.statusCode > 200 ? res.statusCode : false;
     res.setHeader('Cache-Control', 'public, max-age=60');
-    return { errorCode };
+    return {
+      data: {
+        updraft
+      },
+      errorCode
+    };
   }
 
-  return {};
+  return {
+    data: {
+      updraft
+    }
+  };
 };
 
 WeatherPage.propTypes = {
-  errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool])
+  errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
+  updraft: PropTypes.object
 };
 
 export default WeatherPage;
