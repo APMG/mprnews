@@ -7,6 +7,17 @@ import { linkByTypeHref, linkByTypeAs } from '../../utils/cjsutils';
 const Updraft = ({ item }) => {
   let link = linkByTypeHref(item);
   let linkAs = linkByTypeAs(item);
+
+  let moreUpdrafLink = {
+    canonicalSlug: 'weather-and-climate/updraft',
+    resourceType: 'collection'
+  };
+
+  let climateCastLink = {
+    canonicalSlug: 'podcasts/climate-cast',
+    resourceType: 'collection'
+  };
+
   return (
     <>
       <Heading level={2} elementClass="hdg hdg-section">
@@ -31,11 +42,20 @@ const Updraft = ({ item }) => {
           headingLevel={2}
           description={item.descriptionText}
         />
-        <Link href={'/weather-and-climate/updraft'} className="related_link">
+
+        <Link
+          href={linkByTypeHref(moreUpdrafLink)}
+          as={linkByTypeAs(moreUpdrafLink)}
+          className="related_link"
+        >
           More on Updraft
         </Link>
         <span className="related_prefix">{link.prefix}</span>
-        <Link href={'/podcasts/climate-cast'} className="related_link">
+        <Link
+          href={linkByTypeHref(climateCastLink)}
+          as={linkByTypeAs(climateCastLink)}
+          className="related_link"
+        >
           Climate Cast
         </Link>
 
@@ -48,7 +68,12 @@ const Updraft = ({ item }) => {
                   key={`${link.url}${link.title}${link.prefix}`}
                 >
                   <span className="related_prefix">{link.prefix}</span>
-                  <Link href={link.url} className="related_link">
+
+                  <Link
+                    href={linkByTypeHref(link.url)}
+                    as={linkByTypeAs(link.url)}
+                    className="related_link"
+                  >
                     {link.title}
                   </Link>
                 </li>
