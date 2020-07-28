@@ -21,6 +21,8 @@ const Metatags = (props) => {
         return acc;
       }, [])
     : [{ '@type': 'Organization', name: 'MPR News' }];
+  const datePublished = props.publishDate.props.dateTime;
+  const dateModified = datePublished || props.publishDate.props.dateTime;
 
   return (
     <Head>
@@ -39,8 +41,8 @@ const Metatags = (props) => {
               },
               headline: props.title,
               image: [props.image],
-              datePublished: props.publishDate,
-              dateModified: props.updatedAt || props.publishDate,
+              datePublished: datePublished,
+              dateModified: dateModified,
               description: props.description.trim(),
               author: authors.length > 1 ? authors : authors[0],
               publisher: {
