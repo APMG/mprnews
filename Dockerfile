@@ -1,4 +1,4 @@
-FROM node:12.14.1-alpine3.11
+FROM node:12-alpine
 LABEL maintainer="ghankerson@mpr.org"
 
 ARG NODE_ENV="development"
