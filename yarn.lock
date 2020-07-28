@@ -10791,6 +10791,11 @@ react-refresh@0.8.1:
   resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.8.1.tgz#5500506ad6fc891fdd057d0bf3581f9310abc6a2"
   integrity sha512-xZIKi49RtLUUSAZ4a4ut2xr+zr4+glOD5v0L413B55MPvlg4EQ6Ctx8PD4CmjlPGoAWmSCTmmkY59TErizNsow==
 
+react-schemaorg@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/react-schemaorg/-/react-schemaorg-1.2.0.tgz#82454f7bf4aa6d52eb0e9e300c9dc4d5d220ba23"
+  integrity sha512-vtutPvE32n9b2d6qH1Gmyss4nJxRWsJKJR8WdVxxLzn6ErAIOOEE00paqC4rwI8gwm9mtnRBA2JLUfqv3AjDXw==
+
 react-transition-group@^1.2.0, react-transition-group@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-1.2.1.tgz#e11f72b257f921b213229a774df46612346c7ca6"

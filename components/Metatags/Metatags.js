@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { JsonLd } from 'react-schemaorg';
 import { globals } from '../../config/globals';
 import Head from 'next/head';
-import JsonLd from './JsonLd';
 
 const Metatags = (props) => {
   const combinedTitle = props.title
@@ -15,10 +15,47 @@ const Metatags = (props) => {
     ? props.originalSourceUrl
     : fullUrl;
   const socialTitle = props.shortTitle ? props.shortTitle : props.title;
+  const authors = props.authors
+    ? props.authors.reduce((acc = [], curr) => {
+        acc.push({ '@type': 'Person', name: curr.title });
+        return acc;
+      }, [])
+    : [{ '@type': 'Organization', name: 'MPR News' }];
 
   return (
     <Head>
       <title>{combinedTitle}</title>
+
+      {/* Google Rich Results */}
+      {props.contentType === 'article' && (
+        <>
+          <JsonLd
+            item={{
+              '@context': 'https://schema.org',
+              '@type': 'NewsArticle',
+              mainEntityOfPage: {
+                '@type': 'WebPage',
+                '@id': fullUrl
+              },
+              headline: props.title,
+              image: [props.image],
+              datePublished: props.publishDate,
+              dateModified: props.updatedAt || props.publishDate,
+              description: props.description.trim(),
+              author: authors.length > 1 ? authors : authors[0],
+              publisher: {
+                '@type': 'Organization',
+                name: 'MPR News',
+                logo: {
+                  '@type': 'ImageObject',
+                  url: 'https://www.mprnews.org/opengraph-fallback.png'
+                }
+              }
+            }}
+          />
+        </>
+      )}
+
       {props.noFollow && <meta name="robots" content="noindex,nofollow" />}
       {props.topic && (
         <meta
@@ -121,21 +158,8 @@ const Metatags = (props) => {
 
       {/* FB app ID */}
       <meta property="fb:pages" content="99142348590" />
-
       {/* Any custom meta tags */}
       {props.children}
-      {props.contentType === 'article' && (
-        <JsonLd
-          title={props.title}
-          fullSlug={props.fullSlug}
-          description={props.description}
-          image={props.image}
-          contentType="NewsArticle"
-          publishDate={props.publishDate}
-          modifiedDate={props.modifiedDate}
-          authors={props.authors}
-        />
-      )}
     </Head>
   );
 };
@@ -155,7 +179,7 @@ Metatags.propTypes = {
   rssUrl: PropTypes.string,
   topic: PropTypes.string,
   publishDate: PropTypes.string,
-  modifiedDate: PropTypes.string,
+  updatedAt: PropTypes.string,
   authors: PropTypes.array,
   noFollow: PropTypes.bool,
   originalSourceUrl: PropTypes.string
