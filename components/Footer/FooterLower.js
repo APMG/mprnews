@@ -43,7 +43,7 @@ const FooterLower = (props) => {
 FooterLower.propTypes = {
   nav: PropTypes.arrayOf(
     PropTypes.shape({ label: PropTypes.string, href: PropTypes.string })
-  ),
+  )
 };
 
 export default FooterLower;

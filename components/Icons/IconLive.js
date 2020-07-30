@@ -40,7 +40,7 @@ const IconLive = (props) => {
 };
 
 IconLive.propTypes = {
-  elementClass: PropTypes.string,
+  elementClass: PropTypes.string
 };
 
 export default IconLive;

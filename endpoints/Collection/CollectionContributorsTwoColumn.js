@@ -60,7 +60,7 @@ const CollectionContributors = (props) => {
 };
 
 CollectionContributors.propTypes = {
-  contributors: PropTypes.array,
+  contributors: PropTypes.array
 };
 
 export default CollectionContributors;

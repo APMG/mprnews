@@ -31,12 +31,12 @@ CalendarPage.getInitialProps = async ({ req, res }) => {
   adCleanup();
   return {
     events: data.items,
-    errorCode,
+    errorCode
   };
 };
 
 CalendarPage.propTypes = {
-  events: PropTypes.arrayOf(PropTypes.object),
+  events: PropTypes.arrayOf(PropTypes.object)
 };
 
 export default CalendarPage;

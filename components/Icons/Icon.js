@@ -49,7 +49,7 @@ const icons = {
   popout: IconPopOut,
   covid19: IconVirus,
   ballotbox: IconElectionBox,
-  heart: IconHeart,
+  heart: IconHeart
 };
 
 const Icon = (props) => {
@@ -62,7 +62,7 @@ const Icon = (props) => {
 };
 
 Icon.propTypes = {
-  name: PropTypes.string,
+  name: PropTypes.string
 };
 
 export default Icon;

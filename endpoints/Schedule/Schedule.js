@@ -14,7 +14,7 @@ const Schedule = ({ schedule }) => {
     { key: 'Wed', href: 'wed', isActive: false },
     { key: 'Thu', href: 'thu', isActive: false },
     { key: 'Fri', href: 'fri', isActive: false },
-    { key: 'Sat', href: 'sat', isActive: false },
+    { key: 'Sat', href: 'sat', isActive: false }
   ];
 
   if (schedule.day) {
@@ -37,7 +37,7 @@ const Schedule = ({ schedule }) => {
 };
 
 Schedule.propTypes = {
-  schedule: PropTypes.object,
+  schedule: PropTypes.object
 };
 
 export default Schedule;

@@ -18,7 +18,7 @@ const WeatherHeader = () => {
           const xml = new window.DOMParser().parseFromString(data, 'text/xml');
           setData({
             temperature: xml.getElementsByTagName('temp_f')[0].innerHTML,
-            shortForecast: xml.getElementsByTagName('weather')[0].innerHTML,
+            shortForecast: xml.getElementsByTagName('weather')[0].innerHTML
           });
         });
       } catch (err) {

@@ -17,7 +17,7 @@ const IconUp = (props) => {
 };
 
 IconUp.propTypes = {
-  elementClass: PropTypes.string,
+  elementClass: PropTypes.string
 };
 
 export default IconUp;

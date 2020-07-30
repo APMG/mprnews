@@ -7,10 +7,10 @@ import { Heading } from '@apmg/titan';
 const ampStyles = {
   icons: {
     display: 'flex',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   icon: {
-    fill: 'white',
+    fill: 'white'
   },
   twitterIcon: {
     display: 'flex',
@@ -19,7 +19,7 @@ const ampStyles = {
     height: '25px',
     margin: '0 5px',
     padding: '5px',
-    backgroundColor: '#55acee',
+    backgroundColor: '#55acee'
   },
   facebookIcon: {
     display: 'flex',
@@ -28,9 +28,9 @@ const ampStyles = {
     height: '25px',
     margin: '0 5px',
     padding: '5px',
-    backgroundColor: '#3b5998',
+    backgroundColor: '#3b5998'
   },
-  invisible: { display: 'none' },
+  invisible: { display: 'none' }
 };
 
 const AmpShareSocialButtons = ({ contentUrl, title }) => {
@@ -61,7 +61,7 @@ const AmpShareSocialButtons = ({ contentUrl, title }) => {
     eventCategory: 'share',
     eventAction: 'click',
     eventLabel: shareEventGA,
-    eventInteraction: 'false',
+    eventInteraction: 'false'
   };
 
   const pushLayerInfoForGA = (dataLayerObj, shareEventGA) => {
@@ -114,7 +114,7 @@ const AmpShareSocialButtons = ({ contentUrl, title }) => {
 
 AmpShareSocialButtons.propTypes = {
   contentUrl: PropTypes.string,
-  title: PropTypes.string,
+  title: PropTypes.string
 };
 
 export default AmpShareSocialButtons;

@@ -6,7 +6,7 @@ const IconFacebook = (props) => {
   const classes = classNames({
     icon: true,
     'icon-facebook': true,
-    [props.elementClass]: props.elementClass,
+    [props.elementClass]: props.elementClass
   });
 
   return (
@@ -24,7 +24,7 @@ const IconFacebook = (props) => {
 };
 
 IconFacebook.propTypes = {
-  elementClass: PropTypes.string,
+  elementClass: PropTypes.string
 };
 
 export default IconFacebook;

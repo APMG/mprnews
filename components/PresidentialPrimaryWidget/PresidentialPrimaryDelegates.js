@@ -27,7 +27,7 @@ const PresidentialPrimaryDelegates = ({ api }) => {
 };
 
 PresidentialPrimaryDelegates.propTypes = {
-  api: PropTypes.string,
+  api: PropTypes.string
 };
 
 const DelegateRow = ({ results, meta }) => {
@@ -73,13 +73,13 @@ const DelegateRow = ({ results, meta }) => {
 
 DelegateRow.propTypes = {
   results: PropTypes.object.isRequired,
-  meta: PropTypes.object.isRequired,
+  meta: PropTypes.object.isRequired
 };
 
 const CandidateDelegateCell = ({
   candidate_name,
   candidate_id,
-  delegates_won,
+  delegates_won
 }) => {
   const photo = (
     <img
@@ -118,7 +118,7 @@ const UseDefaultImg = (event) => {
 CandidateDelegateCell.propTypes = {
   candidate_name: PropTypes.string.isRequired,
   delegates_won: PropTypes.number.isRequired,
-  candidate_id: PropTypes.number.isRequired,
+  candidate_id: PropTypes.number.isRequired
 };
 
 export default PresidentialPrimaryDelegates;

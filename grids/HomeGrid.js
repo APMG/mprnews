@@ -5,7 +5,7 @@ import classNames from 'classnames';
 const HomeGrid = (props) => {
   const classes = classNames({
     home: true,
-    'is-blowout': props.blowout,
+    'is-blowout': props.blowout
   });
 
   return (
@@ -29,7 +29,7 @@ HomeGrid.propTypes = {
   rail: PropTypes.node,
   sidebar: PropTypes.node,
   top: PropTypes.node,
-  widget: PropTypes.node,
+  widget: PropTypes.node
 };
 
 export default HomeGrid;

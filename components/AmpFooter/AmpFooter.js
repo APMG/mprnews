@@ -11,7 +11,7 @@ const ampStyles = {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   footerButton: {
     display: 'flex',
@@ -26,16 +26,16 @@ const ampStyles = {
     cursor: 'pointer',
     outline: '0',
     transition:
-      'background-color 0.2s, border 0.2s, color 0.2s, box-shadow 0.2s',
+      'background-color 0.2s, border 0.2s, color 0.2s, box-shadow 0.2s'
   },
   footerLeft: {
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'column'
   },
   footerLink: {
-    textDecoration: 'none',
+    textDecoration: 'none'
   },
-  invisible: { display: 'none' },
+  invisible: { display: 'none' }
 };
 
 const AmpFooter = () => {

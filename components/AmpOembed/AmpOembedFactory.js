@@ -31,7 +31,7 @@ AmpOembedFactory.propTypes = {
   embedded: PropTypes.object,
   nodeData: PropTypes.object,
   minimal: PropTypes.bool,
-  fallback_text: PropTypes.string,
+  fallback_text: PropTypes.string
 };
 
 export default AmpOembedFactory;

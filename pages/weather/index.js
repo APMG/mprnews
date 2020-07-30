@@ -7,7 +7,7 @@ import { weatherConfig } from '../../utils/defaultData';
 import Weather from '../../endpoints/Weather/Weather';
 import {
   fetchMemberDriveStatus,
-  addMemberDriveElements,
+  addMemberDriveElements
 } from '../../utils/membershipUtils';
 import adCleanup from '../../utils/adCleanup';
 import query from '../../endpoints/Weather/weather.gql';
@@ -38,7 +38,7 @@ const WeatherPage = ({ data, errorCode }) => {
         location,
         weather,
         forecast,
-        alerts,
+        alerts
       };
     });
     setLoading(false);
@@ -72,8 +72,8 @@ WeatherPage.getInitialProps = async ({ res }) => {
       contentAreaSlug: process.env.CONTENT_AREA_SLUG,
       slug: 'weather-and-climate',
       pageNum: parseInt(1),
-      pageSize: parseInt(10),
-    },
+      pageSize: parseInt(10)
+    }
   }).then((result) => {
     updraft = result.data;
     if (!updraft.collection) {
@@ -87,9 +87,9 @@ WeatherPage.getInitialProps = async ({ res }) => {
 
       return {
         data: {
-          updraft,
+          updraft
         },
-        errorCode,
+        errorCode
       };
     }
   });
@@ -100,22 +100,22 @@ WeatherPage.getInitialProps = async ({ res }) => {
     res.setHeader('Cache-Control', 'public, max-age=60');
     return {
       data: {
-        updraft,
+        updraft
       },
-      errorCode,
+      errorCode
     };
   }
 
   return {
     data: {
-      updraft,
-    },
+      updraft
+    }
   };
 };
 
 WeatherPage.propTypes = {
   errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
-  data: PropTypes.object,
+  data: PropTypes.object
 };
 
 export default WeatherPage;

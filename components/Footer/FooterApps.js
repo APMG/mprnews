@@ -47,9 +47,9 @@ FooterApps.propTypes = {
     PropTypes.shape({
       href: PropTypes.string,
       image: PropTypes.string,
-      label: PropTypes.string,
+      label: PropTypes.string
     })
-  ),
+  )
 };
 
 export default FooterApps;

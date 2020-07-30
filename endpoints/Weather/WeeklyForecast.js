@@ -59,7 +59,7 @@ const WeeklyForecast = ({ forecast }) => {
           dayOnly={true}
           fill="#4298b5"
         />
-      ),
+      )
     });
   });
 
@@ -95,7 +95,7 @@ const WeeklyForecast = ({ forecast }) => {
 };
 
 WeeklyForecast.propTypes = {
-  forecast: PropTypes.object,
+  forecast: PropTypes.object
 };
 
 export default WeeklyForecast;

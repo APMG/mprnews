@@ -6,13 +6,13 @@ const ampStyles = {
   relatedList: {
     margin: '2em 0',
     fontFamily: '"Roboto", system-ui, -apple-system, sans-serif',
-    clear: 'both',
+    clear: 'both'
   },
   relatedListTitle: {
     fontSize: '1.5em',
     fontWeight: '700',
-    margin: '0 0 0.5em',
-  },
+    margin: '0 0 0.5em'
+  }
 };
 
 const enlistify = (props) => {
@@ -50,7 +50,7 @@ const ApmRelatedList = (props) => {
 ApmRelatedList.propTypes = {
   minimal: PropTypes.bool,
   nodeData: PropTypes.object,
-  isAmp: PropTypes.bool,
+  isAmp: PropTypes.bool
 };
 
 export default ApmRelatedList;

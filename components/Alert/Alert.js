@@ -21,12 +21,12 @@ Alert.propTypes = {
   info: PropTypes.shape({
     alert: PropTypes.bool,
     info: PropTypes.shape({
-      show_on: PropTypes.object,
+      show_on: PropTypes.object
     }),
     prefix: PropTypes.string,
     title: PropTypes.string,
-    url: PropTypes.string,
-  }),
+    url: PropTypes.string
+  })
 };
 
 export default Alert;

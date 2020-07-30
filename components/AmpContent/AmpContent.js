@@ -18,14 +18,14 @@ const ampStyles = {
     lineHeight: '1.5',
     color: '#191a1a',
     maxWidth: '40em',
-    margin: '1em auto',
+    margin: '1em auto'
   },
   sharing: {
     margin: '2em 1em 1em',
     fontFamily: '"Roboto", system-ui, -apple-system, sans-serif',
-    fontSize: '0.85em',
+    fontSize: '0.85em'
   },
-  invisible: { display: 'none' },
+  invisible: { display: 'none' }
 };
 
 const AmpContent = ({
@@ -45,7 +45,7 @@ const AmpContent = ({
   imageCredit,
   imageCreditHref,
   minimal,
-  redistributable,
+  redistributable
 }) => {
   let largest;
   if (image && redistributable) {
@@ -109,7 +109,7 @@ const AmpContent = ({
               apm_related_list: ApmRelatedListOverride,
               apm_image: ApmImageOverride,
               apm_custom_html: ApmCustomHtmlOverride,
-              apm_oembed: AmpOembedFactory,
+              apm_oembed: AmpOembedFactory
             }}
           />
         </div>
@@ -125,7 +125,7 @@ AmpContent.propTypes = {
   authors: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string,
-      href: PropTypes.string,
+      href: PropTypes.string
     })
   ),
   headingLevel: PropTypes.number,
@@ -136,14 +136,14 @@ AmpContent.propTypes = {
   embeddedAssets: PropTypes.object,
   tag: PropTypes.shape({
     tagName: PropTypes.string,
-    to: PropTypes.string,
+    to: PropTypes.string
   }),
   image: PropTypes.node,
   imageCaption: PropTypes.string,
   imageCredit: PropTypes.string,
   imageCreditHref: PropTypes.string,
   minimal: PropTypes.bool,
-  redistributable: PropTypes.bool,
+  redistributable: PropTypes.bool
 };
 
 export default AmpContent;

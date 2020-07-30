@@ -1,7 +1,7 @@
 const fallback = {
   url: 'https://www.mprnews.org/opengraph-fallback.png',
   width: 640,
-  height: 480,
+  height: 480
 };
 
 // if there is  social image and  widescreen  use that

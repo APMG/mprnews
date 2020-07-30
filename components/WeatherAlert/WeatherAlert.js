@@ -50,7 +50,7 @@ const WeatherAlert = ({ alert }) => {
 };
 
 WeatherAlert.propTypes = {
-  alert: PropTypes.object,
+  alert: PropTypes.object
 };
 
 export default WeatherAlert;

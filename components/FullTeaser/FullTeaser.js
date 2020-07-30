@@ -104,7 +104,7 @@ FullTeaser.propTypes = {
   item: PropTypes.object,
   newspartners: PropTypes.bool,
   contributors: PropTypes.oneOf([PropTypes.string, PropTypes.array]),
-  size: PropTypes.string,
+  size: PropTypes.string
 };
 
 export default FullTeaser;

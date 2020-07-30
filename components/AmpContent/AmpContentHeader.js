@@ -7,25 +7,25 @@ import AmpByline from '../AmpByline/AmpByline';
 const ampStyles = {
   header: {
     fontFamily: 'Roboto, system-ui, -apple-system, sans-serif',
-    fontWeight: '700',
+    fontWeight: '700'
   },
   title: {
     display: 'block',
     fontFamily: '"Roboto Condensed", system-ui, -apple-system, sans-serif',
     fontSize: '1.5em',
     lineHeight: '1',
-    margin: '0',
+    margin: '0'
   },
   authors: {
-    display: 'flex',
+    display: 'flex'
   },
   dateline: {
-    marginRight: '0.75em',
+    marginRight: '0.75em'
   },
   link: {
     textDecoration: 'none',
-    color: '#00334e',
-  },
+    color: '#00334e'
+  }
 };
 
 const AmpContentHeader = (props) => {
@@ -92,7 +92,7 @@ AmpContentHeader.propTypes = {
   authors: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string,
-      href: PropTypes.string,
+      href: PropTypes.string
     })
   ),
   headingLevel: PropTypes.number,
@@ -102,9 +102,9 @@ AmpContentHeader.propTypes = {
   tag: PropTypes.shape({
     to: PropTypes.string,
     href: PropTypes.string,
-    tagName: PropTypes.string,
+    tagName: PropTypes.string
   }),
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired
 };
 
 export default AmpContentHeader;

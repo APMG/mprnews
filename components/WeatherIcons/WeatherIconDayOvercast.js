@@ -8,12 +8,12 @@ const WeatherIconDayOvercast = ({
   y,
   width,
   height,
-  fill,
+  fill
 }) => {
   const classes = classNames({
     weatherIcon: true,
     'weatherIcon_day-overcast': true,
-    [elementClass]: elementClass,
+    [elementClass]: elementClass
   });
 
   return (
@@ -65,7 +65,7 @@ WeatherIconDayOvercast.propTypes = {
   y: PropTypes.number,
   width: PropTypes.number,
   height: PropTypes.number,
-  fill: PropTypes.string,
+  fill: PropTypes.string
 };
 
 export default WeatherIconDayOvercast;

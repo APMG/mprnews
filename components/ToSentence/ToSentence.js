@@ -20,7 +20,7 @@ const ToSentence = (props) => {
 };
 
 ToSentence.propTypes = {
-  items: PropTypes.array,
+  items: PropTypes.array
 };
 
 export default ToSentence;

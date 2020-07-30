@@ -6,7 +6,7 @@ const WeatherIconSnowflake = ({ elementClass, x, y, width, height, fill }) => {
   const classes = classNames({
     weatherIcon: true,
     weatherIcon_snowflake: true,
-    [elementClass]: elementClass,
+    [elementClass]: elementClass
   });
 
   return (
@@ -59,7 +59,7 @@ WeatherIconSnowflake.propTypes = {
   y: PropTypes.number,
   width: PropTypes.number,
   height: PropTypes.number,
-  fill: PropTypes.string,
+  fill: PropTypes.string
 };
 
 export default WeatherIconSnowflake;

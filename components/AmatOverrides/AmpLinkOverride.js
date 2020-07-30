@@ -5,8 +5,8 @@ import { analyzeUrl } from '../../utils/cjsutils';
 
 let ampStyles = {
   link: {
-    color: '#00334e',
-  },
+    color: '#00334e'
+  }
 };
 
 const AmpLinkOverride = (props) => {
@@ -43,7 +43,7 @@ AmpLinkOverride.propTypes = {
   inner: PropTypes.object,
   href: PropTypes.string,
   title: PropTypes.string,
-  className: PropTypes.string,
+  className: PropTypes.string
 };
 
 export default AmpLinkOverride;

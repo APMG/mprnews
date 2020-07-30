@@ -66,7 +66,7 @@ const Elections2020 = (props) => {
 };
 
 Elections2020.propTypes = {
-  elementClass: PropTypes.string,
+  elementClass: PropTypes.string
 };
 
 export default Elections2020;

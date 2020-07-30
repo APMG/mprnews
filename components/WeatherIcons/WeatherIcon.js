@@ -40,322 +40,322 @@ const icons = [
   {
     code: 'skc',
     time: 'day',
-    icon: WeatherIconDayClear,
+    icon: WeatherIconDayClear
   },
   {
     code: 'skc',
     time: 'night',
-    icon: WeatherIconNightClear,
+    icon: WeatherIconNightClear
   },
   {
     code: 'few',
     time: 'day',
-    icon: WeatherIconDayClear,
+    icon: WeatherIconDayClear
   },
   {
     code: 'few',
     time: 'night',
-    icon: WeatherIconNightClear,
+    icon: WeatherIconNightClear
   },
   {
     code: 'sct',
     time: 'day',
-    icon: WeatherIconDayCloudy,
+    icon: WeatherIconDayCloudy
   },
   {
     code: 'sct',
     time: 'night',
-    icon: WeatherIconNightCloudy,
+    icon: WeatherIconNightCloudy
   },
   {
     code: 'bkn',
     time: 'day',
-    icon: WeatherIconDayCloudy,
+    icon: WeatherIconDayCloudy
   },
   {
     code: 'bkn',
     time: 'night',
-    icon: WeatherIconNightCloudy,
+    icon: WeatherIconNightCloudy
   },
   {
     code: 'ovc',
     time: 'day',
-    icon: WeatherIconDayOvercast,
+    icon: WeatherIconDayOvercast
   },
   {
     code: 'ovc',
     time: 'night',
-    icon: WeatherIconNightOvercast,
+    icon: WeatherIconNightOvercast
   },
   {
     code: 'wind_skc',
     time: 'day',
-    icon: WeatherIconDayWindy,
+    icon: WeatherIconDayWindy
   },
   {
     code: 'wind_skc',
     time: 'night',
-    icon: WeatherIconNightWindy,
+    icon: WeatherIconNightWindy
   },
   {
     code: 'wind_few',
     time: 'day',
-    icon: WeatherIconDayWindy,
+    icon: WeatherIconDayWindy
   },
   {
     code: 'wind_few',
     time: 'night',
-    icon: WeatherIconNightWindy,
+    icon: WeatherIconNightWindy
   },
   {
     code: 'wind_sct',
     time: 'day',
-    icon: WeatherIconDayCloudyWindy,
+    icon: WeatherIconDayCloudyWindy
   },
   {
     code: 'wind_sct',
     time: 'night',
-    icon: WeatherIconNightCloudyWindy,
+    icon: WeatherIconNightCloudyWindy
   },
   {
     code: 'wind_bkn',
     time: 'day',
-    icon: WeatherIconDayCloudyWindy,
+    icon: WeatherIconDayCloudyWindy
   },
   {
     code: 'wind_bkn',
     time: 'night',
-    icon: WeatherIconNightCloudyWindy,
+    icon: WeatherIconNightCloudyWindy
   },
   {
     code: 'wind_ovc',
     time: 'day',
-    icon: WeatherIconDayCloudyWindy,
+    icon: WeatherIconDayCloudyWindy
   },
   {
     code: 'wind_ovc',
     time: 'night',
-    icon: WeatherIconNightCloudyWindy,
+    icon: WeatherIconNightCloudyWindy
   },
   {
     code: 'snow',
     time: 'day',
-    icon: WeatherIconDaySnow,
+    icon: WeatherIconDaySnow
   },
   {
     code: 'snow',
     time: 'night',
-    icon: WeatherIconNightSnow,
+    icon: WeatherIconNightSnow
   },
   {
     code: 'rain_snow',
     time: 'day',
-    icon: WeatherIconDayRainMix,
+    icon: WeatherIconDayRainMix
   },
   {
     code: 'rain_snow',
     time: 'night',
-    icon: WeatherIconNightRainMix,
+    icon: WeatherIconNightRainMix
   },
   {
     code: 'rain_sleet',
     time: 'day',
-    icon: WeatherIconDaySleet,
+    icon: WeatherIconDaySleet
   },
   {
     code: 'rain_sleet',
     time: 'night',
-    icon: WeatherIconNightSleet,
+    icon: WeatherIconNightSleet
   },
   {
     code: 'snow_sleet',
     time: 'day',
-    icon: WeatherIconDaySleet,
+    icon: WeatherIconDaySleet
   },
   {
     code: 'snow_sleet',
     time: 'night',
-    icon: WeatherIconNightSleet,
+    icon: WeatherIconNightSleet
   },
   {
     code: 'fzra',
     time: 'day',
-    icon: WeatherIconDayRainMix,
+    icon: WeatherIconDayRainMix
   },
   {
     code: 'fzra',
     time: 'night',
-    icon: WeatherIconNightRainMix,
+    icon: WeatherIconNightRainMix
   },
   {
     code: 'rain_fzra',
     time: 'day',
-    icon: WeatherIconDayRainMix,
+    icon: WeatherIconDayRainMix
   },
   {
     code: 'rain_fzra',
     time: 'night',
-    icon: WeatherIconNightRainMix,
+    icon: WeatherIconNightRainMix
   },
   {
     code: 'sleet',
     time: 'day',
-    icon: WeatherIconDaySleet,
+    icon: WeatherIconDaySleet
   },
   {
     code: 'sleet',
     time: 'night',
-    icon: WeatherIconNightSleet,
+    icon: WeatherIconNightSleet
   },
   {
     code: 'rain',
     time: 'day',
-    icon: WeatherIconDayRain,
+    icon: WeatherIconDayRain
   },
   {
     code: 'rain',
     time: 'night',
-    icon: WeatherIconNightRain,
+    icon: WeatherIconNightRain
   },
   {
     code: 'rain_showers',
     time: 'day',
-    icon: WeatherIconDayShowers,
+    icon: WeatherIconDayShowers
   },
   {
     code: 'rain_showers',
     time: 'night',
-    icon: WeatherIconNightShowers,
+    icon: WeatherIconNightShowers
   },
   {
     code: 'rain_showers_hi',
     time: 'day',
-    icon: WeatherIconDayShowers,
+    icon: WeatherIconDayShowers
   },
   {
     code: 'rain_showers_hi',
     time: 'night',
-    icon: WeatherIconNightShowers,
+    icon: WeatherIconNightShowers
   },
   {
     code: 'tsra',
     time: 'day',
-    icon: WeatherIconDayThunderstorm,
+    icon: WeatherIconDayThunderstorm
   },
   {
     code: 'tsra',
     time: 'night',
-    icon: WeatherIconNightThunderstorm,
+    icon: WeatherIconNightThunderstorm
   },
   {
     code: 'tsra_sct',
     time: 'day',
-    icon: WeatherIconDayThunderstorm,
+    icon: WeatherIconDayThunderstorm
   },
   {
     code: 'tsra_sct',
     time: 'night',
-    icon: WeatherIconNightThunderstorm,
+    icon: WeatherIconNightThunderstorm
   },
   {
     code: 'tsra_hi',
     time: 'day',
-    icon: WeatherIconDayThunderstorm,
+    icon: WeatherIconDayThunderstorm
   },
   {
     code: 'tsra_hi',
     time: 'night',
-    icon: WeatherIconNightThunderstorm,
+    icon: WeatherIconNightThunderstorm
   },
   {
     code: 'tornado',
     time: 'both',
-    icon: WeatherIconTornado,
+    icon: WeatherIconTornado
   },
   {
     code: 'tornado',
     time: 'day',
-    icon: WeatherIconTornado,
+    icon: WeatherIconTornado
   },
   {
     code: 'tornado',
     time: 'night',
-    icon: WeatherIconTornado,
+    icon: WeatherIconTornado
   },
   {
     code: 'hurricane',
     time: 'both',
-    icon: WeatherIconHurricane,
+    icon: WeatherIconHurricane
   },
   {
     code: 'hurricane',
     time: 'day',
-    icon: WeatherIconHurricane,
+    icon: WeatherIconHurricane
   },
   {
     code: 'hurricane',
     time: 'night',
-    icon: WeatherIconHurricane,
+    icon: WeatherIconHurricane
   },
   {
     code: 'tropical_storm',
     time: 'both',
-    icon: WeatherIconHurricane,
+    icon: WeatherIconHurricane
   },
   {
     code: 'tropical_storm',
     time: 'day',
-    icon: WeatherIconHurricane,
+    icon: WeatherIconHurricane
   },
   {
     code: 'tropical_storm',
     time: 'night',
-    icon: WeatherIconHurricane,
+    icon: WeatherIconHurricane
   },
   {
     code: 'dust',
     time: 'both',
-    icon: WeatherIconSandstorm,
+    icon: WeatherIconSandstorm
   },
   {
     code: 'dust',
     time: 'day',
-    icon: WeatherIconSandstorm,
+    icon: WeatherIconSandstorm
   },
   {
     code: 'dust',
     time: 'night',
-    icon: WeatherIconSandstorm,
+    icon: WeatherIconSandstorm
   },
   {
     code: 'smoke',
     time: 'both',
-    icon: WeatherIconSmoke,
+    icon: WeatherIconSmoke
   },
   {
     code: 'smoke',
     time: 'day',
-    icon: WeatherIconSmoke,
+    icon: WeatherIconSmoke
   },
   {
     code: 'smoke',
     time: 'night',
-    icon: WeatherIconSmoke,
+    icon: WeatherIconSmoke
   },
   {
     code: 'haze',
     time: 'both',
-    icon: WeatherIconHaze,
+    icon: WeatherIconHaze
   },
   {
     code: 'haze',
     time: 'day',
-    icon: WeatherIconHaze,
+    icon: WeatherIconHaze
   },
   {
     code: 'haze',
     time: 'night',
-    icon: WeatherIconHaze,
+    icon: WeatherIconHaze
   },
   { code: 'hot', time: 'both', icon: WeatherIconHot },
   { code: 'hot', time: 'day', icon: WeatherIconHot },
@@ -363,38 +363,38 @@ const icons = [
   {
     code: 'cold',
     time: 'both',
-    icon: WeatherIconSnowflake,
+    icon: WeatherIconSnowflake
   },
   {
     code: 'cold',
     time: 'day',
-    icon: WeatherIconSnowflake,
+    icon: WeatherIconSnowflake
   },
   {
     code: 'cold',
     time: 'night',
-    icon: WeatherIconSnowflake,
+    icon: WeatherIconSnowflake
   },
   {
     code: 'blizzard',
     time: 'day',
-    icon: WeatherIconDaySnowstorm,
+    icon: WeatherIconDaySnowstorm
   },
   {
     code: 'blizzard',
     time: 'night',
-    icon: WeatherIconNightSnowstorm,
+    icon: WeatherIconNightSnowstorm
   },
   {
     code: 'fog',
     time: 'day',
-    icon: WeatherIconDayFog,
+    icon: WeatherIconDayFog
   },
   {
     code: 'fog',
     time: 'night',
-    icon: WeatherIconNightFog,
-  },
+    icon: WeatherIconNightFog
+  }
 ];
 
 const WeatherIcon = ({ iconUrl, dayOnly, ...rest }) => {
@@ -420,7 +420,7 @@ const WeatherIcon = ({ iconUrl, dayOnly, ...rest }) => {
 
 WeatherIcon.propTypes = {
   iconUrl: PropTypes.string,
-  dayOnly: PropTypes.bool,
+  dayOnly: PropTypes.bool
 };
 
 export default WeatherIcon;

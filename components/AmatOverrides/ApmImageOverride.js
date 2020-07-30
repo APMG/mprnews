@@ -7,16 +7,16 @@ const ampStyles = {
     fontFamily: '"Roboto", system-ui, -apple-system, sans-serif',
     fontSize: '0.85em',
     lineHeight: '1.2',
-    padding: '1em 0',
+    padding: '1em 0'
   },
   text: {
     display: 'inline',
-    paddingRight: '1em',
+    paddingRight: '1em'
   },
   credit: {
     display: 'inline-block',
-    color: '#4a4e4f',
-  },
+    color: '#4a4e4f'
+  }
 };
 
 const ApmImageOverride = (props) => {
@@ -107,7 +107,7 @@ ApmImageOverride.propTypes = {
   image: PropTypes.object,
   embedded: PropTypes.object,
   minimal: PropTypes.bool,
-  isAmp: PropTypes.bool, // for AMP html
+  isAmp: PropTypes.bool // for AMP html
 };
 
 export default ApmImageOverride;

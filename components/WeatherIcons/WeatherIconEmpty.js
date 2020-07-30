@@ -8,7 +8,7 @@ const IconEmpty = ({ elementClass, x, y, width, height, fill }) => {
   const classes = classNames({
     icon: true,
     weatherIcon_empty: true,
-    [elementClass]: elementClass,
+    [elementClass]: elementClass
   });
 
   return (
@@ -32,7 +32,7 @@ IconEmpty.propTypes = {
   y: PropTypes.number,
   width: PropTypes.number,
   height: PropTypes.number,
-  fill: PropTypes.string,
+  fill: PropTypes.string
 };
 
 export default IconEmpty;

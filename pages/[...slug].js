@@ -65,8 +65,8 @@ VariablePage.getInitialProps = async ({ query: { slug }, res }) => {
       variables: {
         contentAreaSlug: process.env.CONTENT_AREA_SLUG,
         slug: slug.join('/'),
-        pageNum: pageNum,
-      },
+        pageNum: pageNum
+      }
     })
       .then((result) => {
         data = result.data;
@@ -86,8 +86,8 @@ VariablePage.getInitialProps = async ({ query: { slug }, res }) => {
       query: pageQuery,
       variables: {
         contentAreaSlug: process.env.CONTENT_AREA_SLUG,
-        slug: slug.join('/'),
-      },
+        slug: slug.join('/')
+      }
     })
       .then((result) => {
         data = result.data;
@@ -106,8 +106,8 @@ VariablePage.getInitialProps = async ({ query: { slug }, res }) => {
     query: query,
     variables: {
       contentAreaSlug: process.env.CONTENT_AREA_SLUG,
-      slug: slug.join('/'),
-    },
+      slug: slug.join('/')
+    }
   })
     .then(async (result) => {
       if (res) {
@@ -137,14 +137,14 @@ VariablePage.getInitialProps = async ({ query: { slug }, res }) => {
     data,
     type,
     pageNum,
-    errorCode,
+    errorCode
   };
 };
 
 VariablePage.propTypes = {
   errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
   data: PropTypes.object,
-  slug: PropTypes.array,
+  slug: PropTypes.array
 };
 
 export default VariablePage;

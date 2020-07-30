@@ -10,7 +10,7 @@ import { parseEmbeddedAssets } from '../../../utils/utils';
 
 import {
   fetchMemberDriveStatus,
-  addMemberDriveElements,
+  addMemberDriveElements
 } from '../../../utils/membershipUtils';
 
 const ProfilePage = ({ data, errorCode }) => {
@@ -39,8 +39,8 @@ ProfilePage.getInitialProps = async ({ query: { slug, token }, res }) => {
     variables: {
       contentAreaSlug: process.env.CONTENT_AREA_SLUG,
       slug: slug.join('/'),
-      previewToken: token,
-    },
+      previewToken: token
+    }
   })
     .then((result) => {
       data = result.data;
@@ -61,13 +61,13 @@ ProfilePage.getInitialProps = async ({ query: { slug, token }, res }) => {
 
   return {
     data,
-    errorCode,
+    errorCode
   };
 };
 
 ProfilePage.propTypes = {
   errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
-  data: PropTypes.object,
+  data: PropTypes.object
 };
 
 export default ProfilePage;

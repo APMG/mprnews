@@ -42,7 +42,7 @@ const Sidebar = (props) => {
 };
 
 Sidebar.propTypes = {
-  homepageTopic: PropTypes.string,
+  homepageTopic: PropTypes.string
 };
 
 export default Sidebar;

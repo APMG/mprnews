@@ -39,7 +39,7 @@ const PresidentialPrimaryWidget = ({ states, showDelegateCount }) => {
 
 PresidentialPrimaryWidget.propTypes = {
   states: PropTypes.arrayOf(PropTypes.string),
-  showDelegateCount: PropTypes.bool,
+  showDelegateCount: PropTypes.bool
 };
 
 export default PresidentialPrimaryWidget;

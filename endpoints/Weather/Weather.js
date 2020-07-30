@@ -31,7 +31,7 @@ const Weather = (props) => {
     setWeatherData((prevState) => {
       return {
         ...prevState,
-        location: newLocation,
+        location: newLocation
       };
     });
     setLoading(false);

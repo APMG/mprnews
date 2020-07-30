@@ -37,7 +37,7 @@ FooterPodcasts.propTypes = {
   title: PropTypes.string,
   href: PropTypes.string,
   text: PropTypes.string,
-  linkLabel: PropTypes.string,
+  linkLabel: PropTypes.string
 };
 
 export default FooterPodcasts;

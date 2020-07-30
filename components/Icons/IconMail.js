@@ -19,7 +19,7 @@ const IconMail = (props) => {
 };
 
 IconMail.propTypes = {
-  elementClass: PropTypes.string,
+  elementClass: PropTypes.string
 };
 
 export default IconMail;

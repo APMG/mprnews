@@ -14,7 +14,7 @@ import TagManager from 'react-gtm-module';
 import '../styles/index.scss';
 
 const tagManagerArgs = {
-  gtmId: 'GTM-KTT2Z2',
+  gtmId: 'GTM-KTT2Z2'
 };
 
 class MPRNews extends App {
@@ -25,12 +25,12 @@ class MPRNews extends App {
     this.defaultAudioSource = JSON.stringify([
       {
         url: 'https://nis.stream.publicradio.org/nis.aac',
-        type: 'audio/aac',
+        type: 'audio/aac'
       },
       {
         url: 'https://nis.stream.publicradio.org/nis.mp3',
-        type: 'audio/mpeg',
-      },
+        type: 'audio/mpeg'
+      }
     ]);
     this.defaultAudioTitle = 'MPR News';
 
@@ -53,7 +53,7 @@ class MPRNews extends App {
       resetLivePlayer: this.resetLivePlayer,
       location: weatherConfig[0],
       handleLocationChange: this.handleLocationChange,
-      weatherData: {},
+      weatherData: {}
     };
   }
 
@@ -68,7 +68,7 @@ class MPRNews extends App {
     this.state.audioElementRef.current?.addEventListener('play', () => {
       // This assumes we only have one possible live audio stream. Something else will need to be done to handle more
       this.setState({
-        isAudioLive: this.state.audioSource === this.defaultAudioSource,
+        isAudioLive: this.state.audioSource === this.defaultAudioSource
       });
 
       if (this.state.isAudioPlaying === false) {
@@ -128,7 +128,7 @@ class MPRNews extends App {
         audioSource,
         audioTitle,
         audioSubtitle,
-        isAudioLive,
+        isAudioLive
       },
       () => {
         this.state.playerInstance.handlePlay();
@@ -154,7 +154,7 @@ class MPRNews extends App {
     this.setState(
       {
         audioTitle: this.state.nowPlayingTitle,
-        audioSource: this.defaultAudioSource,
+        audioSource: this.defaultAudioSource
       },
       () => {
         if (autoPlay) {
@@ -186,7 +186,7 @@ class MPRNews extends App {
   setupNowPlaying = () => {
     const self = this;
     const client = new NowPlayingClient({
-      server: 'https://nowplaying.publicradio.org',
+      server: 'https://nowplaying.publicradio.org'
     });
     const registrations = [];
     const service = 'mpr-news';
@@ -195,11 +195,11 @@ class MPRNews extends App {
     const schedule_registration = client.register_callback(
       service,
       'schedule',
-      function (data) {
+      function(data) {
         if (self.state.isAudioLive) {
           self.setState(
             {
-              nowPlayingTitle: self.setNowPlayingTitle(data.schedule),
+              nowPlayingTitle: self.setNowPlayingTitle(data.schedule)
             },
             () => {
               self.setState({ audioTitle: self.state.nowPlayingTitle });
@@ -217,7 +217,7 @@ class MPRNews extends App {
 
     this.setState({
       location: newLocation,
-      weatherData: this.getWeatherData(newLocation),
+      weatherData: this.getWeatherData(newLocation)
     });
   };
 
@@ -225,7 +225,7 @@ class MPRNews extends App {
     let dataObj = {
       high: undefined,
       low: undefined,
-      shortForecast: undefined,
+      shortForecast: undefined
     };
 
     try {
@@ -246,7 +246,7 @@ class MPRNews extends App {
         }
 
         this.setState({
-          weatherData: dataObj,
+          weatherData: dataObj
         });
       });
 
@@ -259,7 +259,7 @@ class MPRNews extends App {
         }
 
         this.setState({
-          weatherData: dataObj,
+          weatherData: dataObj
         });
       });
     } catch (err) {

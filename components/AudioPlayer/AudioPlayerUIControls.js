@@ -69,7 +69,7 @@ const AudioPlayerUIControls = (props) => {
 AudioPlayerUIControls.propTypes = {
   audioPlaylist: PropTypes.string,
   forward: PropTypes.number,
-  replay: PropTypes.number,
+  replay: PropTypes.number
 };
 
 export default AudioPlayerUIControls;

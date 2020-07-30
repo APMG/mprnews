@@ -41,12 +41,12 @@ NavInner.propTypes = {
         PropTypes.shape({
           text: PropTypes.string,
           class: PropTypes.string,
-          href: PropTypes.string,
+          href: PropTypes.string
         })
-      ),
+      )
     })
   ),
-  closeMenu: PropTypes.func,
+  closeMenu: PropTypes.func
 };
 
 export default NavInner;

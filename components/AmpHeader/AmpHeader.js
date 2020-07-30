@@ -5,14 +5,14 @@ import Logo from '../Logo/Logo';
 const ampStyles = {
   header: {
     padding: '15px',
-    borderBottom: '2px solid gray',
+    borderBottom: '2px solid gray'
   },
   logo: {
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
-  invisible: { display: 'none' },
+  invisible: { display: 'none' }
 };
 
 const AmpHeader = () => {
