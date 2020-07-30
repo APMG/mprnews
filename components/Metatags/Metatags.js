@@ -37,7 +37,7 @@ const Metatags = (props) => {
               '@type': 'NewsArticle',
               mainEntityOfPage: {
                 '@type': 'WebPage',
-                '@id': fullUrl
+                '@id': fullUrl,
               },
               headline: props.title,
               image: [props.image],
@@ -50,9 +50,9 @@ const Metatags = (props) => {
                 name: 'MPR News',
                 logo: {
                   '@type': 'ImageObject',
-                  url: 'https://www.mprnews.org/opengraph-fallback.png'
-                }
-              }
+                  url: 'https://www.mprnews.org/opengraph-fallback.png',
+                },
+              },
             }}
           />
         </>
@@ -184,7 +184,7 @@ Metatags.propTypes = {
   updatedAt: PropTypes.string,
   authors: PropTypes.array,
   noFollow: PropTypes.bool,
-  originalSourceUrl: PropTypes.string
+  originalSourceUrl: PropTypes.string,
 };
 
 export default React.memo(Metatags);

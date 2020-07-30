@@ -4,7 +4,7 @@ import Sidebar from '../../components/Sidebar/Sidebar';
 
 const Newsletter = () => {
   useEffect(() => {
-    (function() {
+    (function () {
       const scr = document.createElement('script');
       scr.type = 'text/javascript';
       scr.async = true;

@@ -10,12 +10,12 @@ const Updraft = ({ item }) => {
 
   let moreUpdrafLink = {
     canonicalSlug: 'weather-and-climate/updraft',
-    resourceType: 'collection'
+    resourceType: 'collection',
   };
 
   let climateCastLink = {
     canonicalSlug: 'podcasts/climate-cast',
-    resourceType: 'collection'
+    resourceType: 'collection',
   };
 
   return (
@@ -87,7 +87,7 @@ const Updraft = ({ item }) => {
 };
 
 Updraft.propTypes = {
-  item: PropTypes.object
+  item: PropTypes.object,
 };
 
 export default Updraft;

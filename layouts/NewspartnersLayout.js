@@ -6,7 +6,7 @@ const NewspartnersLayout = (props) => {
 };
 
 NewspartnersLayout.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node,
 };
 
 export default NewspartnersLayout;

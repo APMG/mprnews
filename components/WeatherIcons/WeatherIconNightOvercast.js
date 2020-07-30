@@ -8,12 +8,12 @@ const WeatherIconNightOvercast = ({
   y,
   width,
   height,
-  fill
+  fill,
 }) => {
   const classes = classNames({
     weatherIcon: true,
     'weatherIcon_night-overcast': true,
-    [elementClass]: elementClass
+    [elementClass]: elementClass,
   });
 
   return (
@@ -55,7 +55,7 @@ WeatherIconNightOvercast.propTypes = {
   y: PropTypes.number,
   width: PropTypes.number,
   height: PropTypes.number,
-  fill: PropTypes.string
+  fill: PropTypes.string,
 };
 
 export default WeatherIconNightOvercast;

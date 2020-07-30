@@ -37,7 +37,7 @@ const AudioPlayerUISecondary = (props) => {
 
 AudioPlayerUISecondary.propTypes = {
   audioVolume: PropTypes.bool,
-  audioActiveBars: PropTypes.bool
+  audioActiveBars: PropTypes.bool,
 };
 
 export default AudioPlayerUISecondary;

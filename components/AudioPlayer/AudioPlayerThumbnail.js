@@ -14,7 +14,7 @@ const AudioPlayerThumbnail = (props) => {
 
 AudioPlayerThumbnail.propTypes = {
   audioTitle: PropTypes.string,
-  audioThumbnail: PropTypes.string
+  audioThumbnail: PropTypes.string,
 };
 
 export default AudioPlayerThumbnail;

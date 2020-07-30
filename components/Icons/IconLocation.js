@@ -28,7 +28,7 @@ const IconLocation = (props) => {
 };
 
 IconLocation.propTypes = {
-  elementClass: PropTypes.string
+  elementClass: PropTypes.string,
 };
 
 export default IconLocation;

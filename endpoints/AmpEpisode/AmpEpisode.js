@@ -26,7 +26,7 @@ const AmpEpisode = ({ data: { episode, alertConfig } }) => {
         // prettier-ignore
         title: `${thisString}`,
         href: '/people/[...slug]',
-        as: `/people/${contributor.profile?.canonicalSlug}`
+        as: `/people/${contributor.profile?.canonicalSlug}`,
       };
     });
   }
@@ -105,7 +105,7 @@ AmpEpisode.propTypes = {
       authors: PropTypes.arrayOf(
         PropTypes.shape({
           title: PropTypes.string,
-          href: PropTypes.string
+          href: PropTypes.string,
         })
       ),
       body: PropTypes.string,
@@ -126,10 +126,10 @@ AmpEpisode.propTypes = {
       embeddedAssets: PropTypes.object,
       tag: PropTypes.shape({
         tagName: PropTypes.string,
-        to: PropTypes.string
-      })
-    })
-  })
+        to: PropTypes.string,
+      }),
+    }),
+  }),
 };
 
 export default AmpEpisode;

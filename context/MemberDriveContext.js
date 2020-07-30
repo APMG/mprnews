@@ -1,7 +1,7 @@
 import React from 'react';
 const MemberDriveContext = React.createContext({
   memberDriveData: {},
-  updateMemberDriveData: () => {}
+  updateMemberDriveData: () => {},
 });
 
 export default MemberDriveContext;

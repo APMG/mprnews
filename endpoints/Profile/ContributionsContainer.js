@@ -11,7 +11,7 @@ export default class ContributionsContainer extends Component {
     initialCollection: PropTypes.object,
     initialPage: PropTypes.number,
     slug: PropTypes.string,
-    id: PropTypes.string
+    id: PropTypes.string,
   };
 
   constructor(props) {
@@ -19,7 +19,7 @@ export default class ContributionsContainer extends Component {
     this.client = initApollo();
     this.state = {
       collection: props.initialCollection,
-      currentPage: props.initialPage || 1
+      currentPage: props.initialPage || 1,
     };
   }
 
@@ -36,12 +36,12 @@ export default class ContributionsContainer extends Component {
         contentAreaSlug: process.env.CONTENT_AREA_SLUG,
         slug,
         pageNum,
-        id
-      }
+        id,
+      },
     });
     this.setState({
       collection: result.data.profile.collection,
-      currentPage: pageNum
+      currentPage: pageNum,
     });
     window.history.pushState(null, null, this.urlSlug(pageNum));
   }
