@@ -22,7 +22,7 @@ const Metatags = (props) => {
       }, [])
     : [{ '@type': 'Organization', name: 'MPR News' }];
   const datePublished = props?.publishDate?.props?.dateTime;
-  const dateModified = datePublished || props?.publishDate?.props?.dateTime;
+  const dateModified = props?.updatedAt?.props?.dateTime || datePublished;
 
   return (
     <Head>
@@ -57,6 +57,12 @@ const Metatags = (props) => {
           />
         </>
       )}
+
+      {/* Let them parse our dev site */}
+      <meta
+        name="google-site-verification"
+        content="XhK1PzjnPaoNl-9sgUxESWUS41LEjGigKzibmOaYSj0"
+      />
 
       {props.noFollow && <meta name="robots" content="noindex,nofollow" />}
       {props.topic && (
