@@ -59,7 +59,7 @@ const UseDefaultImg = (event) => {
 };
 PresidentialPrimaryResults.propTypes = {
   states: PropTypes.arrayOf(PropTypes.string).isRequired, // postal codes
-  api: PropTypes.string
+  api: PropTypes.string,
 };
 
 const StateRow = ({ state, results, stateAbbrev }) => {
@@ -103,7 +103,7 @@ const StateRow = ({ state, results, stateAbbrev }) => {
 StateRow.propTypes = {
   state: PropTypes.string.isRequired,
   results: PropTypes.array.isRequired,
-  stateAbbrev: PropTypes.string.isRequired
+  stateAbbrev: PropTypes.string.isRequired,
 };
 
 const CandidateCell = ({
@@ -112,7 +112,7 @@ const CandidateCell = ({
   vote_count,
   uncontested,
   candidate_id,
-  winner = false
+  winner = false,
 }) => {
   const photo = (
     <img
@@ -160,7 +160,7 @@ CandidateCell.propTypes = {
   vote_count: PropTypes.number.isRequired,
   candidate_id: PropTypes.number.isRequired,
   uncontested: PropTypes.bool,
-  winner: PropTypes.bool
+  winner: PropTypes.bool,
 };
 
 export default PresidentialPrimaryResults;

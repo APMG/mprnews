@@ -16,7 +16,7 @@ const IconChevronDown = (props) => (
 );
 
 IconChevronDown.propTypes = {
-  elementClass: PropTypes.string
+  elementClass: PropTypes.string,
 };
 
 export default IconChevronDown;

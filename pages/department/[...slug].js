@@ -32,8 +32,8 @@ DepartmentPage.getInitialProps = async ({ query: { slug }, res }) => {
       query: query,
       variables: {
         contentAreaSlug: process.env.CONTENT_AREA_SLUG,
-        slug: slug.join('/')
-      }
+        slug: slug.join('/'),
+      },
     });
     if (result?.data?.department?.embeddedAssets) {
       parseEmbeddedAssets(result.data.department.embeddedAssets);
@@ -42,7 +42,7 @@ DepartmentPage.getInitialProps = async ({ query: { slug }, res }) => {
     if (res) res.statusCode = 500;
     return {
       data: {},
-      errorCode: 500
+      errorCode: 500,
     };
   }
 
@@ -54,13 +54,13 @@ DepartmentPage.getInitialProps = async ({ query: { slug }, res }) => {
   adCleanup();
   return {
     data: result?.data || {},
-    errorCode
+    errorCode,
   };
 };
 
 DepartmentPage.propTypes = {
   data: PropTypes.object,
-  errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool])
+  errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
 };
 
 export default DepartmentPage;

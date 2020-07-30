@@ -21,7 +21,7 @@ Svg.propTypes = {
   elementClass: PropTypes.string,
   origHeight: PropTypes.number,
   origWidth: PropTypes.number,
-  statesvg: PropTypes.string
+  statesvg: PropTypes.string,
 };
 
 export default Svg;

@@ -34,7 +34,7 @@ const Story = ({ data: { story, alertConfig }, minimal }) => {
         title: `${contributor.profile?.title}`,
         href: `/profile?slug=${contributor.profile?.canonicalSlug}`,
         as: `/people/${contributor.profile?.canonicalSlug}`,
-        order: `${contributor.order}`
+        order: `${contributor.order}`,
       };
     });
   }
@@ -144,7 +144,7 @@ Story.propTypes = {
       authors: PropTypes.arrayOf(
         PropTypes.shape({
           title: PropTypes.string,
-          href: PropTypes.string
+          href: PropTypes.string,
         })
       ),
       body: PropTypes.string,
@@ -166,11 +166,11 @@ Story.propTypes = {
       originalSourceUrl: PropTypes.string,
       tag: PropTypes.shape({
         tagName: PropTypes.string,
-        to: PropTypes.string
-      })
-    })
+        to: PropTypes.string,
+      }),
+    }),
   }),
-  minimal: PropTypes.bool
+  minimal: PropTypes.bool,
 };
 
 export default Story;

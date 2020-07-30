@@ -156,12 +156,12 @@ HomeRail.propTypes = {
   updraft: PropTypes.shape({
     canonicalSlug: PropTypes.string,
     resourceType: PropTypes.string,
-    title: PropTypes.string
+    title: PropTypes.string,
   }),
   showElectionLink: PropTypes.bool,
   covid: PropTypes.shape({
-    links: PropTypes.array
-  })
+    links: PropTypes.array,
+  }),
 };
 
 export default React.memo(HomeRail);

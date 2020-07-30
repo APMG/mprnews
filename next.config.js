@@ -29,5 +29,5 @@ module.exports = withImages({
     } catch (err) {
       return null;
     }
-  }
+  },
 });

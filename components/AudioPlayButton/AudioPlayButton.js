@@ -7,7 +7,7 @@ import Icon from '../Icons/Icon';
 const AudioPlayButton = (props) => {
   const classes = classNames({
     playButton: true,
-    [props.elementClass]: props.elementClass
+    [props.elementClass]: props.elementClass,
   });
 
   let audioSource = props.audioSource;
@@ -80,7 +80,7 @@ AudioPlayButton.propTypes = {
   elementClass: PropTypes.string,
   label: PropTypes.string,
   size: PropTypes.string,
-  showTitle: PropTypes.bool
+  showTitle: PropTypes.bool,
 };
 
 export default AudioPlayButton;

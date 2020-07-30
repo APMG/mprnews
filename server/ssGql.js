@@ -3,9 +3,9 @@ exports.ssGql = async (query, next) => {
   return await fetch(process.env.GRAPHQL_API, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
-    body: query
+    body: query,
   })
     .then((response) => {
       if (!response.ok) {

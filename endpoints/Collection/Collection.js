@@ -33,7 +33,7 @@ const Collection = ({ data: { collection, alertConfig } }) => {
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
         event: 'sendUWContentTopic',
-        contentTopic: checkCollectionName
+        contentTopic: checkCollectionName,
       });
     } else {
       console.error('you broke the ads');
@@ -82,7 +82,7 @@ const Collection = ({ data: { collection, alertConfig } }) => {
               overrides={{
                 link: LinkOverride,
                 apm_related_link: ApmRelatedLinkOverride,
-                apm_related_link_list_item: ApmRelatedLinkListItemOverride
+                apm_related_link_list_item: ApmRelatedLinkListItemOverride,
               }}
             />
           </div>
@@ -143,8 +143,8 @@ const Collection = ({ data: { collection, alertConfig } }) => {
 Collection.propTypes = {
   data: PropTypes.shape({
     alertConfig: PropTypes.object,
-    collection: PropTypes.object
-  })
+    collection: PropTypes.object,
+  }),
 };
 
 export default Collection;
