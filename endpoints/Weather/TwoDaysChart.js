@@ -50,74 +50,81 @@ const TwoDaysChart = ({ forecast }) => {
 
   return (
     <>
-      <Heading level={2} elementClass="weather_chartTitle">
-        48 hour forecast
-      </Heading>
-      <DragScroll className="weather_chart">
-        <svg
-          className="weather_chartScrollable"
-          viewBox={`0 0 ${CHART_WIDTH} ${CHART_HEIGHT}`}
-          xmlns="http://www.w3.org/2000/svg"
+      <div className="weather_padding">
+        <Heading
+          level={2}
+          elementClass="hdg hdg-3 hdg-section hdg-section-small"
         >
-          {gridLine(0)}
-          {fortyEightHours.map((period, i) => {
-            let xPos = i * GRID_WIDTH;
-            let yPos = tempPositionScale(period.temperature);
-            let date = Date.parse(period.startTime.split('/').shift());
-            let hour = format(date, 'ha');
-            let dayOfWeek =
-              hour === '12AM'
-                ? format(new Date(date), 'iii').toUpperCase()
-                : false;
+          48 hour forecast
+        </Heading>
+      </div>
+      <div className="weather_card">
+        <DragScroll className="weather_chart">
+          <svg
+            className="weather_chartScrollable"
+            viewBox={`0 0 ${CHART_WIDTH} ${CHART_HEIGHT}`}
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            {gridLine(0)}
+            {fortyEightHours.map((period, i) => {
+              let xPos = i * GRID_WIDTH;
+              let yPos = tempPositionScale(period.temperature);
+              let date = Date.parse(period.startTime.split('/').shift());
+              let hour = format(date, 'ha');
+              let dayOfWeek =
+                hour === '12AM'
+                  ? format(new Date(date), 'iii').toUpperCase()
+                  : false;
 
-            return (
-              <g key={period.number} className="weather_chartPoint">
-                <WeatherIcon
-                  width={ICON_SIZE}
-                  height={ICON_SIZE}
-                  x={xPos}
-                  y={yPos}
-                  iconUrl={period.icon}
-                  fill={period.isDaytime ? '#fba301' : '#35145a'}
-                />
-                <g>
-                  <text
-                    x={`${xPos + GRID_WIDTH / 4}`}
-                    y={`${yPos + TEMP_VERT_OFFSET}`}
-                  >
-                    {period.temperature}
-                  </text>
-                </g>
-
-                <g>
-                  <text
-                    className="weather_chartPointHour"
-                    x={`${xPos + GRID_WIDTH / 2}`}
-                    y={HOUR_LABEL_VPOS}
-                    textAnchor="middle"
-                  >
-                    {hour}
-                  </text>
-                </g>
-                {dayOfWeek && (
+              return (
+                <g key={period.number} className="weather_chartPoint">
+                  <WeatherIcon
+                    width={ICON_SIZE}
+                    height={ICON_SIZE}
+                    x={xPos}
+                    y={yPos}
+                    iconUrl={period.icon}
+                    fill={period.isDaytime ? '#fba301' : '#35145a'}
+                  />
                   <g>
                     <text
-                      className="weather_chartPointDay"
-                      x={xPos + GRID_WIDTH / 2}
-                      y={WEEKDAY_LABEL_VPOS}
-                      textAnchor="middle"
+                      x={`${xPos + GRID_WIDTH / 4}`}
+                      y={`${yPos + TEMP_VERT_OFFSET}`}
                     >
-                      {dayOfWeek}
+                      {period.temperature}
                     </text>
                   </g>
-                )}
-                {gridLine(xPos)}
-              </g>
-            );
-          })}
-          {gridLine(CHART_WIDTH)}
-        </svg>
-      </DragScroll>
+
+                  <g>
+                    <text
+                      className="weather_chartPointHour"
+                      x={`${xPos + GRID_WIDTH / 2}`}
+                      y={HOUR_LABEL_VPOS}
+                      textAnchor="middle"
+                    >
+                      {hour}
+                    </text>
+                  </g>
+                  {dayOfWeek && (
+                    <g>
+                      <text
+                        className="weather_chartPointDay"
+                        x={xPos + GRID_WIDTH / 2}
+                        y={WEEKDAY_LABEL_VPOS}
+                        textAnchor="middle"
+                      >
+                        {dayOfWeek}
+                      </text>
+                    </g>
+                  )}
+                  {gridLine(xPos)}
+                </g>
+              );
+            })}
+            {gridLine(CHART_WIDTH)}
+          </svg>
+        </DragScroll>
+      </div>
     </>
   );
 };

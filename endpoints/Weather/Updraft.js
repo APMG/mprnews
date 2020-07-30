@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Heading, Teaser, Time } from '@apmg/titan';
 import { Link } from '@apmg/titan';
 import { linkByTypeHref, linkByTypeAs } from '../../utils/cjsutils';
+import Icon from '../../components/Icons/Icon';
 
 const Updraft = ({ collectionTitle, item }) => {
   let link = linkByTypeHref(item);
@@ -20,13 +21,11 @@ const Updraft = ({ collectionTitle, item }) => {
 
   return (
     <>
-      <div className="collection_header collection_header-left">
-        <Heading level={2} elementClass="hdg hdg-section">
-          {collectionTitle}
-        </Heading>
-      </div>
+      <Heading level={2} elementClass="hdg hdg-3 hdg-section hdg-section-small">
+        The Latest from {collectionTitle}
+      </Heading>
 
-      <div className="teaserContainer">
+      <div className="weather_teaser">
         <Teaser
           id={item.id}
           title={item.title}
@@ -44,46 +43,45 @@ const Updraft = ({ collectionTitle, item }) => {
           headingLevel={2}
           description={item.descriptionText}
         />
-
-        <Link
-          href={linkByTypeHref(moreUpdrafLink)}
-          as={linkByTypeAs(moreUpdrafLink)}
-          className="related_link"
-        >
-          More on Updraft
-        </Link>
-        <span className="related_prefix">{link.prefix}</span>
-        <Link
-          href={linkByTypeHref(climateCastLink)}
-          as={linkByTypeAs(climateCastLink)}
-          className="related_link"
-        >
-          Climate Cast
-        </Link>
-
-        {item.collectionRelatedLinks?.length ? (
-          <ul className="related related-teaser">
-            {item.collectionRelatedLinks.map((link) => {
-              return (
-                <li
-                  className="related_item"
-                  key={`${link.url}${link.title}${link.prefix}`}
-                >
-                  <span className="related_prefix">{link.prefix}</span>
-
-                  <Link
-                    href={linkByTypeHref(link.url)}
-                    as={linkByTypeAs(link.url)}
-                    className="related_link"
-                  >
-                    {link.title}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        ) : null}
       </div>
+      <Link
+        href={linkByTypeHref(moreUpdrafLink)}
+        as={linkByTypeAs(moreUpdrafLink)}
+        className="btn btn-primary"
+      >
+        <span>More on Updraft</span> <Icon name="chevronRight" />
+      </Link>
+      <span className="related_prefix">{link.prefix}</span>
+      <Link
+        href={linkByTypeHref(climateCastLink)}
+        as={linkByTypeAs(climateCastLink)}
+        className="btn btn-primary"
+      >
+        <span>Climate Cast</span> <Icon name="chevronRight" />
+      </Link>
+
+      {item.collectionRelatedLinks?.length ? (
+        <ul className="related related-teaser">
+          {item.collectionRelatedLinks.map((link) => {
+            return (
+              <li
+                className="related_item"
+                key={`${link.url}${link.title}${link.prefix}`}
+              >
+                <span className="related_prefix">{link.prefix}</span>
+
+                <Link
+                  href={linkByTypeHref(link.url)}
+                  as={linkByTypeAs(link.url)}
+                  className="related_link"
+                >
+                  {link.title}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      ) : null}
     </>
   );
 };
