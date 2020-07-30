@@ -10,11 +10,11 @@ const InfoLink = (props) => {
     if (props.hrefType) {
       return {
         canonicalSlug: props.href,
-        resourceType: props.hrefType
+        resourceType: props.hrefType,
       };
     } else {
       return {
-        canonicalSlug: props.href
+        canonicalSlug: props.href,
       };
     }
   };
@@ -23,11 +23,11 @@ const InfoLink = (props) => {
     if (props.headlineHrefType) {
       return {
         canonicalSlug: props.headlineHref,
-        resourceType: props.headlineHrefType
+        resourceType: props.headlineHrefType,
       };
     } else {
       return {
-        canonicalSlug: props.headlineHref
+        canonicalSlug: props.headlineHref,
       };
     }
   };
@@ -94,7 +94,7 @@ InfoLink.propTypes = {
   hrefType: PropTypes.string,
   icon: PropTypes.string,
   title: PropTypes.string.isRequired,
-  elementClass: PropTypes.string
+  elementClass: PropTypes.string,
 };
 
 export default InfoLink;

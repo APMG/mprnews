@@ -5,18 +5,18 @@ import { analyzeUrl } from '../../utils/cjsutils';
 
 const ampStyles = {
   related: {
-    fontFamily: '"Roboto", system-ui, -apple-system, sans-serif'
+    fontFamily: '"Roboto", system-ui, -apple-system, sans-serif',
   },
   prefix: {
     display: 'inline-block',
     marginRight: '.5em',
-    fontWeight: '700'
+    fontWeight: '700',
   },
   link: {
     color: '#00334e',
     fontWeight: '700',
-    margin: '0 0 0.5em'
-  }
+    margin: '0 0 0.5em',
+  },
 };
 
 const ApmRelatedLinkListItemOverride = ({ nodeData, isAmp }) => {
@@ -56,7 +56,7 @@ const ApmRelatedLinkListItemOverride = ({ nodeData, isAmp }) => {
 
 ApmRelatedLinkListItemOverride.propTypes = {
   isAmp: PropTypes.bool,
-  nodeData: PropTypes.object
+  nodeData: PropTypes.object,
 };
 
 export default ApmRelatedLinkListItemOverride;

@@ -18,7 +18,7 @@ const Nav = (props) => {
 
 Nav.propTypes = {
   closeMenu: PropTypes.func,
-  dropdownLists: PropTypes.array
+  dropdownLists: PropTypes.array,
 };
 
 export default Nav;

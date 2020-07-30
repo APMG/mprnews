@@ -49,7 +49,7 @@ const FooterProgramming = (props) => {
 };
 
 FooterProgramming.defaultProps = {
-  title: 'Program information'
+  title: 'Program information',
 };
 
 FooterProgramming.propTypes = {
@@ -57,11 +57,11 @@ FooterProgramming.propTypes = {
   links: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string,
-      href: PropTypes.string
+      href: PropTypes.string,
     })
   ),
   listenHref: PropTypes.string,
-  listenText: PropTypes.string
+  listenText: PropTypes.string,
 };
 
 export default FooterProgramming;

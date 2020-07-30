@@ -19,7 +19,7 @@ const IconPause = (props) => {
 };
 
 IconPause.propTypes = {
-  elementClass: PropTypes.string
+  elementClass: PropTypes.string,
 };
 
 export default IconPause;

@@ -8,7 +8,7 @@ import initApollo from '../../lib/init-apollo';
 import query from '../../endpoints/Story/story.gql';
 import {
   fetchMemberDriveStatus,
-  addMemberDriveElements
+  addMemberDriveElements,
 } from '../../utils/membershipUtils';
 import adCleanup from '../../utils/adCleanup';
 import { parseEmbeddedAssets } from '../../utils/utils';
@@ -32,7 +32,7 @@ const StoryPage = ({ data, errorCode }) => {
 StoryPage.getInitialProps = async ({
   query: { slug, previewToken },
   req,
-  res
+  res,
 }) => {
   let memberDriveData;
   if (req) {
@@ -47,8 +47,8 @@ StoryPage.getInitialProps = async ({
     variables: {
       contentAreaSlug: process.env.CONTENT_AREA_SLUG,
       slug: slug.join('/'),
-      previewToken: previewToken
-    }
+      previewToken: previewToken,
+    },
   })
     .then((result) => {
       data = result.data;
@@ -70,7 +70,7 @@ StoryPage.getInitialProps = async ({
         data.story.canonicalSlug !== slug.join('/')
       ) {
         res.writeHead(301, {
-          Location: `/story/${data.story.canonicalSlug}`
+          Location: `/story/${data.story.canonicalSlug}`,
         });
         res.end();
       }
@@ -86,13 +86,13 @@ StoryPage.getInitialProps = async ({
   return {
     data,
     errorCode,
-    memberDriveData
+    memberDriveData,
   };
 };
 
 StoryPage.propTypes = {
   errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
-  data: PropTypes.object
+  data: PropTypes.object,
 };
 
 export default StoryPage;

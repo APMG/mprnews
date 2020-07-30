@@ -11,7 +11,7 @@ const Event = (props) => {
 };
 
 Event.propTypes = {
-  path: PropTypes.string
+  path: PropTypes.string,
 };
 
 export default Event;

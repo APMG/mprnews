@@ -7,7 +7,7 @@ class AudioPlayer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      mounted: false
+      mounted: false,
     };
   }
 
@@ -19,7 +19,7 @@ class AudioPlayer extends React.Component {
   render() {
     const playerClasses = classNames({
       playerWrapper: true,
-      'is-sticky': this.props.isAudioPlaying
+      'is-sticky': this.props.isAudioPlaying,
     });
     const { mounted } = this.state;
     return (
@@ -59,7 +59,7 @@ AudioPlayer.propTypes = {
   isAudioLive: PropTypes.bool,
   isAudioPlaying: PropTypes.bool,
   loadPlayer: PropTypes.func,
-  playerRef: PropTypes.object
+  playerRef: PropTypes.object,
 };
 
 export default AudioPlayer;

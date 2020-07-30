@@ -70,10 +70,10 @@ AmpPage.propTypes = {
       embeddedAssets: PropTypes.object,
       tag: PropTypes.shape({
         tagName: PropTypes.string,
-        to: PropTypes.string
-      })
-    })
-  })
+        to: PropTypes.string,
+      }),
+    }),
+  }),
 };
 
 export default AmpPage;

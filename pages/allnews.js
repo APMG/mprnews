@@ -8,7 +8,7 @@ import initApollo from '../lib/init-apollo';
 import query from '../endpoints/AllNews/allNews.gql';
 import {
   fetchMemberDriveStatus,
-  addMemberDriveElements
+  addMemberDriveElements,
 } from '../utils/membershipUtils';
 import adCleanup from '../utils/adCleanup';
 import { parseEmbeddedAssets } from '../utils/utils';
@@ -32,7 +32,7 @@ const AllNewsPage = ({ data, errorCode, pageNum }) => {
 AllNewsPage.getInitialProps = async ({
   query: { pageNum = 1, previewToken },
   req,
-  res
+  res,
 }) => {
   let memberDriveData;
   if (req) {
@@ -46,8 +46,8 @@ AllNewsPage.getInitialProps = async ({
     variables: {
       contentAreaSlug: process.env.CONTENT_AREA_SLUG,
       pageNum: parseInt(pageNum),
-      previewToken: previewToken
-    }
+      previewToken: previewToken,
+    },
   })
     .then((result) => {
       data = result.data;
@@ -73,7 +73,7 @@ AllNewsPage.getInitialProps = async ({
 AllNewsPage.propTypes = {
   data: PropTypes.object,
   pageNum: PropTypes.number,
-  errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool])
+  errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
 };
 
 export default AllNewsPage;

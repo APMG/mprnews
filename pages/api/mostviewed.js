@@ -2,7 +2,7 @@ const { google } = require('googleapis');
 const NodeCache = require('node-cache');
 const myCache = new NodeCache({
   stdTTL: 600,
-  useClones: true
+  useClones: true,
 });
 
 export default async (req, res) => {
@@ -16,7 +16,7 @@ export default async (req, res) => {
     service_account = {
       client_email: process.env.client_email,
       private_key: process.env.private_key,
-      view_id: process.env.view_id
+      view_id: process.env.view_id,
     };
   }
 
@@ -35,13 +35,13 @@ export default async (req, res) => {
   }
 
   function fetchMostViewed() {
-    const getReports = async function(reports) {
+    const getReports = async function (reports) {
       await jwt.authorize();
 
       const request = {
         headers: { 'Content-Type': 'application/json' },
         auth: jwt,
-        resource: reports
+        resource: reports,
       };
 
       return await reporting.reports.batchGet(request);
@@ -53,10 +53,10 @@ export default async (req, res) => {
           dateRanges: [{ startDate: '1daysAgo', endDate: 'today' }],
           metrics: [
             { expression: 'ga:uniquePageviews' },
-            { expression: 'ga:sessions' }
+            { expression: 'ga:sessions' },
           ],
           orderBys: [
-            { fieldName: 'ga:uniquePageviews', sortOrder: 'DESCENDING' }
+            { fieldName: 'ga:uniquePageviews', sortOrder: 'DESCENDING' },
           ],
           dimensions: [{ name: 'ga:pagePath' }, { name: 'ga:pageTitle' }],
           dimensionFilterClauses: [
@@ -65,19 +65,19 @@ export default async (req, res) => {
                 {
                   dimensionName: 'ga:pagePath',
                   operator: 'BEGINS_WITH',
-                  expressions: ['/story/']
-                }
-              ]
-            }
+                  expressions: ['/story/'],
+                },
+              ],
+            },
           ],
-          pageSize: 5
-        }
-      ]
+          pageSize: 5,
+        },
+      ],
     };
     getReports(basic_report)
       .then((response) => {
         if (analytics == undefined) {
-          myCache.set('analytics', response.data.reports[0].data, function(
+          myCache.set('analytics', response.data.reports[0].data, function (
             err,
             success
           ) {

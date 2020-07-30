@@ -3,7 +3,7 @@ import { getCalendarEvents } from '../../../lib/googleCalendar';
 
 const cache = new NodeCache({
   stdTTL: 600,
-  useClones: true
+  useClones: true,
 });
 
 export default async (req, res) => {

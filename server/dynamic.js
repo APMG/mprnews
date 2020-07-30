@@ -15,11 +15,11 @@ module.exports.dynamic = (server, app, handle) => {
       ? path.match(/\/([0-9]+)$/)[0].replace('/', '')
       : 1;
     const query = JSON.stringify({
-      query: `{ content(slug: "${slug}",  contentAreaSlug: "${process.env.CONTENT_AREA_SLUG}") { resourceType } }`
+      query: `{ content(slug: "${slug}",  contentAreaSlug: "${process.env.CONTENT_AREA_SLUG}") { resourceType } }`,
     });
     const routes = {
       collection: '/collection',
-      page: '/page'
+      page: '/page',
     };
 
     ssGql(query, next).then((data) => {
@@ -27,7 +27,7 @@ module.exports.dynamic = (server, app, handle) => {
       res.set('Cache-Control', 'public, max-age=60');
       return app.render(req, res, routes[data.resourceType], {
         slug: slug,
-        pageNum: pageNum
+        pageNum: pageNum,
       });
     });
   });

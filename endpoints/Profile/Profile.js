@@ -71,7 +71,7 @@ const Profile = ({ data: { profile }, pageNum }) => {
                     overrides={{
                       link: LinkOverride,
                       apm_related_link: ApmRelatedLinkOverride,
-                      apm_related_link_list_item: ApmRelatedLinkListItemOverride
+                      apm_related_link_list_item: ApmRelatedLinkListItemOverride,
                     }}
                   />
                 )}
@@ -92,10 +92,10 @@ const Profile = ({ data: { profile }, pageNum }) => {
 
 Profile.propTypes = {
   data: PropTypes.shape({
-    profile: PropTypes.object
+    profile: PropTypes.object,
   }),
   pageNum: PropTypes.number,
-  originalSourceUrl: PropTypes.string
+  originalSourceUrl: PropTypes.string,
 };
 
 export default Profile;

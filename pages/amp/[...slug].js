@@ -34,8 +34,8 @@ VariableAmpPage.getInitialProps = async ({ query: { slug }, res }) => {
       variables: {
         contentAreaSlug: process.env.CONTENT_AREA_SLUG,
         slug: slug.join('/'),
-        pageNum: pageNum
-      }
+        pageNum: pageNum,
+      },
     })
       .then((result) => {
         data = result.data;
@@ -56,8 +56,8 @@ VariableAmpPage.getInitialProps = async ({ query: { slug }, res }) => {
       query: pageQuery,
       variables: {
         contentAreaSlug: process.env.CONTENT_AREA_SLUG,
-        slug: slug.join('/')
-      }
+        slug: slug.join('/'),
+      },
     })
       .then((result) => {
         data = result.data;
@@ -76,8 +76,8 @@ VariableAmpPage.getInitialProps = async ({ query: { slug }, res }) => {
     query: query,
     variables: {
       contentAreaSlug: process.env.CONTENT_AREA_SLUG,
-      slug: slug.join('/')
-    }
+      slug: slug.join('/'),
+    },
   })
     .then(async (result) => {
       if (res) {
@@ -107,14 +107,14 @@ VariableAmpPage.getInitialProps = async ({ query: { slug }, res }) => {
     type,
     pageNum,
     errorCode,
-    layout: 'amp'
+    layout: 'amp',
   };
 };
 
 VariableAmpPage.propTypes = {
   errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
   data: PropTypes.object,
-  slug: PropTypes.array
+  slug: PropTypes.array,
 };
 
 export default VariableAmpPage;
