@@ -8,12 +8,12 @@ const WeatherIconDayThunderstorm = ({
   y,
   width,
   height,
-  fill
+  fill,
 }) => {
   const classes = classNames({
     weatherIcon: true,
     'weatherIcon_day-thunderstorm': true,
-    [elementClass]: elementClass
+    [elementClass]: elementClass,
   });
 
   return (
@@ -70,7 +70,7 @@ WeatherIconDayThunderstorm.propTypes = {
   y: PropTypes.number,
   width: PropTypes.number,
   height: PropTypes.number,
-  fill: PropTypes.string
+  fill: PropTypes.string,
 };
 
 export default WeatherIconDayThunderstorm;

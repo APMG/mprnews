@@ -72,10 +72,10 @@ Page.propTypes = {
       originalSourceUrl: PropTypes.string,
       tag: PropTypes.shape({
         tagName: PropTypes.string,
-        to: PropTypes.string
-      })
-    })
-  })
+        to: PropTypes.string,
+      }),
+    }),
+  }),
 };
 
 export default Page;

@@ -39,7 +39,7 @@ AudioPlayerUI.propTypes = {
   audioThumbnail: PropTypes.string,
   forward: PropTypes.number,
   replay: PropTypes.number,
-  label: PropTypes.string
+  label: PropTypes.string,
 };
 
 export default AudioPlayerUI;

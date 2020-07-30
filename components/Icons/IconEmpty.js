@@ -8,7 +8,7 @@ const IconEmpty = (props) => {
   const classes = classNames({
     icon: true,
     'icon-empty': true,
-    [props.elementClass]: props.elementClass
+    [props.elementClass]: props.elementClass,
   });
 
   return (
@@ -24,7 +24,7 @@ const IconEmpty = (props) => {
 };
 
 IconEmpty.propTypes = {
-  elementClass: PropTypes.string
+  elementClass: PropTypes.string,
 };
 
 export default IconEmpty;

@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 const ampStyles = {
   link: {
     color: '#00334e',
-    textDecoration: 'none'
-  }
+    textDecoration: 'none',
+  },
 };
 
 const ApmCustomHtmlOverride = ({ nodeData, minimal, isAmp }) => {
@@ -32,7 +32,7 @@ const ApmCustomHtmlOverride = ({ nodeData, minimal, isAmp }) => {
 ApmCustomHtmlOverride.propTypes = {
   nodeData: PropTypes.object,
   minimal: PropTypes.bool,
-  isAmp: PropTypes.bool
+  isAmp: PropTypes.bool,
 };
 
 export default ApmCustomHtmlOverride;
@@ -47,8 +47,8 @@ let whitelist = {
     'cloudfront',
     'quizz',
     'qzzr',
-    'tableau'
-  ]
+    'tableau',
+  ],
 };
 
 function cleanHtml(attrs) {
@@ -65,7 +65,7 @@ function cleanHtml(attrs) {
     isIframe: iframes.length > 0,
     hasScript: scripts.length > 0,
     hasFallbackUrl: fallbackUrl !== '',
-    isApproved: whitelistRegex.test(fallbackUrl)
+    isApproved: whitelistRegex.test(fallbackUrl),
   };
 
   if (!cond.isIframe && cond.hasScript) {
@@ -74,7 +74,7 @@ function cleanHtml(attrs) {
       return `<iframe width="100%" height="500px" frameborder="0" scrolling="yes" marginheight="0" marginwidth="0" src="${fallbackUrl}"></iframe>`;
     } else if (!cond.hasFallbackUrl) {
       // Scroll through the script(s), get their srcs (if applicable) and check against whitelist.
-      [].forEach.call(scripts, function(script) {
+      [].forEach.call(scripts, function (script) {
         let isAllowed = whitelistRegex.test(script.src);
 
         if (!isAllowed) {
@@ -90,7 +90,7 @@ function cleanHtml(attrs) {
       // this is kind of a last-ditch thing that *may* not work depending on the individual code being inserted, whether it is being run on localhost or on prod, and whether it uses cookies. Your best bet is really making your own <iframe />
     } else {
       // otherwise, strip out the scripts and return that HTML lump
-      [].forEach.call(scripts, function(script) {
+      [].forEach.call(scripts, function (script) {
         script.parentNode.removeChild(script);
       });
 

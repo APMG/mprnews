@@ -42,12 +42,12 @@ const LayoutInner = (props) => {
 
 Layout.propTypes = {
   children: PropTypes.node,
-  layout: PropTypes.string
+  layout: PropTypes.string,
 };
 
 LayoutInner.propTypes = {
   children: PropTypes.node,
-  layout: PropTypes.string
+  layout: PropTypes.string,
 };
 
 export default Layout;

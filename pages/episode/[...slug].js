@@ -8,7 +8,7 @@ import initApollo from '../../lib/init-apollo';
 import episodeQuery from '../../endpoints/Episode/episode.gql';
 import {
   fetchMemberDriveStatus,
-  addMemberDriveElements
+  addMemberDriveElements,
 } from '../../utils/membershipUtils';
 import adCleanup from '../../utils/adCleanup';
 import { parseEmbeddedAssets } from '../../utils/utils';
@@ -34,7 +34,7 @@ const EpisodePage = ({ data, errorCode }) => {
 EpisodePage.getInitialProps = async ({
   query: { slug, previewToken },
   req,
-  res
+  res,
 }) => {
   let memberDriveData;
   if (req) {
@@ -48,8 +48,8 @@ EpisodePage.getInitialProps = async ({
     variables: {
       contentAreaSlug: process.env.CONTENT_AREA_SLUG,
       slug: slug.join('/'),
-      previewToken: previewToken
-    }
+      previewToken: previewToken,
+    },
   })
     .then((result) => {
       data = result.data;
@@ -74,13 +74,13 @@ EpisodePage.getInitialProps = async ({
   return {
     data: data,
     errorCode: errorCode,
-    memberDriveData
+    memberDriveData,
   };
 };
 
 EpisodePage.propTypes = {
   errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
-  data: PropTypes.object
+  data: PropTypes.object,
 };
 
 export default EpisodePage;

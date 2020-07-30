@@ -23,8 +23,8 @@ const Twitter = ({ data: { twitter } }) => {
 
 Twitter.propTypes = {
   data: PropTypes.shape({
-    twitter: PropTypes.object
-  })
+    twitter: PropTypes.object,
+  }),
 };
 
 export default Twitter;

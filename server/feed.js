@@ -49,7 +49,7 @@ module.exports.feed = (server) => {
                 }
               }
             }
-          }}`
+          }}`,
     });
 
     xml +=
@@ -59,9 +59,9 @@ module.exports.feed = (server) => {
       return await fetch(process.env.GRAPHQL_API, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
-        body: query
+        body: query,
       })
         .then((response) => {
           return response.json();
@@ -89,18 +89,18 @@ module.exports.feed = (server) => {
     const queryRes = fetchFeedData(query);
     queryRes.then((results) => {
       const feed = results.data.collection;
-      xml += `<title>${feed &&
-        results.data.collection.title.replace(
-          /&/,
-          '&amp;'
-        )} - MPR News</title>`;
+      xml += `<title>${
+        feed && results.data.collection.title.replace(/&/, '&amp;')
+      } - MPR News</title>`;
       xml += `<atom:link
-      href="https://www.mprnews.org/feed/${feed &&
-        results.data.collection.canonicalSlug}"
+      href="https://www.mprnews.org/feed/${
+        feed && results.data.collection.canonicalSlug
+      }"
       rel="self"
       type="application/rss+xml"/> `;
-      xml += `<description><![CDATA[${feed &&
-        results.data.collection.descriptionText}]]></description>`;
+      xml += `<description><![CDATA[${
+        feed && results.data.collection.descriptionText
+      }]]></description>`;
       xml += `<language>en-us</language>`;
       xml += `<lastBuildDate>${format(
         new Date(feed && results.data.collection.publishDate),
@@ -120,7 +120,7 @@ module.exports.feed = (server) => {
           const ele = React.createElement(Body, {
             nodeData: JSON.parse(item.body),
             embedded: parseEmbeddedAssets(item.embeddedAssets),
-            minimal: false
+            minimal: false,
           });
           const markupImg = getImage(item);
           const markup = ReactDOMServer.renderToStaticMarkup(ele);

@@ -30,7 +30,7 @@ const AmpStory = ({ data: { story, alertConfig }, minimal }) => {
       return {
         title: `${contributor.profile?.title}`,
         href: `/profile?slug=${contributor.profile?.canonicalSlug}`,
-        as: `/people/${contributor.profile?.canonicalSlug}`
+        as: `/people/${contributor.profile?.canonicalSlug}`,
       };
     });
   }
@@ -139,7 +139,7 @@ AmpStory.propTypes = {
       authors: PropTypes.arrayOf(
         PropTypes.shape({
           title: PropTypes.string,
-          href: PropTypes.string
+          href: PropTypes.string,
         })
       ),
       body: PropTypes.string,
@@ -159,11 +159,11 @@ AmpStory.propTypes = {
       embeddedAssets: PropTypes.object,
       tag: PropTypes.shape({
         tagName: PropTypes.string,
-        to: PropTypes.string
-      })
-    })
+        to: PropTypes.string,
+      }),
+    }),
   }),
-  minimal: PropTypes.bool
+  minimal: PropTypes.bool,
 };
 
 export default AmpStory;

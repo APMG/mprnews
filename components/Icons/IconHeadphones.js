@@ -17,7 +17,7 @@ const IconHeadphones = (props) => (
 );
 
 IconHeadphones.propTypes = {
-  elementClass: PropTypes.string
+  elementClass: PropTypes.string,
 };
 
 export default IconHeadphones;

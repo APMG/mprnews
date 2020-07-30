@@ -7,12 +7,12 @@ const ampStyles = {
   prefix: {
     display: 'inline-block',
     marginRight: '.5em',
-    fontWeight: '700'
+    fontWeight: '700',
   },
   link: {
     fontFamily: '"Roboto", system-ui, -apple-system, sans-serif',
-    color: '#00334e'
-  }
+    color: '#00334e',
+  },
 };
 
 const ApmRelatedLinkOverride = ({ nodeData, isAmp }) => {
@@ -57,7 +57,7 @@ const ApmRelatedLinkOverride = ({ nodeData, isAmp }) => {
 
 ApmRelatedLinkOverride.propTypes = {
   isAmp: PropTypes.bool,
-  nodeData: PropTypes.object
+  nodeData: PropTypes.object,
 };
 
 export default ApmRelatedLinkOverride;
