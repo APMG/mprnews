@@ -4,7 +4,7 @@ import { Heading, Teaser, Time } from '@apmg/titan';
 import { Link } from '@apmg/titan';
 import { linkByTypeHref, linkByTypeAs } from '../../utils/cjsutils';
 
-const Updraft = ({ item }) => {
+const Updraft = ({ collectionTitle, item }) => {
   let link = linkByTypeHref(item);
   let linkAs = linkByTypeAs(item);
 
@@ -20,10 +20,12 @@ const Updraft = ({ item }) => {
 
   return (
     <>
-      <Heading level={2} elementClass="hdg hdg-section">
-        {'Updraft with Paul Huttner'}
-      </Heading>
-      <hr />
+      <div className="collection_header collection_header-left">
+        <Heading level={2} elementClass="hdg hdg-section">
+          {collectionTitle}
+        </Heading>
+      </div>
+
       <div className="teaserContainer">
         <Teaser
           id={item.id}
@@ -87,6 +89,7 @@ const Updraft = ({ item }) => {
 };
 
 Updraft.propTypes = {
+  collectionTitle: PropTypes.string,
   item: PropTypes.object
 };
 

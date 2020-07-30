@@ -42,45 +42,58 @@ const Weather = (props) => {
   return loading ? (
     <Loading />
   ) : (
-    <section className="weather section">
-      <div className="weather_location">
-        <div className="weather_heading">
-          <Heading level={1} elementClass="hdg-2">
-            {name}
-          </Heading>
-          <div className="weather_share">
-            <ShareSocialButtons
-              contentUrl={'weather'}
-              title={`Weather Forecast for ${name}`}
-            />
-          </div>
-        </div>
-
-        <select
-          className="weather_locationSelect"
-          onChange={handleChange}
-          value={location.name}
-        >
-          {weatherConfig.map((loc) => (
-            <option key={loc.id} value={`${loc.name}`} label={loc.name}>
-              {loc.name}
-            </option>
-          ))}
-        </select>
-      </div>
-
+    <div className="weather">
       {alerts.map((alert) => {
         // This should be a link, but I can't figure out how to link to an endpoint for this alert given this  However, we do have the raw alert data and could simply set this to expand and show the detailed description for ourselves. I think that's the best approach.
         return <WeatherAlert key={alert.id} alert={alert} />;
       })}
+      <section className="section">
+        <div className="weather_heading">
+          <Heading level={1} elementClass="hdg-2">
+            Weather
+          </Heading>
+        </div>
+        <div className="weather_location">
+          <Heading level={2} elementClass="hdg-3">
+            {name}
+          </Heading>
+          <select
+            className="weather_locationSelect"
+            onChange={handleChange}
+            value={location.name}
+          >
+            {weatherConfig.map((loc) => (
+              <option key={loc.id} value={`${loc.name}`} label={loc.name}>
+                {loc.name}
+              </option>
+            ))}
+          </select>
+        </div>
 
-      <CurrentWeather weather={weather} forecast={forecast} />
-
-      <WeeklyForecast forecast={forecast} />
-
-      <TwoDaysChart forecast={forecast} />
-      {updraft && <Updraft item={updraft.collection.results.items[0]} />}
-    </section>
+        <CurrentWeather weather={weather} forecast={forecast} />
+        <div className="weather_share">
+          <ShareSocialButtons
+            contentUrl={'weather'}
+            title={`Weather Forecast for ${name}`}
+            shareText={'Share Forecast'}
+          />
+        </div>
+      </section>
+      <section className="section">
+        <WeeklyForecast forecast={forecast} />
+      </section>
+      <section className="section">
+        <TwoDaysChart forecast={forecast} />
+      </section>
+      <section className="section">
+        {updraft && (
+          <Updraft
+            collectionTitle={updraft.collection.title}
+            item={updraft.collection.results.items[0]}
+          />
+        )}
+      </section>
+    </div>
   );
 };
 
