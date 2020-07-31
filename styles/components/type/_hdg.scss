@@ -80,12 +80,20 @@
 }
 
 .hdg-temp {
-  margin-left: 15px;
   font-size: 4.5em;
   font-weight: 100;
+  line-height: 1;
 
   @include media-max($media-tablet) {
     margin-top: 15px;
+  }
+
+  &::after {
+    content: '° F';
+    position: absolute;
+    top: 1em;
+    width: 100%;
+    font-size: 2rem;
   }
 }
 
@@ -95,4 +103,8 @@
   margin: 0 0 34px 5px;
   color: $color-text;
   align-self: flex-end;
+}
+
+.hdg-currentWeather {
+  width: 155px;
 }

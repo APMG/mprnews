@@ -65,11 +65,16 @@ const WeeklyForecast = ({ forecast }) => {
 
   return (
     <>
-      <Heading level={2} elementClass="weather_chartTitle">
-        {'Weekly forecast'}
-      </Heading>
-      <div className="weather_weeklyForecast">
-        <div className="weather_weeklyChart">
+      <div className="weather_padding">
+        <Heading
+          level={2}
+          elementClass="hdg hdg-3 hdg-section hdg-section-small"
+        >
+          {'Weekly forecast'}
+        </Heading>
+      </div>
+      <div className="weather_card">
+        <div className="weather_weekly">
           {buckets.map((bucket, i) => {
             return (
               <div key={i} className="weather_weekday">

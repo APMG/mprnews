@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from '@apmg/titan';
 import Icon from '../Icons/Icon';
+import PropTypes from 'prop-types';
 
-const DonateAsk = () => {
+const DonateAsk = (props) => {
   return (
-    <div className="donateAsk">
+    <div className={`donateAsk ${props.elementClass}`}>
       <div className="donateAsk_header">
         <h2 className="hdg hdg-2">Before you go...</h2>
       </div>
@@ -38,5 +39,9 @@ const DonateAsk = () => {
       </div>
     </div>
   );
+};
+
+DonateAsk.propTypes = {
+  elementClass: PropTypes.string,
 };
 export default DonateAsk;

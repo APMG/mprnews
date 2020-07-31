@@ -44,9 +44,10 @@ const WeatherPage = ({ data, errorCode }) => {
     setLoading(false);
   };
   useEffect(() => {
-    fetchTheWeather();
-    fetchMemberDriveStatus().then((data) => {
-      addMemberDriveElements(data);
+    fetchTheWeather().then(() => {
+      fetchMemberDriveStatus().then((data) => {
+        addMemberDriveElements(data);
+      });
     });
   }, []);
 
@@ -70,7 +71,7 @@ WeatherPage.getInitialProps = async ({ res }) => {
     query: query,
     variables: {
       contentAreaSlug: process.env.CONTENT_AREA_SLUG,
-      slug: 'weather-and-climate',
+      slug: 'weather-and-climate/updraft',
       pageNum: parseInt(1),
       pageSize: parseInt(10),
     },

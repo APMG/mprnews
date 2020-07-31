@@ -7,6 +7,15 @@
   margin: 3rem auto;
   border-radius: 3px;
   border-top: 6px solid $color-blue-dark;
+
+  &.donateAsk-em {
+    margin-left: 0;
+    max-width: 100%;
+
+    @include media($media-desktop) {
+      max-width: 70%;
+    }
+  }
 }
 
 .donateAsk_header,

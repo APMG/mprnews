@@ -41,7 +41,7 @@ WeatherPage.getInitialProps = async ({ query: { city }, res }) => {
     query: query,
     variables: {
       contentAreaSlug: process.env.CONTENT_AREA_SLUG,
-      slug: 'weather-and-climate',
+      slug: 'weather-and-climate/updraft',
       pageNum: parseInt(1),
       pageSize: parseInt(10),
     },

@@ -3,7 +3,7 @@ import Icon from '../Icons/Icon';
 import PropTypes from 'prop-types';
 import { Heading } from '@apmg/titan';
 
-const ShareSocialButtons = ({ contentUrl, title }) => {
+const ShareSocialButtons = ({ shareText, contentUrl, title }) => {
   //Don't send the share event information to GA by default
   const shareFBEventGA = 'facebook';
   const shareTwitterEventGA = 'tweet';
@@ -50,7 +50,7 @@ const ShareSocialButtons = ({ contentUrl, title }) => {
   return (
     <div className="shareSocialButtons hList">
       <Heading level={3} className="hdg hdg-5">
-        Share story
+        {shareText ? shareText : 'Share story'}
       </Heading>
       {/* Twitter class needs to stay, it triggers GA tracking */}
       <a
@@ -94,6 +94,7 @@ const ShareSocialButtons = ({ contentUrl, title }) => {
 ShareSocialButtons.propTypes = {
   contentUrl: PropTypes.string,
   title: PropTypes.string,
+  shareText: PropTypes.string,
 };
 
 export default ShareSocialButtons;
