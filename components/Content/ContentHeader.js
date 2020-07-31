@@ -25,7 +25,7 @@ const ContentHeader = (props) => {
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
         event: 'sendUWContentTopic',
-        contentTopic: checkTagName
+        contentTopic: checkTagName,
       });
     } else {
       console.error('you broke the ads');
@@ -89,7 +89,7 @@ ContentHeader.propTypes = {
   authors: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string,
-      href: PropTypes.string
+      href: PropTypes.string,
     })
   ),
   headingLevel: PropTypes.number,
@@ -99,9 +99,9 @@ ContentHeader.propTypes = {
   tag: PropTypes.shape({
     to: PropTypes.string,
     href: PropTypes.string,
-    tagName: PropTypes.string
+    tagName: PropTypes.string,
   }),
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
 };
 
 export default ContentHeader;

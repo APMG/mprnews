@@ -19,7 +19,7 @@ const IconPopOut = (props) => {
 };
 
 IconPopOut.propTypes = {
-  elementClass: PropTypes.string
+  elementClass: PropTypes.string,
 };
 
 export default IconPopOut;

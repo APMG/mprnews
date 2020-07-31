@@ -19,7 +19,7 @@ const IconHeart = (props) => {
 };
 
 IconHeart.propTypes = {
-  elementClass: PropTypes.string
+  elementClass: PropTypes.string,
 };
 
 export default IconHeart;

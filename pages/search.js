@@ -4,7 +4,7 @@ import ErrorPage from 'next/error';
 import Search from '../endpoints/Search/Search';
 import {
   fetchMemberDriveStatus,
-  addMemberDriveElements
+  addMemberDriveElements,
 } from '../utils/membershipUtils';
 import adCleanup from '../utils/adCleanup';
 
@@ -25,7 +25,7 @@ const SearchPage = ({ errorCode }) => {
 SearchPage.getInitialProps = async ({
   query: { slug, previewToken },
   req,
-  res
+  res,
 }) => {
   let memberDriveData;
   if (req) {
@@ -42,7 +42,7 @@ SearchPage.getInitialProps = async ({
 };
 
 SearchPage.propTypes = {
-  errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool])
+  errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
 };
 
 export default SearchPage;

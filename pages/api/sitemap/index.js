@@ -11,16 +11,16 @@ export default async (req, res) => {
             totalPages
           }
         }
-      `
+      `,
   });
   xml += '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
   const fetchFeedData = async (query) => {
     return await fetch(process.env.GRAPHQL_API, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: query
+      body: query,
     })
       .then((response) => {
         return response.json();

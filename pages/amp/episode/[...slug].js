@@ -21,8 +21,8 @@ AmpEpisodePage.getInitialProps = async ({ query: { slug }, res }) => {
     query: query,
     variables: {
       contentAreaSlug: process.env.CONTENT_AREA_SLUG,
-      slug: slug.join('/')
-    }
+      slug: slug.join('/'),
+    },
   })
     .then((result) => {
       data = result.data;
@@ -47,13 +47,13 @@ AmpEpisodePage.getInitialProps = async ({ query: { slug }, res }) => {
   return {
     errorCode,
     data,
-    layout: 'amp'
+    layout: 'amp',
   };
 };
 
 AmpEpisodePage.propTypes = {
   errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
-  data: PropTypes.object
+  data: PropTypes.object,
 };
 
 export default AmpEpisodePage;

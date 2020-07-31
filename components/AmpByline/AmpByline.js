@@ -7,8 +7,8 @@ import { sortByOrder } from '../../utils/utils';
 let ampStyles = {
   byline: {
     textDecoration: 'none',
-    color: '#00334e'
-  }
+    color: '#00334e',
+  },
 };
 
 const Byline = (props) => {
@@ -39,7 +39,7 @@ const Byline = (props) => {
 };
 
 Byline.propTypes = {
-  authors: PropTypes.array
+  authors: PropTypes.array,
 };
 
 export default Byline;

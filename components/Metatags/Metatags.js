@@ -158,7 +158,7 @@ Metatags.propTypes = {
   modifiedDate: PropTypes.string,
   authors: PropTypes.array,
   noFollow: PropTypes.bool,
-  originalSourceUrl: PropTypes.string
+  originalSourceUrl: PropTypes.string,
 };
 
 export default React.memo(Metatags);

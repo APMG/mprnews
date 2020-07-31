@@ -26,8 +26,8 @@ Tabs.propTypes = {
   links: PropTypes.arrayOf(
     PropTypes.shape({
       day: PropTypes.string,
-      href: PropTypes.string
+      href: PropTypes.string,
     })
-  )
+  ),
 };
 export default Tabs;

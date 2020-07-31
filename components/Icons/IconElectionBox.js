@@ -31,7 +31,7 @@ const IconElectionBox = (props) => {
 };
 
 IconElectionBox.propTypes = {
-  elementClass: PropTypes.string
+  elementClass: PropTypes.string,
 };
 
 export default IconElectionBox;

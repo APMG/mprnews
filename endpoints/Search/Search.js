@@ -8,18 +8,18 @@ const Search = () => {
       // Render an element with both search box and search results in div with id 'test'.
       google.search.cse.element.render({
         div: 'gsearch',
-        tag: 'search'
+        tag: 'search',
       });
     } else {
       // Document is not ready yet, when CSE element is initialized.
       if (typeof google === 'undefined') {
         return;
       }
-      google.setOnLoadCallback(function() {
+      google.setOnLoadCallback(function () {
         // Render an element with both search box and search results in div with id 'gsearch'.
         google.search.cse.element.render({
           div: 'gsearch',
-          tag: 'search'
+          tag: 'search',
         });
       }, true);
     }
@@ -29,7 +29,7 @@ const Search = () => {
     // parameters, like parsetags, callbacks.
     window.__gcse = {
       parsetags: 'explicit',
-      callback: myCallback
+      callback: myCallback,
     };
 
     var cx = '009362219672105805737:m-ja7wfb1tc'; // Insert your own Custom Search engine ID here
