@@ -44,15 +44,20 @@ const Calendar = ({ events }) => {
       </div>
     );
   };
+  let row = 0;
   return (
     <ContentGrid sidebar={downloadLinks()}>
       <table className="schedule">
         <tbody>
-          {events.map((event, i) => {
+          {events.map((event) => {
+            if (!event.start.date) {
+              return null;
+            }
+            row++;
             return (
               <tr
                 key={event.id}
-                className={i % 2 !== 0 ? 'schedule_striped' : ''}
+                className={row % 2 !== 0 ? 'schedule_striped' : ''}
               >
                 <td className="schedule_leftmost">
                   {formatDate(event.start?.date)}
