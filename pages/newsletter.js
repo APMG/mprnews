@@ -4,7 +4,7 @@ import ErrorPage from 'next/error';
 import Newsletter from '../endpoints/Newsletter/Newsletter';
 import {
   fetchMemberDriveStatus,
-  addMemberDriveElements
+  addMemberDriveElements,
 } from '../utils/membershipUtils';
 import adCleanup from '../utils/adCleanup';
 
@@ -38,7 +38,7 @@ NewsletterPage.getInitialProps = async ({ query: { slug }, req, res }) => {
 };
 
 NewsletterPage.propTypes = {
-  errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool])
+  errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
 };
 
 export default NewsletterPage;

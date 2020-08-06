@@ -6,7 +6,7 @@ import ErrorPage from 'next/error';
 import Schedule from '../../endpoints/Schedule/Schedule';
 import {
   fetchMemberDriveStatus,
-  addMemberDriveElements
+  addMemberDriveElements,
 } from '../../utils/membershipUtils';
 import adCleanup from '../../utils/adCleanup';
 
@@ -39,9 +39,9 @@ SchedulePage.getInitialProps = async ({ query: { day }, req, res }) => {
     return {
       schedule: {
         props,
-        day
+        day,
       },
-      errorCode
+      errorCode,
     };
   }
 
@@ -49,14 +49,14 @@ SchedulePage.getInitialProps = async ({ query: { day }, req, res }) => {
   return {
     schedule: {
       props,
-      day
-    }
+      day,
+    },
   };
 };
 
 SchedulePage.propTypes = {
   schedule: PropTypes.object,
-  errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool])
+  errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
 };
 
 export default SchedulePage;

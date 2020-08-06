@@ -42,6 +42,6 @@ const DonateAsk = (props) => {
 };
 
 DonateAsk.propTypes = {
-  elementClass: PropTypes.string
+  elementClass: PropTypes.string,
 };
 export default DonateAsk;

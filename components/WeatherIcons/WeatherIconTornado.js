@@ -6,7 +6,7 @@ const WeatherIconTornado = ({ elementClass, x, y, width, height, fill }) => {
   const classes = classNames({
     weatherIcon: true,
     weatherIcon_tornado: true,
-    [elementClass]: elementClass
+    [elementClass]: elementClass,
   });
 
   return (
@@ -54,7 +54,7 @@ WeatherIconTornado.propTypes = {
   y: PropTypes.number,
   width: PropTypes.number,
   height: PropTypes.number,
-  fill: PropTypes.string
+  fill: PropTypes.string,
 };
 
 export default WeatherIconTornado;

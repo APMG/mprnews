@@ -28,7 +28,7 @@ const IconSearch = (props) => {
 };
 
 IconSearch.propTypes = {
-  elementClass: PropTypes.string
+  elementClass: PropTypes.string,
 };
 
 export default IconSearch;

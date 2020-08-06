@@ -34,7 +34,7 @@ ListenPage.getInitialProps = async ({ res }) => {
 };
 
 ListenPage.propTypes = {
-  errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool])
+  errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
 };
 
 export default ListenPage;

@@ -21,7 +21,7 @@ const Department = ({ data: { department } }) => {
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
       event: 'sendUWContentTopic',
-      contentTopic: 'personnel'
+      contentTopic: 'personnel',
     });
   }, []);
 
@@ -54,7 +54,7 @@ const Department = ({ data: { department } }) => {
               overrides={{
                 link: LinkOverride,
                 apm_related_link: ApmRelatedLinkOverride,
-                apm_related_link_list_item: ApmRelatedLinkListItemOverride
+                apm_related_link_list_item: ApmRelatedLinkListItemOverride,
               }}
             />
             <div className="department_items userContent">
@@ -110,8 +110,8 @@ const Department = ({ data: { department } }) => {
 
 Department.propTypes = {
   data: PropTypes.shape({
-    department: PropTypes.object
-  })
+    department: PropTypes.object,
+  }),
 };
 
 export default Department;

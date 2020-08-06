@@ -6,7 +6,7 @@ const mockResponse = () => {
     writeHead: jest.fn((url) => `Redirected to ${url}`),
     statusCode: jest.fn(() => 200),
     memberDriveData: 'such data',
-    setHeader: jest.fn()
+    setHeader: jest.fn(),
   };
   return res;
 };
@@ -16,13 +16,13 @@ jest.mock('../../lib/init-apollo', () => () => {
   const storyData = {
     data: {
       story: {
-        canonicalSlug: 'canonicalUrl'
-      }
-    }
+        canonicalSlug: 'canonicalUrl',
+      },
+    },
   };
 
   const client = {
-    query: jest.fn(() => Promise.resolve(storyData))
+    query: jest.fn(() => Promise.resolve(storyData)),
   };
   return client;
 });
@@ -32,11 +32,11 @@ describe('Story.getInitialProps', () => {
     const req = {};
     const res = mockResponse();
     const query = {
-      slug: ['Non-CanonicalUrl']
+      slug: ['Non-CanonicalUrl'],
     };
     await Story.getInitialProps({ query, req, res });
     expect(res.writeHead).toHaveBeenCalledWith(301, {
-      Location: '/story/canonicalUrl'
+      Location: '/story/canonicalUrl',
     });
   });
 
@@ -44,19 +44,19 @@ describe('Story.getInitialProps', () => {
     const req = {};
     const res = mockResponse();
     const query = {
-      slug: ['canonicalUrl']
+      slug: ['canonicalUrl'],
     };
     const { data, errorCode, memberDriveData } = await Story.getInitialProps({
       query,
       req,
-      res
+      res,
     });
 
     expect(res.writeHead).not.toHaveBeenCalled();
     expect(data).toEqual({
       story: {
-        canonicalSlug: 'canonicalUrl'
-      }
+        canonicalSlug: 'canonicalUrl',
+      },
     });
     expect(errorCode).toBeFalsy();
     expect(memberDriveData).toEqual('such data');

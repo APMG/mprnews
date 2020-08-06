@@ -6,7 +6,7 @@ import initApollo from '../../lib/init-apollo';
 import profileQuery from '../../endpoints/Profile/profile.gql';
 import {
   fetchMemberDriveStatus,
-  addMemberDriveElements
+  addMemberDriveElements,
 } from '../../utils/membershipUtils';
 import { isNumeric } from '../../utils/utils';
 import adCleanup from '../../utils/adCleanup';
@@ -29,7 +29,7 @@ const ProfilePage = ({ data, pageNum, errorCode }) => {
 ProfilePage.getInitialProps = async ({
   query: { slug, previewToken },
   req,
-  res
+  res,
 }) => {
   let data, errorCode;
   let memberDriveData;
@@ -45,8 +45,8 @@ ProfilePage.getInitialProps = async ({
         contentAreaSlug: process.env.CONTENT_AREA_SLUG,
         slug: slug.join('/'),
         pageNum: parseInt(pageNum),
-        previewToken: previewToken
-      }
+        previewToken: previewToken,
+      },
     })
     .then((result) => {
       data = result.data;
@@ -73,14 +73,14 @@ ProfilePage.getInitialProps = async ({
     data,
     pageNum: parseInt(pageNum),
     errorCode,
-    memberDriveData
+    memberDriveData,
   };
 };
 
 ProfilePage.propTypes = {
   data: PropTypes.object,
   pageNum: PropTypes.number,
-  errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool])
+  errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
 };
 
 export default ProfilePage;

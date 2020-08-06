@@ -11,7 +11,7 @@ const AudioPlayerContext = React.createContext({
   handleAudioButtonClick() {},
   loadPlayer() {},
   playerInstance: {},
-  playerRef: (el) => (this.playerRef = el)
+  playerRef: (el) => (this.playerRef = el),
 });
 
 export default AudioPlayerContext;

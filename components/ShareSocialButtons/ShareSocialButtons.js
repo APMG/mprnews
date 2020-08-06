@@ -34,7 +34,7 @@ const ShareSocialButtons = ({ shareText, contentUrl, title }) => {
     eventCategory: 'share',
     eventAction: 'click',
     eventLabel: shareEventGA,
-    eventInteraction: 'false'
+    eventInteraction: 'false',
   };
 
   const pushLayerInfoForGA = (dataLayerObj, shareEventGA) => {
@@ -94,7 +94,7 @@ const ShareSocialButtons = ({ shareText, contentUrl, title }) => {
 ShareSocialButtons.propTypes = {
   contentUrl: PropTypes.string,
   title: PropTypes.string,
-  shareText: PropTypes.string
+  shareText: PropTypes.string,
 };
 
 export default ShareSocialButtons;
