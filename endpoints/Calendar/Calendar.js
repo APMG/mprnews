@@ -44,31 +44,29 @@ const Calendar = ({ events }) => {
       </div>
     );
   };
-  let row = 0;
   return (
     <ContentGrid sidebar={downloadLinks()}>
       <table className="schedule">
         <tbody>
-          {events.map((event) => {
-            if (!event.start.date) {
-              return null;
-            }
-            row++;
-            return (
-              <tr
-                key={event.id}
-                className={row % 2 !== 0 ? 'schedule_striped' : ''}
-              >
-                <td className="schedule_leftmost">
-                  {formatDate(event.start?.date)}
-                </td>
-                <td className="schedule_rightmost">
-                  <strong>{event.summary}</strong>
-                  {buildDescription(event)}
-                </td>
-              </tr>
-            );
-          })}
+          {events
+            .filter((event) => event.start.date)
+            .sort((a, b) => new Date(a.start.date) - new Date(b.start.date))
+            .map((event, i) => {
+              return (
+                <tr
+                  key={event.id}
+                  className={i % 2 !== 0 ? 'schedule_striped' : ''}
+                >
+                  <td className="schedule_leftmost">
+                    {formatDate(event.start?.date)}
+                  </td>
+                  <td className="schedule_rightmost">
+                    <strong>{event.summary}</strong>
+                    {buildDescription(event)}
+                  </td>
+                </tr>
+              );
+            })}
         </tbody>
       </table>
     </ContentGrid>
