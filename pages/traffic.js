@@ -51,7 +51,7 @@ const TrafficPage = ({ errorCode }) => {
 };
 
 TrafficPage.propTypes = {
-  errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
+  errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool])
 };
 
 export default TrafficPage;

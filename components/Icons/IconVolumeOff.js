@@ -19,7 +19,7 @@ const IconOff = (props) => {
 };
 
 IconOff.propTypes = {
-  elementClass: PropTypes.string,
+  elementClass: PropTypes.string
 };
 
 export default IconOff;

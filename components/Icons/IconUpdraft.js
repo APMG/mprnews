@@ -6,7 +6,7 @@ const IconUpdraft = (props) => {
   const classes = classNames({
     icon: true,
     'icon-updraft': true,
-    [props.elementClass]: props.elementClass,
+    [props.elementClass]: props.elementClass
   });
 
   return (
@@ -87,7 +87,7 @@ const IconUpdraft = (props) => {
 };
 
 IconUpdraft.propTypes = {
-  elementClass: PropTypes.string,
+  elementClass: PropTypes.string
 };
 
 export default IconUpdraft;

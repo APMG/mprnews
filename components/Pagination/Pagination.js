@@ -43,7 +43,7 @@ const Pagination = ({ collection, collectionName, pageNum }) => {
 Pagination.propTypes = {
   collectionName: PropTypes.string,
   collection: PropTypes.object,
-  pageNum: PropTypes.number,
+  pageNum: PropTypes.number
 };
 
 export default Pagination;

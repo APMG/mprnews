@@ -12,7 +12,7 @@ const TwitterPage = ({ data, errorCode }) => {
 
 TwitterPage.getInitialProps = async ({
   query: { slug, previewToken },
-  res,
+  res
 }) => {
   const ApolloClient = initApollo();
   let data;
@@ -22,8 +22,8 @@ TwitterPage.getInitialProps = async ({
     variables: {
       contentAreaSlug: process.env.CONTENT_AREA_SLUG,
       slug: slug.join('/'),
-      previewToken: previewToken,
-    },
+      previewToken: previewToken
+    }
   })
     .then((result) => {
       data = result.data;
@@ -43,13 +43,13 @@ TwitterPage.getInitialProps = async ({
   return {
     data,
     errorCode,
-    layout: 'card',
+    layout: 'card'
   };
 };
 
 TwitterPage.propTypes = {
   data: PropTypes.object,
-  errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
+  errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool])
 };
 
 export default TwitterPage;

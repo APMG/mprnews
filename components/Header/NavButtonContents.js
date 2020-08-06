@@ -15,7 +15,7 @@ const NavButtonContents = (props) => {
 };
 
 NavButtonContents.propTypes = {
-  label: PropTypes.string,
+  label: PropTypes.string
 };
 
 export default NavButtonContents;

@@ -33,7 +33,7 @@ const Byline = (props) => {
 };
 
 Byline.propTypes = {
-  authors: PropTypes.array,
+  authors: PropTypes.array
 };
 
 export default Byline;

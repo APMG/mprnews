@@ -10,25 +10,25 @@ const ampStyles = {
     backgroundColor: '#94c4d9',
     borderRadius: '3px',
     color: 'inherit',
-    textDecoration: 'none',
+    textDecoration: 'none'
   },
   alertPrefix: {
     padding: '8px 12px',
     backgroundColor: '#00334e',
     color: '#ffffff',
     borderTopLeftRadius: '3px',
-    borderBottomLeftRadius: '3px',
+    borderBottomLeftRadius: '3px'
   },
   alertTitle: {
     padding: '8px 12px',
-    color: '#00334e',
+    color: '#00334e'
   },
   hdg: {
     margin: '0',
     fontSize: '1.2rem',
     fontWeight: '700',
-    lineHeight: 'normal',
-  },
+    lineHeight: 'normal'
+  }
 };
 
 const AmpAlert = (props) => {
@@ -55,12 +55,12 @@ AmpAlert.propTypes = {
   info: PropTypes.shape({
     alert: PropTypes.bool,
     info: PropTypes.shape({
-      show_on: PropTypes.object,
+      show_on: PropTypes.object
     }),
     prefix: PropTypes.string,
     title: PropTypes.string,
-    url: PropTypes.string,
-  }),
+    url: PropTypes.string
+  })
 };
 
 export default AmpAlert;

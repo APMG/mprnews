@@ -11,7 +11,7 @@ const IconCheckmark = ({ width = 12, height = 10 }) => {
 
 IconCheckmark.propTypes = {
   width: PropTypes.number,
-  height: PropTypes.number,
+  height: PropTypes.number
 };
 
 export default IconCheckmark;

@@ -5,16 +5,16 @@ const ampStyles = {
   figure: {
     margin: '0 0 1em',
     fontFamily: 'Roboto, system-ui, -apple-system, sans-serif',
-    fontSize: '.85em',
+    fontSize: '.85em'
   },
   figcaption: {
-    padding: '0.25em 1em 0',
+    padding: '0.25em 1em 0'
   },
   audio: {
     height: '42px',
     width: '100%',
-    minWidth: '300px',
-  },
+    minWidth: '300px'
+  }
 };
 
 const AmpAudioPlayButton = ({ audioSource, audioTitle, audioSubtitle }) => {
@@ -37,7 +37,7 @@ const AmpAudioPlayButton = ({ audioSource, audioTitle, audioSubtitle }) => {
 AmpAudioPlayButton.propTypes = {
   audioSource: PropTypes.string,
   audioSubtitle: PropTypes.string,
-  audioTitle: PropTypes.string,
+  audioTitle: PropTypes.string
 };
 
 export default AmpAudioPlayButton;

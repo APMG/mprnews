@@ -6,7 +6,7 @@ const IconTwitter = (props) => {
   const classes = classNames({
     icon: true,
     'icon-twitter': true,
-    [props.elementClass]: props.elementClass,
+    [props.elementClass]: props.elementClass
   });
 
   return (
@@ -24,7 +24,7 @@ const IconTwitter = (props) => {
 };
 
 IconTwitter.propTypes = {
-  elementClass: PropTypes.string,
+  elementClass: PropTypes.string
 };
 
 export default IconTwitter;

@@ -14,7 +14,7 @@ const AllNews = ({ data: { allNews } }) => {
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
         event: 'sendUWContentTopic',
-        contentTopic: createAllNewsName,
+        contentTopic: createAllNewsName
       });
     } else {
       console.error('you broke the ads');
@@ -92,8 +92,8 @@ const AllNews = ({ data: { allNews } }) => {
 
 AllNews.propTypes = {
   data: PropTypes.shape({
-    allNews: PropTypes.object,
-  }),
+    allNews: PropTypes.object
+  })
 };
 
 export default AllNews;

@@ -19,7 +19,7 @@ const IconPlay = (props) => {
 };
 
 IconPlay.propTypes = {
-  elementClass: PropTypes.string,
+  elementClass: PropTypes.string
 };
 
 export default IconPlay;

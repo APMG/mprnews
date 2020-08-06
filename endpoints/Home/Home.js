@@ -30,8 +30,8 @@ const Home = (data) => {
           {
             key: 'mpr-content-topic',
             name: 'mpr-content-topic',
-            content: 'homepage',
-          },
+            content: 'homepage'
+          }
         ]}
         links={[]}
       />

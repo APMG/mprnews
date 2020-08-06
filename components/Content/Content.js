@@ -30,11 +30,11 @@ const Content = ({
   imageCreditHref,
   minimal,
   redistributable,
-  video,
+  video
 }) => {
   const classes = classNames({
     content: true,
-    [elementClass]: elementClass,
+    [elementClass]: elementClass
   });
   let largest;
   if (image && redistributable) {
@@ -82,14 +82,22 @@ const Content = ({
       {video && (
         <div className="content_primaryVisual">
           <figure className="figure">
-            <video id={video.credit.name} autoPlay={true} muted={true}>
+            <video
+              id={video.credit.name}
+              autoPlay={true}
+              muted={true}
+              loop={true}
+            >
               <source src={video.url} type="video/mp4" />
               Your browser does not support HTML5 video.
             </video>
-            <figcaption className="figure_caption">
-              <div className="figure_caption_content">{video.caption}</div>
-              <span className="figure_credit">{video.credit.name}</span>
-            </figcaption>
+            {video.caption ||
+              (video.credit.name && (
+                <figcaption className="figure_caption">
+                  <div className="figure_caption_content">{video.caption}</div>
+                  <span className="figure_credit">{video.credit.name}</span>
+                </figcaption>
+              ))}
           </figure>
         </div>
       )}
@@ -107,7 +115,7 @@ const Content = ({
               apm_related_link_list_item: ApmRelatedLinkListItemOverride,
               apm_related_list: ApmRelatedListOverride,
               apm_image: ApmImageOverride,
-              apm_custom_html: ApmCustomHtmlOverride,
+              apm_custom_html: ApmCustomHtmlOverride
             }}
           />
         </div>
@@ -124,7 +132,7 @@ Content.propTypes = {
   authors: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string,
-      href: PropTypes.string,
+      href: PropTypes.string
     })
   ),
   headingLevel: PropTypes.number,
@@ -135,7 +143,7 @@ Content.propTypes = {
   embeddedAssets: PropTypes.object,
   tag: PropTypes.shape({
     tagName: PropTypes.string,
-    to: PropTypes.string,
+    to: PropTypes.string
   }),
   image: PropTypes.node,
   imageCaption: PropTypes.string,
@@ -143,7 +151,7 @@ Content.propTypes = {
   imageCreditHref: PropTypes.string,
   minimal: PropTypes.bool,
   redistributable: PropTypes.bool,
-  video: PropTypes.object,
+  video: PropTypes.object
 };
 
 export default Content;

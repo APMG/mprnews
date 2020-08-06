@@ -9,7 +9,7 @@ import gql from '../../../endpoints/Story/story.gql';
 
 import {
   fetchMemberDriveStatus,
-  addMemberDriveElements,
+  addMemberDriveElements
 } from '../../../utils/membershipUtils';
 import { parseEmbeddedAssets } from '../../../utils/utils';
 
@@ -39,8 +39,8 @@ PreviewPage.getInitialProps = async ({ query: { slug, token }, res }) => {
     variables: {
       contentAreaSlug: process.env.CONTENT_AREA_SLUG,
       slug: slug.join('/'),
-      previewToken: token,
-    },
+      previewToken: token
+    }
   })
     .then((result) => {
       data = result.data;
@@ -58,7 +58,7 @@ PreviewPage.getInitialProps = async ({ query: { slug, token }, res }) => {
         data.story.canonicalSlug !== slug.join('/')
       ) {
         res.writeHead(301, {
-          Location: `/story/${data.story.canonicalSlug}`,
+          Location: `/story/${data.story.canonicalSlug}`
         });
       }
     })
@@ -69,13 +69,13 @@ PreviewPage.getInitialProps = async ({ query: { slug, token }, res }) => {
 
   return {
     data,
-    errorCode,
+    errorCode
   };
 };
 
 PreviewPage.propTypes = {
   errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
-  data: PropTypes.object,
+  data: PropTypes.object
 };
 
 export default PreviewPage;

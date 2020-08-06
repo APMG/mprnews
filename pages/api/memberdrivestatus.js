@@ -1,20 +1,20 @@
 const NodeCache = require('node-cache');
 const membershipCache = new NodeCache({
   stdTTL: 300,
-  useClones: true,
+  useClones: true
 });
 
 export default (req, res) => {
   async function fetchMemberDriveData() {
     const membershipQuery = JSON.stringify({
-      query: `{ membershipConfig:potlatch(slug:"membership/mpr-news-membership") { json }}`,
+      query: `{ membershipConfig:potlatch(slug:"membership/mpr-news-membership") { json }}`
     });
     let response = await fetch(process.env.POTLATCH_API, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
-      body: membershipQuery,
+      body: membershipQuery
     });
     return await response.json();
   }

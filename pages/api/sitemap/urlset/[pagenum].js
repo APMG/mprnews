@@ -5,7 +5,7 @@ import absoluteUrl from 'next-absolute-url';
 export default async (req, res) => {
   const pageSize = 100;
   const {
-    query: { pagenum },
+    query: { pagenum }
   } = req;
   let xml = '<?xml version="1.0" encoding="UTF-8"?>';
   const query = JSON.stringify({
@@ -22,16 +22,16 @@ export default async (req, res) => {
                 }
           }
         }
-      `,
+      `
   });
   xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
   const fetchFeedData = async (query) => {
     return await fetch(process.env.GRAPHQL_API, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
-      body: query,
+      body: query
     })
       .then((response) => {
         return response.json();

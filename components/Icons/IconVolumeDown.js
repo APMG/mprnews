@@ -19,7 +19,7 @@ const IconVolumeDown = (props) => {
 };
 
 IconVolumeDown.propTypes = {
-  elementClass: PropTypes.string,
+  elementClass: PropTypes.string
 };
 
 export default IconVolumeDown;

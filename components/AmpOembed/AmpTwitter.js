@@ -19,7 +19,7 @@ const AmpTwitter = (props) => {
 
 AmpTwitter.propTypes = {
   embed: PropTypes.object,
-  minimal: PropTypes.bool,
+  minimal: PropTypes.bool
 };
 
 export default AmpTwitter;

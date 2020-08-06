@@ -14,7 +14,7 @@ const AdBottom = (props) => {
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
         event: 'getAdSlot',
-        contentTopic: 'homepage',
+        contentTopic: 'homepage'
       });
     }
   }, []);
@@ -38,6 +38,6 @@ const AdBottom = (props) => {
 };
 
 AdBottom.propTypes = {
-  homepageTopic: PropTypes.string,
+  homepageTopic: PropTypes.string
 };
 export default React.memo(AdBottom);

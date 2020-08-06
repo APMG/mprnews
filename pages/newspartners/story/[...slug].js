@@ -18,8 +18,8 @@ NewspartnerStory.getInitialProps = async ({ query: { slug }, res }) => {
     query: query,
     variables: {
       contentAreaSlug: process.env.CONTENT_AREA_SLUG,
-      slug: slug.join('/'),
-    },
+      slug: slug.join('/')
+    }
   })
     .then((result) => {
       data = result.data;
@@ -43,13 +43,13 @@ NewspartnerStory.getInitialProps = async ({ query: { slug }, res }) => {
   return {
     data,
     errorCode,
-    layout: 'newspartners',
+    layout: 'newspartners'
   };
 };
 
 NewspartnerStory.propTypes = {
   errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
-  data: PropTypes.object,
+  data: PropTypes.object
 };
 
 export default NewspartnerStory;

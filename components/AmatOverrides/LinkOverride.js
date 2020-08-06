@@ -35,7 +35,7 @@ LinkOverride.propTypes = {
   inner: PropTypes.object,
   href: PropTypes.string,
   title: PropTypes.string,
-  className: PropTypes.string,
+  className: PropTypes.string
 };
 
 export default LinkOverride;

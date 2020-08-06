@@ -12,13 +12,13 @@ const AudioPlayerUIContent = (props) => {
   const context = useContext(AudioPlayerContext);
   const [isScrolling, setIsScrolling] = useState(false);
   const [animationStyle, setAnimationStyle] = useState({
-    animationDuration: '5s',
+    animationDuration: '5s'
   });
   const titleRef = useRef();
 
   const innerClasses = classNames({
     player_titleInner: true,
-    'is-scrolling': isScrolling,
+    'is-scrolling': isScrolling
   });
 
   // Turns scrolling animation on and off
@@ -93,7 +93,7 @@ const AudioPlayerUIContent = (props) => {
 AudioPlayerUIContent.propTypes = {
   label: PropTypes.string,
   title: PropTypes.string,
-  subtitle: PropTypes.string,
+  subtitle: PropTypes.string
 };
 
 export default AudioPlayerUIContent;

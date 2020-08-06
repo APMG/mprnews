@@ -57,7 +57,7 @@ const ScheduleInner = ({ schedule }) => {
 };
 
 ScheduleInner.propTypes = {
-  schedule: PropTypes.object,
+  schedule: PropTypes.object
 };
 
 export default ScheduleInner;

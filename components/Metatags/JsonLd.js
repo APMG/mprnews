@@ -19,7 +19,7 @@ const JsonLd = (props) => {
     '@type': props.contentType,
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': fullUrl,
+      '@id': fullUrl
     },
     headline: props.title,
     image: [props.image],
@@ -32,16 +32,16 @@ const JsonLd = (props) => {
       name: 'MPR News',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://www.mprnews.org/opengraph-fallback.png',
-      },
-    },
+        url: 'https://www.mprnews.org/opengraph-fallback.png'
+      }
+    }
   };
 
   return (
     <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{
-        __html: JSON.stringify(metadata),
+        __html: JSON.stringify(metadata)
       }}
     />
   );
@@ -55,6 +55,6 @@ JsonLd.propTypes = {
   image: PropTypes.string,
   publishDate: PropTypes.string,
   updatedAt: PropTypes.string,
-  authors: PropTypes.array,
+  authors: PropTypes.array
 };
 export default JsonLd;

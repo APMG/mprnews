@@ -29,7 +29,7 @@ const Episode = ({ data: { episode, alertConfig } }) => {
         // prettier-ignore
         title: `${thisString}`,
         href: '/people/[...slug]',
-        as: `/people/${contributor.profile?.canonicalSlug}`,
+        as: `/people/${contributor.profile?.canonicalSlug}`
       };
     });
   }
@@ -115,7 +115,7 @@ Episode.propTypes = {
       authors: PropTypes.arrayOf(
         PropTypes.shape({
           title: PropTypes.string,
-          href: PropTypes.string,
+          href: PropTypes.string
         })
       ),
       body: PropTypes.string,
@@ -138,10 +138,10 @@ Episode.propTypes = {
       originalSourceUrl: PropTypes.string,
       tag: PropTypes.shape({
         tagName: PropTypes.string,
-        to: PropTypes.string,
-      }),
-    }),
-  }),
+        to: PropTypes.string
+      })
+    })
+  })
 };
 
 export default Episode;

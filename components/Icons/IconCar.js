@@ -19,7 +19,7 @@ const IconCar = (props) => {
 };
 
 IconCar.propTypes = {
-  elementClass: PropTypes.string,
+  elementClass: PropTypes.string
 };
 
 export default IconCar;

@@ -12,7 +12,7 @@ const ContentGrid = (props) => {
 
 ContentGrid.propTypes = {
   children: PropTypes.node,
-  sidebar: PropTypes.node,
+  sidebar: PropTypes.node
 };
 
 export default ContentGrid;

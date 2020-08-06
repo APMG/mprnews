@@ -84,7 +84,7 @@ const CurrentWeather = ({ weather, forecast }) => {
 
 CurrentWeather.propTypes = {
   weather: PropTypes.object,
-  forecast: PropTypes.object,
+  forecast: PropTypes.object
 };
 
 export default CurrentWeather;

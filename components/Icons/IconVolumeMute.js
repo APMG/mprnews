@@ -19,7 +19,7 @@ const IconMute = (props) => {
 };
 
 IconMute.propTypes = {
-  elementClass: PropTypes.string,
+  elementClass: PropTypes.string
 };
 
 export default IconMute;

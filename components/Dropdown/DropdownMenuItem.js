@@ -6,7 +6,7 @@ const DropdownMenuItem = (props) => {
 };
 
 DropdownMenuItem.propTypes = {
-  children: PropTypes.object,
+  children: PropTypes.object
 };
 
 export default DropdownMenuItem;

@@ -39,9 +39,9 @@ FooterContact.propTypes = {
     PropTypes.shape({
       href: PropTypes.string,
       icon: PropTypes.string,
-      label: PropTypes.string,
+      label: PropTypes.string
     })
-  ),
+  )
 };
 
 export default FooterContact;

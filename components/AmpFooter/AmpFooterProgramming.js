@@ -7,29 +7,29 @@ import { hrefType } from '../../utils/utils';
 const ampStyles = {
   header: {
     padding: '15px',
-    borderBottom: '2px solid gray',
+    borderBottom: '2px solid gray'
   },
   footerPodcasts: {
-    maxWidth: '400px',
+    maxWidth: '400px'
   },
   footerConnect: {
-    minWidth: '300px',
+    minWidth: '300px'
   },
   footerProgramming: {
-    minWidth: '300px',
+    minWidth: '300px'
   },
   footerUpper: {
     backgroundColor: '#c2f2ff',
     padding: '15px',
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'space-around',
+    justifyContent: 'space-around'
   },
   list: {
     listStyle: 'none',
-    marginLeft: '-30px',
+    marginLeft: '-30px'
   },
-  invisible: { display: 'none' },
+  invisible: { display: 'none' }
 };
 
 const AmpFooterProgramming = (props) => {
@@ -71,7 +71,7 @@ const AmpFooterProgramming = (props) => {
 };
 
 AmpFooterProgramming.defaultProps = {
-  title: 'Program information',
+  title: 'Program information'
 };
 
 AmpFooterProgramming.propTypes = {
@@ -79,11 +79,11 @@ AmpFooterProgramming.propTypes = {
   links: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string,
-      href: PropTypes.string,
+      href: PropTypes.string
     })
   ),
   listenHref: PropTypes.string,
-  listenText: PropTypes.string,
+  listenText: PropTypes.string
 };
 
 export default AmpFooterProgramming;

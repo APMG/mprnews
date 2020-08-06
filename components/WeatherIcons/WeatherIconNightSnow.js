@@ -6,7 +6,7 @@ const WeatherIconDaySnow = ({ elementClass, x, y, width, height, fill }) => {
   const classes = classNames({
     weatherIcon: true,
     'weatherIcon_night-snow': true,
-    [elementClass]: elementClass,
+    [elementClass]: elementClass
   });
 
   return (
@@ -61,7 +61,7 @@ WeatherIconDaySnow.propTypes = {
   y: PropTypes.number,
   width: PropTypes.number,
   height: PropTypes.number,
-  fill: PropTypes.string,
+  fill: PropTypes.string
 };
 
 export default WeatherIconDaySnow;

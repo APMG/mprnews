@@ -10,26 +10,26 @@ const ampStyles = {
     color: 'white',
     fontSize: '1.1em',
     lineHeight: '1.4em',
-    fontFamily: 'Roboto, system-ui, -apple-system, sans-serif',
+    fontFamily: 'Roboto, system-ui, -apple-system, sans-serif'
   },
   footerColumns: {
     display: 'block',
     margin: '1em auto',
     columnCount: '4',
     columnWidth: '15em',
-    columnGap: '1em',
+    columnGap: '1em'
   },
   footerLogo: {
-    breakAfter: 'column',
+    breakAfter: 'column'
   },
   footerNav: {
     listStyle: 'none',
     margin: '0',
-    padding: '0',
+    padding: '0'
   },
   footerLink: {
     textDecoration: 'none',
-    color: 'white',
+    color: 'white'
   },
   footerItem: {
     fontSize: '90%',
@@ -37,9 +37,9 @@ const ampStyles = {
     margin: '0 0 1em',
     fontWeight: '700',
     textAlign: 'left',
-    breakInside: 'avoid',
+    breakInside: 'avoid'
   },
-  invisible: { display: 'none' },
+  invisible: { display: 'none' }
 };
 
 const AmpFooterLower = (props) => {
@@ -82,7 +82,7 @@ const AmpFooterLower = (props) => {
 AmpFooterLower.propTypes = {
   nav: PropTypes.arrayOf(
     PropTypes.shape({ label: PropTypes.string, href: PropTypes.string })
-  ),
+  )
 };
 
 export default AmpFooterLower;

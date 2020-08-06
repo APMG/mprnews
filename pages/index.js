@@ -7,7 +7,7 @@ import initApollo from '../lib/init-apollo';
 import hQuery from '../endpoints/Home/home.gql';
 import {
   fetchMemberDriveStatus,
-  addMemberDriveElements,
+  addMemberDriveElements
 } from '../utils/membershipUtils';
 import adCleanup from '../utils/adCleanup';
 
@@ -37,8 +37,8 @@ HomePage.getInitialProps = async ({ res }) => {
     query: hQuery,
     variables: {
       contentAreaSlug: process.env.CONTENT_AREA_SLUG,
-      slug: 'homepage',
-    },
+      slug: 'homepage'
+    }
   })
     .then((result) => {
       data = result.data;
@@ -59,7 +59,7 @@ HomePage.getInitialProps = async ({ res }) => {
 
 HomePage.propTypes = {
   data: PropTypes.object,
-  errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
+  errorCode: PropTypes.oneOfType([PropTypes.number, PropTypes.bool])
 };
 
 export default HomePage;

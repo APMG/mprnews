@@ -24,7 +24,7 @@ const DropdownMenu = (props) => {
 DropdownMenu.propTypes = {
   isOpen: PropTypes.bool,
   toggle: PropTypes.node.isRequired,
-  children: PropTypes.object,
+  children: PropTypes.object
 };
 
 export default DropdownMenu;

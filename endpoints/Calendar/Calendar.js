@@ -74,7 +74,7 @@ const Calendar = ({ events }) => {
 };
 
 Calendar.propTypes = {
-  events: PropTypes.arrayOf(PropTypes.object),
+  events: PropTypes.arrayOf(PropTypes.object)
 };
 
 export default Calendar;

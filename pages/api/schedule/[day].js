@@ -2,7 +2,7 @@ import fetchSchedule from './fetchSchedule';
 
 export default async (req, res) => {
   const {
-    query: { day },
+    query: { day }
   } = req;
 
   let data = await fetchSchedule(day);

@@ -4,7 +4,7 @@ import { weatherConfig } from '../utils/defaultData';
 const WeatherContext = React.createContext({
   location: weatherConfig[0],
   handleLocationChange() {},
-  weatherData: {},
+  weatherData: {}
 });
 
 export default WeatherContext;

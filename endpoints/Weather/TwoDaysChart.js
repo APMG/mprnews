@@ -130,7 +130,7 @@ const TwoDaysChart = ({ forecast }) => {
 };
 
 TwoDaysChart.propTypes = {
-  forecast: PropTypes.object,
+  forecast: PropTypes.object
 };
 
 export default TwoDaysChart;

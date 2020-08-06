@@ -7,7 +7,7 @@ import { weatherConfig } from '../../utils/defaultData';
 import Weather from '../../endpoints/Weather/Weather';
 import {
   fetchMemberDriveStatus,
-  addMemberDriveElements,
+  addMemberDriveElements
 } from '../../utils/membershipUtils';
 import adCleanup from '../../utils/adCleanup';
 import initApollo from '../../lib/init-apollo';
@@ -43,8 +43,8 @@ WeatherPage.getInitialProps = async ({ query: { city }, res }) => {
       contentAreaSlug: process.env.CONTENT_AREA_SLUG,
       slug: 'weather-and-climate/updraft',
       pageNum: parseInt(1),
-      pageSize: parseInt(10),
-    },
+      pageSize: parseInt(10)
+    }
   })
     .then((result) => {
       updraft = result.data;
@@ -75,7 +75,7 @@ WeatherPage.getInitialProps = async ({ query: { city }, res }) => {
       weather,
       forecast,
       alerts,
-      errorCode,
+      errorCode
     };
   }
 
@@ -85,7 +85,7 @@ WeatherPage.getInitialProps = async ({ query: { city }, res }) => {
     location,
     weather,
     forecast,
-    alerts,
+    alerts
   };
 };
 
@@ -94,7 +94,7 @@ WeatherPage.propTypes = {
   weather: PropTypes.object,
   alerts: PropTypes.array,
   updraft: PropTypes.object,
-  forecast: PropTypes.object,
+  forecast: PropTypes.object
 };
 
 export default WeatherPage;

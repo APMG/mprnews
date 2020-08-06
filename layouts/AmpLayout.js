@@ -6,24 +6,24 @@ import AmpHead from '../components/AmpHead/AmpHead';
 
 const ampStyles = {
   ampContainer: {
-    margin: '25px',
-  },
+    margin: '25px'
+  }
 };
 
 const chartbeatObj = {
   vars: {
     uid: '33583',
-    domain: 'mprnews.org',
-  },
+    domain: 'mprnews.org'
+  }
 };
 
 const googleAnalytics = {
   vars: {
     gtag_id: 'UA-2958380-25',
     config: {
-      'UA-2958380-25': { groups: 'default' },
-    },
-  },
+      'UA-2958380-25': { groups: 'default' }
+    }
+  }
 };
 
 const AmpLayout = ({ children }) => {
@@ -36,7 +36,7 @@ const AmpLayout = ({ children }) => {
           <script
             type="application/json"
             dangerouslySetInnerHTML={{
-              __html: JSON.stringify(chartbeatObj),
+              __html: JSON.stringify(chartbeatObj)
             }}
           />
         </amp-analytics>
@@ -44,7 +44,7 @@ const AmpLayout = ({ children }) => {
           <script
             type="application/json"
             dangerouslySetInnerHTML={{
-              __html: JSON.stringify(googleAnalytics),
+              __html: JSON.stringify(googleAnalytics)
             }}
           />
         </amp-analytics>
@@ -56,7 +56,7 @@ const AmpLayout = ({ children }) => {
 };
 
 AmpLayout.propTypes = {
-  children: PropTypes.any,
+  children: PropTypes.any
 };
 
 export default AmpLayout;

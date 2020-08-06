@@ -22,7 +22,7 @@ const Header = () => {
 
   const headerClasses = classNames('header', {
     'is-open': menuOpen,
-    'is-closed': !menuOpen,
+    'is-closed': !menuOpen
   });
 
   const toggleMenu = () => {
