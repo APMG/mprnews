@@ -46,7 +46,7 @@
     "next-absolute-url": "^1.2.0",
     "next-images": "^1.1.1",
     "node-cache": "^5.1.2",
-    "node-sass": "^4.12.0",
+    "node-sass": "^7.0.0",
     "nowplaying-client": "git+https://gitlab+deploy-token-1:ykGvZaPj9yncv8X4MAsK@gitlab.mpr.org/js-libraries/nowplaying-client.git",
     "prop-types": "^15.7.2",
     "react": "^16.13.0",
